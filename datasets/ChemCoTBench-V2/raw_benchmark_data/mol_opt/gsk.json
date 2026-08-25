@@ -1,0 +1,1202 @@
+[
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0000",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 2,
+    "tgt_mol": "CCCCNc1nccc(Nc2ccccc2C(=O)O)n1",
+    "tgt_gsk": 0.62,
+    "idx": 2
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0001",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 4,
+    "tgt_mol": "COc1ccc(-c2cc3c(NC(=O)C(C)C)ncnc3o2)cc1",
+    "tgt_gsk": 0.97,
+    "idx": 4
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0002",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 6,
+    "tgt_mol": "Nc1nonc1-c1nc2ccccc2n1C1CC1",
+    "tgt_gsk": 0.99,
+    "idx": 6
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0003",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 11,
+    "tgt_mol": "O=C(NCc1ccccc1)c1ccc(-c2ccncc2)cc1",
+    "tgt_gsk": 0.58,
+    "idx": 11
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0004",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 14,
+    "tgt_mol": "COc1cc2ncnc(Nc3ccccc3)c2cc1OC",
+    "tgt_gsk": 0.68,
+    "idx": 14
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0005",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 17,
+    "tgt_mol": "NC(=Nc1ccc2[nH]cc(-c3ccncc3)c2c1)c1cccs1",
+    "tgt_gsk": 0.65,
+    "idx": 17
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0006",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 19,
+    "tgt_mol": "COc1cc2ncnc(Nc3cccc(Cl)c3)c2cc1OC",
+    "tgt_gsk": 0.84,
+    "idx": 19
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0007",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 21,
+    "tgt_mol": "Nc1nccc(-c2[nH]c(-c3ccccc3)nc2-c2ccccc2)n1",
+    "tgt_gsk": 0.56,
+    "idx": 21
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0008",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 25,
+    "tgt_mol": "Clc1ccc(-c2nnc(SCc3cn(Cc4ccccc4)nn3)o2)cc1",
+    "tgt_gsk": 0.47,
+    "idx": 25
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0009",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 27,
+    "tgt_mol": "Cc1cc(Nc2nc(-c3ccncc3)nc3ccccc23)n[nH]1",
+    "tgt_gsk": 0.52,
+    "idx": 27
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0010",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 28,
+    "tgt_mol": "COc1ccc(-c2nnc(SCc3ccccc3)o2)cc1",
+    "tgt_gsk": 0.85,
+    "idx": 28
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0011",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 30,
+    "tgt_mol": "c1cncc(-c2nc(NCCCn3ccnc3)c3ccccc3n2)c1",
+    "tgt_gsk": 0.58,
+    "idx": 30
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0012",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 32,
+    "tgt_mol": "Cc1sc2ncnc(N)c2c1C",
+    "tgt_gsk": 0.46,
+    "idx": 32
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0013",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 33,
+    "tgt_mol": "CCNc1nc2cc(Cl)c(OC)cc2nc1NCC",
+    "tgt_gsk": 0.64,
+    "idx": 33
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0014",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 34,
+    "tgt_mol": "Nc1nonc1-c1nc2ccccc2n1Cc1ccccc1",
+    "tgt_gsk": 0.75,
+    "idx": 34
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0015",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 36,
+    "tgt_mol": "c1ccc(-c2nc(-c3ccccc3)c(-c3ccncn3)[nH]2)cc1",
+    "tgt_gsk": 0.55,
+    "idx": 36
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0016",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 38,
+    "tgt_mol": "COc1ccc(C(=O)OCC(=O)Nc2ncc([N+](=O)[O-])s2)cc1OC",
+    "tgt_gsk": 0.51,
+    "idx": 38
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0017",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 40,
+    "tgt_mol": "CC(NC(=O)Nc1cc2[nH]nc(NC(=O)C3CCC3)c2cn1)c1ccccc1",
+    "tgt_gsk": 0.61,
+    "idx": 40
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0018",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 42,
+    "tgt_mol": "Clc1ccc(Nc2nnc(Cc3ccncc3)c3ccccc23)cc1",
+    "tgt_gsk": 0.63,
+    "idx": 42
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0019",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 45,
+    "tgt_mol": "Brc1cnc(Nc2ccncc2)nc1Nc1cc(C2CC2)[nH]n1",
+    "tgt_gsk": 0.72,
+    "idx": 45
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0020",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 53,
+    "tgt_mol": "COc1c(NCCCc2ccccc2)c(F)c(N)c2c(=O)c(C(=O)O)cn(C3CC3)c12",
+    "tgt_gsk": 1.0,
+    "idx": 53
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0021",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 54,
+    "tgt_mol": "CC(C)Nc1c(F)c(N)c2c(=O)c(C(=O)O)cn(C3CC3)c2c1F",
+    "tgt_gsk": 0.88,
+    "idx": 54
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0022",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 55,
+    "tgt_mol": "CC(NC(=O)Nc1cc2[nH]nc(NC(=O)C3CCCC3)c2cn1)c1ccccc1",
+    "tgt_gsk": 0.61,
+    "idx": 55
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0023",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 58,
+    "tgt_mol": "CC(Nc1nccc(-c2c(-c3ccc(F)cc3)c(=O)n(C)n2C)n1)c1ccncc1",
+    "tgt_gsk": 0.67,
+    "idx": 58
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0024",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 63,
+    "tgt_mol": "O=C(Nc1ccc(Oc2ncnc3[nH]ncc23)cc1)Nc1ccc(C(F)(F)F)cc1Cl",
+    "tgt_gsk": 0.41,
+    "idx": 63
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0025",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 65,
+    "tgt_mol": "CC(NC(=O)Nc1cc2[nH]nc(NC(=O)C3CCCC3)c2cn1)c1ccccc1",
+    "tgt_gsk": 0.61,
+    "idx": 65
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0026",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 68,
+    "tgt_mol": "O=C(Nc1cc(-c2ccccc2)ccc1O)c1ccc(CNCCCc2ccncc2)cc1",
+    "tgt_gsk": 0.45,
+    "idx": 68
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0027",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 71,
+    "tgt_mol": "Cn1c(=O)c(CCc2ccccc2)nc2cnc(Nc3ccccc3)nc21",
+    "tgt_gsk": 0.7,
+    "idx": 71
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0028",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 72,
+    "tgt_mol": "N#Cc1cnc2cnc(NCc3cccnc3)cc2c1Nc1ccc(F)c(Cl)c1",
+    "tgt_gsk": 0.67,
+    "idx": 72
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0029",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 74,
+    "tgt_mol": "CC(C)n1cnc2c(NCc3ccccc3)nc(NCCCO)nc21",
+    "tgt_gsk": 0.75,
+    "idx": 74
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0030",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 78,
+    "tgt_mol": "CC(NC(=O)Nc1cc2[nH]nc(NC(=O)C3CCCC3)c2cn1)c1ccccc1",
+    "tgt_gsk": 0.61,
+    "idx": 78
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0031",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 82,
+    "tgt_mol": "COc1ccccc1-c1ccc(CC(NC(=O)Cc2ccncc2)C(=O)O)cc1",
+    "tgt_gsk": 0.34,
+    "idx": 82
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0032",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 85,
+    "tgt_mol": "COc1cccc(Nc2ncc3cc(-c4c(Cl)cccc4Cl)c(=O)n(C)c3n2)c1",
+    "tgt_gsk": 0.61,
+    "idx": 85
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0033",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 87,
+    "tgt_mol": "CC(NC(=O)Nc1cc2[nH]nc(NC(=O)CC(F)(F)F)c2cn1)c1ccccc1",
+    "tgt_gsk": 0.52,
+    "idx": 87
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0034",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 89,
+    "tgt_mol": "CN1CCN(c2ccc(NC(=O)c3c(Nc4ccnc(N)n4)cc[nH]c3=O)cc2)CC1",
+    "tgt_gsk": 0.35,
+    "idx": 89
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0035",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 90,
+    "tgt_mol": "O=C(NC(Cc1c[nH]c2ncccc12)C(=O)NCC1CC(Br)=NO1)OCc1ccccc1",
+    "tgt_gsk": 0.35,
+    "idx": 90
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0036",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 93,
+    "tgt_mol": "CC(NC(=O)Nc1cc2[nH]nc(NC3CNC3)c2cn1)c1ccccc1",
+    "tgt_gsk": 0.48,
+    "idx": 93
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0037",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 94,
+    "tgt_mol": "Cn1c(=O)c(-c2c(Cl)cccc2Cl)cc2cnc(Nc3ccc(OCCN)cc3)nc21",
+    "tgt_gsk": 0.69,
+    "idx": 94
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0038",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 97,
+    "tgt_mol": "COCCn1c(=O)c(-c2ccc(OC)cc2)nc2cnc(Nc3cccc(OC)c3)nc21",
+    "tgt_gsk": 0.54,
+    "idx": 97
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0039",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 99,
+    "tgt_mol": "COc1cccc(Nc2ncc3cc(-c4c(Cl)cccc4Cl)c(=O)n(C)c3n2)c1",
+    "tgt_gsk": 0.61,
+    "idx": 99
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0040",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 130,
+    "tgt_mol": "O=C(Nc1cc2ccc(-c3ccncc3)cc2cn1)C1CC1",
+    "tgt_gsk": 0.45,
+    "idx": 130
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0041",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 167,
+    "tgt_mol": "COc1ccc(CNc2nc(NC(CO)C(C)C)nc3c2ncn3C(C)C)cc1",
+    "tgt_gsk": 0.55,
+    "idx": 167
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0042",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 168,
+    "tgt_mol": "CCCn1nc(NC(=O)c2cccs2)c2cc3cc(OC)ccc3nc21",
+    "tgt_gsk": 0.8,
+    "idx": 168
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0043",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 170,
+    "tgt_mol": "Cc1ccc(-c2nn(C(C)(C)C)c3ncnc(N)c23)cc1",
+    "tgt_gsk": 0.95,
+    "idx": 170
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0044",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 171,
+    "tgt_mol": "COc1cccc(Nc2ncnc3ccccc23)c1",
+    "tgt_gsk": 0.68,
+    "idx": 171
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0045",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 175,
+    "tgt_mol": "Nc1ncc(-c2ccncc2)cc1-c1ccc(C(=O)NC(CO)c2ccccc2)c(F)c1",
+    "tgt_gsk": 0.67,
+    "idx": 175
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0046",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 181,
+    "tgt_mol": "CCC(CO)Nc1nc(NCc2ccc(OC)cc2)c2ncn(C(C)C)c2n1",
+    "tgt_gsk": 0.49,
+    "idx": 181
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0047",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 182,
+    "tgt_mol": "COc1ccc(-c2cc3c(NC(=O)CCSC)ncnc3o2)cc1",
+    "tgt_gsk": 0.98,
+    "idx": 182
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0048",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 183,
+    "tgt_mol": "COc1cc2ncnc(N3CCN(C(=O)Nc4ccc(C(=O)O)cc4)CC3)c2cc1OC",
+    "tgt_gsk": 0.51,
+    "idx": 183
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0049",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 189,
+    "tgt_mol": "Cc1cn2c(=O)c(-c3ccnc(NC4CCOC4)n3)cnc2s1",
+    "tgt_gsk": 0.5,
+    "idx": 189
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0050",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 192,
+    "tgt_mol": "CCC(C)(C)Cc1c[nH]c(CCc2ccc(-c3ccncc3)cc2)n1",
+    "tgt_gsk": 0.53,
+    "idx": 192
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0051",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 196,
+    "tgt_mol": "CC(NC(=O)Nc1cc2[nH]nc(NC3COCC3F)c2cn1)c1ccccc1",
+    "tgt_gsk": 0.52,
+    "idx": 196
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0052",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 197,
+    "tgt_mol": "CC(=O)N1CCCC(c2ccnc(Nc3cnccn3)n2)C1",
+    "tgt_gsk": 0.52,
+    "idx": 197
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0053",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 200,
+    "tgt_mol": "CCOCn1oc(=O)c(-c2ccc(F)cc2)c1-c1ccnc(NC(C)CC)n1",
+    "tgt_gsk": 0.58,
+    "idx": 200
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0054",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 201,
+    "tgt_mol": "COc1ccc(C(=O)Nc2ccccc2NC(=O)c2ccc(-c3ccncc3)cc2)cc1",
+    "tgt_gsk": 0.4,
+    "idx": 201
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0055",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 204,
+    "tgt_mol": "COc1c(NCCNc2ccccn2)c(F)c(N)c2c(=O)c(C(=O)O)cn(C3CC3)c12",
+    "tgt_gsk": 0.98,
+    "idx": 204
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0056",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 212,
+    "tgt_mol": "Nc1cnc(-c2ccc(C3CCC3)c(OCCNc3ccncn3)c2F)cn1",
+    "tgt_gsk": 0.45,
+    "idx": 212
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0057",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 219,
+    "tgt_mol": "Cc1[nH]c2ccc(Cl)cc2c1-c1ccnc(NCc2cccnc2)n1",
+    "tgt_gsk": 0.55,
+    "idx": 219
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0058",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 225,
+    "tgt_mol": "COc1ccc(NC(=O)Nc2ccc(Nc3ncnc4cc(OC)c(OC)cc34)cc2)cc1",
+    "tgt_gsk": 0.65,
+    "idx": 225
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0059",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 228,
+    "tgt_mol": "CS(=O)(=O)c1ccc(CNC(=O)c2cc(N)c(C#N)c(OCC3CC3)n2)cc1",
+    "tgt_gsk": 0.78,
+    "idx": 228
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0060",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 229,
+    "tgt_mol": "CN(C)CCc1c[nH]c2ccc(-c3nc(N)no3)cc12",
+    "tgt_gsk": 0.36,
+    "idx": 229
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0061",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 232,
+    "tgt_mol": "Nc1ccc(-c2ccccc2)cc1NC(=O)c1ccc(CNc2ccncc2)cc1",
+    "tgt_gsk": 0.45,
+    "idx": 232
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0062",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 234,
+    "tgt_mol": "COc1ccc(-n2c(=O)c(C)nc3cnc(Nc4ccccc4)nc32)cc1",
+    "tgt_gsk": 0.74,
+    "idx": 234
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0063",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 235,
+    "tgt_mol": "CSc1ccc(Nc2ncc3cc(-c4c(Cl)cccc4Cl)c(=O)n(C)c3n2)cc1",
+    "tgt_gsk": 0.69,
+    "idx": 235
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0064",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 236,
+    "tgt_mol": "Cc1ccc(C)c(NC(=O)c2cc(-c3ccco3)nc3ccccc23)c1",
+    "tgt_gsk": 0.64,
+    "idx": 236
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0065",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 238,
+    "tgt_mol": "CC(C)n1cnc2c(NCc3ccccc3)nc(NCCCO)nc21",
+    "tgt_gsk": 0.75,
+    "idx": 238
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0066",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 239,
+    "tgt_mol": "Nc1cc(-c2ccc(NC(=O)Nc3cccc(C(F)(F)F)c3)cc2)on1",
+    "tgt_gsk": 0.47,
+    "idx": 239
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0067",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 240,
+    "tgt_mol": "NC(=O)c1cccc2[nH]c(-c3ccc4c(c3)OCO4)nc12",
+    "tgt_gsk": 0.7,
+    "idx": 240
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0068",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 241,
+    "tgt_mol": "FC(F)(F)c1cccc(-c2nnc3ccc(NC4CCC4)nn23)c1",
+    "tgt_gsk": 0.64,
+    "idx": 241
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0069",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 242,
+    "tgt_mol": "Cc1cc(Nc2nc(-c3ccncc3)nc3ccccc23)n[nH]1",
+    "tgt_gsk": 0.52,
+    "idx": 242
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0070",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 243,
+    "tgt_mol": "Fc1cccc(Cl)c1CSc1nnc(-c2ccncc2)o1",
+    "tgt_gsk": 0.94,
+    "idx": 243
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0071",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 244,
+    "tgt_mol": "Nc1nonc1-c1nc2ccccc2n1Cc1cccc(F)c1",
+    "tgt_gsk": 0.71,
+    "idx": 244
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0072",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 245,
+    "tgt_mol": "NCCCNc1ncc(C(N)=O)c(Nc2cccc(C(F)(F)F)c2)n1",
+    "tgt_gsk": 0.78,
+    "idx": 245
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0073",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 246,
+    "tgt_mol": "Nc1nonc1-c1nc2ccccc2n1Cc1ccc(Cl)cc1",
+    "tgt_gsk": 0.71,
+    "idx": 246
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0074",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 247,
+    "tgt_mol": "CS(=O)(=O)c1ccc(Oc2ccc(Nc3nccc(N)n3)cc2)cc1",
+    "tgt_gsk": 0.56,
+    "idx": 247
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0075",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 248,
+    "tgt_mol": "COC(=O)C=Cc1ccc2c(c1)C(=O)C(=O)N2",
+    "tgt_gsk": 0.34,
+    "idx": 248
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0076",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 249,
+    "tgt_mol": "N#Cc1ccccc1-n1c(-c2nonc2N)nc2ccccc21",
+    "tgt_gsk": 0.72,
+    "idx": 249
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0077",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 250,
+    "tgt_mol": "Cn1c(=O)c(-c2c(Cl)cccc2Cl)cc2cnc(Nc3ccc(OCCN)cc3)nc21",
+    "tgt_gsk": 0.69,
+    "idx": 250
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0078",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 252,
+    "tgt_mol": "CC1OC(n2cc(I)c3c(N)ncnc32)C(O)C1O",
+    "tgt_gsk": 0.58,
+    "idx": 252
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0079",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 253,
+    "tgt_mol": "CCOCn1oc(=O)c(-c2ccc(F)cc2)c1-c1ccnc(NC(C)COC)n1",
+    "tgt_gsk": 0.57,
+    "idx": 253
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0080",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 254,
+    "tgt_mol": "COc1ccc(Nc2nccc(C#Cc3ccc(CC(C)NC(C)=O)cc3)n2)cn1",
+    "tgt_gsk": 0.49,
+    "idx": 254
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0081",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 255,
+    "tgt_mol": "Fc1ccc(CSc2nnc(-c3ccncc3)o2)cc1",
+    "tgt_gsk": 0.71,
+    "idx": 255
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0082",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 256,
+    "tgt_mol": "Cc1cc(Nc2nc(-c3ccccc3)nc3ccccc23)n[nH]1",
+    "tgt_gsk": 0.49,
+    "idx": 256
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0083",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 257,
+    "tgt_mol": "CC(C)n1cnc2c(Nc3cccc(Cl)c3)nc(NC3CCCCC3N)nc21",
+    "tgt_gsk": 0.78,
+    "idx": 257
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0084",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 258,
+    "tgt_mol": "COc1cc2ncnc(Nc3cccc(C)c3)c2cc1OC",
+    "tgt_gsk": 0.71,
+    "idx": 258
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0085",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 259,
+    "tgt_mol": "CN(C)CCNc1cncc(-c2ccc3[nH]cc(-c4ccnc(N)n4)c3c2)n1",
+    "tgt_gsk": 0.91,
+    "idx": 259
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0086",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 260,
+    "tgt_mol": "Cc1ccc(C)c(COc2cc(Nc3nccc(N)n3)ccc2N(C)S(C)(=O)=O)c1",
+    "tgt_gsk": 0.58,
+    "idx": 260
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0087",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 261,
+    "tgt_mol": "COc1ccc(Nc2ncc3cc(-c4c(Cl)cccc4Cl)c(=O)n(C)c3n2)cc1",
+    "tgt_gsk": 0.68,
+    "idx": 261
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0088",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 262,
+    "tgt_mol": "CC(C)CC(=O)Nc1n[nH]c2cc(NC(=O)NC(C)c3ccccc3)ncc12",
+    "tgt_gsk": 0.58,
+    "idx": 262
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0089",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 263,
+    "tgt_mol": "Nc1nc(NCc2ccco2)nc(NCCO)c1[N+](=O)[O-]",
+    "tgt_gsk": 0.66,
+    "idx": 263
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0090",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 265,
+    "tgt_mol": "O=C(Nc1ccccc1)Nc1nccs1",
+    "tgt_gsk": 0.54,
+    "idx": 265
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0091",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 266,
+    "tgt_mol": "COc1cc(Nc2ncc3cc(-c4c(Cl)cccc4Cl)c(=O)n(C)c3n2)cc(OC)c1",
+    "tgt_gsk": 0.61,
+    "idx": 266
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0092",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 267,
+    "tgt_mol": "Cc1cc2nc(-c3cccnc3O)[nH]c2cc1C",
+    "tgt_gsk": 0.67,
+    "idx": 267
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0093",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 268,
+    "tgt_mol": "Nc1ncnc2sc3c(c12)CCC3",
+    "tgt_gsk": 0.39,
+    "idx": 268
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0094",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 269,
+    "tgt_mol": "Nc1nc(Nc2cccc(Cl)c2)nc(NCc2ccco2)c1[N+](=O)[O-]",
+    "tgt_gsk": 0.92,
+    "idx": 269
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0095",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 270,
+    "tgt_mol": "CCOC(=O)c1sc2ncnc(N)c2c1C",
+    "tgt_gsk": 0.38,
+    "idx": 270
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0096",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 271,
+    "tgt_mol": "CC(NC(=O)Nc1cc2[nH]nc(NC3CCCNC3)c2cn1)c1ccccc1",
+    "tgt_gsk": 0.51,
+    "idx": 271
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0097",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 272,
+    "tgt_mol": "Nc1ncnc2sc3c(c12)CCN(Cc1ccccc1)C3",
+    "tgt_gsk": 0.41,
+    "idx": 272
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0098",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 273,
+    "tgt_mol": "Cc1ccc(C)c(NC(=O)c2cc(-c3ccco3)nc3ccccc23)c1",
+    "tgt_gsk": 0.64,
+    "idx": 273
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0099",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 274,
+    "tgt_mol": "Cc1cc(Nc2nc(-c3ccncc3)nc3ccccc23)n[nH]1",
+    "tgt_gsk": 0.52,
+    "idx": 274
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0100",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 276,
+    "tgt_mol": "COc1cccc(Cn2c(-c3nonc3N)nc3ccccc32)c1",
+    "tgt_gsk": 0.64,
+    "idx": 276
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0101",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 277,
+    "tgt_mol": "CSc1nc(SCC(N)=O)c2c3c(sc2n1)CN(C)CC3",
+    "tgt_gsk": 0.7,
+    "idx": 277
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0102",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 279,
+    "tgt_mol": "CC1OC(n2cc(-c3ccccc3)c3c(N)ncnc32)C(O)C1O",
+    "tgt_gsk": 0.63,
+    "idx": 279
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0103",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 280,
+    "tgt_mol": "Cn1c(=O)c(Oc2ccc(F)cc2F)cc2cnc(NC3CCS(=O)(=O)CC3)nc21",
+    "tgt_gsk": 0.59,
+    "idx": 280
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0104",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 281,
+    "tgt_mol": "Cc1cc(Nc2nc(-c3ccc(C(C)(C)O)nc3)cc3ncn(C)c(=O)c23)[nH]n1",
+    "tgt_gsk": 0.56,
+    "idx": 281
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0105",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 282,
+    "tgt_mol": "Nc1ccc(Oc2ncnc3[nH]ccc23)cc1",
+    "tgt_gsk": 0.54,
+    "idx": 282
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0106",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 284,
+    "tgt_mol": "O=C(Nc1cc(-c2ccccc2)ccc1O)c1ccc(CNc2ccncc2)cc1",
+    "tgt_gsk": 0.44,
+    "idx": 284
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0107",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 285,
+    "tgt_mol": "COc1ccc(-n2c(=O)cnc3cnc(Nc4cccc(N)c4)nc32)cc1",
+    "tgt_gsk": 0.57,
+    "idx": 285
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0108",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 287,
+    "tgt_mol": "COCCCNc1nccc(-c2c(-c3ccc(F)cc3)nc3cc(CN(C)C)ccn23)n1",
+    "tgt_gsk": 0.81,
+    "idx": 287
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0109",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 288,
+    "tgt_mol": "COc1ccc(-c2oc3ncnc(N)c3c2-c2cccnc2)cc1",
+    "tgt_gsk": 0.87,
+    "idx": 288
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0110",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 289,
+    "tgt_mol": "Nc1nonc1-c1nc2ccccc2n1C1CC1",
+    "tgt_gsk": 0.99,
+    "idx": 289
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0111",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 290,
+    "tgt_mol": "COc1cccc(Nc2ncc3ncc(=O)n(Cc4ccc(F)cc4)c3n2)c1",
+    "tgt_gsk": 0.64,
+    "idx": 290
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0112",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 291,
+    "tgt_mol": "O=C1NC(=O)C(=Cc2ccc(-c3ccc(Cl)cc3Cl)o2)S1",
+    "tgt_gsk": 0.5,
+    "idx": 291
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0113",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 293,
+    "tgt_mol": "COc1nccc(-c2c(-c3ccc(F)cc3)ncn2C2CCC(O)CC2)n1",
+    "tgt_gsk": 0.81,
+    "idx": 293
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0114",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 294,
+    "tgt_mol": "Nc1c(F)c(NCCn2ccnc2)c(F)c2c1c(=O)c(C(=O)O)cn2C1CC1",
+    "tgt_gsk": 0.97,
+    "idx": 294
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0115",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 295,
+    "tgt_mol": "CCC(C)Nc1nc(N)c([N+](=O)[O-])c(NC2CCCCC2)n1",
+    "tgt_gsk": 0.87,
+    "idx": 295
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0116",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 296,
+    "tgt_mol": "O=c1cc(N2CCCOCC2)oc2c1ccc1ccccc12",
+    "tgt_gsk": 0.67,
+    "idx": 296
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0117",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 297,
+    "tgt_mol": "COc1cc2ncnc(Nc3cc(O)[nH]n3)c2cc1OC",
+    "tgt_gsk": 0.52,
+    "idx": 297
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0118",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 298,
+    "tgt_mol": "O=[N+]([O-])c1ccc(-c2nnc(SCc3ccccc3)o2)cc1",
+    "tgt_gsk": 0.95,
+    "idx": 298
+  },
+  {
+    "anonymous_sample_id": "mol_opt.gsk.0119",
+    "task_family": "mol_opt",
+    "subtask": "gsk",
+    "reporting_task": "MolOpt/BioTarget-Single",
+    "pool_idx": 299,
+    "tgt_mol": "COc1c(NCCNc2ccccn2)c(F)c(N)c2c(=O)c(C(=O)O)cn(C3CC3)c12",
+    "tgt_gsk": 0.98,
+    "idx": 299
+  }
+]

@@ -1,2 +1,5 @@
 # Ignore hug chemical LLM directory
 /chemical_models
+
+# Ignore the datasets
+/dataset

@@ -1,0 +1,68 @@
+{
+  "task_family": "mol_edit",
+  "subtask": "substitute_v2",
+  "reporting_task": "MolEdit/Substitute",
+  "all_pass_definition": "The all_pass field is the task-specific conjunction of required process verifier checks used when constructing the verified reference.",
+  "verifier_checks": [
+    {
+      "name": "s1_element_match",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s1_idx_valid",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s2_remove_heavy_ok",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s2_remove_valid",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s3_add_heavy_ok",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s3_add_valid",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s4_product_valid",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s5_delta_arithmetic",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s5_prod_heavy_ok",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s5_src_heavy_ok",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s6_delta_arithmetic",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s6_prod_rings_ok",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s6_src_rings_ok",
+      "description": "Task-specific deterministic verifier flag."
+    }
+  ],
+  "outcome_fields": [
+    "outcome"
+  ],
+  "type_notes": [
+    "Type-I checks are intrinsic symbolic checks such as validity, arithmetic, canonicalization, scaffold preservation, or consistency.",
+    "Type-II checks compare closed-answer process states or final answers with the verified benchmark reference.",
+    "Molecular optimization uses oracle-computable constraints rather than strict path matching for the final outcome."
+  ]
+}

@@ -1,0 +1,3954 @@
+[
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0000",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 3,
+    "pool_id": "409a70bb-4a89-43e1-86d9-65e3dea7fea8",
+    "reactants_smiles": "CC(C)(C)OC(=O)N1CCC(CCI)CC1.c1cc2c(s1)CCNC2",
+    "reactants_list": [
+      "CC(C)(C)OC(=O)N1CCC(CCI)CC1",
+      "c1cc2c(s1)CCNC2"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)OC(=O)N1CCC(CCN2CCc3sccc3C2)CC1",
+    "gt_rxn_cls": "Iodo N-alkylation",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CC(C)(C)OC(=O)N1CCC(CCN2CCc3sccc3C2)CC1",
+    "gt_can": "CC(C)(C)OC(=O)N1CCC(CCN2CCc3sccc3C2)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0001",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 4,
+    "pool_id": "978af24b-5695-4864-823c-61fb8a26645f",
+    "reactants_smiles": "N#Cc1n[nH]c2ncccc12.NNCc1ccccc1",
+    "reactants_list": [
+      "N#Cc1n[nH]c2ncccc12",
+      "NNCc1ccccc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "N=C(NNCc1ccccc1)c1n[nH]c2ncccc12",
+    "gt_rxn_cls": "Pinner reaction",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "N=C(NNCc1ccccc1)c1n[nH]c2ncccc12",
+    "gt_can": "N=C(NNCc1ccccc1)c1n[nH]c2ncccc12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0002",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 10,
+    "pool_id": "3cc42ced-f0a3-4d90-83e8-76efba15790d",
+    "reactants_smiles": "O=P(Cl)(Cl)Cl.COc1ccc(Cn2cnc3c(c(O)c(C)c(=O)n3C)c2=O)cc1",
+    "reactants_list": [
+      "O=P(Cl)(Cl)Cl",
+      "COc1ccc(Cn2cnc3c(c(O)c(C)c(=O)n3C)c2=O)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc(Cn2cnc3c(c(Cl)c(C)c(=O)n3C)c2=O)cc1",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "COc1ccc(Cn2cnc3c(c(Cl)c(C)c(=O)n3C)c2=O)cc1",
+    "gt_can": "COc1ccc(Cn2cnc3c(c(Cl)c(C)c(=O)n3C)c2=O)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0003",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 2,
+    "pool_id": "9c73c616-5ef7-459a-b0ed-913c37dfdc2f",
+    "reactants_smiles": "CCOC(=O)N=NC(=O)OCC.CCOC(=O)CC(c1ccc(C)c(CO)c1)c1ccc2c(c1)nnn2C.CC1CNS(=O)(=O)c2ccc(Br)cc2C1.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CCOC(=O)N=NC(=O)OCC",
+      "CCOC(=O)CC(c1ccc(C)c(CO)c1)c1ccc2c(c1)nnn2C",
+      "CC1CNS(=O)(=O)c2ccc(Br)cc2C1",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)CC(c1ccc(C)c(CN2CC(C)Cc3cc(Br)ccc3S2(=O)=O)c1)c1ccc2c(c1)nnn2C",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCOC(=O)CC(c1ccc(C)c(CN2CC(C)Cc3cc(Br)ccc3S2(=O)=O)c1)c1ccc2c(c1)nnn2C",
+    "gt_can": "CCOC(=O)CC(c1ccc(C)c(CN2CC(C)Cc3cc(Br)ccc3S2(=O)=O)c1)c1ccc2c(c1)nnn2C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0004",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 15,
+    "pool_id": "13c28b8c-e23a-45c5-a5fd-ce36e64f89f6",
+    "reactants_smiles": "CC(=O)OI1(OC(C)=O)(OC(C)=O)OC(=O)c2ccccc21.CCCC(NC(=O)C1CC(Oc2ccc(Cl)cn2)CN1C(=O)C(NC(=O)C(NC(=O)c1cnccn1)C1CCCCC1)C(C)(C)C)C(O)C(=O)NC1CC1",
+    "reactants_list": [
+      "CC(=O)OI1(OC(C)=O)(OC(C)=O)OC(=O)c2ccccc21",
+      "CCCC(NC(=O)C1CC(Oc2ccc(Cl)cn2)CN1C(=O)C(NC(=O)C(NC(=O)c1cnccn1)C1CCCCC1)C(C)(C)C)C(O)C(=O)NC1CC1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCCC(NC(=O)C1CC(Oc2ccc(Cl)cn2)CN1C(=O)C(NC(=O)C(NC(=O)c1cnccn1)C1CCCCC1)C(C)(C)C)C(=O)C(=O)NC1CC1",
+    "gt_rxn_cls": "Ketone Dess-Martin oxidation",
+    "coarse_rxn_cls": "Oxidation",
+    "predicted_can": "CCCC(NC(=O)C1CC(Oc2ccc(Cl)cn2)CN1C(=O)C(NC(=O)C(NC(=O)c1cnccn1)C1CCCCC1)C(C)(C)C)C(=O)C(=O)NC1CC1",
+    "gt_can": "CCCC(NC(=O)C1CC(Oc2ccc(Cl)cn2)CN1C(=O)C(NC(=O)C(NC(=O)c1cnccn1)C1CCCCC1)C(C)(C)C)C(=O)C(=O)NC1CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0005",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 16,
+    "pool_id": "3cabf5f0-fd6b-4063-b432-03a616b363e6",
+    "reactants_smiles": "CCOC(=O)C(Br)CC1CCC1.[Li]O",
+    "reactants_list": [
+      "CCOC(=O)C(Br)CC1CCC1",
+      "[Li]O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "O=C(O)C(Br)CC1CCC1",
+    "gt_rxn_cls": "CO2H-Et deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "O=C(O)C(Br)CC1CCC1",
+    "gt_can": "O=C(O)C(Br)CC1CCC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0006",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 6,
+    "pool_id": "587816d9-eb56-4601-8454-305d9344c8eb",
+    "reactants_smiles": "Cc1ccc(S(=O)(=O)Cl)cc1.OCC1=Cc2cccc(OCc3ccccc3)c2CC1",
+    "reactants_list": [
+      "Cc1ccc(S(=O)(=O)Cl)cc1",
+      "OCC1=Cc2cccc(OCc3ccccc3)c2CC1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "ClCC1=Cc2cccc(OCc3ccccc3)c2CC1",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "ClCC1=Cc2cccc(OCc3ccccc3)c2CC1",
+    "gt_can": "ClCC1=Cc2cccc(OCc3ccccc3)c2CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0007",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 2,
+    "pool_id": "cbddbcb1-a931-448b-87d8-ce34e74e8e19",
+    "reactants_smiles": "Br.CC(C)(C)NC(=O)C1CSCN1CC(O)C(Cc1ccccc1)NC(=O)OCc1ccccc1",
+    "reactants_list": [
+      "Br",
+      "CC(C)(C)NC(=O)C1CSCN1CC(O)C(Cc1ccccc1)NC(=O)OCc1ccccc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)NC(=O)C1CSCN1CC(O)C(N)Cc1ccccc1",
+    "gt_rxn_cls": "N-Cbz deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CC(C)(C)NC(=O)C1CSCN1CC(O)C(N)Cc1ccccc1",
+    "gt_can": "CC(C)(C)NC(=O)C1CSCN1CC(O)C(N)Cc1ccccc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0008",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 28,
+    "pool_id": "09b551f8-8211-450a-95b2-daa37abed590",
+    "reactants_smiles": "O=S(=O)(Cl)c1ccc(Br)cn1.COC(=O)c1ncc(N)cc1F",
+    "reactants_list": [
+      "O=S(=O)(Cl)c1ccc(Br)cn1",
+      "COC(=O)c1ncc(N)cc1F"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)c1ncc(NS(=O)(=O)c2ccc(Br)cn2)cc1F",
+    "gt_rxn_cls": "Sulfonamide Schotten-Baumann",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "COC(=O)c1ncc(NS(=O)(=O)c2ccc(Br)cn2)cc1F",
+    "gt_can": "COC(=O)c1ncc(NS(=O)(=O)c2ccc(Br)cn2)cc1F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0009",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 31,
+    "pool_id": "0dfa1536-860a-42b4-9a93-9a106a8d1d57",
+    "reactants_smiles": "N#CC1(NC(=O)OCc2ccccc2)CC1.NO",
+    "reactants_list": [
+      "N#CC1(NC(=O)OCc2ccccc2)CC1",
+      "NO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "N=C(NO)C1(NC(=O)OCc2ccccc2)CC1",
+    "gt_rxn_cls": "Pinner reaction",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "N=C(NO)C1(NC(=O)OCc2ccccc2)CC1",
+    "gt_can": "N=C(NO)C1(NC(=O)OCc2ccccc2)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0010",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 26,
+    "pool_id": "80b6c543-b96f-4135-8d3e-b78fd44cad4c",
+    "reactants_smiles": "O=C1CCC(=O)N1I.Cc1cn2ccnc2c(Br)n1",
+    "reactants_list": [
+      "O=C1CCC(=O)N1I",
+      "Cc1cn2ccnc2c(Br)n1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1cn2c(I)cnc2c(Br)n1",
+    "gt_rxn_cls": "Iodination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Cc1cn2c(I)cnc2c(Br)n1",
+    "gt_can": "Cc1cn2c(I)cnc2c(Br)n1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0011",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 41,
+    "pool_id": "2093cb5f-1e07-4fc7-b4f3-d052267ff94b",
+    "reactants_smiles": "O=S(Br)Br.CC1(C)NC(=O)N(CO)C1=O",
+    "reactants_list": [
+      "O=S(Br)Br",
+      "CC1(C)NC(=O)N(CO)C1=O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC1(C)NC(=O)N(CBr)C1=O",
+    "gt_rxn_cls": "Darzens bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CC1(C)NC(=O)N(CBr)C1=O",
+    "gt_can": "CC1(C)NC(=O)N(CBr)C1=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0012",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 22,
+    "pool_id": "7bf81e4c-978d-4602-b99c-ed317a342af5",
+    "reactants_smiles": "O=C1CCC(=O)N1I.Oc1cc(Br)c2ccccc2c1",
+    "reactants_list": [
+      "O=C1CCC(=O)N1I",
+      "Oc1cc(Br)c2ccccc2c1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Oc1cc(Br)c2ccccc2c1I",
+    "gt_rxn_cls": "Iodination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Oc1cc(Br)c2ccccc2c1I",
+    "gt_can": "Oc1cc(Br)c2ccccc2c1I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0013",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 48,
+    "pool_id": "3a4ab538-6236-4296-9ad0-cce125c09746",
+    "reactants_smiles": "N#CN1CCN(c2ccnc3cc(Cl)ccc23)CC1.NCc1ccc(F)cc1",
+    "reactants_list": [
+      "N#CN1CCN(c2ccnc3cc(Cl)ccc23)CC1",
+      "NCc1ccc(F)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "N=C(NCc1ccc(F)cc1)N1CCN(c2ccnc3cc(Cl)ccc23)CC1",
+    "gt_rxn_cls": "Pinner reaction",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "N=C(NCc1ccc(F)cc1)N1CCN(c2ccnc3cc(Cl)ccc23)CC1",
+    "gt_can": "N=C(NCc1ccc(F)cc1)N1CCN(c2ccnc3cc(Cl)ccc23)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0014",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 46,
+    "pool_id": "1681b5ba-6962-4fe9-9d7f-c0ab8b1c2e57",
+    "reactants_smiles": "O=P(Cl)(Cl)Cl.CCc1cc(O)c(C#N)c(=O)n1-c1ccccc1",
+    "reactants_list": [
+      "O=P(Cl)(Cl)Cl",
+      "CCc1cc(O)c(C#N)c(=O)n1-c1ccccc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCc1cc(Cl)c(C#N)c(=O)n1-c1ccccc1",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CCc1cc(Cl)c(C#N)c(=O)n1-c1ccccc1",
+    "gt_can": "CCc1cc(Cl)c(C#N)c(=O)n1-c1ccccc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0015",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 40,
+    "pool_id": "5e68ec53-b199-47ba-ab1d-482f9c6108f5",
+    "reactants_smiles": "CC(C)(C)OC(=O)COc1ccc2c(c1)OC(F)(F)O2.O[Na]",
+    "reactants_list": [
+      "CC(C)(C)OC(=O)COc1ccc2c(c1)OC(F)(F)O2",
+      "O[Na]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "O=C(O)COc1ccc2c(c1)OC(F)(F)O2",
+    "gt_rxn_cls": "CO2H-tBu deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "O=C(O)COc1ccc2c(c1)OC(F)(F)O2",
+    "gt_can": "O=C(O)COc1ccc2c(c1)OC(F)(F)O2"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0016",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 69,
+    "pool_id": "2c0a032a-9e93-44a0-bd15-bf699b8d99f5",
+    "reactants_smiles": "COC(=O)Cc1c(C)nn(Cc2ccc(CO)cc2)c1C.CS(=O)(=O)Cl",
+    "reactants_list": [
+      "COC(=O)Cc1c(C)nn(Cc2ccc(CO)cc2)c1C",
+      "CS(=O)(=O)Cl"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)Cc1c(C)nn(Cc2ccc(CCl)cc2)c1C",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "COC(=O)Cc1c(C)nn(Cc2ccc(CCl)cc2)c1C",
+    "gt_can": "COC(=O)Cc1c(C)nn(Cc2ccc(CCl)cc2)c1C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0017",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 14,
+    "pool_id": "2d8a2e9a-ae01-4c20-afea-f1caf68c34ba",
+    "reactants_smiles": "CC(O)CNS(=O)(=O)c1cccnc1Cl",
+    "reactants_list": [
+      "CC(O)CNS(=O)(=O)c1cccnc1Cl"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC1CNS(=O)(=O)c2cccnc2O1",
+    "gt_rxn_cls": "SNAr ether synthesis",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CC1CNS(=O)(=O)c2cccnc2O1",
+    "gt_can": "CC1CNS(=O)(=O)c2cccnc2O1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0018",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 63,
+    "pool_id": "43b5b3cf-f4d0-45f2-b215-e9fb2ca5bd7d",
+    "reactants_smiles": "O=C1CCC(=O)N1Br.Cc1cn2c(=O)cc(Oc3cccc(C(F)(F)F)c3)nc2s1",
+    "reactants_list": [
+      "O=C1CCC(=O)N1Br",
+      "Cc1cn2c(=O)cc(Oc3cccc(C(F)(F)F)c3)nc2s1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1sc2nc(Oc3cccc(C(F)(F)F)c3)cc(=O)n2c1Br",
+    "gt_rxn_cls": "Bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Cc1sc2nc(Oc3cccc(C(F)(F)F)c3)cc(=O)n2c1Br",
+    "gt_can": "Cc1sc2nc(Oc3cccc(C(F)(F)F)c3)cc(=O)n2c1Br"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0019",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 92,
+    "pool_id": "6096e963-0421-4043-8dfd-902404b32b02",
+    "reactants_smiles": "CCOC(=O)CCCCCCCCC(N)=O.O[Na]",
+    "reactants_list": [
+      "CCOC(=O)CCCCCCCCC(N)=O",
+      "O[Na]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "NC(=O)CCCCCCCCC(=O)O",
+    "gt_rxn_cls": "CO2H-Et deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "NC(=O)CCCCCCCCC(=O)O",
+    "gt_can": "NC(=O)CCCCCCCCC(=O)O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0020",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 82,
+    "pool_id": "8524dfce-7f89-46c1-b140-239d20f42033",
+    "reactants_smiles": "Br.O=C(O)C1CC(F)(F)CN1C(=O)OCc1ccccc1",
+    "reactants_list": [
+      "Br",
+      "O=C(O)C1CC(F)(F)CN1C(=O)OCc1ccccc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "O=C(O)C1CC(F)(F)CN1",
+    "gt_rxn_cls": "N-Cbz deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "O=C(O)C1CC(F)(F)CN1",
+    "gt_can": "O=C(O)C1CC(F)(F)CN1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0021",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 87,
+    "pool_id": "009f8092-370b-4b0f-a0e9-f675daa64ad8",
+    "reactants_smiles": "[BH4-].CCOC(=O)C1CC(=O)CC1CC",
+    "reactants_list": [
+      "[BH4-]",
+      "CCOC(=O)C1CC(=O)CC1CC"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)C1CC(O)CC1CC",
+    "gt_rxn_cls": "Ketone to alcohol reduction",
+    "coarse_rxn_cls": "Reduction",
+    "predicted_can": "CCOC(=O)C1CC(O)CC1CC",
+    "gt_can": "CCOC(=O)C1CC(O)CC1CC"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0022",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 80,
+    "pool_id": "3066ffa0-6477-48f3-9860-3b3597e9fc5a",
+    "reactants_smiles": "Br.Cc1ccc(NC(=O)OCc2ccccc2)cc1-n1cnc2ccc(Br)cc2c1=O",
+    "reactants_list": [
+      "Br",
+      "Cc1ccc(NC(=O)OCc2ccccc2)cc1-n1cnc2ccc(Br)cc2c1=O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1ccc(N)cc1-n1cnc2ccc(Br)cc2c1=O",
+    "gt_rxn_cls": "N-Cbz deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "Cc1ccc(N)cc1-n1cnc2ccc(Br)cc2c1=O",
+    "gt_can": "Cc1ccc(N)cc1-n1cnc2ccc(Br)cc2c1=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0023",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 19,
+    "pool_id": "051f9753-c348-4897-8105-3175a1e20a2f",
+    "reactants_smiles": "O=C1CCC(=O)N1I.Cc1cnc(C2CCCN2C(=O)OC(C)(C)C)[nH]1",
+    "reactants_list": [
+      "O=C1CCC(=O)N1I",
+      "Cc1cnc(C2CCCN2C(=O)OC(C)(C)C)[nH]1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1[nH]c(C2CCCN2C(=O)OC(C)(C)C)nc1I",
+    "gt_rxn_cls": "Iodination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Cc1[nH]c(C2CCCN2C(=O)OC(C)(C)C)nc1I",
+    "gt_can": "Cc1[nH]c(C2CCCN2C(=O)OC(C)(C)C)nc1I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0024",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 90,
+    "pool_id": "a197df86-42ea-41df-bd09-73c5bf9baed3",
+    "reactants_smiles": "CSc1sc(C#N)cc1S(=O)(=O)c1cccc(N2CCN(C)CC2)c1.CO",
+    "reactants_list": [
+      "CSc1sc(C#N)cc1S(=O)(=O)c1cccc(N2CCN(C)CC2)c1",
+      "CO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=N)c1cc(S(=O)(=O)c2cccc(N3CCN(C)CC3)c2)c(SC)s1",
+    "gt_rxn_cls": "Pinner reaction",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "COC(=N)c1cc(S(=O)(=O)c2cccc(N3CCN(C)CC3)c2)c(SC)s1",
+    "gt_can": "COC(=N)c1cc(S(=O)(=O)c2cccc(N3CCN(C)CC3)c2)c(SC)s1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0025",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 98,
+    "pool_id": "81eb8d4b-c723-4f4f-869a-a63278d294e5",
+    "reactants_smiles": "COCCN(CC(=O)OC)S(=O)(=O)c1ccc(F)cc1.[Li]O",
+    "reactants_list": [
+      "COCCN(CC(=O)OC)S(=O)(=O)c1ccc(F)cc1",
+      "[Li]O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COCCN(CC(=O)O)S(=O)(=O)c1ccc(F)cc1",
+    "gt_rxn_cls": "CO2H-Me deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "COCCN(CC(=O)O)S(=O)(=O)c1ccc(F)cc1",
+    "gt_can": "COCCN(CC(=O)O)S(=O)(=O)c1ccc(F)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0026",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 102,
+    "pool_id": "280d5465-3e3c-4084-ae4e-c949637efe24",
+    "reactants_smiles": "O=C(O)c1ccc2cc[nH]c2c1.CO",
+    "reactants_list": [
+      "O=C(O)c1ccc2cc[nH]c2c1",
+      "CO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)c1ccc2cc[nH]c2c1",
+    "gt_rxn_cls": "Methyl esterification",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "COC(=O)c1ccc2cc[nH]c2c1",
+    "gt_can": "COC(=O)c1ccc2cc[nH]c2c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0027",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 99,
+    "pool_id": "531b44a6-004e-42e8-937f-f4d57187e2b9",
+    "reactants_smiles": "FC(F)(F)c1ccc(Br)cc1.O=C1CCC(=O)N1I",
+    "reactants_list": [
+      "FC(F)(F)c1ccc(Br)cc1",
+      "O=C1CCC(=O)N1I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "FC(F)(F)c1ccc(Br)c(I)c1",
+    "gt_rxn_cls": "Iodination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "FC(F)(F)c1ccc(Br)c(I)c1",
+    "gt_can": "FC(F)(F)c1ccc(Br)c(I)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0028",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 120,
+    "pool_id": "a8a7e24f-7827-42bd-9940-2bdf0e4520d1",
+    "reactants_smiles": "N#Cc1cc(Br)ccc1N.NO",
+    "reactants_list": [
+      "N#Cc1cc(Br)ccc1N",
+      "NO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "N=C(NO)c1cc(Br)ccc1N",
+    "gt_rxn_cls": "Pinner reaction",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "N=C(NO)c1cc(Br)ccc1N",
+    "gt_can": "N=C(NO)c1cc(Br)ccc1N"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0029",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 138,
+    "pool_id": "ff7d5ea1-77ae-4c52-b532-dbb6d57a701f",
+    "reactants_smiles": "COC(=O)CCc1ccc(C(=O)N2CCCCc3ccccc32)cc1.[Li]O",
+    "reactants_list": [
+      "COC(=O)CCc1ccc(C(=O)N2CCCCc3ccccc32)cc1",
+      "[Li]O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "O=C(O)CCc1ccc(C(=O)N2CCCCc3ccccc32)cc1",
+    "gt_rxn_cls": "CO2H-Me deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "O=C(O)CCc1ccc(C(=O)N2CCCCc3ccccc32)cc1",
+    "gt_can": "O=C(O)CCc1ccc(C(=O)N2CCCCc3ccccc32)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0030",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 129,
+    "pool_id": "678f8537-35b8-4844-b684-8efd72a78ebe",
+    "reactants_smiles": "O=C(Cl)c1cccc(Br)n1.CC[Mg]Cl",
+    "reactants_list": [
+      "O=C(Cl)c1cccc(Br)n1",
+      "CC[Mg]Cl"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCC(=O)c1cccc(Br)n1",
+    "gt_rxn_cls": "Grignard + acid chloride ketone synthesis",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CCC(=O)c1cccc(Br)n1",
+    "gt_can": "CCC(=O)c1cccc(Br)n1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0031",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 142,
+    "pool_id": "38cf8055-8ced-45c4-b308-1c3c5fe162ec",
+    "reactants_smiles": "COC(=O)C1=C(O)c2ccc3ccccc3c2S(=O)(=O)N1.CCI",
+    "reactants_list": [
+      "COC(=O)C1=C(O)c2ccc3ccccc3c2S(=O)(=O)N1",
+      "CCI"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCN1C(C(=O)OC)=C(O)c2ccc3ccccc3c2S1(=O)=O",
+    "gt_rxn_cls": "Iodo N-alkylation",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCN1C(C(=O)OC)=C(O)c2ccc3ccccc3c2S1(=O)=O",
+    "gt_can": "CCN1C(C(=O)OC)=C(O)c2ccc3ccccc3c2S1(=O)=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0032",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 149,
+    "pool_id": "17f2d368-520c-4ec5-b23c-b63492e00300",
+    "reactants_smiles": "CS(=O)(=O)Nc1c(Nc2nc(Cl)ncc2Br)ccc2nccnc12.CC(C)I",
+    "reactants_list": [
+      "CS(=O)(=O)Nc1c(Nc2nc(Cl)ncc2Br)ccc2nccnc12",
+      "CC(C)I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)N(c1c(Nc2nc(Cl)ncc2Br)ccc2nccnc12)S(C)(=O)=O",
+    "gt_rxn_cls": "Iodo N-alkylation",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CC(C)N(c1c(Nc2nc(Cl)ncc2Br)ccc2nccnc12)S(C)(=O)=O",
+    "gt_can": "CC(C)N(c1c(Nc2nc(Cl)ncc2Br)ccc2nccnc12)S(C)(=O)=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0033",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 152,
+    "pool_id": "e5daa78e-9cbf-4144-87a1-28692ed2aa49",
+    "reactants_smiles": "C#CCO.N#Cc1cnn2c(=O)cc(-c3ccc4[nH]nnc4c3)[nH]c12",
+    "reactants_list": [
+      "C#CCO",
+      "N#Cc1cnn2c(=O)cc(-c3ccc4[nH]nnc4c3)[nH]c12"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "C#CCOC(=N)c1cnn2c(=O)cc(-c3ccc4[nH]nnc4c3)[nH]c12",
+    "gt_rxn_cls": "Pinner reaction",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "C#CCOC(=N)c1cnn2c(=O)cc(-c3ccc4[nH]nnc4c3)[nH]c12",
+    "gt_can": "C#CCOC(=N)c1cnn2c(=O)cc(-c3ccc4[nH]nnc4c3)[nH]c12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0034",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 161,
+    "pool_id": "f1cad21a-9655-4ad1-9302-ae619bf7c960",
+    "reactants_smiles": "COc1cccc(CCNCCc2c[nH]cn2)c1.CCCI",
+    "reactants_list": [
+      "COc1cccc(CCNCCc2c[nH]cn2)c1",
+      "CCCI"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCCN(CCc1cccc(OC)c1)CCc1c[nH]cn1",
+    "gt_rxn_cls": "Iodo N-alkylation",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCCN(CCc1cccc(OC)c1)CCc1c[nH]cn1",
+    "gt_can": "CCCN(CCc1cccc(OC)c1)CCc1c[nH]cn1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0035",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 158,
+    "pool_id": "9659f36a-301e-4b16-adff-cf387b3a2058",
+    "reactants_smiles": "CC(C)(C)OC(=O)N1CCC(C(=O)Nc2cn3cc(C#N)ccc3n2)C1.NO",
+    "reactants_list": [
+      "CC(C)(C)OC(=O)N1CCC(C(=O)Nc2cn3cc(C#N)ccc3n2)C1",
+      "NO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)OC(=O)N1CCC(C(=O)Nc2cn3cc(C(=N)NO)ccc3n2)C1",
+    "gt_rxn_cls": "Pinner reaction",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CC(C)(C)OC(=O)N1CCC(C(=O)Nc2cn3cc(C(=N)NO)ccc3n2)C1",
+    "gt_can": "CC(C)(C)OC(=O)N1CCC(C(=O)Nc2cn3cc(C(=N)NO)ccc3n2)C1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0036",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 154,
+    "pool_id": "37a68467-eef9-49b9-b602-0f7b170159a8",
+    "reactants_smiles": "CC1(C)OB(B2OC(C)(C)C(C)(C)O2)OC1(C)C.COc1cccc(I)c1Br.[Pd+2]",
+    "reactants_list": [
+      "CC1(C)OB(B2OC(C)(C)C(C)(C)O2)OC1(C)C",
+      "COc1cccc(I)c1Br",
+      "[Pd+2]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1cccc(B2OC(C)(C)C(C)(C)O2)c1Br",
+    "gt_rxn_cls": "Iodo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "COc1cccc(B2OC(C)(C)C(C)(C)O2)c1Br",
+    "gt_can": "COc1cccc(B2OC(C)(C)C(C)(C)O2)c1Br"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0037",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 167,
+    "pool_id": "0a9df884-3ef3-4565-8444-cddb6fbd72e8",
+    "reactants_smiles": "Cl[Pd]Cl.O=C1C=C(I)CCC1.CC1(C)OB(B2OC(C)(C)C(C)(C)O2)OC1(C)C",
+    "reactants_list": [
+      "Cl[Pd]Cl",
+      "O=C1C=C(I)CCC1",
+      "CC1(C)OB(B2OC(C)(C)C(C)(C)O2)OC1(C)C"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC1(C)OB(C2=CC(=O)CCC2)OC1(C)C",
+    "gt_rxn_cls": "Iodo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CC1(C)OB(C2=CC(=O)CCC2)OC1(C)C",
+    "gt_can": "CC1(C)OB(C2=CC(=O)CCC2)OC1(C)C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0038",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 162,
+    "pool_id": "7fffb89f-2184-4d46-83b3-18ea353e82cd",
+    "reactants_smiles": "CN1CCN(CC#N)CC1.NO",
+    "reactants_list": [
+      "CN1CCN(CC#N)CC1",
+      "NO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CN1CCN(CC(=N)NO)CC1",
+    "gt_rxn_cls": "Pinner reaction",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CN1CCN(CC(=N)NO)CC1",
+    "gt_can": "CN1CCN(CC(=N)NO)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0039",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 165,
+    "pool_id": "29c0b2cb-ffb2-48c8-9108-87df57fc82d4",
+    "reactants_smiles": "C=C(C)C1CCC(C(=O)O)CC1c1ccc(CO)cc1.CI",
+    "reactants_list": [
+      "C=C(C)C1CCC(C(=O)O)CC1c1ccc(CO)cc1",
+      "CI"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "C=C(C)C1CCC(C(=O)OC)CC1c1ccc(CO)cc1",
+    "gt_rxn_cls": "Methyl esterification",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "C=C(C)C1CCC(C(=O)OC)CC1c1ccc(CO)cc1",
+    "gt_can": "C=C(C)C1CCC(C(=O)OC)CC1c1ccc(CO)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0040",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 170,
+    "pool_id": "2a6c9c46-7fa7-496b-adce-bd58eec7b014",
+    "reactants_smiles": "Br[Mg]C1CCCCC1.CC1=CC=CN(c2cc(C=O)c(C)o2)N1",
+    "reactants_list": [
+      "Br[Mg]C1CCCCC1",
+      "CC1=CC=CN(c2cc(C=O)c(C)o2)N1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC1=CC=CN(c2cc(C(O)C3CCCCC3)c(C)o2)N1",
+    "gt_rxn_cls": "Bromo Grignard reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CC1=CC=CN(c2cc(C(O)C3CCCCC3)c(C)o2)N1",
+    "gt_can": "CC1=CC=CN(c2cc(C(O)C3CCCCC3)c(C)o2)N1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0041",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 182,
+    "pool_id": "866003fd-530e-495c-81d9-4cc6b0881324",
+    "reactants_smiles": "N#Cc1ccc(Cl)cc1.CCO",
+    "reactants_list": [
+      "N#Cc1ccc(Cl)cc1",
+      "CCO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=N)c1ccc(Cl)cc1",
+    "gt_rxn_cls": "Pinner reaction",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CCOC(=N)c1ccc(Cl)cc1",
+    "gt_can": "CCOC(=N)c1ccc(Cl)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0042",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 187,
+    "pool_id": "510a30a4-7865-4e04-af67-0f5f032d9ba6",
+    "reactants_smiles": "CS(=O)(=O)Cl.CC(Nc1nccc(N2C(=O)OCC2C(C)C)n1)c1ccc(CO)cc1",
+    "reactants_list": [
+      "CS(=O)(=O)Cl",
+      "CC(Nc1nccc(N2C(=O)OCC2C(C)C)n1)c1ccc(CO)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(Nc1nccc(N2C(=O)OCC2C(C)C)n1)c1ccc(CCl)cc1",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CC(Nc1nccc(N2C(=O)OCC2C(C)C)n1)c1ccc(CCl)cc1",
+    "gt_can": "CC(Nc1nccc(N2C(=O)OCC2C(C)C)n1)c1ccc(CCl)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0043",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 189,
+    "pool_id": "34b0298d-2df3-42c6-9065-3cf803c61214",
+    "reactants_smiles": "CC1(C)CN(c2ncc(I)cn2)C(=O)N1.CI",
+    "reactants_list": [
+      "CC1(C)CN(c2ncc(I)cn2)C(=O)N1",
+      "CI"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CN1C(=O)N(c2ncc(I)cn2)CC1(C)C",
+    "gt_rxn_cls": "Iodo N-methylation",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CN1C(=O)N(c2ncc(I)cn2)CC1(C)C",
+    "gt_can": "CN1C(=O)N(c2ncc(I)cn2)CC1(C)C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0044",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 192,
+    "pool_id": "5d7565d2-8cfa-4a90-9b1c-f3493adaa594",
+    "reactants_smiles": "CNC(=S)Nc1cc(C(=O)OC)cc2[nH]nc(Cl)c12.O[Na]",
+    "reactants_list": [
+      "CNC(=S)Nc1cc(C(=O)OC)cc2[nH]nc(Cl)c12",
+      "O[Na]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CNC(=S)Nc1cc(C(=O)O)cc2[nH]nc(Cl)c12",
+    "gt_rxn_cls": "CO2H-Me deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CNC(=S)Nc1cc(C(=O)O)cc2[nH]nc(Cl)c12",
+    "gt_can": "CNC(=S)Nc1cc(C(=O)O)cc2[nH]nc(Cl)c12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0045",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 163,
+    "pool_id": "a4d29392-4b9a-4d00-82e6-6fc2b2df83ea",
+    "reactants_smiles": "Cl[Al](Cl)Cl.COc1ccc(CC(=O)Cl)cc1.COc1cc(Cl)cc(OC)c1",
+    "reactants_list": [
+      "Cl[Al](Cl)Cl",
+      "COc1ccc(CC(=O)Cl)cc1",
+      "COc1cc(Cl)cc(OC)c1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc(CC(=O)c2c(Cl)cc(OC)cc2OC)cc1",
+    "gt_rxn_cls": "Friedel-Crafts acylation",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "COc1ccc(CC(=O)c2c(Cl)cc(OC)cc2OC)cc1",
+    "gt_can": "COc1ccc(CC(=O)c2c(Cl)cc(OC)cc2OC)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0046",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 210,
+    "pool_id": "2bedadb3-ce77-43f1-9da8-a0e4eacbb073",
+    "reactants_smiles": "O=C1CCC(=O)N1I.COC(=O)c1cn[nH]c1OC",
+    "reactants_list": [
+      "O=C1CCC(=O)N1I",
+      "COC(=O)c1cn[nH]c1OC"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)c1c(I)n[nH]c1OC",
+    "gt_rxn_cls": "Iodination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "COC(=O)c1c(I)n[nH]c1OC",
+    "gt_can": "COC(=O)c1c(I)n[nH]c1OC"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0047",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 206,
+    "pool_id": "cbde3602-3d55-48ed-a154-ac7db1d325c8",
+    "reactants_smiles": "Cl[Al](Cl)Cl.O=C(Cl)Cc1ccc(Cl)cc1.CCOC(=O)c1[nH]ccc1C",
+    "reactants_list": [
+      "Cl[Al](Cl)Cl",
+      "O=C(Cl)Cc1ccc(Cl)cc1",
+      "CCOC(=O)c1[nH]ccc1C"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)c1[nH]cc(C(=O)Cc2ccc(Cl)cc2)c1C",
+    "gt_rxn_cls": "Friedel-Crafts acylation",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CCOC(=O)c1[nH]cc(C(=O)Cc2ccc(Cl)cc2)c1C",
+    "gt_can": "CCOC(=O)c1[nH]cc(C(=O)Cc2ccc(Cl)cc2)c1C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0048",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 209,
+    "pool_id": "c811a747-2b89-44da-957d-2ef157453cbd",
+    "reactants_smiles": "Clc1ccnc(Cl)c1.Nc1ccc(O)c(F)c1",
+    "reactants_list": [
+      "Clc1ccnc(Cl)c1",
+      "Nc1ccc(O)c(F)c1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Nc1ccc(Oc2ccnc(Cl)c2)c(F)c1",
+    "gt_rxn_cls": "SNAr ether synthesis",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "Nc1ccc(Oc2ccnc(Cl)c2)c(F)c1",
+    "gt_can": "Nc1ccc(Oc2ccnc(Cl)c2)c(F)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0049",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 217,
+    "pool_id": "11ffbf6b-62a9-4f31-8647-9ac20b0b3813",
+    "reactants_smiles": "O=C(O)C(O)c1c(F)cccc1F.CO",
+    "reactants_list": [
+      "O=C(O)C(O)c1c(F)cccc1F",
+      "CO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)C(O)c1c(F)cccc1F",
+    "gt_rxn_cls": "Fischer-Speier esterification",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "COC(=O)C(O)c1c(F)cccc1F",
+    "gt_can": "COC(=O)C(O)c1c(F)cccc1F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0050",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 203,
+    "pool_id": "e477ce52-4800-4e07-8e00-297a1b27fc80",
+    "reactants_smiles": "O=C1CCC(=O)N1I.Nc1cccc2c1OCO2",
+    "reactants_list": [
+      "O=C1CCC(=O)N1I",
+      "Nc1cccc2c1OCO2"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Nc1ccc(I)c2c1OCO2",
+    "gt_rxn_cls": "Iodination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Nc1ccc(I)c2c1OCO2",
+    "gt_can": "Nc1ccc(I)c2c1OCO2"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0051",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 218,
+    "pool_id": "1a73994c-9e25-438e-a9ad-227878cea14a",
+    "reactants_smiles": "Cc1cc(C#N)cc(C)c1OCC1COC(C)(C)O1.NO",
+    "reactants_list": [
+      "Cc1cc(C#N)cc(C)c1OCC1COC(C)(C)O1",
+      "NO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1cc(C(=N)NO)cc(C)c1OCC1COC(C)(C)O1",
+    "gt_rxn_cls": "Pinner reaction",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Cc1cc(C(=N)NO)cc(C)c1OCC1COC(C)(C)O1",
+    "gt_can": "Cc1cc(C(=N)NO)cc(C)c1OCC1COC(C)(C)O1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0052",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 222,
+    "pool_id": "a7a64ae3-3eee-4c2f-bfdf-c3df14d7d98e",
+    "reactants_smiles": "Br.O=C(Nc1cccc2[nH]c(-c3ccnc(Cl)c3)nc12)OCc1ccccc1",
+    "reactants_list": [
+      "Br",
+      "O=C(Nc1cccc2[nH]c(-c3ccnc(Cl)c3)nc12)OCc1ccccc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Nc1cccc2[nH]c(-c3ccnc(Cl)c3)nc12",
+    "gt_rxn_cls": "N-Cbz deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "Nc1cccc2[nH]c(-c3ccnc(Cl)c3)nc12",
+    "gt_can": "Nc1cccc2[nH]c(-c3ccnc(Cl)c3)nc12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0053",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 215,
+    "pool_id": "0f81baab-e9ad-4583-95f2-305c37e9a2c1",
+    "reactants_smiles": "O=C1CCc2cc(OCC3CNC3)ccc2N1.O=C=NCc1ccc(Cl)cc1",
+    "reactants_list": [
+      "O=C1CCc2cc(OCC3CNC3)ccc2N1",
+      "O=C=NCc1ccc(Cl)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "O=C1CCc2cc(OCC3CN(C(=O)NCc4ccc(Cl)cc4)C3)ccc2N1",
+    "gt_rxn_cls": "Isocyanate + amine urea coupling",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "O=C1CCc2cc(OCC3CN(C(=O)NCc4ccc(Cl)cc4)C3)ccc2N1",
+    "gt_can": "O=C1CCc2cc(OCC3CN(C(=O)NCc4ccc(Cl)cc4)C3)ccc2N1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0054",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 224,
+    "pool_id": "0b3cc375-c657-4bb9-ad0f-f8f043d6ebe3",
+    "reactants_smiles": "CCOC(COCC(=O)OC(C)(C)C)OCC.[Li]O",
+    "reactants_list": [
+      "CCOC(COCC(=O)OC(C)(C)C)OCC",
+      "[Li]O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(COCC(=O)O)OCC",
+    "gt_rxn_cls": "CO2H-tBu deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CCOC(COCC(=O)O)OCC",
+    "gt_can": "CCOC(COCC(=O)O)OCC"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0055",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 227,
+    "pool_id": "e935ec88-41cd-418e-bc25-65c8bb0a38e4",
+    "reactants_smiles": "O=C1CCC(=O)N1I.O=[N+]([O-])c1ccc(Br)cc1",
+    "reactants_list": [
+      "O=C1CCC(=O)N1I",
+      "O=[N+]([O-])c1ccc(Br)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "O=[N+]([O-])c1ccc(Br)c(I)c1",
+    "gt_rxn_cls": "Iodination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "O=[N+]([O-])c1ccc(Br)c(I)c1",
+    "gt_can": "O=[N+]([O-])c1ccc(Br)c(I)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0056",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 244,
+    "pool_id": "0bf9b756-71b4-407e-9c9c-c9d0ecdc0ac7",
+    "reactants_smiles": "CC(=O)Cl.Cc1ccc(O)cc1",
+    "reactants_list": [
+      "CC(=O)Cl",
+      "Cc1ccc(O)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(=O)Oc1ccc(C)cc1",
+    "gt_rxn_cls": "Ester Schotten-Baumann",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CC(=O)Oc1ccc(C)cc1",
+    "gt_can": "CC(=O)Oc1ccc(C)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0057",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 230,
+    "pool_id": "03e6e962-f46a-44b5-b930-69bb78e01984",
+    "reactants_smiles": "O=C1CCC(=O)N1I.Nc1nc2ccccc2n1S(=O)(=O)c1ccccc1",
+    "reactants_list": [
+      "O=C1CCC(=O)N1I",
+      "Nc1nc2ccccc2n1S(=O)(=O)c1ccccc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Nc1nc2ccc(I)cc2n1S(=O)(=O)c1ccccc1",
+    "gt_rxn_cls": "Iodination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Nc1nc2ccc(I)cc2n1S(=O)(=O)c1ccccc1",
+    "gt_can": "Nc1nc2ccc(I)cc2n1S(=O)(=O)c1ccccc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0058",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 237,
+    "pool_id": "25efed47-b141-4af3-8685-e2a8fc8b9180",
+    "reactants_smiles": "O.CC(C)(C)OC(=O)NCC(=O)N1C(=O)N(C2CCCCC2)CC1C(=O)OC(C)(C)C",
+    "reactants_list": [
+      "O",
+      "CC(C)(C)OC(=O)NCC(=O)N1C(=O)N(C2CCCCC2)CC1C(=O)OC(C)(C)C"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)OC(=O)NCC(=O)N1C(=O)N(C2CCCCC2)CC1C(=O)O",
+    "gt_rxn_cls": "CO2H-tBu deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CC(C)(C)OC(=O)NCC(=O)N1C(=O)N(C2CCCCC2)CC1C(=O)O",
+    "gt_can": "CC(C)(C)OC(=O)NCC(=O)N1C(=O)N(C2CCCCC2)CC1C(=O)O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0059",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 251,
+    "pool_id": "0031ae0b-bc51-4aeb-a540-928f5fa27ff0",
+    "reactants_smiles": "O=C(Cl)c1ccc2nc(-c3cc(Cl)cc(Cl)c3)oc2c1.CN(C)CCCCO",
+    "reactants_list": [
+      "O=C(Cl)c1ccc2nc(-c3cc(Cl)cc(Cl)c3)oc2c1",
+      "CN(C)CCCCO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CN(C)CCCCOC(=O)c1ccc2nc(-c3cc(Cl)cc(Cl)c3)oc2c1",
+    "gt_rxn_cls": "Ester Schotten-Baumann",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CN(C)CCCCOC(=O)c1ccc2nc(-c3cc(Cl)cc(Cl)c3)oc2c1",
+    "gt_can": "CN(C)CCCCOC(=O)c1ccc2nc(-c3cc(Cl)cc(Cl)c3)oc2c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0060",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 239,
+    "pool_id": "1850dfb6-97c8-4204-83d6-6c277d9cf93b",
+    "reactants_smiles": "CCCCCCCC(CC(=O)N(C)OC)O[Si](C)(C)C(C)(C)C.C[Mg]Br",
+    "reactants_list": [
+      "CCCCCCCC(CC(=O)N(C)OC)O[Si](C)(C)C(C)(C)C",
+      "C[Mg]Br"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCCCCCCC(CC(C)=O)O[Si](C)(C)C(C)(C)C",
+    "gt_rxn_cls": "Weinreb ketone synthesis",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CCCCCCCC(CC(C)=O)O[Si](C)(C)C(C)(C)C",
+    "gt_can": "CCCCCCCC(CC(C)=O)O[Si](C)(C)C(C)(C)C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0061",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 275,
+    "pool_id": "9a318e8f-6a43-4931-b137-f3edc04982af",
+    "reactants_smiles": "COc1ccc(C(=O)Cl)cc1.C[N+](C)(C)CCO",
+    "reactants_list": [
+      "COc1ccc(C(=O)Cl)cc1",
+      "C[N+](C)(C)CCO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc(C(=O)OCC[N+](C)(C)C)cc1",
+    "gt_rxn_cls": "Ester Schotten-Baumann",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "COc1ccc(C(=O)OCC[N+](C)(C)C)cc1",
+    "gt_can": "COc1ccc(C(=O)OCC[N+](C)(C)C)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0062",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 268,
+    "pool_id": "5047832a-7c22-40be-87b2-4953b612abb8",
+    "reactants_smiles": "[BH4-].COC(=O)C1CCC2C3CCC4=CC(=O)CCC4(C)C3C(=O)CC12C",
+    "reactants_list": [
+      "[BH4-]",
+      "COC(=O)C1CCC2C3CCC4=CC(=O)CCC4(C)C3C(=O)CC12C"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)C1CCC2C3CCC4=CC(O)CCC4(C)C3C(=O)CC12C",
+    "gt_rxn_cls": "Ketone to alcohol reduction",
+    "coarse_rxn_cls": "Reduction",
+    "predicted_can": "COC(=O)C1CCC2C3CCC4=CC(O)CCC4(C)C3C(=O)CC12C",
+    "gt_can": "COC(=O)C1CCC2C3CCC4=CC(O)CCC4(C)C3C(=O)CC12C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0063",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 272,
+    "pool_id": "0a315e03-828f-41bb-8ef9-a2b05c2f2546",
+    "reactants_smiles": "CON(C)C(=O)C1CCN(C(=O)OC(C)(C)C)CC1.C[Mg]Br",
+    "reactants_list": [
+      "CON(C)C(=O)C1CCN(C(=O)OC(C)(C)C)CC1",
+      "C[Mg]Br"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(=O)C1CCN(C(=O)OC(C)(C)C)CC1",
+    "gt_rxn_cls": "Weinreb ketone synthesis",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CC(=O)C1CCN(C(=O)OC(C)(C)C)CC1",
+    "gt_can": "CC(=O)C1CCN(C(=O)OC(C)(C)C)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0064",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 263,
+    "pool_id": "0f6c7af6-7b23-48f1-ba58-397fab442d9b",
+    "reactants_smiles": "COc1ccc([Mg]Br)cc1.CCSc1ncc(C(=O)N(C)OC)c(N)n1",
+    "reactants_list": [
+      "COc1ccc([Mg]Br)cc1",
+      "CCSc1ncc(C(=O)N(C)OC)c(N)n1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCSc1ncc(C(=O)c2ccc(OC)cc2)c(N)n1",
+    "gt_rxn_cls": "Weinreb ketone synthesis",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CCSc1ncc(C(=O)c2ccc(OC)cc2)c(N)n1",
+    "gt_can": "CCSc1ncc(C(=O)c2ccc(OC)cc2)c(N)n1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0065",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 287,
+    "pool_id": "30ff896b-380e-4886-badf-fd8e4d59c08e",
+    "reactants_smiles": "CCOC(=O)c1noc(-c2ccc(Cl)cc2)c1Cl.O[Na]",
+    "reactants_list": [
+      "CCOC(=O)c1noc(-c2ccc(Cl)cc2)c1Cl",
+      "O[Na]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "O=C(O)c1noc(-c2ccc(Cl)cc2)c1Cl",
+    "gt_rxn_cls": "CO2H-Et deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "O=C(O)c1noc(-c2ccc(Cl)cc2)c1Cl",
+    "gt_can": "O=C(O)c1noc(-c2ccc(Cl)cc2)c1Cl"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0066",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 238,
+    "pool_id": "00b31e3a-5bbe-43c1-810e-e9a45adb8b7b",
+    "reactants_smiles": "CI.CCOC(=O)c1c[nH]c2cc(Br)ccc2c1=O",
+    "reactants_list": [
+      "CI",
+      "CCOC(=O)c1c[nH]c2cc(Br)ccc2c1=O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)c1cn(C)c2cc(Br)ccc2c1=O",
+    "gt_rxn_cls": "Iodo N-methylation",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCOC(=O)c1cn(C)c2cc(Br)ccc2c1=O",
+    "gt_can": "CCOC(=O)c1cn(C)c2cc(Br)ccc2c1=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0067",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 290,
+    "pool_id": "0a11ea09-905f-4108-8ada-3fcca2482ef3",
+    "reactants_smiles": "CON(C)C(=O)Cc1ccc(Cl)cc1Cl.C[Mg]Br",
+    "reactants_list": [
+      "CON(C)C(=O)Cc1ccc(Cl)cc1Cl",
+      "C[Mg]Br"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(=O)Cc1ccc(Cl)cc1Cl",
+    "gt_rxn_cls": "Weinreb ketone synthesis",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CC(=O)Cc1ccc(Cl)cc1Cl",
+    "gt_can": "CC(=O)Cc1ccc(Cl)cc1Cl"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0068",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 291,
+    "pool_id": "023186a9-ff02-49da-8c09-f000cea7a5b3",
+    "reactants_smiles": "CC(=O)c1ccc(S(=O)(=O)Cl)cc1.Nc1nccs1",
+    "reactants_list": [
+      "CC(=O)c1ccc(S(=O)(=O)Cl)cc1",
+      "Nc1nccs1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(=O)c1ccc(S(=O)(=O)Nc2nccs2)cc1",
+    "gt_rxn_cls": "Sulfonamide Schotten-Baumann",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CC(=O)c1ccc(S(=O)(=O)Nc2nccs2)cc1",
+    "gt_can": "CC(=O)c1ccc(S(=O)(=O)Nc2nccs2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0069",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 12,
+    "pool_id": "4c277254-baa5-41fa-a22b-00d08118b20e",
+    "reactants_smiles": "O=C(OO)c1cccc(Cl)c1.CC(C)c1c2n(c(=O)n(CCCCCl)c1=O)CCCS2.OO",
+    "reactants_list": [
+      "O=C(OO)c1cccc(Cl)c1",
+      "CC(C)c1c2n(c(=O)n(CCCCCl)c1=O)CCCS2",
+      "OO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)c1c2n(c(=O)n(CCCCCl)c1=O)CCCS2(=O)=O",
+    "gt_rxn_cls": "Sulfanyl to sulfonyl",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CC(C)c1c2n(c(=O)n(CCCCCl)c1=O)CCCS2(=O)=O",
+    "gt_can": "CC(C)c1c2n(c(=O)n(CCCCCl)c1=O)CCCS2(=O)=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0070",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 295,
+    "pool_id": "81bf1fa8-c95e-44d3-bbaf-05d2fe51aaf1",
+    "reactants_smiles": "O=C(O)CCl.CC1=C(C)C(=O)N(CCCCCCO)C1=O",
+    "reactants_list": [
+      "O=C(O)CCl",
+      "CC1=C(C)C(=O)N(CCCCCCO)C1=O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC1=C(C)C(=O)N(CCCCCCOC(=O)CCl)C1=O",
+    "gt_rxn_cls": "Fischer-Speier esterification",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CC1=C(C)C(=O)N(CCCCCCOC(=O)CCl)C1=O",
+    "gt_can": "CC1=C(C)C(=O)N(CCCCCCOC(=O)CCl)C1=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0071",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 0,
+    "pool_id": "c5f262a3-3462-43fd-bcad-d4c94e02025b",
+    "reactants_smiles": "C=Cc1cnc(N)nc1.O=C(O[Cs])O[Cs].CN1CCC(S(=O)(=O)c2ccc(Br)cc2)CC1.[Pd].[Pd]",
+    "reactants_list": [
+      "C=Cc1cnc(N)nc1",
+      "O=C(O[Cs])O[Cs]",
+      "CN1CCC(S(=O)(=O)c2ccc(Br)cc2)CC1",
+      "[Pd]",
+      "[Pd]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "C=Cc1cnc(Nc2ccc(S(=O)(=O)C3CCN(C)CC3)cc2)nc1",
+    "gt_rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "C=Cc1cnc(Nc2ccc(S(=O)(=O)C3CCN(C)CC3)cc2)nc1",
+    "gt_can": "C=Cc1cnc(Nc2ccc(S(=O)(=O)C3CCN(C)CC3)cc2)nc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0072",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 55,
+    "pool_id": "5e611d57-f5fe-4724-9d7c-3ea339d84634",
+    "reactants_smiles": "O=C(O[Cs])O[Cs].C1CCNC1.CCOC(=O)C(C)(C)Oc1ccc(CNC(=O)c2cc(-c3ccc(Br)cc3)n(C)n2)cc1C.[Pd].[Pd]",
+    "reactants_list": [
+      "O=C(O[Cs])O[Cs]",
+      "C1CCNC1",
+      "CCOC(=O)C(C)(C)Oc1ccc(CNC(=O)c2cc(-c3ccc(Br)cc3)n(C)n2)cc1C",
+      "[Pd]",
+      "[Pd]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)C(C)(C)Oc1ccc(CNC(=O)c2cc(-c3ccc(N4CCCC4)cc3)n(C)n2)cc1C",
+    "gt_rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCOC(=O)C(C)(C)Oc1ccc(CNC(=O)c2cc(-c3ccc(N4CCCC4)cc3)n(C)n2)cc1C",
+    "gt_can": "CCOC(=O)C(C)(C)Oc1ccc(CNC(=O)c2cc(-c3ccc(N4CCCC4)cc3)n(C)n2)cc1C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0073",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 39,
+    "pool_id": "41d2cff9-5cf1-4619-8614-d4b145147dc5",
+    "reactants_smiles": "O=C1CCC(=O)N1Br.CC(=O)OCC1CC(n2cnc3cc(Cl)c(Cl)cc32)C(OC(C)=O)C1OC(C)=O",
+    "reactants_list": [
+      "O=C1CCC(=O)N1Br",
+      "CC(=O)OCC1CC(n2cnc3cc(Cl)c(Cl)cc32)C(OC(C)=O)C1OC(C)=O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(=O)OCC1CC(n2c(Br)nc3cc(Cl)c(Cl)cc32)C(OC(C)=O)C1OC(C)=O",
+    "gt_rxn_cls": "Bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CC(=O)OCC1CC(n2c(Br)nc3cc(Cl)c(Cl)cc32)C(OC(C)=O)C1OC(C)=O",
+    "gt_can": "CC(=O)OCC1CC(n2c(Br)nc3cc(Cl)c(Cl)cc32)C(OC(C)=O)C1OC(C)=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0074",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 54,
+    "pool_id": "c02a8ce1-8266-4673-8307-9011ef3f76e4",
+    "reactants_smiles": "O=S(Br)Br.CC(C)CCCC(C)C1CCC2C3CC=C4CC(O)CCC4(C)C3CCC12C",
+    "reactants_list": [
+      "O=S(Br)Br",
+      "CC(C)CCCC(C)C1CCC2C3CC=C4CC(O)CCC4(C)C3CCC12C"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)CCCC(C)C1CCC2C3CC=C4CC(Br)CCC4(C)C3CCC12C",
+    "gt_rxn_cls": "Darzens bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CC(C)CCCC(C)C1CCC2C3CC=C4CC(Br)CCC4(C)C3CCC12C",
+    "gt_can": "CC(C)CCCC(C)C1CCC2C3CC=C4CC(Br)CCC4(C)C3CCC12C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0075",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 57,
+    "pool_id": "965a4dd1-3dd7-403d-b169-c5b4b5bd8776",
+    "reactants_smiles": "C#C[Si](C)(C)C.Cl[Pd]Cl.I[Cu]I.CCCCCCCCCCc1cc2cc3cc(OS(=O)(=O)C(F)(F)F)c(Br)cc3cc2[se]1",
+    "reactants_list": [
+      "C#C[Si](C)(C)C",
+      "Cl[Pd]Cl",
+      "I[Cu]I",
+      "CCCCCCCCCCc1cc2cc3cc(OS(=O)(=O)C(F)(F)F)c(Br)cc3cc2[se]1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCCCCCCCCCc1cc2cc3cc(C#C[Si](C)(C)C)c(Br)cc3cc2[se]1",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CCCCCCCCCCc1cc2cc3cc(C#C[Si](C)(C)C)c(Br)cc3cc2[se]1",
+    "gt_can": "CCCCCCCCCCc1cc2cc3cc(C#C[Si](C)(C)C)c(Br)cc3cc2[se]1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0076",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 81,
+    "pool_id": "d315af1b-b963-4773-83e3-088f611072fa",
+    "reactants_smiles": "CCCC(C(=O)OC)C(c1ccccc1)c1ccc2c(cnn2-c2ccc(F)cc2)c1.O[Na]",
+    "reactants_list": [
+      "CCCC(C(=O)OC)C(c1ccccc1)c1ccc2c(cnn2-c2ccc(F)cc2)c1",
+      "O[Na]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCCC(C(=O)O)C(c1ccccc1)c1ccc2c(cnn2-c2ccc(F)cc2)c1",
+    "gt_rxn_cls": "CO2H-Me deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CCCC(C(=O)O)C(c1ccccc1)c1ccc2c(cnn2-c2ccc(F)cc2)c1",
+    "gt_can": "CCCC(C(=O)O)C(c1ccccc1)c1ccc2c(cnn2-c2ccc(F)cc2)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0077",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 66,
+    "pool_id": "92350fea-bff7-4c74-8bb9-01aa897b5a6f",
+    "reactants_smiles": "COC(=O)CCCCCCCCCCCCCCCOc1ccc(-c2ccc(-c3nnn[nH]3)cc2)cc1.O[Na]",
+    "reactants_list": [
+      "COC(=O)CCCCCCCCCCCCCCCOc1ccc(-c2ccc(-c3nnn[nH]3)cc2)cc1",
+      "O[Na]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "O=C(O)CCCCCCCCCCCCCCCOc1ccc(-c2ccc(-c3nnn[nH]3)cc2)cc1",
+    "gt_rxn_cls": "CO2H-Me deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "O=C(O)CCCCCCCCCCCCCCCOc1ccc(-c2ccc(-c3nnn[nH]3)cc2)cc1",
+    "gt_can": "O=C(O)CCCCCCCCCCCCCCCOc1ccc(-c2ccc(-c3nnn[nH]3)cc2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0078",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 95,
+    "pool_id": "a5973c64-2be6-405c-9704-097bfb4bcb55",
+    "reactants_smiles": "CCCCOc1ccc(Cl)cc1C(=O)NC1CC1c1ccc(-c2ccc(C(=O)OC(C)(C)C)cc2)cc1.O[Na]",
+    "reactants_list": [
+      "CCCCOc1ccc(Cl)cc1C(=O)NC1CC1c1ccc(-c2ccc(C(=O)OC(C)(C)C)cc2)cc1",
+      "O[Na]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCCCOc1ccc(Cl)cc1C(=O)NC1CC1c1ccc(-c2ccc(C(=O)O)cc2)cc1",
+    "gt_rxn_cls": "CO2H-tBu deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CCCCOc1ccc(Cl)cc1C(=O)NC1CC1c1ccc(-c2ccc(C(=O)O)cc2)cc1",
+    "gt_can": "CCCCOc1ccc(Cl)cc1C(=O)NC1CC1c1ccc(-c2ccc(C(=O)O)cc2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0079",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 83,
+    "pool_id": "d74b6236-b9c7-4a05-94ca-94deb003e20e",
+    "reactants_smiles": "O=C(Cl)CC1CCCCC1.CCC(=O)OCC1OC(n2cnc3c(NC)nc(N)nc32)C(C)(F)C1O",
+    "reactants_list": [
+      "O=C(Cl)CC1CCCCC1",
+      "CCC(=O)OCC1OC(n2cnc3c(NC)nc(N)nc32)C(C)(F)C1O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCC(=O)OCC1OC(n2cnc3c(NC)nc(N)nc32)C(C)(F)C1OC(=O)CC1CCCCC1",
+    "gt_rxn_cls": "Ester Schotten-Baumann",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CCC(=O)OCC1OC(n2cnc3c(NC)nc(N)nc32)C(C)(F)C1OC(=O)CC1CCCCC1",
+    "gt_can": "CCC(=O)OCC1OC(n2cnc3c(NC)nc(N)nc32)C(C)(F)C1OC(=O)CC1CCCCC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0080",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 96,
+    "pool_id": "02d28da9-066e-40fd-9005-831852558f5f",
+    "reactants_smiles": "O=S(Br)Br.CC1(C)C(=O)N(c2ccc(C#N)c(Cl)c2)C(=S)N1C1CCC(CCCO)CC1",
+    "reactants_list": [
+      "O=S(Br)Br",
+      "CC1(C)C(=O)N(c2ccc(C#N)c(Cl)c2)C(=S)N1C1CCC(CCCO)CC1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC1(C)C(=O)N(c2ccc(C#N)c(Cl)c2)C(=S)N1C1CCC(CCCBr)CC1",
+    "gt_rxn_cls": "Darzens bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CC1(C)C(=O)N(c2ccc(C#N)c(Cl)c2)C(=S)N1C1CCC(CCCBr)CC1",
+    "gt_can": "CC1(C)C(=O)N(c2ccc(C#N)c(Cl)c2)C(=S)N1C1CCC(CCCBr)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0081",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 107,
+    "pool_id": "caa3c6a5-9702-4fed-9d4f-882eb00b9976",
+    "reactants_smiles": "O=C(OO)c1ccccc1C(=O)O[Mg]OC(=O)c1ccccc1C(=O)OO.COc1ccc(Sc2ccc(C#N)cc2)cc1",
+    "reactants_list": [
+      "O=C(OO)c1ccccc1C(=O)O[Mg]OC(=O)c1ccccc1C(=O)OO",
+      "COc1ccc(Sc2ccc(C#N)cc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc(S(=O)(=O)c2ccc(C#N)cc2)cc1",
+    "gt_rxn_cls": "Sulfanyl to sulfonyl",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "COc1ccc(S(=O)(=O)c2ccc(C#N)cc2)cc1",
+    "gt_can": "COc1ccc(S(=O)(=O)c2ccc(C#N)cc2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0082",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 105,
+    "pool_id": "a7576e86-f450-4a7d-a30c-29c00872cc7e",
+    "reactants_smiles": "CCOC(=O)C(=NOC)c1csc(NC(c2ccccc2)(c2ccccc2)c2ccccc2)n1.O[Na]",
+    "reactants_list": [
+      "CCOC(=O)C(=NOC)c1csc(NC(c2ccccc2)(c2ccccc2)c2ccccc2)n1",
+      "O[Na]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CON=C(C(=O)O)c1csc(NC(c2ccccc2)(c2ccccc2)c2ccccc2)n1",
+    "gt_rxn_cls": "CO2H-Et deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CON=C(C(=O)O)c1csc(NC(c2ccccc2)(c2ccccc2)c2ccccc2)n1",
+    "gt_can": "CON=C(C(=O)O)c1csc(NC(c2ccccc2)(c2ccccc2)c2ccccc2)n1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0083",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 135,
+    "pool_id": "02023c35-a83d-4143-9f9d-08cdc24ee7d9",
+    "reactants_smiles": "O=S(=O)(O)OO[K].O=S(=O)(O)OO[K].CSc1ccc(-c2nc(-c3cccc(CN4CCCC4)c3)n[nH]2)cc1",
+    "reactants_list": [
+      "O=S(=O)(O)OO[K]",
+      "O=S(=O)(O)OO[K]",
+      "CSc1ccc(-c2nc(-c3cccc(CN4CCCC4)c3)n[nH]2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CS(=O)(=O)c1ccc(-c2nc(-c3cccc(CN4CCCC4)c3)n[nH]2)cc1",
+    "gt_rxn_cls": "Sulfanyl to sulfonyl",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CS(=O)(=O)c1ccc(-c2nc(-c3cccc(CN4CCCC4)c3)n[nH]2)cc1",
+    "gt_can": "CS(=O)(=O)c1ccc(-c2nc(-c3cccc(CN4CCCC4)c3)n[nH]2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0084",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 131,
+    "pool_id": "219d0660-2675-46f4-92e7-8eafc1cd3b1a",
+    "reactants_smiles": "O=C(O[Cs])O[Cs].COC(=O)c1ccncc1NCC1CCOc2cc(Br)ccc21.CNc1ccc(C#C[Si](C)(C)C)cc1.[Pd].[Pd]",
+    "reactants_list": [
+      "O=C(O[Cs])O[Cs]",
+      "COC(=O)c1ccncc1NCC1CCOc2cc(Br)ccc21",
+      "CNc1ccc(C#C[Si](C)(C)C)cc1",
+      "[Pd]",
+      "[Pd]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)c1ccncc1NCC1CCOc2cc(N(C)c3ccc(C#C[Si](C)(C)C)cc3)ccc21",
+    "gt_rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "COC(=O)c1ccncc1NCC1CCOc2cc(N(C)c3ccc(C#C[Si](C)(C)C)cc3)ccc21",
+    "gt_can": "COC(=O)c1ccncc1NCC1CCOc2cc(N(C)c3ccc(C#C[Si](C)(C)C)cc3)ccc21"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0085",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 148,
+    "pool_id": "30c7049e-a880-4fc4-9fdd-caa975210f79",
+    "reactants_smiles": "Cl[Pd]Cl.CC(C)(C)OC(=O)NCCOc1ccc(I)cc1.CC1(C)OB(B2OC(C)(C)C(C)(C)O2)OC1(C)C",
+    "reactants_list": [
+      "Cl[Pd]Cl",
+      "CC(C)(C)OC(=O)NCCOc1ccc(I)cc1",
+      "CC1(C)OB(B2OC(C)(C)C(C)(C)O2)OC1(C)C"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)OC(=O)NCCOc1ccc(B2OC(C)(C)C(C)(C)O2)cc1",
+    "gt_rxn_cls": "Iodo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CC(C)(C)OC(=O)NCCOc1ccc(B2OC(C)(C)C(C)(C)O2)cc1",
+    "gt_can": "CC(C)(C)OC(=O)NCCOc1ccc(B2OC(C)(C)C(C)(C)O2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0086",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 169,
+    "pool_id": "6beb958f-855e-4b60-bb81-66410ba04be4",
+    "reactants_smiles": "Br.O=C(O[Na])O[Na].CN1CCC(Nc2cccc3c2cc(-c2noc(CNC(=O)OCc4ccccc4)n2)n3CC(F)(F)F)CC1",
+    "reactants_list": [
+      "Br",
+      "O=C(O[Na])O[Na]",
+      "CN1CCC(Nc2cccc3c2cc(-c2noc(CNC(=O)OCc4ccccc4)n2)n3CC(F)(F)F)CC1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CN1CCC(Nc2cccc3c2cc(-c2noc(CN)n2)n3CC(F)(F)F)CC1",
+    "gt_rxn_cls": "N-Cbz deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CN1CCC(Nc2cccc3c2cc(-c2noc(CN)n2)n3CC(F)(F)F)CC1",
+    "gt_can": "CN1CCC(Nc2cccc3c2cc(-c2noc(CN)n2)n3CC(F)(F)F)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0087",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 184,
+    "pool_id": "47a7d6b0-50df-43b3-bc24-b005dcd81518",
+    "reactants_smiles": "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1.O=S1(=O)CCCN1.COc1ccc(CO)c(OC)c1.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1",
+      "O=S1(=O)CCCN1",
+      "COc1ccc(CO)c(OC)c1",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc(CN2CCCS2(=O)=O)c(OC)c1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "COc1ccc(CN2CCCS2(=O)=O)c(OC)c1",
+    "gt_can": "COc1ccc(CN2CCCS2(=O)=O)c(OC)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0088",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 175,
+    "pool_id": "7dba1401-ac61-41b1-907c-4f5948420208",
+    "reactants_smiles": "CCCC(C(=O)OC)c1c(C)nc(-c2ccccc2)nc1-c1ccc2c(c1)CCN2C.O[Na]",
+    "reactants_list": [
+      "CCCC(C(=O)OC)c1c(C)nc(-c2ccccc2)nc1-c1ccc2c(c1)CCN2C",
+      "O[Na]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCCC(C(=O)O)c1c(C)nc(-c2ccccc2)nc1-c1ccc2c(c1)CCN2C",
+    "gt_rxn_cls": "CO2H-Me deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CCCC(C(=O)O)c1c(C)nc(-c2ccccc2)nc1-c1ccc2c(c1)CCN2C",
+    "gt_can": "CCCC(C(=O)O)c1c(C)nc(-c2ccccc2)nc1-c1ccc2c(c1)CCN2C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0089",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 201,
+    "pool_id": "abe7a1fc-1236-44ce-b72d-32675410d159",
+    "reactants_smiles": "O=C1CCC(=O)N1Br.CCc1nc2ncc(C(F)(F)F)cn2c1C(=O)c1ccc(O)c(C(F)(F)F)c1",
+    "reactants_list": [
+      "O=C1CCC(=O)N1Br",
+      "CCc1nc2ncc(C(F)(F)F)cn2c1C(=O)c1ccc(O)c(C(F)(F)F)c1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCc1nc2ncc(C(F)(F)F)cn2c1C(=O)c1cc(Br)c(O)c(C(F)(F)F)c1",
+    "gt_rxn_cls": "Bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CCc1nc2ncc(C(F)(F)F)cn2c1C(=O)c1cc(Br)c(O)c(C(F)(F)F)c1",
+    "gt_can": "CCc1nc2ncc(C(F)(F)F)cn2c1C(=O)c1cc(Br)c(O)c(C(F)(F)F)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0090",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 204,
+    "pool_id": "a0f97762-0db6-4645-a3f3-371be2f6e49d",
+    "reactants_smiles": "CCOC(=O)CC1CN=C(c2cc3cc(Oc4ccc(S(C)(=O)=O)cn4)cc(OC)c3[nH]2)S1.O[Na]",
+    "reactants_list": [
+      "CCOC(=O)CC1CN=C(c2cc3cc(Oc4ccc(S(C)(=O)=O)cn4)cc(OC)c3[nH]2)S1",
+      "O[Na]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1cc(Oc2ccc(S(C)(=O)=O)cn2)cc2cc(C3=NCC(CC(=O)O)S3)[nH]c12",
+    "gt_rxn_cls": "CO2H-Et deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "COc1cc(Oc2ccc(S(C)(=O)=O)cn2)cc2cc(C3=NCC(CC(=O)O)S3)[nH]c12",
+    "gt_can": "COc1cc(Oc2ccc(S(C)(=O)=O)cn2)cc2cc(C3=NCC(CC(=O)O)S3)[nH]c12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0091",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 240,
+    "pool_id": "fb7e9eb0-4f79-4feb-a816-edd17afd5cd6",
+    "reactants_smiles": "CCOC(=O)N=NC(=O)OCC.C[Si](C)(C)CCO.Cc1ccc(S(=O)(=O)Nc2ncc(C)nc2Br)cc1.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CCOC(=O)N=NC(=O)OCC",
+      "C[Si](C)(C)CCO",
+      "Cc1ccc(S(=O)(=O)Nc2ncc(C)nc2Br)cc1",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1ccc(S(=O)(=O)N(CC[Si](C)(C)C)c2ncc(C)nc2Br)cc1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "Cc1ccc(S(=O)(=O)N(CC[Si](C)(C)C)c2ncc(C)nc2Br)cc1",
+    "gt_can": "Cc1ccc(S(=O)(=O)N(CC[Si](C)(C)C)c2ncc(C)nc2Br)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0092",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 256,
+    "pool_id": "2718965c-eac3-4e20-b43f-b2934b9b6c0f",
+    "reactants_smiles": "C#C[Si](C)(C)C.ClCCl.Cl[Pd]Cl.CC(=O)OCC1OC(c2ccc(OS(=O)(=O)C(F)(F)F)cc2)C(OC(C)=O)C(OC(C)=O)C1OC(C)=O.[Cu]I",
+    "reactants_list": [
+      "C#C[Si](C)(C)C",
+      "ClCCl",
+      "Cl[Pd]Cl",
+      "CC(=O)OCC1OC(c2ccc(OS(=O)(=O)C(F)(F)F)cc2)C(OC(C)=O)C(OC(C)=O)C1OC(C)=O",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(=O)OCC1OC(c2ccc(C#C[Si](C)(C)C)cc2)C(OC(C)=O)C(OC(C)=O)C1OC(C)=O",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CC(=O)OCC1OC(c2ccc(C#C[Si](C)(C)C)cc2)C(OC(C)=O)C(OC(C)=O)C1OC(C)=O",
+    "gt_can": "CC(=O)OCC1OC(c2ccc(C#C[Si](C)(C)C)cc2)C(OC(C)=O)C(OC(C)=O)C1OC(C)=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0093",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 247,
+    "pool_id": "4fccf890-472d-422b-80ae-3fd7aedf6985",
+    "reactants_smiles": "O=C(OO)c1ccccc1C(=O)O[Mg]OC(=O)c1ccccc1C(=O)OO.CC(=O)OCSc1ccc(-c2nc3nc(C)ccn3c2-c2ccccc2)cc1",
+    "reactants_list": [
+      "O=C(OO)c1ccccc1C(=O)O[Mg]OC(=O)c1ccccc1C(=O)OO",
+      "CC(=O)OCSc1ccc(-c2nc3nc(C)ccn3c2-c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(=O)OCS(=O)(=O)c1ccc(-c2nc3nc(C)ccn3c2-c2ccccc2)cc1",
+    "gt_rxn_cls": "Sulfanyl to sulfonyl",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CC(=O)OCS(=O)(=O)c1ccc(-c2nc3nc(C)ccn3c2-c2ccccc2)cc1",
+    "gt_can": "CC(=O)OCS(=O)(=O)c1ccc(-c2nc3nc(C)ccn3c2-c2ccccc2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0094",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 250,
+    "pool_id": "5d216c86-f42a-4167-87fc-f0c524903b55",
+    "reactants_smiles": "CC(C)(C)NS(=O)(=O)C1(CNC(=O)c2ccc(C(=O)NCc3ccc(Cl)cc3)c(=O)n2CCO)CC1.CS(=O)(=O)Cl",
+    "reactants_list": [
+      "CC(C)(C)NS(=O)(=O)C1(CNC(=O)c2ccc(C(=O)NCc3ccc(Cl)cc3)c(=O)n2CCO)CC1",
+      "CS(=O)(=O)Cl"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)NS(=O)(=O)C1(CNC(=O)c2ccc(C(=O)NCc3ccc(Cl)cc3)c(=O)n2CCCl)CC1",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CC(C)(C)NS(=O)(=O)C1(CNC(=O)c2ccc(C(=O)NCc3ccc(Cl)cc3)c(=O)n2CCCl)CC1",
+    "gt_can": "CC(C)(C)NS(=O)(=O)C1(CNC(=O)c2ccc(C(=O)NCc3ccc(Cl)cc3)c(=O)n2CCCl)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0095",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 269,
+    "pool_id": "d3cb787e-a17f-4579-ac2f-e309a2b757ae",
+    "reactants_smiles": "Cl.CC(C)(C)C(=O)OCOC(=O)CC1CC(COc2ccc(-c3ccc(C(=N)NC(=O)OCc4ccccc4)cn3)cc2)NC1=O",
+    "reactants_list": [
+      "Cl",
+      "CC(C)(C)C(=O)OCOC(=O)CC1CC(COc2ccc(-c3ccc(C(=N)NC(=O)OCc4ccccc4)cn3)cc2)NC1=O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)C(=O)OCOC(=O)CC1CC(COc2ccc(-c3ccc(C(=N)N)cn3)cc2)NC1=O",
+    "gt_rxn_cls": "N-Cbz deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CC(C)(C)C(=O)OCOC(=O)CC1CC(COc2ccc(-c3ccc(C(=N)N)cn3)cc2)NC1=O",
+    "gt_can": "CC(C)(C)C(=O)OCOC(=O)CC1CC(COc2ccc(-c3ccc(C(=N)N)cn3)cc2)NC1=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0096",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 273,
+    "pool_id": "f544ba4c-e509-42b4-a30a-b2c47f85cce4",
+    "reactants_smiles": "CCCCCOc1ccc(Cn2c(OCC)nc3c(C)cc(OCCCC(=O)OCC)cc32)c(Cl)c1.O[Na]",
+    "reactants_list": [
+      "CCCCCOc1ccc(Cn2c(OCC)nc3c(C)cc(OCCCC(=O)OCC)cc32)c(Cl)c1",
+      "O[Na]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCCCCOc1ccc(Cn2c(OCC)nc3c(C)cc(OCCCC(=O)O)cc32)c(Cl)c1",
+    "gt_rxn_cls": "CO2H-Et deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CCCCCOc1ccc(Cn2c(OCC)nc3c(C)cc(OCCCC(=O)O)cc32)c(Cl)c1",
+    "gt_can": "CCCCCOc1ccc(Cn2c(OCC)nc3c(C)cc(OCCCC(=O)O)cc32)c(Cl)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0097",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 289,
+    "pool_id": "6f3df2fb-decb-4b57-9213-6e31037d0659",
+    "reactants_smiles": "O=C(OO)c1ccccc1C(=O)O[Mg]OC(=O)c1ccccc1C(=O)OO.CCOC(=O)c1ccc(-c2cc3cc(SC)cnc3n2S(=O)(=O)c2ccccc2)nc1",
+    "reactants_list": [
+      "O=C(OO)c1ccccc1C(=O)O[Mg]OC(=O)c1ccccc1C(=O)OO",
+      "CCOC(=O)c1ccc(-c2cc3cc(SC)cnc3n2S(=O)(=O)c2ccccc2)nc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)c1ccc(-c2cc3cc(S(C)(=O)=O)cnc3n2S(=O)(=O)c2ccccc2)nc1",
+    "gt_rxn_cls": "Sulfanyl to sulfonyl",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CCOC(=O)c1ccc(-c2cc3cc(S(C)(=O)=O)cnc3n2S(=O)(=O)c2ccccc2)nc1",
+    "gt_can": "CCOC(=O)c1ccc(-c2cc3cc(S(C)(=O)=O)cnc3n2S(=O)(=O)c2ccccc2)nc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0098",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 278,
+    "pool_id": "b237e646-fd75-40ee-9c48-b9444e511d84",
+    "reactants_smiles": "O=C(O[Cs])O[Cs].CC1COCCN1S(=O)(=O)c1ccc(Br)cc1.Cc1ncc(-c2nc(N)ncc2F)n1C1CCOCC1.[Pd].[Pd]",
+    "reactants_list": [
+      "O=C(O[Cs])O[Cs]",
+      "CC1COCCN1S(=O)(=O)c1ccc(Br)cc1",
+      "Cc1ncc(-c2nc(N)ncc2F)n1C1CCOCC1",
+      "[Pd]",
+      "[Pd]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1ncc(-c2nc(Nc3ccc(S(=O)(=O)N4CCOCC4C)cc3)ncc2F)n1C1CCOCC1",
+    "gt_rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "Cc1ncc(-c2nc(Nc3ccc(S(=O)(=O)N4CCOCC4C)cc3)ncc2F)n1C1CCOCC1",
+    "gt_can": "Cc1ncc(-c2nc(Nc3ccc(S(=O)(=O)N4CCOCC4C)cc3)ncc2F)n1C1CCOCC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0099",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 284,
+    "pool_id": "945d9c56-3fa7-4cd8-92b8-43e810e48280",
+    "reactants_smiles": "O=C(N1CCCN(C2CCC2)CC1)N1CC(O)C1.CNC(=O)c1ccc(F)cc1F",
+    "reactants_list": [
+      "O=C(N1CCCN(C2CCC2)CC1)N1CC(O)C1",
+      "CNC(=O)c1ccc(F)cc1F"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CNC(=O)c1ccc(OC2CN(C(=O)N3CCCN(C4CCC4)CC3)C2)cc1F",
+    "gt_rxn_cls": "SNAr ether synthesis",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CNC(=O)c1ccc(OC2CN(C(=O)N3CCCN(C4CCC4)CC3)C2)cc1F",
+    "gt_can": "CNC(=O)c1ccc(OC2CN(C(=O)N3CCCN(C4CCC4)CC3)C2)cc1F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0100",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 302,
+    "pool_id": "17994bd3-c03d-41df-b61d-cebee94661a3",
+    "reactants_smiles": "Cc1cccc2c1C(=O)CC1(CCN(c3ncc(-c4nnn(CC(=O)OC(C)(C)C)n4)s3)CC1)O2.[Li]O",
+    "reactants_list": [
+      "Cc1cccc2c1C(=O)CC1(CCN(c3ncc(-c4nnn(CC(=O)OC(C)(C)C)n4)s3)CC1)O2",
+      "[Li]O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1cccc2c1C(=O)CC1(CCN(c3ncc(-c4nnn(CC(=O)O)n4)s3)CC1)O2",
+    "gt_rxn_cls": "CO2H-tBu deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "Cc1cccc2c1C(=O)CC1(CCN(c3ncc(-c4nnn(CC(=O)O)n4)s3)CC1)O2",
+    "gt_can": "Cc1cccc2c1C(=O)CC1(CCN(c3ncc(-c4nnn(CC(=O)O)n4)s3)CC1)O2"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0101",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 303,
+    "pool_id": "2bd997fc-cf6b-4e94-a663-d4f3ec0892d1",
+    "reactants_smiles": "Br.COc1cc(N2CCCC(N3CCN(C(=O)OCc4ccccc4)CC3)C2)ccc1Nc1ncc2ccc(-c3ccccc3OC)n2n1",
+    "reactants_list": [
+      "Br",
+      "COc1cc(N2CCCC(N3CCN(C(=O)OCc4ccccc4)CC3)C2)ccc1Nc1ncc2ccc(-c3ccccc3OC)n2n1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1cc(N2CCCC(N3CCNCC3)C2)ccc1Nc1ncc2ccc(-c3ccccc3OC)n2n1",
+    "gt_rxn_cls": "N-Cbz deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "COc1cc(N2CCCC(N3CCNCC3)C2)ccc1Nc1ncc2ccc(-c3ccccc3OC)n2n1",
+    "gt_can": "COc1cc(N2CCCC(N3CCNCC3)C2)ccc1Nc1ncc2ccc(-c3ccccc3OC)n2n1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0102",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 292,
+    "pool_id": "3080dd91-a05f-4aff-94f9-e86c14ae5075",
+    "reactants_smiles": "O=C(OO)c1ccccc1C(=O)O[Mg]OC(=O)c1ccccc1C(=O)OO.CSc1ccc(C2=C(c3ccccc3)C(=O)OC23CCCC3)cc1",
+    "reactants_list": [
+      "O=C(OO)c1ccccc1C(=O)O[Mg]OC(=O)c1ccccc1C(=O)OO",
+      "CSc1ccc(C2=C(c3ccccc3)C(=O)OC23CCCC3)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CS(=O)(=O)c1ccc(C2=C(c3ccccc3)C(=O)OC23CCCC3)cc1",
+    "gt_rxn_cls": "Sulfanyl to sulfonyl",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CS(=O)(=O)c1ccc(C2=C(c3ccccc3)C(=O)OC23CCCC3)cc1",
+    "gt_can": "CS(=O)(=O)c1ccc(C2=C(c3ccccc3)C(=O)OC23CCCC3)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0103",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 297,
+    "pool_id": "80a2e688-9376-40e3-a5d8-d07c398182f1",
+    "reactants_smiles": "C#CCO.O=S1(=O)NC2c3ccccc3CC2O1.CC(C)OC(=O)N=NC(=O)OC(C)C.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "C#CCO",
+      "O=S1(=O)NC2c3ccccc3CC2O1",
+      "CC(C)OC(=O)N=NC(=O)OC(C)C",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "C#CCN1C2c3ccccc3CC2OS1(=O)=O",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "C#CCN1C2c3ccccc3CC2OS1(=O)=O",
+    "gt_can": "C#CCN1C2c3ccccc3CC2OS1(=O)=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0104",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 271,
+    "pool_id": "1ff1b334-8907-4dd2-8bf8-79fd6447b866",
+    "reactants_smiles": "CC1(C)C(=O)N(Br)C(=O)N1Br.Cc1ccc2c(n1)NC1(CC2)CCN(C(=O)OC(C)(C)C)C1",
+    "reactants_list": [
+      "CC1(C)C(=O)N(Br)C(=O)N1Br",
+      "Cc1ccc2c(n1)NC1(CC2)CCN(C(=O)OC(C)(C)C)C1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1nc2c(cc1Br)CCC1(CCN(C(=O)OC(C)(C)C)C1)N2",
+    "gt_rxn_cls": "Bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Cc1nc2c(cc1Br)CCC1(CCN(C(=O)OC(C)(C)C)C1)N2",
+    "gt_can": "Cc1nc2c(cc1Br)CCC1(CCN(C(=O)OC(C)(C)C)C1)N2"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0105",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 331,
+    "pool_id": "19f9b30e-4c9b-4d78-bea6-83d4e1e5c57e",
+    "reactants_smiles": "O=S(=O)(Cl)CCCCl.CC(C)(C)C(=O)NC1=NN(C(=O)C(C)(C)C)C(CN)(c2ccccc2)S1",
+    "reactants_list": [
+      "O=S(=O)(Cl)CCCCl",
+      "CC(C)(C)C(=O)NC1=NN(C(=O)C(C)(C)C)C(CN)(c2ccccc2)S1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)C(=O)NC1=NN(C(=O)C(C)(C)C)C(CNS(=O)(=O)CCCCl)(c2ccccc2)S1",
+    "gt_rxn_cls": "Sulfonamide Schotten-Baumann",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CC(C)(C)C(=O)NC1=NN(C(=O)C(C)(C)C)C(CNS(=O)(=O)CCCCl)(c2ccccc2)S1",
+    "gt_can": "CC(C)(C)C(=O)NC1=NN(C(=O)C(C)(C)C)C(CNS(=O)(=O)CCCCl)(c2ccccc2)S1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0106",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 341,
+    "pool_id": "694733b4-9e3e-4387-8348-ed9d3544c0e8",
+    "reactants_smiles": "C=C(C)C1CCC2(C(=O)NCCNCCC(=O)OC)CCC3(C)C(CCC4C5(C)CC=C(c6ccc(C(=O)OC)cc6)C(C)(C)C5CCC43C)C12.CCI",
+    "reactants_list": [
+      "C=C(C)C1CCC2(C(=O)NCCNCCC(=O)OC)CCC3(C)C(CCC4C5(C)CC=C(c6ccc(C(=O)OC)cc6)C(C)(C)C5CCC43C)C12",
+      "CCI"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "C=C(C)C1CCC2(C(=O)NCCN(CC)CCC(=O)OC)CCC3(C)C(CCC4C5(C)CC=C(c6ccc(C(=O)OC)cc6)C(C)(C)C5CCC43C)C12",
+    "gt_rxn_cls": "Iodo N-alkylation",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "C=C(C)C1CCC2(C(=O)NCCN(CC)CCC(=O)OC)CCC3(C)C(CCC4C5(C)CC=C(c6ccc(C(=O)OC)cc6)C(C)(C)C5CCC43C)C12",
+    "gt_can": "C=C(C)C1CCC2(C(=O)NCCN(CC)CCC(=O)OC)CCC3(C)C(CCC4C5(C)CC=C(c6ccc(C(=O)OC)cc6)C(C)(C)C5CCC43C)C12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0107",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 336,
+    "pool_id": "693da062-6d5f-4d32-890e-189c818fdc5f",
+    "reactants_smiles": "Cl[Pd]Cl.CC1(C)OB(B2OC(C)(C)C(C)(C)O2)OC1(C)C.OCCNc1ccc(I)cc1",
+    "reactants_list": [
+      "Cl[Pd]Cl",
+      "CC1(C)OB(B2OC(C)(C)C(C)(C)O2)OC1(C)C",
+      "OCCNc1ccc(I)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC1(C)OB(c2ccc(NCCO)cc2)OC1(C)C",
+    "gt_rxn_cls": "Iodo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CC1(C)OB(c2ccc(NCCO)cc2)OC1(C)C",
+    "gt_can": "CC1(C)OB(c2ccc(NCCO)cc2)OC1(C)C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0108",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 343,
+    "pool_id": "2ba4d222-f0fa-49fb-8671-2c571f9e16d0",
+    "reactants_smiles": "CCOc1cc(C(C)(C)C)ncc1C1=NC(C)(c2ccc(Cl)cc2)C(C)(c2ccc(Cl)cc2)N1C(=O)N1CCN(CC(=O)OC(C)(C)C)CC1.[Li]O",
+    "reactants_list": [
+      "CCOc1cc(C(C)(C)C)ncc1C1=NC(C)(c2ccc(Cl)cc2)C(C)(c2ccc(Cl)cc2)N1C(=O)N1CCN(CC(=O)OC(C)(C)C)CC1",
+      "[Li]O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOc1cc(C(C)(C)C)ncc1C1=NC(C)(c2ccc(Cl)cc2)C(C)(c2ccc(Cl)cc2)N1C(=O)N1CCN(CC(=O)O)CC1",
+    "gt_rxn_cls": "CO2H-tBu deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CCOc1cc(C(C)(C)C)ncc1C1=NC(C)(c2ccc(Cl)cc2)C(C)(c2ccc(Cl)cc2)N1C(=O)N1CCN(CC(=O)O)CC1",
+    "gt_can": "CCOc1cc(C(C)(C)C)ncc1C1=NC(C)(c2ccc(Cl)cc2)C(C)(c2ccc(Cl)cc2)N1C(=O)N1CCN(CC(=O)O)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0109",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 370,
+    "pool_id": "a8ab8d39-5677-4c3f-9e66-40cf072ac918",
+    "reactants_smiles": "C1CCCNCC1.CC(C)(C)O[Na].Cc1cc2c(NC(=O)NC(C)c3ccc(Br)cc3)cccc2cn1.[Pd].[Pd]",
+    "reactants_list": [
+      "C1CCCNCC1",
+      "CC(C)(C)O[Na]",
+      "Cc1cc2c(NC(=O)NC(C)c3ccc(Br)cc3)cccc2cn1",
+      "[Pd]",
+      "[Pd]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1cc2c(NC(=O)NC(C)c3ccc(N4CCCCCC4)cc3)cccc2cn1",
+    "gt_rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "Cc1cc2c(NC(=O)NC(C)c3ccc(N4CCCCCC4)cc3)cccc2cn1",
+    "gt_can": "Cc1cc2c(NC(=O)NC(C)c3ccc(N4CCCCCC4)cc3)cccc2cn1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0110",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 384,
+    "pool_id": "d61cfd0f-309a-4f1c-840a-7d0fe2694fa7",
+    "reactants_smiles": "[BH4-].COc1c2c(c(OC(c3ccccc3)c3ccccc3)c3ncn(Cc4ccccc4)c13)C(=O)N(Cc1ccc(F)cc1)C2=O",
+    "reactants_list": [
+      "[BH4-]",
+      "COc1c2c(c(OC(c3ccccc3)c3ccccc3)c3ncn(Cc4ccccc4)c13)C(=O)N(Cc1ccc(F)cc1)C2=O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1c2c(c(OC(c3ccccc3)c3ccccc3)c3ncn(Cc4ccccc4)c13)C(=O)N(Cc1ccc(F)cc1)C2O",
+    "gt_rxn_cls": "Ketone to alcohol reduction",
+    "coarse_rxn_cls": "Reduction",
+    "predicted_can": "COc1c2c(c(OC(c3ccccc3)c3ccccc3)c3ncn(Cc4ccccc4)c13)C(=O)N(Cc1ccc(F)cc1)C2O",
+    "gt_can": "COc1c2c(c(OC(c3ccccc3)c3ccccc3)c3ncn(Cc4ccccc4)c13)C(=O)N(Cc1ccc(F)cc1)C2O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0111",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 8,
+    "pool_id": "b33c42c8-a5eb-44c0-a693-6c86dbb289a5",
+    "reactants_smiles": "CC(C)(C)OC(=O)NS(N)(=O)=O.CC1(C)OC2C(CO)=CC(n3cc(I)c4c(N)ncnc43)C2O1.CC(C)OC(=O)N=NC(=O)OC(C)C.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CC(C)(C)OC(=O)NS(N)(=O)=O",
+      "CC1(C)OC2C(CO)=CC(n3cc(I)c4c(N)ncnc43)C2O1",
+      "CC(C)OC(=O)N=NC(=O)OC(C)C",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)OC(=O)N(CC1=CC(n2cc(I)c3c(N)ncnc32)C2OC(C)(C)OC12)S(N)(=O)=O",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CC(C)(C)OC(=O)N(CC1=CC(n2cc(I)c3c(N)ncnc32)C2OC(C)(C)OC12)S(N)(=O)=O",
+    "gt_can": "CC(C)(C)OC(=O)N(CC1=CC(n2cc(I)c3c(N)ncnc32)C2OC(C)(C)OC12)S(N)(=O)=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0112",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 18,
+    "pool_id": "365916e3-9e13-4471-be35-e25fad8f0edc",
+    "reactants_smiles": "O=C(N=NC(=O)OCc1ccccc1)OCc1ccccc1.O=S1(=O)NCC2(CCOCC2)Oc2ncccc21.COC(=O)C(C)(C)C(c1cnc(C)c(CO)c1)c1ccn2c(C(F)(F)F)nnc2c1C.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "O=C(N=NC(=O)OCc1ccccc1)OCc1ccccc1",
+      "O=S1(=O)NCC2(CCOCC2)Oc2ncccc21",
+      "COC(=O)C(C)(C)C(c1cnc(C)c(CO)c1)c1ccn2c(C(F)(F)F)nnc2c1C",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)C(C)(C)C(c1cnc(C)c(CN2CC3(CCOCC3)Oc3ncccc3S2(=O)=O)c1)c1ccn2c(C(F)(F)F)nnc2c1C",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "COC(=O)C(C)(C)C(c1cnc(C)c(CN2CC3(CCOCC3)Oc3ncccc3S2(=O)=O)c1)c1ccn2c(C(F)(F)F)nnc2c1C",
+    "gt_can": "COC(=O)C(C)(C)C(c1cnc(C)c(CN2CC3(CCOCC3)Oc3ncccc3S2(=O)=O)c1)c1ccn2c(C(F)(F)F)nnc2c1C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0113",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 15,
+    "pool_id": "9aa80a33-b329-45c0-ae3a-cb5de55121ab",
+    "reactants_smiles": "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1.CCCCP(CCCC)CCCC.CCC1CNS(=O)(=O)c2cnccc2O1.CCn1nnc2c(C)c(C(c3cc(CO)c(C)s3)C(C)(C)C(=O)OCc3ccccc3)ccc21",
+    "reactants_list": [
+      "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1",
+      "CCCCP(CCCC)CCCC",
+      "CCC1CNS(=O)(=O)c2cnccc2O1",
+      "CCn1nnc2c(C)c(C(c3cc(CO)c(C)s3)C(C)(C)C(=O)OCc3ccccc3)ccc21"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCC1CN(Cc2cc(C(c3ccc4c(nnn4CC)c3C)C(C)(C)C(=O)OCc3ccccc3)sc2C)S(=O)(=O)c2cnccc2O1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCC1CN(Cc2cc(C(c3ccc4c(nnn4CC)c3C)C(C)(C)C(=O)OCc3ccccc3)sc2C)S(=O)(=O)c2cnccc2O1",
+    "gt_can": "CCC1CN(Cc2cc(C(c3ccc4c(nnn4CC)c3C)C(C)(C)C(=O)OCc3ccccc3)sc2C)S(=O)(=O)c2cnccc2O1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0114",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 390,
+    "pool_id": "1e96cb19-72be-4545-9628-3078d0434f30",
+    "reactants_smiles": "CC(=O)OI1(OC(C)=O)(OC(C)=O)OC(=O)c2ccccc21.COc1cccc(OC)c1-c1cn(COCC[Si](C)(C)C)c2nc(NC(=O)C3CC3CCO)ccc12",
+    "reactants_list": [
+      "CC(=O)OI1(OC(C)=O)(OC(C)=O)OC(=O)c2ccccc21",
+      "COc1cccc(OC)c1-c1cn(COCC[Si](C)(C)C)c2nc(NC(=O)C3CC3CCO)ccc12"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1cccc(OC)c1-c1cn(COCC[Si](C)(C)C)c2nc(NC(=O)C3CC3CC=O)ccc12",
+    "gt_rxn_cls": "Aldehyde Dess-Martin oxidation",
+    "coarse_rxn_cls": "Oxidation",
+    "predicted_can": "COc1cccc(OC)c1-c1cn(COCC[Si](C)(C)C)c2nc(NC(=O)C3CC3CC=O)ccc12",
+    "gt_can": "COc1cccc(OC)c1-c1cn(COCC[Si](C)(C)C)c2nc(NC(=O)C3CC3CC=O)ccc12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0115",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 20,
+    "pool_id": "72e3520c-f3ec-42cc-ab99-99909ce711af",
+    "reactants_smiles": "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1.CCCCP(CCCC)CCCC.CCC1CNS(=O)(=O)c2cccnc2O1.CCn1nnc2c(C)c(C(c3ccc(C)c(CO)c3)C(C)C(=O)N3C(=O)OCC3Cc3ccccc3)ccc21",
+    "reactants_list": [
+      "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1",
+      "CCCCP(CCCC)CCCC",
+      "CCC1CNS(=O)(=O)c2cccnc2O1",
+      "CCn1nnc2c(C)c(C(c3ccc(C)c(CO)c3)C(C)C(=O)N3C(=O)OCC3Cc3ccccc3)ccc21"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCC1CN(Cc2cc(C(c3ccc4c(nnn4CC)c3C)C(C)C(=O)N3C(=O)OCC3Cc3ccccc3)ccc2C)S(=O)(=O)c2cccnc2O1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCC1CN(Cc2cc(C(c3ccc4c(nnn4CC)c3C)C(C)C(=O)N3C(=O)OCC3Cc3ccccc3)ccc2C)S(=O)(=O)c2cccnc2O1",
+    "gt_can": "CCC1CN(Cc2cc(C(c3ccc4c(nnn4CC)c3C)C(C)C(=O)N3C(=O)OCC3Cc3ccccc3)ccc2C)S(=O)(=O)c2cccnc2O1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0116",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 21,
+    "pool_id": "00ec18de-003f-4173-a029-bed8de7efb11",
+    "reactants_smiles": "CC(C)(C)OC(=O)N1CCC(CCCO)CC1.CC(C)(C)OC(=O)N=NC(=O)OC(C)(C)C.CSc1ccc(NS(=O)(=O)c2ccccc2[N+](=O)[O-])cc1.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CC(C)(C)OC(=O)N1CCC(CCCO)CC1",
+      "CC(C)(C)OC(=O)N=NC(=O)OC(C)(C)C",
+      "CSc1ccc(NS(=O)(=O)c2ccccc2[N+](=O)[O-])cc1",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CSc1ccc(N(CCCC2CCN(C(=O)OC(C)(C)C)CC2)S(=O)(=O)c2ccccc2[N+](=O)[O-])cc1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CSc1ccc(N(CCCC2CCN(C(=O)OC(C)(C)C)CC2)S(=O)(=O)c2ccccc2[N+](=O)[O-])cc1",
+    "gt_can": "CSc1ccc(N(CCCC2CCN(C(=O)OC(C)(C)C)CC2)S(=O)(=O)c2ccccc2[N+](=O)[O-])cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0117",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 37,
+    "pool_id": "d165d3fa-39e1-45b9-8c16-3c5f680bf9e0",
+    "reactants_smiles": "C#Cc1ccc(N)cc1.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.Ic1ccc(OCCCN2CCOCC2)nc1.[Cu]I",
+    "reactants_list": [
+      "C#Cc1ccc(N)cc1",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "Ic1ccc(OCCCN2CCOCC2)nc1",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Nc1ccc(C#Cc2ccc(OCCCN3CCOCC3)nc2)cc1",
+    "gt_rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "Nc1ccc(C#Cc2ccc(OCCCN3CCOCC3)nc2)cc1",
+    "gt_can": "Nc1ccc(C#Cc2ccc(OCCCN3CCOCC3)nc2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0118",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 30,
+    "pool_id": "91af90ae-0c9e-4718-b9a3-73d821ab988d",
+    "reactants_smiles": "O=C(O[Cs])O[Cs].CN1CCNCC1.CC1CN(c2ccc(C#N)c3ncccc23)CC(CN2CCN(c3cccc(Br)n3)CC2)O1.CC1CN(c2ccc(C#N)c3ncccc23)CC(CN2CCC(c3cccc(C4CCNCC4)c3)CC2)O1.NCCc1ccccc1[Pd]Cl",
+    "reactants_list": [
+      "O=C(O[Cs])O[Cs]",
+      "CN1CCNCC1",
+      "CC1CN(c2ccc(C#N)c3ncccc23)CC(CN2CCN(c3cccc(Br)n3)CC2)O1",
+      "CC1CN(c2ccc(C#N)c3ncccc23)CC(CN2CCC(c3cccc(C4CCNCC4)c3)CC2)O1",
+      "NCCc1ccccc1[Pd]Cl"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC1CN(c2ccc(C#N)c3ncccc23)CC(CN2CCN(c3cccc(N4CCN(C)CC4)n3)CC2)O1",
+    "gt_rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CC1CN(c2ccc(C#N)c3ncccc23)CC(CN2CCN(c3cccc(N4CCN(C)CC4)n3)CC2)O1",
+    "gt_can": "CC1CN(c2ccc(C#N)c3ncccc23)CC(CN2CCN(c3cccc(N4CCN(C)CC4)n3)CC2)O1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0119",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 36,
+    "pool_id": "7a055c8b-32ea-49db-9b45-f7856942f0c1",
+    "reactants_smiles": "C#CCCCCOC1CCCCO1.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.O=c1ccc2c(OS(=O)(=O)C(F)(F)F)cccc2o1.[Cu]I",
+    "reactants_list": [
+      "C#CCCCCOC1CCCCO1",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "O=c1ccc2c(OS(=O)(=O)C(F)(F)F)cccc2o1",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "O=c1ccc2c(C#CCCCCOC3CCCCO3)cccc2o1",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "O=c1ccc2c(C#CCCCCOC3CCCCO3)cccc2o1",
+    "gt_can": "O=c1ccc2c(C#CCCCCOC3CCCCO3)cccc2o1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0120",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 32,
+    "pool_id": "74d11291-0f6d-4b58-ac3e-a690f3330f24",
+    "reactants_smiles": "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1.COC(=O)c1cnn(-c2cccc(-c3cccc(CO)c3)c2)c1C1CC1c1cn(C)nn1.CCCCP(CCCC)CCCC.CC1CNS(=O)(=O)c2ccccc2C1",
+    "reactants_list": [
+      "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1",
+      "COC(=O)c1cnn(-c2cccc(-c3cccc(CO)c3)c2)c1C1CC1c1cn(C)nn1",
+      "CCCCP(CCCC)CCCC",
+      "CC1CNS(=O)(=O)c2ccccc2C1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)c1cnn(-c2cccc(-c3cccc(CN4CC(C)Cc5ccccc5S4(=O)=O)c3)c2)c1C1CC1c1cn(C)nn1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "COC(=O)c1cnn(-c2cccc(-c3cccc(CN4CC(C)Cc5ccccc5S4(=O)=O)c3)c2)c1C1CC1c1cn(C)nn1",
+    "gt_can": "COC(=O)c1cnn(-c2cccc(-c3cccc(CN4CC(C)Cc5ccccc5S4(=O)=O)c3)c2)c1C1CC1c1cn(C)nn1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0121",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 50,
+    "pool_id": "33030b3e-6833-4345-ac32-121647e0006d",
+    "reactants_smiles": "O=[N+]([O-])c1ccccc1S(=O)(=O)Nc1ccc(OC(F)(F)F)cc1.CC(C)(C)OC(=O)N1CCN(C(=O)OCc2ccccc2)CC1CCO.CCOC(=O)N=NC(=O)OCC.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "O=[N+]([O-])c1ccccc1S(=O)(=O)Nc1ccc(OC(F)(F)F)cc1",
+      "CC(C)(C)OC(=O)N1CCN(C(=O)OCc2ccccc2)CC1CCO",
+      "CCOC(=O)N=NC(=O)OCC",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)OC(=O)N1CCN(C(=O)OCc2ccccc2)CC1CCN(c1ccc(OC(F)(F)F)cc1)S(=O)(=O)c1ccccc1[N+](=O)[O-]",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CC(C)(C)OC(=O)N1CCN(C(=O)OCc2ccccc2)CC1CCN(c1ccc(OC(F)(F)F)cc1)S(=O)(=O)c1ccccc1[N+](=O)[O-]",
+    "gt_can": "CC(C)(C)OC(=O)N1CCN(C(=O)OCc2ccccc2)CC1CCN(c1ccc(OC(F)(F)F)cc1)S(=O)(=O)c1ccccc1[N+](=O)[O-]"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0122",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 11,
+    "pool_id": "1941b820-d53a-442c-b5d5-014f15361f85",
+    "reactants_smiles": "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1.CCCCP(CCCC)CCCC.CCC1CNS(=O)(=O)c2cccnc2O1.CCn1cc(CCC(c2cc(CO)c(C)s2)C(C)(C)C(=O)OCc2ccccc2)nn1",
+    "reactants_list": [
+      "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1",
+      "CCCCP(CCCC)CCCC",
+      "CCC1CNS(=O)(=O)c2cccnc2O1",
+      "CCn1cc(CCC(c2cc(CO)c(C)s2)C(C)(C)C(=O)OCc2ccccc2)nn1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCC1CN(Cc2cc(C(CCc3cn(CC)nn3)C(C)(C)C(=O)OCc3ccccc3)sc2C)S(=O)(=O)c2cccnc2O1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCC1CN(Cc2cc(C(CCc3cn(CC)nn3)C(C)(C)C(=O)OCc3ccccc3)sc2C)S(=O)(=O)c2cccnc2O1",
+    "gt_can": "CCC1CN(Cc2cc(C(CCc3cn(CC)nn3)C(C)(C)C(=O)OCc3ccccc3)sc2C)S(=O)(=O)c2cccnc2O1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0123",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 43,
+    "pool_id": "38c1ee8b-35a0-43a8-b26d-ad36bacc31f3",
+    "reactants_smiles": "C#CC(O)c1cnn(C)c1.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.Ic1nc(N2CCOCC2)cc(-n2ccc(-c3ccccc3)n2)n1.[Cu]I",
+    "reactants_list": [
+      "C#CC(O)c1cnn(C)c1",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "Ic1nc(N2CCOCC2)cc(-n2ccc(-c3ccccc3)n2)n1",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cn1cc(C(O)C#Cc2nc(N3CCOCC3)cc(-n3ccc(-c4ccccc4)n3)n2)cn1",
+    "gt_rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "Cn1cc(C(O)C#Cc2nc(N3CCOCC3)cc(-n3ccc(-c4ccccc4)n3)n2)cn1",
+    "gt_can": "Cn1cc(C(O)C#Cc2nc(N3CCOCC3)cc(-n3ccc(-c4ccccc4)n3)n2)cn1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0124",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 71,
+    "pool_id": "5d2f4329-f986-41d8-a254-fd001d4237d9",
+    "reactants_smiles": "COc1ccccc1CCO.CC(C)OC(=O)N=NC(=O)OC(C)C.Cc1csc2c1C(=O)N(CC(=O)OCc1ccccc1)S(=O)(=O)N2.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "COc1ccccc1CCO",
+      "CC(C)OC(=O)N=NC(=O)OC(C)C",
+      "Cc1csc2c1C(=O)N(CC(=O)OCc1ccccc1)S(=O)(=O)N2",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccccc1CCN1c2scc(C)c2C(=O)N(CC(=O)OCc2ccccc2)S1(=O)=O",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "COc1ccccc1CCN1c2scc(C)c2C(=O)N(CC(=O)OCc2ccccc2)S1(=O)=O",
+    "gt_can": "COc1ccccc1CCN1c2scc(C)c2C(=O)N(CC(=O)OCc2ccccc2)S1(=O)=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0125",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 74,
+    "pool_id": "288db7f3-5da4-4045-8dfa-b2256a8f5e81",
+    "reactants_smiles": "C#CCCO.Cc1cccc(NC(=O)Nc2ccc(-c3csc4c(I)cnc(N)c34)cc2)c1.[Cu]I.c1ccc([PH](c2ccccc2)(c2ccccc2)[Pd]([PH](c2ccccc2)(c2ccccc2)c2ccccc2)([PH](c2ccccc2)(c2ccccc2)c2ccccc2)[PH](c2ccccc2)(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "C#CCCO",
+      "Cc1cccc(NC(=O)Nc2ccc(-c3csc4c(I)cnc(N)c34)cc2)c1",
+      "[Cu]I",
+      "c1ccc([PH](c2ccccc2)(c2ccccc2)[Pd]([PH](c2ccccc2)(c2ccccc2)c2ccccc2)([PH](c2ccccc2)(c2ccccc2)c2ccccc2)[PH](c2ccccc2)(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1cccc(NC(=O)Nc2ccc(-c3csc4c(C#CCCO)cnc(N)c34)cc2)c1",
+    "gt_rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "Cc1cccc(NC(=O)Nc2ccc(-c3csc4c(C#CCCO)cnc(N)c34)cc2)c1",
+    "gt_can": "Cc1cccc(NC(=O)Nc2ccc(-c3csc4c(C#CCCO)cnc(N)c34)cc2)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0126",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 64,
+    "pool_id": "7ae32303-4d6c-48d8-9b3e-d62038e4fd13",
+    "reactants_smiles": "C#CC.Cl[Pd]Cl.COc1ccc(C(OCC2OC(n3cc(I)c(=O)[nH]c3=O)C(F)C2O)(c2ccccc2)c2ccc(OC)cc2)cc1.[Cu]I",
+    "reactants_list": [
+      "C#CC",
+      "Cl[Pd]Cl",
+      "COc1ccc(C(OCC2OC(n3cc(I)c(=O)[nH]c3=O)C(F)C2O)(c2ccccc2)c2ccc(OC)cc2)cc1",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC#Cc1cn(C2OC(COC(c3ccccc3)(c3ccc(OC)cc3)c3ccc(OC)cc3)C(O)C2F)c(=O)[nH]c1=O",
+    "gt_rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CC#Cc1cn(C2OC(COC(c3ccccc3)(c3ccc(OC)cc3)c3ccc(OC)cc3)C(O)C2F)c(=O)[nH]c1=O",
+    "gt_can": "CC#Cc1cn(C2OC(COC(c3ccccc3)(c3ccc(OC)cc3)c3ccc(OC)cc3)C(O)C2F)c(=O)[nH]c1=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0127",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 78,
+    "pool_id": "1418f64f-227f-4703-ad1d-f9b4fb5d333b",
+    "reactants_smiles": "Br.CC(C)C(NCC(=O)NCCNC(=O)OCc1ccccc1)C(=O)NC(CCCNC(N)=O)C(=O)Nc1ccc(C(=O)Nc2ccc3[nH]c(C(=O)N4CC(CBr)c5c4cc(OC(=O)N4CCN(C)CC4)c4ccccc54)cc3c2)cc1",
+    "reactants_list": [
+      "Br",
+      "CC(C)C(NCC(=O)NCCNC(=O)OCc1ccccc1)C(=O)NC(CCCNC(N)=O)C(=O)Nc1ccc(C(=O)Nc2ccc3[nH]c(C(=O)N4CC(CBr)c5c4cc(OC(=O)N4CCN(C)CC4)c4ccccc54)cc3c2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)C(NCC(=O)NCCN)C(=O)NC(CCCNC(N)=O)C(=O)Nc1ccc(C(=O)Nc2ccc3[nH]c(C(=O)N4CC(CBr)c5c4cc(OC(=O)N4CCN(C)CC4)c4ccccc54)cc3c2)cc1",
+    "gt_rxn_cls": "N-Cbz deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CC(C)C(NCC(=O)NCCN)C(=O)NC(CCCNC(N)=O)C(=O)Nc1ccc(C(=O)Nc2ccc3[nH]c(C(=O)N4CC(CBr)c5c4cc(OC(=O)N4CCN(C)CC4)c4ccccc54)cc3c2)cc1",
+    "gt_can": "CC(C)C(NCC(=O)NCCN)C(=O)NC(CCCNC(N)=O)C(=O)Nc1ccc(C(=O)Nc2ccc3[nH]c(C(=O)N4CC(CBr)c5c4cc(OC(=O)N4CCN(C)CC4)c4ccccc54)cc3c2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0128",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 94,
+    "pool_id": "23d973f0-3d13-4060-980a-51a26e7ee02d",
+    "reactants_smiles": "Brc1cccc2oc3ccccc3c12.O.CC(C)(C)O[Na].[Pd].c1ccc2c(c1)ccc1cc(-c3ccc(Nc4ccc5ccc6ccccc6c5c4)cc3)ccc12",
+    "reactants_list": [
+      "Brc1cccc2oc3ccccc3c12",
+      "O",
+      "CC(C)(C)O[Na]",
+      "[Pd]",
+      "c1ccc2c(c1)ccc1cc(-c3ccc(Nc4ccc5ccc6ccccc6c5c4)cc3)ccc12"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "c1ccc2c(c1)ccc1cc(-c3ccc(N(c4ccc5ccc6ccccc6c5c4)c4cccc5oc6ccccc6c45)cc3)ccc12",
+    "gt_rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "c1ccc2c(c1)ccc1cc(-c3ccc(N(c4ccc5ccc6ccccc6c5c4)c4cccc5oc6ccccc6c45)cc3)ccc12",
+    "gt_can": "c1ccc2c(c1)ccc1cc(-c3ccc(N(c4ccc5ccc6ccccc6c5c4)c4cccc5oc6ccccc6c45)cc3)ccc12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0129",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 88,
+    "pool_id": "8171c24a-38e9-41fd-8fa3-9da7ec2328ed",
+    "reactants_smiles": "CC(C)(C)OC(=O)NS(C)(=O)=O.COCCOC(=O)N=NC(=O)OCCOC.CC(c1cc2cccc(Cl)c2c(=O)n1CCO)N(C(=O)OC(C)(C)C)C(=O)OC(C)(C)C.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CC(C)(C)OC(=O)NS(C)(=O)=O",
+      "COCCOC(=O)N=NC(=O)OCCOC",
+      "CC(c1cc2cccc(Cl)c2c(=O)n1CCO)N(C(=O)OC(C)(C)C)C(=O)OC(C)(C)C",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(c1cc2cccc(Cl)c2c(=O)n1CCN(C(=O)OC(C)(C)C)S(C)(=O)=O)N(C(=O)OC(C)(C)C)C(=O)OC(C)(C)C",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CC(c1cc2cccc(Cl)c2c(=O)n1CCN(C(=O)OC(C)(C)C)S(C)(=O)=O)N(C(=O)OC(C)(C)C)C(=O)OC(C)(C)C",
+    "gt_can": "CC(c1cc2cccc(Cl)c2c(=O)n1CCN(C(=O)OC(C)(C)C)S(C)(=O)=O)N(C(=O)OC(C)(C)C)C(=O)OC(C)(C)C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0130",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 47,
+    "pool_id": "e5afd1dc-2042-4a3f-b45b-11845e67112b",
+    "reactants_smiles": "O=C(O[Cs])O[Cs].CC1(O)CCCN(c2nc(OCC34CCCN3CCC4)nc3c2CCNC3)C1.Cc1cc2c(cnn2C2CCCCO2)c(Br)c1C.[Pd].[Pd]",
+    "reactants_list": [
+      "O=C(O[Cs])O[Cs]",
+      "CC1(O)CCCN(c2nc(OCC34CCCN3CCC4)nc3c2CCNC3)C1",
+      "Cc1cc2c(cnn2C2CCCCO2)c(Br)c1C",
+      "[Pd]",
+      "[Pd]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1cc2c(cnn2C2CCCCO2)c(N2CCc3c(nc(OCC45CCCN4CCC5)nc3N3CCCC(C)(O)C3)C2)c1C",
+    "gt_rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "Cc1cc2c(cnn2C2CCCCO2)c(N2CCc3c(nc(OCC45CCCN4CCC5)nc3N3CCCC(C)(O)C3)C2)c1C",
+    "gt_can": "Cc1cc2c(cnn2C2CCCCO2)c(N2CCc3c(nc(OCC45CCCN4CCC5)nc3N3CCCC(C)(O)C3)C2)c1C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0131",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 101,
+    "pool_id": "4de84c7a-2992-4e37-815f-8e9d866df5bd",
+    "reactants_smiles": "C=C1CC2CCC(O)C=CC(O[Si](C)(C)C(C)(C)C)C3OC4CCC(CC(=O)CC5C(CC6OC(CCC1O2)CC(C)C6=C)OC(CC(CO[Si](C)(C)C(C)(C)C)O[Si](C)(C)C(C)(C)C)C5OC)OC4C(O[Si](C)(C)C(C)(C)C)C3O[Si](C)(C)C(C)(C)C.CC(=O)OI1(OC(C)=O)(OC(C)=O)OC(=O)c2ccccc21",
+    "reactants_list": [
+      "C=C1CC2CCC(O)C=CC(O[Si](C)(C)C(C)(C)C)C3OC4CCC(CC(=O)CC5C(CC6OC(CCC1O2)CC(C)C6=C)OC(CC(CO[Si](C)(C)C(C)(C)C)O[Si](C)(C)C(C)(C)C)C5OC)OC4C(O[Si](C)(C)C(C)(C)C)C3O[Si](C)(C)C(C)(C)C",
+      "CC(=O)OI1(OC(C)=O)(OC(C)=O)OC(=O)c2ccccc21"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "C=C1CC2CCC(=O)C=CC(O[Si](C)(C)C(C)(C)C)C3OC4CCC(CC(=O)CC5C(CC6OC(CCC1O2)CC(C)C6=C)OC(CC(CO[Si](C)(C)C(C)(C)C)O[Si](C)(C)C(C)(C)C)C5OC)OC4C(O[Si](C)(C)C(C)(C)C)C3O[Si](C)(C)C(C)(C)C",
+    "gt_rxn_cls": "Ketone Dess-Martin oxidation",
+    "coarse_rxn_cls": "Oxidation",
+    "predicted_can": "C=C1CC2CCC(=O)C=CC(O[Si](C)(C)C(C)(C)C)C3OC4CCC(CC(=O)CC5C(CC6OC(CCC1O2)CC(C)C6=C)OC(CC(CO[Si](C)(C)C(C)(C)C)O[Si](C)(C)C(C)(C)C)C5OC)OC4C(O[Si](C)(C)C(C)(C)C)C3O[Si](C)(C)C(C)(C)C",
+    "gt_can": "C=C1CC2CCC(=O)C=CC(O[Si](C)(C)C(C)(C)C)C3OC4CCC(CC(=O)CC5C(CC6OC(CCC1O2)CC(C)C6=C)OC(CC(CO[Si](C)(C)C(C)(C)C)O[Si](C)(C)C(C)(C)C)C5OC)OC4C(O[Si](C)(C)C(C)(C)C)C3O[Si](C)(C)C(C)(C)C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0132",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 109,
+    "pool_id": "6587efcf-b128-400e-be47-0a393ae60999",
+    "reactants_smiles": "C#C[Si](C)(C)C.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.I[Cu]I.CC(C)(C)OC(=O)N1CCN(c2ccc(-c3cc(OS(=O)(=O)C(F)(F)F)cn4ncc(C#N)c34)cn2)CC1",
+    "reactants_list": [
+      "C#C[Si](C)(C)C",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "I[Cu]I",
+      "CC(C)(C)OC(=O)N1CCN(c2ccc(-c3cc(OS(=O)(=O)C(F)(F)F)cn4ncc(C#N)c34)cn2)CC1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)OC(=O)N1CCN(c2ccc(-c3cc(C#C[Si](C)(C)C)cn4ncc(C#N)c34)cn2)CC1",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CC(C)(C)OC(=O)N1CCN(c2ccc(-c3cc(C#C[Si](C)(C)C)cn4ncc(C#N)c34)cn2)CC1",
+    "gt_can": "CC(C)(C)OC(=O)N1CCN(c2ccc(-c3cc(C#C[Si](C)(C)C)cn4ncc(C#N)c34)cn2)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0133",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 85,
+    "pool_id": "2c447f05-1de0-47a7-bd00-c6b7d23e8250",
+    "reactants_smiles": "C#Cc1ccc(COC2COc3nc([N+](=O)[O-])cn3C2)nc1.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.FC(F)(F)Oc1ccc(I)cc1.I[Cu]I",
+    "reactants_list": [
+      "C#Cc1ccc(COC2COc3nc([N+](=O)[O-])cn3C2)nc1",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "FC(F)(F)Oc1ccc(I)cc1",
+      "I[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "O=[N+]([O-])c1cn2c(n1)OCC(OCc1ccc(C#Cc3ccc(OC(F)(F)F)cc3)cn1)C2",
+    "gt_rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "O=[N+]([O-])c1cn2c(n1)OCC(OCc1ccc(C#Cc3ccc(OC(F)(F)F)cc3)cn1)C2",
+    "gt_can": "O=[N+]([O-])c1cn2c(n1)OCC(OCc1ccc(C#Cc3ccc(OC(F)(F)F)cc3)cn1)C2"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0134",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 115,
+    "pool_id": "09c5f2c2-6b86-4727-a1fd-1aa72ab9ff87",
+    "reactants_smiles": "C1CN2CCOCC2CN1.CC(C)(C)O[Na].CCn1c(Br)nc2c(N3CCOCC3)nc(-n3cc(-c4ccccc4)cn3)nc21.[Pd].[Pd]",
+    "reactants_list": [
+      "C1CN2CCOCC2CN1",
+      "CC(C)(C)O[Na]",
+      "CCn1c(Br)nc2c(N3CCOCC3)nc(-n3cc(-c4ccccc4)cn3)nc21",
+      "[Pd]",
+      "[Pd]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCn1c(N2CCN3CCOCC3C2)nc2c(N3CCOCC3)nc(-n3cc(-c4ccccc4)cn3)nc21",
+    "gt_rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCn1c(N2CCN3CCOCC3C2)nc2c(N3CCOCC3)nc(-n3cc(-c4ccccc4)cn3)nc21",
+    "gt_can": "CCn1c(N2CCN3CCOCC3C2)nc2c(N3CCOCC3)nc(-n3cc(-c4ccccc4)cn3)nc21"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0135",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 147,
+    "pool_id": "adf7e15f-1d5d-4ee8-b0b4-a08546df255b",
+    "reactants_smiles": "O.CC(C)C1=C2C3CCC4C5(C)CCC(OC(=O)CC(C)(C)C(=O)OC(C)(C)C)C(C)(C)C5CCC4(C)C3(C)CCC2(C(O)CN(CCN(C)C)Cc2ccc(Cl)cc2)CC1=O",
+    "reactants_list": [
+      "O",
+      "CC(C)C1=C2C3CCC4C5(C)CCC(OC(=O)CC(C)(C)C(=O)OC(C)(C)C)C(C)(C)C5CCC4(C)C3(C)CCC2(C(O)CN(CCN(C)C)Cc2ccc(Cl)cc2)CC1=O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)C1=C2C3CCC4C5(C)CCC(OC(=O)CC(C)(C)C(=O)O)C(C)(C)C5CCC4(C)C3(C)CCC2(C(O)CN(CCN(C)C)Cc2ccc(Cl)cc2)CC1=O",
+    "gt_rxn_cls": "CO2H-tBu deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CC(C)C1=C2C3CCC4C5(C)CCC(OC(=O)CC(C)(C)C(=O)O)C(C)(C)C5CCC4(C)C3(C)CCC2(C(O)CN(CCN(C)C)Cc2ccc(Cl)cc2)CC1=O",
+    "gt_can": "CC(C)C1=C2C3CCC4C5(C)CCC(OC(=O)CC(C)(C)C(=O)O)C(C)(C)C5CCC4(C)C3(C)CCC2(C(O)CN(CCN(C)C)Cc2ccc(Cl)cc2)CC1=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0136",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 153,
+    "pool_id": "05dd0984-35f4-4820-be44-e330dd151151",
+    "reactants_smiles": "C#C[Si](C)(C)C.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.CCOC(=O)C=Cc1cc2ccc(OS(=O)(=O)C(F)(F)F)cc2oc1=O.[Cu]I",
+    "reactants_list": [
+      "C#C[Si](C)(C)C",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "CCOC(=O)C=Cc1cc2ccc(OS(=O)(=O)C(F)(F)F)cc2oc1=O",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)C=Cc1cc2ccc(C#C[Si](C)(C)C)cc2oc1=O",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CCOC(=O)C=Cc1cc2ccc(C#C[Si](C)(C)C)cc2oc1=O",
+    "gt_can": "CCOC(=O)C=Cc1cc2ccc(C#C[Si](C)(C)C)cc2oc1=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0137",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 58,
+    "pool_id": "2dd55b97-7e40-4dbc-bc50-babf3dd25d4f",
+    "reactants_smiles": "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1.CCCCP(CCCC)CCCC.CCC1CNS(=O)(=O)c2ccccc2C1.CCn1nnc2c(C)c(C(c3ccc(C)c(CO)c3)C(C)(C)C(=O)OC)ccc21",
+    "reactants_list": [
+      "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1",
+      "CCCCP(CCCC)CCCC",
+      "CCC1CNS(=O)(=O)c2ccccc2C1",
+      "CCn1nnc2c(C)c(C(c3ccc(C)c(CO)c3)C(C)(C)C(=O)OC)ccc21"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCC1Cc2ccccc2S(=O)(=O)N(Cc2cc(C(c3ccc4c(nnn4CC)c3C)C(C)(C)C(=O)OC)ccc2C)C1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCC1Cc2ccccc2S(=O)(=O)N(Cc2cc(C(c3ccc4c(nnn4CC)c3C)C(C)(C)C(=O)OC)ccc2C)C1",
+    "gt_can": "CCC1Cc2ccccc2S(=O)(=O)N(Cc2cc(C(c3ccc4c(nnn4CC)c3C)C(C)(C)C(=O)OC)ccc2C)C1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0138",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 168,
+    "pool_id": "2c136ae3-5afd-4935-9a3a-6f0824ad49a1",
+    "reactants_smiles": "CC(C)(C)OC(=O)Nc1ccc(CO)cc1.COc1ccc(CN2C(=O)CNS2(=O)=O)c(OC)c1.CCOC(=O)N=NC(=O)OCC.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CC(C)(C)OC(=O)Nc1ccc(CO)cc1",
+      "COc1ccc(CN2C(=O)CNS2(=O)=O)c(OC)c1",
+      "CCOC(=O)N=NC(=O)OCC",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc(CN2C(=O)CN(Cc3ccc(NC(=O)OC(C)(C)C)cc3)S2(=O)=O)c(OC)c1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "COc1ccc(CN2C(=O)CN(Cc3ccc(NC(=O)OC(C)(C)C)cc3)S2(=O)=O)c(OC)c1",
+    "gt_can": "COc1ccc(CN2C(=O)CN(Cc3ccc(NC(=O)OC(C)(C)C)cc3)S2(=O)=O)c(OC)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0139",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 174,
+    "pool_id": "de1202a2-cc25-48f0-b9cd-013bed26191b",
+    "reactants_smiles": "C#C[Si](C)(C)C.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.COc1ccc(COc2cnc(COC(C)=O)cc2OS(=O)(=O)C(F)(F)F)cc1.[Cu]I",
+    "reactants_list": [
+      "C#C[Si](C)(C)C",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "COc1ccc(COc2cnc(COC(C)=O)cc2OS(=O)(=O)C(F)(F)F)cc1",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc(COc2cnc(COC(C)=O)cc2C#C[Si](C)(C)C)cc1",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "COc1ccc(COc2cnc(COC(C)=O)cc2C#C[Si](C)(C)C)cc1",
+    "gt_can": "COc1ccc(COc2cnc(COC(C)=O)cc2C#C[Si](C)(C)C)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0140",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 164,
+    "pool_id": "48169ded-c5f2-4df0-b534-927b78be876a",
+    "reactants_smiles": "C#CC1(O)CCC2(CC1)OCCO2.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.COc1ccc2nccc(OS(=O)(=O)C(F)(F)F)c2n1.[Cu]I",
+    "reactants_list": [
+      "C#CC1(O)CCC2(CC1)OCCO2",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "COc1ccc2nccc(OS(=O)(=O)C(F)(F)F)c2n1",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc2nccc(C#CC3(O)CCC4(CC3)OCCO4)c2n1",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "COc1ccc2nccc(C#CC3(O)CCC4(CC3)OCCO4)c2n1",
+    "gt_can": "COc1ccc2nccc(C#CC3(O)CCC4(CC3)OCCO4)c2n1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0141",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 180,
+    "pool_id": "e22b8eff-991d-4d5d-afef-81445cb8f754",
+    "reactants_smiles": "COC(=O)CCc1ccc(NS(=O)(=O)c2ccccc2[N+](=O)[O-])cc1.CCOC(=O)N=NC(=O)OCC.OCc1ccc(Cn2c(-c3ccccc3)cc3ccccc32)cc1.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "COC(=O)CCc1ccc(NS(=O)(=O)c2ccccc2[N+](=O)[O-])cc1",
+      "CCOC(=O)N=NC(=O)OCC",
+      "OCc1ccc(Cn2c(-c3ccccc3)cc3ccccc32)cc1",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)CCc1ccc(N(Cc2ccc(Cn3c(-c4ccccc4)cc4ccccc43)cc2)S(=O)(=O)c2ccccc2[N+](=O)[O-])cc1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "COC(=O)CCc1ccc(N(Cc2ccc(Cn3c(-c4ccccc4)cc4ccccc43)cc2)S(=O)(=O)c2ccccc2[N+](=O)[O-])cc1",
+    "gt_can": "COC(=O)CCc1ccc(N(Cc2ccc(Cn3c(-c4ccccc4)cc4ccccc43)cc2)S(=O)(=O)c2ccccc2[N+](=O)[O-])cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0142",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 208,
+    "pool_id": "296a6d04-ce1d-4f3e-bf1f-406549cbcded",
+    "reactants_smiles": "C#Cc1cc2ncn(C)c2cc1F.C=CC(=O)N1CC(n2nc(I)c3c(N)nccc32)CC1COC(F)(F)F.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.[Cu]I",
+    "reactants_list": [
+      "C#Cc1cc2ncn(C)c2cc1F",
+      "C=CC(=O)N1CC(n2nc(I)c3c(N)nccc32)CC1COC(F)(F)F",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "C=CC(=O)N1CC(n2nc(C#Cc3cc4ncn(C)c4cc3F)c3c(N)nccc32)CC1COC(F)(F)F",
+    "gt_rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "C=CC(=O)N1CC(n2nc(C#Cc3cc4ncn(C)c4cc3F)c3c(N)nccc32)CC1COC(F)(F)F",
+    "gt_can": "C=CC(=O)N1CC(n2nc(C#Cc3cc4ncn(C)c4cc3F)c3c(N)nccc32)CC1COC(F)(F)F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0143",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 211,
+    "pool_id": "5f5c6bbd-b488-4889-ba92-f044b83cff03",
+    "reactants_smiles": "C#CCCC1CCN(C(=O)OC(C)(C)C)CC1.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.Cc1c(Br)cccc1I.[Cu]I",
+    "reactants_list": [
+      "C#CCCC1CCN(C(=O)OC(C)(C)C)CC1",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "Cc1c(Br)cccc1I",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1c(Br)cccc1C#CCCC1CCN(C(=O)OC(C)(C)C)CC1",
+    "gt_rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "Cc1c(Br)cccc1C#CCCC1CCN(C(=O)OC(C)(C)C)CC1",
+    "gt_can": "Cc1c(Br)cccc1C#CCCC1CCN(C(=O)OC(C)(C)C)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0144",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 248,
+    "pool_id": "0ba186b4-3160-4b9c-b67a-6c9241db637b",
+    "reactants_smiles": "CC(C)OC(=O)N=NC(=O)OC(C)C.CO.Cc1ccc(S(=O)(=O)NC(=O)C2C=CC(n3cnc4c(Cl)nc(Cl)nc43)C2)cc1.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CC(C)OC(=O)N=NC(=O)OC(C)C",
+      "CO",
+      "Cc1ccc(S(=O)(=O)NC(=O)C2C=CC(n3cnc4c(Cl)nc(Cl)nc43)C2)cc1",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1ccc(S(=O)(=O)N(C)C(=O)C2C=CC(n3cnc4c(Cl)nc(Cl)nc43)C2)cc1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "Cc1ccc(S(=O)(=O)N(C)C(=O)C2C=CC(n3cnc4c(Cl)nc(Cl)nc43)C2)cc1",
+    "gt_can": "Cc1ccc(S(=O)(=O)N(C)C(=O)C2C=CC(n3cnc4c(Cl)nc(Cl)nc43)C2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0145",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 259,
+    "pool_id": "f8650337-ac67-431d-aacb-dcdd2529d3ea",
+    "reactants_smiles": "FCCCI.CC1Cc2[nH]c3ccccc3c2C(c2c(F)cc(NC3CNC3)cc2F)N1CC(F)(F)CO[Si](c1ccccc1)(c1ccccc1)C(C)(C)C",
+    "reactants_list": [
+      "FCCCI",
+      "CC1Cc2[nH]c3ccccc3c2C(c2c(F)cc(NC3CNC3)cc2F)N1CC(F)(F)CO[Si](c1ccccc1)(c1ccccc1)C(C)(C)C"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC1Cc2[nH]c3ccccc3c2C(c2c(F)cc(NC3CN(CCCF)C3)cc2F)N1CC(F)(F)CO[Si](c1ccccc1)(c1ccccc1)C(C)(C)C",
+    "gt_rxn_cls": "Iodo N-alkylation",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CC1Cc2[nH]c3ccccc3c2C(c2c(F)cc(NC3CN(CCCF)C3)cc2F)N1CC(F)(F)CO[Si](c1ccccc1)(c1ccccc1)C(C)(C)C",
+    "gt_can": "CC1Cc2[nH]c3ccccc3c2C(c2c(F)cc(NC3CN(CCCF)C3)cc2F)N1CC(F)(F)CO[Si](c1ccccc1)(c1ccccc1)C(C)(C)C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0146",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 249,
+    "pool_id": "1c198164-699d-4755-b7f9-17551985235f",
+    "reactants_smiles": "CCOC(=O)C(CCCCB1OC(C)(C)C(C)(C)O1)(CNS(=O)(=O)NC(=O)OC(C)(C)C)NC(C)=O.CC(C)OC(=O)N=NC(=O)OC(C)C.OCc1ccccc1.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CCOC(=O)C(CCCCB1OC(C)(C)C(C)(C)O1)(CNS(=O)(=O)NC(=O)OC(C)(C)C)NC(C)=O",
+      "CC(C)OC(=O)N=NC(=O)OC(C)C",
+      "OCc1ccccc1",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)C(CCCCB1OC(C)(C)C(C)(C)O1)(CNS(=O)(=O)N(Cc1ccccc1)C(=O)OC(C)(C)C)NC(C)=O",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCOC(=O)C(CCCCB1OC(C)(C)C(C)(C)O1)(CNS(=O)(=O)N(Cc1ccccc1)C(=O)OC(C)(C)C)NC(C)=O",
+    "gt_can": "CCOC(=O)C(CCCCB1OC(C)(C)C(C)(C)O1)(CNS(=O)(=O)N(Cc1ccccc1)C(=O)OC(C)(C)C)NC(C)=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0147",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 254,
+    "pool_id": "b736195e-21b1-4234-8001-e82c22310e3d",
+    "reactants_smiles": "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1.CCCCP(CCCC)CCCC.CCC1CNS(=O)(=O)c2cnccc2O1.CCn1nnc2c(C)c(C(CC(=O)OC)c3cc(CO)c(Cl)s3)ccc21",
+    "reactants_list": [
+      "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1",
+      "CCCCP(CCCC)CCCC",
+      "CCC1CNS(=O)(=O)c2cnccc2O1",
+      "CCn1nnc2c(C)c(C(CC(=O)OC)c3cc(CO)c(Cl)s3)ccc21"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCC1CN(Cc2cc(C(CC(=O)OC)c3ccc4c(nnn4CC)c3C)sc2Cl)S(=O)(=O)c2cnccc2O1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCC1CN(Cc2cc(C(CC(=O)OC)c3ccc4c(nnn4CC)c3C)sc2Cl)S(=O)(=O)c2cnccc2O1",
+    "gt_can": "CCC1CN(Cc2cc(C(CC(=O)OC)c3ccc4c(nnn4CC)c3C)sc2Cl)S(=O)(=O)c2cnccc2O1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0148",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 253,
+    "pool_id": "5adc8a2c-8e07-479a-8ce1-249c62fae67c",
+    "reactants_smiles": "CCOC(=O)N=NC(=O)OCC.CCOC(=O)CC(c1ccc(C)c(CO)c1)c1ccc2c(c1)nnn2C.CC1CNS(=O)(=O)c2cc(Cl)ccc2O1.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CCOC(=O)N=NC(=O)OCC",
+      "CCOC(=O)CC(c1ccc(C)c(CO)c1)c1ccc2c(c1)nnn2C",
+      "CC1CNS(=O)(=O)c2cc(Cl)ccc2O1",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)CC(c1ccc(C)c(CN2CC(C)Oc3ccc(Cl)cc3S2(=O)=O)c1)c1ccc2c(c1)nnn2C",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCOC(=O)CC(c1ccc(C)c(CN2CC(C)Oc3ccc(Cl)cc3S2(=O)=O)c1)c1ccc2c(c1)nnn2C",
+    "gt_can": "CCOC(=O)CC(c1ccc(C)c(CN2CC(C)Oc3ccc(Cl)cc3S2(=O)=O)c1)c1ccc2c(c1)nnn2C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0149",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 257,
+    "pool_id": "85753eac-e324-4172-b6e4-d87ee17a5c9d",
+    "reactants_smiles": "COC(=O)CC(c1ccc(C)c(CO)c1)c1ccc2c(c1)nnn2C.CC(C)OC(=O)N=NC(=O)OC(C)C.CC1CNS(=O)(=O)c2cccnc2O1.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "COC(=O)CC(c1ccc(C)c(CO)c1)c1ccc2c(c1)nnn2C",
+      "CC(C)OC(=O)N=NC(=O)OC(C)C",
+      "CC1CNS(=O)(=O)c2cccnc2O1",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)CC(c1ccc(C)c(CN2CC(C)Oc3ncccc3S2(=O)=O)c1)c1ccc2c(c1)nnn2C",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "COC(=O)CC(c1ccc(C)c(CN2CC(C)Oc3ncccc3S2(=O)=O)c1)c1ccc2c(c1)nnn2C",
+    "gt_can": "COC(=O)CC(c1ccc(C)c(CN2CC(C)Oc3ncccc3S2(=O)=O)c1)c1ccc2c(c1)nnn2C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0150",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 285,
+    "pool_id": "bef5e142-d400-4758-ae63-4351da070faf",
+    "reactants_smiles": "C#CC1(C)CC1.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.CCN(c1cccc(I)c1)c1nc2nnc(C)n2c2ccc(F)cc12.[Cu]I",
+    "reactants_list": [
+      "C#CC1(C)CC1",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "CCN(c1cccc(I)c1)c1nc2nnc(C)n2c2ccc(F)cc12",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCN(c1cccc(C#CC2(C)CC2)c1)c1nc2nnc(C)n2c2ccc(F)cc12",
+    "gt_rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CCN(c1cccc(C#CC2(C)CC2)c1)c1nc2nnc(C)n2c2ccc(F)cc12",
+    "gt_can": "CCN(c1cccc(C#CC2(C)CC2)c1)c1nc2nnc(C)n2c2ccc(F)cc12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0151",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 267,
+    "pool_id": "f7f35b9a-3901-4ad5-a165-66fd3723c18a",
+    "reactants_smiles": "C#C[Si](C)(C)C.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.COC(=O)c1cccc2cc(OS(=O)(=O)C(F)(F)F)ccc12.[Cu]I",
+    "reactants_list": [
+      "C#C[Si](C)(C)C",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "COC(=O)c1cccc2cc(OS(=O)(=O)C(F)(F)F)ccc12",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)c1cccc2cc(C#C[Si](C)(C)C)ccc12",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "COC(=O)c1cccc2cc(C#C[Si](C)(C)C)ccc12",
+    "gt_can": "COC(=O)c1cccc2cc(C#C[Si](C)(C)C)ccc12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0152",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 288,
+    "pool_id": "0ded4995-4eb9-4c45-801b-85a9c989571b",
+    "reactants_smiles": "C#Cc1ccc(CO)cc1.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.N#Cc1nccc(C2(NC(=O)Nc3ccc(I)cc3)CCCCC2)n1.[Cu]I",
+    "reactants_list": [
+      "C#Cc1ccc(CO)cc1",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "N#Cc1nccc(C2(NC(=O)Nc3ccc(I)cc3)CCCCC2)n1",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "N#Cc1nccc(C2(NC(=O)Nc3ccc(C#Cc4ccc(CO)cc4)cc3)CCCCC2)n1",
+    "gt_rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "N#Cc1nccc(C2(NC(=O)Nc3ccc(C#Cc4ccc(CO)cc4)cc3)CCCCC2)n1",
+    "gt_can": "N#Cc1nccc(C2(NC(=O)Nc3ccc(C#Cc4ccc(CO)cc4)cc3)CCCCC2)n1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0153",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 286,
+    "pool_id": "0dbcb0b4-dc8b-4c1e-94ba-3dc3b5c0a0d9",
+    "reactants_smiles": "C#C[Si](C)(C)C.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.CCC(Oc1ccc2ccc(OS(=O)(=O)C(F)(F)F)cc2c1)C(=O)OC.[Cu]I",
+    "reactants_list": [
+      "C#C[Si](C)(C)C",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "CCC(Oc1ccc2ccc(OS(=O)(=O)C(F)(F)F)cc2c1)C(=O)OC",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCC(Oc1ccc2ccc(C#C[Si](C)(C)C)cc2c1)C(=O)OC",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CCC(Oc1ccc2ccc(C#C[Si](C)(C)C)cc2c1)C(=O)OC",
+    "gt_can": "CCC(Oc1ccc2ccc(C#C[Si](C)(C)C)cc2c1)C(=O)OC"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0154",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 276,
+    "pool_id": "0a86c322-9f1c-4787-ada8-cd806c6297e8",
+    "reactants_smiles": "C#Cc1ccc(N)cc1.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.Fc1cc(OCCCN2CCOCC2)ccc1I.[Cu]I",
+    "reactants_list": [
+      "C#Cc1ccc(N)cc1",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "Fc1cc(OCCCN2CCOCC2)ccc1I",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Nc1ccc(C#Cc2ccc(OCCCN3CCOCC3)cc2F)cc1",
+    "gt_rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "Nc1ccc(C#Cc2ccc(OCCCN3CCOCC3)cc2F)cc1",
+    "gt_can": "Nc1ccc(C#Cc2ccc(OCCCN3CCOCC3)cc2F)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0155",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 337,
+    "pool_id": "08fd902f-b49f-4b51-9ad3-1b646a26dee8",
+    "reactants_smiles": "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1.O=S1(=O)NCCOc2ccncc21.CCOC(=O)CC(c1ccc(C)c(CO)c1)c1ccc2c(nnn2C)c1C.CCCCP(CCCC)CCCC",
+    "reactants_list": [
+      "O=C(N=NC(=O)N1CCCCC1)N1CCCCC1",
+      "O=S1(=O)NCCOc2ccncc21",
+      "CCOC(=O)CC(c1ccc(C)c(CO)c1)c1ccc2c(nnn2C)c1C",
+      "CCCCP(CCCC)CCCC"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)CC(c1ccc(C)c(CN2CCOc3ccncc3S2(=O)=O)c1)c1ccc2c(nnn2C)c1C",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CCOC(=O)CC(c1ccc(C)c(CN2CCOc3ccncc3S2(=O)=O)c1)c1ccc2c(nnn2C)c1C",
+    "gt_can": "CCOC(=O)CC(c1ccc(C)c(CN2CCOc3ccncc3S2(=O)=O)c1)c1ccc2c(nnn2C)c1C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0156",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 329,
+    "pool_id": "796abc51-cc32-4c3c-ab8b-baceda0cce8b",
+    "reactants_smiles": "C#CCC(O)(CC1(C)CCOc2ccc(S(C)(=O)=O)cc21)C(F)(F)F.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.Cc1cc(C#N)cc([N+](=O)[O-])c1OS(=O)(=O)C(F)(F)F.[Cu]I",
+    "reactants_list": [
+      "C#CCC(O)(CC1(C)CCOc2ccc(S(C)(=O)=O)cc21)C(F)(F)F",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "Cc1cc(C#N)cc([N+](=O)[O-])c1OS(=O)(=O)C(F)(F)F",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1cc(C#N)cc([N+](=O)[O-])c1C#CCC(O)(CC1(C)CCOc2ccc(S(C)(=O)=O)cc21)C(F)(F)F",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "Cc1cc(C#N)cc([N+](=O)[O-])c1C#CCC(O)(CC1(C)CCOc2ccc(S(C)(=O)=O)cc21)C(F)(F)F",
+    "gt_can": "Cc1cc(C#N)cc([N+](=O)[O-])c1C#CCC(O)(CC1(C)CCOc2ccc(S(C)(=O)=O)cc21)C(F)(F)F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0157",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 313,
+    "pool_id": "d8dfd2b3-b0fc-499a-a0c3-7b4489eaf04f",
+    "reactants_smiles": "CC(C)OC(=O)N=NC(=O)OC(C)C.CC1CCc2cc(C#N)ccc2C1O.C[Si](C)(C)CCOCn1nc(-c2cnco2)c2cc(NS(=O)(=O)c3ccccc3[N+](=O)[O-])ccc21.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CC(C)OC(=O)N=NC(=O)OC(C)C",
+      "CC1CCc2cc(C#N)ccc2C1O",
+      "C[Si](C)(C)CCOCn1nc(-c2cnco2)c2cc(NS(=O)(=O)c3ccccc3[N+](=O)[O-])ccc21",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC1CCc2cc(C#N)ccc2C1N(c1ccc2c(c1)c(-c1cnco1)nn2COCC[Si](C)(C)C)S(=O)(=O)c1ccccc1[N+](=O)[O-]",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CC1CCc2cc(C#N)ccc2C1N(c1ccc2c(c1)c(-c1cnco1)nn2COCC[Si](C)(C)C)S(=O)(=O)c1ccccc1[N+](=O)[O-]",
+    "gt_can": "CC1CCc2cc(C#N)ccc2C1N(c1ccc2c(c1)c(-c1cnco1)nn2COCC[Si](C)(C)C)S(=O)(=O)c1ccccc1[N+](=O)[O-]"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0158",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 350,
+    "pool_id": "dfc30ea3-743f-4646-bfa4-39e030e1dfec",
+    "reactants_smiles": "C#Cc1ccccc1OC.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.N#Cc1ccc(Oc2cn(C3CCCCO3)nc2OS(=O)(=O)C(F)(F)F)cc1.[Cu]I",
+    "reactants_list": [
+      "C#Cc1ccccc1OC",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "N#Cc1ccc(Oc2cn(C3CCCCO3)nc2OS(=O)(=O)C(F)(F)F)cc1",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccccc1C#Cc1nn(C2CCCCO2)cc1Oc1ccc(C#N)cc1",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "COc1ccccc1C#Cc1nn(C2CCCCO2)cc1Oc1ccc(C#N)cc1",
+    "gt_can": "COc1ccccc1C#Cc1nn(C2CCCCO2)cc1Oc1ccc(C#N)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0159",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 340,
+    "pool_id": "2d336d37-71c0-410b-8601-59acad7801b1",
+    "reactants_smiles": "CC(C)(C)OC(=O)N1CCC2C(C1)c1cc(I)cc3c1N2CCSC3.CC1(C)OB(B2OC(C)(C)C(C)(C)O2)OC1(C)C.c1ccc([PH](c2ccccc2)(c2ccccc2)[Pd]([PH](c2ccccc2)(c2ccccc2)c2ccccc2)([PH](c2ccccc2)(c2ccccc2)c2ccccc2)[PH](c2ccccc2)(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CC(C)(C)OC(=O)N1CCC2C(C1)c1cc(I)cc3c1N2CCSC3",
+      "CC1(C)OB(B2OC(C)(C)C(C)(C)O2)OC1(C)C",
+      "c1ccc([PH](c2ccccc2)(c2ccccc2)[Pd]([PH](c2ccccc2)(c2ccccc2)c2ccccc2)([PH](c2ccccc2)(c2ccccc2)c2ccccc2)[PH](c2ccccc2)(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)OC(=O)N1CCC2C(C1)c1cc(B3OC(C)(C)C(C)(C)O3)cc3c1N2CCSC3",
+    "gt_rxn_cls": "Iodo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CC(C)(C)OC(=O)N1CCC2C(C1)c1cc(B3OC(C)(C)C(C)(C)O3)cc3c1N2CCSC3",
+    "gt_can": "CC(C)(C)OC(=O)N1CCC2C(C1)c1cc(B3OC(C)(C)C(C)(C)O3)cc3c1N2CCSC3"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0160",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 177,
+    "pool_id": "10819801-e823-44da-9719-bff3a7d5ab31",
+    "reactants_smiles": "C#C[Si](C)(C)C.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.CC1CC(C)(C)c2cc(OS(=O)(=O)C(F)(F)F)ccc2C1=O.[Cu]I",
+    "reactants_list": [
+      "C#C[Si](C)(C)C",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "CC1CC(C)(C)c2cc(OS(=O)(=O)C(F)(F)F)ccc2C1=O",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC1CC(C)(C)c2cc(C#C[Si](C)(C)C)ccc2C1=O",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CC1CC(C)(C)c2cc(C#C[Si](C)(C)C)ccc2C1=O",
+    "gt_can": "CC1CC(C)(C)c2cc(C#C[Si](C)(C)C)ccc2C1=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0161",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 364,
+    "pool_id": "29733287-def3-496c-b8ad-aa31d246ed2b",
+    "reactants_smiles": "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.CC1(C)OB(B2OC(C)(C)C(C)(C)O2)OC1(C)C.OC(c1ccc(I)cc1)(C(F)(F)F)C(F)(F)F",
+    "reactants_list": [
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "CC1(C)OB(B2OC(C)(C)C(C)(C)O2)OC1(C)C",
+      "OC(c1ccc(I)cc1)(C(F)(F)F)C(F)(F)F"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC1(C)OB(c2ccc(C(O)(C(F)(F)F)C(F)(F)F)cc2)OC1(C)C",
+    "gt_rxn_cls": "Iodo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CC1(C)OB(c2ccc(C(O)(C(F)(F)F)C(F)(F)F)cc2)OC1(C)C",
+    "gt_can": "CC1(C)OB(c2ccc(C(O)(C(F)(F)F)C(F)(F)F)cc2)OC1(C)C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0162",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 351,
+    "pool_id": "54c16174-2baa-4fdc-8d9b-bef83699e975",
+    "reactants_smiles": "CCOC(=O)N=NC(=O)OCC.C[Si](C)(C)CCOCn1nc(-c2cnco2)c2cc(NS(=O)(=O)c3ccccc3[N+](=O)[O-])ccc21.OC1CCCCc2cc(Br)ccc21.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CCOC(=O)N=NC(=O)OCC",
+      "C[Si](C)(C)CCOCn1nc(-c2cnco2)c2cc(NS(=O)(=O)c3ccccc3[N+](=O)[O-])ccc21",
+      "OC1CCCCc2cc(Br)ccc21",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "C[Si](C)(C)CCOCn1nc(-c2cnco2)c2cc(N(C3CCCCc4cc(Br)ccc43)S(=O)(=O)c3ccccc3[N+](=O)[O-])ccc21",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "C[Si](C)(C)CCOCn1nc(-c2cnco2)c2cc(N(C3CCCCc4cc(Br)ccc43)S(=O)(=O)c3ccccc3[N+](=O)[O-])ccc21",
+    "gt_can": "C[Si](C)(C)CCOCn1nc(-c2cnco2)c2cc(N(C3CCCCc4cc(Br)ccc43)S(=O)(=O)c3ccccc3[N+](=O)[O-])ccc21"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0163",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 373,
+    "pool_id": "ffd0cd15-20d6-4865-ac63-9bc4553a01f9",
+    "reactants_smiles": "C#C[Si](C)(C)C.Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1.CN(C)c1ccc2c(OS(=O)(=O)C(F)(F)F)cc(=O)oc2c1.[Cu]I",
+    "reactants_list": [
+      "C#C[Si](C)(C)C",
+      "Cl[Pd](Cl)([PH](c1ccccc1)(c1ccccc1)c1ccccc1)[PH](c1ccccc1)(c1ccccc1)c1ccccc1",
+      "CN(C)c1ccc2c(OS(=O)(=O)C(F)(F)F)cc(=O)oc2c1",
+      "[Cu]I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CN(C)c1ccc2c(C#C[Si](C)(C)C)cc(=O)oc2c1",
+    "gt_rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CN(C)c1ccc2c(C#C[Si](C)(C)C)cc(=O)oc2c1",
+    "gt_can": "CN(C)c1ccc2c(C#C[Si](C)(C)C)cc(=O)oc2c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0164",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 372,
+    "pool_id": "f97784b8-bb90-4c2f-9b48-057dbf621958",
+    "reactants_smiles": "CC(C)(C)OC(=O)NS(=O)(=O)N1CCN(c2ncnc3[nH]ccc23)CC12CC2.CS(=O)(=O)CCCO.CC(C)OC(=O)N=NC(=O)OC(C)C.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "CC(C)(C)OC(=O)NS(=O)(=O)N1CCN(c2ncnc3[nH]ccc23)CC12CC2",
+      "CS(=O)(=O)CCCO",
+      "CC(C)OC(=O)N=NC(=O)OC(C)C",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)OC(=O)N(CCCS(C)(=O)=O)S(=O)(=O)N1CCN(c2ncnc3[nH]ccc23)CC12CC2",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CC(C)(C)OC(=O)N(CCCS(C)(=O)=O)S(=O)(=O)N1CCN(c2ncnc3[nH]ccc23)CC12CC2",
+    "gt_can": "CC(C)(C)OC(=O)N(CCCS(C)(=O)=O)S(=O)(=O)N1CCN(c2ncnc3[nH]ccc23)CC12CC2"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0165",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 305,
+    "pool_id": "1181c130-4a1e-47e1-bb66-c36792878734",
+    "reactants_smiles": "O=C(O[K])O[K].C1NCC12COC2.Cc1c(Br)cnc(N2CCCC(F)(F)CC2)c1C(=O)Nc1cccc(S(C)(=O)=NC(=O)OC(C)(C)C)c1.[Pd].[Pd]",
+    "reactants_list": [
+      "O=C(O[K])O[K]",
+      "C1NCC12COC2",
+      "Cc1c(Br)cnc(N2CCCC(F)(F)CC2)c1C(=O)Nc1cccc(S(C)(=O)=NC(=O)OC(C)(C)C)c1",
+      "[Pd]",
+      "[Pd]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1c(N2CC3(COC3)C2)cnc(N2CCCC(F)(F)CC2)c1C(=O)Nc1cccc(S(C)(=O)=NC(=O)OC(C)(C)C)c1",
+    "gt_rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "Cc1c(N2CC3(COC3)C2)cnc(N2CCCC(F)(F)CC2)c1C(=O)Nc1cccc(S(C)(=O)=NC(=O)OC(C)(C)C)c1",
+    "gt_can": "Cc1c(N2CC3(COC3)C2)cnc(N2CCCC(F)(F)CC2)c1C(=O)Nc1cccc(S(C)(=O)=NC(=O)OC(C)(C)C)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0166",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 398,
+    "pool_id": "df20a91a-d298-40fa-8846-3b242a6c3d5e",
+    "reactants_smiles": "O=[N+]([O-])c1ccc(S(=O)(=O)Nc2cccnc2)cc1.CC(C)(C)OC(=O)Nc1ccc(-c2cccs2)cc1NC(=O)c1ccc(CN2CCC(O)C2)cc1.CCOC(=O)N=NC(=O)OCC.c1ccc(P(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "O=[N+]([O-])c1ccc(S(=O)(=O)Nc2cccnc2)cc1",
+      "CC(C)(C)OC(=O)Nc1ccc(-c2cccs2)cc1NC(=O)c1ccc(CN2CCC(O)C2)cc1",
+      "CCOC(=O)N=NC(=O)OCC",
+      "c1ccc(P(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)OC(=O)Nc1ccc(-c2cccs2)cc1NC(=O)c1ccc(CN2CCC(N(c3cccnc3)S(=O)(=O)c3ccc([N+](=O)[O-])cc3)C2)cc1",
+    "gt_rxn_cls": "Mitsunobu sulfonamide reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "CC(C)(C)OC(=O)Nc1ccc(-c2cccs2)cc1NC(=O)c1ccc(CN2CCC(N(c3cccnc3)S(=O)(=O)c3ccc([N+](=O)[O-])cc3)C2)cc1",
+    "gt_can": "CC(C)(C)OC(=O)Nc1ccc(-c2cccs2)cc1NC(=O)c1ccc(CN2CCC(N(c3cccnc3)S(=O)(=O)c3ccc([N+](=O)[O-])cc3)C2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0167",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 389,
+    "pool_id": "49e33107-0859-4ec2-a2fd-b062ed1d4b14",
+    "reactants_smiles": "O=C(OO)c1ccccc1C(=O)O[Mg]OC(=O)c1ccccc1C(=O)OO.Cn1cc(-c2ccc(SC3CC(C(=O)NC4(C#N)CC4)N(C(=O)C4(C(F)(F)F)CC4)C3)c(C(F)(F)F)c2)cn1",
+    "reactants_list": [
+      "O=C(OO)c1ccccc1C(=O)O[Mg]OC(=O)c1ccccc1C(=O)OO",
+      "Cn1cc(-c2ccc(SC3CC(C(=O)NC4(C#N)CC4)N(C(=O)C4(C(F)(F)F)CC4)C3)c(C(F)(F)F)c2)cn1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cn1cc(-c2ccc(S(=O)(=O)C3CC(C(=O)NC4(C#N)CC4)N(C(=O)C4(C(F)(F)F)CC4)C3)c(C(F)(F)F)c2)cn1",
+    "gt_rxn_cls": "Sulfanyl to sulfonyl",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Cn1cc(-c2ccc(S(=O)(=O)C3CC(C(=O)NC4(C#N)CC4)N(C(=O)C4(C(F)(F)F)CC4)C3)c(C(F)(F)F)c2)cn1",
+    "gt_can": "Cn1cc(-c2ccc(S(=O)(=O)C3CC(C(=O)NC4(C#N)CC4)N(C(=O)C4(C(F)(F)F)CC4)C3)c(C(F)(F)F)c2)cn1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0168",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 392,
+    "pool_id": "01e6ce51-0fab-49e6-9f39-95cc5b6b71fd",
+    "reactants_smiles": "C#Cc1ccc2[nH]cnc2c1.CN1CCN(C(=O)c2ccc(-c3ccc4ncc(I)n4n3)cc2)CC1.[Cu]I.c1ccc([PH](c2ccccc2)(c2ccccc2)[Pd]([PH](c2ccccc2)(c2ccccc2)c2ccccc2)([PH](c2ccccc2)(c2ccccc2)c2ccccc2)[PH](c2ccccc2)(c2ccccc2)c2ccccc2)cc1",
+    "reactants_list": [
+      "C#Cc1ccc2[nH]cnc2c1",
+      "CN1CCN(C(=O)c2ccc(-c3ccc4ncc(I)n4n3)cc2)CC1",
+      "[Cu]I",
+      "c1ccc([PH](c2ccccc2)(c2ccccc2)[Pd]([PH](c2ccccc2)(c2ccccc2)c2ccccc2)([PH](c2ccccc2)(c2ccccc2)c2ccccc2)[PH](c2ccccc2)(c2ccccc2)c2ccccc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CN1CCN(C(=O)c2ccc(-c3ccc4ncc(C#Cc5ccc6[nH]cnc6c5)n4n3)cc2)CC1",
+    "gt_rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CN1CCN(C(=O)c2ccc(-c3ccc4ncc(C#Cc5ccc6[nH]cnc6c5)n4n3)cc2)CC1",
+    "gt_can": "CN1CCN(C(=O)c2ccc(-c3ccc4ncc(C#Cc5ccc6[nH]cnc6c5)n4n3)cc2)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0169",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 298,
+    "pool_id": "33d16042-e8f6-4c6f-8981-f22344156fe1",
+    "reactants_smiles": "O=P(Cl)(Cl)Cl.Cc1ccc(C)c2c(C(C)C)cc(O)nc12",
+    "reactants_list": [
+      "O=P(Cl)(Cl)Cl",
+      "Cc1ccc(C)c2c(C(C)C)cc(O)nc12"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1ccc(C)c2c(C(C)C)cc(Cl)nc12",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Cc1ccc(C)c2c(C(C)C)cc(Cl)nc12",
+    "gt_can": "Cc1ccc(C)c2c(C(C)C)cc(Cl)nc12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0170",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 322,
+    "pool_id": "44ff0848-57d7-457f-a9a9-d7352450d662",
+    "reactants_smiles": "O=P(Cl)(Cl)Cl.CCOC(=O)c1c(O)cc(CC)n(-c2ccccc2)c1=O",
+    "reactants_list": [
+      "O=P(Cl)(Cl)Cl",
+      "CCOC(=O)c1c(O)cc(CC)n(-c2ccccc2)c1=O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)c1c(Cl)cc(CC)n(-c2ccccc2)c1=O",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CCOC(=O)c1c(Cl)cc(CC)n(-c2ccccc2)c1=O",
+    "gt_can": "CCOC(=O)c1c(Cl)cc(CC)n(-c2ccccc2)c1=O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0171",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 333,
+    "pool_id": "2ead9288-afbf-4f51-aa25-5cfcc4a26f11",
+    "reactants_smiles": "NCCCc1nc(Cl)nc2c1SCC2.OO.OO",
+    "reactants_list": [
+      "NCCCc1nc(Cl)nc2c1SCC2",
+      "OO",
+      "OO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "NCCCc1nc(Cl)nc2c1S(=O)(=O)CC2",
+    "gt_rxn_cls": "Sulfanyl to sulfonyl",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "NCCCc1nc(Cl)nc2c1S(=O)(=O)CC2",
+    "gt_can": "NCCCc1nc(Cl)nc2c1S(=O)(=O)CC2"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0172",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 304,
+    "pool_id": "1c351231-32cf-436d-a651-28a7b5ce84ef",
+    "reactants_smiles": "O=S(Br)Br.Cn1cnc2c(CO)cccc21",
+    "reactants_list": [
+      "O=S(Br)Br",
+      "Cn1cnc2c(CO)cccc21"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cn1cnc2c(CBr)cccc21",
+    "gt_rxn_cls": "Darzens bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Cn1cnc2c(CBr)cccc21",
+    "gt_can": "Cn1cnc2c(CBr)cccc21"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0173",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 323,
+    "pool_id": "2ddb2863-9707-48cc-a63f-6b514287d2f2",
+    "reactants_smiles": "CCO.CC(C)C(C(=O)O)c1cc(O)no1",
+    "reactants_list": [
+      "CCO",
+      "CC(C)C(C(=O)O)c1cc(O)no1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)C(c1cc(O)no1)C(C)C",
+    "gt_rxn_cls": "Fischer-Speier esterification",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CCOC(=O)C(c1cc(O)no1)C(C)C",
+    "gt_can": "CCOC(=O)C(c1cc(O)no1)C(C)C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0174",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 319,
+    "pool_id": "ad09f203-72b7-4b26-a998-977d71d735c4",
+    "reactants_smiles": "CON(C)C(=O)c1ccn2ccnc2c1.C[Mg]Br",
+    "reactants_list": [
+      "CON(C)C(=O)c1ccn2ccnc2c1",
+      "C[Mg]Br"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(=O)c1ccn2ccnc2c1",
+    "gt_rxn_cls": "Weinreb ketone synthesis",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CC(=O)c1ccn2ccnc2c1",
+    "gt_can": "CC(=O)c1ccn2ccnc2c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0175",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 347,
+    "pool_id": "14e47dc0-cb3a-47c3-862e-7e84865be9a0",
+    "reactants_smiles": "BrBr.CS(=O)(=O)c1ccc(CC(=O)c2ccc(F)cc2)cc1",
+    "reactants_list": [
+      "BrBr",
+      "CS(=O)(=O)c1ccc(CC(=O)c2ccc(F)cc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CS(=O)(=O)c1ccc(C(Br)C(=O)c2ccc(F)cc2)cc1",
+    "gt_rxn_cls": "Bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CS(=O)(=O)c1ccc(C(Br)C(=O)c2ccc(F)cc2)cc1",
+    "gt_can": "CS(=O)(=O)c1ccc(C(Br)C(=O)c2ccc(F)cc2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0176",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 352,
+    "pool_id": "bfe438f1-ab9e-4e1f-8272-209feb8e53be",
+    "reactants_smiles": "Cl[Al](Cl)Cl.O=C(Cl)CCl.Cc1cc(C)c(C)c(Br)c1C",
+    "reactants_list": [
+      "Cl[Al](Cl)Cl",
+      "O=C(Cl)CCl",
+      "Cc1cc(C)c(C)c(Br)c1C"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1c(C)c(C(=O)CCl)c(C)c(C)c1Br",
+    "gt_rxn_cls": "Friedel-Crafts acylation",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "Cc1c(C)c(C(=O)CCl)c(C)c(C)c1Br",
+    "gt_can": "Cc1c(C)c(C(=O)CCl)c(C)c(C)c1Br"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0177",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 353,
+    "pool_id": "7aa42848-dcc9-4d73-82d5-41f0226c6052",
+    "reactants_smiles": "Cl[Al](Cl)Cl.CC(=O)Cl.COc1cc(I)cc(OC)c1",
+    "reactants_list": [
+      "Cl[Al](Cl)Cl",
+      "CC(=O)Cl",
+      "COc1cc(I)cc(OC)c1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1cc(I)c(C(C)=O)c(OC)c1",
+    "gt_rxn_cls": "Friedel-Crafts acylation",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "COc1cc(I)c(C(C)=O)c(OC)c1",
+    "gt_can": "COc1cc(I)c(C(C)=O)c(OC)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0178",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 358,
+    "pool_id": "ec0f2b17-c72f-4378-9a7f-b5bcae6fc1e9",
+    "reactants_smiles": "O=C1CCC(=O)N1Br.COC(=O)Cc1ccc(O)c(C=O)c1",
+    "reactants_list": [
+      "O=C1CCC(=O)N1Br",
+      "COC(=O)Cc1ccc(O)c(C=O)c1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)Cc1cc(Br)c(O)c(C=O)c1",
+    "gt_rxn_cls": "Bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "COC(=O)Cc1cc(Br)c(O)c(C=O)c1",
+    "gt_can": "COC(=O)Cc1cc(Br)c(O)c(C=O)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0179",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 362,
+    "pool_id": "c3fdd1a0-584c-4bf9-a183-83ee6df382da",
+    "reactants_smiles": "O=P(Cl)(Cl)Cl.CCOC(=O)c1ccc2ncc(S(C)(=O)=O)c(O)c2c1",
+    "reactants_list": [
+      "O=P(Cl)(Cl)Cl",
+      "CCOC(=O)c1ccc2ncc(S(C)(=O)=O)c(O)c2c1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCOC(=O)c1ccc2ncc(S(C)(=O)=O)c(Cl)c2c1",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "CCOC(=O)c1ccc2ncc(S(C)(=O)=O)c(Cl)c2c1",
+    "gt_can": "CCOC(=O)c1ccc2ncc(S(C)(=O)=O)c(Cl)c2c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0180",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 346,
+    "pool_id": "0f58c3a1-a69a-484c-8a67-3befb1c817b2",
+    "reactants_smiles": "O=P(Cl)(Cl)Cl.Oc1ccnc2c(OC(F)F)cccc12",
+    "reactants_list": [
+      "O=P(Cl)(Cl)Cl",
+      "Oc1ccnc2c(OC(F)F)cccc12"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "FC(F)Oc1cccc2c(Cl)ccnc12",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "FC(F)Oc1cccc2c(Cl)ccnc12",
+    "gt_can": "FC(F)Oc1cccc2c(Cl)ccnc12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0181",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 361,
+    "pool_id": "96b6aeeb-a339-4d6e-8102-f13237681640",
+    "reactants_smiles": "N#CN1Cc2ccccc2-c2ccccc2C1.CO",
+    "reactants_list": [
+      "N#CN1Cc2ccccc2-c2ccccc2C1",
+      "CO"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=N)N1Cc2ccccc2-c2ccccc2C1",
+    "gt_rxn_cls": "Pinner reaction",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "COC(=N)N1Cc2ccccc2-c2ccccc2C1",
+    "gt_can": "COC(=N)N1Cc2ccccc2-c2ccccc2C1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0182",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 369,
+    "pool_id": "b8c13965-2d3a-41fb-ac91-501d90c36ff9",
+    "reactants_smiles": "N#CCC(=O)c1ccccc1.COc1ccc(N)c(OC)c1",
+    "reactants_list": [
+      "N#CCC(=O)c1ccccc1",
+      "COc1ccc(N)c(OC)c1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc(NC(=N)CC(=O)c2ccccc2)c(OC)c1",
+    "gt_rxn_cls": "Pinner reaction",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "COc1ccc(NC(=N)CC(=O)c2ccccc2)c(OC)c1",
+    "gt_can": "COc1ccc(NC(=N)CC(=O)c2ccccc2)c(OC)c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0183",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 371,
+    "pool_id": "3d7e9bb5-617b-4f0a-905f-85fe4ab52705",
+    "reactants_smiles": "Fc1ccn2nc(C3CC3)cc2c1.O=C1CCC(=O)N1I",
+    "reactants_list": [
+      "Fc1ccn2nc(C3CC3)cc2c1",
+      "O=C1CCC(=O)N1I"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Fc1ccn2nc(C3CC3)c(I)c2c1",
+    "gt_rxn_cls": "Iodination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Fc1ccn2nc(C3CC3)c(I)c2c1",
+    "gt_can": "Fc1ccn2nc(C3CC3)c(I)c2c1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0184",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 382,
+    "pool_id": "30f83c08-1e61-4980-911a-9392a807a1ab",
+    "reactants_smiles": "CC(C)(C)OC(=O)N1CCC(C(=O)Cc2cc(Cl)ncc2Br)CC1.C[Mg]Br",
+    "reactants_list": [
+      "CC(C)(C)OC(=O)N1CCC(C(=O)Cc2cc(Cl)ncc2Br)CC1",
+      "C[Mg]Br"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)OC(=O)N1CCC(C(C)(O)Cc2cc(Cl)ncc2Br)CC1",
+    "gt_rxn_cls": "Bromo Grignard reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "predicted_can": "CC(C)(C)OC(=O)N1CCC(C(C)(O)Cc2cc(Cl)ncc2Br)CC1",
+    "gt_can": "CC(C)(C)OC(=O)N1CCC(C(C)(O)Cc2cc(Cl)ncc2Br)CC1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0185",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 357,
+    "pool_id": "eda5a6a9-cb4a-4e62-bdf6-9341f9e0d77e",
+    "reactants_smiles": "COc1ccc(CCO)cc1.CS(=O)(=O)Cl",
+    "reactants_list": [
+      "COc1ccc(CCO)cc1",
+      "CS(=O)(=O)Cl"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc(CCCl)cc1",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "COc1ccc(CCCl)cc1",
+    "gt_can": "COc1ccc(CCCl)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0186",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 396,
+    "pool_id": "f25f97bd-ea72-454a-881a-745ed6b64c5e",
+    "reactants_smiles": "COC(=O)C(C)NC(=O)c1cccc(C=CCCCn2ccccc2=O)c1.[Li]O",
+    "reactants_list": [
+      "COC(=O)C(C)NC(=O)c1cccc(C=CCCCn2ccccc2=O)c1",
+      "[Li]O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(NC(=O)c1cccc(C=CCCCn2ccccc2=O)c1)C(=O)O",
+    "gt_rxn_cls": "CO2H-Me deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CC(NC(=O)c1cccc(C=CCCCn2ccccc2=O)c1)C(=O)O",
+    "gt_can": "CC(NC(=O)c1cccc(C=CCCCn2ccccc2=O)c1)C(=O)O"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0187",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 397,
+    "pool_id": "233e898d-a8d2-4d33-9503-d0a59ca5a041",
+    "reactants_smiles": "CON(C)C(=O)c1cnn(CCO[Si](C)(C)C(C)(C)C)c1.COc1ccc(C[Mg]Cl)cc1",
+    "reactants_list": [
+      "CON(C)C(=O)c1cnn(CCO[Si](C)(C)C(C)(C)C)c1",
+      "COc1ccc(C[Mg]Cl)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc(CC(=O)c2cnn(CCO[Si](C)(C)C(C)(C)C)c2)cc1",
+    "gt_rxn_cls": "Weinreb ketone synthesis",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "COc1ccc(CC(=O)c2cnn(CCO[Si](C)(C)C(C)(C)C)c2)cc1",
+    "gt_can": "COc1ccc(CC(=O)c2cnn(CCO[Si](C)(C)C(C)(C)C)c2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0188",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 365,
+    "pool_id": "716f5bbb-ad1e-4cfd-80d2-cd4b5ed65685",
+    "reactants_smiles": "COC(=O)C1C2C(CN1C(=O)C(NC(=O)NC(C)(C)C)C(C)(C)C)C2(C)C.[Li]O",
+    "reactants_list": [
+      "COC(=O)C1C2C(CN1C(=O)C(NC(=O)NC(C)(C)C)C(C)(C)C)C2(C)C",
+      "[Li]O"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)NC(=O)NC(C(=O)N1CC2C(C1C(=O)O)C2(C)C)C(C)(C)C",
+    "gt_rxn_cls": "CO2H-Me deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "predicted_can": "CC(C)(C)NC(=O)NC(C(=O)N1CC2C(C1C(=O)O)C2(C)C)C(C)(C)C",
+    "gt_can": "CC(C)(C)NC(=O)NC(C(=O)N1CC2C(C1C(=O)O)C2(C)C)C(C)(C)C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0189",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 315,
+    "pool_id": "27870fd9-373f-4c9e-b3cc-c7c6eecbf492",
+    "reactants_smiles": "CO.Cc1ccc([N+](=O)[O-])c(F)n1",
+    "reactants_list": [
+      "CO",
+      "Cc1ccc([N+](=O)[O-])c(F)n1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1nc(C)ccc1[N+](=O)[O-]",
+    "gt_rxn_cls": "SNAr ether synthesis",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "COc1nc(C)ccc1[N+](=O)[O-]",
+    "gt_can": "COc1nc(C)ccc1[N+](=O)[O-]"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0190",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 330,
+    "pool_id": "e6a5ea4b-5141-49a3-8204-c57649283b67",
+    "reactants_smiles": "Cl[Al](Cl)Cl.COC(=O)c1[nH]ccc1Cl.CCCCCCCCCC(=O)Cl",
+    "reactants_list": [
+      "Cl[Al](Cl)Cl",
+      "COC(=O)c1[nH]ccc1Cl",
+      "CCCCCCCCCC(=O)Cl"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CCCCCCCCCC(=O)c1c[nH]c(C(=O)OC)c1Cl",
+    "gt_rxn_cls": "Friedel-Crafts acylation",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "CCCCCCCCCC(=O)c1c[nH]c(C(=O)OC)c1Cl",
+    "gt_can": "CCCCCCCCCC(=O)c1c[nH]c(C(=O)OC)c1Cl"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0191",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 252,
+    "pool_id": "d8fec4f4-7586-4193-9a78-149403701d26",
+    "reactants_smiles": "CI.COc1ccc(F)cc1C(Cn1c(=O)n(C2(C)CCCNC2=O)c(=O)c2c(C)c(-n3nccn3)sc21)OCCO[Si](c1ccccc1)(c1ccccc1)C(C)(C)C",
+    "reactants_list": [
+      "CI",
+      "COc1ccc(F)cc1C(Cn1c(=O)n(C2(C)CCCNC2=O)c(=O)c2c(C)c(-n3nccn3)sc21)OCCO[Si](c1ccccc1)(c1ccccc1)C(C)(C)C"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc(F)cc1C(Cn1c(=O)n(C2(C)CCCN(C)C2=O)c(=O)c2c(C)c(-n3nccn3)sc21)OCCO[Si](c1ccccc1)(c1ccccc1)C(C)(C)C",
+    "gt_rxn_cls": "Iodo N-methylation",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "COc1ccc(F)cc1C(Cn1c(=O)n(C2(C)CCCN(C)C2=O)c(=O)c2c(C)c(-n3nccn3)sc21)OCCO[Si](c1ccccc1)(c1ccccc1)C(C)(C)C",
+    "gt_can": "COc1ccc(F)cc1C(Cn1c(=O)n(C2(C)CCCN(C)C2=O)c(=O)c2c(C)c(-n3nccn3)sc21)OCCO[Si](c1ccccc1)(c1ccccc1)C(C)(C)C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0192",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 151,
+    "pool_id": "541818c4-1890-49e5-99ad-688c2ee65277",
+    "reactants_smiles": "O=P(Cl)(Cl)Cl.Cc1cc(O)n2nc(C)cc2n1",
+    "reactants_list": [
+      "O=P(Cl)(Cl)Cl",
+      "Cc1cc(O)n2nc(C)cc2n1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1cc(Cl)n2nc(C)cc2n1",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "Cc1cc(Cl)n2nc(C)cc2n1",
+    "gt_can": "Cc1cc(Cl)n2nc(C)cc2n1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0193",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 117,
+    "pool_id": "24f36116-3a41-49e3-974e-00de03263c02",
+    "reactants_smiles": "O=C1CCC(=O)N1I.O=c1[nH]ccc2scc(Br)c12",
+    "reactants_list": [
+      "O=C1CCC(=O)N1I",
+      "O=c1[nH]ccc2scc(Br)c12"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "O=c1[nH]cc(I)c2scc(Br)c12",
+    "gt_rxn_cls": "Iodination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "O=c1[nH]cc(I)c2scc(Br)c12",
+    "gt_can": "O=c1[nH]cc(I)c2scc(Br)c12"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0194",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 65,
+    "pool_id": "28653c2c-8dd0-4e14-b536-1390773d6966",
+    "reactants_smiles": "COC(=O)C1CC2(CC(O)c3c(c(C)nc4c(C(F)(F)F)cccc34)O2)CN1C(=O)OC(C)(C)C.CS(=O)(=O)Cl",
+    "reactants_list": [
+      "COC(=O)C1CC2(CC(O)c3c(c(C)nc4c(C(F)(F)F)cccc34)O2)CN1C(=O)OC(C)(C)C",
+      "CS(=O)(=O)Cl"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COC(=O)C1CC2(CC(Cl)c3c(c(C)nc4c(C(F)(F)F)cccc34)O2)CN1C(=O)OC(C)(C)C",
+    "gt_rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "COC(=O)C1CC2(CC(Cl)c3c(c(C)nc4c(C(F)(F)F)cccc34)O2)CN1C(=O)OC(C)(C)C",
+    "gt_can": "COC(=O)C1CC2(CC(Cl)c3c(c(C)nc4c(C(F)(F)F)cccc34)O2)CN1C(=O)OC(C)(C)C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0195",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 320,
+    "pool_id": "320f46c9-f034-4e29-bace-ae0ced5a2d44",
+    "reactants_smiles": "CC(=O)OI1(OC(C)=O)(OC(C)=O)OC(=O)c2ccccc21.CC(C)(C)OC(=O)Nc1ccc(C2CCC(O)C2c2ccc(C(C)(C)C)cc2)cc1",
+    "reactants_list": [
+      "CC(=O)OI1(OC(C)=O)(OC(C)=O)OC(=O)c2ccccc21",
+      "CC(C)(C)OC(=O)Nc1ccc(C2CCC(O)C2c2ccc(C(C)(C)C)cc2)cc1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "CC(C)(C)OC(=O)Nc1ccc(C2CCC(=O)C2c2ccc(C(C)(C)C)cc2)cc1",
+    "gt_rxn_cls": "Ketone Dess-Martin oxidation",
+    "coarse_rxn_cls": "Oxidation",
+    "predicted_can": "CC(C)(C)OC(=O)Nc1ccc(C2CCC(=O)C2c2ccc(C(C)(C)C)cc2)cc1",
+    "gt_can": "CC(C)(C)OC(=O)Nc1ccc(C2CCC(=O)C2c2ccc(C(C)(C)C)cc2)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0196",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 216,
+    "pool_id": "c0dcf312-cba7-4734-9de5-73589b91c523",
+    "reactants_smiles": "Cl[Al](Cl)Cl.COc1ccc(C(=O)Cl)cc1.Cc1cc2c(C)coc2c(O)c1C",
+    "reactants_list": [
+      "Cl[Al](Cl)Cl",
+      "COc1ccc(C(=O)Cl)cc1",
+      "Cc1cc2c(C)coc2c(O)c1C"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1ccc(C(=O)c2oc3c(O)c(C)c(C)cc3c2C)cc1",
+    "gt_rxn_cls": "Friedel-Crafts acylation",
+    "coarse_rxn_cls": "Acylation",
+    "predicted_can": "COc1ccc(C(=O)c2oc3c(O)c(C)c(C)cc3c2C)cc1",
+    "gt_can": "COc1ccc(C(=O)c2oc3c(O)c(C)c(C)cc3c2C)cc1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0197",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 205,
+    "pool_id": "83a6361a-880d-4bae-a5bb-dffd76d8842b",
+    "reactants_smiles": "O=[N+]([O-])c1cccnc1Cl.Cc1cc(O)n(-c2ccccc2Cl)n1",
+    "reactants_list": [
+      "O=[N+]([O-])c1cccnc1Cl",
+      "Cc1cc(O)n(-c2ccccc2Cl)n1"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "Cc1cc(Oc2ncccc2[N+](=O)[O-])n(-c2ccccc2Cl)n1",
+    "gt_rxn_cls": "SNAr ether synthesis",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "Cc1cc(Oc2ncccc2[N+](=O)[O-])n(-c2ccccc2Cl)n1",
+    "gt_can": "Cc1cc(Oc2ncccc2[N+](=O)[O-])n(-c2ccccc2Cl)n1"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0198",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 191,
+    "pool_id": "203ac16f-e762-4f76-a9b6-53a592b486c3",
+    "reactants_smiles": "Fc1cccc2cccc(Br)c12.CC(C)(C)O[Na].COc1nc(SC)nc2c1CCNC2.[Pd].[Pd]",
+    "reactants_list": [
+      "Fc1cccc2cccc(Br)c12",
+      "CC(C)(C)O[Na]",
+      "COc1nc(SC)nc2c1CCNC2",
+      "[Pd]",
+      "[Pd]"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1nc(SC)nc2c1CCN(c1cccc3cccc(F)c13)C2",
+    "gt_rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "predicted_can": "COc1nc(SC)nc2c1CCN(c1cccc3cccc(F)c13)C2",
+    "gt_can": "COc1nc(SC)nc2c1CCN(c1cccc3cccc(F)c13)C2"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.forward.0199",
+    "task_family": "rxn_pred",
+    "subtask": "forward",
+    "reporting_task": "RxnPred/Product-Level Prediction",
+    "pool_idx": 118,
+    "pool_id": "2c37101a-0e35-4d04-ad39-3ac0cfc0cbe3",
+    "reactants_smiles": "BrBr.O=C(O)O[Na].COc1cccnc1OC",
+    "reactants_list": [
+      "BrBr",
+      "O=C(O)O[Na]",
+      "COc1cccnc1OC"
+    ],
+    "reagents_smiles": "(none)",
+    "gt_product_smiles": "COc1cc(Br)cnc1OC",
+    "gt_rxn_cls": "Bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "predicted_can": "COc1cc(Br)cnc1OC",
+    "gt_can": "COc1cc(Br)cnc1OC"
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "task_family": "mol_und",
+  "subtask": "ring_sys_scaffold",
+  "reporting_task": "MolUnd/Ring-System Scaffold",
+  "all_pass_definition": "The all_pass field is the task-specific conjunction of required process verifier checks used when constructing the verified reference.",
+  "verifier_checks": [
+    {
+      "name": "s1_mol_rings",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s2_scaf_rings",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s3_non_ring",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "s4_predict",
+      "description": "Task-specific deterministic verifier flag."
+    }
+  ],
+  "outcome_fields": [
+    "outcome"
+  ],
+  "type_notes": [
+    "Type-I checks are intrinsic symbolic checks such as validity, arithmetic, canonicalization, scaffold preservation, or consistency.",
+    "Type-II checks compare closed-answer process states or final answers with the verified benchmark reference.",
+    "Molecular optimization uses oracle-computable constraints rather than strict path matching for the final outcome."
+  ]
+}

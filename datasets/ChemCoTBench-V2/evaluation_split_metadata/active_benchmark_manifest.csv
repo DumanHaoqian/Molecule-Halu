@@ -1,0 +1,32 @@
+family,subtask,reporting_task,n_samples,raw_file,process_file
+mol_edit,add_v2,MolEdit/Add,300,raw_benchmark_data/mol_edit/add_v2.json,process_evaluation_data/mol_edit/add_v2.json
+mol_edit,delete_v2,MolEdit/Delete,300,raw_benchmark_data/mol_edit/delete_v2.json,process_evaluation_data/mol_edit/delete_v2.json
+mol_edit,substitute_v2,MolEdit/Substitute,300,raw_benchmark_data/mol_edit/substitute_v2.json,process_evaluation_data/mol_edit/substitute_v2.json
+mol_und,fg_detect,MolUnd/Functional Group,300,raw_benchmark_data/mol_und/fg_detect.json,process_evaluation_data/mol_und/fg_detect.json
+mol_und,ring_count,MolUnd/Ring Count,300,raw_benchmark_data/mol_und/ring_count.json,process_evaluation_data/mol_und/ring_count.json
+mol_und,murcko_scaffold,MolUnd/Murcko Scaffold,300,raw_benchmark_data/mol_und/murcko_scaffold.json,process_evaluation_data/mol_und/murcko_scaffold.json
+mol_und,ring_sys_scaffold,MolUnd/Ring-System Scaffold,300,raw_benchmark_data/mol_und/ring_sys_scaffold.json,process_evaluation_data/mol_und/ring_sys_scaffold.json
+mol_und,smiles_equivalent,MolUnd/SMILES Equivalence,300,raw_benchmark_data/mol_und/smiles_equivalent.json,process_evaluation_data/mol_und/smiles_equivalent.json
+rxn_pred,forward,RxnPred/Product-Level Prediction,200,raw_benchmark_data/rxn_pred/forward.json,process_evaluation_data/rxn_pred/forward.json
+rxn_pred,byproduct,RxnPred/Product-Level Prediction,200,raw_benchmark_data/rxn_pred/byproduct.json,process_evaluation_data/rxn_pred/byproduct.json
+rxn_pred,nepp,RxnPred/Product-Level Prediction,200,raw_benchmark_data/rxn_pred/nepp.json,process_evaluation_data/rxn_pred/nepp.json
+rxn_pred,retro,RxnPred/Retrosynthesis,200,raw_benchmark_data/rxn_pred/retro.json,process_evaluation_data/rxn_pred/retro.json
+rxn_pred,rxn_template,RxnPred/Template/Mechanism Reasoning,200,raw_benchmark_data/rxn_pred/rxn_template.json,process_evaluation_data/rxn_pred/rxn_template.json
+rxn_pred,mech_sel,RxnPred/Template/Mechanism Reasoning,200,raw_benchmark_data/rxn_pred/mech_sel.json,process_evaluation_data/rxn_pred/mech_sel.json
+rxn_pred,rcr_catalyst,RxnPred/Component Recommendation,200,raw_benchmark_data/rxn_pred/rcr_catalyst.json,process_evaluation_data/rxn_pred/rcr_catalyst.json
+rxn_pred,rcr_reagent,RxnPred/Component Recommendation,200,raw_benchmark_data/rxn_pred/rcr_reagent.json,process_evaluation_data/rxn_pred/rcr_reagent.json
+rxn_pred,rcr_solvent,RxnPred/Component Recommendation,200,raw_benchmark_data/rxn_pred/rcr_solvent.json,process_evaluation_data/rxn_pred/rcr_solvent.json
+rxn_pred,condition_ranking,RxnPred/Condition Ranking,200,raw_benchmark_data/rxn_pred/condition_ranking.json,process_evaluation_data/rxn_pred/condition_ranking.json
+rxn_pred,yield_pred,RxnPred/Yield Prediction,200,raw_benchmark_data/rxn_pred/yield_pred.json,process_evaluation_data/rxn_pred/yield_pred.json
+mol_opt,logp,MolOpt/PhysChem-Single,120,raw_benchmark_data/mol_opt/logp.json,process_evaluation_data/mol_opt/logp.json
+mol_opt,qed,MolOpt/PhysChem-Single,120,raw_benchmark_data/mol_opt/qed.json,process_evaluation_data/mol_opt/qed.json
+mol_opt,solubility,MolOpt/PhysChem-Single,120,raw_benchmark_data/mol_opt/solubility.json,process_evaluation_data/mol_opt/solubility.json
+mol_opt,drd,MolOpt/BioTarget-Single,120,raw_benchmark_data/mol_opt/drd.json,process_evaluation_data/mol_opt/drd.json
+mol_opt,jnk,MolOpt/BioTarget-Single,120,raw_benchmark_data/mol_opt/jnk.json,process_evaluation_data/mol_opt/jnk.json
+mol_opt,gsk,MolOpt/BioTarget-Single,120,raw_benchmark_data/mol_opt/gsk.json,process_evaluation_data/mol_opt/gsk.json
+mol_opt,logp_qed,MolOpt/PhysChem-Dual,50,raw_benchmark_data/mol_opt/logp_qed.json,process_evaluation_data/mol_opt/logp_qed.json
+mol_opt,logp_solubility,MolOpt/PhysChem-Dual,50,raw_benchmark_data/mol_opt/logp_solubility.json,process_evaluation_data/mol_opt/logp_solubility.json
+mol_opt,qed_solubility,MolOpt/PhysChem-Dual,50,raw_benchmark_data/mol_opt/qed_solubility.json,process_evaluation_data/mol_opt/qed_solubility.json
+mol_opt,drd_logp,MolOpt/BioTarget-Dual,50,raw_benchmark_data/mol_opt/drd_logp.json,process_evaluation_data/mol_opt/drd_logp.json
+mol_opt,drd_solubility,MolOpt/BioTarget-Dual,50,raw_benchmark_data/mol_opt/drd_solubility.json,process_evaluation_data/mol_opt/drd_solubility.json
+mol_opt,gsk_logp,MolOpt/BioTarget-Dual,50,raw_benchmark_data/mol_opt/gsk_logp.json,process_evaluation_data/mol_opt/gsk_logp.json

@@ -1,0 +1,3002 @@
+[
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0000",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 0,
+    "orig_idx": 0,
+    "gt_scaffold": "O=C1OC(c2ccccc2)CCN1Cc1ccc(-c2ccc(=O)[nH]n2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0001",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 1,
+    "orig_idx": 1,
+    "gt_scaffold": "c1cc(Nc2cc(Nc3ccc(N4CCCCC4)cn3)nc3[nH]cnc23)cc(-c2nc[nH]n2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0002",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 2,
+    "orig_idx": 2,
+    "gt_scaffold": "O=C1C=C([C@H]2CCC3C2CC[C@@H]2C4C[C@H]5OC6[C@@H](OCC[C@@]67NCCS7)O[C@@H]5C[C@@H]4CC[C@@H]32)CO1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0003",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 3,
+    "orig_idx": 3,
+    "gt_scaffold": "O=C(Nc1c(OS(=O)(=O)c2ccccc2)c2ccccc2oc1=O)c1ccc2c(c1)CCCO2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0004",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 4,
+    "orig_idx": 4,
+    "gt_scaffold": "O=C1C=CC2C(=C1)CCc1c(-c3ccccc3)nc(-c3ccnc4ccccc34)nc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0005",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 5,
+    "orig_idx": 5,
+    "gt_scaffold": "O=C1c2c(CCCOc3ccccc3)c3cccc(-c4cn[nH]c4)c3n2CCN1c1cccc2cc[nH]c12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0006",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 6,
+    "orig_idx": 6,
+    "gt_scaffold": "O=C1Cc2cc(NC(=O)Cc3ccccc3)ccc2O[C@@H](CNCc2ccc(-c3ccccc3)cc2)CCN1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0007",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 7,
+    "orig_idx": 7,
+    "gt_scaffold": "c1cc(-c2ccc3nc4n(c3c2)CCC4)nc(Nc2ccc(N3CCNCC3)cn2)n1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0008",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 8,
+    "orig_idx": 8,
+    "gt_scaffold": "O=C(O[C@H]1CC[C@@H]2CCC3=C(CCC4CCC=C34)C2C1)c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0009",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 9,
+    "orig_idx": 9,
+    "gt_scaffold": "c1ccc(Oc2nccc(-c3c(-c4ccccc4)ncn3C3CCNCC3)n2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0010",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 10,
+    "orig_idx": 10,
+    "gt_scaffold": "O=C(CNC(=O)C(=O)CNC(=O)[C@@H]1[C@H]2C[C@H]2CN1C(=O)CC1CCCCC1)NCC1CCCCC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0011",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 11,
+    "orig_idx": 11,
+    "gt_scaffold": "O=C(NCC#Cc1ccc2ncc3ncn(C4CCCCC4)c3c2c1)c1cccn(Cc2ccccc2)c1=O",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0012",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 12,
+    "orig_idx": 12,
+    "gt_scaffold": "O=S(=O)(Nc1ccccn1)c1ccc(C#Cc2ccc3oc(-c4ccc(S(=O)(=O)Nc5ccccn5)cc4)cc3c2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0013",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 13,
+    "orig_idx": 13,
+    "gt_scaffold": "O=C1CC2C(CC[C@@]34C[C@@]35CCCC[C@@H]5CC[C@@H]24)[C@H]1CCC[C@@H]1CO1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0014",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 14,
+    "orig_idx": 14,
+    "gt_scaffold": "O=C(c1cccnc1)N1CCCC(Oc2ccccc2)(C(=O)N2CCN(c3ncccn3)CC2)C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0015",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 15,
+    "orig_idx": 15,
+    "gt_scaffold": "O=C1NCC(=O)N2C[C@@H](C[C@H]2C(=O)N[C@@H]2BOCCCC2)OC(=O)N2Cc3cccc(c3C2)CCCCCCO1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0016",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 16,
+    "orig_idx": 16,
+    "gt_scaffold": "c1ccc(Cn2cncc2CNc2ccc(-c3ccccc3)c(-c3ccccc3)c2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0017",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 17,
+    "orig_idx": 17,
+    "gt_scaffold": "c1ccc(O[C@@H]2CO[C@@H]3CCO[C@@H]32)c(Nc2ncnc3ccccc23)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0018",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 18,
+    "orig_idx": 18,
+    "gt_scaffold": "O=C(Nc1ccccc1)c1c(-c2ccccc2)c2ccccc2n(Cc2ccccc2)c1=O",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0019",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 19,
+    "orig_idx": 19,
+    "gt_scaffold": "O=C(c1ccco1)N1CCN(c2cc(-c3ccccc3)nc3cc(-c4ccccc4)nn23)CC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0020",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 20,
+    "orig_idx": 20,
+    "gt_scaffold": "c1ccc(CNc2ncnc3c2ncn3[C@H]2CN(Cc3ccccc3)CCO2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0021",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 21,
+    "orig_idx": 21,
+    "gt_scaffold": "O=C(c1c(-c2ccccc2)noc1C1CNC1)n1ccc2ccccc21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0022",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 22,
+    "orig_idx": 22,
+    "gt_scaffold": "O=C1Cc2cc(NC(=O)Cc3c[nH]c4ccccc34)ccc2O[C@@H](CNC(=O)Nc2cnoc2)CCN1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0023",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 23,
+    "orig_idx": 23,
+    "gt_scaffold": "O=C(CC[P+](c1ccccc1)(c1ccccc1)c1ccccc1)Nc1ccc2c(c1)BOC2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0024",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 24,
+    "orig_idx": 24,
+    "gt_scaffold": "O=C(Nc1cc(-c2cn[nH]c2)nn1-c1ccccc1)N[C@@H]1CNC[C@H]1c1cccnc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0025",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 25,
+    "orig_idx": 25,
+    "gt_scaffold": "O=C(NCc1ccc[nH]c1=O)c1cc(CN2CCOCC2)n2ccc(-c3cnc[nH]3)c2c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0026",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 26,
+    "orig_idx": 26,
+    "gt_scaffold": "c1ccc(-c2nn[nH]n2)c(-c2ccc(Cn3cnc(-n4cccc4)c3)cc2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0027",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 27,
+    "orig_idx": 27,
+    "gt_scaffold": "C1=C2C(CCC3CCCC[C@@H]23)C2CC[C@H]3CCCCC3[C@H]2C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0028",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 28,
+    "orig_idx": 28,
+    "gt_scaffold": "O=C(NCCc1ccccc1)c1ccc2ncn(Cc3ccc(-c4ccccc4C(=O)Nc4nnn[nH]4)cc3)c2c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0029",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 29,
+    "orig_idx": 29,
+    "gt_scaffold": "C1=C2[C@H](CC[C@H]3C4COC[C@@]23C[C@@H](n2ncnc2-c2ccncc2)C4)C2CCCCC2C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0030",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 30,
+    "orig_idx": 30,
+    "gt_scaffold": "c1ccc(C2Oc3cccc(C4CCN(Cc5nc6ccccc6[nH]5)CC4)c3O2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0031",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 31,
+    "orig_idx": 31,
+    "gt_scaffold": "O=C(O[C@H]1C[C@H]2CO[C@]3(CCCCC13)C2)c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0032",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 32,
+    "orig_idx": 32,
+    "gt_scaffold": "C1=CC(c2cn(-c3ccccc3)nc2-c2ccc(OCc3ccccc3)cc2)C=C(c2ccccc2)O1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0033",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 33,
+    "orig_idx": 33,
+    "gt_scaffold": "O=c1ccc([C@H]2C[C@H]3O[C@@]34C2CC[C@@H]2C3CCCCC3CC[C@H]24)co1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0034",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 34,
+    "orig_idx": 34,
+    "gt_scaffold": "O=C1NCC[C@H](CNS(=O)(=O)c2ccccc2)Oc2ccc(NS(=O)(=O)c3cnoc3)cc21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0035",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 35,
+    "orig_idx": 35,
+    "gt_scaffold": "O=C(Nc1cc(-c2cn[nH]c2)nn1-c1ccccc1)N[C@@H]1CNC[C@H]1c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0036",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 36,
+    "orig_idx": 36,
+    "gt_scaffold": "O=C(CN(c1ccccc1)S(=O)(=O)c1ccccc1)/N=N/c1c[nH]c2ccccc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0037",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 37,
+    "orig_idx": 37,
+    "gt_scaffold": "O=C(/C=C/c1ccccc1)O[C@@H]1CC2[C@@H]3C=CC(=O)C3CC=C[C@H]2[C@@H]2CC21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0038",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 38,
+    "orig_idx": 38,
+    "gt_scaffold": "C=C1OC(=O)C2=C1CC[C@@H]1[C@@H]3CCC4=C(C(=O)OC45CC[C@@]54OC(=O)C5=C4CCC=C5)[C@@H]3[C@H]21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0039",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 39,
+    "orig_idx": 39,
+    "gt_scaffold": "O=c1[nH]c(=O)c2c(-c3ccccc3)n3c(c2[nH]1)C(c1ccccc1)Nc1ccccc1-3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0040",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 40,
+    "orig_idx": 40,
+    "gt_scaffold": "O=C(NCCC[C@H]1CCCC(OC[C@@H]2CCC[C@H](Oc3ccccc3)O2)O1)c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0041",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 41,
+    "orig_idx": 41,
+    "gt_scaffold": "O=C(Nc1ccc(S(=O)(=O)Nc2cccc(N3CCNCC3)c2)c2ccccc12)c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0042",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 42,
+    "orig_idx": 42,
+    "gt_scaffold": "O=C(C=CC1CC1)N1CCN(c2nc(OC[C@@H]3CCCN3)nc3c2CCN(c2cccc4ccccc24)C3)CC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0043",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 43,
+    "orig_idx": 43,
+    "gt_scaffold": "c1ccc2c(-c3cc4nc(OCC56CCCN5CCC6)nc(N5CC6CCC(C5)N6)c4cn3)cccc2c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0044",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 44,
+    "orig_idx": 44,
+    "gt_scaffold": "c1cncc(-c2cnc(C3CCN(c4ncnc5[nH]c(-c6cn[nH]c6)cc45)CC3)[nH]2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0045",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 45,
+    "orig_idx": 45,
+    "gt_scaffold": "O=C1CCc2ccc3c(c2)C(C(=O)N3)c2oc(nc2-c2ncco2)CN1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0046",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 46,
+    "orig_idx": 46,
+    "gt_scaffold": "O=c1cc(-c2ccc3c(c2)OC(c2ccccc2)CO3)oc2ccccc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0047",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 47,
+    "orig_idx": 47,
+    "gt_scaffold": "O=C1OC[C@H]2[C@H]1[C@H](c1ccccc1)c1cc3c(cc1[C@H]2Nc1ccccc1)OCO3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0048",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 48,
+    "orig_idx": 48,
+    "gt_scaffold": "O=C1NCC[C@H](CNS(=O)(=O)c2ccccc2)OCCCCCOc2ccc(NS(=O)(=O)c3ccccc3)cc21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0049",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 49,
+    "orig_idx": 49,
+    "gt_scaffold": "O=C(/N=c1\\cc(-c2ccccc2)oc2cc(O[C@@H]3OCCC[C@H]3O[C@H]3CCCCO3)ccc12)Oc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0050",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 50,
+    "orig_idx": 50,
+    "gt_scaffold": "O=c1[nH]n(-c2cccc(-c3cccnn3)n2)c2nc(Nc3ccc(N4CCNCC4)cc3)ncc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0051",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 51,
+    "orig_idx": 51,
+    "gt_scaffold": "O=C(Nc1ccccc1)[C@@H]1NC[C@@]2(C(=O)Nc3ccccc32)[C@H]1c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0052",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 52,
+    "orig_idx": 52,
+    "gt_scaffold": "O=C1C=CC[C@H](CC2=CCC3C2CC[C@@H]2C4C(=O)C=C[C@H](OC(=O)CCNc5nc6ccccc6s5)[C@]45O[C@@H]5C[C@@H]32)O1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0053",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 53,
+    "orig_idx": 53,
+    "gt_scaffold": "O=C1Nc2ccccc2[C@@]12[C@@H](c1ccccc1)[C@@H]1c3nc4ccccc4n3CC[C@@H]1N2CC1CC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0054",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 54,
+    "orig_idx": 54,
+    "gt_scaffold": "O=S(=O)(N1CCCC1)N1[C@@H]2CC[C@H]1C[C@H](Nc1nc(Nc3cc[nH]n3)cc3ncccc13)C2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0055",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 55,
+    "orig_idx": 55,
+    "gt_scaffold": "O=C(n1ccnc1)[C@]12CCC[C@@H]1[C@H]1CC[C@H]3C(CC[C@H]4CCCCC43)C1CC2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0056",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 56,
+    "orig_idx": 56,
+    "gt_scaffold": "O=C(c1cc2ccccc2[nH]1)N1CC(=O)N(Cc2ccccc2)[C@@H](CN2C3CCCC2CC3)C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0057",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 57,
+    "orig_idx": 57,
+    "gt_scaffold": "O=C(NCCc1ccc(-c2csc3ccccc23)cc1)NS(=O)(=O)c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0058",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 58,
+    "orig_idx": 58,
+    "gt_scaffold": "O=C(N[C@H](CCNS(=O)(=O)c1ccccc1)Cc1ccccc1)O[C@H]1C2CO[C@H]3OCC1C3C2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0059",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 59,
+    "orig_idx": 59,
+    "gt_scaffold": "c1ccc(-c2cn(C3CCO[C@H](Sc4cccnc4)C3)nn2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0060",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 60,
+    "orig_idx": 60,
+    "gt_scaffold": "O=C(CNC(=O)OC1(Cc2ccccc2)CCNCC1)NCC(=O)c1nc2ccccc2s1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0061",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 61,
+    "orig_idx": 61,
+    "gt_scaffold": "O=C(N[C@H]1CCN(C(=O)c2ccccc2)C1)c1cccc(-c2ccc3cncnn23)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0062",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 62,
+    "orig_idx": 62,
+    "gt_scaffold": "c1ccc2c3c([nH]c2c1)C(C[C@@H]1CCN2CCc4c([nH]c5c([C@@H]6CCCN6)cccc45)[C@@H]2C1)NCC3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0063",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 63,
+    "orig_idx": 63,
+    "gt_scaffold": "O=C1C=C(C2CCC3C2CCC2C4CCC(O[C@H]5CCCCO5)CC4CCC23)CO1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0064",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 64,
+    "orig_idx": 64,
+    "gt_scaffold": "O=C(Cn1cnc2[nH]c(=O)n(CC3CCO3)c(=O)c21)Nc1csc(-c2cnc(N3CC4CC4C3)nc2)n1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0065",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 65,
+    "orig_idx": 65,
+    "gt_scaffold": "c1ccc(CN2CCN(CC3CCC4[C@@H](CC[C@H]5[C@@H]6CCCC6CC[C@H]45)C3)CC2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0066",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 66,
+    "orig_idx": 66,
+    "gt_scaffold": "O=C1C2=CCCCC2Oc2ccc(-c3cccc4c3OC3CCCC=C3C4=O)cc21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0067",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 67,
+    "orig_idx": 67,
+    "gt_scaffold": "O=C1CC2C3CC[C@H](C4CCCCO4)[C@H]3CC[C@@H]2C2Cc3scnc3C[C@H]12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0068",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 68,
+    "orig_idx": 68,
+    "gt_scaffold": "O=C(CN1C2CCC1CC2)c1cc(/C=C/CN2C(=O)c3ccccc3C2=O)n(-c2ccccc2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0069",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 69,
+    "orig_idx": 69,
+    "gt_scaffold": "c1ccc(Cc2nccn2-c2ccc(-c3ccccc3)cc2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0070",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 70,
+    "orig_idx": 70,
+    "gt_scaffold": "O=C1C=C([C@H]2CCC3C2CC[C@@H]2C4CC[C@H](O[C@@H]5OCCC[C@H]5O[C@H]5CCCCO5)C[C@H]4CC[C@@H]32)CO1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0071",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 71,
+    "orig_idx": 71,
+    "gt_scaffold": "O=C(CNC(=O)[C@H](CC1CCCCC1)NC(=O)c1cc2ccccc2o1)NCCc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0072",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 72,
+    "orig_idx": 72,
+    "gt_scaffold": "c1cc(OCCC[n+]2cccc3ccccc32)c2c[n+]3c(cc2c1)-c1cc2c(cc1CC3)OCO2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0073",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 73,
+    "orig_idx": 73,
+    "gt_scaffold": "O=C1CNC(=O)c2cc(Oc3ccccc3)c(NC(=O)c3ccccc3)cc2N1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0074",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 74,
+    "orig_idx": 74,
+    "gt_scaffold": "O=C1CCC2[C@H](C1)C[C@@H](OC(=O)c1ccccc1)C1C3=CC[C@@H](C4=CC(=O)OC4)C3CC[C@H]21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0075",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 75,
+    "orig_idx": 75,
+    "gt_scaffold": "O=C(O[C@H]1CCC2C(=CC[C@@H]3[C@@H]2CCC2[C@H]3C[C@@H]3O[C@]4(CCCCO4)C[C@H]23)C1)c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0076",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 76,
+    "orig_idx": 76,
+    "gt_scaffold": "c1ccc(-n2nc3c(c2-c2cccc4[nH]ccc24)CN(Cc2ccccn2)C3)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0077",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 77,
+    "orig_idx": 77,
+    "gt_scaffold": "O=C1CC/C=C\\CC[C@H](Cc2ccccc2)C(=O)OC[C@@H](Cc2c[nH]c3ccccc23)N1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0078",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 78,
+    "orig_idx": 78,
+    "gt_scaffold": "O=C(CSc1nc2scc(-c3ccccc3)c2c(=O)[nH]1)c1ccn(CC2CCCO2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0079",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 79,
+    "orig_idx": 79,
+    "gt_scaffold": "O=C(C1CC1)N1CCN(Cc2ccnc(Nc3nc4ccc(-c5cc(NCC6CC6)ncn5)cc4[nH]3)c2)CC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0080",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 80,
+    "orig_idx": 80,
+    "gt_scaffold": "O=C(N[C@]1(c2ccccc2)CCc2cc3ccccc3n2C1)c1ccc(-n2cnnc2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0081",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 81,
+    "orig_idx": 81,
+    "gt_scaffold": "O=C(Cn1cnc2cncnc21)N[C@H](CCNS(=O)(=O)c1ccccc1)Cc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0082",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 82,
+    "orig_idx": 82,
+    "gt_scaffold": "O=C(Nc1cccc2ccccc12)N1CCN(C(=O)OCc2ccccc2)C(CNc2nccc(-n3cnc4ccccc43)n2)C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0083",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 83,
+    "orig_idx": 83,
+    "gt_scaffold": "O=C1c2cc(-c3cncnc3)[nH]c2C(c2ccccn2)N1c1ccc[nH]c1=O",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0084",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 84,
+    "orig_idx": 84,
+    "gt_scaffold": "O=C(NCCOC(=O)CCCCCCC(=O)c1cccoc1=O)Nc1c2sscc-2n(-c2ccccc2)c1=O",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0085",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 85,
+    "orig_idx": 85,
+    "gt_scaffold": "O=c1c2ccccc2nc(/C=C/c2ccccc2)n1-c1cccc(OCc2cn(Cc3ccccc3)nn2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0086",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 86,
+    "orig_idx": 86,
+    "gt_scaffold": "O=C1C=CC2=CC=C3C(CCC4C3CCC3CCC(C(=O)NCc5cn(Cc6ccccc6)nn5)C[C@H]34)C2=C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0087",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 87,
+    "orig_idx": 87,
+    "gt_scaffold": "O=S(=O)(CCc1ncccn1)Nc1nnc(-c2ccccc2)n1-c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0088",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 88,
+    "orig_idx": 88,
+    "gt_scaffold": "c1ccn2c(-c3ccnc(Nc4ccc(N5CCNCC5)cc4)n3)cnc2c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0089",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 89,
+    "orig_idx": 89,
+    "gt_scaffold": "O=c1[nH]c(-c2nc(N3CC[C@@H]3C3CCC3)c3c(n2)nc(N2CCOC[C@H]2c2ccccc2)n3CC2CCCCC2)no1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0090",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 90,
+    "orig_idx": 90,
+    "gt_scaffold": "O=C(Nc1ccccc1)Nc1cccc2c1O[C@H](CNC(=O)Nc1cccc3ccccc13)CCNC2=O",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0091",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 91,
+    "orig_idx": 91,
+    "gt_scaffold": "O=C(Nc1cccc(-c2cccnc2)c1)C1CCN(c2ncnc3[nH]c4c(c23)CCCC4)CC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0092",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 92,
+    "orig_idx": 92,
+    "gt_scaffold": "O=C1NC[C@H](C(c2ccccc2)c2ccccc2)n2ccc(=O)c(OCc3ccccc3)c21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0093",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 93,
+    "orig_idx": 93,
+    "gt_scaffold": "c1cncc(-c2csc3ccc(COc4ccc(CCc5nnn[nH]5)cc4)cc23)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0094",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 94,
+    "orig_idx": 94,
+    "gt_scaffold": "O=C(NN1C(=O)c2ccccc2C1=O)c1cc2c([nH]c3ccccc32)c(-c2ccccc2)n1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0095",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 95,
+    "orig_idx": 95,
+    "gt_scaffold": "c1ccc(C(c2nn[nH]n2)N2CCNc3ccccc32)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0096",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 96,
+    "orig_idx": 96,
+    "gt_scaffold": "O=C(Nc1ccccc1)C(C[C@H]1CCCCO1)n1ccc(-c2ccccc2C2=NOCC2)cc1=O",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0097",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 97,
+    "orig_idx": 97,
+    "gt_scaffold": "O=C1NCc2c(-c3ccnc4[nH]ccc34)ccc(Nc3ccc(C4CCNCC4)cn3)c21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0098",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 98,
+    "orig_idx": 98,
+    "gt_scaffold": "O=C1NCc2c(-c3cnc4ccccn34)ccc(Nc3ccc([C@H]4CCOC4)c(CNC4CC4)n3)c21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0099",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 99,
+    "orig_idx": 99,
+    "gt_scaffold": "C1=C[C@H]2C(CCC3CCCC[C@@H]32)C2CC[C@H]3CCCCC3[C@@H]12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0100",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 100,
+    "orig_idx": 100,
+    "gt_scaffold": "O=C(c1ccccc1-c1ccccc1)N1CCCC1c1nc2ccccc2[nH]1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0101",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 101,
+    "orig_idx": 101,
+    "gt_scaffold": "O=c1oc2ccccc2cc1C(c1ccccc1)c1cc2ccccc2oc1=O",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0102",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 102,
+    "orig_idx": 102,
+    "gt_scaffold": "O=C(Nc1ccccn1)c1ccc(-c2nc([C@H]3CNCCO3)n3ccncc23)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0103",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 103,
+    "orig_idx": 103,
+    "gt_scaffold": "c1ccc(COc2ccc(COc3ccc(Nc4ccnc5ccccc45)cc3)cc2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0104",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 104,
+    "orig_idx": 104,
+    "gt_scaffold": "C(=C/c1nnc(-c2ccccn2)n1-c1ccccc1)\\c1nnc(-c2ccncc2)o1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0105",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 105,
+    "orig_idx": 105,
+    "gt_scaffold": "O=C([C@H]1CNC[C@@]12CCOc1ccccc12)N1CC[C@H](c2ccccc2)C[C@@H]1C1CCCCC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0106",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 106,
+    "orig_idx": 106,
+    "gt_scaffold": "O=c1c2cc(-c3ccc4oc(-c5ccccc5)cc4c3)ccc2nnn1Cc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0107",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 107,
+    "orig_idx": 107,
+    "gt_scaffold": "O=C(NCc1ccc(OC2CCN(c3ccc(OCC4CC4)cn3)C2)cc1)c1cncs1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0108",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 108,
+    "orig_idx": 108,
+    "gt_scaffold": "O=C1NCc2c(-c3cnc4ccccn34)ccc(Nc3ccc(C4CCOC4)c(CN4CCCC4)n3)c21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0109",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 109,
+    "orig_idx": 109,
+    "gt_scaffold": "O=c1oc2ccccc2cc1C1CC(c2ccc(-c3ccccc3)cc2)Oc2ccccc21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0110",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 110,
+    "orig_idx": 110,
+    "gt_scaffold": "c1ccc(-c2ccc(Cn3cnc4ccc(-c5nc6ccccc6[nH]5)cc43)cc2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0111",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 111,
+    "orig_idx": 111,
+    "gt_scaffold": "O=C(N[C@H](CC[C@H](Cc1ccccc1)NC(=O)[C@@H]1CN(c2ccccc2)C(=O)O1)Cc1ccccc1)OCc1ccccn1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0112",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 112,
+    "orig_idx": 112,
+    "gt_scaffold": "c1noc2c1CC1[C@@H](CCC3C4CC[C@]56CCC[C@H](OC5)[C@@H]6[C@H]4CC[C@@H]31)C2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0113",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 113,
+    "orig_idx": 113,
+    "gt_scaffold": "C(=C/c1ccc2ccccc2n1)\\c1cc(-n2ncnc2Cc2ccccc2)ncn1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0114",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 114,
+    "orig_idx": 114,
+    "gt_scaffold": "O=C(Nc1cc(-c2cnn(CCN3CCOCC3)c2)ccc1N1CCNCC1)c1ccc(=O)[nH]c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0115",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 115,
+    "orig_idx": 115,
+    "gt_scaffold": "O=C1NC(=O)C2(Cc3cc4c(N5C(=O)OC[C@@H]5C5CCOCC5)noc4cc3N3CCOC[C@@H]32)C(=O)N1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0116",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 116,
+    "orig_idx": 116,
+    "gt_scaffold": "c1ccc(-c2cc(-c3ccc(OCCn4ccnc4)cc3)nc3ccccc23)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0117",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 117,
+    "orig_idx": 117,
+    "gt_scaffold": "c1cncc([C@@H](Cc2ccncc2)c2cnc3ccccc3c2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0118",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 118,
+    "orig_idx": 118,
+    "gt_scaffold": "O=C(Nc1ccon1)c1cccc(Nc2ncnc3cnc(N4CCNCC4)nc23)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0119",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 119,
+    "orig_idx": 119,
+    "gt_scaffold": "O=C1O[C@H]2C=CCCCC3CCCC[C@@H]3C[C@@]23OC13",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0120",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 120,
+    "orig_idx": 120,
+    "gt_scaffold": "O=c1c2ncn([C@H]3C[C@@H]4O[PH](=S)OC[C@H]4O3)c2[nH]c2nc(-c3ccccc3)cn12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0121",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 121,
+    "orig_idx": 121,
+    "gt_scaffold": "c1cc(OCc2cncs2)cc(Oc2ccc(-c3nn(C4CCOCC4)c4ncncc34)cc2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0122",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 122,
+    "orig_idx": 122,
+    "gt_scaffold": "C1=CN(Cc2ccccc2)C(NCc2ccccc2)=NC1c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0123",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 123,
+    "orig_idx": 123,
+    "gt_scaffold": "O=C(Nc1nc2ccccc2s1)c1cccc2c1CN(c1ccc(-c3cnn(CC4CCCCCC4)c3)cn1)CC2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0124",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 124,
+    "orig_idx": 124,
+    "gt_scaffold": "O=c1c2ccccc2nc(CNc2ncncc2C#Cc2ccccn2)n1-c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0125",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 125,
+    "orig_idx": 125,
+    "gt_scaffold": "O=C(Nc1cc2ccc(OS(=O)(=O)c3ccccc3)cc2oc1=O)c1ccc2c(c1)CCCO2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0126",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 126,
+    "orig_idx": 126,
+    "gt_scaffold": "c1ccc(Cc2cn(C(c3ccccc3)c3ccccc3)c3ccccc23)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0127",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 127,
+    "orig_idx": 127,
+    "gt_scaffold": "c1ccc(CC(OC[C@@H]2CC[C@H](n3cnc4cncnc43)O2)c2nn[nH]n2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0128",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 128,
+    "orig_idx": 128,
+    "gt_scaffold": "O=C(N[C@H]1CCN(C(=O)c2ccccc2)C1)c1cncc(-c2cc(CN3CCCCC3)c3cncnn23)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0129",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 129,
+    "orig_idx": 129,
+    "gt_scaffold": "O=c1cc(-c2ccccc2)oc2c(O[C@H]3CCCCO3)cc(O[C@H]3CCCCO3)cc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0130",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 130,
+    "orig_idx": 130,
+    "gt_scaffold": "O=C(N[C@H]1CCN(C(=O)c2ccccn2)C1)c1cccc(-c2ccc3cncnn23)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0131",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 131,
+    "orig_idx": 131,
+    "gt_scaffold": "O=C(NCc1ccc[nH]c1=O)c1cc(C2CCN(C3CCNCC3)CC2)nc2[nH]ncc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0132",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 132,
+    "orig_idx": 132,
+    "gt_scaffold": "c1cnn2c(-c3cc(Nc4ccc(N5CCNCC5)nc4)ccn3)ccc2c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0133",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 133,
+    "orig_idx": 133,
+    "gt_scaffold": "O=C(NC1(C(=O)Nc2ccccc2)CCC1)c1ccc2c(C3CCCC3)c(-c3ccccn3)[nH]c2c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0134",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 134,
+    "orig_idx": 134,
+    "gt_scaffold": "O=C(N[C@@H](Cc1ccccc1)C(=O)NCB1OC2C[C@H]3C[C@H](C3)C2O1)c1cnccn1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0135",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 135,
+    "orig_idx": 135,
+    "gt_scaffold": "O=c1ccc2ccc3c(c2o1)[C@H]1c2c(-c4ccccc4)nn(-c4ccccc4)c2OC[C@H]1CO3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0136",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 136,
+    "orig_idx": 136,
+    "gt_scaffold": "O=C(C1CC1)N1CC(n2c(=O)c3cc(-c4ncco4)sc3n(CC(OC3CCOCC3)c3ccccc3)c2=O)C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0137",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 137,
+    "orig_idx": 137,
+    "gt_scaffold": "O=C1c2ccccc2C(=O)c2cc3c(cc21)CCCC3OC1CCCCO1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0138",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 138,
+    "orig_idx": 138,
+    "gt_scaffold": "O=C(NCCc1ccc(O[C@H]2CCCCO2)cc1-c1ccccc1)c1cccc(-c2ccccc2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0139",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 139,
+    "orig_idx": 139,
+    "gt_scaffold": "O=c1ccn2c3c(c(N4CCC(n5c(=O)[nH]c6ccccc65)CC4)ccc13)OCC2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0140",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 140,
+    "orig_idx": 140,
+    "gt_scaffold": "c1ccc(-c2cnc(C3CCN(c4ncnc5[nH]c(-c6cn[nH]c6)cc45)CC3)[nH]2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0141",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 141,
+    "orig_idx": 141,
+    "gt_scaffold": "O=C(NCc1cc2cccc(C#Cc3cn[nH]c3)c2c(=O)n1-c1ccccc1)c1cncc2cccnc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0142",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 142,
+    "orig_idx": 142,
+    "gt_scaffold": "O=C(N[C@H]1CCN(C(=O)C2CCC2)C1)c1cncc(-c2cc(Cn3cccn3)c3cncnn23)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0143",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 143,
+    "orig_idx": 143,
+    "gt_scaffold": "O=C1C=CC2CC[C@@H]3[C@H](OC(=O)C34C[C@H](c3cccc5ccccc35)N(c3ccccc3)O4)C2=C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0144",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 144,
+    "orig_idx": 144,
+    "gt_scaffold": "O=C(CC1CCCC1)[C@H](Cc1ccc(O[PH](=O)COCCn2cnc3cncnc32)cc1)NCCCc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0145",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 145,
+    "orig_idx": 145,
+    "gt_scaffold": "O=C1C=C2C(CCC3CCCC[C@@H]23)C2CC[C@H]3CCCCC3[C@@H]12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0146",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 146,
+    "orig_idx": 146,
+    "gt_scaffold": "O=C(NCCc1ccccc1)C1=Cc2ccccc2[C@H](c2ccccc2)[C@H]1C(=O)NCCc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0147",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 147,
+    "orig_idx": 147,
+    "gt_scaffold": "O=C1CC[C@@H]2CC[C@@H](c3nc(-c4ccc(Cc5ccccc5)cc4)c4cnccn34)CN12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0148",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 148,
+    "orig_idx": 148,
+    "gt_scaffold": "O=S(=O)(NC[C@]12CC[C@H](C1)c1cc(-c3ccccc3)nnc12)c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0149",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 149,
+    "orig_idx": 149,
+    "gt_scaffold": "O=C1[C@H]2Cc3c([nH]c4ccccc34)[C@H](c3ccccc3)N2C(=O)N1c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0150",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 150,
+    "orig_idx": 150,
+    "gt_scaffold": "O=C1Cc2cc(-c3ccc4cc(-c5nc6cc(C(=O)N7CCCCC7)ccc6[nH]5)n(CC5CC5)c4n3)cnc2N1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0151",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 151,
+    "orig_idx": 151,
+    "gt_scaffold": "O=C(Cc1ccccn1)N1C2CC1CN(c1ccc(-c3cc(-c4cn[nH]c4)cn4nccc34)cn1)C2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0152",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 152,
+    "orig_idx": 152,
+    "gt_scaffold": "O=C1OC(c2ccccc2)C(Cc2ccccc2)=C1c1ccc2c(c1)OCO2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0153",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 153,
+    "orig_idx": 153,
+    "gt_scaffold": "O=C(C=CC1CC1)N1CCC[C@@H](n2nc(-c3ccc(Oc4ccccc4)cc3)c3cncnc32)C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0154",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 154,
+    "orig_idx": 154,
+    "gt_scaffold": "O=c1c2ccccc2n(CC2CCN(Cc3ccccc3)O2)c(=O)n1Cc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0155",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 155,
+    "orig_idx": 155,
+    "gt_scaffold": "O=C1c2ccccc2C(=O)c2cc3c(cc21)CCC[C@@H]3OC1CCCCO1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0156",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 156,
+    "orig_idx": 156,
+    "gt_scaffold": "O=C(c1cc(-c2ccccc2)nc(-c2ccc3[nH]ccc3c2)c1)N1CCN(C2CCN(C(=O)C3CCNCC3)CC2)CC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0157",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 157,
+    "orig_idx": 157,
+    "gt_scaffold": "O=C(CNC(=O)C(=O)C(CC1CC1)NC(=O)[C@H](CC1CC1)NC(=O)CCCC1CCCCC1)NCc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0158",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 158,
+    "orig_idx": 158,
+    "gt_scaffold": "O=C1c2ccccc2Cc2cc3c(cc21)[C@H]1OC(C3)Oc2ccccc21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0159",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 159,
+    "orig_idx": 159,
+    "gt_scaffold": "O=C(c1ccc2[nH]c(-c3cc4ccc(-c5ccccc5)nc4n3CC3CC3)nc2c1)N1CC2CCC1C2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0160",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 160,
+    "orig_idx": 160,
+    "gt_scaffold": "O=C(CCc1c[nH]c2ccccc12)N[C@@H](Cc1ccccc1)C(=O)NCc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0161",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 161,
+    "orig_idx": 161,
+    "gt_scaffold": "O=C(NCc1ncon1)c1cccc(-c2ccc3oc(-c4ccccc4)cc3c2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0162",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 162,
+    "orig_idx": 162,
+    "gt_scaffold": "O=C(Nc1ccc(Oc2ccnc3[nH]c(=O)[nH]c23)cc1)Nc1ccnn1-c1cccnc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0163",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 163,
+    "orig_idx": 163,
+    "gt_scaffold": "O=C(CNC(=O)c1c[nH]c2ncccc2c1=O)O[C@H](c1ccnc2ccccc12)[C@@H]1CC2CCN1CC2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0164",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 164,
+    "orig_idx": 164,
+    "gt_scaffold": "O=c1[nH]c2nc(-c3ccc(OCCNc4ccccn4)cc3)[nH]c2c(=O)n1Cc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0165",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 165,
+    "orig_idx": 165,
+    "gt_scaffold": "O=C(CC1C[C@H](C(=O)N2CCN(C(=O)C3CC3)CC2)C2c3[nH]c4ccccc4c3CCN2C1=O)NCCc1ccccn1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0166",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 166,
+    "orig_idx": 166,
+    "gt_scaffold": "O=C(Nc1ccccc1)Nc1ccc(-c2ccc(OCCCN3CCCC3)c3[nH]ncc23)c2ccccc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0167",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 167,
+    "orig_idx": 167,
+    "gt_scaffold": "O=C(Nc1ccc2c(-c3cccnc3)c[nH]c2c1)c1cccc(C#Cc2cnc3[nH]ccc3c2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0168",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 168,
+    "orig_idx": 168,
+    "gt_scaffold": "O=C1NC2(CCCC2)CN(Cc2ccc3cc4c(cc3n2)C[C@]2(C4)C(=O)Nc3ncccc32)C1Cc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0169",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 169,
+    "orig_idx": 169,
+    "gt_scaffold": "[BH2-]1n2c(cc3sc(-c4cccs4)cc32)C(c2ccccc2)=C2C=c3sc(-c4cccs4)cc3=[N+]12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0170",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 170,
+    "orig_idx": 170,
+    "gt_scaffold": "O=[PH](OC[C@@H]1CCC(c2ccc3cncnn23)O1)Oc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0171",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 171,
+    "orig_idx": 171,
+    "gt_scaffold": "O=C(/C=C/[C@H]1CCCN1)Nc1ccc2ncnc(Nc3ccc(Oc4cc5nncn5cn4)cc3)c2c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0172",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 172,
+    "orig_idx": 172,
+    "gt_scaffold": "c1ccc(CSc2nc3nccc(N4CCC[C@@H](Nc5ncnc6[nH]ccc56)C4)n3n2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0173",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 173,
+    "orig_idx": 173,
+    "gt_scaffold": "O=C(Nc1ccccn1)C1=CNC(Nc2nc3ccccc3o2)=NC1c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0174",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 174,
+    "orig_idx": 174,
+    "gt_scaffold": "C1=Nc2c(cnn2-c2ccc3c(c2)Nc2ccccc2S3)C(c2ccccc2)N1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0175",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 175,
+    "orig_idx": 175,
+    "gt_scaffold": "c1ccc(Oc2nccc(-c3c(-c4ccccc4)ncn3[C@H]3CCNC3)n2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0176",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 176,
+    "orig_idx": 176,
+    "gt_scaffold": "O=C(Cn1c(-c2ccccc2)nccc1=O)NC(Cc1ccccc1)C(=O)c1nc2ccccc2o1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0177",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 177,
+    "orig_idx": 177,
+    "gt_scaffold": "O=C(/C=C/c1c[nH]cn1)O[C@H]1C[C@H]2C=CCC[C@H]2/C=C(/COC2CCCCO2)C2C=CC1O2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0178",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 178,
+    "orig_idx": 178,
+    "gt_scaffold": "O=C1O[C@@H](Cn2ccnn2)CN1c1ccc(-c2ccc(C3[C@H]4CSC[C@@H]34)nc2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0179",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 179,
+    "orig_idx": 179,
+    "gt_scaffold": "O=C(Nc1cn2nc(-c3c(-c4ccccc4)n[nH]c3N3CCNCC3)ccc2n1)c1ccncc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0180",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 180,
+    "orig_idx": 180,
+    "gt_scaffold": "O=P(Nc1ccccc1)(Nc1ccccc1)c1nncc2c1C1CC[C@@H]3C4CCCCC4=CC[C@H]3[C@@H]1C2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0181",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 181,
+    "orig_idx": 181,
+    "gt_scaffold": "c1cc2c3c(c1)O[C@H]1c4[nH]c5ccccc5c4CC4[C@@H](C2)NCC[C@@]341",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0182",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 182,
+    "orig_idx": 182,
+    "gt_scaffold": "c1ccc([C@@H]2CCc3ccc(Oc4cccc([C@@H]5CCc6ccccc6O5)c4)cc3O2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0183",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 183,
+    "orig_idx": 183,
+    "gt_scaffold": "O=C(NCC(=O)N1CC[C@@]2(C1)C(=O)Nc1ccccc12)c1cc2c(C3CC3)cccc2[nH]1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0184",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 184,
+    "orig_idx": 184,
+    "gt_scaffold": "O=C1CCC2C3c4[nH]c5cc6c(cc5c4C[C@@H]3CC[C@H]2C1)C1=CCOC[C@H]1C6",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0185",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 185,
+    "orig_idx": 185,
+    "gt_scaffold": "c1ccc(-c2c([C@H]3C[C@@H](c4ccc5ccccc5n4)C3)nc3c(N4CCOCC4)ccnn23)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0186",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 186,
+    "orig_idx": 186,
+    "gt_scaffold": "O=C(NCc1ccccc1)c1cn(-c2ccccc2)c2nc3ccccc3nc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0187",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 187,
+    "orig_idx": 187,
+    "gt_scaffold": "O=C(CCCC[C@@H]1SC[C@@H]2NC(=O)N[C@@H]21)NCCCCCC(=O)NCC(=O)O[C@H]1CC[C@@H]2C1CC[C@@H]1c3ccccc3CC[C@H]12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0188",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 188,
+    "orig_idx": 188,
+    "gt_scaffold": "c1cc[n+](Cc2ccc(CCCCc3ccc(C[n+]4ccccc4)cc3)cc2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0189",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 189,
+    "orig_idx": 189,
+    "gt_scaffold": "c1cc(-c2cccc(-c3ccc(CN4CC5(CNC5)C4)cn3)c2)cc(-c2ccc(CN3CC4(CNC4)C3)cn2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0190",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 190,
+    "orig_idx": 190,
+    "gt_scaffold": "c1ccc(-c2cc3cc(-c4ccc5c(n4)-c4cc6ccccc6n4CO5)ccc3o2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0191",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 191,
+    "orig_idx": 191,
+    "gt_scaffold": "C1=C2C3CCCCC3CCC2C2CCC3CCCCC3C2C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0192",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 192,
+    "orig_idx": 192,
+    "gt_scaffold": "O=C(CSc1nnc(-c2ccccc2)[nH]1)Nc1cn(Cc2ccccc2)c(=O)[nH]c1=O",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0193",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 193,
+    "orig_idx": 193,
+    "gt_scaffold": "C(#Cc1cccc(-c2nn(CCCN3CCCCC3)c3c2CNCC3)c1)c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0194",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 194,
+    "orig_idx": 194,
+    "gt_scaffold": "O=C(NCN1CCN(c2ccc3c(=O)ccn(C4CC4)c3c2)CC1)c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0195",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 195,
+    "orig_idx": 195,
+    "gt_scaffold": "O=C(Nc1ccc(-n2nccn2)nc1)c1cnn(-c2cncc3ccccc23)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0196",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 196,
+    "orig_idx": 196,
+    "gt_scaffold": "c1ccc2c(c1)c1ccccc1n2CCCNCCc1ccc(CCNCCCn2c3ccccc3c3ccccc32)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0197",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 197,
+    "orig_idx": 197,
+    "gt_scaffold": "O=C1OC(c2ccsc2)(c2cccc(Nc3ccccn3)c2)CC=C1Sc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0198",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 198,
+    "orig_idx": 198,
+    "gt_scaffold": "O=C(NCC1CCN(c2ncc3ccccc3n2)CC1)c1ccc(-c2ccc(-c3ncon3)cc2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0199",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 199,
+    "orig_idx": 199,
+    "gt_scaffold": "O=C(Nc1ccnn1-c1ccccc1)c1cccc(-c2ccccn2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0200",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 200,
+    "orig_idx": 200,
+    "gt_scaffold": "O=C(Nc1ccccn1)[C@@H]1CC2C[C@H]2N1C(=O)Cn1ncc2cc(-c3cncnc3)ccc21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0201",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 201,
+    "orig_idx": 201,
+    "gt_scaffold": "O=C(Nc1ccncc1)Nc1cc(-c2cccc(-c3cc(C(=O)NC4CC4)cc(C(=O)NC4CC4)c3)c2)n[nH]c1=O",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0202",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 202,
+    "orig_idx": 202,
+    "gt_scaffold": "O=C(NC1(C(=O)NCc2ccc(-c3ccccc3-c3ncon3)cc2)COC1)c1cncnc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0203",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 203,
+    "orig_idx": 203,
+    "gt_scaffold": "O=C(Nc1n[nH]cc1-c1ccccc1)[C@@H]1CCCN1C(=O)Cn1ccc2cc(-c3ccnnc3)ccc21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0204",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 204,
+    "orig_idx": 204,
+    "gt_scaffold": "O=C(Nc1cc(-c2cccnc2)nn1-c1ccccc1)N[C@@H]1CNO[C@H]1c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0205",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 205,
+    "orig_idx": 205,
+    "gt_scaffold": "O=C(Nc1ccc2c(c1)OCO2)Nc1cccc2c1O[C@H](CNS(=O)(=O)c1cccs1)CCNC2=O",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0206",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 206,
+    "orig_idx": 206,
+    "gt_scaffold": "O=C(NCCc1ccccc1)[C@@H]1Cc2ccccc2CN1C(=O)CCc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0207",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 207,
+    "orig_idx": 207,
+    "gt_scaffold": "O=C(Nc1ccc(CN2CCCN(C(=O)CC3CCNCC3)CC2)cc1)N[C@]12CC3CC(C[C@H](C3)C1)C2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0208",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 208,
+    "orig_idx": 208,
+    "gt_scaffold": "O=C(NC1CC1)N[S@@]1(=O)=NC(=O)c2ccc3c(c2)N(C[C@@H]2CC[C@H]2C/C=C\\CCC1)C[C@@]1(CCCc2ccccc21)CO3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0209",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 209,
+    "orig_idx": 209,
+    "gt_scaffold": "O=C(NC1CC1)c1cccc(Nc2nc(-c3ccc4c(c3)N([C@H]3C[C@@H](N5CCCCC5)C3)C(=O)C4)cc3nc[nH]c23)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0210",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 210,
+    "orig_idx": 210,
+    "gt_scaffold": "c1ccc(COc2ccc(Cn3cnc4cc(-c5cnn(CCN6CCOCC6)c5)ccc43)cc2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0211",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 211,
+    "orig_idx": 211,
+    "gt_scaffold": "O=C(c1ccc2c(=O)n(CC[C@@H]3Cc4ccccc4CN3)ncc2c1)N1C2CCC1COC2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0212",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 212,
+    "orig_idx": 212,
+    "gt_scaffold": "O=C(N1CCC=C(c2cccc3ccccc23)C1)N(Cc1ccccc1)Cc1cnc[nH]1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0213",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 213,
+    "orig_idx": 213,
+    "gt_scaffold": "O=C(c1ccc2nccnc2c1)N1C2CCCC1c1n[nH]c(-c3ccccc3)c1C2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0214",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 214,
+    "orig_idx": 214,
+    "gt_scaffold": "O=C1CCCC[C@H](N2CCN(c3ccccc3)CC2=O)c2cc(ccn2)-c2ccccc2N1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0215",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 215,
+    "orig_idx": 215,
+    "gt_scaffold": "c1ccc2c(OCCCc3cn4c5c(cccc35)-c3c[nH]nc3C(CCCN3CCOCC3)OCCCC4)cccc2c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0216",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 216,
+    "orig_idx": 216,
+    "gt_scaffold": "c1ccc(Cn2n[nH+]c3c2C[C@@H]2CCC4C5CC[C@]67CCC[C@H](OC6)[C@@H]7[C@H]5CC[C@@H]4C2C3)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0217",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 217,
+    "orig_idx": 217,
+    "gt_scaffold": "c1ccc(Cn2ccc3cc(OC[C@H]4CCCN4)ccc32)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0218",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 218,
+    "orig_idx": 218,
+    "gt_scaffold": "O=C1C2=C[C@@H]3C[C@H]4COC(C3=O)[C@@]24Oc2cc3c(cc21)C=CCO3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0219",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 219,
+    "orig_idx": 219,
+    "gt_scaffold": "N=c1c(C(=O)NCc2ccccc2)cc2c(=O)n3ccccc3nc2n1Cc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0220",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 220,
+    "orig_idx": 220,
+    "gt_scaffold": "O=C1OCC(c2ccccc2)N1c1ccnc(NCc2cnn(-c3ccccc3)c2)n1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0221",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 221,
+    "orig_idx": 221,
+    "gt_scaffold": "O=C(NC1CCC1)c1cnn2ccc(Nc3cccn(-c4cccnc4)c3=O)nc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0222",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 222,
+    "orig_idx": 222,
+    "gt_scaffold": "O=C(NCc1nc2ccccc2[nH]1)[C@@H]1Cc2ccccc2CN1C(=O)CCc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0223",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 223,
+    "orig_idx": 223,
+    "gt_scaffold": "O=C1Nc2cc(CNCc3ccccc3)ccc2Nc2nccc(Nc3ccccc3)c21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0224",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 224,
+    "orig_idx": 224,
+    "gt_scaffold": "O=C(OCC=CC[C@@]12OC[C@@H]3C[C@@H](C=C4C(=O)c5ccccc5O[C@]431)C2=O)c1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0225",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 225,
+    "orig_idx": 225,
+    "gt_scaffold": "O=C1CC(C(=O)N2CCCC2)Cc2[nH]c(-c3ccncc3)c(Nc3ccccc3)c21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0226",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 226,
+    "orig_idx": 226,
+    "gt_scaffold": "O=C(NC[C@H]1CCNC(=O)c2cc(-c3ccccc3)cnc2O1)Nc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0227",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 227,
+    "orig_idx": 227,
+    "gt_scaffold": "O=C1c2ccc(OCc3cn(CCCCCOc4ccc5c(c4)CC[C@@H]4[C@@H]5CCC5CCC[C@H]54)nn3)cc2N=C[C@@H]2CCCN12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0228",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 228,
+    "orig_idx": 228,
+    "gt_scaffold": "c1ccc2c(O[C@H]3CCCCO3)ccc(O[C@H]3CCCCO3)c2c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0229",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 229,
+    "orig_idx": 229,
+    "gt_scaffold": "c1ccc(CN2CCc3cc(-c4cnccc4N4CCCCC4)ccc3C2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0230",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 230,
+    "orig_idx": 230,
+    "gt_scaffold": "O=C(NCc1ccccc1)O[C@H]1CCC2[C@@H](CCC3C4CCC5CCCC[C@H]5C4=CC[C@@H]32)C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0231",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 231,
+    "orig_idx": 231,
+    "gt_scaffold": "O=C(N[C@@H]1CCc2ccccc21)C(CCCNCc1ccccc1)Cc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0232",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 232,
+    "orig_idx": 232,
+    "gt_scaffold": "O=C(N1CCCC1)N1CCN(c2ccc(-c3cc(-c4cn[nH]c4)cn4nccc34)cn2)CC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0233",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 233,
+    "orig_idx": 233,
+    "gt_scaffold": "O=C(c1ccc(Nc2ncc3ccn(C4CCCC4)c3n2)nc1)N1CC2CCC(C1)N2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0234",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 234,
+    "orig_idx": 234,
+    "gt_scaffold": "O=C1CNC(=O)[C@H](Cc2ccccc2)NC(=O)[C@@H](Cc2c[nH]c3ccccc23)NC(=O)[C@H]2CCCN2C(=O)[C@H](Cc2ccccc2)N1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0235",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 235,
+    "orig_idx": 235,
+    "gt_scaffold": "O=c1cc(-c2ccc(Oc3c(-c4ccccc4)oc4ccccc4c3=O)cc2)oc2ccccc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0236",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 236,
+    "orig_idx": 236,
+    "gt_scaffold": "O=C1c2ccccc2NC(c2cccc(Oc3ccccc3)c2)N1Cc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0237",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 237,
+    "orig_idx": 237,
+    "gt_scaffold": "O=C(CC[PH](=O)CSc1ccc2ccccc2n1)NCCc1c[nH]c2ccccc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0238",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 238,
+    "orig_idx": 238,
+    "gt_scaffold": "O=C(Nc1ccccc1)c1cccc(-c2ccc(/C=C3/C=NN(c4ccccc4)C3=O)o2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0239",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 239,
+    "orig_idx": 239,
+    "gt_scaffold": "O=C(O[C@H]1C[C@H]2CC[C@@H](C1)N2S(=O)(=O)c1ccccc1)c1c(-c2ccccc2)noc1C1CC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0240",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 240,
+    "orig_idx": 240,
+    "gt_scaffold": "O=C(CN(CCc1ccccc1)C(=O)Nc1ccccc1)NC[C@H]1C[C@@H]2OCO[C@@H]2O1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0241",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 241,
+    "orig_idx": 241,
+    "gt_scaffold": "C(#Cc1ccccc1)CC[C@@H]1CC[C@H](n2cnc3cncnc32)O1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0242",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 242,
+    "orig_idx": 242,
+    "gt_scaffold": "c1cc(-c2cn(-c3ccc(CN4CCNCC4)cc3)cn2)nc(NC2CCNCC2)n1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0243",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 243,
+    "orig_idx": 243,
+    "gt_scaffold": "O=C1NCc2c(-c3cnc4ccccn34)ccc(Nc3ccc(N4CCC(N5CCOCC5)CC4)cn3)c21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0244",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 244,
+    "orig_idx": 244,
+    "gt_scaffold": "c1c[nH+]c2ccc(Nc3ncnc(Nc4ccc5[nH+]cccc5c4)n3)cc2c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0245",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 245,
+    "orig_idx": 245,
+    "gt_scaffold": "O=C(OCc1cnccn1)[C@]12CCC[C@@H]1[C@H]1CC[C@H]3C(CC[C@H]4CCCCC43)C1CC2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0246",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 246,
+    "orig_idx": 246,
+    "gt_scaffold": "C1=Cc2c(ccc3c2O[C@@H]2COc4ccccc4[C@@H]2/C3=N/OCc2ccccc2)OC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0247",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 247,
+    "orig_idx": 247,
+    "gt_scaffold": "O=C(c1ccc2[nH]c(-c3cc4ccc(-c5ccccc5)nc4n3CC3CC3)nc2c1)N1CCCCC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0248",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 248,
+    "orig_idx": 248,
+    "gt_scaffold": "O=C1Cc2cc(NS(=O)(=O)c3ccccc3)ccc2O[C@H](CNCc2ccccc2)CCN1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0249",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 249,
+    "orig_idx": 249,
+    "gt_scaffold": "O=C(C[C@@H](NS(=O)(=O)c1ccccc1)c1ccccc1)N[C@@H]1CCOc2ccccc21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0250",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 250,
+    "orig_idx": 250,
+    "gt_scaffold": "c1ccc2[nH]c(CC[C@H]3C[C@@H](NC[C@@H]4CC[C@H](n5cnc6cncnc65)O4)C3)nc2c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0251",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 251,
+    "orig_idx": 251,
+    "gt_scaffold": "O=C1C=C2C(CCC3CCCC[C@@H]23)C2CC[C@H]3CCCCC3[C@@H]12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0252",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 252,
+    "orig_idx": 252,
+    "gt_scaffold": "c1ccc(OCCCOc2ccccc2Cn2ccc3ccccc32)c(Cn2ccc3ccccc32)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0253",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 253,
+    "orig_idx": 253,
+    "gt_scaffold": "c1ccc2c3c([nH]c2c1)C[C@@H]1CCC2C4CCC5CCC[C@@H]5[C@H]4CC[C@@H]2C1C3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0254",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 254,
+    "orig_idx": 254,
+    "gt_scaffold": "N=C(C(=O)N[C@@H]1C(=O)N2C=C(/C=C/C[n+]3ccc(-c4cc[nH]c4)cc3)CS[C@H]12)c1cscn1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0255",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 255,
+    "orig_idx": 255,
+    "gt_scaffold": "O=C1NCC[C@@H](CNCc2ccc3c(c2)OCO3)OCCCCCOc2ccccc21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0256",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 256,
+    "orig_idx": 256,
+    "gt_scaffold": "c1ccc(Oc2ccc3c(c2)CCN2Cc4c(ccc5[nH]ccc45)OC32)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0257",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 257,
+    "orig_idx": 257,
+    "gt_scaffold": "C1=Cc2cc3ccc(cc4nc(cc5ccc(cc1n2)[nH]5)CC4)[nH]3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0258",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 258,
+    "orig_idx": 258,
+    "gt_scaffold": "O=C(CSc1nc2ccccc2c(=O)[nH]1)O[C@@H]1CCCC[C@@]23CCCC1[C@@H]2C(=O)CC3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0259",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 259,
+    "orig_idx": 259,
+    "gt_scaffold": "O=C(Nc1ccccc1)Nc1ccc(-c2ccc(CN3CCOCC3)nc2)c2ccccc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0260",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 260,
+    "orig_idx": 260,
+    "gt_scaffold": "O=C(Nc1cn2nc(-c3c(-c4ccccc4)ncn3-c3cccnc3)ccc2n1)c1ccncc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0261",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 261,
+    "orig_idx": 261,
+    "gt_scaffold": "O=c1[nH]c2ccccc2c2c1[C@H]1CC3C[C@@H](c4c(c5ccccc5[nH]c4=O)O3)[C@@H]1CO2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0262",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 262,
+    "orig_idx": 262,
+    "gt_scaffold": "O=C1OC[C@H]2[C@H]1[C@H](c1ccccc1)c1cc3c(cc1[C@H]2n1ccnn1)OCO3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0263",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 263,
+    "orig_idx": 263,
+    "gt_scaffold": "O=C(NN=Cc1cccc(CN2CCN(c3ccc4c(=O)ccn(C5CC5)c4c3)CC2)c1)c1ccncc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0264",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 264,
+    "orig_idx": 264,
+    "gt_scaffold": "c1ccc(CN(Cc2cnc3ccccc3c2)Cc2nnnn2Cc2ccco2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0265",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 265,
+    "orig_idx": 265,
+    "gt_scaffold": "O=C(NCCCN1CCOCC1)[C@]12CCCC[C@H]1C1=CC[C@H]3C(CC[C@H]4Cc5n[nH]cc5CC43)C1CC2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0266",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 266,
+    "orig_idx": 266,
+    "gt_scaffold": "O=C(c1ccc(Nc2nccc(-c3cc4ccccc4s3)n2)cc1)N1CCC(N2CCCC2)CC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0267",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 267,
+    "orig_idx": 267,
+    "gt_scaffold": "O=C1NCc2c(-c3ccnc4[nH]ccc34)ncc(Nc3ccc(N4CCNCC4)cn3)c21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0268",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 268,
+    "orig_idx": 268,
+    "gt_scaffold": "O=C(NC1CCC1)c1cnn2ccc(Nc3cccn(C4CCCCC4)c3=O)nc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0269",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 269,
+    "orig_idx": 269,
+    "gt_scaffold": "O=S(=O)(c1ccc(Nc2cc(NC3CCCCC3)nn3c(-c4ccsc4)cnc23)cc1)N1CCCC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0270",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 270,
+    "orig_idx": 270,
+    "gt_scaffold": "c1ccc(O[C@@H](CCOC(c2ccccc2)(c2ccccc2)c2ccccc2)[C@H](Oc2ccccc2)c2cncnc2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0271",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 271,
+    "orig_idx": 271,
+    "gt_scaffold": "O=C(NCCc1ccc(-c2ccccc2)cc1)[C@@H]1CCCN1C(=O)Cc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0272",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 272,
+    "orig_idx": 272,
+    "gt_scaffold": "C1=C2C(CCC3CCCC[C@@H]23)C2CC[C@H]3CCCCC3[C@H]2C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0273",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 273,
+    "orig_idx": 273,
+    "gt_scaffold": "O=C(/C=C/c1ccccc1)O[C@H]1CCC[C@@]23C[C@@H](CCC12)CO3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0274",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 274,
+    "orig_idx": 274,
+    "gt_scaffold": "O=C(CC[C@H](CC1CCCCC1)NC(=O)CNC(=O)[C@H](Cc1ccccc1)NS(=O)(=O)N1CCOCC1)NCCN1CCOCC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0275",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 275,
+    "orig_idx": 275,
+    "gt_scaffold": "O=C1Cc2cc3n(c(=O)c2CO1)Cc1cc2ccccc2nc1-3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0276",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 276,
+    "orig_idx": 276,
+    "gt_scaffold": "O=C(NCc1ccccn1)C1CN(Cc2coc(-c3ccccc3)n2)Cc2ccccc21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0277",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 277,
+    "orig_idx": 277,
+    "gt_scaffold": "O=C(Nc1ccccc1)Nc1cccc2c1O[C@H](CNCc1ccccc1)CCNC2=O",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0278",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 278,
+    "orig_idx": 278,
+    "gt_scaffold": "O=C(NCc1ccco1)c1nc(-c2ccccc2)c2ccc(-c3ccccc3)nc2n1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0279",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 279,
+    "orig_idx": 279,
+    "gt_scaffold": "O=C1c2nc(C3=CCOCC3)[nH]c2[C@@H](c2ccccc2)N1c1ccc2nncn2n1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0280",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 280,
+    "orig_idx": 280,
+    "gt_scaffold": "O=C(N[C@@H]1CCc2ccccc21)[C@@H](CCCN1CCN(Cc2cccnc2)CC1)Cc1ccccc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0281",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 281,
+    "orig_idx": 281,
+    "gt_scaffold": "O=C(NCCCCN1CCC(c2ccc(OCc3ncc[nH]3)cc2)CC1)c1ccc(NC(=O)c2ccccc2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0282",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 282,
+    "orig_idx": 282,
+    "gt_scaffold": "c1ccc(CCC[C@@]23Cc4c([nH]c5ccccc45)[C@@H]4Oc5cccc6c5[C@@]42CCNC3C6)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0283",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 283,
+    "orig_idx": 283,
+    "gt_scaffold": "O=C(NC1CC1)c1ccc(-c2cnc3cnc(-c4ccncc4)cn23)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0284",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 284,
+    "orig_idx": 284,
+    "gt_scaffold": "O=c1nc(C2CCCC2)n(Cc2ccccc2)cc1S(=O)(=O)c1ccc(-c2cccnc2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0285",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 285,
+    "orig_idx": 285,
+    "gt_scaffold": "O=c1[nH]c2ccccc2n1C1CCN(Cc2ccc(-c3nc4ccccc4n4cc(-c5ccccc5)cc34)cc2)CC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0286",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 286,
+    "orig_idx": 286,
+    "gt_scaffold": "c1ccc(Cc2c3[n+](cc4ccccc24)CCc2cc4c(cc2-3)OCO4)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0287",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 287,
+    "orig_idx": 287,
+    "gt_scaffold": "O=C1C=C[C@@H]2C1CC=C[C@@H]1C2CCC2C[C@H]21",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0288",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 288,
+    "orig_idx": 288,
+    "gt_scaffold": "O=c1[nH]nc(-c2nc(-c3cccnc3)c3c(n2)nc(Cc2ccccc2)n3CC2CCCCC2)o1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0289",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 289,
+    "orig_idx": 289,
+    "gt_scaffold": "O=C1OC[C@H]2[C@H]1[C@H](c1ccccc1)c1cc3c(cc1[C@H]2n1cc(COC(=O)N2CCN(c4ccccc4)CC2)nn1)OCO3",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0290",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 290,
+    "orig_idx": 290,
+    "gt_scaffold": "O=C([C@@H]1CNC[C@H]1c1ccccc1)N1CCC2(CCc3ccccc32)CC1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0291",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 291,
+    "orig_idx": 291,
+    "gt_scaffold": "c1ccc(N2CCOCC2)c(COc2ccc(-c3nc4ccccc4n3C3CCCCC3)cc2)c1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0292",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 292,
+    "orig_idx": 292,
+    "gt_scaffold": "O=c1cc(-c2ccccc2)oc2cc(OCCn3cnc4ccccc43)ccc12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0293",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 293,
+    "orig_idx": 293,
+    "gt_scaffold": "C1=CC(c2cnn(-c3ccccc3)c2-n2ccnc2)c2ccccc2O1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0294",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 294,
+    "orig_idx": 294,
+    "gt_scaffold": "c1ccc(-c2cc(-c3cc4c(NCc5ccc6c(c5)OCCO6)ncnc4[nH]3)[nH]n2)cc1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0295",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 295,
+    "orig_idx": 295,
+    "gt_scaffold": "O=C(Nc1cccc(-c2cccc(NC(=O)c3nc4c([nH]3)CCNC4)c2)c1)c1nc2c([nH]1)CCNC2",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0296",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 296,
+    "orig_idx": 296,
+    "gt_scaffold": "O=C1c2ccccc2C(=O)c2cc3c(cc21)CC(c1cscn1)C[C@@H]3O[C@H]1C[C@H]2[C@@H](CO1)O[C@@H]1COCCN12",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0297",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 297,
+    "orig_idx": 297,
+    "gt_scaffold": "O=C(OCc1ccccc1)C1CCC2CCC3C(=CC(=O)[C@H]4C3CC[C@H]3CCCCC34)[C@@H]2C1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0298",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 298,
+    "orig_idx": 298,
+    "gt_scaffold": "c1cc(-c2cc3nc[nH]c3s2)nc(Nc2ccc(N3CC4(CCNC4)C3)cn2)n1",
+    "tanimoto": 1.0
+  },
+  {
+    "anonymous_sample_id": "mol_und.murcko_scaffold.0299",
+    "task_family": "mol_und",
+    "subtask": "murcko_scaffold",
+    "reporting_task": "MolUnd/Murcko Scaffold",
+    "list_pos": 299,
+    "orig_idx": 299,
+    "gt_scaffold": "O=C(Cc1ccccc1)Nc1cccc(-n2cc(-c3cnc4[nH]ncc4c3)nn2)c1",
+    "tanimoto": 1.0
+  }
+]

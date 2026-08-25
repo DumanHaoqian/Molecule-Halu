@@ -1,0 +1,287 @@
+{
+  "dataset_name": "ChemCoTBench-V2 active benchmark",
+  "total_samples": 5620,
+  "implementation_subtasks": 31,
+  "reporting_tasks": 18,
+  "family_counts": {
+    "mol_edit": 900,
+    "mol_und": 1500,
+    "rxn_pred": 2200,
+    "mol_opt": 1020
+  },
+  "reporting_task_counts": {
+    "MolEdit/Add": 300,
+    "MolEdit/Delete": 300,
+    "MolEdit/Substitute": 300,
+    "MolUnd/Functional Group": 300,
+    "MolUnd/Ring Count": 300,
+    "MolUnd/Murcko Scaffold": 300,
+    "MolUnd/Ring-System Scaffold": 300,
+    "MolUnd/SMILES Equivalence": 300,
+    "RxnPred/Product-Level Prediction": 600,
+    "RxnPred/Retrosynthesis": 200,
+    "RxnPred/Template/Mechanism Reasoning": 400,
+    "RxnPred/Component Recommendation": 600,
+    "RxnPred/Condition Ranking": 200,
+    "RxnPred/Yield Prediction": 200,
+    "MolOpt/PhysChem-Single": 360,
+    "MolOpt/BioTarget-Single": 360,
+    "MolOpt/PhysChem-Dual": 150,
+    "MolOpt/BioTarget-Dual": 150
+  },
+  "excluded_from_active_benchmark": [
+    "rxn_pred/condition_temperature",
+    "mol_und/mutated as a standalone reporting task",
+    "mol_und/permutated as a standalone reporting task"
+  ],
+  "files": [
+    {
+      "family": "mol_edit",
+      "subtask": "add_v2",
+      "reporting_task": "MolEdit/Add",
+      "n_samples": 300,
+      "raw_file": "raw_benchmark_data/mol_edit/add_v2.json",
+      "process_file": "process_evaluation_data/mol_edit/add_v2.json"
+    },
+    {
+      "family": "mol_edit",
+      "subtask": "delete_v2",
+      "reporting_task": "MolEdit/Delete",
+      "n_samples": 300,
+      "raw_file": "raw_benchmark_data/mol_edit/delete_v2.json",
+      "process_file": "process_evaluation_data/mol_edit/delete_v2.json"
+    },
+    {
+      "family": "mol_edit",
+      "subtask": "substitute_v2",
+      "reporting_task": "MolEdit/Substitute",
+      "n_samples": 300,
+      "raw_file": "raw_benchmark_data/mol_edit/substitute_v2.json",
+      "process_file": "process_evaluation_data/mol_edit/substitute_v2.json"
+    },
+    {
+      "family": "mol_und",
+      "subtask": "fg_detect",
+      "reporting_task": "MolUnd/Functional Group",
+      "n_samples": 300,
+      "raw_file": "raw_benchmark_data/mol_und/fg_detect.json",
+      "process_file": "process_evaluation_data/mol_und/fg_detect.json"
+    },
+    {
+      "family": "mol_und",
+      "subtask": "ring_count",
+      "reporting_task": "MolUnd/Ring Count",
+      "n_samples": 300,
+      "raw_file": "raw_benchmark_data/mol_und/ring_count.json",
+      "process_file": "process_evaluation_data/mol_und/ring_count.json"
+    },
+    {
+      "family": "mol_und",
+      "subtask": "murcko_scaffold",
+      "reporting_task": "MolUnd/Murcko Scaffold",
+      "n_samples": 300,
+      "raw_file": "raw_benchmark_data/mol_und/murcko_scaffold.json",
+      "process_file": "process_evaluation_data/mol_und/murcko_scaffold.json"
+    },
+    {
+      "family": "mol_und",
+      "subtask": "ring_sys_scaffold",
+      "reporting_task": "MolUnd/Ring-System Scaffold",
+      "n_samples": 300,
+      "raw_file": "raw_benchmark_data/mol_und/ring_sys_scaffold.json",
+      "process_file": "process_evaluation_data/mol_und/ring_sys_scaffold.json"
+    },
+    {
+      "family": "mol_und",
+      "subtask": "smiles_equivalent",
+      "reporting_task": "MolUnd/SMILES Equivalence",
+      "n_samples": 300,
+      "raw_file": "raw_benchmark_data/mol_und/smiles_equivalent.json",
+      "process_file": "process_evaluation_data/mol_und/smiles_equivalent.json"
+    },
+    {
+      "family": "rxn_pred",
+      "subtask": "forward",
+      "reporting_task": "RxnPred/Product-Level Prediction",
+      "n_samples": 200,
+      "raw_file": "raw_benchmark_data/rxn_pred/forward.json",
+      "process_file": "process_evaluation_data/rxn_pred/forward.json"
+    },
+    {
+      "family": "rxn_pred",
+      "subtask": "byproduct",
+      "reporting_task": "RxnPred/Product-Level Prediction",
+      "n_samples": 200,
+      "raw_file": "raw_benchmark_data/rxn_pred/byproduct.json",
+      "process_file": "process_evaluation_data/rxn_pred/byproduct.json"
+    },
+    {
+      "family": "rxn_pred",
+      "subtask": "nepp",
+      "reporting_task": "RxnPred/Product-Level Prediction",
+      "n_samples": 200,
+      "raw_file": "raw_benchmark_data/rxn_pred/nepp.json",
+      "process_file": "process_evaluation_data/rxn_pred/nepp.json"
+    },
+    {
+      "family": "rxn_pred",
+      "subtask": "retro",
+      "reporting_task": "RxnPred/Retrosynthesis",
+      "n_samples": 200,
+      "raw_file": "raw_benchmark_data/rxn_pred/retro.json",
+      "process_file": "process_evaluation_data/rxn_pred/retro.json"
+    },
+    {
+      "family": "rxn_pred",
+      "subtask": "rxn_template",
+      "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+      "n_samples": 200,
+      "raw_file": "raw_benchmark_data/rxn_pred/rxn_template.json",
+      "process_file": "process_evaluation_data/rxn_pred/rxn_template.json"
+    },
+    {
+      "family": "rxn_pred",
+      "subtask": "mech_sel",
+      "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+      "n_samples": 200,
+      "raw_file": "raw_benchmark_data/rxn_pred/mech_sel.json",
+      "process_file": "process_evaluation_data/rxn_pred/mech_sel.json"
+    },
+    {
+      "family": "rxn_pred",
+      "subtask": "rcr_catalyst",
+      "reporting_task": "RxnPred/Component Recommendation",
+      "n_samples": 200,
+      "raw_file": "raw_benchmark_data/rxn_pred/rcr_catalyst.json",
+      "process_file": "process_evaluation_data/rxn_pred/rcr_catalyst.json"
+    },
+    {
+      "family": "rxn_pred",
+      "subtask": "rcr_reagent",
+      "reporting_task": "RxnPred/Component Recommendation",
+      "n_samples": 200,
+      "raw_file": "raw_benchmark_data/rxn_pred/rcr_reagent.json",
+      "process_file": "process_evaluation_data/rxn_pred/rcr_reagent.json"
+    },
+    {
+      "family": "rxn_pred",
+      "subtask": "rcr_solvent",
+      "reporting_task": "RxnPred/Component Recommendation",
+      "n_samples": 200,
+      "raw_file": "raw_benchmark_data/rxn_pred/rcr_solvent.json",
+      "process_file": "process_evaluation_data/rxn_pred/rcr_solvent.json"
+    },
+    {
+      "family": "rxn_pred",
+      "subtask": "condition_ranking",
+      "reporting_task": "RxnPred/Condition Ranking",
+      "n_samples": 200,
+      "raw_file": "raw_benchmark_data/rxn_pred/condition_ranking.json",
+      "process_file": "process_evaluation_data/rxn_pred/condition_ranking.json"
+    },
+    {
+      "family": "rxn_pred",
+      "subtask": "yield_pred",
+      "reporting_task": "RxnPred/Yield Prediction",
+      "n_samples": 200,
+      "raw_file": "raw_benchmark_data/rxn_pred/yield_pred.json",
+      "process_file": "process_evaluation_data/rxn_pred/yield_pred.json"
+    },
+    {
+      "family": "mol_opt",
+      "subtask": "logp",
+      "reporting_task": "MolOpt/PhysChem-Single",
+      "n_samples": 120,
+      "raw_file": "raw_benchmark_data/mol_opt/logp.json",
+      "process_file": "process_evaluation_data/mol_opt/logp.json"
+    },
+    {
+      "family": "mol_opt",
+      "subtask": "qed",
+      "reporting_task": "MolOpt/PhysChem-Single",
+      "n_samples": 120,
+      "raw_file": "raw_benchmark_data/mol_opt/qed.json",
+      "process_file": "process_evaluation_data/mol_opt/qed.json"
+    },
+    {
+      "family": "mol_opt",
+      "subtask": "solubility",
+      "reporting_task": "MolOpt/PhysChem-Single",
+      "n_samples": 120,
+      "raw_file": "raw_benchmark_data/mol_opt/solubility.json",
+      "process_file": "process_evaluation_data/mol_opt/solubility.json"
+    },
+    {
+      "family": "mol_opt",
+      "subtask": "drd",
+      "reporting_task": "MolOpt/BioTarget-Single",
+      "n_samples": 120,
+      "raw_file": "raw_benchmark_data/mol_opt/drd.json",
+      "process_file": "process_evaluation_data/mol_opt/drd.json"
+    },
+    {
+      "family": "mol_opt",
+      "subtask": "jnk",
+      "reporting_task": "MolOpt/BioTarget-Single",
+      "n_samples": 120,
+      "raw_file": "raw_benchmark_data/mol_opt/jnk.json",
+      "process_file": "process_evaluation_data/mol_opt/jnk.json"
+    },
+    {
+      "family": "mol_opt",
+      "subtask": "gsk",
+      "reporting_task": "MolOpt/BioTarget-Single",
+      "n_samples": 120,
+      "raw_file": "raw_benchmark_data/mol_opt/gsk.json",
+      "process_file": "process_evaluation_data/mol_opt/gsk.json"
+    },
+    {
+      "family": "mol_opt",
+      "subtask": "logp_qed",
+      "reporting_task": "MolOpt/PhysChem-Dual",
+      "n_samples": 50,
+      "raw_file": "raw_benchmark_data/mol_opt/logp_qed.json",
+      "process_file": "process_evaluation_data/mol_opt/logp_qed.json"
+    },
+    {
+      "family": "mol_opt",
+      "subtask": "logp_solubility",
+      "reporting_task": "MolOpt/PhysChem-Dual",
+      "n_samples": 50,
+      "raw_file": "raw_benchmark_data/mol_opt/logp_solubility.json",
+      "process_file": "process_evaluation_data/mol_opt/logp_solubility.json"
+    },
+    {
+      "family": "mol_opt",
+      "subtask": "qed_solubility",
+      "reporting_task": "MolOpt/PhysChem-Dual",
+      "n_samples": 50,
+      "raw_file": "raw_benchmark_data/mol_opt/qed_solubility.json",
+      "process_file": "process_evaluation_data/mol_opt/qed_solubility.json"
+    },
+    {
+      "family": "mol_opt",
+      "subtask": "drd_logp",
+      "reporting_task": "MolOpt/BioTarget-Dual",
+      "n_samples": 50,
+      "raw_file": "raw_benchmark_data/mol_opt/drd_logp.json",
+      "process_file": "process_evaluation_data/mol_opt/drd_logp.json"
+    },
+    {
+      "family": "mol_opt",
+      "subtask": "drd_solubility",
+      "reporting_task": "MolOpt/BioTarget-Dual",
+      "n_samples": 50,
+      "raw_file": "raw_benchmark_data/mol_opt/drd_solubility.json",
+      "process_file": "process_evaluation_data/mol_opt/drd_solubility.json"
+    },
+    {
+      "family": "mol_opt",
+      "subtask": "gsk_logp",
+      "reporting_task": "MolOpt/BioTarget-Dual",
+      "n_samples": 50,
+      "raw_file": "raw_benchmark_data/mol_opt/gsk_logp.json",
+      "process_file": "process_evaluation_data/mol_opt/gsk_logp.json"
+    }
+  ]
+}

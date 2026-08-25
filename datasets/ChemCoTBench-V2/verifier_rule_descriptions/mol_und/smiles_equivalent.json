@@ -1,0 +1,52 @@
+{
+  "task_family": "mol_und",
+  "subtask": "smiles_equivalent",
+  "reporting_task": "MolUnd/SMILES Equivalence",
+  "all_pass_definition": "The all_pass field is the task-specific conjunction of required process verifier checks used when constructing the verified reference.",
+  "verifier_checks": [
+    {
+      "name": "S1_canonical_a",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S1_formula_a",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S2_canonical_b",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S2_formula_b",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S3_formula_match",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S3_identical",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S4_canonical_equal",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S4_predict_logic",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S5_predict_logic",
+      "description": "Task-specific deterministic verifier flag."
+    }
+  ],
+  "outcome_fields": [
+    "outcome"
+  ],
+  "type_notes": [
+    "Type-I checks are intrinsic symbolic checks such as validity, arithmetic, canonicalization, scaffold preservation, or consistency.",
+    "Type-II checks compare closed-answer process states or final answers with the verified benchmark reference.",
+    "Molecular optimization uses oracle-computable constraints rather than strict path matching for the final outcome."
+  ]
+}

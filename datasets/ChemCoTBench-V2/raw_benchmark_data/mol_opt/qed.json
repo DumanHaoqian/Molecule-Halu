@@ -1,0 +1,1202 @@
+[
+  {
+    "anonymous_sample_id": "mol_opt.qed.0000",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 1,
+    "tgt_mol": "O=C(O)c1cn(COCCO)c2ccc(Cl)cc2c1=O",
+    "tgt_qed": 0.8125944859628683,
+    "idx": 1
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0001",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 2,
+    "tgt_mol": "CCCNc1c(C(=O)OCC)cnc2ccnn12",
+    "tgt_qed": 0.815960554521331,
+    "idx": 2
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0002",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 10,
+    "tgt_mol": "CC(=O)Nc1ccc(CCCCc2ccccc2)cc1",
+    "tgt_qed": 0.7803796562675974,
+    "idx": 10
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0003",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 12,
+    "tgt_mol": "CN(c1ccc(C(=O)NC2CCCC2)cc1)S(=O)(=O)c1ccccc1",
+    "tgt_qed": 0.892559706401977,
+    "idx": 12
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0004",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 16,
+    "tgt_mol": "CCCC(CC)C(=O)Nc1ccc(S(N)(=O)=O)cc1",
+    "tgt_qed": 0.8379065074473071,
+    "idx": 16
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0005",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 20,
+    "tgt_mol": "O=C(c1ccc(N2C(=O)C3CC=C(Cl)CC3C2=O)cc1)N1CCCCC1",
+    "tgt_qed": 0.7480062016695315,
+    "idx": 20
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0006",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 21,
+    "tgt_mol": "CCC(=O)Nc1nnc(-c2ccc([N+](=O)[O-])cc2)s1",
+    "tgt_qed": 0.6838494229005923,
+    "idx": 21
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0007",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 23,
+    "tgt_mol": "COc1ccc2c(CN3CCCC3)cc(=O)oc2c1",
+    "tgt_qed": 0.7937732814319095,
+    "idx": 23
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0008",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 25,
+    "tgt_mol": "COc1ccc(CCNC(=O)Cc2ccc(Cl)cc2)cc1OC",
+    "tgt_qed": 0.845696643118409,
+    "idx": 25
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0009",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 27,
+    "tgt_mol": "NCC(Cn1cncn1)c1ccc(Cl)cc1Cl",
+    "tgt_qed": 0.9279915997680467,
+    "idx": 27
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0010",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 29,
+    "tgt_mol": "CCC(C)Nc1nc2c(c(=O)n(C)c(=O)n2C)n1C",
+    "tgt_qed": 0.8589278455699582,
+    "idx": 29
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0011",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 30,
+    "tgt_mol": "Cc1ccc(C=CC(=O)Nc2cccc(Cl)c2)cc1O",
+    "tgt_qed": 0.8382249328494579,
+    "idx": 30
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0012",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 32,
+    "tgt_mol": "O=C(NCc1ccsc1)c1ccc(C#Cc2ccccc2)cc1",
+    "tgt_qed": 0.7247194640024907,
+    "idx": 32
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0013",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 34,
+    "tgt_mol": "O=C(NCc1ccsc1)c1ccc(C#Cc2ccccc2)cc1",
+    "tgt_qed": 0.7247194640024907,
+    "idx": 34
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0014",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 36,
+    "tgt_mol": "Cc1nc(C#Cc2cnc(NC(C)(C)C)nc2)cs1",
+    "tgt_qed": 0.8110315683818369,
+    "idx": 36
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0015",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 37,
+    "tgt_mol": "CCC(O)c1ccc2c(c1)OCO2",
+    "tgt_qed": 0.7545099720877473,
+    "idx": 37
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0016",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 44,
+    "tgt_mol": "NCC(=O)Nc1ccc(Cl)cc1C(=O)c1ccccc1",
+    "tgt_qed": 0.8490293098046167,
+    "idx": 44
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0017",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 53,
+    "tgt_mol": "COc1ccc(C(=O)Nc2ccccc2C)cc1OC",
+    "tgt_qed": 0.9280494988556085,
+    "idx": 53
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0018",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 54,
+    "tgt_mol": "CN(C)CCCn1c(N)c(C#N)c2nc(C#N)c(C#N)nc21",
+    "tgt_qed": 0.8717263634921282,
+    "idx": 54
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0019",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 71,
+    "tgt_mol": "COc1cc(O)c2c(c1)OC(c1ccc(O)cc1)CC2=O",
+    "tgt_qed": 0.8874343900434254,
+    "idx": 71
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0020",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 72,
+    "tgt_mol": "CCS(=O)(=O)Cc1ccccc1-c1ccc(-c2cnc(N)cn2)c(F)c1",
+    "tgt_qed": 0.7421243124526702,
+    "idx": 72
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0021",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 74,
+    "tgt_mol": "COc1ccc(C(=O)Nc2ccc(N3CCCC3)cc2)cc1OC",
+    "tgt_qed": 0.9126671134792369,
+    "idx": 74
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0022",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 76,
+    "tgt_mol": "CN1CCN(CC(=O)Nc2ccccc2Oc2ccccc2)CC1",
+    "tgt_qed": 0.9178728076373606,
+    "idx": 76
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0023",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 79,
+    "tgt_mol": "Cc1n[nH]c2cc(NC(=O)NC(C)c3ccccc3)ncc12",
+    "tgt_qed": 0.6938236117624116,
+    "idx": 79
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0024",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 80,
+    "tgt_mol": "CNC(=O)COc1ccc(C(=O)Nc2cccc(F)c2)c2ccccc12",
+    "tgt_qed": 0.7398931183905172,
+    "idx": 80
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0025",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 82,
+    "tgt_mol": "CC(C1CC1)N(c1cc(Cl)ccc1CO)S(=O)(=O)c1ccc(Cl)cc1",
+    "tgt_qed": 0.7780610750975513,
+    "idx": 82
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0026",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 86,
+    "tgt_mol": "CC(C)C(NS(=O)(=O)c1ccc(-c2ccc(F)cc2)cc1)C(=O)O",
+    "tgt_qed": 0.8381528150857229,
+    "idx": 86
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0027",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 87,
+    "tgt_mol": "NS(=O)(=O)c1ccc(Nc2nccc(-c3ccccc3)n2)cc1",
+    "tgt_qed": 0.7675049207830676,
+    "idx": 87
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0028",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 88,
+    "tgt_mol": "CC(C)(Oc1ccc(C(=O)c2ccc(Cl)cc2)cc1)C(=O)O",
+    "tgt_qed": 0.8513366731464941,
+    "idx": 88
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0029",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 90,
+    "tgt_mol": "CN1CCN(c2cc3c(cc2F)c(=O)c(C(=O)O)cn3C2CC2)CC1",
+    "tgt_qed": 0.9207422205061747,
+    "idx": 90
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0030",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 93,
+    "tgt_mol": "O=C(CN1CCCCC1)Nc1ncc(Cc2cccc3ccccc23)s1",
+    "tgt_qed": 0.7326487245632367,
+    "idx": 93
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0031",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 96,
+    "tgt_mol": "O=C(CCc1ccccc1)NC(Cc1ccccc1)C(=O)O",
+    "tgt_qed": 0.8245942945899335,
+    "idx": 96
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0032",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 97,
+    "tgt_mol": "CC(C)C(NS(=O)(=O)c1ccc(-c2ccc(C#N)cc2)cc1)C(=O)O",
+    "tgt_qed": 0.8251972243834331,
+    "idx": 97
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0033",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 98,
+    "tgt_mol": "O=C1NC(=O)C(=Cc2ccc(-c3ccc(Cl)c(C(=O)O)c3)o2)S1",
+    "tgt_qed": 0.8213168935252017,
+    "idx": 98
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0034",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 101,
+    "tgt_mol": "COc1cc(CC(C)=O)c2c(=O)cc(CCCO)oc2c1",
+    "tgt_qed": 0.8783463872879926,
+    "idx": 101
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0035",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 110,
+    "tgt_mol": "COC(=O)c1sccc1NC(=O)c1ccc(OC)cc1",
+    "tgt_qed": 0.8797250465514416,
+    "idx": 110
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0036",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 113,
+    "tgt_mol": "Cc1sc2ncc(Cl)cc2c1C1=NCCN1",
+    "tgt_qed": 0.8460702458086017,
+    "idx": 113
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0037",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 116,
+    "tgt_mol": "COc1ccc(CNc2ncnc3c2ncn3C(C)C)cc1",
+    "tgt_qed": 0.7838902007109868,
+    "idx": 116
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0038",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 128,
+    "tgt_mol": "COc1ccccc1OCC(=O)Nc1ccc(C(N)=O)cc1",
+    "tgt_qed": 0.8509237381816723,
+    "idx": 128
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0039",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 135,
+    "tgt_mol": "O=C(O)c1cc(-c2ccc(Cl)cc2)ccc1O",
+    "tgt_qed": 0.856276640583433,
+    "idx": 135
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0040",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 136,
+    "tgt_mol": "CC1=CCC2C(C1)c1c(O)cc(C(C)(C)CO)cc1OC2(C)C",
+    "tgt_qed": 0.8010035528529188,
+    "idx": 136
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0041",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 147,
+    "tgt_mol": "N#CC(=Cc1ccccc1OCC(=O)O)c1nc2ccccc2[nH]1",
+    "tgt_qed": 0.7040175736521501,
+    "idx": 147
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0042",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 150,
+    "tgt_mol": "CSc1nc(-c2ccccc2)cc(-c2ccccc2)c1C#N",
+    "tgt_qed": 0.6381219936931812,
+    "idx": 150
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0043",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 151,
+    "tgt_mol": "CCOc1cc(C=C2C(=N)N3OC(C)=CC3=NC2=O)ccc1OC",
+    "tgt_qed": 0.8592037003114161,
+    "idx": 151
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0044",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 152,
+    "tgt_mol": "CC(=O)Nc1ccc(S(=O)(=O)Nc2ccccc2C(=O)N2CCOCC2)cc1",
+    "tgt_qed": 0.7936222564787364,
+    "idx": 152
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0045",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 159,
+    "tgt_mol": "Cc1c(NC(=O)CCC2CCCCC2)c(=O)n(-c2ccccc2)n1C",
+    "tgt_qed": 0.8995330538359531,
+    "idx": 159
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0046",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 160,
+    "tgt_mol": "O=S1(=O)N=C(N(CCCO)c2ccccc2)c2ccccc21",
+    "tgt_qed": 0.9367246402123635,
+    "idx": 160
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0047",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 162,
+    "tgt_mol": "CC(C)(C)c1nnc(NC(=O)c2ccc3c(c2)OCO3)s1",
+    "tgt_qed": 0.9232554987332263,
+    "idx": 162
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0048",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 167,
+    "tgt_mol": "O=C(O)c1ccc(N2CCC(Oc3ccccc3C(F)(F)F)CC2)nn1",
+    "tgt_qed": 0.8942003209540141,
+    "idx": 167
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0049",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 169,
+    "tgt_mol": "CN1C(=O)NC(c2ccccc2)(c2ccccc2)C1=O",
+    "tgt_qed": 0.8463198815059728,
+    "idx": 169
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0050",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 174,
+    "tgt_mol": "O=C(Nc1ccccc1)c1ccc(F)c(S(=O)(=O)N2CCOCC2)c1",
+    "tgt_qed": 0.9014877332786491,
+    "idx": 174
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0051",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 175,
+    "tgt_mol": "Cc1cc(C#N)cc(C(=O)c2c(C(C)C)c(=O)[nH]c(=O)n2C)c1",
+    "tgt_qed": 0.8709527304752478,
+    "idx": 175
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0052",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 176,
+    "tgt_mol": "COc1ccc(C(=O)NCC2CCCO2)cc1",
+    "tgt_qed": 0.8620018999863895,
+    "idx": 176
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0053",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 177,
+    "tgt_mol": "COc1ccc(S(=O)(=O)Nc2ccc(Cl)cc2)cc1",
+    "tgt_qed": 0.9429468672165391,
+    "idx": 177
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0054",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 178,
+    "tgt_mol": "NC(Cc1ccc(C(F)(F)F)cc1)c1csc(Nc2ccccn2)n1",
+    "tgt_qed": 0.6974718879314813,
+    "idx": 178
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0055",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 179,
+    "tgt_mol": "COc1ccc(C(=O)Nc2ccccc2C#N)cc1OC1CCCC1",
+    "tgt_qed": 0.8905107623931893,
+    "idx": 179
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0056",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 180,
+    "tgt_mol": "O=C(Nc1nccs1)C1CCN(S(=O)(=O)c2cccs2)CC1",
+    "tgt_qed": 0.9100386775303024,
+    "idx": 180
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0057",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 181,
+    "tgt_mol": "OCC1OC(n2cnc3c(C4CCCC4)ncnc32)C(O)C1O",
+    "tgt_qed": 0.7344614856130924,
+    "idx": 181
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0058",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 182,
+    "tgt_mol": "COC(=O)c1ccccc1NC(=O)c1cc(OC)cc(OC)c1",
+    "tgt_qed": 0.8588449035671836,
+    "idx": 182
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0059",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 183,
+    "tgt_mol": "COc1ccc(-c2nn(-c3ccc(S(N)(=O)=O)cc3)cc2C(N)=O)cc1",
+    "tgt_qed": 0.6968159600625045,
+    "idx": 183
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0060",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 185,
+    "tgt_mol": "CCc1nn(Cc2ccc(NC(=O)C3CCC3)cc2)c(CC)c1CC(=O)O",
+    "tgt_qed": 0.7466307914056527,
+    "idx": 185
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0061",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 186,
+    "tgt_mol": "COc1ccc(C2=C(c3ccc(OC)c(OC)c3)C(=O)N(CCO)C2=O)cc1OC",
+    "tgt_qed": 0.661617125454231,
+    "idx": 186
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0062",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 191,
+    "tgt_mol": "COc1cc(NC(C)CCCN)c2ncccc2c1",
+    "tgt_qed": 0.8371289360458547,
+    "idx": 191
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0063",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 193,
+    "tgt_mol": "COc1cc2c(c(OC)c1OC)-c1ccc(OC)c(=O)cc1C(N)CC2",
+    "tgt_qed": 0.9061941475262528,
+    "idx": 193
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0064",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 195,
+    "tgt_mol": "O=C(COC(=O)c1ccc(F)cc1)NCc1ccc(F)cc1",
+    "tgt_qed": 0.8632891894079698,
+    "idx": 195
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0065",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 196,
+    "tgt_mol": "O=C(Nc1ccccc1-c1ccccc1)c1cnccn1",
+    "tgt_qed": 0.7967084930001207,
+    "idx": 196
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0066",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 199,
+    "tgt_mol": "COC(=O)Nc1cc(C(=O)Nc2cc(C(=O)NCCC(C)C)n(C)c2)n(C)c1",
+    "tgt_qed": 0.6764847770035757,
+    "idx": 199
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0067",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 202,
+    "tgt_mol": "C=CC1(C)CC(OC(=O)Cn2ccnn2)C2(C)C(C)CCC3(CCC(=O)C32)C(C)C1O",
+    "tgt_qed": 0.583508815325207,
+    "idx": 202
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0068",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 203,
+    "tgt_mol": "CN(C)CC(O)c1cc(C(F)(F)F)nc2c(C(F)(F)F)cccc12",
+    "tgt_qed": 0.8523725990160946,
+    "idx": 203
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0069",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 205,
+    "tgt_mol": "COc1ccc(C(=O)Nc2cccc(Cl)c2)cc1OC",
+    "tgt_qed": 0.9359001481979918,
+    "idx": 205
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0070",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 206,
+    "tgt_mol": "CCn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCN(C)CC3)cc21",
+    "tgt_qed": 0.9243839877881742,
+    "idx": 206
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0071",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 208,
+    "tgt_mol": "COc1ccc(-c2nn(-c3ccccc3)cc2C#N)cc1",
+    "tgt_qed": 0.7355697974837253,
+    "idx": 208
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0072",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 211,
+    "tgt_mol": "O=C(Nc1cc(C(F)(F)F)ccc1N1CCOCC1)C1=COCCO1",
+    "tgt_qed": 0.8990401019313328,
+    "idx": 211
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0073",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 212,
+    "tgt_mol": "O=C(Cn1ccnc1)c1ccc(OCc2ccc(OC(F)(F)F)cc2)cc1",
+    "tgt_qed": 0.5789266875778691,
+    "idx": 212
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0074",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 213,
+    "tgt_mol": "COc1cc2ncnc(Oc3ccc(NC(C)=O)cc3)c2cc1OC",
+    "tgt_qed": 0.7670026283138522,
+    "idx": 213
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0075",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 214,
+    "tgt_mol": "CCn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCN(CCCN(C)C)CC3)cc21",
+    "tgt_qed": 0.7606847404523257,
+    "idx": 214
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0076",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 215,
+    "tgt_mol": "COc1ccc(-c2cc(NC(=O)NCC(=O)O)c(C(=O)O)s2)cc1",
+    "tgt_qed": 0.6335363117774584,
+    "idx": 215
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0077",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 216,
+    "tgt_mol": "COc1ccc(NC(=O)C2CC2)cc1NS(=O)(=O)c1ccc(F)cc1",
+    "tgt_qed": 0.825256517753298,
+    "idx": 216
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0078",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 217,
+    "tgt_mol": "CCCN1CCN(c2cc3c(cc2F)c(=O)c(C(=O)O)cn3CC)CC1",
+    "tgt_qed": 0.885838281819685,
+    "idx": 217
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0079",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 218,
+    "tgt_mol": "c1ccc(-c2nc(SCC3OCCO3)[nH]c2-c2ccccc2)cc1",
+    "tgt_qed": 0.7080862159475174,
+    "idx": 218
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0080",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 219,
+    "tgt_mol": "COc1ccc(C(=O)NCCn2ccc3ccccc32)cc1OC",
+    "tgt_qed": 0.757933322200185,
+    "idx": 219
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0081",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 223,
+    "tgt_mol": "O=C(NCC(F)F)c1cc(-c2ccccc2)nc2ncnn12",
+    "tgt_qed": 0.7972852406551776,
+    "idx": 223
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0082",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 224,
+    "tgt_mol": "Cc1ccccc1NS(=O)(=O)c1ccc(C(C)(C)C)cc1",
+    "tgt_qed": 0.9278326360592921,
+    "idx": 224
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0083",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 225,
+    "tgt_mol": "N#CCNC(=O)C1(NC(=O)c2ccc(-c3ccccc3)cc2)CCCCC1",
+    "tgt_qed": 0.8006690915717444,
+    "idx": 225
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0084",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 230,
+    "tgt_mol": "COc1ccc(C(=O)c2cc(OC)c(OC)c(OC)c2)cc1OC",
+    "tgt_qed": 0.726529450553464,
+    "idx": 230
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0085",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 231,
+    "tgt_mol": "c1ccc(C(OCCN2CCNCC2)c2ccccc2)cc1",
+    "tgt_qed": 0.8868298614617427,
+    "idx": 231
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0086",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 232,
+    "tgt_mol": "Cn1c(C(C)(C)C)nc(C(=O)NCc2ccc(F)cc2)c(O)c1=O",
+    "tgt_qed": 0.8977385911896659,
+    "idx": 232
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0087",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 233,
+    "tgt_mol": "O=C(CN1CCCC1)Nc1cccc(C(=O)Nc2cccc(C(F)(F)F)c2)c1",
+    "tgt_qed": 0.8102475262647673,
+    "idx": 233
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0088",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 234,
+    "tgt_mol": "COc1ccc(CC(=O)NC(C)(C)C)cc1S(=O)(=O)N1CCOCC1",
+    "tgt_qed": 0.8410903535267484,
+    "idx": 234
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0089",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 237,
+    "tgt_mol": "CC(C)(C)NCC(=Cc1ccccc1)C(=O)c1ccccc1",
+    "tgt_qed": 0.6560252540038913,
+    "idx": 237
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0090",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 238,
+    "tgt_mol": "COc1ccc(-c2csc(NC(=O)C(=O)O)n2)cc1OC",
+    "tgt_qed": 0.8365322950674461,
+    "idx": 238
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0091",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 239,
+    "tgt_mol": "O=C(c1ccc(F)c(F)c1Nc1ccc(I)cc1F)N1CCC1",
+    "tgt_qed": 0.7344424632959798,
+    "idx": 239
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0092",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 240,
+    "tgt_mol": "CC(Nc1oc(-c2ccco2)nc1C#N)c1ccccc1",
+    "tgt_qed": 0.7813832294091857,
+    "idx": 240
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0093",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 243,
+    "tgt_mol": "O=S(=O)(c1ccccc1)N1CCN(Cc2ccccc2)CC1",
+    "tgt_qed": 0.8680459759098327,
+    "idx": 243
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0094",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 244,
+    "tgt_mol": "N#CCC(=O)N1CCN(C(c2ccccc2)c2ccccc2)CC1",
+    "tgt_qed": 0.8704317984556955,
+    "idx": 244
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0095",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 245,
+    "tgt_mol": "N#CC1(NC(=O)CN2C(=O)NC3(CCCCCC3)C2=O)CCCCC1",
+    "tgt_qed": 0.7626966237126545,
+    "idx": 245
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0096",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 249,
+    "tgt_mol": "CC(C)NC(=O)C(C)N1CCC(NS(=O)(=O)c2ccc3cc(Cl)ccc3c2)C1=O",
+    "tgt_qed": 0.7242560720607139,
+    "idx": 249
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0097",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 251,
+    "tgt_mol": "CC(C(=O)N1CCOCC1)N1CCC(NS(=O)(=O)c2ccc3cc(Cl)ccc3c2)C1=O",
+    "tgt_qed": 0.723474000926691,
+    "idx": 251
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0098",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 253,
+    "tgt_mol": "COc1ccc(C=CC(=O)Nc2ccc(S(N)(=O)=O)cc2)cc1",
+    "tgt_qed": 0.8180960790627242,
+    "idx": 253
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0099",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 259,
+    "tgt_mol": "N#CC(=Cc1ccc(-n2ccnc2)cc1)c1nc2ccccc2[nH]1",
+    "tgt_qed": 0.5847788321693368,
+    "idx": 259
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0100",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 260,
+    "tgt_mol": "Cc1ccc(S(=O)(=O)Nc2c(C)n(C)n(-c3ccccc3)c2=O)cc1",
+    "tgt_qed": 0.7799370431051326,
+    "idx": 260
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0101",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 261,
+    "tgt_mol": "CC(=O)NCCN1c2ccccc2C=Cc2ccccc21",
+    "tgt_qed": 0.9323867159507834,
+    "idx": 261
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0102",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 263,
+    "tgt_mol": "COc1ccc(CCNS(=O)(=O)c2ccc(F)cc2)cc1OC",
+    "tgt_qed": 0.841021959611757,
+    "idx": 263
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0103",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 266,
+    "tgt_mol": "O=C(NCc1ccccc1)c1cccn(Cc2ccccc2)c1=O",
+    "tgt_qed": 0.7862785218567498,
+    "idx": 266
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0104",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 267,
+    "tgt_mol": "COc1cc(C=Cc2nc(N)nnc2C)cc(OC)c1OC",
+    "tgt_qed": 0.9019895902673428,
+    "idx": 267
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0105",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 269,
+    "tgt_mol": "CC(=O)NS(=O)(=O)c1ccc(N2C(=O)c3ccccc3C2=O)cc1",
+    "tgt_qed": 0.8462917517292874,
+    "idx": 269
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0106",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 271,
+    "tgt_mol": "CNC1=NCCN1Cc1ccc(C(=O)Nc2ccc(Cl)cc2C(=O)Nc2ccc(Cl)cn2)cc1",
+    "tgt_qed": 0.47235726536878064,
+    "idx": 271
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0107",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 275,
+    "tgt_mol": "CCCCOc1ccc(-c2ncc[nH]2)cc1",
+    "tgt_qed": 0.7788844374785354,
+    "idx": 275
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0108",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 278,
+    "tgt_mol": "CC1(C)Oc2ccc(C#N)cc2C(c2cccc[n+]2[O-])C1O",
+    "tgt_qed": 0.6431099390221197,
+    "idx": 278
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0109",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 279,
+    "tgt_mol": "O=[N+]([O-])c1ccc(Cl)cc1S(=O)(=O)n1ccc2ccccc21",
+    "tgt_qed": 0.5415571899129963,
+    "idx": 279
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0110",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 282,
+    "tgt_mol": "O=C(CN1CCN(c2ccccc2F)CC1)NCc1ccccc1",
+    "tgt_qed": 0.9149698034657712,
+    "idx": 282
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0111",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 285,
+    "tgt_mol": "COc1cccc(-n2nc(C(C)(C)C)cc2NC(=O)Nc2ccccc2)c1",
+    "tgt_qed": 0.697105917843021,
+    "idx": 285
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0112",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 286,
+    "tgt_mol": "O=C(NO)C1CCCNC1C(=O)N1CCC(c2ccccc2)C1",
+    "tgt_qed": 0.5707944979489428,
+    "idx": 286
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0113",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 287,
+    "tgt_mol": "O=C(C=Cc1ccco1)N1CCN(S(=O)(=O)c2ccccc2)CC1",
+    "tgt_qed": 0.7920442302725696,
+    "idx": 287
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0114",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 290,
+    "tgt_mol": "Cn1cc(C(=O)O)c(Nc2ccc(I)cc2F)cc1=O",
+    "tgt_qed": 0.7935893842576786,
+    "idx": 290
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0115",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 292,
+    "tgt_mol": "Cc1ccc(CC(=O)Nc2ccc(S(=O)(=O)N3CCOCC3)cc2)cc1",
+    "tgt_qed": 0.8705293508718887,
+    "idx": 292
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0116",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 293,
+    "tgt_mol": "CC(C)(c1cc(-c2cccc(C(N)=O)c2)c2ncccc2c1)S(C)(=O)=O",
+    "tgt_qed": 0.7650339583702916,
+    "idx": 293
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0117",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 294,
+    "tgt_mol": "CCOc1ccc(NC(=O)c2ccccc2O)cc1",
+    "tgt_qed": 0.8846368876913163,
+    "idx": 294
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0118",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 296,
+    "tgt_mol": "NS(=O)(=O)c1ccc(NC(=O)Cc2ccc(Cl)cc2)c(Br)c1",
+    "tgt_qed": 0.8222742089705178,
+    "idx": 296
+  },
+  {
+    "anonymous_sample_id": "mol_opt.qed.0119",
+    "task_family": "mol_opt",
+    "subtask": "qed",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 299,
+    "tgt_mol": "CC1(C)Oc2ccc(C#N)cc2C(n2ccc(=O)nc2)C1O",
+    "tgt_qed": 0.855138408646592,
+    "idx": 299
+  }
+]
