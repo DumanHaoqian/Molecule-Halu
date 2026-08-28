@@ -1,0 +1,1 @@
+"""Immutable MolHalluLens domain objects."""

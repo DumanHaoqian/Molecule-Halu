@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-28",
+  "updated_at": "2026-08-28T17:10:42+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 52,
-    "in_progress": 0,
+    "not_started": 50,
+    "in_progress": 1,
     "blocked": 0,
-    "completed": 0,
-    "last_completed_task": null
+    "completed": 1,
+    "last_completed_task": "T001"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -42,7 +42,37 @@
     "follow_up_actions": ["后续改进动作；没有则为空数组"],
     "assessment_summary": "简洁、具体、可复核的总体评价"
   },
-  "quality_assessment_log": [],
+  "quality_assessment_log": [
+    {
+      "task_id": "T001",
+      "assessed_at": "2026-08-28T17:10:08+08:00",
+      "assessed_by": "codex",
+      "scores": {
+        "requirements_alignment": 5,
+        "implementation_quality": 5,
+        "verification_coverage": 5,
+        "documentation_and_traceability": 5
+      },
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["0. 本版本冻结的决定", "1. 项目目标、边界与最终产物", "18. Phase 0", "19. 发布验收标准", "20. 风险 6", "21. 推荐立即开始的第一个实现批次"],
+      "acceptance_criteria_results": [
+        {
+          "criterion": "13 项冻结决定均有明确实现或验证归属",
+          "passed": true,
+          "evidence": ["Pilot/Blueprint/MOLHALLULENS_MOLEDIT_CONSTRAINT_REVIEW.md#2-冻结决定的实现与验证归属", "自动检查确认约束表包含 13 条编号记录"]
+        },
+        {
+          "criterion": "风险 6 的 benchmark 使用方案已作出并记录",
+          "passed": true,
+          "evidence": ["Pilot/Blueprint/MOLHALLULENS_MOLEDIT_CONSTRAINT_REVIEW.md#3-benchmark-使用决定风险-6"]
+        }
+      ],
+      "strengths": ["13 项冻结决定逐一映射到实现任务和强制验证任务", "采用保守的 benchmark 方案 1，并明确 train/validation/test 只是构建管线内部 split", "补充 fail-closed 边界和 Phase 0 未完成声明，避免把文档审阅误当成实现完成"],
+      "known_gaps": [],
+      "follow_up_actions": ["T052 生成 dataset card 时引用并披露 benchmark 使用决定", "若项目负责人改用开发集方案，必须显式修订约束审阅记录和 manifest"],
+      "assessment_summary": "T001 的两项验收条件均具备直接、可复核证据；范围决定和 13 项约束归属无已知缺口。"
+    }
+  ],
   "tasks": [
     {
       "id": "T001", "phase": "0_schema_and_interfaces", "title": "确认实施计划与冻结约束",
@@ -50,7 +80,7 @@
       "description": "逐项确认 GT 隔离、post-token 对齐、四类 propagation、8-record bundle、多标签体系、Poe provider 和 split-before-donor 等不可变约束。",
       "deliverables": ["约束审阅记录", "已批准的实现范围"],
       "acceptance_criteria": ["13 项冻结决定均有明确实现或验证归属", "风险 6 的 benchmark 使用方案已作出并记录"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-28T17:09:25+08:00", "completed_at": "2026-08-28T17:10:08+08:00", "completion_notes": "完整复核实施计划的冻结决定、范围、Phase 0、发布标准与风险 6；新增约束审阅记录，将 13 项冻结决定分别映射至实现任务和强制验证任务，并采用风险 6 方案 1：150 origins 仅用于 pipeline/schema smoke test，不进入正式 detector 训练、layer 选择或 threshold 调节。", "evidence": ["Pilot/Blueprint/MOLHALLULENS_MOLEDIT_CONSTRAINT_REVIEW.md", "约束表自动计数结果：13", "benchmark decision 自动断言：scheme 1 recorded"], "files_changed": ["Pilot/Blueprint/MOLHALLULENS_MOLEDIT_CONSTRAINT_REVIEW.md", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "python constraint-review assertions: 13 rows, scheme 1, no formal detector training, Phase 0 continuation"], "blocker": null
     },
     {
       "id": "T002", "phase": "0_schema_and_interfaces", "title": "建立包目录和项目依赖",
@@ -58,7 +88,7 @@
       "description": "创建 molhallulens 建议目录、Python package、测试目录和依赖锁定机制。",
       "deliverables": ["Pilot/molhallulens 包骨架", "依赖配置或 lockfile"],
       "acceptance_criteria": ["包可被导入", "RDKit、Pydantic、JSON Schema、Poe 客户端和测试依赖版本可复现"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "in_progress", "assigned_to": "codex", "started_at": "2026-08-28T17:10:42+08:00", "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
     },
     {
       "id": "T003", "phase": "0_schema_and_interfaces", "title": "冻结基础配置文件",
