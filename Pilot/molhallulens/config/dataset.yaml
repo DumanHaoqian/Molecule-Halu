@@ -44,4 +44,3 @@ detector:
   activation_alignment: post_token_h_t
   ignored_evaluation_segments: [source, instruction, special, padding]
   evaluated_segments: [reasoning_chain, final_answer]
-

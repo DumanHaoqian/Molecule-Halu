@@ -60,4 +60,3 @@ omission:
   construct_pure_omission_in_primary_localization: false
   insert_missing_sentinel: false
   allowed_diagnostic_targets: [trace_level, step_level, boundary_or_eos_protocol]
-
