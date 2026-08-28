@@ -1,5 +1,5 @@
 # Ignore hug chemical LLM directory
 /chemical_models
 
-# Ignore the datasets
-/dataset
+# Develop phase: ChemCOTBench-V2 original Repo
+/ChemCoTBench-V2

@@ -1,0 +1,4 @@
+family,subtask,reporting_task,n_samples,raw_file,process_file
+mol_edit,add_pilot_origin,MolEdit/Add,50,raw_benchmark_data/mol_edit/add_pilot_origin.json,process_evaluation_data/mol_edit/add_pilot_origin.json
+mol_edit,delete_pilot_origin,MolEdit/Delete,50,raw_benchmark_data/mol_edit/delete_pilot_origin.json,process_evaluation_data/mol_edit/delete_pilot_origin.json
+mol_edit,substitute_pilot_origin,MolEdit/Substitute,50,raw_benchmark_data/mol_edit/substitute_pilot_origin.json,process_evaluation_data/mol_edit/substitute_pilot_origin.json
