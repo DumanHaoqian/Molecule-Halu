@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-28T17:30:51+08:00",
+  "updated_at": "2026-08-28T18:18:30+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 49,
+    "not_started": 48,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 3,
-    "last_completed_task": "T003"
+    "completed": 4,
+    "last_completed_task": "T004"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -134,6 +134,35 @@
       "known_gaps": [],
       "follow_up_actions": ["T017 将 concrete operator registry 与 operators.yaml 的 frozen compatibility/bucket mappings 做运行时交叉校验", "T033 使用 llm.yaml 的 frozen endpoints/tools 要求执行真实 Poe capability probe", "T052 将五份配置内容 hash 写入 dataset manifest"],
       "assessment_summary": "T003 三项验收条件全部满足；15 项自动测试、wheel packaging、CLI、JSON serialization、secret scan 和独立复审均通过，无已知阻断缺口。"
+    },
+    {
+      "task_id": "T004",
+      "assessed_at": "2026-08-28T18:18:30+08:00",
+      "assessed_by": "codex",
+      "scores": {
+        "requirements_alignment": 5,
+        "implementation_quality": 5,
+        "verification_coverage": 5,
+        "documentation_and_traceability": 5
+      },
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["0. 本版本冻结的决定", "3.4 哪些 token 参与评测", "4.1-4.7 Typed State DAG", "5.3-5.7 面向对象架构与关键 domain objects", "6.1 四种 policy 的精确定义", "6.3 每个 origin 的 8-record bundle", "9.1-9.5 Token-level hallucination taxonomy", "10.1-10.5 Char span、Trace AST 和 token projection", "12.1-12.3 Deterministic validation gates 与 H/N invariants", "14. Canonical record schema", "15.1 建议代码目录", "16.1 Unit tests", "18. Phase 0：冻结 schema 和接口"],
+      "acceptance_criteria_results": [
+        {
+          "criterion": "核心对象使用 frozen dataclass 或等价不可变结构",
+          "passed": true,
+          "evidence": ["Pilot/tests/unit/test_domain_contracts.py", "Pilot/tests/unit/test_state_dag.py", "public API assertion: 52 unique exports and 26 frozen slotted dataclasses", "three independent read-only reviews: no reproducible blocker"]
+        },
+        {
+          "criterion": "visibility、node role、dependency、causal role 和 multi-label axes 均可表达",
+          "passed": true,
+          "evidence": ["Pilot/molhallulens/domain/enums.py", "Pilot/molhallulens/domain/state_dag.py", "Pilot/molhallulens/domain/labels.py", "Pilot/tests/unit/test_domain_enums.py", "Pilot/tests/unit/test_domain_labels.py", "Pilot/tests/unit/test_domain_records_recipes_errors.py", "pytest result: 77 passed"]
+        }
+      ],
+      "strengths": ["六个 domain 模块将计划中的枚举、DAG、recipe、record、label 和 structured validation contracts 实现为严格类型且深层不可变的公开 API", "StateSchema/StateDAG/GraphDelta 对类型、无环、BUILD_ONLY 隔离、真实语义差异、唯一独立 root 和 TERMINAL 约束采用 fail-closed 校验", "CharAnnotation 与 TokenLabelSet 完整表达 semantic、editing subtype、evidence relation 和 causal role 多标签轴，并强制 post-token、mask、offset、UNVERIFIABLE 与 H/N invariants", "PerturbationResult 交叉绑定 reference/candidate graph、GraphDelta、字符标注、token labels、trace 和 bundle identity；对抗审查发现的深层可变、伪造类型、隐藏 oracle、缺失 target 标注及 causal/axis 不一致问题均已修复", "全量测试、编译、wheel 构建、公开 API 断言、敏感信息扫描和三轮独立只读验收均通过"],
+      "known_gaps": [],
+      "follow_up_actions": ["T005/T006 使用已冻结的 DetectorInput 和 TokenLabelSet 契约实现唯一 serializer 与专项 post-token golden tests", "T009/T010 在通用 DAG contract 上实现三类具体 editing schemas 和确定性图算法", "T039/T042 实现 Trace AST mention offsets 与 char-to-token projection", "T043 将当前对象级 invariants 接入完整 deterministic validation chain"],
+      "assessment_summary": "T004 的六项交付物和两项验收条件全部满足；77 项测试、compileall、wheel、公开 API/不可变断言及三轮独立复审通过，无当前任务范围内的已知缺口。"
     }
   ],
   "tasks": [
@@ -167,7 +196,7 @@
       "description": "实现 enums、TaskRecord、ClaimValue、StateNodeSpec、StateEdge、StateDAG、MutationEvent、recipe、label 和 validation 数据类型。",
       "deliverables": ["domain/enums.py", "domain/records.py", "domain/state_dag.py", "domain/recipes.py", "domain/labels.py", "domain/errors.py"],
       "acceptance_criteria": ["核心对象使用 frozen dataclass 或等价不可变结构", "visibility、node role、dependency、causal role 和 multi-label axes 均可表达"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-28T17:33:27+08:00", "completed_at": "2026-08-28T18:18:30+08:00", "completion_notes": "实现并公开六个 domain 模块：封闭领域枚举、递归深层不可变 FrozenMap/ClaimValue、typed acyclic StateSchema/StateDAG/GraphDelta、operator/recipe contracts、两级字符与 post-token 多标签对象、source/detector/result/bundle records 及 structured validation errors。所有核心 dataclass 均 frozen+slots，并对精确运行时类型、循环或不透明可变值、BUILD_ONLY/GT 泄漏、伪语义 mutation、H/N/TERMINAL/UNVERIFIABLE、mask/offset、8-record reciprocal bundle 以及 reference/candidate delta 与 annotation 的 target/causal/axis 交叉绑定实行 fail-closed 校验。新增五组单元与跨模块契约测试；三轮独立只读复审和对抗探针发现的问题全部修复后确认无 blocker。计划中的具体三类 schema、图算法、Trace AST/projector 和完整 validator 执行器仍按 T009/T010/T039/T042/T043 实现，不属于本任务遗漏。", "evidence": ["Pilot/molhallulens/domain/enums.py", "Pilot/molhallulens/domain/records.py", "Pilot/molhallulens/domain/state_dag.py", "Pilot/molhallulens/domain/recipes.py", "Pilot/molhallulens/domain/labels.py", "Pilot/molhallulens/domain/errors.py", "Pilot/molhallulens/domain/__init__.py", "Pilot/tests/unit/test_domain_contracts.py", "Pilot/tests/unit/test_domain_enums.py", "Pilot/tests/unit/test_domain_labels.py", "Pilot/tests/unit/test_domain_records_recipes_errors.py", "Pilot/tests/unit/test_state_dag.py", "pytest result: 77 passed", "public API assertion: 52 unique exports and 26 frozen slotted dataclasses", "wheel result: molhallulens-0.1.0-py3-none-any.whl", "three independent read-only reviews: APPROVE with no reproducible blocker"], "files_changed": ["Pilot/molhallulens/domain/__init__.py", "Pilot/molhallulens/domain/enums.py", "Pilot/molhallulens/domain/errors.py", "Pilot/molhallulens/domain/labels.py", "Pilot/molhallulens/domain/recipes.py", "Pilot/molhallulens/domain/records.py", "Pilot/molhallulens/domain/state_dag.py", "Pilot/tests/unit/test_domain_contracts.py", "Pilot/tests/unit/test_domain_enums.py", "Pilot/tests/unit/test_domain_labels.py", "Pilot/tests/unit/test_domain_records_recipes_errors.py", "Pilot/tests/unit/test_state_dag.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["python -m pytest tests/unit/test_domain_records_recipes_errors.py -q", "python -m pytest -q", "python -m compileall -q molhallulens tests", "python -m build --wheel --no-isolation", "python T004 public API/frozen/slotted acceptance assertions", "rg T004 domain/test secret scan", "git diff --check", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null"], "blocker": null
     },
     {
       "id": "T005", "phase": "0_schema_and_interfaces", "title": "冻结 detector serializer 和 golden string",
