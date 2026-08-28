@@ -1,0 +1,63 @@
+schema_version: "1.0"
+multi_label: true
+orthogonal_axes:
+  - hallucination_presence
+  - semantic_type
+  - editing_subtype
+  - causal_role
+  - evidence_relation
+
+canonical_annotation:
+  unit: character_span
+  interval: half_open
+  primary_span: literal
+  secondary_span: claim
+  token_artifact_role: tokenizer_specific_derived
+  activation_alignment: post_token_h_t
+
+semantic_types:
+  - {id: 0, name: CONTRADICTION, description: "Contradicts source, instruction, an explicit claim, or verified oracle state."}
+  - {id: 1, name: UNSUPPORTED, description: "Introduces a fact unsupported by the visible evidence or executable tools."}
+  - {id: 2, name: REASONING_ERROR, description: "Contains an intermediate structural, arithmetic, causal, or graph-edit error."}
+  - {id: 3, name: INVALID_CHEMISTRY, description: "Contains invalid SMILES, valence, or an unexecutable chemical structure."}
+  - {id: 4, name: CONSTRAINT_VIOLATION, description: "Is chemically valid but violates the instruction."}
+  - {id: 5, name: FORMAT_ERROR, description: "Violates FORMAL, schema, unit, or answer formatting."}
+  - {id: 6, name: OMISSION, description: "Omits a required claim and normally has no direct token span."}
+  - {id: 7, name: UNVERIFIABLE, description: "Cannot be adjudicated with the available evidence or tools."}
+
+editing_subtypes:
+  - {code: E01, name: ANCHOR_GROUNDING}
+  - {code: E02, name: REMOVE_OR_LEAVING_GROUP_IDENTIFICATION}
+  - {code: E03, name: ADD_FRAGMENT_IDENTIFICATION}
+  - {code: E04, name: ATTACHMENT_OR_BOND_EDIT}
+  - {code: E05, name: PRODUCT_CONSTRUCTION}
+  - {code: E06, name: HEAVY_ATOM_COUNT}
+  - {code: E07, name: HEAVY_ATOM_ARITHMETIC}
+  - {code: E08, name: RING_COUNT}
+  - {code: E09, name: RING_ARITHMETIC}
+  - {code: E10, name: CHEMICAL_VALIDITY}
+  - {code: E11, name: INSTRUCTION_CONSTRAINT}
+  - {code: E12, name: FINAL_ANSWER_IDENTITY}
+  - {code: E13, name: INTERNAL_INCONSISTENCY}
+  - {code: E14, name: FORMAT_SCHEMA}
+  - {code: E15, name: UNSUPPORTED_NATURAL_CLAIM}
+
+causal_roles: [ROOT, PROPAGATED_FALSE, PROPAGATED_CONDITIONAL, TERMINAL]
+evidence_relations:
+  - CONTRADICTS_SOURCE
+  - CONTRADICTS_INSTRUCTION
+  - CONTRADICTS_REFERENCE_STATE
+  - UNSUPPORTED_BY_EVIDENCE
+  - INTERNAL_INCONSISTENCY
+
+derived_masks:
+  hallucination_core: [CONTRADICTION, UNSUPPORTED]
+  error_any_excludes: [UNVERIFIABLE]
+  include_local_falsehood_mask: true
+  include_off_task_branch_mask: true
+
+omission:
+  construct_pure_omission_in_primary_localization: false
+  insert_missing_sentinel: false
+  allowed_diagnostic_targets: [trace_level, step_level, boundary_or_eos_protocol]
+

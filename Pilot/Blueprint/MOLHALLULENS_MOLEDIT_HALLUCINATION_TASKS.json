@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-28T17:19:13+08:00",
+  "updated_at": "2026-08-28T17:30:51+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 50,
+    "not_started": 49,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 2,
-    "last_completed_task": "T002"
+    "completed": 3,
+    "last_completed_task": "T003"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -100,6 +100,40 @@
       "known_gaps": ["共享 Conda 环境的 pip check 报告若干仓库外 ML 包缺少 Torch；该问题与本项目的独立 lock resolution 无关，未被当作本任务通过证据"],
       "follow_up_actions": ["后续 CI 可在干净 Python 3.13 环境中直接安装 requirements-dev.lock", "依赖升级时同步修改 pyproject.toml、requirements.in 并重新编译两个 lock files"],
       "assessment_summary": "T002 的包结构、锁定机制与测试入口均已建立并验证；两项验收条件全部满足，现有环境的第三方残留依赖问题已明确隔离记录。"
+    },
+    {
+      "task_id": "T003",
+      "assessed_at": "2026-08-28T17:30:51+08:00",
+      "assessed_by": "codex",
+      "scores": {
+        "requirements_alignment": 5,
+        "implementation_quality": 5,
+        "verification_coverage": 5,
+        "documentation_and_traceability": 5
+      },
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["0. 本版本冻结的决定", "6.3 每个 origin 的 8-record bundle", "6.4 数量不变量", "7.5 Operator-policy compatibility", "7.6 初始 operator/root-subtype 配额", "8. Poe candidate agent constraints", "9. Token-level hallucination taxonomy", "15.2 dataset.yaml", "15.3 llm.yaml", "15.4 Poe dependencies 和 secret handling", "18. Phase 0"],
+      "acceptance_criteria_results": [
+        {
+          "criterion": "配置包含 150 origins、1200 records、100/25/25 split、四 policy、post_token_h_t",
+          "passed": true,
+          "evidence": ["Pilot/molhallulens/config/dataset.yaml", "config CLI summary", "T003 acceptance assertion script", "tests/unit/test_config.py"]
+        },
+        {
+          "criterion": "include_gt_smiles 为 false",
+          "passed": true,
+          "evidence": ["dataset.yaml 和 rendering.yaml 均冻结为 false", "Pydantic Literal[False] 负向测试", "renderer prohibited_inputs 包含 gt_smiles"]
+        },
+        {
+          "criterion": "Poe model 固定为 gpt-5.4-mini",
+          "passed": true,
+          "evidence": ["Pilot/molhallulens/config/llm.yaml", "Provider/Discovery/Proposal/Renderer 四处 Literal 校验", "错误模型与移除 endpoint/tools 的负向测试"]
+        }
+      ],
+      "strengths": ["五份 YAML 由 immutable extra-forbid Pydantic models 和跨文件 invariants 双层校验", "使用真正只读且可 JSON 序列化的 FrozenMapping 防止验证后深层配置漂移", "精确冻结 7.5 compatibility、7.6 quota 及 15 个 bucket 到 6 个 family 的引用映射", "UniqueKeySafeLoader 拒绝重复 key，配置加载器拒绝内嵌 secret", "独立审查发现的全部阻断项均修复，复审确认可完成"],
+      "known_gaps": [],
+      "follow_up_actions": ["T017 将 concrete operator registry 与 operators.yaml 的 frozen compatibility/bucket mappings 做运行时交叉校验", "T033 使用 llm.yaml 的 frozen endpoints/tools 要求执行真实 Poe capability probe", "T052 将五份配置内容 hash 写入 dataset manifest"],
+      "assessment_summary": "T003 三项验收条件全部满足；15 项自动测试、wheel packaging、CLI、JSON serialization、secret scan 和独立复审均通过，无已知阻断缺口。"
     }
   ],
   "tasks": [
@@ -125,7 +159,7 @@
       "description": "实现 dataset.yaml、labels.yaml、operators.yaml、llm.yaml 和 rendering.yaml，并为配置提供 schema validation。",
       "deliverables": ["五个配置文件", "配置加载器与校验器"],
       "acceptance_criteria": ["配置包含 150 origins、1200 records、100/25/25 split、四 policy、post_token_h_t", "include_gt_smiles 为 false", "Poe model 固定为 gpt-5.4-mini"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-28T17:20:10+08:00", "completed_at": "2026-08-28T17:30:51+08:00", "completion_notes": "创建 dataset、labels、operators、llm、rendering 五份冻结 YAML，并实现 Pydantic extra-forbid/frozen schemas、跨文件校验、配置 CLI、duplicate-key-safe YAML loader 和 secret rejection。规模、split、四 policy、GT 隔离、post-token、多标签 taxonomy、operator compatibility/quota、Poe provider/model/capabilities 与 label-blind rendering 均转化为可执行断言；独立复审发现的深层可变、quota 引用、capability 可清空和重复 key 问题已全部修复。", "evidence": ["Pilot/molhallulens/config/dataset.yaml", "Pilot/molhallulens/config/labels.yaml", "Pilot/molhallulens/config/operators.yaml", "Pilot/molhallulens/config/llm.yaml", "Pilot/molhallulens/config/rendering.yaml", "Pilot/molhallulens/config/models.py", "Pilot/molhallulens/config/loader.py", "Pilot/tests/unit/test_config.py", "pytest result: 15 passed", "independent read-only review: no blocking issues"], "files_changed": ["Pilot/molhallulens/config/__init__.py", "Pilot/molhallulens/config/models.py", "Pilot/molhallulens/config/loader.py", "Pilot/molhallulens/config/dataset.yaml", "Pilot/molhallulens/config/labels.yaml", "Pilot/molhallulens/config/operators.yaml", "Pilot/molhallulens/config/llm.yaml", "Pilot/molhallulens/config/rendering.yaml", "Pilot/tests/unit/test_config.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["python -m pytest", "PYTHONPATH=. python -m molhallulens.config.loader", "python -m compileall -q molhallulens tests", "python -m build --wheel --no-isolation", "python T003 frozen-count/schema/serialization/wheel acceptance assertions", "rg committed config secret scan", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null"], "blocker": null
     },
     {
       "id": "T004", "phase": "0_schema_and_interfaces", "title": "实现领域枚举和不可变数据对象",
