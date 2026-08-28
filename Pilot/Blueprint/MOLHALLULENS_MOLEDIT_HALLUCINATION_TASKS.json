@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-28T17:10:42+08:00",
+  "updated_at": "2026-08-28T17:19:13+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -19,10 +19,10 @@
   "progress_summary": {
     "total_tasks": 52,
     "not_started": 50,
-    "in_progress": 1,
+    "in_progress": 0,
     "blocked": 0,
-    "completed": 1,
-    "last_completed_task": "T001"
+    "completed": 2,
+    "last_completed_task": "T002"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -71,6 +71,35 @@
       "known_gaps": [],
       "follow_up_actions": ["T052 生成 dataset card 时引用并披露 benchmark 使用决定", "若项目负责人改用开发集方案，必须显式修订约束审阅记录和 manifest"],
       "assessment_summary": "T001 的两项验收条件均具备直接、可复核证据；范围决定和 13 项约束归属无已知缺口。"
+    },
+    {
+      "task_id": "T002",
+      "assessed_at": "2026-08-28T17:19:13+08:00",
+      "assessed_by": "codex",
+      "scores": {
+        "requirements_alignment": 5,
+        "implementation_quality": 5,
+        "verification_coverage": 5,
+        "documentation_and_traceability": 5
+      },
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["1.3 预期产物", "15.1 建议代码目录", "15.4 Poe dependencies 和 secret handling", "16. 测试计划", "18. Phase 0", "21. 推荐立即开始的第一个实现批次"],
+      "acceptance_criteria_results": [
+        {
+          "criterion": "包可被导入",
+          "passed": true,
+          "evidence": ["PYTHONPATH=. python -c import smoke test 输出 0.1.0", "python -m pytest：1 passed", "dist/molhallulens-0.1.0-py3-none-any.whl 构建成功"]
+        },
+        {
+          "criterion": "RDKit、Pydantic、JSON Schema、Poe 客户端和测试依赖版本可复现",
+          "passed": true,
+          "evidence": ["Pilot/pyproject.toml", "Pilot/requirements.lock", "Pilot/requirements-dev.lock", "pip --dry-run --ignore-installed 成功解析完整开发环境", "自动检查确认 pyproject 与 requirements.in 的 7 个 runtime pins 完全一致"]
+        }
+      ],
+      "strengths": ["按计划建立完整模块与测试目录骨架", "runtime 和 dev lock 固定全部传递依赖，并包含 pip/setuptools unsafe dependencies", "构建、导入、编译和 pytest smoke test 均实际通过", "锁文件扫描确认不含本地路径、Authorization 或 POE_API_KEY"],
+      "known_gaps": ["共享 Conda 环境的 pip check 报告若干仓库外 ML 包缺少 Torch；该问题与本项目的独立 lock resolution 无关，未被当作本任务通过证据"],
+      "follow_up_actions": ["后续 CI 可在干净 Python 3.13 环境中直接安装 requirements-dev.lock", "依赖升级时同步修改 pyproject.toml、requirements.in 并重新编译两个 lock files"],
+      "assessment_summary": "T002 的包结构、锁定机制与测试入口均已建立并验证；两项验收条件全部满足，现有环境的第三方残留依赖问题已明确隔离记录。"
     }
   ],
   "tasks": [
@@ -88,7 +117,7 @@
       "description": "创建 molhallulens 建议目录、Python package、测试目录和依赖锁定机制。",
       "deliverables": ["Pilot/molhallulens 包骨架", "依赖配置或 lockfile"],
       "acceptance_criteria": ["包可被导入", "RDKit、Pydantic、JSON Schema、Poe 客户端和测试依赖版本可复现"],
-      "status": "in_progress", "assigned_to": "codex", "started_at": "2026-08-28T17:10:42+08:00", "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-28T17:10:42+08:00", "completed_at": "2026-08-28T17:19:13+08:00", "completion_notes": "建立可安装的 Pilot/molhallulens Python package、计划所列模块目录和分层测试目录；用 pyproject.toml 固定直接 runtime/dev 依赖，并通过 pip-tools 生成包含传递依赖的 runtime/dev lock files。补充构建产物忽略规则、安装说明、typed marker 和 package smoke test；实际完成全量 dry-run resolution、wheel build、compile/import 与 pytest 验证。", "evidence": ["Pilot/pyproject.toml", "Pilot/requirements.lock", "Pilot/requirements-dev.lock", "Pilot/molhallulens/", "Pilot/tests/test_package.py", "pytest result: 1 passed", "wheel result: molhallulens-0.1.0-py3-none-any.whl"], "files_changed": [".gitignore", "Pilot/README.md", "Pilot/pyproject.toml", "Pilot/requirements.in", "Pilot/requirements.lock", "Pilot/requirements-dev.in", "Pilot/requirements-dev.lock", "Pilot/molhallulens/", "Pilot/tests/", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["python -m pip install --dry-run --ignore-installed -r requirements-dev.lock", "python -m pytest", "python -m build --wheel --no-isolation", "PYTHONPATH=. python -c import molhallulens version assertion", "python -m compileall -q molhallulens tests", "python dependency synchronization and lock secret/path assertions", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null"], "blocker": null
     },
     {
       "id": "T003", "phase": "0_schema_and_interfaces", "title": "冻结基础配置文件",

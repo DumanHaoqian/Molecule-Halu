@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Auditable counterfactual hallucination dataset builder for molecular editing."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
-license = { text = "Proprietary" }
+license = "LicenseRef-Proprietary"
 authors = [{ name = "MolHalluLens contributors" }]
 dependencies = [
   "fastapi-poe==0.0.83",

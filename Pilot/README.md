@@ -12,8 +12,8 @@ python -m pip install -r requirements-dev.lock
 Regenerate locks only after intentionally updating `pyproject.toml` and the matching `.in` files:
 
 ```bash
-python -m piptools compile --resolver=backtracking --output-file requirements.lock requirements.in
-python -m piptools compile --resolver=backtracking --output-file requirements-dev.lock requirements-dev.in
+python -m piptools compile --allow-unsafe --resolver=backtracking --output-file requirements.lock requirements.in
+python -m piptools compile --allow-unsafe --resolver=backtracking --output-file requirements-dev.lock requirements-dev.in
 ```
 
 Run tests from this directory with `python -m pytest` after installing the development lock.
