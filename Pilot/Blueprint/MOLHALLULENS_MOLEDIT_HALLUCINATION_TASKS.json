@@ -1,0 +1,464 @@
+{
+  "schema_version": "1.0",
+  "project": "MolHalluLens Molecule Editing Hallucination Pilot",
+  "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
+  "source_plan_version": "v0.2",
+  "created_at": "2026-08-28",
+  "updated_at": "2026-08-28",
+  "instructions_for_agents": {
+    "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
+    "status_values": ["not_started", "in_progress", "blocked", "completed"],
+    "start_update": "开始时将 status 改为 in_progress，并填写 started_at 和 assigned_to。",
+    "completion_update": "只有 acceptance_criteria 全部满足后才改为 completed；填写 completed_at、completion_notes、evidence、files_changed 和 verification_commands。",
+    "quality_assessment_update": "每个 completed 任务必须在 quality_assessment_log 追加一条自评记录；缺少自评的任务不得视为完成。",
+    "blocked_update": "受阻时改为 blocked，并在 blocker 中写明原因、已尝试方案和解除条件。",
+    "timestamp_format": "ISO 8601，包含时区，例如 2026-08-28T15:30:00+08:00。",
+    "evidence_rule": "evidence 应列出测试报告、manifest、日志或可复核文件路径，不能只写“已完成”。",
+    "scope_rule": "不得静默改变冻结约束、propagation phenotype、模型、split 或 quota；任何偏差写入 completion_notes 和对应 manifest。"
+  },
+  "progress_summary": {
+    "total_tasks": 52,
+    "not_started": 52,
+    "in_progress": 0,
+    "blocked": 0,
+    "completed": 0,
+    "last_completed_task": null
+  },
+  "quality_assessment_schema": {
+    "task_id": "对应 tasks[].id",
+    "assessed_at": "ISO 8601 timestamp with timezone",
+    "assessed_by": "agent identifier",
+    "scores": {
+      "requirements_alignment": "1-5，是否忠实满足实施计划和任务要求",
+      "implementation_quality": "1-5，设计、可读性、可维护性和错误处理",
+      "verification_coverage": "1-5，测试与验收证据是否充分",
+      "documentation_and_traceability": "1-5，文档、provenance 和变更记录是否完整"
+    },
+    "overall_score": "1-5；原则上为四项分数的算术平均值",
+    "plan_sections_rechecked": ["完成后重新核对的实施计划章节"],
+    "acceptance_criteria_results": [{"criterion": "验收条件原文", "passed": true, "evidence": ["证据路径或命令"]}],
+    "strengths": ["完成得好的方面"],
+    "known_gaps": ["已知不足；没有则为空数组"],
+    "follow_up_actions": ["后续改进动作；没有则为空数组"],
+    "assessment_summary": "简洁、具体、可复核的总体评价"
+  },
+  "quality_assessment_log": [],
+  "tasks": [
+    {
+      "id": "T001", "phase": "0_schema_and_interfaces", "title": "确认实施计划与冻结约束",
+      "depends_on": [],
+      "description": "逐项确认 GT 隔离、post-token 对齐、四类 propagation、8-record bundle、多标签体系、Poe provider 和 split-before-donor 等不可变约束。",
+      "deliverables": ["约束审阅记录", "已批准的实现范围"],
+      "acceptance_criteria": ["13 项冻结决定均有明确实现或验证归属", "风险 6 的 benchmark 使用方案已作出并记录"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T002", "phase": "0_schema_and_interfaces", "title": "建立包目录和项目依赖",
+      "depends_on": ["T001"],
+      "description": "创建 molhallulens 建议目录、Python package、测试目录和依赖锁定机制。",
+      "deliverables": ["Pilot/molhallulens 包骨架", "依赖配置或 lockfile"],
+      "acceptance_criteria": ["包可被导入", "RDKit、Pydantic、JSON Schema、Poe 客户端和测试依赖版本可复现"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T003", "phase": "0_schema_and_interfaces", "title": "冻结基础配置文件",
+      "depends_on": ["T001", "T002"],
+      "description": "实现 dataset.yaml、labels.yaml、operators.yaml、llm.yaml 和 rendering.yaml，并为配置提供 schema validation。",
+      "deliverables": ["五个配置文件", "配置加载器与校验器"],
+      "acceptance_criteria": ["配置包含 150 origins、1200 records、100/25/25 split、四 policy、post_token_h_t", "include_gt_smiles 为 false", "Poe model 固定为 gpt-5.4-mini"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T004", "phase": "0_schema_and_interfaces", "title": "实现领域枚举和不可变数据对象",
+      "depends_on": ["T002", "T003"],
+      "description": "实现 enums、TaskRecord、ClaimValue、StateNodeSpec、StateEdge、StateDAG、MutationEvent、recipe、label 和 validation 数据类型。",
+      "deliverables": ["domain/enums.py", "domain/records.py", "domain/state_dag.py", "domain/recipes.py", "domain/labels.py", "domain/errors.py"],
+      "acceptance_criteria": ["核心对象使用 frozen dataclass 或等价不可变结构", "visibility、node role、dependency、causal role 和 multi-label axes 均可表达"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T005", "phase": "0_schema_and_interfaces", "title": "冻结 detector serializer 和 golden string",
+      "depends_on": ["T004"],
+      "description": "实现唯一字段顺序的 DetectorPromptSerializer，并从接口层排除 gt_smiles。",
+      "deliverables": ["rendering/detector_prompt.py", "golden serialization fixture"],
+      "acceptance_criteria": ["顺序严格为 indexed SMILES、instruction、reasoning、final answer", "serializer 不接收 gt_smiles", "golden string 测试通过"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T006", "phase": "0_schema_and_interfaces", "title": "建立 post-token 对齐契约测试",
+      "depends_on": ["T004", "T005"],
+      "description": "固定 activation_alignment=post_token_h_t，定义 evaluation mask 和数组等长断言。",
+      "deliverables": ["post-token alignment unit tests"],
+      "acceptance_criteria": ["无 label shift", "source、instruction、special、padding token 被忽略", "reasoning 与 answer token 可评测"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T007", "phase": "1_reference_dag", "title": "实现输入 adapter 和 ID join",
+      "depends_on": ["T004"],
+      "description": "按 anonymous_sample_id 连接 raw、process 和 template 数据，不依赖数组位置。",
+      "deliverables": ["adapters/base.py", "adapters/chemcot_mol_edit.py"],
+      "acceptance_criteria": ["150 个 origin 均唯一 join", "缺失、重复和字段冲突产生结构化错误"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T008", "phase": "1_reference_dag", "title": "实现 subtask normalization",
+      "depends_on": ["T007"],
+      "description": "将 pilot 文件名、add_v2/delete_v2/substitute_v2 和 normalized subtask 显式映射。",
+      "deliverables": ["SubtaskNormalizer", "映射测试"],
+      "acceptance_criteria": ["三类已知映射正确", "未知或歧义名称 fail closed", "业务代码无需任务名 if/elif"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T009", "phase": "1_reference_dag", "title": "实现三类 StateSchema",
+      "depends_on": ["T004", "T007", "T008"],
+      "description": "分别定义 addition、deletion、substitution 的节点、边、类型、visibility、comparator 和 renderer slot。",
+      "deliverables": ["三个 editing StateSchema", "schema fixtures"],
+      "acceptance_criteria": ["DAG 无环", "所有 legacy step fields 可映射", "同一 semantic state 可关联多个 mention"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T010", "phase": "1_reference_dag", "title": "实现 DAG 基础算法",
+      "depends_on": ["T009"],
+      "description": "实现确定性拓扑排序、descendants、dependency closure、连通下游子图和 edge violation 查询。",
+      "deliverables": ["StateDAG 算法", "unit/property tests"],
+      "acceptance_criteria": ["循环被拒绝", "结果顺序稳定", "closure 和连通性 property tests 通过"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T011", "phase": "1_reference_dag", "title": "构建 reference DAG",
+      "depends_on": ["T007", "T009", "T010"],
+      "description": "从 parsed_reference_state 和 process trace 构造 typed reference DAG，并执行 natural/FORMAL slot round-trip。",
+      "deliverables": ["三 subtask reference DAG builders", "150-origin build report"],
+      "acceptance_criteria": ["150 origins 均生成 reference DAG 或明确异常报告", "无 silent fallback", "BUILD_ONLY 节点不会成为 detector 文本"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T012", "phase": "1_reference_dag", "title": "实现分子 canonicalization 与等价比较",
+      "depends_on": ["T007"],
+      "description": "实现去 atom map、isomeric graph equivalence、主片段策略、descriptor 和 scaffold 计算。",
+      "deliverables": ["chemistry comparison utilities", "canonicalization tests"],
+      "acceptance_criteria": ["不使用裸 SMILES 相等判断", "等价非 canonical SMILES 被识别", "stereo 和 sanitize 策略有测试"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T013", "phase": "1_reference_dag", "title": "实现 EditTruth 图差异推导",
+      "depends_on": ["T011", "T012"],
+      "description": "使用 source/GT graph comparison、MCS/mapping、instruction 和 trace 生成 EditTruth，保存对称等价 anchors。",
+      "deliverables": ["domain/edit_truth.py", "EditTruth fixtures"],
+      "acceptance_criteria": ["added/removed atoms、broken/formed bonds、fragments、descriptors 可复核", "对称歧义保存 equivalence class", "mapping confidence 有定义"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T014", "phase": "1_reference_dag", "title": "实现 anomaly registry",
+      "depends_on": ["T007", "T013"],
+      "description": "显式登记 delete_v2.0081 delete-with-replacement 及审计发现的边界样本和可用 operator 限制。",
+      "deliverables": ["anomaly registry", "异常分类报告"],
+      "acceptance_criteria": ["delete_v2.0081 不使用普通 deletion delta rule", "异常处理均可追踪且无静默特判"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T015", "phase": "1_reference_dag", "title": "实现 reference 与 graph-edit validators",
+      "depends_on": ["T011", "T012", "T013", "T014"],
+      "description": "实现 InputRecord、ReferenceDAG、RDKitStructure 和 GraphEdit validation gates。",
+      "deliverables": ["四类 validators", "结构化 ValidationIssue ledger"],
+      "acceptance_criteria": ["150 origins 全部有 validation report", "process product/answer 与 GT 图等价", "anchor、group、fragment、bond edit 和 edit family 被验证"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T016", "phase": "2_deterministic_pipeline", "title": "实现 Perturbator OOP 骨架",
+      "depends_on": ["T004", "T015"],
+      "description": "实现 Perturbator、MoleculeEditingPerturbator、三个 concrete subtask 和三个 future abstract family。",
+      "deliverables": ["perturbators hierarchy", "factory tests"],
+      "acceptance_criteria": ["Template Method 不可被 subclass 改写", "candidate、propagation、renderer、validator、label projector 通过 composition 注入", "factory 可由 normalized record 构造实例"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T017", "phase": "2_deterministic_pipeline", "title": "实现 operator decorator、registry 与 compatibility",
+      "depends_on": ["T016", "T003"],
+      "description": "注册 OperatorSpec、root fields、supported policies/sources、error types 和 fallback matrix。",
+      "deliverables": ["operator registry", "operator-policy compatibility tests"],
+      "acceptance_criteria": ["operator 仅返回 root-only CandidatePatch", "不兼容 policy 被拒绝", "候选失败不会静默改变 phenotype"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T018", "phase": "2_deterministic_pipeline", "title": "实现 rule 与 RDKit candidate sources",
+      "depends_on": ["T012", "T013", "T017"],
+      "description": "实现候选枚举、canonicalize、去重、sanitize、equivalence 排除、难度特征和排序。",
+      "deliverables": ["rule_source.py", "rdkit_source.py", "candidate pool tests"],
+      "acceptance_criteria": ["候选保留 attachment atom/bond semantics", "对称等价 site 被排除", "reject reasons 结构化记录"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T019", "phase": "2_deterministic_pipeline", "title": "实现 Addition operators",
+      "depends_on": ["T017", "T018"],
+      "description": "实现 alternate anchor、fragment、attachment、bond、valid wrong product、count/relation 和 terminal operators。",
+      "deliverables": ["perturbators/editing/addition.py", "operator unit tests"],
+      "acceptance_criteria": ["所有 operator 只改 root patch", "none→halogen 不成为核心高频模式", "FULL_CF 候选由真实 graph edit 产生"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T020", "phase": "2_deterministic_pipeline", "title": "实现 Deletion operators",
+      "depends_on": ["T017", "T018"],
+      "description": "实现 occurrence、adjacent group、boundary、partial/over deletion、deprotection、cross-step、count 和 terminal operators。",
+      "deliverables": ["perturbators/editing/deletion.py", "operator unit tests"],
+      "acceptance_criteria": ["group boundary 由连接子图定义", "FULL_CF 真实切 bond 并处理 valence/H", "异常 subtype 只启用适用 operators"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T021", "phase": "2_deterministic_pipeline", "title": "实现 Substitution operators",
+      "depends_on": ["T017", "T018"],
+      "description": "实现 site、leaving、incoming fragment、attachment、bond、partial substitution、regioisomer、count 和 terminal operators。",
+      "deliverables": ["perturbators/editing/substitution.py", "operator unit tests"],
+      "acceptance_criteria": ["source anchor 与 fragment attachment atom 独立保存", "halogen replacement 可交叉平衡", "FULL_CF downstream 可从真实 candidate product 重算"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T022", "phase": "2_deterministic_pipeline", "title": "实现 PropagationEngine 和 derivation rules",
+      "depends_on": ["T010", "T019", "T020", "T021"],
+      "description": "实现 STOP、PARTIAL、FULL_CF、TERMINAL 的 changed-set 逻辑和 editing downstream 重算规则。",
+      "deliverables": ["propagation/base.py", "propagation/editing.py", "property tests"],
+      "acceptance_criteria": ["STOP 等于 root", "PARTIAL 是严格小于完整 closure 的连通下游子图", "FULL 覆盖全部可推导 descendants", "TERMINAL 仅 final_answer"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T023", "phase": "2_deterministic_pipeline", "title": "实现 deterministic FORMAL 与 Answer renderer",
+      "depends_on": ["T011", "T022"],
+      "description": "从锁定 state 确定性渲染 FORMAL 行和 Answer，不允许 renderer 修补 chemistry state。",
+      "deliverables": ["rendering/formal.py", "deterministic answer renderer"],
+      "acceptance_criteria": ["render 后可 round-trip 到 state", "Answer 与 candidate product 的关系由 policy 决定并经图等价检查"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T024", "phase": "2_deterministic_pipeline", "title": "实现 matched bundle builder 和 quota scheduler",
+      "depends_on": ["T017", "T022", "T023"],
+      "description": "每个 origin 构造四组 H/N pair，并按 policy、operator family、difficulty 和 renderer 属性匹配。",
+      "deliverables": ["builders/bundles.py", "quota scheduler", "bundle tests"],
+      "acceptance_criteria": ["每 origin 恰好 8 records", "每个 H 有唯一 matched N", "N 不是简单重复 clean trace", "fallback deviation 被记录"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T025", "phase": "2_deterministic_pipeline", "title": "生成三类 deterministic golden bundles",
+      "depends_on": ["T019", "T020", "T021", "T022", "T023", "T024"],
+      "description": "选择至少一个 add、delete、substitute origin，在无 LLM 条件下各生成完整 8-record bundle。",
+      "deliverables": ["3 个 golden origin bundles", "validation reports"],
+      "acceptance_criteria": ["24 records 全部通过 chemistry、propagation 和 bundle invariants", "输出可由同 seed byte-identical 重建"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T026", "phase": "3_split_and_donors", "title": "审计 150 origins 的 split 特征",
+      "depends_on": ["T012", "T013", "T015"],
+      "description": "计算 canonical source/GT/scaffold hashes、分层特征、operator availability 和已知重复 groups。",
+      "deliverables": ["origin audit artifact", "feature distribution report"],
+      "acceptance_criteria": ["150 origins 均有 hash 和 stratification fields", "已知 3 个重复 groups 共 7 origins 被识别"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T027", "phase": "3_split_and_donors", "title": "构建 union-find leakage groups",
+      "depends_on": ["T026"],
+      "description": "按 canonical source、canonical GT、相同或近重复 Murcko scaffold 合并 origins。",
+      "deliverables": ["leakage group assignment", "grouping tests"],
+      "acceptance_criteria": ["任何 leakage group 不可被拆分", "group ID 稳定且可由输入重算"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T028", "phase": "3_split_and_donors", "title": "求解 group-stratified exact split",
+      "depends_on": ["T027"],
+      "description": "用 MILP 或 constrained stratification 生成 100/25/25 origin split，并满足 subtask 配额或记录数学上必要的 ±1 偏差。",
+      "deliverables": ["split solver", "split balance report"],
+      "acceptance_criteria": ["origin 总数严格 100/25/25", "leakage group 不拆", "subtask 目标满足或偏差有证明和记录", "seed 由 dataset version 的 SHA256 派生"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T029", "phase": "3_split_and_donors", "title": "冻结 split_manifest.csv",
+      "depends_on": ["T028"],
+      "description": "写出 immutable split manifest、hash 和版本元数据，并禁止 variant 二次随机 split。",
+      "deliverables": ["HallucinationDataset/split_manifest.csv", "manifest hash"],
+      "acceptance_criteria": ["字段完整符合计划", "后续 donor 和 LLM generation 只能使用该 manifest", "重跑得到相同 bytes"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T030", "phase": "3_split_and_donors", "title": "建立 split-local donor pools",
+      "depends_on": ["T029"],
+      "description": "按 fragment/group、attachment、descriptor 和 difficulty bucket 建 donor pools，并从类型和运行时断言禁止 cross-split donor。",
+      "deliverables": ["split-local donor artifacts", "donor leakage tests"],
+      "acceptance_criteria": ["所有 donor edge 同 split", "导入 cross-split artifact 会被拒绝而不会重排 split"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T031", "phase": "4_poe_candidate_agent", "title": "实现 proposal/tool JSON schemas",
+      "depends_on": ["T004", "T017", "T029"],
+      "description": "实现 ProposalRequest、ProposalResponse、CandidatePatch 和 chemistry tool argument 的 Pydantic/JSON Schema 强校验。",
+      "deliverables": ["providers/poe/schemas.py", "schema tests"],
+      "acceptance_criteria": ["模型不能输出 accepted 或最终标签", "未知字段、非法 root 和未校验 tool args 被拒绝", "derived seed 使用 SHA256"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T032", "phase": "4_poe_candidate_agent", "title": "实现只读 chemistry tools",
+      "depends_on": ["T012", "T013", "T018", "T031"],
+      "description": "实现 atom inspection、anchor/group enumeration、simulate_edit、descriptors、comparison 和 signature tools。",
+      "deliverables": ["chemistry tool allow-list", "tool tests and cache keys"],
+      "acceptance_criteria": ["工具无外部副作用", "所有参数先校验再 dispatch", "simulate_edit 返回 sanitized products、graph diff 和 reject reasons"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T033", "phase": "4_poe_candidate_agent", "title": "实现 Poe model registry 和 capability probes",
+      "depends_on": ["T003", "T031"],
+      "description": "读取 POE_API_KEY，刷新 /v1/models，校验 gpt-5.4-mini、endpoint/tools，并运行 plain、JSON schema、tool-loop 三项 smoke tests。",
+      "deliverables": ["model_registry.py", "capability probe report"],
+      "acceptance_criteria": ["模型或能力变化时 fail closed", "保存 catalog entry/hash/time", "secret 不进入日志或 artifact"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T034", "phase": "4_poe_candidate_agent", "title": "实现 Poe clients 和 transport fallback",
+      "depends_on": ["T031", "T032", "T033"],
+      "description": "实现 Responses primary、Chat Completions tool-loop 和 fastapi_poe simple fallback，固定相同 model/operator/constraints。",
+      "deliverables": ["三个 Poe client adapters", "mocked transport tests"],
+      "acceptance_criteria": ["parallel_tool_calls=false", "fallback 不改变 phenotype 或模型", "response 和 request IDs 可追踪", "不依赖 API seed、strict 或 Chat response_format"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T035", "phase": "4_poe_candidate_agent", "title": "实现 rate limiter、错误分类和 usage ledger",
+      "depends_on": ["T034"],
+      "description": "实现 450 RPM ceiling、初始 concurrency 8、Retry-After/backoff、HTTP 分类、balance/history 对账和 Authorization redaction。",
+      "deliverables": ["rate_limiter.py", "usage_ledger.py", "error handling tests"],
+      "acceptance_criteria": ["401/402/404 等按计划停止", "transient errors 有限重试", "points 和 token usage 可审计", "ledger 不含 secret"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T036", "phase": "4_poe_candidate_agent", "title": "实现 content-addressed cache 和 replay",
+      "depends_on": ["T031", "T034", "T035"],
+      "description": "缓存 proposal、tool runs、renders 和 accepted artifacts，key 覆盖输入、模型 catalog、prompt/schema/tool/operator/attempt。",
+      "deliverables": ["response_cache.py", "cache/replay tests"],
+      "acceptance_criteria": ["同请求 cache hit", "frozen replay 不发网络请求", "accepted artifact 有 content hash", "raw secret/header 不落盘"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T037", "phase": "4_poe_candidate_agent", "title": "实现 LLM candidate agent 和 validate-retry-fallback",
+      "depends_on": ["T018", "T030", "T032", "T034", "T036"],
+      "description": "每次请求 3–5 candidates，确定性验证；最多三轮并只反馈 reject codes，随后同 phenotype deterministic fallback 或 scheduler backfill。",
+      "deliverables": ["llm_agent_source.py", "hybrid_engine.py", "selector.py", "retry tests"],
+      "acceptance_criteria": ["LLM 不是接受裁决者", "重复、非法、等价候选被拒绝", "失败不放宽 chemistry gate 或改变 policy", "候选池不是 first-pass selection"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T038", "phase": "4_poe_candidate_agent", "title": "验证 structural operator 的候选覆盖率",
+      "depends_on": ["T019", "T020", "T021", "T037"],
+      "description": "对各 structural operator 运行 rule/LLM/hybrid 候选测试，汇总成功率、reject codes 和真实 candidate-source mix。",
+      "deliverables": ["operator candidate coverage report"],
+      "acceptance_criteria": ["每个 structural operator 至少一种来源有可验证候选", "失败率可按 operator/backend 统计", "LLM 实质参与目标比例可测量"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T039", "phase": "5_rendering_and_labels", "title": "实现 Trace AST 和确定性 mention offsets",
+      "depends_on": ["T004", "T023"],
+      "description": "实现 TraceDocument/RenderedExample，从 slot 填充时直接生成 node/edge mention offset，禁止 text.find 定位。",
+      "deliverables": ["rendering/trace_ast.py", "annotation/char_spans.py"],
+      "acceptance_criteria": ["重复值拥有独立 span", "所有 span 使用半开区间", "literal_span 和 claim_span 均可生成"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T040", "phase": "5_rendering_and_labels", "title": "实现 label-blind natural renderer",
+      "depends_on": ["T034", "T036", "T039"],
+      "description": "实现 rule renderer 和 Poe placeholder-template renderer；LLM 仅看 locked slots、style 和 excerpt。",
+      "deliverables": ["natural_rule.py", "natural_llm.py", "renderer tests"],
+      "acceptance_criteria": ["renderer 不见 GT、label、operator correctness 或 oracle", "修改 locked facts 会被拒绝", "FORMAL、数字和 Answer 仍由程序渲染"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T041", "phase": "5_rendering_and_labels", "title": "实现 char annotation 多轴标签",
+      "depends_on": ["T022", "T039", "T040"],
+      "description": "从 MutationEvent 和 mentions 生成 semantic type、editing subtype、evidence relation、causal role、root linkage 标签。",
+      "deliverables": ["CharAnnotation builder", "taxonomy tests"],
+      "acceptance_criteria": ["多标签非互斥", "ROOT/PROPAGATED_FALSE/PROPAGATED_CONDITIONAL/TERMINAL 可区分", "纯 omission 不被错误投到邻近 token"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T042", "phase": "5_rendering_and_labels", "title": "实现 ChemDFM-R char-to-token projection",
+      "depends_on": ["T006", "T041"],
+      "description": "使用可靠 offset mapping 投影 any-overlap token masks，保存 boundary ambiguity、char fraction 和 tokenizer fingerprint。",
+      "deliverables": ["annotation/token_projection.py", "TokenLabelSet writer", "projection tests"],
+      "acceptance_criteria": ["每个 positive char span 覆盖 evaluated token", "所有 token arrays 等长", "N positive masks 全 0", "serialized text hash 与 tokenizer 输入一致"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T043", "phase": "5_rendering_and_labels", "title": "实现剩余 validation chain",
+      "depends_on": ["T024", "T040", "T041", "T042"],
+      "description": "实现 semantic、propagation、renderer、token alignment 和 bundle integrity validators。",
+      "deliverables": ["五类 validators", "validation chain integration tests"],
+      "acceptance_criteria": ["四类 H phenotype invariants 被验证", "所有 N faithful 且 mask 为 0", "GT/reference-only header 和泄漏词被扫描", "每 origin 的 pair 与 split 完整"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T044", "phase": "5_rendering_and_labels", "title": "扩展 golden test suite",
+      "depends_on": ["T038", "T043"],
+      "description": "每个 subtask 选择标准、hard、多候选或异常各至少 3 origins，冻结完整 8-record outputs。",
+      "deliverables": ["至少 9 个 golden origin fixtures", "state、mutation、text、span、token、validation snapshots"],
+      "acceptance_criteria": ["golden suite 覆盖 delete-with-replacement、对称/多候选和 terminal near-miss", "cache replay 与 deterministic parts 可重复"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T045", "phase": "6_dry_run", "title": "运行 15-origin dry run",
+      "depends_on": ["T029", "T030", "T038", "T043", "T044"],
+      "description": "每 subtask 选择 5 origins，生成 120 records，保存 dataset/oracle/state/token/provenance/reports。",
+      "deliverables": ["120-record dry-run artifact", "dry-run build report"],
+      "acceptance_criteria": ["15 origins 每个完整 8 records", "全部 strict validators 通过", "没有跨 split donor 或 GT leakage", "失败 recipe 以完整 pair 为单位 backfill"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T046", "phase": "6_dry_run", "title": "完成 dry-run 人工化学审查",
+      "depends_on": ["T045"],
+      "description": "人工检查 root truth、candidate chemistry、propagation、H/N matching、自然语言与 FORMAL 一致性和 token spans。",
+      "deliverables": ["human review checklist", "issue log and adjudications"],
+      "acceptance_criteria": ["无系统性标签错误", "发现的问题已修复并重建受影响的完整 matched pairs", "抽检人和时间可追踪"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T047", "phase": "6_dry_run", "title": "运行 dry-run shortcut audit",
+      "depends_on": ["T045"],
+      "description": "运行 metadata、TF-IDF、target-span、reasoning-only、validity、retrieval 和 symbolic comparator baselines，并检查长度/style 匹配。",
+      "deliverables": ["dry-run shortcut report", "operator/renderer failure analysis"],
+      "acceptance_criteria": ["metadata AUROC≤0.55", "span-only TF-IDF AUROC≤0.55", "reasoning-only shallow AUROC≤0.60", "H/N token-length standardized difference<0.1", "不满足时已修复设计并重跑"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T048", "phase": "7_full_build", "title": "构建并冻结 train split",
+      "depends_on": ["T046", "T047"],
+      "description": "按 frozen split、quota 和 validated candidate pool 构建 train 的 100 origins/800 records。",
+      "deliverables": ["records/train.jsonl", "train oracle/state/provenance", "train validation report"],
+      "acceptance_criteria": ["800 records、400H/400N", "每 policy 100H+100N", "所有 100 origins 完整 8 records", "strict validation 通过"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T049", "phase": "7_full_build", "title": "构建并冻结 validation split",
+      "depends_on": ["T048"],
+      "description": "构建 validation 的 25 origins/200 records，保持同样的 pair、policy 和 provenance 规则。",
+      "deliverables": ["records/validation.jsonl", "validation oracle/state/provenance", "validation report"],
+      "acceptance_criteria": ["200 records、100H/100N", "每 policy 25H+25N", "所有 25 origins 完整 8 records", "strict validation 通过"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T050", "phase": "7_full_build", "title": "最后构建并冻结 test split",
+      "depends_on": ["T049"],
+      "description": "最后生成 test 的 25 origins/200 records；不得使用 test 调 candidate、layer 或 detector threshold。",
+      "deliverables": ["records/test.jsonl", "test oracle/state/provenance", "test validation report"],
+      "acceptance_criteria": ["200 records、100H/100N", "每 policy 25H+25N", "所有 25 origins 完整 8 records", "test 选择隔离声明和 strict validation 通过"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T051", "phase": "8_release_qa", "title": "生成完整 tokenized artifacts 和 activation extraction",
+      "depends_on": ["T048", "T049", "T050"],
+      "description": "对 1200 records 生成 ChemDFM-R tokenized artifact，并按 post-token h_t 抽取 resid_post 特征。",
+      "deliverables": ["tokenized/chemdfm_r artifacts", "activation extraction manifest"],
+      "acceptance_criteria": ["1200 records 均有 tokenizer fingerprint 和等长 masks", "activation_alignment 仅 post_token_h_t", "hidden states 与 labels 长度一致", "无 pre-token 声称或 shift"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    },
+    {
+      "id": "T052", "phase": "8_release_qa", "title": "执行最终 release QA 并发布 pilot_v1",
+      "depends_on": ["T048", "T049", "T050", "T051"],
+      "description": "运行 strict integrity、replay reproducibility、secret scan、shortcut/symbolic baselines，生成 manifest、dataset card、known limitations 和最终验收报告。",
+      "deliverables": ["dataset_manifest.json", "release validation report", "shortcut/baseline report", "dataset card", "known limitations", "Poe private usage ledger export"],
+      "acceptance_criteria": ["发布验收清单全部通过", "150 origins、1200 records、800/200/200 精确", "无 leakage、GT 泄漏或 secret", "frozen cache replay byte-identical", "风险 6 与 Poe snapshot 限制在 dataset card 披露", "pilot_v1 hash 已冻结"],
+      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+    }
+  ]
+}

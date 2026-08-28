@@ -6,3 +6,7 @@
 
 # VScode configuration
 /.vscode
+
+# pycache and compiled python files
+__pycache__/
+*.py[cod]
