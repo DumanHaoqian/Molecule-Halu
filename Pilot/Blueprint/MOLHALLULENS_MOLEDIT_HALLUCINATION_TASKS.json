@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T02:48:20+08:00",
+  "updated_at": "2026-08-30T02:53:48+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 18,
+    "not_started": 17,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 34,
-    "last_completed_task": "T034"
+    "completed": 35,
+    "last_completed_task": "T035"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -767,6 +767,24 @@
       "known_gaps": [],
       "follow_up_actions": ["T035 将 transport 调用包入 rate/error/usage audit", "T036 在三个 transport 外层实现 frozen cache/replay", "T037 只把 client 结果作为未接受 proposal source"],
       "assessment_summary": "T034 四项验收全部满足。Responses、Chat 和 fastapi_poe 三个 adapters 固定到同一 gpt-5.4-mini/request phenotype；tool loop 串行且受 3 turns/6 calls 硬限制，所有失败与 provider IDs 完整进入 provenance。远端专项 7 项、T031–T034 联测 45 项及本地静态检查通过，未发真实网络请求。"
+    },
+    {
+      "task_id": "T035",
+      "assessed_at": "2026-08-30T02:53:48+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["8.5 Tool loop hard limits", "8.11 Rate、并发和错误处理", "8.12 Usage ledger", "Phase 4：LLM Agent candidate invention"],
+      "acceptance_criteria_results": [
+        {"criterion": "401/402/404 等按计划停止", "passed": true, "evidence": ["401/402/403/404 与 400 schema/context/model/endpoint 分类为 fail_stop", "错误分类和 call loop 对抗测试"]},
+        {"criterion": "transient errors 有限重试", "passed": true, "evidence": ["408/429/5xx/timeout/network 仅按最多三次有界 policy 重试", "250ms 指数退避、jitter 与 Retry-After delta/date tests"]},
+        {"criterion": "points 和 token usage 可审计", "passed": true, "evidence": ["request/response/query/x-request IDs、model、transport、tokens、points、attempt/retry/error records", "pre/post balance 与 points_history reconciliation tests"]},
+        {"criterion": "ledger 不含 secret", "passed": true, "evidence": ["递归 credential/header/text redaction tests", "0600 private export；文件系统无法落实权限时删除 artifact 并 fail closed"]}
+      ],
+      "strengths": ["rolling-window 450 RPM 与 bounded semaphore 8 concurrency 都可注入 clock/sleeper 确定性验证", "分类对象与 terminal errors 只保存安全 code/detail/status/delay，不保留 raw provider body/header", "usage ledger 能直接消费 T034 provenance 并保留 fallback/retry 轨迹", "远端挂载文件系统忽略 chmod 的问题已在验收中发现并修为 fail closed"],
+      "known_gaps": [],
+      "follow_up_actions": ["T036 将 cache miss producer 通过 finite retry/usage ledger 包装", "T045–T052 build lifecycle 使用 pre/post balance 和 private ledger export"],
+      "assessment_summary": "T035 四项验收全部满足。450 RPM/8 concurrency、250ms 基础退避、Retry-After 与三次有限重试合同已冻结；永久错误立即停止，transient 才重试。usage ledger 完整审计 provider IDs、model/transport、tokens/points 和失败轨迹，secret 递归脱敏；owner-only 权限无法落实时删除不安全文件并 fail closed。远端专项 21 项与 T031–T035 联测 66 项通过。"
     }
   ],
   "tasks": [
@@ -1048,7 +1066,7 @@
       "description": "实现 450 RPM ceiling、初始 concurrency 8、Retry-After/backoff、HTTP 分类、balance/history 对账和 Authorization redaction。",
       "deliverables": ["rate_limiter.py", "usage_ledger.py", "error handling tests"],
       "acceptance_criteria": ["401/402/404 等按计划停止", "transient errors 有限重试", "points 和 token usage 可审计", "ledger 不含 secret"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T02:50:03+08:00", "completed_at": "2026-08-30T02:53:48+08:00", "completion_notes": "实现 transport-neutral Poe rate limiter、有限重试/错误分类和 private usage ledger。rate limiter 固定最高 450 requests/minute 与 8 concurrency，rolling window/semaphore 均线程安全；retry policy 固定 250ms base、有限指数退避+jitter、优先尊重 Retry-After delta/date，默认最多 3 attempts。401/402/403/404、400 schema/context/model/endpoint 等立即 fail-stop；408/429/5xx/timeout/network transient 才允许有限重试，结构化错误不保留 raw body/header。usage ledger 记录 request/response/query/x-request IDs、transport、gpt-5.4-mini、token/point usage、attempt/retry/error，并可注入 usage transport 做 pre/post balance 与 points_history reconciliation；递归脱敏 credential-like keys/text。private JSON 使用 owner-only mode；远端验收发现挂载文件系统忽略 chmod 后，改为删除权限过宽 artifact 并 fail closed，避免静默泄露。", "evidence": ["Pilot/molhallulens/providers/poe/rate_limiter.py", "Pilot/molhallulens/providers/poe/usage_ledger.py", "Pilot/molhallulens/providers/poe/__init__.py", "Pilot/tests/unit/test_poe_rate_limiter.py", "Pilot/tests/unit/test_poe_usage_ledger.py", "本地与远端 T035 专项：21 passed", "本地与远端 T031–T035 联测：66 passed", "ruff/format/diff passed"], "files_changed": ["Pilot/molhallulens/providers/poe/rate_limiter.py", "Pilot/molhallulens/providers/poe/usage_ledger.py", "Pilot/molhallulens/providers/poe/__init__.py", "Pilot/tests/unit/test_poe_rate_limiter.py", "Pilot/tests/unit/test_poe_usage_ledger.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_poe_rate_limiter.py tests/unit/test_poe_usage_ledger.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_poe_schemas.py tests/unit/test_chemistry_tools.py tests/unit/test_poe_model_registry.py tests/unit/test_poe_clients.py tests/unit/test_poe_rate_limiter.py tests/unit/test_poe_usage_ledger.py", "ruff check molhallulens/providers/poe/__init__.py molhallulens/providers/poe/rate_limiter.py molhallulens/providers/poe/usage_ledger.py tests/unit/test_poe_rate_limiter.py tests/unit/test_poe_usage_ledger.py", "ruff format --check molhallulens/providers/poe/__init__.py molhallulens/providers/poe/rate_limiter.py molhallulens/providers/poe/usage_ledger.py tests/unit/test_poe_rate_limiter.py tests/unit/test_poe_usage_ledger.py", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T036", "phase": "4_poe_candidate_agent", "title": "实现 content-addressed cache 和 replay",
