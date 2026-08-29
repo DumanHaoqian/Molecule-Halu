@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T03:09:03+08:00",
+  "updated_at": "2026-08-30T03:31:06+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 15,
+    "not_started": 14,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 37,
-    "last_completed_task": "T037"
+    "completed": 38,
+    "last_completed_task": "T038"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -821,6 +821,23 @@
       "known_gaps": [],
       "follow_up_actions": ["T038 对每个 structural operator/backend 统计 valid coverage、failure/reject codes 与 LLM material participation", "T024 scheduler 消费 empty/backfill ledger 而不放宽 operator quota"],
       "assessment_summary": "T037 四项验收全部满足。LLM 仅生成未接受 proposals；三轮 retry 固定 request/model/phenotype 且只反馈拒绝码，所有候选经 T032/T018 gate、跨轮/跨源去重和完整池排序。失败只触发同 operator/policy/root 的预声明 deterministic fallback 或 scheduler backfill。远端专项 6 项、T018/T030/T031/T032/T034/T036/T037 关联 77 项通过。"
+    },
+    {
+      "task_id": "T038",
+      "assessed_at": "2026-08-30T03:31:06+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 4, "documentation_and_traceability": 5},
+      "overall_score": 4.75,
+      "plan_sections_rechecked": ["8.2 CandidateEngine", "8.10 Validate–retry–fallback", "10.3 LLM material participation", "Phase 4：LLM Agent candidate invention"],
+      "acceptance_criteria_results": [
+        {"criterion": "每个 structural operator 至少一种来源有可验证候选", "passed": true, "evidence": ["固定报告覆盖 23/23 structural operators", "RULE/RDKIT/HYBRID 候选均通过普通 T018 deterministic gate 后计数"]},
+        {"criterion": "失败率可按 operator/backend 统计", "passed": true, "evidence": ["每个 operator/backend 保存 requests、successes、failures、failure_rate、reject codes 和 origin_count", "聚合器从 exact counts 重算并拒绝不一致统计"]},
+        {"criterion": "LLM 实质参与目标比例可测量", "passed": true, "evidence": ["冻结 0.5 target、分子/分母定义与 material-source 判定", "live 不可达时 fraction/target_met 保持 null；deterministic mock 单列且绝不计入 live"]}
+      ],
+      "strengths": ["结构 operator 集合直接由 T019–T021 冻结 IDs 与 registry 双向校验，排除三类非结构 family", "真实 Pilot origins 按 canonical 顺序搜索到各 backend 首个成功并保留此前全部失败证据", "固定报告同时记录 raw proposals、valid candidates、真实 source mix、rejection/failure counts 和覆盖 roots", "Poe live、deterministic local 与 deterministic mock 三种 execution mode 严格隔离"],
+      "known_gaps": ["服务器无法连接 Poe，因此 live LLM participation 未执行并如实保持未测量", "失败率描述本次 canonical coverage-search 请求，不冒充 150-origin exhaustive population rate；长耗时 deletion replay 的全组合回归未跑到自然结束"],
+      "follow_up_actions": ["T044 golden suite 覆盖报告中高失败率的 operator/root 组合", "网络恢复后单独执行 live measurement，禁止用 mock 替换", "T045 dry run 用实际 accepted H variants 计算 live material participation"],
+      "assessment_summary": "T038 三项验收均满足。23/23 structural operators 至少有一种 deterministic verified source；报告逐 operator/backend 保存 exact 请求、成功、失败、failure rate、reject code、origin count 与 source mix。LLM target 可计算，但服务器网络不可达，live 指标保持 null，48 次 deterministic mock material requests 单独标记且不计 live。远端专项及 T018/T037 关联 38 项通过；本地专项 7 项通过，长耗时组合回归在 173 项通过后为加速而中断。"
     }
   ],
   "tasks": [
@@ -1126,7 +1143,7 @@
       "description": "对各 structural operator 运行 rule/LLM/hybrid 候选测试，汇总成功率、reject codes 和真实 candidate-source mix。",
       "deliverables": ["operator candidate coverage report"],
       "acceptance_criteria": ["每个 structural operator 至少一种来源有可验证候选", "失败率可按 operator/backend 统计", "LLM 实质参与目标比例可测量"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T03:10:52+08:00", "completed_at": "2026-08-30T03:31:06+08:00", "completion_notes": "实现 structural operator candidate coverage 审计与固定报告。冻结 T019–T021 的 23 个结构 operator，并通过 registry 反校验 family/root/subtask；在真实 Pilot corpus 上按 canonical origin 顺序运行 RULE、RDKIT、HYBRID，保留每个 backend 首次成功前的全部失败、reject codes、请求数、origin 数和真实 source mix。所有 operator 至少一种 deterministic-local 来源产生经 T018 验证的候选。LLM 与 HYBRID-LLM 使用明确标注的 deterministic fixture 仅验证测量管线；Poe live 因网络不可达标记 offline_not_executed，live_fraction/target_met 保持 null，mock 不计 live。报告中的 failure rate 是本次 coverage-search requests 的精确比率，不声称 150-origin population estimate。", "evidence": ["Pilot/molhallulens/builders/operator_coverage.py", "Pilot/Dataset/reports/operator_candidate_coverage.json", "Pilot/tests/unit/test_operator_coverage.py", "23/23 structural operators covered", "fixed source totals: RULE 173 / RDKIT 345 / LLM deterministic mock 48", "本地 T038 专项：7 passed", "远端 T038/T018/T037 关联：38 passed", "ruff/JSON/diff checks passed"], "files_changed": ["Pilot/molhallulens/builders/operator_coverage.py", "Pilot/molhallulens/builders/__init__.py", "Pilot/Dataset/reports/operator_candidate_coverage.json", "Pilot/tests/unit/test_operator_coverage.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_operator_coverage.py tests/unit/test_candidate_sources.py tests/unit/test_hybrid_candidate_engine.py", "ruff check molhallulens/builders/operator_coverage.py molhallulens/builders/__init__.py tests/unit/test_operator_coverage.py", "python -m json.tool Dataset/reports/operator_candidate_coverage.json >/dev/null", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T039", "phase": "5_rendering_and_labels", "title": "实现 Trace AST 和确定性 mention offsets",
