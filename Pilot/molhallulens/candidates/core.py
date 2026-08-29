@@ -988,19 +988,19 @@ def _remove_exact_occurrence(
     return editable.GetMol(), shifted_anchor, removed_bond_type
 
 
-def replay_edit_action(
-    request: CandidateRequest,
+def replay_edit_action_from_source(
+    indexed_smiles: str,
     action: EditAction,
 ) -> tuple[str, ...]:
-    """Replay one typed graph action using the same strict T018 chemistry gate."""
+    """Replay one typed graph action from its canonical mapped source."""
 
-    if type(request) is not CandidateRequest:
-        raise TypeError("request must be CandidateRequest")
+    if type(indexed_smiles) is not str or not indexed_smiles:
+        raise TypeError("indexed_smiles must be non-empty text")
     if type(action) is not EditAction:
         raise TypeError("action must be EditAction")
     if action.source_anchor_index is None or action.bond_type is None:
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
-    source = _strict_replay_molecule(request.context.record.indexed_smiles)
+    source = _strict_replay_molecule(indexed_smiles)
     add_anchor_index, map_to_index = _source_anchor(
         source,
         action.source_anchor_index,
@@ -1099,6 +1099,20 @@ def replay_edit_action(
     else:  # pragma: no cover - EditKind is sealed and exhaustive
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     return (_canonical_replay_product(product),)
+
+
+def replay_edit_action(
+    request: CandidateRequest,
+    action: EditAction,
+) -> tuple[str, ...]:
+    """Replay one typed graph action using the same strict T018 chemistry gate."""
+
+    if type(request) is not CandidateRequest:
+        raise TypeError("request must be CandidateRequest")
+    return replay_edit_action_from_source(
+        request.context.record.indexed_smiles,
+        action,
+    )
 
 
 def _replay_action_products(
@@ -1600,4 +1614,5 @@ __all__ = [
     "compute_difficulty_features",
     "rank_candidates",
     "replay_edit_action",
+    "replay_edit_action_from_source",
 ]

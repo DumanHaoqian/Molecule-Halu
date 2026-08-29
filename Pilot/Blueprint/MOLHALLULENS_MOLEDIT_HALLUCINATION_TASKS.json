@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T22:49:52+08:00",
+  "updated_at": "2026-08-29T23:26:17+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 31,
+    "not_started": 30,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 21,
-    "last_completed_task": "T021"
+    "completed": 22,
+    "last_completed_task": "T022"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -548,6 +548,24 @@
       "known_gaps": [],
       "follow_up_actions": ["T022 从真实 structural root patch 重算完整 downstream state", "T024 消费真实 underfilled pool 并记录 fallback deviation", "T030 在 split 冻结后建立 split-local cross-record donor pools"],
       "assessment_summary": "T021 三项验收全部满足；46 项专项、126 项 bridge/domain/operator 回归、539 项远端全量、ruff/format、compileall、wheel、JSON/diff 与独立 blocker review 通过。12 个 operators、双锚 replay、静态 halogen balance、有界 partial、actionless terminal、cap/underfill 和 0191/0276 fail-closed 边界均有直接回归证据。"
+    },
+    {
+      "task_id": "T022",
+      "assessed_at": "2026-08-29T23:26:17+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["4.3 Addition DAG", "4.4 Deletion DAG", "4.5 Substitution DAG", "8.4 PropagationEngine", "8.5 四种 propagation 的精确定义", "9.4 Causal role axis", "12.1 Validation chain", "12.3 H/N phenotype invariants", "Phase 2：Deterministic perturbation pipeline"],
+      "acceptance_criteria_results": [
+        {"criterion": "STOP 等于 root", "passed": true, "evidence": ["STOP plan/propagate 仅选择并写入 root；stale downstream edges 不进入 GraphDelta", "Pilot/tests/unit/test_editing_propagation.py"]},
+        {"criterion": "PARTIAL 是严格小于完整 closure 的连通下游子图", "passed": true, "evidence": ["inclusive cut、root-connected、strict subset、non-degenerate semantic change 与 nested-cut reachability 全部 fail-closed", "随机 DAG property tests 与 missing-rule-behind-cut 回归"]},
+        {"criterion": "FULL 覆盖全部可推导 descendants", "passed": true, "evidence": ["生产 schema 对 full closure 预检 typed/scoped rule coverage", "真实 EditAction replay、product graph equivalence、descriptor/delta recomputation 与 substitution 双恒等式审计"]},
+        {"criterion": "TERMINAL 仅 final_answer", "passed": true, "evidence": ["TERMINAL policy/root exact-shape validation", "reasoning state 保持 reference，仅 final_answer 产生 TERMINAL event"]}
+      ],
+      "strengths": ["实现 immutable typed derivation rule registry、deterministic propagation plan 与 GraphDelta", "BUILD_ONLY/INTERNAL_TRUTH 永不成为输出或事件；缺 rule、动态缺 action、未知 relation、invalid chemistry comparator 均结构化 fail closed", "FULL_CF 的 candidate product 由 T018 action 真实 replay，downstream counts/deltas 与 final answer 确定性重算", "MutationEvent 保留 mention provenance，并按 operator declaration 精确投影 hallucination/edit subtype 与 ROOT/PROPAGATED_FALSE/PROPAGATED_CONDITIONAL/TERMINAL role"],
+      "known_gaps": [],
+      "follow_up_actions": ["T023 从 locked propagated state 确定性渲染 FORMAL 与 Answer", "T024 用 propagation policy 与 candidate availability 构造 matched bundles 并记录 fallback deviation"],
+      "assessment_summary": "T022 四项验收全部满足；36 项专项、204 项本地关联回归、277 项独立关联回归、575 项远端全量、ruff/format/compileall/diff 与两轮独立 blocker review 全部通过。STOP/PARTIAL/FULL_CF/TERMINAL 的 changed-set、typed rule coverage、真实 chemistry replay、conditional/false role、event metadata 与 fail-closed 边界均有直接测试。"
     }
   ],
   "tasks": [
@@ -725,7 +743,7 @@
       "description": "实现 STOP、PARTIAL、FULL_CF、TERMINAL 的 changed-set 逻辑和 editing downstream 重算规则。",
       "deliverables": ["propagation/base.py", "propagation/editing.py", "property tests"],
       "acceptance_criteria": ["STOP 等于 root", "PARTIAL 是严格小于完整 closure 的连通下游子图", "FULL 覆盖全部可推导 descendants", "TERMINAL 仅 final_answer"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T22:53:06+08:00", "completed_at": "2026-08-29T23:26:17+08:00", "completion_notes": "实现 typed immutable derivation rule registry、PropagationPlan 与 EditingPropagationEngine，精确支持 STOP、PARTIAL、FULL_CF、TERMINAL。STOP/TERMINAL 只选择 root；PARTIAL 使用 inclusive cut 构造 strict root-connected downstream 子图，拒绝空 cut、root/leaf/unreachable/full/nested-shadow cut、无实际 downstream semantic difference 及 cut 后缺 rule；FULL/PARTIAL 对生产 full closure 预检 schema-scoped typed rules。FULL structural 从 T018 typed EditAction 真正 replay candidate product并验证 graph equivalence，再重算 product descriptors、heavy/ring delta 和 final answer；substitution heavy delta 以显式四输入 rule 同时审计 source/product 与 add/remove 恒等式。BUILD_ONLY/INTERNAL_TRUTH 永不变成 output/event；缺 action/rule、未知 relation、invalid fragment/product/comparator 均结构化 fail closed。MutationEvent root-first/lexical-topological deterministic，保留 mention_ids，并从 exact operator declaration 投影 labels；derived role 区分 conditional 与 false。新增 public source replay bridge，仅供 propagation 消费已验证 action。未实现 T023+ renderer/bundle。", "evidence": ["Pilot/molhallulens/propagation/base.py", "Pilot/molhallulens/propagation/editing.py", "Pilot/tests/unit/test_editing_propagation.py", "Pilot/tests/property/test_propagation_policies.py", "targeted pytest result: 36 passed", "local related regression: 204 passed", "independent related regression: 277 passed", "full remote pytest result: 575 passed", "ruff and format clean", "compileall passed", "independent blocker-only reviews: APPROVE"], "files_changed": ["Pilot/molhallulens/candidates/__init__.py", "Pilot/molhallulens/candidates/core.py", "Pilot/molhallulens/propagation/__init__.py", "Pilot/molhallulens/propagation/base.py", "Pilot/molhallulens/propagation/editing.py", "Pilot/tests/unit/test_editing_propagation.py", "Pilot/tests/property/test_propagation_policies.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_editing_propagation.py tests/property/test_propagation_policies.py", "PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_editing_propagation.py tests/property/test_propagation_policies.py tests/unit/test_candidate_sources.py tests/unit/test_editing_state_schemas.py tests/unit/test_addition_operators.py tests/unit/test_deletion_operators.py tests/unit/test_substitution_operators.py tests/unit/test_state_dag.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "ruff check molhallulens/propagation molhallulens/candidates/core.py molhallulens/candidates/__init__.py tests/unit/test_editing_propagation.py tests/property/test_propagation_policies.py", "ruff format --check molhallulens/propagation/base.py molhallulens/propagation/editing.py tests/unit/test_editing_propagation.py tests/property/test_propagation_policies.py", "PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens tests", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T023", "phase": "2_deterministic_pipeline", "title": "实现 deterministic FORMAL 与 Answer renderer",
