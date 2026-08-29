@@ -19,6 +19,7 @@ from molhallulens.builders.golden_validation import (
     ExtendedGoldenSuiteBuild,
     build_t044_extended_golden_suite,
 )
+from molhallulens.chemistry import isomeric_graph_equivalent
 from molhallulens.domain import EditingSubtask, PropagationPolicy, VariantLabel
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -79,6 +80,36 @@ def test_every_origin_freezes_full_eight_record_matrix_and_passes_t043(
             == item.record_id
             for item in origin.artifacts
         )
+
+
+def test_trace_answer_correct_and_instruction_use_authoritative_origin_state(
+    suite: ExtendedGoldenSuiteBuild,
+) -> None:
+    partial_h = []
+    for artifact in suite.artifacts:
+        record = artifact.draft
+        expected_answer_correct = isomeric_graph_equivalent(
+            record.locked_state.value_for("final_answer").normalized_value,
+            record.reference_graph.value_for("oracle_gt").normalized_value,
+        )
+        assert artifact.trace_labels.answer_correct is expected_answer_correct
+        assert artifact.serialized.detector_input.instruction == (
+            record.locked_state.value_for("instruction").normalized_value
+        )
+        assert artifact.serialized.detector_input.instruction != (
+            "Apply the requested molecular edit."
+        )
+        if (
+            record.variant_label is VariantLabel.HALLUCINATED
+            and record.policy is PropagationPolicy.PARTIAL
+        ):
+            partial_h.append(artifact)
+    assert len(partial_h) == 9
+    assert all(
+        artifact.trace_labels.answer_correct
+        is not artifact.draft.answer.product_equivalent
+        for artifact in partial_h
+    )
 
 
 def test_rendered_mentions_and_character_annotations_round_trip_exactly(

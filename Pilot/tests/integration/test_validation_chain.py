@@ -25,6 +25,7 @@ from molhallulens.builders.origin_audit import audit_origin_split_features
 from molhallulens.builders.reference_dag import build_reference_dag
 from molhallulens.builders.split_manifest import load_verified_split_manifest
 from molhallulens.builders.splitter import SplitName, build_group_stratified_split
+from molhallulens.chemistry import isomeric_graph_equivalent
 from molhallulens.domain import (
     CharSpan,
     MutationTargetKind,
@@ -172,17 +173,19 @@ def _formal_content(record_id: str, step: Any) -> SequenceNode:
 
 
 def _trace_labels(record: Any) -> TraceLabels:
+    answer_correct = isomeric_graph_equivalent(
+        record.locked_state.value_for("final_answer").normalized_value,
+        record.reference_graph.value_for("oracle_gt").normalized_value,
+    )
     if record.variant_label is VariantLabel.FAITHFUL:
-        return TraceLabels(False, True, True, True, True, True, True)
+        return TraceLabels(False, True, answer_correct, True, True, True, True)
     if record.policy is PropagationPolicy.STOP:
-        return TraceLabels(True, False, True, True, True, True, True)
+        return TraceLabels(True, False, answer_correct, True, True, True, True)
     if record.policy is PropagationPolicy.PARTIAL:
-        return TraceLabels(
-            True, False, record.answer.product_equivalent, True, False, True, True
-        )
+        return TraceLabels(True, False, answer_correct, True, False, True, True)
     if record.policy is PropagationPolicy.FULL_CF:
-        return TraceLabels(True, False, False, True, False, True, True)
-    return TraceLabels(True, True, False, True, True, True, True)
+        return TraceLabels(True, False, answer_correct, True, False, True, True)
+    return TraceLabels(True, True, answer_correct, True, True, True, True)
 
 
 def _render(record: Any, *, target_override: object = _UNSET):
@@ -273,7 +276,7 @@ def _artifact(
     reasoning = rendered.detector_text[: max(span.end for span in reasoning_spans)]
     serialized = DetectorPromptSerializer().serialize(
         indexed_smiles=record.locked_state.value_for("source").normalized_value,
-        instruction="Apply the requested molecular edit.",
+        instruction=record.locked_state.value_for("instruction").normalized_value,
         reasoning_chain=reasoning,
         final_answer=record.answer.smiles,
     )
@@ -437,6 +440,33 @@ def test_each_h_phenotype_rejects_its_defining_invariant_tamper(
     assert code in _codes(report)
 
 
+def test_answer_correct_is_bound_to_authoritative_oracle_not_candidate_product() -> (
+    None
+):
+    _, artifacts = _bundle_and_artifacts()
+    partial = next(
+        item
+        for item in artifacts
+        if item.draft.variant_label is VariantLabel.HALLUCINATED
+        and item.draft.policy is PropagationPolicy.PARTIAL
+    )
+    assert partial.trace_labels.answer_correct is True
+    assert partial.draft.answer.product_equivalent is False
+
+    for source in artifacts:
+        expected = isomeric_graph_equivalent(
+            source.draft.locked_state.value_for("final_answer").normalized_value,
+            source.draft.reference_graph.value_for("oracle_gt").normalized_value,
+        )
+        assert source.trace_labels.answer_correct is expected
+        tampered = replace(
+            source,
+            trace_labels=replace(source.trace_labels, answer_correct=not expected),
+        )
+        report = HallucinationSemanticValidator().validate(tampered)
+        assert "SEMANTIC_ANSWER_CORRECTNESS_MISMATCH" in _codes(report)
+
+
 @pytest.mark.parametrize(
     "leaked_text",
     (
@@ -468,6 +498,27 @@ def test_renderer_rejects_leakage_phrases_and_reference_headers(
         "RENDERER_LABEL_LEAKAGE",
         "RENDERER_REFERENCE_HEADER",
     }
+
+
+def test_renderer_rejects_generic_or_other_origin_instruction() -> None:
+    _, artifacts = _bundle_and_artifacts()
+    source = artifacts[0]
+    assert source.serialized.detector_input.instruction == (
+        source.draft.locked_state.value_for("instruction").normalized_value
+    )
+    detector = replace(
+        source.serialized.detector_input,
+        instruction="Apply the requested molecular edit.",
+    )
+    assert detector.instruction != source.serialized.detector_input.instruction
+    tampered = replace(
+        source,
+        serialized=DetectorPromptSerializer().serialize_input(detector),
+    )
+
+    report = RendererValidator().validate(tampered)
+
+    assert "RENDERER_INSTRUCTION_IDENTITY_MISMATCH" in _codes(report)
 
 
 def test_renderer_binds_faithful_natural_mentions_to_locked_state() -> None:

@@ -47,6 +47,7 @@ from molhallulens.builders.split_manifest import (
     load_verified_split_manifest,
 )
 from molhallulens.builders.splitter import build_group_stratified_split
+from molhallulens.chemistry import isomeric_graph_equivalent
 from molhallulens.config import load_config_bundle
 from molhallulens.config.loader import ConfigBundle
 from molhallulens.domain import (
@@ -375,24 +376,38 @@ def _formal_content(record_id: str, step: Any) -> SequenceNode:
     )
 
 
+def _answer_correct_against_oracle(record: Any) -> bool:
+    answer = record.locked_state.value_for("final_answer").normalized_value
+    oracle = record.reference_graph.value_for("oracle_gt").normalized_value
+    if type(answer) is not str or not answer or type(oracle) is not str or not oracle:
+        raise ValueError("Answer and authoritative oracle must be non-empty SMILES")
+    try:
+        return isomeric_graph_equivalent(answer, oracle)
+    except (RuntimeError, TypeError, ValueError) as error:
+        raise ValueError(
+            "Answer correctness cannot be resolved against authoritative oracle"
+        ) from error
+
+
 def _trace_labels(record: Any) -> TraceLabels:
+    answer_correct = _answer_correct_against_oracle(record)
     if record.variant_label is VariantLabel.FAITHFUL:
-        return TraceLabels(False, True, True, True, True, True, True)
+        return TraceLabels(False, True, answer_correct, True, True, True, True)
     if record.policy is PropagationPolicy.STOP:
-        return TraceLabels(True, False, True, True, True, True, True)
+        return TraceLabels(True, False, answer_correct, True, True, True, True)
     if record.policy is PropagationPolicy.PARTIAL:
         return TraceLabels(
             True,
             False,
-            record.answer.product_equivalent,
+            answer_correct,
             True,
             False,
             True,
             True,
         )
     if record.policy is PropagationPolicy.FULL_CF:
-        return TraceLabels(True, False, False, True, False, True, True)
-    return TraceLabels(True, True, False, True, True, True, True)
+        return TraceLabels(True, False, answer_correct, True, False, True, True)
+    return TraceLabels(True, True, answer_correct, True, True, True, True)
 
 
 def render_extended_golden_record(
@@ -542,7 +557,7 @@ def build_extended_record_artifact(
     reasoning = rendered.detector_text[: max(span.end for span in reasoning_spans)]
     serialized = DetectorPromptSerializer().serialize(
         indexed_smiles=record.locked_state.value_for("source").normalized_value,
-        instruction="Apply the requested molecular edit.",
+        instruction=record.locked_state.value_for("instruction").normalized_value,
         reasoning_chain=reasoning,
         final_answer=record.answer.smiles,
     )

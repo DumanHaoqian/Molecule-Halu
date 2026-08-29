@@ -1,0 +1,32 @@
+{
+  "content_hashes_added_by_t045": false,
+  "dataset_version": "pilot_v1",
+  "detector_field_order": [
+    "indexed_smiles",
+    "instruction",
+    "reasoning_chain",
+    "final_answer"
+  ],
+  "dry_run_id": "t045_frozen_offline_15_origin_v1",
+  "format_version": "t045_dry_run_release_v1",
+  "network_mode": "frozen_offline",
+  "oracle_visible_to_detector": false,
+  "origin_count": 15,
+  "record_count": 120,
+  "record_schema_version": "molhallulens.edit.v1",
+  "release_kind": "dry_run",
+  "splits": {
+    "test": {
+      "origin_count": 3,
+      "record_count": 24
+    },
+    "train": {
+      "origin_count": 9,
+      "record_count": 72
+    },
+    "validation": {
+      "origin_count": 3,
+      "record_count": 24
+    }
+  }
+}

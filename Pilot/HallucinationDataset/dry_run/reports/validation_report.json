@@ -1,0 +1,4923 @@
+{
+  "all_pass": true,
+  "artifact_gate_count": 480,
+  "bundle_gate_count": 15,
+  "dry_run_id": "t045_frozen_offline_15_origin_v1",
+  "format_version": "t045_strict_validation_report_v1",
+  "origins": [
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.add_v2.0022",
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.add_v2.0071",
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.add_v2.0282",
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.add_v2.0023",
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.add_v2.0295",
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.delete_v2.0016",
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.delete_v2.0202",
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.delete_v2.0185",
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.delete_v2.0028",
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.delete_v2.0046",
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.substitute_v2.0271",
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.substitute_v2.0232",
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.substitute_v2.0057",
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "all_pass": true,
+      "issue_codes": [],
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "record_count": 8,
+      "subtask": "substitute"
+    }
+  ],
+  "records": [
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0022__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "acb06b6912d8a08dd99c44a13f1ff6704f4daac21f419b604939ffc9c33cb534",
+      "origin_id": "mol_edit.add_v2.0022",
+      "pair_id": "mol_edit.add_v2.0022__LOCAL",
+      "record_id": "mol_edit.add_v2.0022__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0022__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "acb06b6912d8a08dd99c44a13f1ff6704f4daac21f419b604939ffc9c33cb534",
+      "origin_id": "mol_edit.add_v2.0022",
+      "pair_id": "mol_edit.add_v2.0022__LOCAL",
+      "record_id": "mol_edit.add_v2.0022__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0022__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "acb06b6912d8a08dd99c44a13f1ff6704f4daac21f419b604939ffc9c33cb534",
+      "origin_id": "mol_edit.add_v2.0022",
+      "pair_id": "mol_edit.add_v2.0022__PARTIAL",
+      "record_id": "mol_edit.add_v2.0022__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0022__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "acb06b6912d8a08dd99c44a13f1ff6704f4daac21f419b604939ffc9c33cb534",
+      "origin_id": "mol_edit.add_v2.0022",
+      "pair_id": "mol_edit.add_v2.0022__PARTIAL",
+      "record_id": "mol_edit.add_v2.0022__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0022__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "acb06b6912d8a08dd99c44a13f1ff6704f4daac21f419b604939ffc9c33cb534",
+      "origin_id": "mol_edit.add_v2.0022",
+      "pair_id": "mol_edit.add_v2.0022__FULL_CF",
+      "record_id": "mol_edit.add_v2.0022__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0022__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "acb06b6912d8a08dd99c44a13f1ff6704f4daac21f419b604939ffc9c33cb534",
+      "origin_id": "mol_edit.add_v2.0022",
+      "pair_id": "mol_edit.add_v2.0022__FULL_CF",
+      "record_id": "mol_edit.add_v2.0022__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0022__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "acb06b6912d8a08dd99c44a13f1ff6704f4daac21f419b604939ffc9c33cb534",
+      "origin_id": "mol_edit.add_v2.0022",
+      "pair_id": "mol_edit.add_v2.0022__TERMINAL",
+      "record_id": "mol_edit.add_v2.0022__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0022__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "acb06b6912d8a08dd99c44a13f1ff6704f4daac21f419b604939ffc9c33cb534",
+      "origin_id": "mol_edit.add_v2.0022",
+      "pair_id": "mol_edit.add_v2.0022__TERMINAL",
+      "record_id": "mol_edit.add_v2.0022__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0071__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ce4c077b59022ba16746ddc6ec17a673564c719fcad382a11cc6b36f0936f6c2",
+      "origin_id": "mol_edit.add_v2.0071",
+      "pair_id": "mol_edit.add_v2.0071__LOCAL",
+      "record_id": "mol_edit.add_v2.0071__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0071__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ce4c077b59022ba16746ddc6ec17a673564c719fcad382a11cc6b36f0936f6c2",
+      "origin_id": "mol_edit.add_v2.0071",
+      "pair_id": "mol_edit.add_v2.0071__LOCAL",
+      "record_id": "mol_edit.add_v2.0071__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0071__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ce4c077b59022ba16746ddc6ec17a673564c719fcad382a11cc6b36f0936f6c2",
+      "origin_id": "mol_edit.add_v2.0071",
+      "pair_id": "mol_edit.add_v2.0071__PARTIAL",
+      "record_id": "mol_edit.add_v2.0071__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0071__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ce4c077b59022ba16746ddc6ec17a673564c719fcad382a11cc6b36f0936f6c2",
+      "origin_id": "mol_edit.add_v2.0071",
+      "pair_id": "mol_edit.add_v2.0071__PARTIAL",
+      "record_id": "mol_edit.add_v2.0071__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0071__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ce4c077b59022ba16746ddc6ec17a673564c719fcad382a11cc6b36f0936f6c2",
+      "origin_id": "mol_edit.add_v2.0071",
+      "pair_id": "mol_edit.add_v2.0071__FULL_CF",
+      "record_id": "mol_edit.add_v2.0071__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0071__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ce4c077b59022ba16746ddc6ec17a673564c719fcad382a11cc6b36f0936f6c2",
+      "origin_id": "mol_edit.add_v2.0071",
+      "pair_id": "mol_edit.add_v2.0071__FULL_CF",
+      "record_id": "mol_edit.add_v2.0071__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0071__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ce4c077b59022ba16746ddc6ec17a673564c719fcad382a11cc6b36f0936f6c2",
+      "origin_id": "mol_edit.add_v2.0071",
+      "pair_id": "mol_edit.add_v2.0071__TERMINAL",
+      "record_id": "mol_edit.add_v2.0071__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0071__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ce4c077b59022ba16746ddc6ec17a673564c719fcad382a11cc6b36f0936f6c2",
+      "origin_id": "mol_edit.add_v2.0071",
+      "pair_id": "mol_edit.add_v2.0071__TERMINAL",
+      "record_id": "mol_edit.add_v2.0071__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0282__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f3f8c727f6739f9cd78679032b6c50255a266cbd8b5383a1aa1567c63d94040e",
+      "origin_id": "mol_edit.add_v2.0282",
+      "pair_id": "mol_edit.add_v2.0282__LOCAL",
+      "record_id": "mol_edit.add_v2.0282__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0282__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f3f8c727f6739f9cd78679032b6c50255a266cbd8b5383a1aa1567c63d94040e",
+      "origin_id": "mol_edit.add_v2.0282",
+      "pair_id": "mol_edit.add_v2.0282__LOCAL",
+      "record_id": "mol_edit.add_v2.0282__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0282__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f3f8c727f6739f9cd78679032b6c50255a266cbd8b5383a1aa1567c63d94040e",
+      "origin_id": "mol_edit.add_v2.0282",
+      "pair_id": "mol_edit.add_v2.0282__PARTIAL",
+      "record_id": "mol_edit.add_v2.0282__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0282__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f3f8c727f6739f9cd78679032b6c50255a266cbd8b5383a1aa1567c63d94040e",
+      "origin_id": "mol_edit.add_v2.0282",
+      "pair_id": "mol_edit.add_v2.0282__PARTIAL",
+      "record_id": "mol_edit.add_v2.0282__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0282__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f3f8c727f6739f9cd78679032b6c50255a266cbd8b5383a1aa1567c63d94040e",
+      "origin_id": "mol_edit.add_v2.0282",
+      "pair_id": "mol_edit.add_v2.0282__FULL_CF",
+      "record_id": "mol_edit.add_v2.0282__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0282__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f3f8c727f6739f9cd78679032b6c50255a266cbd8b5383a1aa1567c63d94040e",
+      "origin_id": "mol_edit.add_v2.0282",
+      "pair_id": "mol_edit.add_v2.0282__FULL_CF",
+      "record_id": "mol_edit.add_v2.0282__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0282__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f3f8c727f6739f9cd78679032b6c50255a266cbd8b5383a1aa1567c63d94040e",
+      "origin_id": "mol_edit.add_v2.0282",
+      "pair_id": "mol_edit.add_v2.0282__TERMINAL",
+      "record_id": "mol_edit.add_v2.0282__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0282__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f3f8c727f6739f9cd78679032b6c50255a266cbd8b5383a1aa1567c63d94040e",
+      "origin_id": "mol_edit.add_v2.0282",
+      "pair_id": "mol_edit.add_v2.0282__TERMINAL",
+      "record_id": "mol_edit.add_v2.0282__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0023__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "0caf018cb3c135f3000a77ea929f6b84bf8ae9419171a0264b5ecb5708fa3b21",
+      "origin_id": "mol_edit.add_v2.0023",
+      "pair_id": "mol_edit.add_v2.0023__LOCAL",
+      "record_id": "mol_edit.add_v2.0023__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0023__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "0caf018cb3c135f3000a77ea929f6b84bf8ae9419171a0264b5ecb5708fa3b21",
+      "origin_id": "mol_edit.add_v2.0023",
+      "pair_id": "mol_edit.add_v2.0023__LOCAL",
+      "record_id": "mol_edit.add_v2.0023__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0023__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "0caf018cb3c135f3000a77ea929f6b84bf8ae9419171a0264b5ecb5708fa3b21",
+      "origin_id": "mol_edit.add_v2.0023",
+      "pair_id": "mol_edit.add_v2.0023__PARTIAL",
+      "record_id": "mol_edit.add_v2.0023__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0023__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "0caf018cb3c135f3000a77ea929f6b84bf8ae9419171a0264b5ecb5708fa3b21",
+      "origin_id": "mol_edit.add_v2.0023",
+      "pair_id": "mol_edit.add_v2.0023__PARTIAL",
+      "record_id": "mol_edit.add_v2.0023__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0023__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "0caf018cb3c135f3000a77ea929f6b84bf8ae9419171a0264b5ecb5708fa3b21",
+      "origin_id": "mol_edit.add_v2.0023",
+      "pair_id": "mol_edit.add_v2.0023__FULL_CF",
+      "record_id": "mol_edit.add_v2.0023__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0023__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "0caf018cb3c135f3000a77ea929f6b84bf8ae9419171a0264b5ecb5708fa3b21",
+      "origin_id": "mol_edit.add_v2.0023",
+      "pair_id": "mol_edit.add_v2.0023__FULL_CF",
+      "record_id": "mol_edit.add_v2.0023__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0023__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "0caf018cb3c135f3000a77ea929f6b84bf8ae9419171a0264b5ecb5708fa3b21",
+      "origin_id": "mol_edit.add_v2.0023",
+      "pair_id": "mol_edit.add_v2.0023__TERMINAL",
+      "record_id": "mol_edit.add_v2.0023__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0023__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "0caf018cb3c135f3000a77ea929f6b84bf8ae9419171a0264b5ecb5708fa3b21",
+      "origin_id": "mol_edit.add_v2.0023",
+      "pair_id": "mol_edit.add_v2.0023__TERMINAL",
+      "record_id": "mol_edit.add_v2.0023__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0295__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "cce22989ef1bfdcdcbc06b79271ac0e3f8b6706fe26941d11d9353339ce32236",
+      "origin_id": "mol_edit.add_v2.0295",
+      "pair_id": "mol_edit.add_v2.0295__LOCAL",
+      "record_id": "mol_edit.add_v2.0295__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0295__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "cce22989ef1bfdcdcbc06b79271ac0e3f8b6706fe26941d11d9353339ce32236",
+      "origin_id": "mol_edit.add_v2.0295",
+      "pair_id": "mol_edit.add_v2.0295__LOCAL",
+      "record_id": "mol_edit.add_v2.0295__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0295__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "cce22989ef1bfdcdcbc06b79271ac0e3f8b6706fe26941d11d9353339ce32236",
+      "origin_id": "mol_edit.add_v2.0295",
+      "pair_id": "mol_edit.add_v2.0295__PARTIAL",
+      "record_id": "mol_edit.add_v2.0295__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0295__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "cce22989ef1bfdcdcbc06b79271ac0e3f8b6706fe26941d11d9353339ce32236",
+      "origin_id": "mol_edit.add_v2.0295",
+      "pair_id": "mol_edit.add_v2.0295__PARTIAL",
+      "record_id": "mol_edit.add_v2.0295__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0295__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "cce22989ef1bfdcdcbc06b79271ac0e3f8b6706fe26941d11d9353339ce32236",
+      "origin_id": "mol_edit.add_v2.0295",
+      "pair_id": "mol_edit.add_v2.0295__FULL_CF",
+      "record_id": "mol_edit.add_v2.0295__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0295__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "cce22989ef1bfdcdcbc06b79271ac0e3f8b6706fe26941d11d9353339ce32236",
+      "origin_id": "mol_edit.add_v2.0295",
+      "pair_id": "mol_edit.add_v2.0295__FULL_CF",
+      "record_id": "mol_edit.add_v2.0295__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0295__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "cce22989ef1bfdcdcbc06b79271ac0e3f8b6706fe26941d11d9353339ce32236",
+      "origin_id": "mol_edit.add_v2.0295",
+      "pair_id": "mol_edit.add_v2.0295__TERMINAL",
+      "record_id": "mol_edit.add_v2.0295__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.add_v2.0295__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "cce22989ef1bfdcdcbc06b79271ac0e3f8b6706fe26941d11d9353339ce32236",
+      "origin_id": "mol_edit.add_v2.0295",
+      "pair_id": "mol_edit.add_v2.0295__TERMINAL",
+      "record_id": "mol_edit.add_v2.0295__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0016__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f126b175899caadd0d78217eeb6659450b984d0c603fa3ad3e7eac805e9b1d4a",
+      "origin_id": "mol_edit.delete_v2.0016",
+      "pair_id": "mol_edit.delete_v2.0016__LOCAL",
+      "record_id": "mol_edit.delete_v2.0016__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0016__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f126b175899caadd0d78217eeb6659450b984d0c603fa3ad3e7eac805e9b1d4a",
+      "origin_id": "mol_edit.delete_v2.0016",
+      "pair_id": "mol_edit.delete_v2.0016__LOCAL",
+      "record_id": "mol_edit.delete_v2.0016__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0016__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f126b175899caadd0d78217eeb6659450b984d0c603fa3ad3e7eac805e9b1d4a",
+      "origin_id": "mol_edit.delete_v2.0016",
+      "pair_id": "mol_edit.delete_v2.0016__PARTIAL",
+      "record_id": "mol_edit.delete_v2.0016__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0016__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f126b175899caadd0d78217eeb6659450b984d0c603fa3ad3e7eac805e9b1d4a",
+      "origin_id": "mol_edit.delete_v2.0016",
+      "pair_id": "mol_edit.delete_v2.0016__PARTIAL",
+      "record_id": "mol_edit.delete_v2.0016__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0016__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f126b175899caadd0d78217eeb6659450b984d0c603fa3ad3e7eac805e9b1d4a",
+      "origin_id": "mol_edit.delete_v2.0016",
+      "pair_id": "mol_edit.delete_v2.0016__FULL_CF",
+      "record_id": "mol_edit.delete_v2.0016__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0016__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f126b175899caadd0d78217eeb6659450b984d0c603fa3ad3e7eac805e9b1d4a",
+      "origin_id": "mol_edit.delete_v2.0016",
+      "pair_id": "mol_edit.delete_v2.0016__FULL_CF",
+      "record_id": "mol_edit.delete_v2.0016__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0016__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f126b175899caadd0d78217eeb6659450b984d0c603fa3ad3e7eac805e9b1d4a",
+      "origin_id": "mol_edit.delete_v2.0016",
+      "pair_id": "mol_edit.delete_v2.0016__TERMINAL",
+      "record_id": "mol_edit.delete_v2.0016__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0016__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "f126b175899caadd0d78217eeb6659450b984d0c603fa3ad3e7eac805e9b1d4a",
+      "origin_id": "mol_edit.delete_v2.0016",
+      "pair_id": "mol_edit.delete_v2.0016__TERMINAL",
+      "record_id": "mol_edit.delete_v2.0016__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0202__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "c7fa3e8e320cfa341d0981a8a0439e868121ebd5d6c4c2941ba9d3698abcd6c1",
+      "origin_id": "mol_edit.delete_v2.0202",
+      "pair_id": "mol_edit.delete_v2.0202__LOCAL",
+      "record_id": "mol_edit.delete_v2.0202__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0202__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "c7fa3e8e320cfa341d0981a8a0439e868121ebd5d6c4c2941ba9d3698abcd6c1",
+      "origin_id": "mol_edit.delete_v2.0202",
+      "pair_id": "mol_edit.delete_v2.0202__LOCAL",
+      "record_id": "mol_edit.delete_v2.0202__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0202__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "c7fa3e8e320cfa341d0981a8a0439e868121ebd5d6c4c2941ba9d3698abcd6c1",
+      "origin_id": "mol_edit.delete_v2.0202",
+      "pair_id": "mol_edit.delete_v2.0202__PARTIAL",
+      "record_id": "mol_edit.delete_v2.0202__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0202__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "c7fa3e8e320cfa341d0981a8a0439e868121ebd5d6c4c2941ba9d3698abcd6c1",
+      "origin_id": "mol_edit.delete_v2.0202",
+      "pair_id": "mol_edit.delete_v2.0202__PARTIAL",
+      "record_id": "mol_edit.delete_v2.0202__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0202__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "c7fa3e8e320cfa341d0981a8a0439e868121ebd5d6c4c2941ba9d3698abcd6c1",
+      "origin_id": "mol_edit.delete_v2.0202",
+      "pair_id": "mol_edit.delete_v2.0202__FULL_CF",
+      "record_id": "mol_edit.delete_v2.0202__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0202__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "c7fa3e8e320cfa341d0981a8a0439e868121ebd5d6c4c2941ba9d3698abcd6c1",
+      "origin_id": "mol_edit.delete_v2.0202",
+      "pair_id": "mol_edit.delete_v2.0202__FULL_CF",
+      "record_id": "mol_edit.delete_v2.0202__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0202__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "c7fa3e8e320cfa341d0981a8a0439e868121ebd5d6c4c2941ba9d3698abcd6c1",
+      "origin_id": "mol_edit.delete_v2.0202",
+      "pair_id": "mol_edit.delete_v2.0202__TERMINAL",
+      "record_id": "mol_edit.delete_v2.0202__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0202__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "c7fa3e8e320cfa341d0981a8a0439e868121ebd5d6c4c2941ba9d3698abcd6c1",
+      "origin_id": "mol_edit.delete_v2.0202",
+      "pair_id": "mol_edit.delete_v2.0202__TERMINAL",
+      "record_id": "mol_edit.delete_v2.0202__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0185__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "78fd92b3dad61c41ea8288cae2852bf4bfa1e934df923c198bcd97de97bc824d",
+      "origin_id": "mol_edit.delete_v2.0185",
+      "pair_id": "mol_edit.delete_v2.0185__LOCAL",
+      "record_id": "mol_edit.delete_v2.0185__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0185__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "78fd92b3dad61c41ea8288cae2852bf4bfa1e934df923c198bcd97de97bc824d",
+      "origin_id": "mol_edit.delete_v2.0185",
+      "pair_id": "mol_edit.delete_v2.0185__LOCAL",
+      "record_id": "mol_edit.delete_v2.0185__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0185__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "78fd92b3dad61c41ea8288cae2852bf4bfa1e934df923c198bcd97de97bc824d",
+      "origin_id": "mol_edit.delete_v2.0185",
+      "pair_id": "mol_edit.delete_v2.0185__PARTIAL",
+      "record_id": "mol_edit.delete_v2.0185__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0185__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "78fd92b3dad61c41ea8288cae2852bf4bfa1e934df923c198bcd97de97bc824d",
+      "origin_id": "mol_edit.delete_v2.0185",
+      "pair_id": "mol_edit.delete_v2.0185__PARTIAL",
+      "record_id": "mol_edit.delete_v2.0185__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0185__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "78fd92b3dad61c41ea8288cae2852bf4bfa1e934df923c198bcd97de97bc824d",
+      "origin_id": "mol_edit.delete_v2.0185",
+      "pair_id": "mol_edit.delete_v2.0185__FULL_CF",
+      "record_id": "mol_edit.delete_v2.0185__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0185__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "78fd92b3dad61c41ea8288cae2852bf4bfa1e934df923c198bcd97de97bc824d",
+      "origin_id": "mol_edit.delete_v2.0185",
+      "pair_id": "mol_edit.delete_v2.0185__FULL_CF",
+      "record_id": "mol_edit.delete_v2.0185__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0185__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "78fd92b3dad61c41ea8288cae2852bf4bfa1e934df923c198bcd97de97bc824d",
+      "origin_id": "mol_edit.delete_v2.0185",
+      "pair_id": "mol_edit.delete_v2.0185__TERMINAL",
+      "record_id": "mol_edit.delete_v2.0185__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0185__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "78fd92b3dad61c41ea8288cae2852bf4bfa1e934df923c198bcd97de97bc824d",
+      "origin_id": "mol_edit.delete_v2.0185",
+      "pair_id": "mol_edit.delete_v2.0185__TERMINAL",
+      "record_id": "mol_edit.delete_v2.0185__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0028__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "4e1a8b967105e4dca32cd9f9764962b8afbcc3dba3f1d58075336e18b3cbe038",
+      "origin_id": "mol_edit.delete_v2.0028",
+      "pair_id": "mol_edit.delete_v2.0028__LOCAL",
+      "record_id": "mol_edit.delete_v2.0028__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0028__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "4e1a8b967105e4dca32cd9f9764962b8afbcc3dba3f1d58075336e18b3cbe038",
+      "origin_id": "mol_edit.delete_v2.0028",
+      "pair_id": "mol_edit.delete_v2.0028__LOCAL",
+      "record_id": "mol_edit.delete_v2.0028__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0028__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "4e1a8b967105e4dca32cd9f9764962b8afbcc3dba3f1d58075336e18b3cbe038",
+      "origin_id": "mol_edit.delete_v2.0028",
+      "pair_id": "mol_edit.delete_v2.0028__PARTIAL",
+      "record_id": "mol_edit.delete_v2.0028__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0028__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "4e1a8b967105e4dca32cd9f9764962b8afbcc3dba3f1d58075336e18b3cbe038",
+      "origin_id": "mol_edit.delete_v2.0028",
+      "pair_id": "mol_edit.delete_v2.0028__PARTIAL",
+      "record_id": "mol_edit.delete_v2.0028__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0028__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "4e1a8b967105e4dca32cd9f9764962b8afbcc3dba3f1d58075336e18b3cbe038",
+      "origin_id": "mol_edit.delete_v2.0028",
+      "pair_id": "mol_edit.delete_v2.0028__FULL_CF",
+      "record_id": "mol_edit.delete_v2.0028__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0028__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "4e1a8b967105e4dca32cd9f9764962b8afbcc3dba3f1d58075336e18b3cbe038",
+      "origin_id": "mol_edit.delete_v2.0028",
+      "pair_id": "mol_edit.delete_v2.0028__FULL_CF",
+      "record_id": "mol_edit.delete_v2.0028__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0028__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "4e1a8b967105e4dca32cd9f9764962b8afbcc3dba3f1d58075336e18b3cbe038",
+      "origin_id": "mol_edit.delete_v2.0028",
+      "pair_id": "mol_edit.delete_v2.0028__TERMINAL",
+      "record_id": "mol_edit.delete_v2.0028__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0028__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "4e1a8b967105e4dca32cd9f9764962b8afbcc3dba3f1d58075336e18b3cbe038",
+      "origin_id": "mol_edit.delete_v2.0028",
+      "pair_id": "mol_edit.delete_v2.0028__TERMINAL",
+      "record_id": "mol_edit.delete_v2.0028__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0046__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "067dc71f72b4a8c14e35f3d542277bfbaeb5f4b3a80e7d51442d464881638678",
+      "origin_id": "mol_edit.delete_v2.0046",
+      "pair_id": "mol_edit.delete_v2.0046__LOCAL",
+      "record_id": "mol_edit.delete_v2.0046__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0046__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "067dc71f72b4a8c14e35f3d542277bfbaeb5f4b3a80e7d51442d464881638678",
+      "origin_id": "mol_edit.delete_v2.0046",
+      "pair_id": "mol_edit.delete_v2.0046__LOCAL",
+      "record_id": "mol_edit.delete_v2.0046__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0046__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "067dc71f72b4a8c14e35f3d542277bfbaeb5f4b3a80e7d51442d464881638678",
+      "origin_id": "mol_edit.delete_v2.0046",
+      "pair_id": "mol_edit.delete_v2.0046__PARTIAL",
+      "record_id": "mol_edit.delete_v2.0046__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0046__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "067dc71f72b4a8c14e35f3d542277bfbaeb5f4b3a80e7d51442d464881638678",
+      "origin_id": "mol_edit.delete_v2.0046",
+      "pair_id": "mol_edit.delete_v2.0046__PARTIAL",
+      "record_id": "mol_edit.delete_v2.0046__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0046__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "067dc71f72b4a8c14e35f3d542277bfbaeb5f4b3a80e7d51442d464881638678",
+      "origin_id": "mol_edit.delete_v2.0046",
+      "pair_id": "mol_edit.delete_v2.0046__FULL_CF",
+      "record_id": "mol_edit.delete_v2.0046__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0046__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "067dc71f72b4a8c14e35f3d542277bfbaeb5f4b3a80e7d51442d464881638678",
+      "origin_id": "mol_edit.delete_v2.0046",
+      "pair_id": "mol_edit.delete_v2.0046__FULL_CF",
+      "record_id": "mol_edit.delete_v2.0046__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0046__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "067dc71f72b4a8c14e35f3d542277bfbaeb5f4b3a80e7d51442d464881638678",
+      "origin_id": "mol_edit.delete_v2.0046",
+      "pair_id": "mol_edit.delete_v2.0046__TERMINAL",
+      "record_id": "mol_edit.delete_v2.0046__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.delete_v2.0046__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "067dc71f72b4a8c14e35f3d542277bfbaeb5f4b3a80e7d51442d464881638678",
+      "origin_id": "mol_edit.delete_v2.0046",
+      "pair_id": "mol_edit.delete_v2.0046__TERMINAL",
+      "record_id": "mol_edit.delete_v2.0046__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0150__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "9504a170d940f7e55879843ae394c19a7c413d8d4e94b48475182bbf4a496791",
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "pair_id": "mol_edit.substitute_v2.0150__LOCAL",
+      "record_id": "mol_edit.substitute_v2.0150__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0150__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "9504a170d940f7e55879843ae394c19a7c413d8d4e94b48475182bbf4a496791",
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "pair_id": "mol_edit.substitute_v2.0150__LOCAL",
+      "record_id": "mol_edit.substitute_v2.0150__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0150__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "9504a170d940f7e55879843ae394c19a7c413d8d4e94b48475182bbf4a496791",
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "pair_id": "mol_edit.substitute_v2.0150__PARTIAL",
+      "record_id": "mol_edit.substitute_v2.0150__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0150__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "9504a170d940f7e55879843ae394c19a7c413d8d4e94b48475182bbf4a496791",
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "pair_id": "mol_edit.substitute_v2.0150__PARTIAL",
+      "record_id": "mol_edit.substitute_v2.0150__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0150__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "9504a170d940f7e55879843ae394c19a7c413d8d4e94b48475182bbf4a496791",
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "pair_id": "mol_edit.substitute_v2.0150__FULL_CF",
+      "record_id": "mol_edit.substitute_v2.0150__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0150__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "9504a170d940f7e55879843ae394c19a7c413d8d4e94b48475182bbf4a496791",
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "pair_id": "mol_edit.substitute_v2.0150__FULL_CF",
+      "record_id": "mol_edit.substitute_v2.0150__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0150__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "9504a170d940f7e55879843ae394c19a7c413d8d4e94b48475182bbf4a496791",
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "pair_id": "mol_edit.substitute_v2.0150__TERMINAL",
+      "record_id": "mol_edit.substitute_v2.0150__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0150__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "9504a170d940f7e55879843ae394c19a7c413d8d4e94b48475182bbf4a496791",
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "pair_id": "mol_edit.substitute_v2.0150__TERMINAL",
+      "record_id": "mol_edit.substitute_v2.0150__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0271__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "a2f0fcd13fa298555bd0685a7a8be004d02afc9cbc6a2d46bc663ba445669590",
+      "origin_id": "mol_edit.substitute_v2.0271",
+      "pair_id": "mol_edit.substitute_v2.0271__LOCAL",
+      "record_id": "mol_edit.substitute_v2.0271__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0271__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "a2f0fcd13fa298555bd0685a7a8be004d02afc9cbc6a2d46bc663ba445669590",
+      "origin_id": "mol_edit.substitute_v2.0271",
+      "pair_id": "mol_edit.substitute_v2.0271__LOCAL",
+      "record_id": "mol_edit.substitute_v2.0271__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0271__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "a2f0fcd13fa298555bd0685a7a8be004d02afc9cbc6a2d46bc663ba445669590",
+      "origin_id": "mol_edit.substitute_v2.0271",
+      "pair_id": "mol_edit.substitute_v2.0271__PARTIAL",
+      "record_id": "mol_edit.substitute_v2.0271__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0271__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "a2f0fcd13fa298555bd0685a7a8be004d02afc9cbc6a2d46bc663ba445669590",
+      "origin_id": "mol_edit.substitute_v2.0271",
+      "pair_id": "mol_edit.substitute_v2.0271__PARTIAL",
+      "record_id": "mol_edit.substitute_v2.0271__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0271__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "a2f0fcd13fa298555bd0685a7a8be004d02afc9cbc6a2d46bc663ba445669590",
+      "origin_id": "mol_edit.substitute_v2.0271",
+      "pair_id": "mol_edit.substitute_v2.0271__FULL_CF",
+      "record_id": "mol_edit.substitute_v2.0271__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0271__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "a2f0fcd13fa298555bd0685a7a8be004d02afc9cbc6a2d46bc663ba445669590",
+      "origin_id": "mol_edit.substitute_v2.0271",
+      "pair_id": "mol_edit.substitute_v2.0271__FULL_CF",
+      "record_id": "mol_edit.substitute_v2.0271__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0271__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "a2f0fcd13fa298555bd0685a7a8be004d02afc9cbc6a2d46bc663ba445669590",
+      "origin_id": "mol_edit.substitute_v2.0271",
+      "pair_id": "mol_edit.substitute_v2.0271__TERMINAL",
+      "record_id": "mol_edit.substitute_v2.0271__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0271__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "a2f0fcd13fa298555bd0685a7a8be004d02afc9cbc6a2d46bc663ba445669590",
+      "origin_id": "mol_edit.substitute_v2.0271",
+      "pair_id": "mol_edit.substitute_v2.0271__TERMINAL",
+      "record_id": "mol_edit.substitute_v2.0271__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0232__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ed88c10a6aed9e746faca015eef4e0eac06caa38bca3fad1dee15dfaf3452fca",
+      "origin_id": "mol_edit.substitute_v2.0232",
+      "pair_id": "mol_edit.substitute_v2.0232__LOCAL",
+      "record_id": "mol_edit.substitute_v2.0232__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0232__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ed88c10a6aed9e746faca015eef4e0eac06caa38bca3fad1dee15dfaf3452fca",
+      "origin_id": "mol_edit.substitute_v2.0232",
+      "pair_id": "mol_edit.substitute_v2.0232__LOCAL",
+      "record_id": "mol_edit.substitute_v2.0232__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0232__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ed88c10a6aed9e746faca015eef4e0eac06caa38bca3fad1dee15dfaf3452fca",
+      "origin_id": "mol_edit.substitute_v2.0232",
+      "pair_id": "mol_edit.substitute_v2.0232__PARTIAL",
+      "record_id": "mol_edit.substitute_v2.0232__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0232__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ed88c10a6aed9e746faca015eef4e0eac06caa38bca3fad1dee15dfaf3452fca",
+      "origin_id": "mol_edit.substitute_v2.0232",
+      "pair_id": "mol_edit.substitute_v2.0232__PARTIAL",
+      "record_id": "mol_edit.substitute_v2.0232__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0232__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ed88c10a6aed9e746faca015eef4e0eac06caa38bca3fad1dee15dfaf3452fca",
+      "origin_id": "mol_edit.substitute_v2.0232",
+      "pair_id": "mol_edit.substitute_v2.0232__FULL_CF",
+      "record_id": "mol_edit.substitute_v2.0232__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0232__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ed88c10a6aed9e746faca015eef4e0eac06caa38bca3fad1dee15dfaf3452fca",
+      "origin_id": "mol_edit.substitute_v2.0232",
+      "pair_id": "mol_edit.substitute_v2.0232__FULL_CF",
+      "record_id": "mol_edit.substitute_v2.0232__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0232__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ed88c10a6aed9e746faca015eef4e0eac06caa38bca3fad1dee15dfaf3452fca",
+      "origin_id": "mol_edit.substitute_v2.0232",
+      "pair_id": "mol_edit.substitute_v2.0232__TERMINAL",
+      "record_id": "mol_edit.substitute_v2.0232__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0232__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "ed88c10a6aed9e746faca015eef4e0eac06caa38bca3fad1dee15dfaf3452fca",
+      "origin_id": "mol_edit.substitute_v2.0232",
+      "pair_id": "mol_edit.substitute_v2.0232__TERMINAL",
+      "record_id": "mol_edit.substitute_v2.0232__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "train"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0057__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d1fbd3241f0b0d84a22ac7a71384151905d91728a9ae994f89f7d63981cf70f6",
+      "origin_id": "mol_edit.substitute_v2.0057",
+      "pair_id": "mol_edit.substitute_v2.0057__LOCAL",
+      "record_id": "mol_edit.substitute_v2.0057__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0057__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d1fbd3241f0b0d84a22ac7a71384151905d91728a9ae994f89f7d63981cf70f6",
+      "origin_id": "mol_edit.substitute_v2.0057",
+      "pair_id": "mol_edit.substitute_v2.0057__LOCAL",
+      "record_id": "mol_edit.substitute_v2.0057__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0057__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d1fbd3241f0b0d84a22ac7a71384151905d91728a9ae994f89f7d63981cf70f6",
+      "origin_id": "mol_edit.substitute_v2.0057",
+      "pair_id": "mol_edit.substitute_v2.0057__PARTIAL",
+      "record_id": "mol_edit.substitute_v2.0057__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0057__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d1fbd3241f0b0d84a22ac7a71384151905d91728a9ae994f89f7d63981cf70f6",
+      "origin_id": "mol_edit.substitute_v2.0057",
+      "pair_id": "mol_edit.substitute_v2.0057__PARTIAL",
+      "record_id": "mol_edit.substitute_v2.0057__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0057__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d1fbd3241f0b0d84a22ac7a71384151905d91728a9ae994f89f7d63981cf70f6",
+      "origin_id": "mol_edit.substitute_v2.0057",
+      "pair_id": "mol_edit.substitute_v2.0057__FULL_CF",
+      "record_id": "mol_edit.substitute_v2.0057__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0057__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d1fbd3241f0b0d84a22ac7a71384151905d91728a9ae994f89f7d63981cf70f6",
+      "origin_id": "mol_edit.substitute_v2.0057",
+      "pair_id": "mol_edit.substitute_v2.0057__FULL_CF",
+      "record_id": "mol_edit.substitute_v2.0057__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0057__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d1fbd3241f0b0d84a22ac7a71384151905d91728a9ae994f89f7d63981cf70f6",
+      "origin_id": "mol_edit.substitute_v2.0057",
+      "pair_id": "mol_edit.substitute_v2.0057__TERMINAL",
+      "record_id": "mol_edit.substitute_v2.0057__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0057__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d1fbd3241f0b0d84a22ac7a71384151905d91728a9ae994f89f7d63981cf70f6",
+      "origin_id": "mol_edit.substitute_v2.0057",
+      "pair_id": "mol_edit.substitute_v2.0057__TERMINAL",
+      "record_id": "mol_edit.substitute_v2.0057__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "test"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0239__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d569e104ad68ab03c941bf4291f78fa8e343eaa50eaa9958929da0a29acd2b71",
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "pair_id": "mol_edit.substitute_v2.0239__LOCAL",
+      "record_id": "mol_edit.substitute_v2.0239__LOCAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0239__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d569e104ad68ab03c941bf4291f78fa8e343eaa50eaa9958929da0a29acd2b71",
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "pair_id": "mol_edit.substitute_v2.0239__LOCAL",
+      "record_id": "mol_edit.substitute_v2.0239__LOCAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0239__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d569e104ad68ab03c941bf4291f78fa8e343eaa50eaa9958929da0a29acd2b71",
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "pair_id": "mol_edit.substitute_v2.0239__PARTIAL",
+      "record_id": "mol_edit.substitute_v2.0239__PARTIAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0239__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d569e104ad68ab03c941bf4291f78fa8e343eaa50eaa9958929da0a29acd2b71",
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "pair_id": "mol_edit.substitute_v2.0239__PARTIAL",
+      "record_id": "mol_edit.substitute_v2.0239__PARTIAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0239__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d569e104ad68ab03c941bf4291f78fa8e343eaa50eaa9958929da0a29acd2b71",
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "pair_id": "mol_edit.substitute_v2.0239__FULL_CF",
+      "record_id": "mol_edit.substitute_v2.0239__FULL_CF__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0239__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d569e104ad68ab03c941bf4291f78fa8e343eaa50eaa9958929da0a29acd2b71",
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "pair_id": "mol_edit.substitute_v2.0239__FULL_CF",
+      "record_id": "mol_edit.substitute_v2.0239__FULL_CF__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0239__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d569e104ad68ab03c941bf4291f78fa8e343eaa50eaa9958929da0a29acd2b71",
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "pair_id": "mol_edit.substitute_v2.0239__TERMINAL",
+      "record_id": "mol_edit.substitute_v2.0239__TERMINAL__H",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    },
+    {
+      "artifact_chain": {
+        "all_pass": true,
+        "issues": [],
+        "validator_id": "molhallulens.validation.artifact_chain.v1"
+      },
+      "artifact_gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.hallucination_semantics.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.propagation.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.renderer.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "validator_id": "molhallulens.validation.token_alignment.v1"
+        }
+      ],
+      "bundle_all_pass": true,
+      "bundle_id": "mol_edit.substitute_v2.0239__bundle_phase2",
+      "bundle_validator_id": "molhallulens.validation.bundle_integrity.v1",
+      "dataset_version": "pilot_v1",
+      "dry_run_id": "t045_frozen_offline_15_origin_v1",
+      "leakage_group_id": "d569e104ad68ab03c941bf4291f78fa8e343eaa50eaa9958929da0a29acd2b71",
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "pair_id": "mol_edit.substitute_v2.0239__TERMINAL",
+      "record_id": "mol_edit.substitute_v2.0239__TERMINAL__N",
+      "schema_version": "molhallulens.edit.v1",
+      "split": "validation"
+    }
+  ],
+  "required_validator_ids": [
+    "molhallulens.validation.hallucination_semantics.v1",
+    "molhallulens.validation.propagation.v1",
+    "molhallulens.validation.renderer.v1",
+    "molhallulens.validation.token_alignment.v1",
+    "molhallulens.validation.bundle_integrity.v1"
+  ]
+}

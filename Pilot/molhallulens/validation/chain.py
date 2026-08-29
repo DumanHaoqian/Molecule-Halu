@@ -314,6 +314,29 @@ class HallucinationSemanticValidator:
                 ),
             )
 
+        answer = record.locked_state.value_for("final_answer").normalized_value
+        oracle = record.reference_graph.value_for("oracle_gt").normalized_value
+        answer_correct = _molecule_equivalent(answer, oracle)
+        if answer_correct is None:
+            _add(
+                issues,
+                "SEMANTIC_ANSWER_CORRECTNESS_UNKNOWN",
+                "final Answer cannot be compared with the authoritative oracle",
+                stage=self.stage,
+                node_ids=node_ids,
+                severity=Severity.FATAL,
+            )
+        elif artifact.trace_labels.answer_correct is not answer_correct:
+            _add(
+                issues,
+                "SEMANTIC_ANSWER_CORRECTNESS_MISMATCH",
+                "answer_correct differs from Answer-to-oracle graph equivalence",
+                stage=self.stage,
+                node_ids=node_ids,
+                expected_answer_correct=answer_correct,
+                observed_answer_correct=artifact.trace_labels.answer_correct,
+            )
+
         events = tuple(record.graph_delta.events)
         linked_event_ids = {
             link.event_id for link in artifact.char_annotations.event_links
@@ -857,6 +880,28 @@ class RendererValidator:
         rendered = artifact.rendered
         serialized = artifact.serialized
 
+        detector = serialized.detector_input
+        expected_source = record.locked_state.value_for("source").normalized_value
+        expected_instruction = record.locked_state.value_for(
+            "instruction"
+        ).normalized_value
+        if detector.indexed_smiles != expected_source:
+            _add(
+                issues,
+                "RENDERER_SOURCE_IDENTITY_MISMATCH",
+                "serialized indexed_smiles differs from the locked source",
+                stage=self.stage,
+                node_ids=node_ids,
+            )
+        if detector.instruction != expected_instruction:
+            _add(
+                issues,
+                "RENDERER_INSTRUCTION_IDENTITY_MISMATCH",
+                "serialized instruction differs from the locked origin instruction",
+                stage=self.stage,
+                node_ids=node_ids,
+            )
+
         leaked = tuple(
             sorted(
                 set(scan_label_leakage(rendered.detector_text))
@@ -910,7 +955,6 @@ class RendererValidator:
             first_span = reasoning_segments[0][1]
             last_span = reasoning_segments[-1][1]
             reasoning_text = rendered.detector_text[first_span.start : last_span.end]
-            detector = serialized.detector_input
             if first_span.start != 0 or detector.reasoning_chain != reasoning_text:
                 _add(
                     issues,

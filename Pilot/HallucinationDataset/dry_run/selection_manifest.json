@@ -1,0 +1,506 @@
+{
+  "attempts": [
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-000",
+      "attempt_index": 0,
+      "case_id": "add.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.add_v2.0022",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-001",
+      "attempt_index": 1,
+      "case_id": "add.multi_mapping",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.add_v2.0071",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-002",
+      "attempt_index": 2,
+      "case_id": "add.train_cross_balance",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.add_v2.0282",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "discard_origin_and_replace",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-003",
+      "attempt_index": 3,
+      "case_id": "add.candidate_gap_probe",
+      "committed": false,
+      "emitted_record_count": 0,
+      "error_code": "GOLDEN_CANDIDATE_UNAVAILABLE",
+      "exception_type": "GoldenBundleBuildError",
+      "failure_stage": "origin_bundle_build",
+      "origin_id": "mol_edit.add_v2.0012",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": "mol_edit.add_v2.0023",
+      "status": "rejected",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-004",
+      "attempt_index": 4,
+      "case_id": "add.test_reserve",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.add_v2.0023",
+      "replaced_origin_ids": [
+        "mol_edit.add_v2.0012"
+      ],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-005",
+      "attempt_index": 5,
+      "case_id": "add.train_cross_balance_reserve",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.add_v2.0295",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-006",
+      "attempt_index": 6,
+      "case_id": "delete.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.delete_v2.0016",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-007",
+      "attempt_index": 7,
+      "case_id": "delete.hard_large",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.delete_v2.0202",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-008",
+      "attempt_index": 8,
+      "case_id": "delete.duplicate_scaffold",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.delete_v2.0185",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-009",
+      "attempt_index": 9,
+      "case_id": "delete.validation_reserve",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.delete_v2.0028",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-010",
+      "attempt_index": 10,
+      "case_id": "delete.test_reserve",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.delete_v2.0046",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-011",
+      "attempt_index": 11,
+      "case_id": "substitute.validation_cross_balance",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "substitute"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-012",
+      "attempt_index": 12,
+      "case_id": "substitute.multi_anchor",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.substitute_v2.0271",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "substitute"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-013",
+      "attempt_index": 13,
+      "case_id": "substitute.train_cross_balance",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.substitute_v2.0232",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "substitute"
+    },
+    {
+      "action": "discard_origin_and_replace",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-014",
+      "attempt_index": 14,
+      "case_id": "substitute.candidate_gap_probe",
+      "committed": false,
+      "emitted_record_count": 0,
+      "error_code": "GOLDEN_CANDIDATE_UNAVAILABLE",
+      "exception_type": "GoldenBundleBuildError",
+      "failure_stage": "origin_bundle_build",
+      "origin_id": "mol_edit.substitute_v2.0000",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": "mol_edit.substitute_v2.0057",
+      "status": "rejected",
+      "subtask": "substitute"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-015",
+      "attempt_index": 15,
+      "case_id": "substitute.test_reserve",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.substitute_v2.0057",
+      "replaced_origin_ids": [
+        "mol_edit.substitute_v2.0000"
+      ],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "substitute"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t045-attempt-016",
+      "attempt_index": 16,
+      "case_id": "substitute.validation_cross_balance_reserve",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "failure_stage": null,
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "replaced_origin_ids": [],
+      "replacement_origin_id": null,
+      "status": "accepted",
+      "subtask": "substitute"
+    }
+  ],
+  "commit_unit": "complete_origin_bundle_4_pairs_8_records",
+  "dry_run_id": "t045_frozen_offline_15_origin_v1",
+  "excluded_capability_cases": [
+    {
+      "capability": "delete_with_replacement",
+      "included": false,
+      "origin_id": "mol_edit.delete_v2.0081",
+      "reason": "T014 capability contract forbids replacement deletion",
+      "required_bundle_capability": "structural_deletion_remove_only"
+    }
+  ],
+  "format_version": "t045_dry_run_release_v1",
+  "required_origins_per_subtask": 5,
+  "selected": [
+    {
+      "case_id": "add.standard",
+      "case_kind": "standard",
+      "coverage_tags": [
+        "baseline",
+        "terminal_near_miss"
+      ],
+      "leakage_group_id": "acb06b6912d8a08dd99c44a13f1ff6704f4daac21f419b604939ffc9c33cb534",
+      "origin_id": "mol_edit.add_v2.0022",
+      "record_count": 8,
+      "split": "train",
+      "subtask": "add"
+    },
+    {
+      "case_id": "add.multi_mapping",
+      "case_kind": "multi_candidate",
+      "coverage_tags": [
+        "multiple_optimal_mappings",
+        "mapping_trace_disambiguation"
+      ],
+      "leakage_group_id": "ce4c077b59022ba16746ddc6ec17a673564c719fcad382a11cc6b36f0936f6c2",
+      "origin_id": "mol_edit.add_v2.0071",
+      "record_count": 8,
+      "split": "train",
+      "subtask": "add"
+    },
+    {
+      "case_id": "add.train_cross_balance",
+      "case_kind": "dry_run_candidate",
+      "coverage_tags": [
+        "dev_only_shortcut_remediation"
+      ],
+      "leakage_group_id": "f3f8c727f6739f9cd78679032b6c50255a266cbd8b5383a1aa1567c63d94040e",
+      "origin_id": "mol_edit.add_v2.0282",
+      "record_count": 8,
+      "split": "train",
+      "subtask": "add"
+    },
+    {
+      "case_id": "add.test_reserve",
+      "case_kind": "dry_run_candidate",
+      "coverage_tags": [
+        "split_coverage",
+        "atomic_backfill_reserve"
+      ],
+      "leakage_group_id": "0caf018cb3c135f3000a77ea929f6b84bf8ae9419171a0264b5ecb5708fa3b21",
+      "origin_id": "mol_edit.add_v2.0023",
+      "record_count": 8,
+      "split": "test",
+      "subtask": "add"
+    },
+    {
+      "case_id": "add.train_cross_balance_reserve",
+      "case_kind": "dry_run_candidate",
+      "coverage_tags": [
+        "dev_only_shortcut_remediation"
+      ],
+      "leakage_group_id": "cce22989ef1bfdcdcbc06b79271ac0e3f8b6706fe26941d11d9353339ce32236",
+      "origin_id": "mol_edit.add_v2.0295",
+      "record_count": 8,
+      "split": "train",
+      "subtask": "add"
+    },
+    {
+      "case_id": "delete.standard",
+      "case_kind": "standard",
+      "coverage_tags": [
+        "baseline",
+        "terminal_near_miss"
+      ],
+      "leakage_group_id": "f126b175899caadd0d78217eeb6659450b984d0c603fa3ad3e7eac805e9b1d4a",
+      "origin_id": "mol_edit.delete_v2.0016",
+      "record_count": 8,
+      "split": "train",
+      "subtask": "delete"
+    },
+    {
+      "case_id": "delete.hard_large",
+      "case_kind": "hard",
+      "coverage_tags": [
+        "large_fragment",
+        "high_heavy_atom_count",
+        "high_ring_count"
+      ],
+      "leakage_group_id": "c7fa3e8e320cfa341d0981a8a0439e868121ebd5d6c4c2941ba9d3698abcd6c1",
+      "origin_id": "mol_edit.delete_v2.0202",
+      "record_count": 8,
+      "split": "train",
+      "subtask": "delete"
+    },
+    {
+      "case_id": "delete.duplicate_scaffold",
+      "case_kind": "boundary",
+      "coverage_tags": [
+        "duplicate_scaffold_group",
+        "split_manifest_lock"
+      ],
+      "leakage_group_id": "78fd92b3dad61c41ea8288cae2852bf4bfa1e934df923c198bcd97de97bc824d",
+      "origin_id": "mol_edit.delete_v2.0185",
+      "record_count": 8,
+      "split": "train",
+      "subtask": "delete"
+    },
+    {
+      "case_id": "delete.validation_reserve",
+      "case_kind": "dry_run_candidate",
+      "coverage_tags": [
+        "split_coverage",
+        "remove_only_capability"
+      ],
+      "leakage_group_id": "4e1a8b967105e4dca32cd9f9764962b8afbcc3dba3f1d58075336e18b3cbe038",
+      "origin_id": "mol_edit.delete_v2.0028",
+      "record_count": 8,
+      "split": "validation",
+      "subtask": "delete"
+    },
+    {
+      "case_id": "delete.test_reserve",
+      "case_kind": "dry_run_candidate",
+      "coverage_tags": [
+        "split_coverage",
+        "remove_only_capability"
+      ],
+      "leakage_group_id": "067dc71f72b4a8c14e35f3d542277bfbaeb5f4b3a80e7d51442d464881638678",
+      "origin_id": "mol_edit.delete_v2.0046",
+      "record_count": 8,
+      "split": "test",
+      "subtask": "delete"
+    },
+    {
+      "case_id": "substitute.validation_cross_balance",
+      "case_kind": "dry_run_candidate",
+      "coverage_tags": [
+        "dev_only_shortcut_remediation"
+      ],
+      "leakage_group_id": "9504a170d940f7e55879843ae394c19a7c413d8d4e94b48475182bbf4a496791",
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "record_count": 8,
+      "split": "validation",
+      "subtask": "substitute"
+    },
+    {
+      "case_id": "substitute.multi_anchor",
+      "case_kind": "multi_candidate",
+      "coverage_tags": [
+        "multi_anchor_relocation",
+        "typed_dual_anchor",
+        "terminal_near_miss"
+      ],
+      "leakage_group_id": "a2f0fcd13fa298555bd0685a7a8be004d02afc9cbc6a2d46bc663ba445669590",
+      "origin_id": "mol_edit.substitute_v2.0271",
+      "record_count": 8,
+      "split": "train",
+      "subtask": "substitute"
+    },
+    {
+      "case_id": "substitute.train_cross_balance",
+      "case_kind": "dry_run_candidate",
+      "coverage_tags": [
+        "dev_only_shortcut_remediation"
+      ],
+      "leakage_group_id": "ed88c10a6aed9e746faca015eef4e0eac06caa38bca3fad1dee15dfaf3452fca",
+      "origin_id": "mol_edit.substitute_v2.0232",
+      "record_count": 8,
+      "split": "train",
+      "subtask": "substitute"
+    },
+    {
+      "case_id": "substitute.test_reserve",
+      "case_kind": "dry_run_candidate",
+      "coverage_tags": [
+        "split_coverage",
+        "atomic_backfill_reserve"
+      ],
+      "leakage_group_id": "d1fbd3241f0b0d84a22ac7a71384151905d91728a9ae994f89f7d63981cf70f6",
+      "origin_id": "mol_edit.substitute_v2.0057",
+      "record_count": 8,
+      "split": "test",
+      "subtask": "substitute"
+    },
+    {
+      "case_id": "substitute.validation_cross_balance_reserve",
+      "case_kind": "dry_run_candidate",
+      "coverage_tags": [
+        "split_coverage",
+        "dev_only_shortcut_remediation"
+      ],
+      "leakage_group_id": "d569e104ad68ab03c941bf4291f78fa8e343eaa50eaa9958929da0a29acd2b71",
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "record_count": 8,
+      "split": "validation",
+      "subtask": "substitute"
+    }
+  ],
+  "selection_unit": "origin"
+}

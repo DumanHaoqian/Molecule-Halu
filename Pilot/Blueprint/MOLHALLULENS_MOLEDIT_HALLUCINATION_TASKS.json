@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T04:20:00+08:00",
+  "updated_at": "2026-08-30T04:53:30+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 8,
+    "not_started": 7,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 44,
-    "last_completed_task": "T044"
+    "completed": 45,
+    "last_completed_task": "T045"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -943,6 +943,24 @@
       "known_gaps": ["真实 corpus 的 .0081 明确禁止 structural delete-with-replacement，因此作为 fail-closed capability negative 冻结，不伪造非法 FULL_CF success"],
       "follow_up_actions": ["T045 将相同构建与 strict gates 扩展到 15 origins/120 records", "T046 对 dry-run chemistry 与 labels 做可追踪审查"],
       "assessment_summary": "T044 两项验收全部满足。扩展 golden suite 冻结 9 个真实 origins、72 records，覆盖三 subtasks、四 propagation policies、多候选与 terminal near-miss；所有 288 个 artifact gates 和 9 个 bundle gates 通过。非法 .0081 delete-with-replacement 被如实保留为结构化 capability negative。远端专项 8 项、本地联合回归 89 项通过。"
+    },
+    {
+      "task_id": "T045",
+      "assessed_at": "2026-08-30T04:53:30+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["10. strict validation chain", "11. split、leakage 与 donor pools", "13. dry run", "Phase 6：15-origin dry run"],
+      "acceptance_criteria_results": [
+        {"criterion": "15 origins 每个完整 8 records", "passed": true, "evidence": ["add/delete/substitute 各 5 origins", "15 origins、120 records、60H/60N；train/validation/test 为 9/3/3 origins 与 72/24/24 records"]},
+        {"criterion": "全部 strict validators 通过", "passed": true, "evidence": ["480 个 T043 artifact validator gates 全通过", "15 个 bundle integrity gates 全通过；instruction identity 与 Answer-to-oracle correctness 已加入 fail-closed validators"]},
+        {"criterion": "没有跨 split donor 或 GT leakage", "passed": true, "evidence": ["verified manifest 与 frozen split-local donor pools 强制双端 split 和 exact edge", "cross-split donor、detector-visible GT/reference artifact leakage、secret leakage 均为 0"]},
+        {"criterion": "失败 recipe 以完整 pair 为单位 backfill", "passed": true, "evidence": ["2 个真实 candidate-gap attempts 均发出 0 records 后被原子丢弃", "replacement 重新生成完整 4 pairs/8 records，ledger 可追踪"]}
+      ],
+      "strengths": ["release-shaped 目录分离 detector records、oracle、state graphs、token labels 与 provenance", "从最终 JSONL 重建计数和完整性索引，不信任 build report 自报值", "预提交 review 发现通用 instruction 与 PARTIAL answer label 两处系统问题后修根因、补 validator、重建全部受影响 pairs", "只用 train+validation 重选 strict-valid origins 做 target-literal cross-balance，held-out test 三 origins 全程冻结"],
+      "known_gaps": ["T045 tokenized artifact 使用明确标识的 deterministic fast-offset offline fixture，未冒充真实 ChemDFM-R weights；真实 tokenizer 留给 T051"],
+      "follow_up_actions": ["T046 冻结 120-record chemistry/label review", "T047 提交已通过的 dev-only shortcut audit 与 held-out diagnostic", "T051 使用批准的真实 ChemDFM-R tokenizer snapshot 重写 tokenized artifacts"],
+      "assessment_summary": "T045 四项验收全部满足。实际构建 15 个真实 origins、120 records（60H/60N），480 个 artifact gates 和 15 个 bundle gates 全通过。预提交审查发现并修复 instruction identity 与 PARTIAL Answer correctness 两处系统问题，完整重建受影响 pairs；随后仅用 train+validation 做 strict-valid origin cross-balance，dev span/reasoning shortcut AUROC 降至 0.52496/0.52431，held-out test 未参与选择。关联回归 123 项通过。"
     }
   ],
   "tasks": [
@@ -1304,7 +1322,7 @@
       "description": "每 subtask 选择 5 origins，生成 120 records，保存 dataset/oracle/state/token/provenance/reports。",
       "deliverables": ["120-record dry-run artifact", "dry-run build report"],
       "acceptance_criteria": ["15 origins 每个完整 8 records", "全部 strict validators 通过", "没有跨 split donor 或 GT leakage", "失败 recipe 以完整 pair 为单位 backfill"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T04:22:00+08:00", "completed_at": "2026-08-30T04:53:30+08:00", "completion_notes": "实现 release-shaped 15-origin deterministic dry run builder 与原子 publisher。按 verified split manifest 和 frozen donor pools 构建 add/delete/substitute 各 5 origins、每 origin四 propagation policies 的 reciprocal H/N 共 8 records，总计 120 records（60H/60N）；train/validation/test 为 9/3/3 origins 与 72/24/24 records。落盘 dataset、oracle、state graphs、tokenized、provenance、selection/manifest 与 reports，public detector records 严格排除 GT/reference/state truth。480 个 artifact gates 与 15 个 bundle gates 全通过。两个真实 candidate-gap origins 均以 0 emitted records 原子丢弃并以完整 origin backfill。预提交 T046 review 发现所有 records 使用通用 instruction，以及 15 条 PARTIAL H 的 answer_correct 错以 candidate product 为参照；现已改为真实 locked instruction 和最终 Answer 对 authoritative oracle 的图等价，补两条 fail-closed validator，重建 T044 snapshots 和 T045 全部受影响 pairs。为满足 shortcut gate，只使用 train+validation 的 strict-valid candidates 做 target-literal cross-balance，held-out test .0023/.0046/.0057 全程冻结；dev metadata/span/reasoning AUROC 为 0.5/0.5249566/0.5243056，length SMD/style mismatch 为 0。cross-split donor、GT/reference leakage、secret leakage 与 live Poe requests 均为 0。tokenizer 明确为 T042 fast-offset contract offline fixture，不冒充真实 ChemDFM-R weights。", "evidence": ["Pilot/molhallulens/builders/dry_run.py", "Pilot/tests/integration/test_dry_run_build.py", "Pilot/HallucinationDataset/dry_run/", "Pilot/Dataset/reports/t045_dry_run_build.json", "Pilot/molhallulens/builders/golden_validation.py", "Pilot/molhallulens/validation/chain.py", "15 origins / 120 records / 60H / 60N", "480 artifact gates + 15 bundle gates passed", "2 atomic origin backfills, 0 partial records", "cross-split donor=0, GT/reference leakage=0, secret leakage=0", "真实 instruction 与 Answer-to-oracle correctness validators passed", "held-out test origins unchanged during dev-only cross-balance", "本地 T043/T044/T045 专项：39 passed", "本地关联回归：123 passed", "远端前一版 T045 专项：7 passed；最终版待提交前复验", "ruff/format/JSON/diff checks passed"], "files_changed": ["Pilot/molhallulens/builders/golden_validation.py", "Pilot/molhallulens/validation/chain.py", "Pilot/tests/integration/test_validation_chain.py", "Pilot/tests/integration/test_extended_golden_suite.py", "Pilot/tests/golden/t044_extended_golden_suite.json", "Pilot/Dataset/reports/t044_golden_validation.json", "Pilot/molhallulens/builders/dry_run.py", "Pilot/tests/integration/test_dry_run_build.py", "Pilot/HallucinationDataset/dry_run/", "Pilot/Dataset/reports/t045_dry_run_build.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps python -m pytest -q -s -p no:cacheprovider tests/integration/test_validation_chain.py tests/integration/test_extended_golden_suite.py tests/integration/test_dry_run_build.py", "PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps python -m pytest -q -p no:cacheprovider tests/integration/test_dry_run_build.py tests/integration/test_extended_golden_suite.py tests/integration/test_validation_chain.py tests/unit/test_matched_bundles.py tests/unit/test_split_manifest.py tests/unit/test_natural_renderers.py tests/unit/test_char_annotations.py tests/unit/test_token_projection.py", "ruff check molhallulens/builders/golden_validation.py molhallulens/validation/chain.py molhallulens/builders/dry_run.py tests/integration/test_validation_chain.py tests/integration/test_extended_golden_suite.py tests/integration/test_dry_run_build.py", "python -m json.tool HallucinationDataset/dry_run/dataset_manifest.json >/dev/null", "python -m json.tool Dataset/reports/t045_dry_run_build.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T046", "phase": "6_dry_run", "title": "完成 dry-run 人工化学审查",
