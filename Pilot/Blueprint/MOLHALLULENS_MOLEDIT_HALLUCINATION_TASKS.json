@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T03:34:55+08:00",
+  "updated_at": "2026-08-30T03:38:05+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 13,
+    "not_started": 12,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 39,
-    "last_completed_task": "T039"
+    "completed": 40,
+    "last_completed_task": "T040"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -855,6 +855,23 @@
       "known_gaps": [],
       "follow_up_actions": ["T040 只从 locked slots 构造相同 Trace AST", "T041 通过 mention target identity 连接 MutationEvent", "T042 将 exact char spans 投影到 tokenizer offsets"],
       "assessment_summary": "T039 三项验收全部满足。immutable Trace AST 在 slot append 时一次性生成 segment、literal 与 claim 半开字符区间；重复值保持独立 occurrence，Unicode 使用 Python 字符索引，node/edge identity 可直接连接后续标签。远端 T023/T039 关联 70 项通过，ruff 与 diff checks 通过。"
+    },
+    {
+      "task_id": "T040",
+      "assessed_at": "2026-08-30T03:38:05+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["8.13 缓存、replay 与 provenance", "9.1 renderer 总原则", "9.3 rule-based renderer", "9.4 Poe style renderer", "Phase 5：Renderer、span 与 token labels"],
+      "acceptance_criteria_results": [
+        {"criterion": "renderer 不见 GT、label、operator correctness 或 oracle", "passed": true, "evidence": ["public request 只接受 locked steps/final answer/style/excerpt", "forbidden fields、leakage phrases 与 identity override 对抗测试"]},
+        {"criterion": "修改 locked facts 会被拒绝", "passed": true, "evidence": ["placeholder allow-list、exact once、locked snapshot identity 全量反校验", "新增/缺失/重复 placeholder、raw number、negation/qualifier tamper 均 fail closed"]},
+        {"criterion": "FORMAL、数字和 Answer 仍由程序渲染", "passed": true, "evidence": ["Rule renderer 固定拼装 FORMAL/Answer AST", "LLM 只返回 narrative placeholder template，所有事实和数字由原 LiteralNode 填充"]}
+      ],
+      "strengths": ["rule 与 Poe renderer 共用 T039 immutable AST/offset contracts", "LLM provider payload 仅包含 step name、locked slot values、style 和 excerpt，不暴露 StateDAG/GT/labels", "严格模板语法拒绝裸数字、英文数字、否定/限定语义、FORMAL/Answer 注入和泄漏词", "T036 render cache 支持 immutable hit 与 frozen miss 不调用 producer"],
+      "known_gaps": ["Poe live rendering 未执行；所有 provider tests 使用 deterministic mock，release 必须依赖 frozen replay 或明确 offline 状态"],
+      "follow_up_actions": ["T041 从 RenderedExample mentions 建立标签", "T044 冻结 rule/mock renderer snapshots", "T052 披露 Poe snapshot 状态并执行 leakage scan"],
+      "assessment_summary": "T040 三项验收全部满足。rule renderer 仅消费 locked typed AST；Poe renderer 只改写 narrative placeholder template，事实、数字、FORMAL 和 Answer 均由程序用原 LiteralNode 重建。任何 placeholder、数字、语义限定、identity 或泄漏词变化都 fail closed；frozen cache miss 不触发 producer。远端与本地 T023/T034/T036/T039/T040 关联 125 项通过。"
     }
   ],
   "tasks": [
@@ -1176,7 +1193,7 @@
       "description": "实现 rule renderer 和 Poe placeholder-template renderer；LLM 仅看 locked slots、style 和 excerpt。",
       "deliverables": ["natural_rule.py", "natural_llm.py", "renderer tests"],
       "acceptance_criteria": ["renderer 不见 GT、label、operator correctness 或 oracle", "修改 locked facts 会被拒绝", "FORMAL、数字和 Answer 仍由程序渲染"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T03:36:31+08:00", "completed_at": "2026-08-30T03:38:05+08:00", "completion_notes": "实现 label-blind rule natural renderer 与 Poe placeholder-template renderer。Rule renderer 只接受 locked narrative claims、程序生成的 FORMAL AST/exact snapshot 和 locked final answer；不接受完整 StateDAG、GT、labels、oracle 或 correctness，固定拼装 Step、FORMAL 与 Answer。LLM renderer 仅发送 step_name、locked slot values、style_id 和 excerpt，并严格校验双花括号 placeholder allow-list；缺失、新增、重复 placeholder，raw/英文数字，否定或限定语义，FORMAL/Answer 注入，泄漏词和 identity override 全部拒绝。通过原 LiteralNode 重建 ClaimNode 后反校验完整 locked snapshot，保持 T039 offsets。T036 render cache 支持命中；frozen replay miss 绝不调用 producer。", "evidence": ["Pilot/molhallulens/rendering/natural_rule.py", "Pilot/molhallulens/rendering/natural_llm.py", "Pilot/tests/unit/test_natural_renderers.py", "本地与远端 T023/T034/T036/T039/T040 关联：125 passed", "ruff/diff checks passed"], "files_changed": ["Pilot/molhallulens/rendering/natural_rule.py", "Pilot/molhallulens/rendering/natural_llm.py", "Pilot/molhallulens/rendering/__init__.py", "Pilot/tests/unit/test_natural_renderers.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_natural_renderers.py tests/unit/test_char_spans.py tests/unit/test_trace_ast.py tests/unit/test_formal_renderer.py tests/unit/test_poe_clients.py tests/unit/test_poe_response_cache.py tests/unit/test_domain_labels.py tests/unit/test_domain_records_recipes_errors.py", "ruff check molhallulens/rendering/__init__.py molhallulens/rendering/natural_rule.py molhallulens/rendering/natural_llm.py tests/unit/test_natural_renderers.py", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T041", "phase": "5_rendering_and_labels", "title": "实现 char annotation 多轴标签",
