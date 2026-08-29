@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T23:26:17+08:00",
+  "updated_at": "2026-08-29T23:54:58+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 30,
+    "not_started": 29,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 22,
-    "last_completed_task": "T022"
+    "completed": 23,
+    "last_completed_task": "T023"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -566,6 +566,22 @@
       "known_gaps": [],
       "follow_up_actions": ["T023 从 locked propagated state 确定性渲染 FORMAL 与 Answer", "T024 用 propagation policy 与 candidate availability 构造 matched bundles 并记录 fallback deviation"],
       "assessment_summary": "T022 四项验收全部满足；36 项专项、204 项本地关联回归、277 项独立关联回归、575 项远端全量、ruff/format/compileall/diff 与两轮独立 blocker review 全部通过。STOP/PARTIAL/FULL_CF/TERMINAL 的 changed-set、typed rule coverage、真实 chemistry replay、conditional/false role、event metadata 与 fail-closed 边界均有直接测试。"
+    },
+    {
+      "task_id": "T023",
+      "assessed_at": "2026-08-29T23:54:58+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["4.3 Addition DAG", "4.4 Deletion DAG", "4.5 Substitution DAG", "6.1 四种 policy 的精确定义", "6.3 每个 origin 的 8-record bundle", "8.10 Validate–retry–fallback", "8.11 LLM renderer 必须 label-blind", "12.1 RendererValidator", "12.3 H/N phenotype invariants", "13.2 SMILES surface control", "Phase 2：Deterministic perturbation pipeline"],
+      "acceptance_criteria_results": [
+        {"criterion": "render 后可 round-trip 到 state", "passed": true, "evidence": ["T011 exact 5/5/6-step FORMAL grammar 与 schema-owned slot→node bindings", "150/150 reference origins byte-exact render；typed parse 恢复全部 candidate-output FORMAL nodes并审计重复 mentions"]},
+        {"criterion": "Answer 与 candidate product 的关系由 policy 决定并经图等价检查", "passed": true, "evidence": ["Answer exact locked final_answer surface，renderer 不 canonicalize、不修补 state", "FULL_CF 强制 isomeric graph equivalence；STOP/PARTIAL/TERMINAL 报告 locked relation，TERMINAL H(false)/matched N(true) 留 bundle validator裁决"]}
+      ],
+      "strengths": ["deterministic renderer 只接受 authoritative StateDAG 和 policy，签名不接受 TaskRecord/EditTruth/GT/operator label", "FORMAL grammar、step order、signed delta 与 one-based atom index typed contract 逐字复用 T011，并对 text/slot/cross-mention tamper fail closed", "BUILD_ONLY/oracle canary 不影响任何输出；Answer 原样保留 locked serialization并使用 strict RDKit graph comparator", "malformed chemistry、missing/unknown schema、invalid scalar 与 parse mismatch 均包装为稳定 FormalRenderError，不泄漏裸异常"],
+      "known_gaps": [],
+      "follow_up_actions": ["T024 以 pair/variant 信息裁决 TERMINAL H/N relation并构造 matched controls", "T039 为 FORMAL/Answer mentions 生成精确 char spans", "T040 在 locked slots 外层添加 label-blind natural prose"],
+      "assessment_summary": "T023 两项验收全部满足；55 项专项、119 项 T011/T022/rendering 关联回归、150-origin byte-exact smoke、630 项远端全量、ruff/format、compileall、wheel、diff 与独立 blocker-only review 全部通过。renderer 不接触GT、不改 locked state；FORMAL typed round-trip 与 Answer policy/graph-equivalence 边界闭合。"
     }
   ],
   "tasks": [
@@ -751,7 +767,7 @@
       "description": "从锁定 state 确定性渲染 FORMAL 行和 Answer，不允许 renderer 修补 chemistry state。",
       "deliverables": ["rendering/formal.py", "deterministic answer renderer"],
       "acceptance_criteria": ["render 后可 round-trip 到 state", "Answer 与 candidate product 的关系由 policy 决定并经图等价检查"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T23:28:52+08:00", "completed_at": "2026-08-29T23:54:58+08:00", "completion_notes": "实现 deterministic FORMAL 与 Answer renderer。FORMAL renderer 直接从 locked StateDAG 的 normalized typed values按权威 editing schema和T011 exact grammar生成 Addition/Deletion/Substitution 的5/5/6步表达；step identity、slot→node binding、signed delta、one-based atom index、重复mention一致性和canonical scalar text全部可严格parse并round-trip，缺失/额外/错误schema与tamper结构化fail closed。renderer只读取CANDIDATE_OUTPUT FORMAL nodes，BUILD_ONLY/oracle值改变不影响输出，接口不接受TaskRecord/EditTruth/GT。Answer renderer逐字输出locked final_answer，不自行canonicalize或换等价serialization；strict RDKit comparator报告answer_matches_product，FULL_CF必须图等价product，STOP/PARTIAL/TERMINAL只审计实际locked relation，使TERMINAL H(false)与matched N(true)均可由T024/T043按variant裁决。无natural prose、span或bundle越界实现。", "evidence": ["Pilot/molhallulens/rendering/formal.py", "Pilot/tests/unit/test_formal_renderer.py", "150/150 reference FORMAL byte-exact typed round-trip", "targeted pytest result: 55 passed", "T011/T022/rendering related regression: 119 passed", "full remote pytest result: 630 passed", "ruff and format clean", "compileall passed", "pip wheel build passed", "independent blocker-only review: APPROVE"], "files_changed": ["Pilot/molhallulens/rendering/__init__.py", "Pilot/molhallulens/rendering/formal.py", "Pilot/tests/unit/test_formal_renderer.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_formal_renderer.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_formal_renderer.py tests/unit/test_editing_propagation.py tests/property/test_propagation_policies.py tests/unit/test_reference_dag_builder.py tests/integration/test_reference_dag_corpus.py tests/unit/test_detector_prompt.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "ruff check molhallulens/rendering/formal.py molhallulens/rendering/__init__.py tests/unit/test_formal_renderer.py", "ruff format --check molhallulens/rendering/formal.py tests/unit/test_formal_renderer.py", "PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t023-wheel -q", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T024", "phase": "2_deterministic_pipeline", "title": "实现 matched bundle builder 和 quota scheduler",
