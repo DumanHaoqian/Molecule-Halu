@@ -1,0 +1,74 @@
+{
+  "acceptance": {
+    "all_t043_strict_validators_pass": true,
+    "atomic_backfill_unit": "complete_origin_bundle_4_pairs_8_records",
+    "each_policy_twenty_five_h_twenty_five_n": true,
+    "failed_recipe_emitted_record_count": 0,
+    "full_frozen_validation_manifest_coverage": true,
+    "gt_or_reference_artifact_leakage_count": 0,
+    "one_hundred_h_one_hundred_n": true,
+    "secret_leakage_count": 0,
+    "twenty_five_complete_validation_origins": true,
+    "two_hundred_records": true
+  },
+  "all_pass": true,
+  "dataset_version": "pilot_v1",
+  "execution": {
+    "explicit_digest_or_sha_verification_performed": false,
+    "live_poe_attempted": false,
+    "network_mode": "frozen_offline",
+    "network_request_count": 0,
+    "production_chemdfm_r_weights_loaded": false,
+    "renderer": "deterministic-formal-v1",
+    "tokenizer_backend": "deterministic_fast_offset_offline_fixture"
+  },
+  "format_version": "t049_validation_build_report_v1",
+  "global_seed": 20260828,
+  "isolation": {
+    "candidate_selection_split": "validation",
+    "cross_split_donor_edge_count": 0,
+    "test_used_for_candidate_selection": false,
+    "train_used_for_candidate_selection": false,
+    "verified_validation_donor_edge_count": 0
+  },
+  "limitations": [
+    "T049 token labels use an explicit offline fast-offset fixture; production ChemDFM-R weights are loaded only in T051.",
+    "No live Poe request or availability probe was performed for this deterministic validation build.",
+    "No explicit digest or SHA verification was performed."
+  ],
+  "strict_validation": {
+    "all_pass": true,
+    "artifact_gate_count": 800,
+    "bundle_gate_count": 25
+  },
+  "summary": {
+    "attempt_count": 34,
+    "candidate_sources": {
+      "RULE": 100
+    },
+    "faithful_record_count": 100,
+    "hallucinated_record_count": 100,
+    "origin_count": 25,
+    "origin_counts_by_subtask": {
+      "add": 8,
+      "delete": 9,
+      "substitute": 8
+    },
+    "policy_variant_counts": {
+      "FULL_CF:H": 25,
+      "FULL_CF:N": 25,
+      "LOCAL:H": 25,
+      "LOCAL:N": 25,
+      "PARTIAL:H": 25,
+      "PARTIAL:N": 25,
+      "TERMINAL:H": 25,
+      "TERMINAL:N": 25
+    },
+    "record_count": 200,
+    "rejected_attempt_count": 9,
+    "rejection_counts": {
+      "GOLDEN_CANDIDATE_UNAVAILABLE": 9
+    }
+  },
+  "validation_build_id": "t049_frozen_validation_25_origin_v1"
+}

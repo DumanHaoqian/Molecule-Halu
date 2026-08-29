@@ -1,0 +1,814 @@
+{
+  "attempts": [
+    {
+      "action": "discard_complete_origin_attempt",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0000",
+      "attempt_index": 0,
+      "case_id": "validation.mol_edit.add_v2.0012.standard",
+      "committed": false,
+      "emitted_record_count": 0,
+      "error_code": "GOLDEN_CANDIDATE_UNAVAILABLE",
+      "exception_type": "GoldenBundleBuildError",
+      "origin_id": "mol_edit.add_v2.0012",
+      "status": "rejected",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0001",
+      "attempt_index": 1,
+      "case_id": "validation.mol_edit.add_v2.0012.fragment_full",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.add_v2.0012",
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "discard_complete_origin_attempt",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0002",
+      "attempt_index": 2,
+      "case_id": "validation.mol_edit.add_v2.0016.standard",
+      "committed": false,
+      "emitted_record_count": 0,
+      "error_code": "GOLDEN_CANDIDATE_UNAVAILABLE",
+      "exception_type": "GoldenBundleBuildError",
+      "origin_id": "mol_edit.add_v2.0016",
+      "status": "rejected",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0003",
+      "attempt_index": 3,
+      "case_id": "validation.mol_edit.add_v2.0016.fragment_full",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.add_v2.0016",
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "discard_complete_origin_attempt",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0004",
+      "attempt_index": 4,
+      "case_id": "validation.mol_edit.add_v2.0112.standard",
+      "committed": false,
+      "emitted_record_count": 0,
+      "error_code": "GOLDEN_CANDIDATE_UNAVAILABLE",
+      "exception_type": "GoldenBundleBuildError",
+      "origin_id": "mol_edit.add_v2.0112",
+      "status": "rejected",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0005",
+      "attempt_index": 5,
+      "case_id": "validation.mol_edit.add_v2.0112.fragment_full",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.add_v2.0112",
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "discard_complete_origin_attempt",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0006",
+      "attempt_index": 6,
+      "case_id": "validation.mol_edit.add_v2.0116.standard",
+      "committed": false,
+      "emitted_record_count": 0,
+      "error_code": "GOLDEN_CANDIDATE_UNAVAILABLE",
+      "exception_type": "GoldenBundleBuildError",
+      "origin_id": "mol_edit.add_v2.0116",
+      "status": "rejected",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0007",
+      "attempt_index": 7,
+      "case_id": "validation.mol_edit.add_v2.0116.fragment_full",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.add_v2.0116",
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0008",
+      "attempt_index": 8,
+      "case_id": "validation.mol_edit.add_v2.0135.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.add_v2.0135",
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0009",
+      "attempt_index": 9,
+      "case_id": "validation.mol_edit.add_v2.0216.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.add_v2.0216",
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "discard_complete_origin_attempt",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0010",
+      "attempt_index": 10,
+      "case_id": "validation.mol_edit.add_v2.0258.standard",
+      "committed": false,
+      "emitted_record_count": 0,
+      "error_code": "GOLDEN_CANDIDATE_UNAVAILABLE",
+      "exception_type": "GoldenBundleBuildError",
+      "origin_id": "mol_edit.add_v2.0258",
+      "status": "rejected",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0011",
+      "attempt_index": 11,
+      "case_id": "validation.mol_edit.add_v2.0258.fragment_full",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.add_v2.0258",
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "discard_complete_origin_attempt",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0012",
+      "attempt_index": 12,
+      "case_id": "validation.mol_edit.add_v2.0287.standard",
+      "committed": false,
+      "emitted_record_count": 0,
+      "error_code": "GOLDEN_CANDIDATE_UNAVAILABLE",
+      "exception_type": "GoldenBundleBuildError",
+      "origin_id": "mol_edit.add_v2.0287",
+      "status": "rejected",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0013",
+      "attempt_index": 13,
+      "case_id": "validation.mol_edit.add_v2.0287.fragment_full",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.add_v2.0287",
+      "status": "accepted",
+      "subtask": "add"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0014",
+      "attempt_index": 14,
+      "case_id": "validation.mol_edit.delete_v2.0028.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.delete_v2.0028",
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0015",
+      "attempt_index": 15,
+      "case_id": "validation.mol_edit.delete_v2.0071.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.delete_v2.0071",
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0016",
+      "attempt_index": 16,
+      "case_id": "validation.mol_edit.delete_v2.0073.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.delete_v2.0073",
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0017",
+      "attempt_index": 17,
+      "case_id": "validation.mol_edit.delete_v2.0108.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.delete_v2.0108",
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0018",
+      "attempt_index": 18,
+      "case_id": "validation.mol_edit.delete_v2.0112.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.delete_v2.0112",
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0019",
+      "attempt_index": 19,
+      "case_id": "validation.mol_edit.delete_v2.0134.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.delete_v2.0134",
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0020",
+      "attempt_index": 20,
+      "case_id": "validation.mol_edit.delete_v2.0194.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.delete_v2.0194",
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0021",
+      "attempt_index": 21,
+      "case_id": "validation.mol_edit.delete_v2.0234.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.delete_v2.0234",
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0022",
+      "attempt_index": 22,
+      "case_id": "validation.mol_edit.delete_v2.0287.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.delete_v2.0287",
+      "status": "accepted",
+      "subtask": "delete"
+    },
+    {
+      "action": "discard_complete_origin_attempt",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0023",
+      "attempt_index": 23,
+      "case_id": "validation.mol_edit.substitute_v2.0000.standard",
+      "committed": false,
+      "emitted_record_count": 0,
+      "error_code": "GOLDEN_CANDIDATE_UNAVAILABLE",
+      "exception_type": "GoldenBundleBuildError",
+      "origin_id": "mol_edit.substitute_v2.0000",
+      "status": "rejected",
+      "subtask": "substitute"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0024",
+      "attempt_index": 24,
+      "case_id": "validation.mol_edit.substitute_v2.0000.anchor_full",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.substitute_v2.0000",
+      "status": "accepted",
+      "subtask": "substitute"
+    },
+    {
+      "action": "discard_complete_origin_attempt",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0025",
+      "attempt_index": 25,
+      "case_id": "validation.mol_edit.substitute_v2.0005.standard",
+      "committed": false,
+      "emitted_record_count": 0,
+      "error_code": "GOLDEN_CANDIDATE_UNAVAILABLE",
+      "exception_type": "GoldenBundleBuildError",
+      "origin_id": "mol_edit.substitute_v2.0005",
+      "status": "rejected",
+      "subtask": "substitute"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0026",
+      "attempt_index": 26,
+      "case_id": "validation.mol_edit.substitute_v2.0005.anchor_full",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.substitute_v2.0005",
+      "status": "accepted",
+      "subtask": "substitute"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0027",
+      "attempt_index": 27,
+      "case_id": "validation.mol_edit.substitute_v2.0029.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.substitute_v2.0029",
+      "status": "accepted",
+      "subtask": "substitute"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0028",
+      "attempt_index": 28,
+      "case_id": "validation.mol_edit.substitute_v2.0032.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.substitute_v2.0032",
+      "status": "accepted",
+      "subtask": "substitute"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0029",
+      "attempt_index": 29,
+      "case_id": "validation.mol_edit.substitute_v2.0035.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.substitute_v2.0035",
+      "status": "accepted",
+      "subtask": "substitute"
+    },
+    {
+      "action": "discard_complete_origin_attempt",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0030",
+      "attempt_index": 30,
+      "case_id": "validation.mol_edit.substitute_v2.0040.standard",
+      "committed": false,
+      "emitted_record_count": 0,
+      "error_code": "GOLDEN_CANDIDATE_UNAVAILABLE",
+      "exception_type": "GoldenBundleBuildError",
+      "origin_id": "mol_edit.substitute_v2.0040",
+      "status": "rejected",
+      "subtask": "substitute"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0031",
+      "attempt_index": 31,
+      "case_id": "validation.mol_edit.substitute_v2.0040.anchor_full",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.substitute_v2.0040",
+      "status": "accepted",
+      "subtask": "substitute"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0032",
+      "attempt_index": 32,
+      "case_id": "validation.mol_edit.substitute_v2.0150.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "status": "accepted",
+      "subtask": "substitute"
+    },
+    {
+      "action": "commit_complete_origin",
+      "atomic_unit": "complete_origin_bundle_4_pairs_8_records",
+      "attempt_id": "t049-attempt-0033",
+      "attempt_index": 33,
+      "case_id": "validation.mol_edit.substitute_v2.0239.standard",
+      "committed": true,
+      "emitted_record_count": 8,
+      "error_code": null,
+      "exception_type": null,
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "status": "accepted",
+      "subtask": "substitute"
+    }
+  ],
+  "commit_unit": "complete_origin_bundle_4_pairs_8_records",
+  "format_version": "t049_validation_release_v1",
+  "selected": [
+    {
+      "case_id": "validation.mol_edit.add_v2.0012.fragment_full",
+      "leakage_group_id": "cb72e4b7508996dd2b5cedbb33721c276584d19137e04f2a6050e70e2dbf939e",
+      "origin_id": "mol_edit.add_v2.0012",
+      "policy_operator_ids": [
+        "mol_edit.add.heavy_count_claim",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "case_id": "validation.mol_edit.add_v2.0016.fragment_full",
+      "leakage_group_id": "95fa820823899794fe46958aed5dc585ac199546933366b5e5dc2b95ad2c918b",
+      "origin_id": "mol_edit.add_v2.0016",
+      "policy_operator_ids": [
+        "mol_edit.add.heavy_count_claim",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "case_id": "validation.mol_edit.add_v2.0112.fragment_full",
+      "leakage_group_id": "3b69fe924c4117a4fbf3c7bf9259dd6fa99ef931fe24cad3c9c30de24408f2ea",
+      "origin_id": "mol_edit.add_v2.0112",
+      "policy_operator_ids": [
+        "mol_edit.add.heavy_count_claim",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "case_id": "validation.mol_edit.add_v2.0116.fragment_full",
+      "leakage_group_id": "535016ab8c532a3dffd76f39715172455bf03023050eabd248db7e7c42a860d5",
+      "origin_id": "mol_edit.add_v2.0116",
+      "policy_operator_ids": [
+        "mol_edit.add.heavy_count_claim",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "case_id": "validation.mol_edit.add_v2.0135.standard",
+      "leakage_group_id": "2495bfce0c1b5908a8b83df650c8870a03ca32457e5b415ceab4645380d6d2a7",
+      "origin_id": "mol_edit.add_v2.0135",
+      "policy_operator_ids": [
+        "mol_edit.add.heavy_count_claim",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.fragment_attachment_atom",
+        "mol_edit.add.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "case_id": "validation.mol_edit.add_v2.0216.standard",
+      "leakage_group_id": "2c829a2ed31de58f1821a30e3d4b9b1bcd0fcde8e71fe0cf820a5fa31faba210",
+      "origin_id": "mol_edit.add_v2.0216",
+      "policy_operator_ids": [
+        "mol_edit.add.heavy_count_claim",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.fragment_attachment_atom",
+        "mol_edit.add.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "case_id": "validation.mol_edit.add_v2.0258.fragment_full",
+      "leakage_group_id": "637aabf1d19063dc16ee325d9bd82ff9bc62901a8761a54e565ccd4865d826df",
+      "origin_id": "mol_edit.add_v2.0258",
+      "policy_operator_ids": [
+        "mol_edit.add.heavy_count_claim",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "case_id": "validation.mol_edit.add_v2.0287.fragment_full",
+      "leakage_group_id": "2f155cef58d7ee83fc65bfb5b4285181dd690ee350111ee5d3bbfe898129a141",
+      "origin_id": "mol_edit.add_v2.0287",
+      "policy_operator_ids": [
+        "mol_edit.add.heavy_count_claim",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.fragment_bucket_swap",
+        "mol_edit.add.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "case_id": "validation.mol_edit.delete_v2.0028.standard",
+      "leakage_group_id": "4e1a8b967105e4dca32cd9f9764962b8afbcc3dba3f1d58075336e18b3cbe038",
+      "origin_id": "mol_edit.delete_v2.0028",
+      "policy_operator_ids": [
+        "mol_edit.delete.heavy_count_claim",
+        "mol_edit.delete.wrong_adjacent_group",
+        "mol_edit.delete.alternative_deprotection_product",
+        "mol_edit.delete.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "case_id": "validation.mol_edit.delete_v2.0071.standard",
+      "leakage_group_id": "7a3c6dd3537bf8335e1626b7464bc4a7283a2a9b1d1c373ce1bf6fad07a40adb",
+      "origin_id": "mol_edit.delete_v2.0071",
+      "policy_operator_ids": [
+        "mol_edit.delete.heavy_count_claim",
+        "mol_edit.delete.wrong_adjacent_group",
+        "mol_edit.delete.alternative_deprotection_product",
+        "mol_edit.delete.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "case_id": "validation.mol_edit.delete_v2.0073.standard",
+      "leakage_group_id": "f7b10118dfaaecf4f978b5a6952e45946cd99bf27ccef5e5338e86e92d8c6618",
+      "origin_id": "mol_edit.delete_v2.0073",
+      "policy_operator_ids": [
+        "mol_edit.delete.heavy_count_claim",
+        "mol_edit.delete.wrong_adjacent_group",
+        "mol_edit.delete.alternative_deprotection_product",
+        "mol_edit.delete.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "case_id": "validation.mol_edit.delete_v2.0108.standard",
+      "leakage_group_id": "ba2f31b40f1ba0f498e0e2b8585ae9bc6a1d56e16ddae894757164142e9ef459",
+      "origin_id": "mol_edit.delete_v2.0108",
+      "policy_operator_ids": [
+        "mol_edit.delete.heavy_count_claim",
+        "mol_edit.delete.wrong_adjacent_group",
+        "mol_edit.delete.alternative_deprotection_product",
+        "mol_edit.delete.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "case_id": "validation.mol_edit.delete_v2.0112.standard",
+      "leakage_group_id": "7b074350d47750cbd3de882a945a1f4f32a17a3c6b44362a1b0a6b83bdcf44d7",
+      "origin_id": "mol_edit.delete_v2.0112",
+      "policy_operator_ids": [
+        "mol_edit.delete.heavy_count_claim",
+        "mol_edit.delete.wrong_adjacent_group",
+        "mol_edit.delete.alternative_deprotection_product",
+        "mol_edit.delete.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "case_id": "validation.mol_edit.delete_v2.0134.standard",
+      "leakage_group_id": "e712847b3ee1a7af444b5cb79cca17ed08c669617be70ebb45c0f816c9ead7cb",
+      "origin_id": "mol_edit.delete_v2.0134",
+      "policy_operator_ids": [
+        "mol_edit.delete.heavy_count_claim",
+        "mol_edit.delete.wrong_adjacent_group",
+        "mol_edit.delete.alternative_deprotection_product",
+        "mol_edit.delete.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "case_id": "validation.mol_edit.delete_v2.0194.standard",
+      "leakage_group_id": "b3e3038374b6d52be527b9cbc8038c94be07f2b67598b52ee45d37275a6008b7",
+      "origin_id": "mol_edit.delete_v2.0194",
+      "policy_operator_ids": [
+        "mol_edit.delete.heavy_count_claim",
+        "mol_edit.delete.wrong_adjacent_group",
+        "mol_edit.delete.alternative_deprotection_product",
+        "mol_edit.delete.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "case_id": "validation.mol_edit.delete_v2.0234.standard",
+      "leakage_group_id": "b193ea8c90b9ff576f7cd3f1dcf2deae0ec183912323b77981dc01ab9701c644",
+      "origin_id": "mol_edit.delete_v2.0234",
+      "policy_operator_ids": [
+        "mol_edit.delete.heavy_count_claim",
+        "mol_edit.delete.wrong_adjacent_group",
+        "mol_edit.delete.alternative_deprotection_product",
+        "mol_edit.delete.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "case_id": "validation.mol_edit.delete_v2.0287.standard",
+      "leakage_group_id": "ee388919e68f8c951927452727a3c20b812250d1d7e2b98dbcdf1c4fe82368ec",
+      "origin_id": "mol_edit.delete_v2.0287",
+      "policy_operator_ids": [
+        "mol_edit.delete.heavy_count_claim",
+        "mol_edit.delete.wrong_adjacent_group",
+        "mol_edit.delete.alternative_deprotection_product",
+        "mol_edit.delete.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "case_id": "validation.mol_edit.substitute_v2.0000.anchor_full",
+      "leakage_group_id": "32a9cab8220ac57ced7f62a2937e9c4c910bc9db766b2220a9c92e8cd8fa3f73",
+      "origin_id": "mol_edit.substitute_v2.0000",
+      "policy_operator_ids": [
+        "mol_edit.substitute.heavy_count_claim",
+        "mol_edit.substitute.incoming_fragment_bucket_swap",
+        "mol_edit.substitute.alternate_substitution_site",
+        "mol_edit.substitute.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "case_id": "validation.mol_edit.substitute_v2.0005.anchor_full",
+      "leakage_group_id": "ba9c45846e0a28c0f43969ba2031903c4f6de2478930777bdae97c178adc30b2",
+      "origin_id": "mol_edit.substitute_v2.0005",
+      "policy_operator_ids": [
+        "mol_edit.substitute.heavy_count_claim",
+        "mol_edit.substitute.incoming_fragment_bucket_swap",
+        "mol_edit.substitute.alternate_substitution_site",
+        "mol_edit.substitute.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "case_id": "validation.mol_edit.substitute_v2.0029.standard",
+      "leakage_group_id": "986511d72f4d770a4f7de60c1c4ace6608778ae5ea2671c2e7d5a7cc52cbe7d4",
+      "origin_id": "mol_edit.substitute_v2.0029",
+      "policy_operator_ids": [
+        "mol_edit.substitute.heavy_count_claim",
+        "mol_edit.substitute.incoming_fragment_bucket_swap",
+        "mol_edit.substitute.fragment_attachment_atom",
+        "mol_edit.substitute.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "case_id": "validation.mol_edit.substitute_v2.0032.standard",
+      "leakage_group_id": "1fd8e7781129d5131cea0c0db58c1dc734e36a91abc7e9c6389ab8b9c3b441a8",
+      "origin_id": "mol_edit.substitute_v2.0032",
+      "policy_operator_ids": [
+        "mol_edit.substitute.heavy_count_claim",
+        "mol_edit.substitute.incoming_fragment_bucket_swap",
+        "mol_edit.substitute.fragment_attachment_atom",
+        "mol_edit.substitute.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "case_id": "validation.mol_edit.substitute_v2.0035.standard",
+      "leakage_group_id": "e6eea161d3d1b74f706e49d14afb21d03e39faf2c0eab1c1db547e79ffb8575b",
+      "origin_id": "mol_edit.substitute_v2.0035",
+      "policy_operator_ids": [
+        "mol_edit.substitute.heavy_count_claim",
+        "mol_edit.substitute.incoming_fragment_bucket_swap",
+        "mol_edit.substitute.fragment_attachment_atom",
+        "mol_edit.substitute.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "case_id": "validation.mol_edit.substitute_v2.0040.anchor_full",
+      "leakage_group_id": "688a5a990796c0fd368cb9fd86db3c1851b655c45ecf3c91f794939fdccc1b79",
+      "origin_id": "mol_edit.substitute_v2.0040",
+      "policy_operator_ids": [
+        "mol_edit.substitute.heavy_count_claim",
+        "mol_edit.substitute.incoming_fragment_bucket_swap",
+        "mol_edit.substitute.alternate_substitution_site",
+        "mol_edit.substitute.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "case_id": "validation.mol_edit.substitute_v2.0150.standard",
+      "leakage_group_id": "9504a170d940f7e55879843ae394c19a7c413d8d4e94b48475182bbf4a496791",
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "policy_operator_ids": [
+        "mol_edit.substitute.heavy_count_claim",
+        "mol_edit.substitute.incoming_fragment_bucket_swap",
+        "mol_edit.substitute.fragment_attachment_atom",
+        "mol_edit.substitute.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "case_id": "validation.mol_edit.substitute_v2.0239.standard",
+      "leakage_group_id": "d569e104ad68ab03c941bf4291f78fa8e343eaa50eaa9958929da0a29acd2b71",
+      "origin_id": "mol_edit.substitute_v2.0239",
+      "policy_operator_ids": [
+        "mol_edit.substitute.heavy_count_claim",
+        "mol_edit.substitute.incoming_fragment_bucket_swap",
+        "mol_edit.substitute.fragment_attachment_atom",
+        "mol_edit.substitute.terminal_answer"
+      ],
+      "record_count": 8,
+      "subtask": "substitute"
+    }
+  ],
+  "selection_split": "validation",
+  "selection_unit": "origin",
+  "test_used_for_candidate_selection": false,
+  "train_used_for_candidate_selection": false,
+  "validation_build_id": "t049_frozen_validation_25_origin_v1"
+}

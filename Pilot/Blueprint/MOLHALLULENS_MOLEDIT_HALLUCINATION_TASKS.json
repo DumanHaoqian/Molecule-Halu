@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T05:33:00+08:00",
+  "updated_at": "2026-08-30T05:54:00+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 4,
-    "in_progress": 0,
+    "not_started": 2,
+    "in_progress": 1,
     "blocked": 0,
-    "completed": 48,
-    "last_completed_task": "T048"
+    "completed": 49,
+    "last_completed_task": "T049"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -1015,6 +1015,24 @@
       "known_gaps": ["T048 tokenized train artifact 使用明确标识的 offline fast-offset fixture；真实 ChemDFM-R tokenizer 和 resid_post 由 T051 生成", "400 个 H candidate executions 均来自可验证 RULE source；本任务未伪造未实际使用的 source mix"] ,
       "follow_up_actions": ["T049 复用冻结后的能力和 builder 构建 validation 25 origins", "T050 最后构建 test 且不用于任何选择", "T051 对全部 1200 records 运行真实 ChemDFM-R"],
       "assessment_summary": "T048 四项验收全部满足。完整覆盖 frozen train 的 100 origins、800 records（400H/400N），四 policy 均精确 100H+100N；3200 artifact gates 和 100 bundle gates 全通过。原先不可构建的 .0081 replacement deletion、.0191 charge 和 .0276 stereo boundaries 均通过新增的严格 exact-replay capability 进入同一 validation chain，无跨 split 选择或泄漏。T048 集成 7 项、相关专项 51 项通过。"
+    },
+    {
+      "task_id": "T049",
+      "assessed_at": "2026-08-30T05:54:00+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["11. frozen split 与 donor isolation", "14. release artifact layout", "Phase 7：完整 1,200-record build", "validation split acceptance"],
+      "acceptance_criteria_results": [
+        {"criterion": "200 records、100H/100N", "passed": true, "evidence": ["25 frozen validation origins × 8 records = 200", "hallucinated/faithful counts 精确 100/100"]},
+        {"criterion": "每 policy 25H+25N", "passed": true, "evidence": ["LOCAL/PARTIAL/FULL_CF/TERMINAL 各 25 H 与 25 N", "四类 reciprocal pair identities 完整"]},
+        {"criterion": "所有 25 origins 完整 8 records", "passed": true, "evidence": ["verified validation exact set 全覆盖：add/delete/substitute=8/9/8", "9 个失败 recipe 均原子丢弃且 emitted_record_count=0"]},
+        {"criterion": "strict validation 通过", "passed": true, "evidence": ["800 artifact gates 与 25 bundle gates 全通过", "records/oracle/state/token/provenance 五类各 200 行且 identity 集合一致"]}
+      ],
+      "strengths": ["只读取 frozen validation assignment 和 validation-local donor pool", "完整 origin 原子 staging/backfill，失败 recipe 不留下 partial records", "selection、validation、backfill 与 build reports 均可审计", "GT/reference、secret 与跨 split donor leakage 均为 0"],
+      "known_gaps": ["T049 tokenized validation artifact 使用明确标识的 offline fast-offset fixture，真实 ChemDFM-R tokenizer 和 resid_post 由 T051 统一替换", "100 个 H candidate executions 均据实为 validated RULE source"],
+      "follow_up_actions": ["T050 按已冻结 development design 最后构建 test", "T051 对三 split 全部 1200 records 运行真实 ChemDFM-R"],
+      "assessment_summary": "T049 四项验收全部满足。完整覆盖 frozen validation 的 25 origins、200 records（100H/100N），四 policy 均精确 25H+25N；800 artifact gates 和 25 bundle gates 全通过。9 个不可用预声明 recipe 均以 complete-origin 原子单位产生 0 records 后使用同 origin 的冻结 fallback，未发生跨 split 选择、donor、GT/reference 或 secret 泄漏。专项 7 项通过，无 hash 核对。"
     }
   ],
   "tasks": [
@@ -1408,7 +1426,7 @@
       "description": "构建 validation 的 25 origins/200 records，保持同样的 pair、policy 和 provenance 规则。",
       "deliverables": ["records/validation.jsonl", "validation oracle/state/provenance", "validation report"],
       "acceptance_criteria": ["200 records、100H/100N", "每 policy 25H+25N", "所有 25 origins 完整 8 records", "strict validation 通过"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T05:37:00+08:00", "completed_at": "2026-08-30T05:54:00+08:00", "completion_notes": "构建并冻结 verified validation exact set 的 25 origins、200 records（100H/100N），add/delete/substitute origins 为 8/9/8；LOCAL/PARTIAL/FULL_CF/TERMINAL 每类精确 25H+25N。records、oracle、state_graphs、tokenized 与 provenance 五类正式 JSONL 各 200 行，record identity 集合一致。800 个 T043 artifact gates 与 25 个 bundle gates 全通过，GT/reference artifact leakage、secret leakage、cross-split donor、train/test candidate selection 均为 0。34 次预声明 recipe attempts 中 25 次 accepted；9 次 candidate unavailable 均以 complete-origin 原子单位 emitted_record_count=0 后使用同一 origin 的 frozen fragment/anchor fallback，不改变 split、policy、quota 或 frozen validator。100 个 H executions 均据实为 validated RULE candidates。tokenized artifact 明确为 offline contract fixture，不冒充真实 ChemDFM-R。按用户要求未执行任何 hash 核对。", "evidence": ["Pilot/molhallulens/builders/validation_split.py", "Pilot/tests/integration/test_validation_split_build.py", "Pilot/HallucinationDataset/records/validation.jsonl", "Pilot/HallucinationDataset/oracle/validation.jsonl", "Pilot/HallucinationDataset/state_graphs/validation.jsonl", "Pilot/HallucinationDataset/tokenized/chemdfm_r/validation.jsonl", "Pilot/HallucinationDataset/provenance/validation.jsonl", "Pilot/HallucinationDataset/reports/validation_validation_report.json", "Pilot/Dataset/reports/t049_validation_build.json", "25 origins / 200 records / 100H / 100N", "each policy 25H+25N", "800 artifact gates + 25 bundle gates passed", "9 atomic rejected attempts emitted 0 records", "T049 integration：7 passed", "ruff/JSON/count checks passed"], "files_changed": ["Pilot/molhallulens/builders/validation_split.py", "Pilot/tests/integration/test_validation_split_build.py", "Pilot/HallucinationDataset/records/validation.jsonl", "Pilot/HallucinationDataset/oracle/validation.jsonl", "Pilot/HallucinationDataset/state_graphs/validation.jsonl", "Pilot/HallucinationDataset/tokenized/chemdfm_r/validation.jsonl", "Pilot/HallucinationDataset/provenance/validation.jsonl", "Pilot/HallucinationDataset/reports/validation_selection_manifest.json", "Pilot/HallucinationDataset/reports/validation_validation_report.json", "Pilot/HallucinationDataset/reports/validation_backfill_ledger.jsonl", "Pilot/HallucinationDataset/reports/validation_build_report.json", "Pilot/Dataset/reports/t049_validation_build.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["ruff check molhallulens/builders/validation_split.py tests/integration/test_validation_split_build.py", "jq validation/count assertions for T049 reports and five artifact families", "git diff --check"], "blocker": null
     },
     {
       "id": "T050", "phase": "7_full_build", "title": "最后构建并冻结 test split",
@@ -1416,7 +1434,7 @@
       "description": "最后生成 test 的 25 origins/200 records；不得使用 test 调 candidate、layer 或 detector threshold。",
       "deliverables": ["records/test.jsonl", "test oracle/state/provenance", "test validation report"],
       "acceptance_criteria": ["200 records、100H/100N", "每 policy 25H+25N", "所有 25 origins 完整 8 records", "test 选择隔离声明和 strict validation 通过"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "in_progress", "assigned_to": "codex", "started_at": "2026-08-30T05:54:00+08:00", "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
     },
     {
       "id": "T051", "phase": "8_release_qa", "title": "生成完整 tokenized artifacts 和 activation extraction",
