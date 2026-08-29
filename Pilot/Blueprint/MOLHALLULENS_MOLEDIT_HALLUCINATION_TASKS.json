@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T02:36:19+08:00",
+  "updated_at": "2026-08-30T02:43:36+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 20,
+    "not_started": 19,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 32,
-    "last_completed_task": "T032"
+    "completed": 33,
+    "last_completed_task": "T033"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -732,6 +732,23 @@
       "known_gaps": [],
       "follow_up_actions": ["T034 client 只通过 ChemistryTools dispatch 执行 tool calls", "T037 candidate agent 在 selector 前重用 signature 和 simulation 结果"],
       "assessment_summary": "T032 三项验收全部满足。九工具 allow-list 无外部副作用，严格参数校验先于 handler lookup；simulate_edit 只走 T018 replay，并返回 sanitized products、T013 graph diff、T012 descriptors 与结构化拒绝原因。远端专项 11 项、T012/T013/T018/T031/T032 关联 82 项及本地静态检查通过。"
+    },
+    {
+      "task_id": "T033",
+      "assessed_at": "2026-08-30T02:43:36+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["15.4 Poe dependencies 和 secret handling", "8.4 Poe model discovery 与 capability smoke tests", "Phase 4：LLM Agent candidate invention"],
+      "acceptance_criteria_results": [
+        {"criterion": "模型或能力变化时 fail closed", "passed": true, "evidence": ["strict model/catalog/owner/bot/endpoint/tools validation", "缺模型、替换模型、缺 endpoint/feature、异常 envelope 与 transport failure 对抗测试"]},
+        {"criterion": "保存 catalog entry/hash/time", "passed": true, "evidence": ["Dataset/reports/poe_capability_probe.json 保存 deterministic mock catalog entry、identity 与 UTC fetched time", "live transport 不可达时 catalog entry/time 保持 null 而不是伪造"]},
+        {"criterion": "secret 不进入日志或 artifact", "passed": true, "evidence": ["API key 延迟读取且 credential/provider repr 被排除", "异常、artifact 与 JSON bytes secret-redaction tests", "远端 live attempt 仅输出安全 error code"]}
+      ],
+      "strengths": ["发现 model catalog 后同时锁定 API model id、bot display name、owner、Responses/Chat endpoints 与 tools feature", "plain、JSON Schema、本地单工具 continuation 三项探针均有严格 sentinel 和本地 envelope 校验", "transport、clock、key provider 可注入，所有成功路径与漂移路径无需真实网络即可确定性测试", "能力报告明确区分 deterministic_mock passed 与 live offline_not_executed"],
+      "known_gaps": ["5090 当前无法连接 Poe endpoint；远端 key 已配置但 live probe fail closed 为 POE_TRANSPORT_FAILED，未产生真实 catalog snapshot 或费用"],
+      "follow_up_actions": ["服务器网络恢复后重跑 live probe 并替换 offline 状态", "T034 每次请求前使用 verified catalog capability gate", "T052 在 release manifest 披露 Poe snapshot 状态"],
+      "assessment_summary": "T033 实现与 fail-closed 验收完成。registry 延迟读取 secret，严格验证 gpt-5.4-mini 的 catalog identity、bot、owner、双 endpoint 与 tools，并实现三项能力探针。远端专项 16 项、config/T031/T032/T033 联测 52 项通过；真实 key 存在但服务器网络不可达，报告如实标记 POE_TRANSPORT_FAILED，未伪造 live 结果。"
     }
   ],
   "tasks": [
@@ -997,7 +1014,7 @@
       "description": "读取 POE_API_KEY，刷新 /v1/models，校验 gpt-5.4-mini、endpoint/tools，并运行 plain、JSON schema、tool-loop 三项 smoke tests。",
       "deliverables": ["model_registry.py", "capability probe report"],
       "acceptance_criteria": ["模型或能力变化时 fail closed", "保存 catalog entry/hash/time", "secret 不进入日志或 artifact"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T02:38:36+08:00", "completed_at": "2026-08-30T02:43:36+08:00", "completion_notes": "实现 Poe model registry 与 capability probe trust boundary。API key 只在 live HTTP 边界延迟读取，不进入对象 repr、异常、日志或 artifact；可注入 transport/clock/key provider。catalog loader 严格要求 gpt-5.4-mini、GPT-5.4-Mini、OpenAI owner、Responses/Chat endpoints 与 tools feature，任何模型替换、能力漂移或 envelope 异常均 fail closed。实现 plain Responses、JSON Schema Responses、Chat 单本地工具 continuation 三项 smoke probe，并保存 deterministic mock catalog entry、identity、UTC time、request IDs 与 model IDs。远端检测到 key 已配置，真实探测因 Poe transport 不可达安全停止；artifact 明确 live=offline_not_executed/reason=POE_TRANSPORT_FAILED，不伪造 catalog 或成功状态。", "evidence": ["Pilot/molhallulens/providers/poe/model_registry.py", "Pilot/molhallulens/providers/poe/__init__.py", "Pilot/tests/unit/test_poe_model_registry.py", "Pilot/Dataset/reports/poe_capability_probe.json", "本地与远端 T033 专项：16 passed", "本地与远端 config/T031/T032/T033 联测：52 passed", "远端 live probe：POE_TRANSPORT_FAILED（fail closed，无 secret 输出）", "ruff/format/compileall/JSON/diff passed"], "files_changed": ["Pilot/molhallulens/providers/poe/model_registry.py", "Pilot/molhallulens/providers/poe/__init__.py", "Pilot/tests/unit/test_poe_model_registry.py", "Pilot/Dataset/reports/poe_capability_probe.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_poe_model_registry.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_config.py tests/unit/test_poe_schemas.py tests/unit/test_chemistry_tools.py tests/unit/test_poe_model_registry.py", "ruff check molhallulens/providers/poe/__init__.py molhallulens/providers/poe/model_registry.py tests/unit/test_poe_model_registry.py", "ruff format --check molhallulens/providers/poe/__init__.py molhallulens/providers/poe/model_registry.py tests/unit/test_poe_model_registry.py", "python -m json.tool Dataset/reports/poe_capability_probe.json >/dev/null", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T034", "phase": "4_poe_candidate_agent", "title": "实现 Poe clients 和 transport fallback",
