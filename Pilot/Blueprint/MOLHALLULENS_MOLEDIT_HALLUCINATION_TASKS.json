@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T02:22:17+08:00",
+  "updated_at": "2026-08-30T02:36:19+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 21,
+    "not_started": 20,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 31,
-    "last_completed_task": "T031"
+    "completed": 32,
+    "last_completed_task": "T032"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -715,6 +715,23 @@
       "known_gaps": [],
       "follow_up_actions": ["T032 将只读 ChemistryTools handlers 绑定这些 args schemas", "T033–T035 实现 Poe transport/capability/usage layers"],
       "assessment_summary": "T031 两项验收全部满足。proposal request/response/candidate 与九个 chemistry tool schemas 均 strict/frozen/recursive extra-forbid；manifest、root、request、candidate count、abstain 和 tool allow-list 边界闭合。远端专项 11 项、T017/T018/T029/T030/T031 关联 84 项及本地 ruff/format/compile/diff 全部通过。"
+    },
+    {
+      "task_id": "T032",
+      "assessed_at": "2026-08-30T02:36:19+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["8.2 CandidateEngine", "8.3 ChemistryTools", "8.5 Tool loop hard limits", "Phase 4：LLM Agent candidate invention"],
+      "acceptance_criteria_results": [
+        {"criterion": "工具无外部副作用", "passed": true, "evidence": ["九个 handlers 仅执行本地 RDKit、T013 graph diff 与 T018 replay", "固定 MappingProxy allow-list 与只读结果合同"]},
+        {"criterion": "所有参数先校验再 dispatch", "passed": true, "evidence": ["dispatch 首先调用 T031 validate_chemistry_tool_arguments", "unknown tool、额外字段与非法参数测试均在 handler 前拒绝"]},
+        {"criterion": "simulate_edit 返回 sanitized products、graph diff 和 reject reasons", "passed": true, "evidence": ["T018 replay 后逐 product 再 canonicalize/sanitize", "成功结果含 graph_diff/descriptors，失败结果含稳定 reject reasons", "远端专项 11 项与关联回归 82 项通过"]}
+      ],
+      "strengths": ["九个计划内工具固定绑定到 strict T031 schemas，模型不能扩展执行面", "simulate_edit 不信任 caller product，只接受 typed action 的 T018 重放产物", "candidate signature 必须匹配重放产物，不能绕过 chemistry gate", "冻结 JSON-compatible result 和进程内幂等缓存便于后续 client tool-loop"],
+      "known_gaps": [],
+      "follow_up_actions": ["T034 client 只通过 ChemistryTools dispatch 执行 tool calls", "T037 candidate agent 在 selector 前重用 signature 和 simulation 结果"],
+      "assessment_summary": "T032 三项验收全部满足。九工具 allow-list 无外部副作用，严格参数校验先于 handler lookup；simulate_edit 只走 T018 replay，并返回 sanitized products、T013 graph diff、T012 descriptors 与结构化拒绝原因。远端专项 11 项、T012/T013/T018/T031/T032 关联 82 项及本地静态检查通过。"
     }
   ],
   "tasks": [
@@ -972,7 +989,7 @@
       "description": "实现 atom inspection、anchor/group enumeration、simulate_edit、descriptors、comparison 和 signature tools。",
       "deliverables": ["chemistry tool allow-list", "tool tests and cache keys"],
       "acceptance_criteria": ["工具无外部副作用", "所有参数先校验再 dispatch", "simulate_edit 返回 sanitized products、graph diff 和 reject reasons"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T02:24:36+08:00", "completed_at": "2026-08-30T02:36:19+08:00", "completion_notes": "实现九个固定白名单 read-only chemistry tools。dispatcher 在解析 tool envelope 后首先用 T031 的 strict/frozen model 校验全部参数，验证完成前不解析 handler；所有 handlers 仅运行本地 RDKit、T012 descriptors、T013 graph diff 与 T018 typed replay，无网络、文件或外部进程副作用。simulate_edit 不接受调用者产品作为证据，只从 typed action 重放生成 sanitized products，并逐项返回 canonical product、action、graph diff、descriptors 和稳定 reject reasons；candidate signature 只接受与重放产物图等价的候选。冻结 result/serialization 与进程内幂等 cache key 可供后续 tool loop 安全复用。", "evidence": ["Pilot/molhallulens/providers/poe/chemistry_tools.py", "Pilot/molhallulens/providers/poe/__init__.py", "Pilot/tests/unit/test_chemistry_tools.py", "本地与远端 T032 专项：11 passed", "远端 T012/T013/T018/T031/T032 关联：82 passed", "ruff/format/diff passed"], "files_changed": ["Pilot/molhallulens/providers/poe/chemistry_tools.py", "Pilot/molhallulens/providers/poe/__init__.py", "Pilot/tests/unit/test_chemistry_tools.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_chemistry_tools.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_chemistry_structures.py tests/test_edit_truth.py tests/unit/test_candidate_sources.py tests/unit/test_poe_schemas.py tests/unit/test_chemistry_tools.py", "ruff check molhallulens/providers/poe/__init__.py molhallulens/providers/poe/chemistry_tools.py tests/unit/test_chemistry_tools.py", "ruff format --check molhallulens/providers/poe/__init__.py molhallulens/providers/poe/chemistry_tools.py tests/unit/test_chemistry_tools.py", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T033", "phase": "4_poe_candidate_agent", "title": "实现 Poe model registry 和 capability probes",

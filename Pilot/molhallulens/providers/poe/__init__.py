@@ -1,5 +1,15 @@
 """Poe Creator Platform provider adapters."""
 
+from .chemistry_tools import (
+    CHEMISTRY_TOOL_CACHE_KEY_VERSION,
+    CHEMISTRY_TOOL_HANDLERS,
+    CHEMISTRY_TOOL_RESULT_VERSION,
+    ChemistryToolRejected,
+    ChemistryToolResult,
+    ChemistryTools,
+    dispatch_chemistry_tool,
+    dispatch_chemistry_tool_call,
+)
 from .schemas import (
     CHEMISTRY_TOOL_ARGUMENT_MODELS,
     CHEMISTRY_TOOL_NAMES,
@@ -49,7 +59,10 @@ from .schemas import (
 
 __all__ = [
     "CHEMISTRY_TOOL_ARGUMENT_MODELS",
+    "CHEMISTRY_TOOL_CACHE_KEY_VERSION",
+    "CHEMISTRY_TOOL_HANDLERS",
     "CHEMISTRY_TOOL_NAMES",
+    "CHEMISTRY_TOOL_RESULT_VERSION",
     "FROZEN_DATASET_VERSION",
     "FROZEN_GLOBAL_SEED",
     "FROZEN_SPLIT_SEED",
@@ -62,6 +75,9 @@ __all__ = [
     "CheckCandidateSignatureArgs",
     "CheckCandidateSignatureToolCall",
     "ChemistryToolCall",
+    "ChemistryToolRejected",
+    "ChemistryToolResult",
+    "ChemistryTools",
     "CompareMoleculesArgs",
     "CompareMoleculesToolCall",
     "ComputeDescriptorsArgs",
@@ -86,6 +102,8 @@ __all__ = [
     "StrictFrozenModel",
     "chemistry_tool_call_json_schema",
     "derive_proposal_seed",
+    "dispatch_chemistry_tool",
+    "dispatch_chemistry_tool_call",
     "parse_chemistry_tool_call",
     "parse_proposal_response",
     "proposal_request_from_candidate_request",
