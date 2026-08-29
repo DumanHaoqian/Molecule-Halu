@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T16:04:59+08:00",
+  "updated_at": "2026-08-29T16:07:57+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,8 +18,8 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 42,
-    "in_progress": 0,
+    "not_started": 41,
+    "in_progress": 1,
     "blocked": 0,
     "completed": 10,
     "last_completed_task": "T010"
@@ -451,7 +451,7 @@
       "description": "从 parsed_reference_state 和 process trace 构造 typed reference DAG，并执行 natural/FORMAL slot round-trip。",
       "deliverables": ["三 subtask reference DAG builders", "150-origin build report"],
       "acceptance_criteria": ["150 origins 均生成 reference DAG 或明确异常报告", "无 silent fallback", "BUILD_ONLY 节点不会成为 detector 文本"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T16:07:57+08:00", "completed_at": "2026-08-29T16:22:30+08:00", "completion_notes": "实现 Addition/Deletion/Substitution 三个 typed reference-DAG builder，共用 binding-driven、typed-registry dispatch core，直接消费 JoinedInputRecord，避免在 T014 前猜测 OperationSubtype。每个 origin 按 T009 schema 将 raw/process/parsed_reference_state 映射为完整 immutable StateDAG：raw、answer、legacy step values 使用 REFERENCE provenance，rdkit_* 使用 RDKIT provenance；raw_value/normalized_value 保持源类型和值，locally_valid/oracle_match/confidence 与 edge_values 保持 unknown，不提前执行 T012/T015 chemistry 判断。冻结三类 exact trace contract，严格校验 step sequence、完整字段集、FORMAL grammar typed parse→state→render byte round-trip，以及 natural_language opaque payload + FORMAL + final Answer 的 step_text byte round-trip；自然语言没有 slot manifest，故不伪造 substring/char mention，T039 再分配字符 span。逻辑 mention 按 anonymous_sample_id/channel/step/node/ordinal 唯一化；所有 BUILD_ONLY node mention 为空，并由 ReferenceDAGArtifact.detector_input/detector_visible_values 做 visibility-based oracle-free projection。single/corpus API 对 schema、trace、FORMAL、类型、重复 ID 均 fail closed，controlled failure 进入结构化 REFERENCE_DAG issue/report，不产生 fallback artifact。真实 150 origins 全部成功：50/50/50、800 trace steps、2350 FORMAL slots、3400 node values、3250 schema edges、2800 logical mentions、0 BUILD_ONLY detector mentions；记录 7 个 answer/GT 裸串差异为非阻断 metric，图等价留 T012。", "evidence": ["Pilot/molhallulens/builders/reference_dag.py", "Pilot/Dataset/reports/reference_dag_build_report.json", "Pilot/tests/unit/test_reference_dag_builder.py", "Pilot/tests/integration/test_reference_dag_corpus.py", "real corpus build: 150 attempted / 150 succeeded / 0 failed", "natural/FORMAL round-trip: 800 steps / 2350 typed slots", "targeted pytest result: 11 passed", "full pytest result: 296 passed"], "files_changed": ["Pilot/molhallulens/builders/reference_dag.py", "Pilot/molhallulens/builders/__init__.py", "Pilot/Dataset/reports/reference_dag_build_report.json", "Pilot/tests/unit/test_reference_dag_builder.py", "Pilot/tests/integration/test_reference_dag_corpus.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_reference_dag_builder.py tests/integration/test_reference_dag_corpus.py", "PYTHONPATH=/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "python -m json.tool Pilot/Dataset/reports/reference_dag_build_report.json >/dev/null", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T012", "phase": "1_reference_dag", "title": "实现分子 canonicalization 与等价比较",
