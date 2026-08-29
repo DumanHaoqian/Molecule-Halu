@@ -27,6 +27,7 @@ from molhallulens.chemistry import (
     isomeric_graph_equivalent,
 )
 from molhallulens.domain import (
+    AnomalyProvenance,
     BondTypeName,
     CandidatePatch,
     CandidatePool,
@@ -38,6 +39,7 @@ from molhallulens.domain import (
     EditTruth,
     FragmentPolicy,
     FrozenMap,
+    OperatorCapability,
     ValueProvenance,
     ValueType,
 )
@@ -116,7 +118,9 @@ class CandidateRequest:
             and self.resolution.classification.anonymous_sample_id
             == self.context.record.origin_id
         ):
-            raise ValueError("context and operator resolution do not describe one request")
+            raise ValueError(
+                "context and operator resolution do not describe one request"
+            )
 
     @property
     def request_id(self) -> str:
@@ -277,7 +281,10 @@ class CandidateBuildResult:
             raise TypeError("rejections must contain CandidateRejection values")
         if any(type(item) is not RankedCandidate for item in ranked):
             raise TypeError("ranked_candidates must contain RankedCandidate values")
-        if ranked and tuple(item.proposal.patch for item in ranked) != self.pool.candidates:
+        if (
+            ranked
+            and tuple(item.proposal.patch for item in ranked) != self.pool.candidates
+        ):
             raise ValueError("ranked_candidates order must exactly match CandidatePool")
         object.__setattr__(self, "rejections", rejections)
         object.__setattr__(self, "ranked_candidates", ranked)
@@ -304,6 +311,86 @@ class CandidateSource(Protocol):
 
 ProposalFunction = Callable[[CandidateRequest], Iterable[CandidateProposal]]
 
+_REGISTERED_SUBSTITUTION_REPLAY_KEY = "registered_substitution_replay_contract"
+_REGISTERED_SUBSTITUTION_REPLAY_SPECS: Mapping[str, Mapping[str, Any]] = {
+    "mol_edit.substitute_v2.0191": {
+        "format_version": "substitution_registered_replay_v1",
+        "origin_id": "mol_edit.substitute_v2.0191",
+        "mode": "charged_boundary_occurrence",
+        "expected_atom_map": 27,
+        "expected_atomic_number": 8,
+        "expected_formal_charge": -1,
+        "expected_total_hydrogens": 0,
+        "expected_degree": 1,
+    },
+    "mol_edit.substitute_v2.0276": {
+        "format_version": "substitution_registered_replay_v1",
+        "origin_id": "mol_edit.substitute_v2.0276",
+        "mode": "anchor_stereo_assignment",
+        "expected_atom_map": 2,
+        "expected_atomic_number": 6,
+        "expected_formal_charge": 0,
+        "expected_total_hydrogens": 1,
+        "expected_degree": 3,
+        "expected_source_chiral_tag": "CHI_UNSPECIFIED",
+        "product_chiral_tag": "CHI_TETRAHEDRAL_CCW",
+    },
+}
+_REGISTERED_SUBSTITUTION_PROVENANCE = {
+    "mol_edit.substitute_v2.0191": (
+        AnomalyProvenance.RETAINED_BOUNDARY_VALENCE_RELAXATION
+    ),
+    "mol_edit.substitute_v2.0276": (
+        AnomalyProvenance.SUBSTITUTION_ANCHOR_STEREO_ASSIGNMENT
+    ),
+}
+
+
+@dataclass(frozen=True, slots=True)
+class _RegisteredSubstitutionReplayContract:
+    origin_id: str
+    mode: str
+    expected_atom_map: int
+    expected_atomic_number: int
+    expected_formal_charge: int
+    expected_total_hydrogens: int
+    expected_degree: int
+    expected_source_chiral_tag: str | None = None
+    product_chiral_tag: str | None = None
+
+    def to_dict(self) -> dict[str, Any]:
+        return dict(_REGISTERED_SUBSTITUTION_REPLAY_SPECS[self.origin_id])
+
+
+def _registered_substitution_replay_contract(
+    action: EditAction,
+) -> _RegisteredSubstitutionReplayContract | None:
+    raw = action.metadata.get(_REGISTERED_SUBSTITUTION_REPLAY_KEY)
+    if raw is None:
+        return None
+    if action.edit_kind is not EditKind.SUBSTITUTION or not isinstance(raw, Mapping):
+        raise _action_product_mismatch()
+    origin_id = raw.get("origin_id")
+    if (
+        type(origin_id) is not str
+        or origin_id not in _REGISTERED_SUBSTITUTION_REPLAY_SPECS
+    ):
+        raise _action_product_mismatch()
+    expected = _REGISTERED_SUBSTITUTION_REPLAY_SPECS[origin_id]
+    if dict(raw) != dict(expected):
+        raise _action_product_mismatch()
+    return _RegisteredSubstitutionReplayContract(
+        origin_id=origin_id,
+        mode=expected["mode"],
+        expected_atom_map=expected["expected_atom_map"],
+        expected_atomic_number=expected["expected_atomic_number"],
+        expected_formal_charge=expected["expected_formal_charge"],
+        expected_total_hydrogens=expected["expected_total_hydrogens"],
+        expected_degree=expected["expected_degree"],
+        expected_source_chiral_tag=expected.get("expected_source_chiral_tag"),
+        product_chiral_tag=expected.get("product_chiral_tag"),
+    )
+
 
 def _chemical_action_metadata(action: EditAction) -> dict[str, Any]:
     primary_occurrence = action.metadata.get("remove_atom_maps")
@@ -315,11 +402,12 @@ def _chemical_action_metadata(action: EditAction) -> dict[str, Any]:
     ):
         raise ValueError("conflicting chemical occurrence identities")
     occurrence = (
-        primary_occurrence
-        if primary_occurrence is not None
-        else alternate_occurrence
+        primary_occurrence if primary_occurrence is not None else alternate_occurrence
     )
+    contract = _registered_substitution_replay_contract(action)
     if occurrence is None:
+        if contract is not None:
+            raise ValueError("registered substitution replay requires an occurrence")
         return {}
     if isinstance(occurrence, (str, bytes)) or not isinstance(
         occurrence, (tuple, list, frozenset)
@@ -332,7 +420,10 @@ def _chemical_action_metadata(action: EditAction) -> dict[str, Any]:
         or len(normalized) != len(set(normalized))
     ):
         raise ValueError("occurrence atom maps must contain unique positive atom maps")
-    return {"occurrence_atom_maps": normalized}
+    result: dict[str, Any] = {"occurrence_atom_maps": normalized}
+    if contract is not None:
+        result[_REGISTERED_SUBSTITUTION_REPLAY_KEY] = contract.to_dict()
+    return result
 
 
 def _json_value(value: Any) -> Any:
@@ -509,7 +600,9 @@ def _morgan_similarity(reference_smiles: str, candidate_smiles: str) -> float:
     with rdBase.BlockLogs():
         reference = Chem.MolFromSmiles(reference_smiles, sanitize=True)
         candidate = Chem.MolFromSmiles(candidate_smiles, sanitize=True)
-    if reference is None or candidate is None:  # canonical inputs should make this unreachable
+    if (
+        reference is None or candidate is None
+    ):  # canonical inputs should make this unreachable
         raise ValueError("canonical molecule failed deterministic fingerprint parsing")
     generator = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=2048)
     return float(
@@ -521,7 +614,9 @@ def _morgan_similarity(reference_smiles: str, candidate_smiles: str) -> float:
 
 
 def _atom_for_map(molecule: Chem.Mol, atom_map: int) -> Chem.Atom | None:
-    matches = tuple(atom for atom in molecule.GetAtoms() if atom.GetAtomMapNum() == atom_map)
+    matches = tuple(
+        atom for atom in molecule.GetAtoms() if atom.GetAtomMapNum() == atom_map
+    )
     return matches[0] if len(matches) == 1 else None
 
 
@@ -544,7 +639,9 @@ def _anchor_features(
     if candidate_anchor is None or reference_anchor is None:
         return (None, None, None, None)
     with rdBase.BlockLogs():
-        molecule = Chem.MolFromSmiles(request.context.record.indexed_smiles, sanitize=True)
+        molecule = Chem.MolFromSmiles(
+            request.context.record.indexed_smiles, sanitize=True
+        )
     if molecule is None:
         return (None, None, None, None)
     candidate = _atom_for_map(molecule, candidate_anchor)
@@ -621,9 +718,7 @@ def compute_difficulty_features(
             anchor[2] if anchor[2] is not None else supplied.anchor_degree_match
         ),
         anchor_hybridization_match=(
-            anchor[3]
-            if anchor[3] is not None
-            else supplied.anchor_hybridization_match
+            anchor[3] if anchor[3] is not None else supplied.anchor_hybridization_match
         ),
         source_score=supplied.source_score,
     )
@@ -656,10 +751,16 @@ def _rank_key(
     )
     seeded_sha256 = hashlib.sha256(seeded_identity.encode("utf-8")).hexdigest()
     return (
-        -(features.structural_similarity if features.structural_similarity is not None else -1.0),
+        -(
+            features.structural_similarity
+            if features.structural_similarity is not None
+            else -1.0
+        ),
         -known_match_count,
         known_mismatch_count,
-        abs(features.heavy_atom_delta) if features.heavy_atom_delta is not None else math.inf,
+        abs(features.heavy_atom_delta)
+        if features.heavy_atom_delta is not None
+        else math.inf,
         abs(features.ring_delta) if features.ring_delta is not None else math.inf,
         abs(features.formal_charge_delta)
         if features.formal_charge_delta is not None
@@ -784,13 +885,32 @@ def _validate_attachment_semantics(
             and not occurrence_keys.intersection(action.metadata)
         )
     elif action.edit_kind is EditKind.DELETION:
-        shape_valid = (
+        remove_only_shape = (
             action.remove_fragment_smiles is not None
             and action.add_fragment_smiles is None
             and action.fragment_attachment_atom is None
             and action.remove_anchor_index is None
             and bool(occurrence_keys.intersection(action.metadata))
         )
+        replacement_shape = (
+            action.is_replacement_deletion
+            and action.remove_fragment_smiles is not None
+            and action.add_fragment_smiles is not None
+            and action.fragment_attachment_atom is not None
+            and action.remove_anchor_index is None
+            and bool(occurrence_keys.intersection(action.metadata))
+            and request.resolution.registration.required_capabilities
+            == frozenset({OperatorCapability.REPLACEMENT_AWARE_DELETION})
+            and request.resolution.classification.allows(
+                OperatorCapability.REPLACEMENT_AWARE_DELETION
+            )
+        )
+        shape_valid = remove_only_shape or replacement_shape
+        if (
+            OperatorCapability.REPLACEMENT_AWARE_DELETION
+            in request.resolution.registration.required_capabilities
+        ):
+            shape_valid = replacement_shape
     else:
         shape_valid = (
             action.remove_fragment_smiles is not None
@@ -829,6 +949,37 @@ def _source_anchor(
     return map_to_index[source_anchor_map], map_to_index
 
 
+def _validate_registered_substitution_source_atom(
+    source: Chem.Mol,
+    map_to_index: Mapping[int, int],
+    contract: _RegisteredSubstitutionReplayContract,
+) -> int:
+    atom_index = map_to_index.get(contract.expected_atom_map)
+    if atom_index is None:
+        raise _action_product_mismatch()
+    atom = source.GetAtomWithIdx(atom_index)
+    observed = (
+        atom.GetAtomicNum(),
+        atom.GetFormalCharge(),
+        atom.GetTotalNumHs(),
+        atom.GetDegree(),
+    )
+    expected = (
+        contract.expected_atomic_number,
+        contract.expected_formal_charge,
+        contract.expected_total_hydrogens,
+        contract.expected_degree,
+    )
+    if observed != expected:
+        raise _action_product_mismatch()
+    if (
+        contract.expected_source_chiral_tag is not None
+        and str(atom.GetChiralTag()) != contract.expected_source_chiral_tag
+    ):
+        raise _action_product_mismatch()
+    return atom_index
+
+
 def _consume_explicit_hydrogens(atom: Chem.Atom, count: int) -> None:
     explicit = atom.GetNumExplicitHs()
     if explicit:
@@ -858,18 +1009,14 @@ def _canonical_replay_product(molecule: Chem.Mol) -> str:
                 isomericSmiles=True,
             )
     except (RuntimeError, ValueError) as error:
-        raise ValueError(
-            CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value
-        ) from error
+        raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value) from error
     try:
         return canonicalize_smiles(
             serialized,
             fragment_policy=FragmentPolicy.KEEP_ALL,
         )
     except MoleculeParseError as error:
-        raise ValueError(
-            CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value
-        ) from error
+        raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value) from error
 
 
 def _combine_and_bond(
@@ -901,9 +1048,7 @@ def _combine_and_bond(
             _RDKIT_BOND_TYPES[bond_type],
         )
     except (RuntimeError, ValueError) as error:
-        raise ValueError(
-            CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value
-        ) from error
+        raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value) from error
     return combined.GetMol()
 
 
@@ -913,9 +1058,7 @@ def _occurrence_atom_maps(action: EditAction) -> tuple[int, ...]:
     if primary is not None and alternate is not None and primary != alternate:
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     raw = primary if primary is not None else alternate
-    if isinstance(raw, (str, bytes)) or not isinstance(
-        raw, (tuple, list, frozenset)
-    ):
+    if isinstance(raw, (str, bytes)) or not isinstance(raw, (tuple, list, frozenset)):
         raise _action_product_mismatch()
     atom_maps = tuple(sorted(raw))
     if (
@@ -934,6 +1077,7 @@ def _remove_exact_occurrence(
     action: EditAction,
     *,
     require_boundary_bond_type: bool,
+    replay_contract: _RegisteredSubstitutionReplayContract | None = None,
 ) -> tuple[Chem.Mol, int, Chem.BondType]:
     if action.remove_fragment_smiles is None or action.bond_type is None:
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
@@ -955,8 +1099,24 @@ def _remove_exact_occurrence(
             maxMatches=10000,
         )
     }
-    if occurrence not in matched_sets or len(occurrence) != query.GetNumAtoms():
-        raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
+    exact_match = occurrence in matched_sets and len(occurrence) == query.GetNumAtoms()
+    if not exact_match:
+        boundary_relaxation = (
+            replay_contract is not None
+            and replay_contract.mode == "charged_boundary_occurrence"
+            and atom_maps == (replay_contract.expected_atom_map,)
+            and len(occurrence) == query.GetNumAtoms() == 1
+        )
+        if not boundary_relaxation:
+            raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
+        source_atom = source.GetAtomWithIdx(next(iter(occurrence)))
+        query_atom = query.GetAtomWithIdx(0)
+        if (
+            source_atom.GetAtomicNum() != query_atom.GetAtomicNum()
+            or source_atom.GetFormalCharge() != query_atom.GetFormalCharge()
+            or source_atom.GetTotalNumHs() != query_atom.GetTotalNumHs()
+        ):
+            raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     induced_bond_count = sum(
         bond.GetBeginAtomIdx() in occurrence and bond.GetEndAtomIdx() in occurrence
         for bond in source.GetBonds()
@@ -1000,14 +1160,24 @@ def replay_edit_action_from_source(
         raise TypeError("action must be EditAction")
     if action.source_anchor_index is None or action.bond_type is None:
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
+    replay_contract = _registered_substitution_replay_contract(action)
     source = _strict_replay_molecule(indexed_smiles)
     add_anchor_index, map_to_index = _source_anchor(
         source,
         action.source_anchor_index,
     )
+    if replay_contract is not None:
+        _validate_registered_substitution_source_atom(
+            source,
+            map_to_index,
+            replay_contract,
+        )
     bond_units = _BOND_VALENCE_UNITS[action.bond_type]
     if action.edit_kind is EditKind.ADDITION:
-        if action.add_fragment_smiles is None or action.fragment_attachment_atom is None:
+        if (
+            action.add_fragment_smiles is None
+            or action.fragment_attachment_atom is None
+        ):
             raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
         product = _combine_and_bond(
             source,
@@ -1018,21 +1188,53 @@ def replay_edit_action_from_source(
             consume_core_hydrogens=bond_units,
         )
     elif action.edit_kind is EditKind.DELETION:
-        product, shifted_anchor, _ = _remove_exact_occurrence(
+        replacement = action.is_replacement_deletion
+        product, shifted_anchor, removed_bond = _remove_exact_occurrence(
             source,
             add_anchor_index,
             map_to_index,
             action,
-            require_boundary_bond_type=True,
+            require_boundary_bond_type=not replacement,
         )
-        editable = Chem.RWMol(product)
-        _add_explicit_hydrogens(
-            editable.GetAtomWithIdx(shifted_anchor),
-            bond_units,
-        )
-        product = editable.GetMol()
+        if replacement:
+            if (
+                action.add_fragment_smiles is None
+                or action.fragment_attachment_atom is None
+            ):  # guarded by EditAction and the candidate boundary
+                raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
+            try:
+                removed_units = _RDKIT_BOND_VALENCE_UNITS[removed_bond]
+            except KeyError as error:
+                raise ValueError(
+                    CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value
+                ) from error
+            if removed_units > bond_units:
+                editable = Chem.RWMol(product)
+                _add_explicit_hydrogens(
+                    editable.GetAtomWithIdx(shifted_anchor),
+                    removed_units - bond_units,
+                )
+                product = editable.GetMol()
+            product = _combine_and_bond(
+                product,
+                shifted_anchor,
+                action.add_fragment_smiles,
+                action.fragment_attachment_atom,
+                action.bond_type,
+                consume_core_hydrogens=max(0, bond_units - removed_units),
+            )
+        else:
+            editable = Chem.RWMol(product)
+            _add_explicit_hydrogens(
+                editable.GetAtomWithIdx(shifted_anchor),
+                bond_units,
+            )
+            product = editable.GetMol()
     elif action.edit_kind is EditKind.SUBSTITUTION:
-        if action.add_fragment_smiles is None or action.fragment_attachment_atom is None:
+        if (
+            action.add_fragment_smiles is None
+            or action.fragment_attachment_atom is None
+        ):
             raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
         remove_anchor_map = (
             action.source_anchor_index
@@ -1059,6 +1261,7 @@ def replay_edit_action_from_source(
             map_to_index,
             action,
             require_boundary_bond_type=False,
+            replay_contract=replay_contract,
         )
         shifted_add_anchor = add_anchor_index - sum(
             atom_index < add_anchor_index for atom_index in occurrence_indices
@@ -1091,11 +1294,29 @@ def replay_edit_action_from_source(
             action.fragment_attachment_atom,
             action.bond_type,
             consume_core_hydrogens=(
-                max(0, bond_units - removed_units)
-                if same_anchor
-                else bond_units
+                max(0, bond_units - removed_units) if same_anchor else bond_units
             ),
         )
+        if (
+            replay_contract is not None
+            and replay_contract.product_chiral_tag is not None
+        ):
+            if (
+                replay_contract.mode != "anchor_stereo_assignment"
+                or action.source_anchor_index != replay_contract.expected_atom_map
+            ):
+                raise _action_product_mismatch()
+            chiral_tags = {
+                "CHI_TETRAHEDRAL_CW": Chem.ChiralType.CHI_TETRAHEDRAL_CW,
+                "CHI_TETRAHEDRAL_CCW": Chem.ChiralType.CHI_TETRAHEDRAL_CCW,
+            }
+            try:
+                product_chiral_tag = chiral_tags[replay_contract.product_chiral_tag]
+            except KeyError as error:
+                raise _action_product_mismatch() from error
+            editable = Chem.RWMol(product)
+            editable.GetAtomWithIdx(shifted_add_anchor).SetChiralTag(product_chiral_tag)
+            product = editable.GetMol()
     else:  # pragma: no cover - EditKind is sealed and exhaustive
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     return (_canonical_replay_product(product),)
@@ -1109,6 +1330,22 @@ def replay_edit_action(
 
     if type(request) is not CandidateRequest:
         raise TypeError("request must be CandidateRequest")
+    replay_contract = _registered_substitution_replay_contract(action)
+    if replay_contract is not None:
+        classification = request.resolution.classification
+        expected_provenance = _REGISTERED_SUBSTITUTION_PROVENANCE[
+            replay_contract.origin_id
+        ]
+        if (
+            request.context.record.origin_id != replay_contract.origin_id
+            or request.context.truth.anonymous_sample_id != replay_contract.origin_id
+            or classification.anonymous_sample_id != replay_contract.origin_id
+            or not classification.registered
+            or expected_provenance not in classification.provenance
+            or _occurrence_atom_maps(action)
+            != tuple(sorted(request.context.truth.removed_atom_maps))
+        ):
+            raise _action_product_mismatch()
     return replay_edit_action_from_source(
         request.context.record.indexed_smiles,
         action,
@@ -1175,13 +1412,14 @@ def _validate_action_product(
             raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     replayed = _replay_action_products(request, proposal)
     if not any(
-        isomeric_graph_equivalent(candidate_product, product)
-        for product in replayed
+        isomeric_graph_equivalent(candidate_product, product) for product in replayed
     ):
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
 
 
-def _reference_equivalent(request: CandidateRequest, proposal: CandidateProposal) -> bool:
+def _reference_equivalent(
+    request: CandidateRequest, proposal: CandidateProposal
+) -> bool:
     if proposal.candidate_product_smiles is not None and isomeric_graph_equivalent(
         proposal.candidate_product_smiles,
         request.context.truth.canonical_gt_smiles,
@@ -1227,9 +1465,7 @@ def _prevalidation_order_key(proposal: CandidateProposal) -> tuple[str, ...]:
             ),
         }
         semantic = hashlib.sha256(
-            json.dumps(fallback, sort_keys=True, separators=(",", ":")).encode(
-                "utf-8"
-            )
+            json.dumps(fallback, sort_keys=True, separators=(",", ":")).encode("utf-8")
         ).hexdigest()
     return (
         proposal.proposal_id,
@@ -1239,7 +1475,9 @@ def _prevalidation_order_key(proposal: CandidateProposal) -> tuple[str, ...]:
     )
 
 
-def _symmetry_equivalent(request: CandidateRequest, proposal: CandidateProposal) -> bool:
+def _symmetry_equivalent(
+    request: CandidateRequest, proposal: CandidateProposal
+) -> bool:
     if request.resolution.registration.operator_family != "wrong_anchor_site":
         return False
     candidate_anchor: int | None = None
@@ -1247,7 +1485,10 @@ def _symmetry_equivalent(request: CandidateRequest, proposal: CandidateProposal)
         value = proposal.patch.new_value.normalized_value
         if type(value) is int:
             candidate_anchor = value
-    elif proposal.patch.root_node_id == "product" and proposal.patch.edit_action is not None:
+    elif (
+        proposal.patch.root_node_id == "product"
+        and proposal.patch.edit_action is not None
+    ):
         candidate_anchor = proposal.patch.edit_action.source_anchor_index
     if candidate_anchor is None:
         return False
@@ -1265,7 +1506,9 @@ def _symmetry_equivalent(request: CandidateRequest, proposal: CandidateProposal)
     # graph automorphism orbits from the map-free, stereochemistry-aware source
     # so an omitted group can never admit a chemically identical alternate site.
     with rdBase.BlockLogs():
-        mapped = Chem.MolFromSmiles(request.context.record.indexed_smiles, sanitize=True)
+        mapped = Chem.MolFromSmiles(
+            request.context.record.indexed_smiles, sanitize=True
+        )
     if mapped is None:
         return False
     map_indices: dict[int, list[int]] = {}
@@ -1349,10 +1592,14 @@ class DeterministicCandidateEngine:
                 ),
                 rejections=(rejection,),
             )
-        admitted_sources = {
-            CandidateSourceType.RULE,
-            CandidateSourceType.RDKIT,
-        } if source_mode is CandidateSourceType.HYBRID else {source_mode}
+        admitted_sources = (
+            {
+                CandidateSourceType.RULE,
+                CandidateSourceType.RDKIT,
+            }
+            if source_mode is CandidateSourceType.HYBRID
+            else {source_mode}
+        )
         configured_sources = frozenset(source.source_type for source in self.sources)
         if not configured_sources.intersection(admitted_sources):
             rejection = _reject(
@@ -1451,7 +1698,9 @@ class DeterministicCandidateEngine:
                         )
                     )
                     continue
-                reference = request.context.reference_graph.value_for(patch.root_node_id)
+                reference = request.context.reference_graph.value_for(
+                    patch.root_node_id
+                )
                 if patch.old_value != reference:
                     rejections.append(
                         _reject(
@@ -1500,7 +1749,8 @@ class DeterministicCandidateEngine:
                 except ValueError as error:
                     code = (
                         CandidateRejectCode(error.args[0])
-                        if error.args and error.args[0] in CandidateRejectCode._value2member_map_
+                        if error.args
+                        and error.args[0] in CandidateRejectCode._value2member_map_
                         else CandidateRejectCode.INVALID_PROPOSAL
                     )
                     evidence: dict[str, Any] = {}
@@ -1583,7 +1833,9 @@ class DeterministicCandidateEngine:
                 key=lambda item: (item.proposal_id, item.code.value),
             )
         )
-        rejection_codes = tuple(sorted({item.code.value for item in ordered_rejections}))
+        rejection_codes = tuple(
+            sorted({item.code.value for item in ordered_rejections})
+        )
         if not accepted and not rejection_codes:
             rejection_codes = (CandidateRejectCode.INVALID_PROPOSAL.value,)
         pool = CandidatePool(

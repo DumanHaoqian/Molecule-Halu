@@ -25,13 +25,13 @@ from molhallulens.domain.enums import (
 )
 from molhallulens.domain.errors import ValidationIssue, ValidationReport
 
-
 _VALIDATOR_ID = "molhallulens.anomaly_registry.v1"
 _ALL_CAPABILITIES = frozenset(OperatorCapability)
 _DELETE_CAPABILITIES = frozenset(
     {
         OperatorCapability.REMOVE_ONLY_DELTA_RULE,
         OperatorCapability.STRUCTURAL_DELETION,
+        OperatorCapability.REPLACEMENT_AWARE_DELETION,
     }
 )
 _CLAIM_AND_TERMINAL_CAPABILITIES = frozenset(
@@ -41,17 +41,24 @@ _CLAIM_AND_TERMINAL_CAPABILITIES = frozenset(
     }
 )
 
-_STANDARD_POLICY = OperatorCapabilityPolicy(
-    allowed=_ALL_CAPABILITIES,
-    forbidden=frozenset(),
+_STANDARD_DELETE_POLICY = OperatorCapabilityPolicy(
+    allowed=_ALL_CAPABILITIES
+    - frozenset({OperatorCapability.REPLACEMENT_AWARE_DELETION}),
+    forbidden=frozenset({OperatorCapability.REPLACEMENT_AWARE_DELETION}),
 )
 _NON_DELETE_POLICY = OperatorCapabilityPolicy(
     allowed=_CLAIM_AND_TERMINAL_CAPABILITIES,
     forbidden=_DELETE_CAPABILITIES,
 )
 _DELETE_WITH_REPLACEMENT_POLICY = OperatorCapabilityPolicy(
-    allowed=_CLAIM_AND_TERMINAL_CAPABILITIES,
-    forbidden=_DELETE_CAPABILITIES,
+    allowed=_CLAIM_AND_TERMINAL_CAPABILITIES
+    | frozenset({OperatorCapability.REPLACEMENT_AWARE_DELETION}),
+    forbidden=frozenset(
+        {
+            OperatorCapability.REMOVE_ONLY_DELTA_RULE,
+            OperatorCapability.STRUCTURAL_DELETION,
+        }
+    ),
 )
 
 
@@ -191,14 +198,14 @@ class AnomalyRegistry:
             raise TypeError("entries must contain AnomalyRegistryEntry values")
         entry_ids = tuple(entry.anonymous_sample_id for entry in entries)
         if len(set(entry_ids)) != len(entry_ids):
-            raise ValueError("registry entries must use unique anonymous_sample_id values")
+            raise ValueError(
+                "registry entries must use unique anonymous_sample_id values"
+            )
         object.__setattr__(self, "entries", entries)
         object.__setattr__(
             self,
             "_entries_by_id",
-            MappingProxyType(
-                {entry.anonymous_sample_id: entry for entry in entries}
-            ),
+            MappingProxyType({entry.anonymous_sample_id: entry for entry in entries}),
         )
 
     @property
@@ -280,7 +287,7 @@ class AnomalyRegistry:
                 if not _is_remove_only_shape(signature):
                     self._raise_family_mismatch(truth, signature)
                 subtype = OperationSubtype.DEPROTECTION
-                policy = _STANDARD_POLICY
+                policy = _STANDARD_DELETE_POLICY
 
         provenance = () if entry is None else entry.provenance
         return AnomalyClassification(
@@ -345,7 +352,10 @@ class AnomalyRegistry:
         )
         if require_complete_registry and not report.complete_registry:
             missing = tuple(
-                sorted(set(report.expected_registry_ids) - set(report.observed_registry_ids))
+                sorted(
+                    set(report.expected_registry_ids)
+                    - set(report.observed_registry_ids)
+                )
             )
             raise _registry_error(
                 "MISSING_REGISTERED_ANOMALY",
@@ -384,9 +394,7 @@ DEFAULT_ANOMALY_REGISTRY = AnomalyRegistry(
         AnomalyRegistryEntry(
             anonymous_sample_id="mol_edit.substitute_v2.0064",
             expected_subtask=EditingSubtask.SUBSTITUTE,
-            provenance=(
-                AnomalyProvenance.RETAINED_BOUNDARY_VALENCE_RELAXATION,
-            ),
+            provenance=(AnomalyProvenance.RETAINED_BOUNDARY_VALENCE_RELAXATION,),
         ),
         AnomalyRegistryEntry(
             anonymous_sample_id="mol_edit.substitute_v2.0123",
@@ -402,6 +410,11 @@ DEFAULT_ANOMALY_REGISTRY = AnomalyRegistry(
             anonymous_sample_id="mol_edit.substitute_v2.0271",
             expected_subtask=EditingSubtask.SUBSTITUTE,
             provenance=(AnomalyProvenance.MULTI_ANCHOR_RELOCATION,),
+        ),
+        AnomalyRegistryEntry(
+            anonymous_sample_id="mol_edit.substitute_v2.0276",
+            expected_subtask=EditingSubtask.SUBSTITUTE,
+            provenance=(AnomalyProvenance.SUBSTITUTION_ANCHOR_STEREO_ASSIGNMENT,),
         ),
     )
 )
@@ -432,9 +445,9 @@ def audit_anomaly_registry(
 
 
 __all__ = [
+    "DEFAULT_ANOMALY_REGISTRY",
     "AnomalyRegistry",
     "AnomalyRegistryError",
-    "DEFAULT_ANOMALY_REGISTRY",
     "audit_anomaly_registry",
     "classify_edit_truth",
     "structural_edit_signature",

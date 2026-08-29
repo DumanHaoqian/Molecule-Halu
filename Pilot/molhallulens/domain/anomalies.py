@@ -18,6 +18,7 @@ class AnomalyProvenance(_DomainStrEnum):
     RETAINED_BOUNDARY_VALENCE_RELAXATION = "retained_boundary_valence_relaxation"
     AROMATIC_FRAGMENT_CAPPING = "aromatic_fragment_capping"
     MULTI_ANCHOR_RELOCATION = "multi_anchor_relocation"
+    SUBSTITUTION_ANCHOR_STEREO_ASSIGNMENT = "substitution_anchor_stereo_assignment"
 
 
 class OperatorCapability(_DomainStrEnum):
@@ -25,6 +26,7 @@ class OperatorCapability(_DomainStrEnum):
 
     REMOVE_ONLY_DELTA_RULE = "remove_only_delta_rule"
     STRUCTURAL_DELETION = "structural_deletion"
+    REPLACEMENT_AWARE_DELETION = "replacement_aware_deletion"
     CLAIM_PERTURBATION = "claim_perturbation"
     TERMINAL_PERTURBATION = "terminal_perturbation"
 
@@ -43,7 +45,9 @@ class OperatorCapabilityPolicy:
         except TypeError as error:
             raise TypeError("capability policy fields must be iterable") from error
         if any(type(item) is not OperatorCapability for item in (*allowed, *forbidden)):
-            raise TypeError("capability policies must contain OperatorCapability values")
+            raise TypeError(
+                "capability policies must contain OperatorCapability values"
+            )
         if allowed.intersection(forbidden):
             raise ValueError("allowed and forbidden capabilities must be disjoint")
         if allowed.union(forbidden) != frozenset(OperatorCapability):
@@ -126,8 +130,7 @@ class StructuralEditSignature:
     @property
     def has_bidirectional_boundary(self) -> bool:
         return (
-            self.broken_boundary_bond_count > 0
-            and self.formed_boundary_bond_count > 0
+            self.broken_boundary_bond_count > 0 and self.formed_boundary_bond_count > 0
         )
 
 
@@ -149,34 +152,56 @@ class AnomalyRegistryEntry:
         if type(self.expected_subtask) is not EditingSubtask:
             raise TypeError("expected_subtask must be EditingSubtask")
         try:
-            provenance = tuple(sorted(set(self.provenance), key=lambda item: item.value))
+            provenance = tuple(
+                sorted(set(self.provenance), key=lambda item: item.value)
+            )
         except TypeError as error:
             raise TypeError("provenance must be iterable") from error
-        if not provenance or any(type(item) is not AnomalyProvenance for item in provenance):
+        if not provenance or any(
+            type(item) is not AnomalyProvenance for item in provenance
+        ):
             raise ValueError("provenance must contain AnomalyProvenance values")
-        if self.operation_subtype_override is not None and type(
-            self.operation_subtype_override
-        ) is not OperationSubtype:
-            raise TypeError("operation_subtype_override must be OperationSubtype or None")
-        if self.expected_signature is not None and type(
-            self.expected_signature
-        ) is not StructuralEditSignature:
-            raise TypeError("expected_signature must be StructuralEditSignature or None")
-        if self.capability_policy is not None and type(
-            self.capability_policy
-        ) is not OperatorCapabilityPolicy:
-            raise TypeError("capability_policy must be OperatorCapabilityPolicy or None")
+        if (
+            self.operation_subtype_override is not None
+            and type(self.operation_subtype_override) is not OperationSubtype
+        ):
+            raise TypeError(
+                "operation_subtype_override must be OperationSubtype or None"
+            )
+        if (
+            self.expected_signature is not None
+            and type(self.expected_signature) is not StructuralEditSignature
+        ):
+            raise TypeError(
+                "expected_signature must be StructuralEditSignature or None"
+            )
+        if (
+            self.capability_policy is not None
+            and type(self.capability_policy) is not OperatorCapabilityPolicy
+        ):
+            raise TypeError(
+                "capability_policy must be OperatorCapabilityPolicy or None"
+            )
         if type(self.provenance_task_id) is not str or not self.provenance_task_id:
             raise ValueError("provenance_task_id must be non-empty text")
         if self.operation_subtype_override is not None:
             if self.expected_subtask is not EditingSubtask.DELETE:
                 raise ValueError("only delete entries may override operation subtype")
-            if self.operation_subtype_override is not OperationSubtype.DELETE_WITH_REPLACEMENT:
-                raise ValueError("registered subtype override must be delete-with-replacement")
+            if (
+                self.operation_subtype_override
+                is not OperationSubtype.DELETE_WITH_REPLACEMENT
+            ):
+                raise ValueError(
+                    "registered subtype override must be delete-with-replacement"
+                )
             if self.expected_signature is None or self.capability_policy is None:
-                raise ValueError("subtype overrides require signature and capability policy")
+                raise ValueError(
+                    "subtype overrides require signature and capability policy"
+                )
         elif self.expected_signature is not None or self.capability_policy is not None:
-            raise ValueError("provenance-only entries cannot alter signature or capabilities")
+            raise ValueError(
+                "provenance-only entries cannot alter signature or capabilities"
+            )
         object.__setattr__(self, "provenance", provenance)
 
 
@@ -202,7 +227,9 @@ class AnomalyClassification:
         if type(self.registered) is not bool:
             raise TypeError("registered must be bool")
         try:
-            provenance = tuple(sorted(set(self.provenance), key=lambda item: item.value))
+            provenance = tuple(
+                sorted(set(self.provenance), key=lambda item: item.value)
+            )
         except TypeError as error:
             raise TypeError("provenance must be iterable") from error
         if any(type(item) is not AnomalyProvenance for item in provenance):
@@ -283,8 +310,7 @@ class AnomalyAuditReport:
             for provenance in item.provenance
         )
         return tuple(
-            (provenance, counts.get(provenance, 0))
-            for provenance in AnomalyProvenance
+            (provenance, counts.get(provenance, 0)) for provenance in AnomalyProvenance
         )
 
     def to_dict(self) -> dict[str, Any]:
@@ -299,8 +325,7 @@ class AnomalyAuditReport:
                 subtype.value: count for subtype, count in self.subtype_counts
             },
             "provenance_counts": {
-                provenance.value: count
-                for provenance, count in self.provenance_counts
+                provenance.value: count for provenance, count in self.provenance_counts
             },
             "classifications": [item.to_dict() for item in self.classifications],
         }

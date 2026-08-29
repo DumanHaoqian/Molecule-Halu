@@ -58,6 +58,14 @@ class EditAction:
             raise ValueError("addition EditAction requires add_fragment_smiles")
         if self.edit_kind is EditKind.DELETION and not self.remove_fragment_smiles:
             raise ValueError("deletion EditAction requires remove_fragment_smiles")
+        if self.edit_kind is EditKind.DELETION and (
+            (self.add_fragment_smiles is None)
+            != (self.fragment_attachment_atom is None)
+        ):
+            raise ValueError(
+                "replacement deletion requires both add_fragment_smiles and "
+                "fragment_attachment_atom"
+            )
         if (
             self.edit_kind in {EditKind.ADDITION, EditKind.DELETION}
             and self.remove_anchor_index is not None
@@ -71,6 +79,14 @@ class EditAction:
             raise ValueError(
                 "substitution EditAction requires remove_fragment_smiles and add_fragment_smiles"
             )
+
+    @property
+    def is_replacement_deletion(self) -> bool:
+        """Whether this typed deletion removes one occurrence and adds a fragment."""
+
+        return (
+            self.edit_kind is EditKind.DELETION and self.add_fragment_smiles is not None
+        )
 
 
 @dataclass(frozen=True, slots=True)
@@ -92,21 +108,37 @@ class OperatorSpec:
             if isinstance(value, (str, bytes)):
                 raise TypeError(f"OperatorSpec {name} must be a collection, not text")
         object.__setattr__(self, "root_fields", frozenset(self.root_fields))
-        object.__setattr__(self, "supported_policies", frozenset(self.supported_policies))
+        object.__setattr__(
+            self, "supported_policies", frozenset(self.supported_policies)
+        )
         object.__setattr__(self, "supported_sources", frozenset(self.supported_sources))
-        object.__setattr__(self, "hallucination_types", frozenset(self.hallucination_types))
+        object.__setattr__(
+            self, "hallucination_types", frozenset(self.hallucination_types)
+        )
         if type(self.operator_id) is not str:
             raise TypeError("OperatorSpec operator_id must be a string")
         if type(self.diagnostic_only) is not bool:
             raise TypeError("OperatorSpec diagnostic_only must be bool")
         if any(type(value) is not str or not value for value in self.root_fields):
             raise TypeError("OperatorSpec root_fields must contain non-empty strings")
-        if any(type(value) is not PropagationPolicy for value in self.supported_policies):
-            raise TypeError("OperatorSpec supported_policies must contain PropagationPolicy values")
-        if any(type(value) is not CandidateSourceType for value in self.supported_sources):
-            raise TypeError("OperatorSpec supported_sources must contain CandidateSourceType values")
-        if any(type(value) is not HallucinationType for value in self.hallucination_types):
-            raise TypeError("OperatorSpec hallucination_types must contain HallucinationType values")
+        if any(
+            type(value) is not PropagationPolicy for value in self.supported_policies
+        ):
+            raise TypeError(
+                "OperatorSpec supported_policies must contain PropagationPolicy values"
+            )
+        if any(
+            type(value) is not CandidateSourceType for value in self.supported_sources
+        ):
+            raise TypeError(
+                "OperatorSpec supported_sources must contain CandidateSourceType values"
+            )
+        if any(
+            type(value) is not HallucinationType for value in self.hallucination_types
+        ):
+            raise TypeError(
+                "OperatorSpec hallucination_types must contain HallucinationType values"
+            )
         if not self.operator_id:
             raise ValueError("OperatorSpec operator_id cannot be empty")
         for value, name in (
@@ -132,8 +164,13 @@ class CandidatePatch:
     def __post_init__(self) -> None:
         if type(self.candidate_id) is not str or type(self.root_node_id) is not str:
             raise TypeError("CandidatePatch IDs must be strings")
-        if type(self.old_value) is not ClaimValue or type(self.new_value) is not ClaimValue:
-            raise TypeError("CandidatePatch old_value and new_value must be ClaimValue values")
+        if (
+            type(self.old_value) is not ClaimValue
+            or type(self.new_value) is not ClaimValue
+        ):
+            raise TypeError(
+                "CandidatePatch old_value and new_value must be ClaimValue values"
+            )
         if self.edit_action is not None and type(self.edit_action) is not EditAction:
             raise TypeError("CandidatePatch edit_action must be an EditAction or None")
         if type(self.source) is not CandidateSourceType:
@@ -207,11 +244,15 @@ class PerturbationRecipe:
         if not isinstance(self.constraints, Mapping):
             raise TypeError("PerturbationRecipe constraints must be a mapping")
         if any(type(node) is not str or not node for node in self.partial_cut_nodes):
-            raise TypeError("PerturbationRecipe partial_cut_nodes must contain non-empty strings")
+            raise TypeError(
+                "PerturbationRecipe partial_cut_nodes must contain non-empty strings"
+            )
         object.__setattr__(
             self,
             "constraints",
-            freeze_string_mapping(self.constraints, name="PerturbationRecipe constraints"),
+            freeze_string_mapping(
+                self.constraints, name="PerturbationRecipe constraints"
+            ),
         )
         for value, name in (
             (self.recipe_id, "recipe_id"),
@@ -232,12 +273,17 @@ class PerturbationRecipe:
             if type(value) is not int:
                 raise TypeError(f"PerturbationRecipe {name} must be an integer")
         if self.variant_index < 0 or self.derived_seed < 0:
-            raise ValueError("PerturbationRecipe variant_index and derived_seed cannot be negative")
+            raise ValueError(
+                "PerturbationRecipe variant_index and derived_seed cannot be negative"
+            )
         if self.policy is PropagationPolicy.PARTIAL and not self.partial_cut_nodes:
             raise ValueError("PARTIAL recipes require at least one partial cut node")
         if self.policy is not PropagationPolicy.PARTIAL and self.partial_cut_nodes:
             raise ValueError("only PARTIAL recipes may declare partial cut nodes")
-        if self.policy is PropagationPolicy.TERMINAL and self.target_node_id != "final_answer":
+        if (
+            self.policy is PropagationPolicy.TERMINAL
+            and self.target_node_id != "final_answer"
+        ):
             raise ValueError("TERMINAL recipes must target final_answer")
 
 
@@ -251,19 +297,27 @@ class CandidatePool:
         if isinstance(self.candidates, (str, bytes)) or isinstance(
             self.rejection_codes, (str, bytes)
         ):
-            raise TypeError("CandidatePool candidates and rejection_codes must be collections")
+            raise TypeError(
+                "CandidatePool candidates and rejection_codes must be collections"
+            )
         object.__setattr__(self, "candidates", tuple(self.candidates))
         object.__setattr__(self, "rejection_codes", tuple(self.rejection_codes))
         if type(self.request_id) is not str:
             raise TypeError("CandidatePool request_id must be a string")
         if any(type(candidate) is not CandidatePatch for candidate in self.candidates):
-            raise TypeError("CandidatePool candidates must contain CandidatePatch values")
+            raise TypeError(
+                "CandidatePool candidates must contain CandidatePatch values"
+            )
         if any(type(code) is not str or not code for code in self.rejection_codes):
-            raise TypeError("CandidatePool rejection_codes must contain non-empty strings")
+            raise TypeError(
+                "CandidatePool rejection_codes must contain non-empty strings"
+            )
         if not self.request_id:
             raise ValueError("CandidatePool request_id cannot be empty")
         candidate_ids = tuple(candidate.candidate_id for candidate in self.candidates)
         if len(candidate_ids) != len(set(candidate_ids)):
             raise ValueError("CandidatePool candidate IDs must be unique")
         if not self.candidates and not self.rejection_codes:
-            raise ValueError("an empty CandidatePool must explain why candidates were rejected")
+            raise ValueError(
+                "an empty CandidatePool must explain why candidates were rejected"
+            )

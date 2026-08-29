@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T04:58:00+08:00",
+  "updated_at": "2026-08-30T05:33:00+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 5,
+    "not_started": 4,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 47,
-    "last_completed_task": "T047"
+    "completed": 48,
+    "last_completed_task": "T048"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -997,6 +997,24 @@
       "known_gaps": ["dry-run development inventory 仅 12 origins，指标用于工程 shortcut gate，不应解释为模型性能估计"],
       "follow_up_actions": ["T048–T050 按冻结 renderer/candidate design 构建，不再使用 test 调参", "T052 对完整 release 重跑相同 baselines 并披露 symbolic comparator 结果"],
       "assessment_summary": "T047 五项验收全部满足。development-only mandatory gates：metadata 0.5、span-only 0.5249566、reasoning-only 0.5243056、token-length SMD 0、style mismatch 0，全部过阈值。初始 span shortcut 通过只使用 train+validation 的 strict-valid origin cross-balance 修复；held-out test 三 origins 全程冻结，最终只读诊断一次且未参与选择。严格 CLI 退出 0，专项 11 项通过。"
+    },
+    {
+      "task_id": "T048",
+      "assessed_at": "2026-08-30T05:33:00+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["11. frozen split 与 donor isolation", "14. release artifact layout", "Phase 7：完整 1,200-record build", "train split acceptance"],
+      "acceptance_criteria_results": [
+        {"criterion": "800 records、400H/400N", "passed": true, "evidence": ["100 frozen train origins × 8 records = 800", "hallucinated/faithful counts 精确 400/400"]},
+        {"criterion": "每 policy 100H+100N", "passed": true, "evidence": ["LOCAL/PARTIAL/FULL_CF/TERMINAL 各 100 H 与 100 N", "四类 reciprocal pair identities 全局唯一且完整"]},
+        {"criterion": "所有 100 origins 完整 8 records", "passed": true, "evidence": ["verified manifest 的 train exact set 全覆盖：add/delete/substitute=34/33/33", "100 attempts 全 accepted；任何失败路径 emitted_record_count 强制为 0"]},
+        {"criterion": "strict validation 通过", "passed": true, "evidence": ["3200 artifact gates 与 100 bundle gates 全通过", "records/oracle/state/token/provenance 五类各 800 行且 record identity 集合一致"]}
+      ],
+      "strengths": ["selection 只读取 frozen train manifest，validation/test candidate selection count 为 0", "原子 staging/publish、exact-set manifest、完整 origin backfill 和 report conflict protection fail closed", "为全 train coverage 新增 replacement-aware deletion 与 charge/stereo-aware substitution exact replay，三个边界 origins 经同一 T043 chain", "detector-visible records 与 oracle/state/provenance 分离，GT/reference/secret leakage 均为 0"],
+      "known_gaps": ["T048 tokenized train artifact 使用明确标识的 offline fast-offset fixture；真实 ChemDFM-R tokenizer 和 resid_post 由 T051 生成", "400 个 H candidate executions 均来自可验证 RULE source；本任务未伪造未实际使用的 source mix"] ,
+      "follow_up_actions": ["T049 复用冻结后的能力和 builder 构建 validation 25 origins", "T050 最后构建 test 且不用于任何选择", "T051 对全部 1200 records 运行真实 ChemDFM-R"],
+      "assessment_summary": "T048 四项验收全部满足。完整覆盖 frozen train 的 100 origins、800 records（400H/400N），四 policy 均精确 100H+100N；3200 artifact gates 和 100 bundle gates 全通过。原先不可构建的 .0081 replacement deletion、.0191 charge 和 .0276 stereo boundaries 均通过新增的严格 exact-replay capability 进入同一 validation chain，无跨 split 选择或泄漏。T048 集成 7 项、相关专项 51 项通过。"
     }
   ],
   "tasks": [
@@ -1382,7 +1400,7 @@
       "description": "按 frozen split、quota 和 validated candidate pool 构建 train 的 100 origins/800 records。",
       "deliverables": ["records/train.jsonl", "train oracle/state/provenance", "train validation report"],
       "acceptance_criteria": ["800 records、400H/400N", "每 policy 100H+100N", "所有 100 origins 完整 8 records", "strict validation 通过"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T05:07:00+08:00", "completed_at": "2026-08-30T05:33:00+08:00", "completion_notes": "构建并冻结 verified train exact set 的 100 origins、800 records（400H/400N），add/delete/substitute origins 为 34/33/33；LOCAL/PARTIAL/FULL_CF/TERMINAL 每类精确 100H+100N。records、oracle、state_graphs、tokenized 与 provenance 五类正式 JSONL 各 800 行，record identity 集合一致；selection、validation、backfill 与 build reports 完整。3200 个 T043 artifact gates 与 100 个 bundle gates 全通过，GT/reference artifact leakage、secret leakage、cross-split donor、validation/test selection 均为 0。初始 strict scan 发现 frozen train 的 .0081 delete-with-replacement、.0191 charge boundary 与 .0276 stereo boundary 在旧 capability 下无法形成完整 bundle；没有丢弃/重复/跨 split 替换，而是实现 replacement-aware deletion operator 及 origin-bound charge/stereo exact replay contracts，保留普通 deletion/substitution 回归，并让三个 origins 通过相同四 policy、8-record、T043 strict chain。100 build attempts 最终全 accepted；任何失败尝试保证发出 0 records。400 个 H executions 均据实为 validated RULE candidates。tokenized artifact 明确为 offline contract fixture，不冒充真实 ChemDFM-R。", "evidence": ["Pilot/molhallulens/builders/train_split.py", "Pilot/tests/integration/test_train_split_build.py", "Pilot/HallucinationDataset/records/train.jsonl", "Pilot/HallucinationDataset/oracle/train.jsonl", "Pilot/HallucinationDataset/state_graphs/train.jsonl", "Pilot/HallucinationDataset/tokenized/chemdfm_r/train.jsonl", "Pilot/HallucinationDataset/provenance/train.jsonl", "Pilot/HallucinationDataset/reports/train_validation_report.json", "Pilot/Dataset/reports/t048_train_build.json", "100 origins / 800 records / 400H / 400N", "each policy 100H+100N", "3200 artifact gates + 100 bundle gates passed", "frozen train exact set and train-only selection passed", ".0081/.0191/.0276 boundary exact replay passed", "T048 integration：7 passed", "deletion/registry/T044/substitution related：51 passed", "ruff/format/JSON/diff checks passed"], "files_changed": ["Pilot/molhallulens/builders/train_split.py", "Pilot/molhallulens/domain/anomalies.py", "Pilot/molhallulens/domain/recipes.py", "Pilot/molhallulens/builders/anomaly_registry.py", "Pilot/molhallulens/builders/origin_audit.py", "Pilot/molhallulens/builders/golden_validation.py", "Pilot/molhallulens/candidates/core.py", "Pilot/molhallulens/perturbators/editing/deletion.py", "Pilot/molhallulens/perturbators/editing/substitution.py", "Pilot/tests/integration/test_train_split_build.py", "Pilot/tests/unit/test_deletion_operators.py", "Pilot/tests/unit/test_substitution_operators.py", "Pilot/tests/test_anomaly_registry.py", "Pilot/tests/integration/test_extended_golden_suite.py", "Pilot/tests/golden/t044_extended_golden_suite.json", "Pilot/Dataset/reports/anomaly_registry_report.json", "Pilot/Dataset/reports/t044_golden_validation.json", "Pilot/HallucinationDataset/records/train.jsonl", "Pilot/HallucinationDataset/oracle/train.jsonl", "Pilot/HallucinationDataset/state_graphs/train.jsonl", "Pilot/HallucinationDataset/tokenized/chemdfm_r/train.jsonl", "Pilot/HallucinationDataset/provenance/train.jsonl", "Pilot/HallucinationDataset/reports/train_selection_manifest.json", "Pilot/HallucinationDataset/reports/train_validation_report.json", "Pilot/HallucinationDataset/reports/train_backfill_ledger.jsonl", "Pilot/HallucinationDataset/reports/train_build_report.json", "Pilot/Dataset/reports/t048_train_build.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps python -m pytest -q -s -p no:cacheprovider tests/integration/test_train_split_build.py", "PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps python -m pytest -q -s -p no:cacheprovider tests/unit/test_deletion_operators.py tests/test_anomaly_registry.py tests/integration/test_extended_golden_suite.py tests/unit/test_substitution_operators.py", "ruff check molhallulens/builders/train_split.py molhallulens/domain/anomalies.py molhallulens/domain/recipes.py molhallulens/builders/anomaly_registry.py molhallulens/builders/origin_audit.py molhallulens/builders/golden_validation.py molhallulens/candidates/core.py molhallulens/perturbators/editing/deletion.py molhallulens/perturbators/editing/substitution.py tests/integration/test_train_split_build.py tests/unit/test_deletion_operators.py tests/unit/test_substitution_operators.py tests/test_anomaly_registry.py tests/integration/test_extended_golden_suite.py", "python -m json.tool HallucinationDataset/reports/train_build_report.json >/dev/null", "python -m json.tool Dataset/reports/t048_train_build.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T049", "phase": "7_full_build", "title": "构建并冻结 validation split",

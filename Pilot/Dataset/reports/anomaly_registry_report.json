@@ -9,6 +9,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -44,6 +45,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -74,6 +76,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -103,6 +106,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -130,6 +134,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -159,6 +164,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -191,6 +197,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -228,6 +235,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -258,6 +266,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -298,6 +307,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -329,6 +339,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -359,6 +370,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -389,6 +401,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -416,6 +429,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -445,6 +459,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -474,6 +489,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -501,6 +517,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -530,6 +547,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -560,6 +578,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -596,6 +615,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -627,6 +647,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -656,6 +677,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -685,6 +707,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -714,6 +737,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -741,6 +765,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -772,6 +797,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -802,6 +828,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -832,6 +859,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -859,6 +887,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -898,6 +927,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -927,6 +957,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -957,6 +988,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -986,6 +1018,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1015,6 +1048,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1060,6 +1094,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1098,6 +1133,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1126,6 +1162,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1158,6 +1195,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1186,6 +1224,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1217,6 +1256,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1246,6 +1286,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1273,6 +1314,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1307,6 +1349,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1346,6 +1389,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1391,6 +1435,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1421,6 +1466,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1452,6 +1498,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1493,6 +1540,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1525,6 +1573,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1553,6 +1602,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -1586,7 +1636,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1610,7 +1662,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1634,7 +1688,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1658,7 +1714,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1682,7 +1740,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1706,7 +1766,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1730,7 +1792,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1754,7 +1818,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1778,7 +1844,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1802,7 +1870,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1826,7 +1896,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1846,6 +1918,7 @@
       "capability_policy": {
         "allowed": [
           "claim_perturbation",
+          "replacement_aware_deletion",
           "terminal_perturbation"
         ],
         "forbidden": [
@@ -1880,7 +1953,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1904,7 +1979,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1928,7 +2005,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1952,7 +2031,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -1976,7 +2057,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2000,7 +2083,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2024,7 +2109,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2048,7 +2135,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2072,7 +2161,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2096,7 +2187,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2120,7 +2213,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2144,7 +2239,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2168,7 +2265,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2192,7 +2291,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2216,7 +2317,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2240,7 +2343,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2264,7 +2369,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2288,7 +2395,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2312,7 +2421,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2336,7 +2447,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2360,7 +2473,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2384,7 +2499,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2408,7 +2525,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2432,7 +2551,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2456,7 +2577,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2480,7 +2603,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2504,7 +2629,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2528,7 +2655,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2552,7 +2681,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2576,7 +2707,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2600,7 +2733,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2624,7 +2759,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2648,7 +2785,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2672,7 +2811,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2696,7 +2837,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2720,7 +2863,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2744,7 +2889,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2768,7 +2915,9 @@
           "structural_deletion",
           "terminal_perturbation"
         ],
-        "forbidden": []
+        "forbidden": [
+          "replacement_aware_deletion"
+        ]
       },
       "normalized_subtask": "delete",
       "operation_subtype": "deprotection",
@@ -2792,6 +2941,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -2824,6 +2974,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -2855,6 +3006,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -2882,6 +3034,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -2910,6 +3063,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -2949,6 +3103,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -2984,6 +3139,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3016,6 +3172,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3047,6 +3204,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3090,6 +3248,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3132,6 +3291,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3166,6 +3326,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3199,6 +3360,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3235,6 +3397,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3272,6 +3435,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3307,6 +3471,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3335,6 +3500,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3365,6 +3531,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3399,6 +3566,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3433,6 +3601,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3460,6 +3629,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3493,6 +3663,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3529,6 +3700,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3560,6 +3732,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3594,6 +3767,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3626,6 +3800,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3660,6 +3835,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3696,6 +3872,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3732,6 +3909,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3764,6 +3942,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3800,6 +3979,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3830,6 +4010,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3873,6 +4054,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3906,6 +4088,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3938,6 +4121,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3966,6 +4150,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -3999,6 +4184,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4032,6 +4218,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4060,6 +4247,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4093,6 +4281,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4125,6 +4314,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4159,6 +4349,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4190,6 +4381,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4222,6 +4414,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4255,6 +4448,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4289,6 +4483,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4323,13 +4518,16 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
       "normalized_subtask": "substitute",
       "operation_subtype": "standard",
-      "provenance": [],
-      "registered": false,
+      "provenance": [
+        "substitution_anchor_stereo_assignment"
+      ],
+      "registered": true,
       "structural_signature": {
         "add_fragment_heavy_atoms": 16,
         "added_atomic_numbers": [
@@ -4365,6 +4563,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4392,6 +4591,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4422,6 +4622,7 @@
         ],
         "forbidden": [
           "remove_only_delta_rule",
+          "replacement_aware_deletion",
           "structural_deletion"
         ]
       },
@@ -4450,7 +4651,8 @@
     "mol_edit.substitute_v2.0064",
     "mol_edit.substitute_v2.0123",
     "mol_edit.substitute_v2.0191",
-    "mol_edit.substitute_v2.0271"
+    "mol_edit.substitute_v2.0271",
+    "mol_edit.substitute_v2.0276"
   ],
   "observed_registry_ids": [
     "mol_edit.add_v2.0071",
@@ -4458,16 +4660,18 @@
     "mol_edit.substitute_v2.0064",
     "mol_edit.substitute_v2.0123",
     "mol_edit.substitute_v2.0191",
-    "mol_edit.substitute_v2.0271"
+    "mol_edit.substitute_v2.0271",
+    "mol_edit.substitute_v2.0276"
   ],
   "provenance_counts": {
     "aromatic_fragment_capping": 1,
     "delete_with_replacement": 1,
     "mapping_trace_disambiguation": 1,
     "multi_anchor_relocation": 1,
-    "retained_boundary_valence_relaxation": 2
+    "retained_boundary_valence_relaxation": 2,
+    "substitution_anchor_stereo_assignment": 1
   },
-  "registered_count": 6,
+  "registered_count": 7,
   "registry_id": "molhallulens.anomaly_registry.v1",
   "subtype_counts": {
     "delete_with_replacement": 1,

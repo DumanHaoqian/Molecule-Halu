@@ -58,6 +58,7 @@ DELETION_OPERATOR_IDS = (
     "mol_edit.delete.ring_count_claim",
     "mol_edit.delete.terminal_answer",
 )
+REPLACEMENT_DELETION_OPERATOR_ID = "mol_edit.delete.replacement_product"
 
 _STRUCTURAL_POLICIES = frozenset(
     {PropagationPolicy.STOP, PropagationPolicy.PARTIAL, PropagationPolicy.FULL_CF}
@@ -68,6 +69,7 @@ _DETERMINISTIC_SOURCES = frozenset(
 )
 _RELATION_SOURCES = frozenset({CandidateSourceType.RULE, CandidateSourceType.HYBRID})
 _STRUCTURAL_CAPABILITY = frozenset({OperatorCapability.STRUCTURAL_DELETION})
+_REPLACEMENT_CAPABILITY = frozenset({OperatorCapability.REPLACEMENT_AWARE_DELETION})
 _CLAIM_CAPABILITY = frozenset({OperatorCapability.CLAIM_PERTURBATION})
 
 
@@ -226,6 +228,26 @@ class DeletionOperatorMixin:
     def perturb_alternative_deprotection_product(
         self, context: PerturbationContext[Any]
     ) -> CandidatePool:
+        return self._deletion_candidate_pool(context)
+
+    @operator(
+        operator_id=REPLACEMENT_DELETION_OPERATOR_ID,
+        operator_family="wrong_fragment_group",
+        root_fields={"product"},
+        supported_policies=_STRUCTURAL_POLICIES,
+        supported_sources=_DETERMINISTIC_SOURCES,
+        hallucination_types={
+            HallucinationType.CONTRADICTION,
+            HallucinationType.REASONING_ERROR,
+        },
+        edit_subtypes={EditErrorSubtype.PRODUCT_CONSTRUCTION},
+        required_capabilities=_REPLACEMENT_CAPABILITY,
+    )
+    def perturb_replacement_product(
+        self, context: PerturbationContext[Any]
+    ) -> CandidatePool:
+        """Generate a typed remove+add product for a registered replacement delete."""
+
         return self._deletion_candidate_pool(context)
 
     @operator(
@@ -538,6 +560,99 @@ def _deletion_action(candidate: _CutCandidate) -> EditAction:
     )
 
 
+_REPLACEMENT_FRAGMENTS = (
+    ("C#C", 0),
+    ("C=O", 0),
+    ("CO", 0),
+    ("CN", 0),
+    ("C(F)(F)F", 0),
+    ("N", 0),
+    ("F", 0),
+    ("Cl", 0),
+    ("C", 0),
+    ("C(=O)N", 0),
+)
+
+
+def _replacement_action(
+    request: CandidateRequest,
+    add_fragment_smiles: str,
+    fragment_attachment_atom: int,
+) -> EditAction:
+    """Build the exact registered remove occurrence plus one alternate add fragment."""
+
+    truth = request.context.truth
+    classification = request.resolution.classification
+    if (
+        request.operator_id != REPLACEMENT_DELETION_OPERATOR_ID
+        or not classification.allows(OperatorCapability.REPLACEMENT_AWARE_DELETION)
+        or truth.remove_fragment is None
+        or truth.add_fragment is None
+        or len(truth.broken_bonds) != 1
+        or len(truth.formed_bonds) != 1
+    ):
+        raise ValueError("replacement deletion requires its exact registered truth")
+    broken = truth.broken_bonds[0]
+    removed = frozenset(truth.removed_atom_maps)
+    retained_endpoints = tuple(
+        endpoint.atom_id
+        for endpoint in (broken.begin, broken.end)
+        if endpoint.atom_id not in removed
+    )
+    removed_endpoints = tuple(
+        endpoint.atom_id
+        for endpoint in (broken.begin, broken.end)
+        if endpoint.atom_id in removed
+    )
+    if (
+        len(retained_endpoints) != 1
+        or len(removed_endpoints) != 1
+        or retained_endpoints[0] not in truth.valid_anchor_indices
+    ):
+        raise ValueError("replacement deletion truth must have one retained anchor")
+    formed = truth.formed_bonds[0]
+    formed_source_endpoints = tuple(
+        endpoint.atom_id
+        for endpoint in (formed.begin, formed.end)
+        if endpoint.namespace.value == "source_map"
+    )
+    if formed_source_endpoints != retained_endpoints:
+        raise ValueError("replacement deletion must add at the removed group anchor")
+    return EditAction(
+        edit_kind=EditKind.DELETION,
+        source_anchor_index=retained_endpoints[0],
+        remove_fragment_smiles=truth.remove_fragment.canonical_smiles,
+        add_fragment_smiles=add_fragment_smiles,
+        fragment_attachment_atom=fragment_attachment_atom,
+        bond_type=formed.bond_type,
+        metadata={
+            "remove_atom_maps": tuple(sorted(removed)),
+            "replacement_contract": "registered_remove_then_add_v1",
+        },
+    )
+
+
+def _replacement_candidates(
+    request: CandidateRequest,
+) -> tuple[tuple[EditAction, str], ...]:
+    """Enumerate only strict source-replayable, valid, non-GT replacements."""
+
+    candidates: dict[str, tuple[EditAction, str]] = {}
+    for fragment, attachment_atom in _REPLACEMENT_FRAGMENTS:
+        try:
+            action = _replacement_action(request, fragment, attachment_atom)
+            product = _replayed_product(request, action)
+        except (RuntimeError, TypeError, ValueError):
+            continue
+        if product is None or isomeric_graph_equivalent(
+            product,
+            request.context.truth.canonical_gt_smiles,
+        ):
+            continue
+        candidates[product] = (action, product)
+    return tuple(candidates[key] for key in sorted(candidates))
+
+
 def _replayed_product(
     request: CandidateRequest,
     action: EditAction,
@@ -738,6 +853,8 @@ def _candidate_identity(
         else {
             "anchor": action.source_anchor_index,
             "fragment": action.remove_fragment_smiles,
+            "add_fragment": action.add_fragment_smiles,
+            "fragment_attachment_atom": action.fragment_attachment_atom,
             "bond": None if action.bond_type is None else action.bond_type.value,
             "occurrence": action.metadata.get("occurrence_atom_maps"),
         },
@@ -868,6 +985,20 @@ def _enumerate_deletion_proposals(
     root = request.resolution.target_node_id
     operator_id = request.operator_id
 
+    if operator_id == REPLACEMENT_DELETION_OPERATOR_ID:
+        for action, product in _replacement_candidates(request):
+            try:
+                yield _proposal(
+                    request,
+                    source,
+                    value=product,
+                    action=action,
+                    product=product,
+                )
+            except ValueError:
+                continue
+        return
+
     if operator_id == DELETION_OPERATOR_IDS[8]:
         for value in _claim_fragment_values(request):
             try:
@@ -911,6 +1042,7 @@ def _enumerate_deletion_proposals(
 
 __all__ = [
     "DELETION_OPERATOR_IDS",
+    "REPLACEMENT_DELETION_OPERATOR_ID",
     "DeletionCandidateDispatcher",
     "DeletionCandidateEngine",
     "DeletionOperatorMixin",

@@ -54,6 +54,7 @@ from molhallulens.perturbators import (
 )
 from molhallulens.perturbators.editing.deletion import (
     DELETION_OPERATOR_IDS,
+    REPLACEMENT_DELETION_OPERATOR_ID,
     DeletionCandidateDispatcher,
     DeletionCandidateEngine,
 )
@@ -212,6 +213,16 @@ EXPECTED_METADATA = {
         frozenset({EditErrorSubtype.FINAL_ANSWER_IDENTITY}),
         frozenset({OperatorCapability.TERMINAL_PERTURBATION}),
     ),
+    REPLACEMENT_DELETION_OPERATOR_ID: (
+        "perturb_replacement_product",
+        "wrong_fragment_group",
+        frozenset({"product"}),
+        STRUCTURAL_POLICIES,
+        DETERMINISTIC_SOURCES,
+        COMMON_HALLUCINATIONS,
+        frozenset({EditErrorSubtype.PRODUCT_CONSTRUCTION}),
+        frozenset({OperatorCapability.REPLACEMENT_AWARE_DELETION}),
+    ),
 }
 
 OPERATOR_RUNTIME_CASES = (
@@ -334,6 +345,11 @@ def _context(
         ),
         candidate_difficulty_bucket="hard",
         renderer_style_id="fixture",
+        partial_cut_nodes=(
+            frozenset({"product_heavy", "product_rings"})
+            if selected_policy is PropagationPolicy.PARTIAL
+            else frozenset()
+        ),
     )
     return PerturbationContext(
         record=record,
@@ -490,7 +506,9 @@ def _assert_connected_single_boundary_replay(
     return occurrence
 
 
-def test_deletion_declares_exactly_the_twelve_blueprint_operators() -> None:
+def test_deletion_preserves_twelve_blueprint_operators_and_adds_typed_replacement() -> (
+    None
+):
     registrations = _registry().registrations_for(
         task_family="mol_edit", subtask="delete"
     )
@@ -498,9 +516,10 @@ def test_deletion_declares_exactly_the_twelve_blueprint_operators() -> None:
         f"mol_edit.delete.{method.removeprefix('perturb_')}"
         for method in EXPECTED_METHODS
     )
-    assert {registration.operator_id for registration in registrations} == set(
-        DELETION_OPERATOR_IDS
-    )
+    assert {registration.operator_id for registration in registrations} == {
+        *DELETION_OPERATOR_IDS,
+        REPLACEMENT_DELETION_OPERATOR_ID,
+    }
 
     for registration in registrations:
         (
@@ -679,6 +698,83 @@ def test_delete_with_replacement_blocks_structural_operators_at_resolution() -> 
         assert pool.candidates
         assert all(patch.root_node_id == target for patch in pool.candidates)
         assert all(patch.edit_action is None for patch in pool.candidates)
+
+
+@pytest.mark.parametrize(
+    "policy",
+    (
+        PropagationPolicy.STOP,
+        PropagationPolicy.PARTIAL,
+        PropagationPolicy.FULL_CF,
+    ),
+)
+def test_registered_replacement_operator_is_strict_remove_add_replay(
+    policy: PropagationPolicy,
+) -> None:
+    replacement = next(
+        record
+        for record in _delete_records()
+        if record.anonymous_sample_id == REPLACEMENT_ID
+    )
+    context, pool = _invoke(
+        REPLACEMENT_DELETION_OPERATOR_ID,
+        target_node_id="product",
+        policy=policy,
+        source=CandidateSourceType.RULE,
+        joined=replacement,
+    )
+    resolution = _registry().resolve(_production_perturbator(), context)
+    assert resolution.classification.operation_subtype is (
+        OperationSubtype.DELETE_WITH_REPLACEMENT
+    )
+    assert resolution.registration.required_capabilities == frozenset(
+        {OperatorCapability.REPLACEMENT_AWARE_DELETION}
+    )
+    assert (
+        len(pool.candidates)
+        >= OPERATORS_CONFIG.candidate_generation.candidates_per_recipe_min
+    )
+    assert CandidateRejectCode.INSUFFICIENT_CANDIDATES.value not in pool.rejection_codes
+
+    request = _candidate_request(context)
+    for patch in pool.candidates:
+        action = patch.edit_action
+        assert action is not None
+        assert action.edit_kind is EditKind.DELETION
+        assert action.is_replacement_deletion
+        assert action.remove_fragment_smiles is not None
+        assert action.add_fragment_smiles is not None
+        assert action.fragment_attachment_atom is not None
+        assert _occurrence_maps(patch) == tuple(sorted(context.truth.removed_atom_maps))
+        products = replay_edit_action(request, action)
+        assert len(products) == 1
+        assert isomeric_graph_equivalent(products[0], patch.new_value.normalized_value)
+        assert not isomeric_graph_equivalent(products[0], context.truth.gt_smiles)
+        parsed = Chem.MolFromSmiles(products[0], sanitize=True)
+        assert parsed is not None
+        Chem.SanitizeMol(parsed)
+        assert all(atom.GetNumRadicalElectrons() == 0 for atom in parsed.GetAtoms())
+
+
+def test_replacement_operator_is_forbidden_for_ordinary_remove_only_delete() -> None:
+    ordinary = next(
+        record
+        for record in _delete_records()
+        if record.anonymous_sample_id != REPLACEMENT_ID
+    )
+    registration = _registry().registration(REPLACEMENT_DELETION_OPERATOR_ID)
+    context = _context(
+        registration,
+        target_node_id="product",
+        policy=PropagationPolicy.FULL_CF,
+        joined=ordinary,
+    )
+    with pytest.raises(OperatorRegistryError) as caught:
+        _registry().resolve(_production_perturbator(), context)
+    assert caught.value.code == "OPERATOR_CAPABILITY_FORBIDDEN"
+    assert caught.value.evidence == {
+        "forbidden_capabilities": (OperatorCapability.REPLACEMENT_AWARE_DELETION.value,)
+    }
 
 
 def test_replacement_counts_never_apply_the_remove_only_delta_formula() -> None:

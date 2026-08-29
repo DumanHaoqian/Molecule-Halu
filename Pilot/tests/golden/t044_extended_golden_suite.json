@@ -29,6 +29,7 @@
       "capability_policy": {
         "allowed": [
           "claim_perturbation",
+          "replacement_aware_deletion",
           "terminal_perturbation"
         ],
         "forbidden": [
@@ -64,7 +65,7 @@
       },
       "operator_id": "mol_edit.delete.wrong_group_occurrence"
     },
-    "full_eight_record_status": "not_constructed_by_design",
+    "full_eight_record_status": "supported_by_replacement_capability",
     "origin_id": "mol_edit.delete_v2.0081",
     "permitted_claim_terminal_operator_ids": [
       "mol_edit.delete.cross_step_group_identity",
@@ -72,7 +73,30 @@
       "mol_edit.delete.ring_count_claim",
       "mol_edit.delete.terminal_answer"
     ],
-    "reason": "replacement capability forbids structural deletion; remaining claim and terminal operators cannot supply a legal FULL_CF product",
+    "reason": "generic remove-only structural deletion remains forbidden; the exact replacement-aware operator supplies strict remove+add STOP, PARTIAL, and FULL_CF candidates while the existing terminal operator supplies TERMINAL",
+    "replacement_support": {
+      "all_candidates_are_typed_remove_add": true,
+      "all_candidates_non_reference": true,
+      "candidate_count": 10,
+      "operator_family": "wrong_fragment_group",
+      "operator_id": "mol_edit.delete.replacement_product",
+      "required_capabilities": [
+        "replacement_aware_deletion"
+      ],
+      "root_fields": [
+        "product"
+      ],
+      "supported_policies": [
+        "full_cf",
+        "local",
+        "partial"
+      ],
+      "supported_sources": [
+        "HYBRID",
+        "RDKIT",
+        "RULE"
+      ]
+    },
     "structural_operator_ids": [
       "mol_edit.delete.wrong_group_occurrence",
       "mol_edit.delete.wrong_adjacent_group",
@@ -82,8 +106,7 @@
       "mol_edit.delete.over_deletion",
       "mol_edit.delete.matched_remove_group",
       "mol_edit.delete.alternative_deprotection_product"
-    ],
-    "unsupported_policy": "FULL_CF"
+    ]
   },
   "execution": {
     "deterministic_replay": true,
@@ -91931,7 +91954,7 @@
           "selected_root_patch": {
             "after": "CCCCc1ccccc1OCCc1nc(-c2cccc(-c3ccccc3)c2)oc1C",
             "before": "CCCCc1cc(O)ccc1OCCc1nc(-c2cccc(-c3ccccc3)c2)oc1C",
-            "candidate_id": "delete:rule:0e3fae36f3d2a654",
+            "candidate_id": "delete:rule:f17c533d441c0a32",
             "candidate_source": "RULE",
             "edit_action": {
               "add_fragment_smiles": null,
@@ -92066,7 +92089,7 @@
           "selected_root_patch": {
             "after": "CCCCc1ccccc1OCCc1nc(-c2cccc(-c3ccccc3)c2)oc1C",
             "before": "CCCCc1cc(O)ccc1OCCc1nc(-c2cccc(-c3ccccc3)c2)oc1C",
-            "candidate_id": "delete:rule:62e81bc404526265",
+            "candidate_id": "delete:rule:ec3776b7ee741ba6",
             "candidate_source": "RULE",
             "edit_action": {
               "add_fragment_smiles": null,
@@ -121765,7 +121788,7 @@
           "selected_root_patch": {
             "after": "CCC(=O)N[C@H]1C[C@@H](n2cnc3c(NCC(c4ccccc4)c4ccccc4)nc(N4CC[C@@H](NC(=O)O)C4)nc32)[C@@H]2OC(C)(C)O[C@@H]21",
             "before": "CCC(=O)N[C@H]1C[C@@H](n2cnc3c(NCC(c4ccccc4)c4ccccc4)nc(N4CC[C@@H](N)C4)nc32)[C@@H]2OC(C)(C)O[C@@H]21",
-            "candidate_id": "delete:rule:93057b78831ad5d1",
+            "candidate_id": "delete:rule:b6f51020f645512f",
             "candidate_source": "RULE",
             "edit_action": {
               "add_fragment_smiles": null,
@@ -121899,7 +121922,7 @@
           "selected_root_patch": {
             "after": "CCC(=O)N[C@H]1C[C@@H](n2cnc3c(NCC(c4ccccc4)c4ccccc4)nc(N4CC[C@@H](NC(=O)O)C4)nc32)[C@@H]2OC(C)(C)O[C@@H]21",
             "before": "CCC(=O)N[C@H]1C[C@@H](n2cnc3c(NCC(c4ccccc4)c4ccccc4)nc(N4CC[C@@H](N)C4)nc32)[C@@H]2OC(C)(C)O[C@@H]21",
-            "candidate_id": "delete:rule:a7387003b1c80d8c",
+            "candidate_id": "delete:rule:52267f69c37834f5",
             "candidate_source": "RULE",
             "edit_action": {
               "add_fragment_smiles": null,
@@ -153318,7 +153341,7 @@
           "selected_root_patch": {
             "after": "COc1ccc(-c2cc3c(Oc4ccc(NC(=O)NC5CC5)c(F)c4)ncnc3n2COCC[Si](C)(C)C)cc1",
             "before": "C[Si](C)(C)CCOCn1c(-c2ccc(O)cc2)cc2c(Oc3ccc(NC(=O)NC4CC4)c(F)c3)ncnc21",
-            "candidate_id": "delete:rule:e98f56baab031abe",
+            "candidate_id": "delete:rule:15f134e01e5569a2",
             "candidate_source": "RULE",
             "edit_action": {
               "add_fragment_smiles": null,
@@ -153451,7 +153474,7 @@
           "selected_root_patch": {
             "after": "COc1ccc(-c2cc3c(Oc4ccc(NC(=O)NC5CC5)c(F)c4)ncnc3n2COCC[Si](C)(C)C)cc1",
             "before": "C[Si](C)(C)CCOCn1c(-c2ccc(O)cc2)cc2c(Oc3ccc(NC(=O)NC4CC4)c(F)c3)ncnc21",
-            "candidate_id": "delete:rule:707c2e59cc7d2e60",
+            "candidate_id": "delete:rule:da31c83c2ac5e00a",
             "candidate_source": "RULE",
             "edit_action": {
               "add_fragment_smiles": null,

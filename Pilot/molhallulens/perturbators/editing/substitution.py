@@ -8,6 +8,7 @@ from collections import deque
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass, replace
 from functools import partial
+from types import MappingProxyType
 from typing import TYPE_CHECKING, Any
 
 from rdkit import Chem, rdBase
@@ -21,6 +22,7 @@ from molhallulens.chemistry import (
 )
 from molhallulens.config.models import OperatorsConfig
 from molhallulens.domain import (
+    AnomalyProvenance,
     AtomReferenceNamespace,
     BondTypeName,
     CandidatePatch,
@@ -90,6 +92,57 @@ _INCOMING_FRAGMENT_BUCKET = (
     "N1CCNCC1",
 )
 _HALOGEN_LEAVING_GROUPS = ("F", "Cl", "Br", "I")
+
+_REGISTERED_REPLAY_CONTRACT_KEY = "registered_substitution_replay_contract"
+_REGISTERED_REPLAY_CONTRACTS = MappingProxyType(
+    {
+        "mol_edit.substitute_v2.0191": MappingProxyType(
+            {
+                "format_version": "substitution_registered_replay_v1",
+                "origin_id": "mol_edit.substitute_v2.0191",
+                "mode": "charged_boundary_occurrence",
+                "expected_atom_map": 27,
+                "expected_atomic_number": 8,
+                "expected_formal_charge": -1,
+                "expected_total_hydrogens": 0,
+                "expected_degree": 1,
+            }
+        ),
+        "mol_edit.substitute_v2.0276": MappingProxyType(
+            {
+                "format_version": "substitution_registered_replay_v1",
+                "origin_id": "mol_edit.substitute_v2.0276",
+                "mode": "anchor_stereo_assignment",
+                "expected_atom_map": 2,
+                "expected_atomic_number": 6,
+                "expected_formal_charge": 0,
+                "expected_total_hydrogens": 1,
+                "expected_degree": 3,
+                "expected_source_chiral_tag": "CHI_UNSPECIFIED",
+                "product_chiral_tag": "CHI_TETRAHEDRAL_CCW",
+            }
+        ),
+    }
+)
+_REGISTERED_REPLAY_PROVENANCE = MappingProxyType(
+    {
+        "mol_edit.substitute_v2.0191": (
+            AnomalyProvenance.RETAINED_BOUNDARY_VALENCE_RELAXATION
+        ),
+        "mol_edit.substitute_v2.0276": (
+            AnomalyProvenance.SUBSTITUTION_ANCHOR_STEREO_ASSIGNMENT
+        ),
+    }
+)
+_REGISTERED_INCOMING_FRAGMENT_BUCKETS = MappingProxyType(
+    {
+        "mol_edit.substitute_v2.0276": (
+            "O=[N+]([O-])c1cc2nc(F)[nH]c2cc1[N+](=O)[O-]",
+            "O=[N+]([O-])c1cc2nc(Br)[nH]c2cc1[N+](=O)[O-]",
+            "O=[N+]([O-])c1cc2nc(I)[nH]c2cc1[N+](=O)[O-]",
+        ),
+    }
+)
 
 
 class SubstitutionOperatorMixin:
@@ -543,7 +596,43 @@ def _fragment_atom_indices(smiles: str) -> tuple[int, ...]:
     )
 
 
+def _registered_replay_contract(
+    request: CandidateRequest,
+    *,
+    add_anchor: int,
+    occurrence: _RemovalOccurrence,
+) -> dict[str, Any] | None:
+    """Return one exact-ID, provenance-gated replay contract when applicable."""
+
+    origin_id = request.context.truth.anonymous_sample_id
+    spec = _REGISTERED_REPLAY_CONTRACTS.get(origin_id)
+    if spec is None:
+        return None
+    classification = request.resolution.classification
+    expected_provenance = _REGISTERED_REPLAY_PROVENANCE[origin_id]
+    if (
+        classification.anonymous_sample_id != origin_id
+        or not classification.registered
+        or expected_provenance not in classification.provenance
+    ):
+        raise ValueError("registered substitution replay provenance is unavailable")
+    truth_occurrence = tuple(sorted(request.context.truth.removed_atom_maps))
+    if occurrence.atom_maps != truth_occurrence:
+        return None
+    expected_map = spec["expected_atom_map"]
+    mode = spec["mode"]
+    if (
+        mode == "charged_boundary_occurrence"
+        and expected_map not in occurrence.atom_maps
+    ):
+        return None
+    if mode == "anchor_stereo_assignment" and add_anchor != expected_map:
+        return None
+    return dict(spec)
+
+
 def _action(
+    request: CandidateRequest,
     *,
     add_anchor: int,
     occurrence: _RemovalOccurrence,
@@ -551,6 +640,14 @@ def _action(
     attachment_atom: int,
     bond_type: BondTypeName,
 ) -> EditAction:
+    metadata: dict[str, Any] = {"occurrence_atom_maps": occurrence.atom_maps}
+    replay_contract = _registered_replay_contract(
+        request,
+        add_anchor=add_anchor,
+        occurrence=occurrence,
+    )
+    if replay_contract is not None:
+        metadata[_REGISTERED_REPLAY_CONTRACT_KEY] = replay_contract
     return EditAction(
         edit_kind=EditKind.SUBSTITUTION,
         source_anchor_index=add_anchor,
@@ -558,7 +655,7 @@ def _action(
         add_fragment_smiles=add_fragment,
         fragment_attachment_atom=attachment_atom,
         bond_type=bond_type,
-        metadata={"occurrence_atom_maps": occurrence.atom_maps},
+        metadata=metadata,
         remove_anchor_index=(
             None if occurrence.anchor_map == add_anchor else occurrence.anchor_map
         ),
@@ -595,6 +692,7 @@ def _reference_parameters(
     matches = []
     for add_anchor, attachment, bond_type in candidates:
         action = _action(
+            request,
             add_anchor=add_anchor,
             occurrence=occurrence,
             add_fragment=add_fragment,
@@ -697,12 +795,16 @@ def _alternate_occurrences(request: CandidateRequest) -> tuple[_RemovalOccurrenc
 
 def _canonical_incoming_bucket(request: CandidateRequest) -> tuple[str, ...]:
     _, reference = _truth_fragments(request)
+    registered = _REGISTERED_INCOMING_FRAGMENT_BUCKETS.get(
+        request.context.truth.anonymous_sample_id,
+        (),
+    )
     values = {
         canonicalize_smiles(
             fragment,
             fragment_policy=FragmentPolicy.KEEP_ALL,
         )
-        for fragment in _INCOMING_FRAGMENT_BUCKET
+        for fragment in (*_INCOMING_FRAGMENT_BUCKET, *registered)
     }
     return tuple(
         sorted(
@@ -845,6 +947,7 @@ def _graph_actions(request: CandidateRequest) -> Iterator[EditAction]:
         for add_anchor in _alternate_add_anchors(request):
             for attachment, bond_type in reference_attachment_bonds:
                 yield _action(
+                    request,
                     add_anchor=add_anchor,
                     occurrence=truth_occurrence,
                     add_fragment=correct_add,
@@ -860,6 +963,7 @@ def _graph_actions(request: CandidateRequest) -> Iterator[EditAction]:
                     continue
                 for attachment, bond_type in reference_attachment_bonds:
                     yield _action(
+                        request,
                         add_anchor=add_anchor,
                         occurrence=occurrence,
                         add_fragment=correct_add,
@@ -874,6 +978,7 @@ def _graph_actions(request: CandidateRequest) -> Iterator[EditAction]:
                 for attachment in _fragment_atom_indices(fragment):
                     for bond_type in _reference_bond_types(request):
                         yield _action(
+                            request,
                             add_anchor=add_anchor,
                             occurrence=truth_occurrence,
                             add_fragment=fragment,
@@ -890,6 +995,7 @@ def _graph_actions(request: CandidateRequest) -> Iterator[EditAction]:
                     continue
                 for bond_type in _reference_bond_types(request):
                     yield _action(
+                        request,
                         add_anchor=add_anchor,
                         occurrence=truth_occurrence,
                         add_fragment=correct_add,
@@ -905,6 +1011,7 @@ def _graph_actions(request: CandidateRequest) -> Iterator[EditAction]:
                 if bond_type in reference_bonds:
                     continue
                 yield _action(
+                    request,
                     add_anchor=add_anchor,
                     occurrence=truth_occurrence,
                     add_fragment=correct_add,
@@ -919,6 +1026,7 @@ def _graph_actions(request: CandidateRequest) -> Iterator[EditAction]:
                 for attachment in _fragment_atom_indices(fragment):
                     for bond_type in _reference_bond_types(request):
                         yield _action(
+                            request,
                             add_anchor=add_anchor,
                             occurrence=truth_occurrence,
                             add_fragment=fragment,
@@ -931,6 +1039,7 @@ def _graph_actions(request: CandidateRequest) -> Iterator[EditAction]:
         for add_anchor in _alternate_add_anchors(request):
             for attachment, bond_type in reference_attachment_bonds:
                 yield _action(
+                    request,
                     add_anchor=add_anchor,
                     occurrence=truth_occurrence,
                     add_fragment=correct_add,
@@ -942,6 +1051,7 @@ def _graph_actions(request: CandidateRequest) -> Iterator[EditAction]:
                 for attachment in _fragment_atom_indices(fragment):
                     for bond_type in _reference_bond_types(request):
                         yield _action(
+                            request,
                             add_anchor=add_anchor,
                             occurrence=truth_occurrence,
                             add_fragment=fragment,
@@ -1183,9 +1293,68 @@ def _enumerate_substitution_proposals(
             continue
 
 
+def t048_substitution_boundary_cases(origin_id: str) -> tuple[Any, ...]:
+    """Return the frozen four-policy recipe for one registered T048 boundary."""
+
+    if type(origin_id) is not str or origin_id not in _REGISTERED_REPLAY_CONTRACTS:
+        raise ValueError("origin_id must name a registered T048 substitution boundary")
+    from molhallulens.builders.golden_bundles import (
+        GoldenOriginSpec,
+        GoldenPolicySpec,
+    )
+    from molhallulens.builders.golden_validation import ExtendedGoldenOriginCase
+    from molhallulens.domain import EditingSubtask
+
+    policies = (
+        GoldenPolicySpec(
+            PropagationPolicy.STOP,
+            SUBSTITUTION_OPERATOR_IDS[9],
+            "product_heavy",
+            "heavy_ring_count_claim",
+        ),
+        GoldenPolicySpec(
+            PropagationPolicy.PARTIAL,
+            SUBSTITUTION_OPERATOR_IDS[2],
+            "add_fragment",
+            "entity_partial_propagation",
+            frozenset({"product"}),
+        ),
+        GoldenPolicySpec(
+            PropagationPolicy.FULL_CF,
+            SUBSTITUTION_OPERATOR_IDS[2],
+            "add_fragment",
+            "valid_wrong_group_fragment",
+        ),
+        GoldenPolicySpec(
+            PropagationPolicy.TERMINAL,
+            SUBSTITUTION_OPERATOR_IDS[11],
+            "final_answer",
+            "terminal_valid_high_similarity",
+        ),
+    )
+    mode = _REGISTERED_REPLAY_CONTRACTS[origin_id]["mode"]
+    return (
+        ExtendedGoldenOriginCase(
+            case_id=f"train.{origin_id}.{mode}",
+            case_kind="t048_train_registered_anomaly",
+            spec=GoldenOriginSpec(
+                normalized_subtask=EditingSubtask.SUBSTITUTE,
+                origin_id=origin_id,
+                policies=policies,
+            ),
+            coverage_tags=(
+                "frozen_train",
+                "registered_substitution_replay",
+                str(mode),
+            ),
+        ),
+    )
+
+
 __all__ = [
     "SUBSTITUTION_OPERATOR_IDS",
     "SubstitutionCandidateDispatcher",
     "SubstitutionCandidateEngine",
     "SubstitutionOperatorMixin",
+    "t048_substitution_boundary_cases",
 ]

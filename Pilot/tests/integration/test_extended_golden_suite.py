@@ -20,7 +20,15 @@ from molhallulens.builders.golden_validation import (
     build_t044_extended_golden_suite,
 )
 from molhallulens.chemistry import isomeric_graph_equivalent
-from molhallulens.domain import EditingSubtask, PropagationPolicy, VariantLabel
+from molhallulens.domain import (
+    EditingSubtask,
+    OperatorCapability,
+    PropagationPolicy,
+    VariantLabel,
+)
+from molhallulens.perturbators.editing.deletion import (
+    REPLACEMENT_DELETION_OPERATOR_ID,
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
@@ -229,7 +237,7 @@ def test_real_multi_mapping_dual_anchor_and_terminal_near_miss_are_frozen(
     assert terminal_count == 9
 
 
-def test_delete_with_replacement_is_an_exact_fail_closed_negative_golden(
+def test_delete_with_replacement_blocks_generic_ops_but_supports_typed_replay(
     suite: ExtendedGoldenSuiteBuild,
 ) -> None:
     value = suite.delete_with_replacement
@@ -247,8 +255,22 @@ def test_delete_with_replacement_is_an_exact_fail_closed_negative_golden(
     assert value["expected_rejection"]["evidence"] == {
         "forbidden_capabilities": ("structural_deletion",)
     }
-    assert value["full_eight_record_status"] == "not_constructed_by_design"
-    assert value["unsupported_policy"] == PropagationPolicy.FULL_CF.dataset_name
+    support = value["replacement_support"]
+    assert support["operator_id"] == REPLACEMENT_DELETION_OPERATOR_ID
+    assert support["required_capabilities"] == frozenset(
+        {OperatorCapability.REPLACEMENT_AWARE_DELETION}
+    )
+    assert support["supported_policies"] == frozenset(
+        {
+            PropagationPolicy.STOP,
+            PropagationPolicy.PARTIAL,
+            PropagationPolicy.FULL_CF,
+        }
+    )
+    assert support["candidate_count"] >= 3
+    assert support["all_candidates_are_typed_remove_add"] is True
+    assert support["all_candidates_non_reference"] is True
+    assert value["full_eight_record_status"] == ("supported_by_replacement_capability")
 
 
 def test_frozen_fixture_and_report_are_exact_offline_replays(

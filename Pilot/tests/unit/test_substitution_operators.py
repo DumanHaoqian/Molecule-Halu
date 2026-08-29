@@ -342,6 +342,11 @@ def _context(
         ),
         candidate_difficulty_bucket="hard",
         renderer_style_id="fixture",
+        partial_cut_nodes=(
+            frozenset({"product"})
+            if selected_policy is PropagationPolicy.PARTIAL
+            else frozenset()
+        ),
     )
     return PerturbationContext(
         record=record,
@@ -520,6 +525,12 @@ def _reference_actions(
         truth.add_fragment.canonical_smiles, sanitize=True
     )
     assert add_molecule is not None
+    request = _candidate_request(context)
+    occurrence = substitution_module._RemovalOccurrence(
+        atom_maps=removed,
+        anchor_map=remove_anchor,
+        fragment_smiles=truth.remove_fragment.canonical_smiles,
+    )
     candidates = []
     for add_anchor in tuple(
         dict.fromkeys((*formed_source_anchors, *truth.valid_anchor_indices))
@@ -528,19 +539,13 @@ def _reference_actions(
             continue
         for attachment_atom in range(add_molecule.GetNumAtoms()):
             candidates.append(
-                EditAction(
-                    edit_kind=EditKind.SUBSTITUTION,
-                    source_anchor_index=add_anchor,
-                    remove_fragment_smiles=truth.remove_fragment.canonical_smiles,
-                    add_fragment_smiles=truth.add_fragment.canonical_smiles,
-                    fragment_attachment_atom=attachment_atom,
+                substitution_module._action(
+                    request,
+                    add_anchor=add_anchor,
+                    occurrence=occurrence,
+                    add_fragment=truth.add_fragment.canonical_smiles,
+                    attachment_atom=attachment_atom,
                     bond_type=formed.bond_type,
-                    metadata={"occurrence_atom_maps": removed},
-                    remove_anchor_index=(
-                        remove_anchor
-                        if dual_anchor and remove_anchor != add_anchor
-                        else None
-                    ),
                 )
             )
     return tuple(candidates)
@@ -774,14 +779,11 @@ def test_fifty_origin_reference_replay_baseline_and_typed_boundary_cases() -> No
         if _reference_replay_matches(context, dual_anchor=True):
             dual_successes.add(joined.anonymous_sample_id)
 
-    assert len(legacy_successes) == 47
+    assert len(legacy_successes) == 49
     assert "mol_edit.substitute_v2.0271" not in legacy_successes
     assert "mol_edit.substitute_v2.0271" in dual_successes
     assert dual_successes == legacy_successes | {"mol_edit.substitute_v2.0271"}
-    assert {
-        "mol_edit.substitute_v2.0191",
-        "mol_edit.substitute_v2.0276",
-    }.isdisjoint(dual_successes)
+    assert len(dual_successes) == 50
 
 
 def test_0271_replay_requires_distinct_typed_remove_and_add_anchors() -> None:
@@ -828,10 +830,10 @@ def test_registered_boundary_cases_do_not_authorize_permissive_replay() -> None:
     expected_reference_replay = {
         "mol_edit.substitute_v2.0064": True,
         "mol_edit.substitute_v2.0123": True,
-        "mol_edit.substitute_v2.0191": False,
+        "mol_edit.substitute_v2.0191": True,
         "mol_edit.substitute_v2.0216": True,
         "mol_edit.substitute_v2.0271": True,
-        "mol_edit.substitute_v2.0276": False,
+        "mol_edit.substitute_v2.0276": True,
     }
     registration = _registry().registration(SUBSTITUTION_OPERATOR_IDS[1])
     for anonymous_sample_id, expected in expected_reference_replay.items():
@@ -843,6 +845,141 @@ def test_registered_boundary_cases_do_not_authorize_permissive_replay() -> None:
         context = _context(registration, target_node_id="product", joined=joined)
         matches = _reference_replay_matches(context, dual_anchor=True)
         assert bool(matches) is expected
+
+
+@pytest.mark.parametrize(
+    "anonymous_sample_id",
+    (
+        "mol_edit.substitute_v2.0191",
+        "mol_edit.substitute_v2.0276",
+    ),
+)
+def test_registered_charge_and_stereo_contracts_are_exact_and_fail_closed(
+    anonymous_sample_id: str,
+) -> None:
+    joined = next(
+        item
+        for item in _substitution_records()
+        if item.anonymous_sample_id == anonymous_sample_id
+    )
+    context = _context(
+        _registry().registration(SUBSTITUTION_OPERATOR_IDS[2]),
+        target_node_id="add_fragment",
+        policy=PropagationPolicy.FULL_CF,
+        source=CandidateSourceType.RDKIT,
+        joined=joined,
+    )
+    request = _candidate_request(context)
+    parameters = substitution_module._reference_parameters(request)
+    assert len(parameters) == 1
+    add_anchor, attachment, bond_type = parameters[0]
+    action = substitution_module._action(
+        request,
+        add_anchor=add_anchor,
+        occurrence=substitution_module._truth_occurrence(request),
+        add_fragment=context.truth.add_fragment.canonical_smiles,
+        attachment_atom=attachment,
+        bond_type=bond_type,
+    )
+    contract_key = substitution_module._REGISTERED_REPLAY_CONTRACT_KEY
+    assert dict(action.metadata[contract_key]) == dict(
+        substitution_module._REGISTERED_REPLAY_CONTRACTS[anonymous_sample_id]
+    )
+    reference_product = replay_edit_action(request, action)[0]
+    assert isomeric_graph_equivalent(reference_product, context.truth.gt_smiles)
+
+    stripped = replace(
+        action,
+        metadata={"occurrence_atom_maps": _occurrence_maps(action)},
+    )
+    try:
+        stripped_product = replay_edit_action(request, stripped)[0]
+    except ValueError as error:
+        assert str(error) == CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value
+    else:
+        assert not isomeric_graph_equivalent(
+            stripped_product,
+            context.truth.gt_smiles,
+        )
+
+    tampered_contract = dict(action.metadata[contract_key])
+    tampered_contract["expected_degree"] += 1
+    tampered = replace(
+        action,
+        metadata={
+            "occurrence_atom_maps": _occurrence_maps(action),
+            contract_key: tampered_contract,
+        },
+    )
+    with pytest.raises(
+        ValueError,
+        match=CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value,
+    ):
+        replay_edit_action(request, tampered)
+
+    unknown_id = "mol_edit.substitute_v2.unregistered_same_shape"
+    unknown_context = replace(
+        context,
+        record=replace(context.record, origin_id=unknown_id),
+        recipe=replace(context.recipe, origin_id=unknown_id),
+        truth=replace(context.truth, anonymous_sample_id=unknown_id),
+    )
+    unknown_classification = replace(
+        request.resolution.classification,
+        anonymous_sample_id=unknown_id,
+        registered=False,
+        provenance=(),
+    )
+    unknown_request = CandidateRequest(
+        context=unknown_context,
+        resolution=replace(
+            request.resolution,
+            classification=unknown_classification,
+        ),
+    )
+    with pytest.raises(
+        ValueError,
+        match=CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value,
+    ):
+        replay_edit_action(unknown_request, action)
+
+
+@pytest.mark.parametrize(
+    "anonymous_sample_id",
+    (
+        "mol_edit.substitute_v2.0191",
+        "mol_edit.substitute_v2.0276",
+    ),
+)
+@pytest.mark.parametrize(
+    "policy",
+    (PropagationPolicy.PARTIAL, PropagationPolicy.FULL_CF),
+)
+def test_t048_registered_boundary_structural_pools_are_selectable(
+    anonymous_sample_id: str,
+    policy: PropagationPolicy,
+) -> None:
+    joined = next(
+        item
+        for item in _substitution_records()
+        if item.anonymous_sample_id == anonymous_sample_id
+    )
+    context, pool = _invoke(
+        SUBSTITUTION_OPERATOR_IDS[2],
+        target_node_id="add_fragment",
+        policy=policy,
+        source=CandidateSourceType.RDKIT,
+        joined=joined,
+    )
+    assert len(pool.candidates) == 10
+    assert "INSUFFICIENT_CANDIDATES" not in pool.rejection_codes
+    for patch in pool.candidates:
+        assert patch.edit_action is not None
+        assert (
+            substitution_module._REGISTERED_REPLAY_CONTRACT_KEY
+            in patch.edit_action.metadata
+        )
+        _assert_replayable_patch(context, patch)
 
 
 def test_substitution_engine_implements_t016_port_and_registry_dispatch() -> None:
@@ -1348,13 +1485,7 @@ def test_terminal_is_exact_valid_wrong_final_answer(
         source=CandidateSourceType.RDKIT,
         joined=joined,
     )
-    if not pool.candidates:
-        assert anonymous_sample_id in {
-            "mol_edit.substitute_v2.0191",
-            "mol_edit.substitute_v2.0276",
-        }
-        assert pool.rejection_codes
-        return
+    assert pool.candidates
 
     request = _candidate_request(context)
     replayed_wrong_products = set()

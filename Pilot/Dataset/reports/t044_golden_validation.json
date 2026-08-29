@@ -19,6 +19,7 @@
       "capability_policy": {
         "allowed": [
           "claim_perturbation",
+          "replacement_aware_deletion",
           "terminal_perturbation"
         ],
         "forbidden": [
@@ -54,7 +55,7 @@
       },
       "operator_id": "mol_edit.delete.wrong_group_occurrence"
     },
-    "full_eight_record_status": "not_constructed_by_design",
+    "full_eight_record_status": "supported_by_replacement_capability",
     "origin_id": "mol_edit.delete_v2.0081",
     "permitted_claim_terminal_operator_ids": [
       "mol_edit.delete.cross_step_group_identity",
@@ -62,7 +63,30 @@
       "mol_edit.delete.ring_count_claim",
       "mol_edit.delete.terminal_answer"
     ],
-    "reason": "replacement capability forbids structural deletion; remaining claim and terminal operators cannot supply a legal FULL_CF product",
+    "reason": "generic remove-only structural deletion remains forbidden; the exact replacement-aware operator supplies strict remove+add STOP, PARTIAL, and FULL_CF candidates while the existing terminal operator supplies TERMINAL",
+    "replacement_support": {
+      "all_candidates_are_typed_remove_add": true,
+      "all_candidates_non_reference": true,
+      "candidate_count": 10,
+      "operator_family": "wrong_fragment_group",
+      "operator_id": "mol_edit.delete.replacement_product",
+      "required_capabilities": [
+        "replacement_aware_deletion"
+      ],
+      "root_fields": [
+        "product"
+      ],
+      "supported_policies": [
+        "full_cf",
+        "local",
+        "partial"
+      ],
+      "supported_sources": [
+        "HYBRID",
+        "RDKIT",
+        "RULE"
+      ]
+    },
     "structural_operator_ids": [
       "mol_edit.delete.wrong_group_occurrence",
       "mol_edit.delete.wrong_adjacent_group",
@@ -72,8 +96,7 @@
       "mol_edit.delete.over_deletion",
       "mol_edit.delete.matched_remove_group",
       "mol_edit.delete.alternative_deprotection_product"
-    ],
-    "unsupported_policy": "FULL_CF"
+    ]
   },
   "format_version": "t044_golden_validation_v1",
   "origins": [

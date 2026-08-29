@@ -4,9 +4,9 @@ Nine real origins traverse the production T019--T043 path.  The suite uses a
 small deterministic fast-offset tokenizer so the token artifacts are replayable
 without downloading ChemDFM-R weights; the writer interface and all projection
 invariants are the same as for the production tokenizer.  No live Poe request is
-made.  The registered delete-with-replacement origin is retained separately as
-an expected fail-closed capability diagnostic because its contract cannot form
-a legal four-policy T024 bundle.
+made.  The registered delete-with-replacement origin retains its historical
+generic structural-operator rejection and now has an explicit
+replacement-aware four-policy spec for full-build use.
 """
 
 from __future__ import annotations
@@ -73,6 +73,7 @@ from molhallulens.perturbators import (
 from molhallulens.perturbators.editing.addition import ADDITION_OPERATOR_IDS
 from molhallulens.perturbators.editing.deletion import (
     DELETION_OPERATOR_IDS,
+    REPLACEMENT_DELETION_OPERATOR_ID,
     DeletionCandidateEngine,
 )
 from molhallulens.perturbators.editing.substitution import (
@@ -259,6 +260,55 @@ T044_GOLDEN_ORIGIN_CASES = (
         ("retained_boundary_valence_relaxation", "terminal_near_miss"),
     ),
 )
+
+
+def t048_delete_with_replacement_cases() -> tuple[ExtendedGoldenOriginCase, ...]:
+    """Return the exact four-policy full-build case for ``delete_v2.0081``."""
+
+    spec = GoldenOriginSpec(
+        normalized_subtask=EditingSubtask.DELETE,
+        origin_id=DELETE_WITH_REPLACEMENT_ORIGIN_ID,
+        policies=(
+            GoldenPolicySpec(
+                PropagationPolicy.STOP,
+                REPLACEMENT_DELETION_OPERATOR_ID,
+                "product",
+                "group_fragment_identity",
+            ),
+            GoldenPolicySpec(
+                PropagationPolicy.PARTIAL,
+                REPLACEMENT_DELETION_OPERATOR_ID,
+                "product",
+                "product_dependency_cross_step",
+                frozenset({"product_heavy", "product_rings"}),
+            ),
+            GoldenPolicySpec(
+                PropagationPolicy.FULL_CF,
+                REPLACEMENT_DELETION_OPERATOR_ID,
+                "product",
+                "valid_wrong_group_fragment",
+            ),
+            GoldenPolicySpec(
+                PropagationPolicy.TERMINAL,
+                DELETION_OPERATOR_IDS[11],
+                "final_answer",
+                "terminal_valid_high_similarity",
+            ),
+        ),
+    )
+    return (
+        ExtendedGoldenOriginCase(
+            case_id="delete.replacement_registered",
+            case_kind="replacement_capability",
+            spec=spec,
+            coverage_tags=(
+                "delete_with_replacement",
+                "registered_remove_then_add",
+                "strict_source_replay",
+                "full_four_policy_bundle",
+            ),
+        ),
+    )
 
 
 class _FrozenWhitespaceTokenizer:
@@ -735,6 +785,29 @@ def _delete_with_replacement_diagnostic(
     else:
         raise AssertionError("delete-with-replacement structural operator was accepted")
     registration = registry.registration(operator_id)
+    replacement_recipe = replace(
+        recipe,
+        recipe_id="t044:delete-with-replacement:typed-support",
+        operator_id=REPLACEMENT_DELETION_OPERATOR_ID,
+        rewrite_budget=RewriteBudget(
+            max_changed_claims=8,
+            max_added_characters=128,
+            length_bucket="t044-replacement-support",
+        ),
+    )
+    replacement_context = replace(context, recipe=replacement_recipe)
+    replacement_resolution = registry.resolve(perturbator, replacement_context)
+    replacement_pool = perturbator.candidate_engine.enumerate_root_patches(
+        replacement_context
+    )
+    minimum = config.operators.candidate_generation.candidates_per_recipe_min
+    if len(replacement_pool.candidates) < minimum or any(
+        candidate.edit_action is None
+        or not candidate.edit_action.is_replacement_deletion
+        for candidate in replacement_pool.candidates
+    ):
+        raise AssertionError("registered replacement capability lost its typed pool")
+    replacement_registration = replacement_resolution.registration
     return {
         "origin_id": DELETE_WITH_REPLACEMENT_ORIGIN_ID,
         "classification": classification.to_dict(),
@@ -749,13 +822,25 @@ def _delete_with_replacement_diagnostic(
             "candidate_source": recipe.candidate_source_mode.value,
         },
         "expected_rejection": rejection,
-        "full_eight_record_status": "not_constructed_by_design",
-        "unsupported_policy": PropagationPolicy.FULL_CF.dataset_name,
+        "replacement_support": {
+            "operator_id": replacement_registration.operator_id,
+            "operator_family": replacement_registration.operator_family,
+            "required_capabilities": replacement_registration.required_capabilities,
+            "supported_policies": replacement_registration.spec.supported_policies,
+            "supported_sources": replacement_registration.spec.supported_sources,
+            "root_fields": replacement_registration.spec.root_fields,
+            "candidate_count": len(replacement_pool.candidates),
+            "all_candidates_are_typed_remove_add": True,
+            "all_candidates_non_reference": True,
+        },
+        "full_eight_record_status": "supported_by_replacement_capability",
         "structural_operator_ids": DELETION_OPERATOR_IDS[:8],
         "permitted_claim_terminal_operator_ids": DELETION_OPERATOR_IDS[8:],
         "reason": (
-            "replacement capability forbids structural deletion; remaining claim and "
-            "terminal operators cannot supply a legal FULL_CF product"
+            "generic remove-only structural deletion remains forbidden; the exact "
+            "replacement-aware operator supplies strict remove+add STOP, PARTIAL, "
+            "and FULL_CF candidates while the existing terminal operator supplies "
+            "TERMINAL"
         ),
     }
 
@@ -1189,5 +1274,6 @@ __all__ = [
     "build_extended_record_artifact",
     "build_t044_extended_golden_suite",
     "render_extended_golden_record",
+    "t048_delete_with_replacement_cases",
     "write_t044_golden_artifacts",
 ]

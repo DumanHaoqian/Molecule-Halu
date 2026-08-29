@@ -13,8 +13,8 @@ import pytest
 
 from molhallulens.adapters import ChemCoTMolEditAdapter
 from molhallulens.builders import (
-    AnomalyRegistryError,
     DEFAULT_ANOMALY_REGISTRY,
+    AnomalyRegistryError,
     audit_anomaly_registry,
     build_reference_dag,
     classify_edit_truth,
@@ -23,13 +23,12 @@ from molhallulens.builders import (
 )
 from molhallulens.domain import (
     AnomalyProvenance,
-    EditTruth,
     EditingSubtask,
+    EditTruth,
     OperationSubtype,
     OperatorCapability,
     StructuralEditSignature,
 )
-
 
 DATASET_ROOT = Path(__file__).resolve().parents[1] / "Dataset"
 REPORT_PATH = DATASET_ROOT / "reports" / "anomaly_registry_report.json"
@@ -44,6 +43,9 @@ BOUNDARY_PROVENANCE = {
         AnomalyProvenance.RETAINED_BOUNDARY_VALENCE_RELAXATION
     ),
     "mol_edit.substitute_v2.0271": AnomalyProvenance.MULTI_ANCHOR_RELOCATION,
+    "mol_edit.substitute_v2.0276": (
+        AnomalyProvenance.SUBSTITUTION_ANCHOR_STEREO_ASSIGNMENT
+    ),
 }
 
 
@@ -78,7 +80,7 @@ def test_real_150_subtype_counts_and_report_are_frozen() -> None:
         OperationSubtype.DEPROTECTION: 49,
         OperationSubtype.DELETE_WITH_REPLACEMENT: 1,
     }
-    assert report.registered_count == 6
+    assert report.registered_count == 7
     assert report.complete_registry is True
     assert report.observed_registry_ids == report.expected_registry_ids
     assert report.to_dict() == _report_fixture()
@@ -100,11 +102,10 @@ def test_delete_v2_0081_has_exact_replacement_signature_and_restrictions() -> No
     assert classification.structural_signature == expected_signature
     assert classification.operation_subtype is OperationSubtype.DELETE_WITH_REPLACEMENT
     assert classification.registered is True
-    assert classification.provenance == (
-        AnomalyProvenance.DELETE_WITH_REPLACEMENT,
-    )
+    assert classification.provenance == (AnomalyProvenance.DELETE_WITH_REPLACEMENT,)
     assert classification.allows(OperatorCapability.REMOVE_ONLY_DELTA_RULE) is False
     assert classification.allows(OperatorCapability.STRUCTURAL_DELETION) is False
+    assert classification.allows(OperatorCapability.REPLACEMENT_AWARE_DELETION) is True
     assert classification.allows(OperatorCapability.CLAIM_PERTURBATION) is True
     assert classification.allows(OperatorCapability.TERMINAL_PERTURBATION) is True
 
@@ -163,12 +164,20 @@ def test_unknown_standard_origin_is_not_silently_special_cased() -> None:
     )
 
     classification = classify_edit_truth(unknown_addition)
-    assert DEFAULT_ANOMALY_REGISTRY.entry_for(
-        unknown_addition.anonymous_sample_id
-    ) is None
+    assert (
+        DEFAULT_ANOMALY_REGISTRY.entry_for(unknown_addition.anonymous_sample_id) is None
+    )
     assert classification.operation_subtype is OperationSubtype.STANDARD
     assert classification.registered is False
     assert classification.provenance == ()
+
+
+def test_ordinary_deletion_cannot_use_replacement_specific_capability() -> None:
+    classification = classify_edit_truth(_truth("mol_edit.delete_v2.0016"))
+
+    assert classification.operation_subtype is OperationSubtype.DEPROTECTION
+    assert classification.allows(OperatorCapability.STRUCTURAL_DELETION) is True
+    assert classification.allows(OperatorCapability.REPLACEMENT_AWARE_DELETION) is False
 
 
 def test_boundary_entries_preserve_t013_provenance_without_subtype_override() -> None:

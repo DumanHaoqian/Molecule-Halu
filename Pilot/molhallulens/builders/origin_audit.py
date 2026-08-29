@@ -36,6 +36,11 @@ if TYPE_CHECKING:
 AUDIT_FORMAT_VERSION = "origin_split_audit_v1"
 FEATURE_DISTRIBUTION_FORMAT_VERSION = "origin_split_feature_distribution_v1"
 DEFAULT_AUDIT_FILENAME = "origin_split_audit.json"
+_FROZEN_SPLIT_CAPABILITIES = tuple(
+    capability
+    for capability in OperatorCapability
+    if capability is not OperatorCapability.REPLACEMENT_AWARE_DELETION
+)
 DEFAULT_DISTRIBUTION_FILENAME = "origin_split_feature_distribution.json"
 NO_SCAFFOLD_IDENTITY = "molhallulens:no_murcko_scaffold:v1"
 KNOWN_DUPLICATE_SOURCE_GROUPS = (
@@ -176,7 +181,9 @@ class OperatorAvailability:
                 for operator_id, items in self.ineligible_operator_reasons
             )
         )
-        expected_capabilities = tuple(sorted(item.value for item in OperatorCapability))
+        expected_capabilities = tuple(
+            sorted(item.value for item in _FROZEN_SPLIT_CAPABILITIES)
+        )
         if tuple(name for name, _ in flags) != expected_capabilities:
             raise ValueError("capability_flags must classify every OperatorCapability")
         if any(type(value) is not bool for _, value in flags):
@@ -741,8 +748,19 @@ def _availability(
     item: OriginValidationInput, registry: PerturbatorRegistry
 ) -> tuple[OperatorAvailability, str]:
     classification = classify_edit_truth(item.edit_truth)
+    # T026 is an immutable split-stratification snapshot.  Later append-only
+    # runtime capabilities must not perturb its frozen 150-origin assignment.
+    from molhallulens.perturbators.editing.deletion import (
+        REPLACEMENT_DELETION_OPERATOR_ID,
+    )
+
     registrations = registry.registrations_for(
         subtask=item.edit_truth.normalized_subtask
+    )
+    registrations = tuple(
+        registration
+        for registration in registrations
+        if registration.operator_id != REPLACEMENT_DELETION_OPERATOR_ID
     )
     eligible: list[str] = []
     reasons: list[tuple[str, tuple[str, ...]]] = []
@@ -761,7 +779,7 @@ def _availability(
     availability = OperatorAvailability(
         capability_flags=tuple(
             (capability.value, classification.allows(capability))
-            for capability in OperatorCapability
+            for capability in _FROZEN_SPLIT_CAPABILITIES
         ),
         registered_operator_ids=tuple(item.operator_id for item in registrations),
         eligible_operator_ids=tuple(eligible),
@@ -922,7 +940,16 @@ def audit_origin_split_features(
         )
     if type(registry) is not PerturbatorRegistry:
         raise TypeError("registry must be PerturbatorRegistry or None")
-    if len(registry.registrations_for()) != 35:
+    from molhallulens.perturbators.editing.deletion import (
+        REPLACEMENT_DELETION_OPERATOR_ID,
+    )
+
+    frozen_registrations = tuple(
+        registration
+        for registration in registry.registrations_for()
+        if registration.operator_id != REPLACEMENT_DELETION_OPERATOR_ID
+    )
+    if len(frozen_registrations) != 35:
         raise ValueError("T026 requires the frozen 35-operator T017 registry")
 
     ordered_values = tuple(

@@ -1,0 +1,72 @@
+{
+  "acceptance": {
+    "all_t043_strict_validators_pass": true,
+    "atomic_backfill_unit": "complete_origin_bundle_4_pairs_8_records",
+    "each_policy_one_hundred_h_one_hundred_n": true,
+    "eight_hundred_records": true,
+    "failed_recipe_emitted_record_count": 0,
+    "four_hundred_h_four_hundred_n": true,
+    "full_frozen_train_manifest_coverage": true,
+    "gt_or_reference_artifact_leakage_count": 0,
+    "one_hundred_complete_train_origins": true,
+    "secret_leakage_count": 0
+  },
+  "all_pass": true,
+  "dataset_version": "pilot_v1",
+  "execution": {
+    "explicit_digest_or_sha_verification_performed": false,
+    "live_poe_attempted": false,
+    "network_mode": "frozen_offline",
+    "network_request_count": 0,
+    "production_chemdfm_r_weights_loaded": false,
+    "renderer": "deterministic-formal-v1",
+    "tokenizer_backend": "deterministic_fast_offset_offline_fixture"
+  },
+  "format_version": "t048_train_build_report_v1",
+  "global_seed": 20260828,
+  "isolation": {
+    "candidate_selection_split": "train",
+    "cross_split_donor_edge_count": 0,
+    "test_used_for_candidate_selection": false,
+    "validation_used_for_candidate_selection": false,
+    "verified_train_donor_edge_count": 0
+  },
+  "limitations": [
+    "T048 token labels use an explicit offline fast-offset fixture; production ChemDFM-R weights are loaded only in T051.",
+    "No live Poe request or availability probe was performed for this deterministic train build.",
+    "No explicit digest or SHA verification was performed."
+  ],
+  "strict_validation": {
+    "all_pass": true,
+    "artifact_gate_count": 3200,
+    "bundle_gate_count": 100
+  },
+  "summary": {
+    "attempt_count": 100,
+    "candidate_sources": {
+      "RULE": 400
+    },
+    "faithful_record_count": 400,
+    "hallucinated_record_count": 400,
+    "origin_count": 100,
+    "origin_counts_by_subtask": {
+      "add": 34,
+      "delete": 33,
+      "substitute": 33
+    },
+    "policy_variant_counts": {
+      "FULL_CF:H": 100,
+      "FULL_CF:N": 100,
+      "LOCAL:H": 100,
+      "LOCAL:N": 100,
+      "PARTIAL:H": 100,
+      "PARTIAL:N": 100,
+      "TERMINAL:H": 100,
+      "TERMINAL:N": 100
+    },
+    "record_count": 800,
+    "rejected_attempt_count": 0,
+    "rejection_counts": {}
+  },
+  "train_build_id": "t048_frozen_train_100_origin_v1"
+}
