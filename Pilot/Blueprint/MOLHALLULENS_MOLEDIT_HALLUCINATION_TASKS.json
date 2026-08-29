@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T02:10:19+08:00",
+  "updated_at": "2026-08-30T02:16:48+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 23,
+    "not_started": 22,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 29,
-    "last_completed_task": "T029"
+    "completed": 30,
+    "last_completed_task": "T030"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -683,6 +683,22 @@
       "known_gaps": [],
       "follow_up_actions": ["T030 只接受 VerifiedSplitManifest 构建 split-local donor pools", "T031 proposal request 绑定 verified manifest identity 与 origin split"],
       "assessment_summary": "T029 三项验收全部满足。150-origin immutable CSV 与 canonical metadata 已冻结，字段、计数、group、版本和 source binding 由 strict loader fail closed 验证；冲突覆盖、拆组、篡改、未知列、缺失/重复行和跨 split 查询均有对抗回归。远端 T028+T029 24 项及本地静态/格式/compile 检查通过。"
+    },
+    {
+      "task_id": "T030",
+      "assessed_at": "2026-08-30T02:16:48+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["11.2 Leakage group", "11.3 正确执行顺序", "11.5 split manifest", "Phase 3：Split 和 donor pools"],
+      "acceptance_criteria_results": [
+        {"criterion": "所有 donor edge 同 split", "passed": true, "evidence": ["train/validation/test artifacts 的每条 recipient→donor edge 由 VerifiedSplitManifest 双端校验", "T029+T030 远端：20 passed；Phase 3 全链：49 passed"]},
+        {"criterion": "导入 cross-split artifact 会被拒绝而不会重排 split", "passed": true, "evidence": ["cross-split donor/edge、未知 origin、manifest mismatch 均 fail closed", "tamper test 确认 frozen manifest bytes 与 assignment 未改变"]}
+      ],
+      "strengths": ["构建 fragment、group、product 三类 donor entries 与显式 recipient→donor edges，cross-record donor 排除 self edge", "SplitDonorPool 和 SplitBoundDonorQuery 携带 split 与 verified manifest identity，查询时不能混用其他 split", "importer 先验证 header、manifest、origin、split、donor 与 edges，再构造 typed pool；从不调用 split solver", "三份 artifacts 稳定排序，可确定性重建"],
+      "known_gaps": [],
+      "follow_up_actions": ["T031 proposal schema 绑定 verified manifest 与 origin split", "T037 hybrid candidate engine 只接收当前 split 的 typed donor query"],
+      "assessment_summary": "T030 两项验收全部满足。三份 split-local artifacts 共包含 train 234/1104、validation 58/76、test 59/68 donors/edges；所有边同 split，cross-split/未知 origin/manifest mismatch 导入均 fail closed 且不会改变 split。远端 T029+T030 20 项、Phase 3 全链 49 项与本地静态检查全部通过。"
     }
   ],
   "tasks": [
@@ -924,7 +940,7 @@
       "description": "按 fragment/group、attachment、descriptor 和 difficulty bucket 建 donor pools，并从类型和运行时断言禁止 cross-split donor。",
       "deliverables": ["split-local donor artifacts", "donor leakage tests"],
       "acceptance_criteria": ["所有 donor edge 同 split", "导入 cross-split artifact 会被拒绝而不会重排 split"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T02:12:12+08:00", "completed_at": "2026-08-30T02:16:48+08:00", "completion_notes": "实现 split-local typed donor pools。只接受 T029 VerifiedSplitManifest，为 fragment、group、product 三类 donor 构建 split-bound descriptors、稳定 buckets 和显式 recipient→donor edges；cross-record edges 排除 self。train/validation/test 分别冻结 234/1104、58/76、59/68 donors/edges。每份 artifact 绑定 schema、dataset、manifest 与 split identity；loader 在构造 typed pool 前逐项拒绝 manifest mismatch、未知 origin、cross-split donor/edge 和内容篡改，且绝不调用 split solver、重写 manifest 或重新分配 split。查询接口强制目标 origin 与 pool split 一致，artifact 稳定排序并可重建。", "evidence": ["Pilot/molhallulens/candidates/donors.py", "Pilot/HallucinationDataset/donor_pools/train.json", "Pilot/HallucinationDataset/donor_pools/validation.json", "Pilot/HallucinationDataset/donor_pools/test.json", "Pilot/tests/unit/test_donor_pools.py", "本地 T030：9 passed", "远端 T029+T030：20 passed", "远端 T026–T030：49 passed", "ruff/format/compileall/JSON/diff passed"], "files_changed": ["Pilot/molhallulens/candidates/donors.py", "Pilot/molhallulens/candidates/__init__.py", "Pilot/tests/unit/test_donor_pools.py", "Pilot/HallucinationDataset/donor_pools/train.json", "Pilot/HallucinationDataset/donor_pools/validation.json", "Pilot/HallucinationDataset/donor_pools/test.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_split_manifest.py tests/unit/test_donor_pools.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_origin_audit.py tests/integration/test_origin_audit_corpus.py tests/unit/test_leakage_groups.py tests/integration/test_leakage_group_corpus.py tests/unit/test_splitter.py tests/integration/test_group_stratified_split.py tests/unit/test_split_manifest.py tests/unit/test_donor_pools.py", "ruff check molhallulens/candidates/donors.py molhallulens/candidates/__init__.py tests/unit/test_donor_pools.py", "ruff format --check molhallulens/candidates/donors.py molhallulens/candidates/__init__.py tests/unit/test_donor_pools.py", "python -m compileall -q molhallulens tests", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T031", "phase": "4_poe_candidate_agent", "title": "实现 proposal/tool JSON schemas",

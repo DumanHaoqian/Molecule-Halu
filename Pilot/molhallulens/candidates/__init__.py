@@ -18,10 +18,25 @@ from .core import (
     replay_edit_action,
     replay_edit_action_from_source,
 )
+from .donors import (
+    DONOR_POOL_FORMAT_VERSION,
+    DONOR_POOL_SCHEMA_VERSION,
+    DonorEdge,
+    DonorEntry,
+    DonorKind,
+    DonorPoolError,
+    SplitBoundDonorQuery,
+    SplitDonorPool,
+    build_split_local_donor_pools,
+    load_split_donor_pool,
+    write_split_donor_pools,
+)
 from .rdkit_source import RDKitCandidateSource
 from .rule_source import RuleCandidateSource
 
 __all__ = [
+    "DONOR_POOL_FORMAT_VERSION",
+    "DONOR_POOL_SCHEMA_VERSION",
     "CandidateBuildResult",
     "CandidateDifficultyFeatures",
     "CandidateProposal",
@@ -31,13 +46,22 @@ __all__ = [
     "CandidateSource",
     "CandidateSourceError",
     "DeterministicCandidateEngine",
+    "DonorEdge",
+    "DonorEntry",
+    "DonorKind",
+    "DonorPoolError",
     "ProposalFunction",
     "RDKitCandidateSource",
     "RankedCandidate",
     "RuleCandidateSource",
+    "SplitBoundDonorQuery",
+    "SplitDonorPool",
+    "build_split_local_donor_pools",
     "canonical_candidate_key",
     "compute_difficulty_features",
+    "load_split_donor_pool",
     "rank_candidates",
     "replay_edit_action",
     "replay_edit_action_from_source",
+    "write_split_donor_pools",
 ]
