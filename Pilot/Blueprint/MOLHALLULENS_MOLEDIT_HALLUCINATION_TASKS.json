@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T15:05:54+08:00",
+  "updated_at": "2026-08-29T15:18:37+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 45,
+    "not_started": 44,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 7,
-    "last_completed_task": "T007"
+    "completed": 8,
+    "last_completed_task": "T008"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -260,6 +260,40 @@
       "known_gaps": [],
       "follow_up_actions": ["T008 在 joined pilot_subtask 之上实现唯一显式 normalization registry", "T009 将 template inventories 映射为三类具体 StateSchema", "T011/T012 执行 DAG round-trip 与 RDKit graph equivalence；不得把 answer_smiles 字符串差异误判为 T007 join 冲突"],
       "assessment_summary": "T007 两项验收全部满足：真实数据得到 150 个唯一、确定性排序的 ID join；34 项专项和 191 项全量测试覆盖缺失、重复、冲突、schema、非有限数与路径边界，两轮独立复审均无剩余 blocker。"
+    },
+    {
+      "task_id": "T008",
+      "assessed_at": "2026-08-29T15:18:37+08:00",
+      "assessed_by": "codex",
+      "scores": {
+        "requirements_alignment": 5,
+        "implementation_quality": 5,
+        "verification_coverage": 5,
+        "documentation_and_traceability": 5
+      },
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["2.2 subtask 名称映射", "5.6 Factory 和 subtask normalization", "15.1 建议代码目录", "16.1 Unit tests", "18. Phase 1", "21. 推荐立即开始的第一个实现批次"],
+      "acceptance_criteria_results": [
+        {
+          "criterion": "三类已知映射正确",
+          "passed": true,
+          "evidence": ["9 个精确 alias 参数化映射到三个完整 canonical triples", "真实 T007 joined Pilot 150 records 全部归一，add/delete/substitute 各 50", "registry 与 frozen dataset config 的 normalized subtasks 交叉一致"]
+        },
+        {
+          "criterion": "未知或歧义名称 fail closed",
+          "passed": true,
+          "evidence": ["空白、大小写、.json、路径、完整 origin ID、近似词和 non-str 负向测试", "跨 triple reconcile 冲突、alias collision、duplicate mapping 和非 canonical mapping 构造均拒绝"]
+        },
+        {
+          "criterion": "业务代码无需任务名 if/elif",
+          "passed": true,
+          "evidence": ["SubtaskNormalizer 使用单一不可变 alias/reverse index", "输入顺序无关且重复 lookup 稳定", "独立 blocker-only 复核：APPROVE"]
+        }
+      ],
+      "strengths": ["一张冻结三行表同时保存 Pilot stem、source package 名和 typed EditingSubtask，避免散落映射", "normalize、for_normalized 与 reconcile 使用 namespace-safe exact lookup，显式隔离 StrEnum 与同值字符串 key", "只接受计划明确的 9 个标识符；不 strip/casefold/取 stem/解析 opaque anonymous ID，也不越界处理 T009 schema、T014 subtype 或 T015 strict validation", "映射、registry 和索引均不可变；重复或歧义在构造期 fail closed"],
+      "known_gaps": [],
+      "follow_up_actions": ["T009 仅消费 normalized EditingSubtask 选择三类 StateSchema，不复制 alias 表", "T015 在 strict input validator 中处理跨字段/ID 一致性，不把 opaque ID parsing 回填到 normalizer", "T016 factory 直接消费 normalized record，保持无任务名分支"],
+      "assessment_summary": "T008 三项验收全部满足：权威 9 个精确 alias 稳定映射为三个 typed canonical triples，未知、模糊和歧义输入 fail closed；36 项专项、227 项全量测试、compileall、wheel build 与独立复核均通过。"
     }
   ],
   "tasks": [
@@ -325,7 +359,7 @@
       "description": "将 pilot 文件名、add_v2/delete_v2/substitute_v2 和 normalized subtask 显式映射。",
       "deliverables": ["SubtaskNormalizer", "映射测试"],
       "acceptance_criteria": ["三类已知映射正确", "未知或歧义名称 fail closed", "业务代码无需任务名 if/elif"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T15:07:52+08:00", "completed_at": "2026-08-29T15:18:37+08:00", "completion_notes": "新增不可变、table-driven SubtaskNormalizer，将 add/delete/substitute 三类 Pilot stem、source package 名和 normalized EditingSubtask 显式冻结为三行 canonical mappings。公开 exact normalize、typed reverse lookup 和 multi-name reconcile；仅接受计划明文的 9 个 identifier strings，拒绝 .json、路径、大小写/空白修正、完整 origin ID、近似词和 non-str。alias collision、重复 mapping、normalized collision 与跨 discriminator 冲突均在构造或 reconcile 时 fail closed；业务无需任务名 if/elif。按任务边界不解析 anonymous_sample_id，不处理 T009 schema、T014 operation subtype 或 T015 strict validation。", "evidence": ["Pilot/molhallulens/adapters/subtasks.py", "Pilot/tests/unit/test_subtask_normalization.py", "real joined Pilot normalization: 150 records / 50 per normalized subtask", "targeted pytest result: 36 passed", "full pytest result: 227 passed", "compileall passed", "pip wheel build passed", "independent blocker-only review: APPROVE/no blocker"], "files_changed": ["Pilot/molhallulens/adapters/__init__.py", "Pilot/molhallulens/adapters/subtasks.py", "Pilot/tests/unit/test_subtask_normalization.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_subtask_normalization.py", "PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t008-wheel -q", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T008 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T009", "phase": "1_reference_dag", "title": "实现三类 StateSchema",
