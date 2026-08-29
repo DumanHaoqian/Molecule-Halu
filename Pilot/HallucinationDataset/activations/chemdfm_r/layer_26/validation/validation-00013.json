@@ -1,0 +1,36 @@
+{
+  "activation_alignment": "post_token_h_t",
+  "activation_dtype": "bfloat16",
+  "activation_shape": [
+    4795,
+    5120
+  ],
+  "digest_computation_performed": false,
+  "external_storage": "server_only",
+  "feature_name": "resid_post",
+  "file_bytes": 49102909,
+  "format_version": "t051_chemdfm_r_post_token_v1",
+  "hook_path": "model.model.layers[26]",
+  "label_shift": 0,
+  "layer_index": 26,
+  "record_ids": [
+    "mol_edit.add_v2.0135__TERMINAL__N",
+    "mol_edit.add_v2.0216__LOCAL__H",
+    "mol_edit.add_v2.0216__LOCAL__N"
+  ],
+  "row_offsets": [
+    0,
+    1623,
+    3209,
+    4795
+  ],
+  "shard_index": 13,
+  "split": "validation",
+  "status": "complete",
+  "tensor_relative_path": "validation/validation-00013.pt",
+  "token_counts": [
+    1623,
+    1586,
+    1586
+  ]
+}

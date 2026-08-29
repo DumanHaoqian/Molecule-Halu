@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T05:58:00+08:00",
+  "updated_at": "2026-08-30T06:42:00+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 1,
+    "not_started": 0,
     "in_progress": 1,
     "blocked": 0,
-    "completed": 50,
-    "last_completed_task": "T050"
+    "completed": 51,
+    "last_completed_task": "T051"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -1051,6 +1051,24 @@
       "known_gaps": ["T050 tokenized test artifact 使用明确标识的 offline fast-offset fixture，真实 ChemDFM-R tokenizer 和 resid_post 由 T051 统一替换", "100 个 H candidate executions 均据实为 validated RULE source"],
       "follow_up_actions": ["T051 对完整三 split 生成真实 tokenizer 和 layer-26 resid_post artifacts", "T052 在 dataset card 披露 benchmark smoke-only 与 source-mix 限制"],
       "assessment_summary": "T050 四项验收全部满足。test 最后构建并冻结 25 origins、200 records（100H/100N），四 policy 均精确 25H+25N；800 artifact gates 和 25 bundle gates 全通过。36 次预声明 attempts 中 11 次失败均原子产生 0 records。隔离声明证明 test 只用于 frozen design 下的 strict record acceptance，未反馈修改 candidate、propagation、renderer、layer 或 threshold。专项 9 项通过，无 hash 核对。"
+    },
+    {
+      "task_id": "T051",
+      "assessed_at": "2026-08-30T06:42:00+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["8. tokenized labels 与 post-token alignment", "13. activation extraction", "14. release artifact layout", "Phase 8：release QA"],
+      "acceptance_criteria_results": [
+        {"criterion": "1200 records 均有 tokenizer fingerprint 和等长 masks", "passed": true, "evidence": ["真实 ChemDFM-R fast tokenizer：train/validation/test=800/200/200 records", "全部 direct 与 nested mask axes 逐行等于 input token 长度；总计 1824606 tokens"]},
+        {"criterion": "activation_alignment 仅 post_token_h_t", "passed": true, "evidence": ["manifest alignment=post_token_h_t", "layer 26 resid_post hook=model.model.layers[26] output[0]"]},
+        {"criterion": "hidden states 与 labels 长度一致", "passed": true, "evidence": ["401 个 server-only bfloat16 tensors 严格逐 payload 读取", "1200 ordered IDs、token counts、row offsets 与 [tokens,5120] shapes 全部 exact"]},
+        {"criterion": "无 pre-token 声称或 shift", "passed": true, "evidence": ["label_shift=0", "pre-token target 未声明；前移/后移对齐负例均 fail closed"]}
+      ],
+      "strengths": ["使用真实 14B ChemDFM-R tokenizer 与模型抽取完整 1200-record inventory", "canonical JSONL 保留在 5090；Git 使用 5 个有界 token shards 与 401 个 sidecars，tensor payload 留在服务器", "严格 resume 逐 tensor 校验 IDs、offsets、dtype、shape、layer 与 alignment；同尺寸错误 payload 负例 fail closed", "finalizer 强制逐 split canonical↔Git↔activation ordered axes，并拒绝跨 split 互换、summary drift、绝对/遍历/symlink escape 路径"],
+      "known_gaps": ["批准的本地 checkpoint/tokenizer 路径与 Qwen2 配置只提供 provenance/architecture evidence；按用户 no-hash 要求不证明 byte-exact identity 或 reproducibility"],
+      "follow_up_actions": ["T052 消费已完成的严格 tensor payload audit evidence，不重复加载 18.7GB tensors", "T052 在 dataset card 与 known limitations 披露 checkpoint/tokenizer identity 边界"],
+      "assessment_summary": "T051 四项验收全部满足。真实 ChemDFM-R tokenizer 覆盖 1200 records、1824606 tokens；真实 layer-26 resid_post 抽取形成 401 个 bfloat16 shards。严格 payload audit 逐个读取 18,684,798,798 bytes tensors，ordered IDs、token counts、row offsets、shape、alignment 与 layer 全通过。14 项 T051 tests、101 项相关回归和独立 blocker review 通过；未重跑模型，未计算任何 hash。"
     }
   ],
   "tasks": [
@@ -1460,7 +1478,7 @@
       "description": "对 1200 records 生成 ChemDFM-R tokenized artifact，并按 post-token h_t 抽取 resid_post 特征。",
       "deliverables": ["tokenized/chemdfm_r artifacts", "activation extraction manifest"],
       "acceptance_criteria": ["1200 records 均有 tokenizer fingerprint 和等长 masks", "activation_alignment 仅 post_token_h_t", "hidden states 与 labels 长度一致", "无 pre-token 声称或 shift"],
-      "status": "in_progress", "assigned_to": "codex", "started_at": "2026-08-30T05:58:00+08:00", "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T05:58:00+08:00", "completed_at": "2026-08-30T06:42:00+08:00", "completion_notes": "对 train/validation/test 全部 1200 records 使用真实 ChemDFM-R fast tokenizer 生成 1824606 token positions，并在真实 ChemDFM-R-14B 的预冻结 layer 26 抽取 resid_post。三 split 分别为 1227910/301085/295611 tokens；600 H 均有正标签 span，600 N 的 hallucination/error masks 均为零。401 个 bfloat16 activation shards（267/67/67）逐 payload 在 CPU 严格验证 ordered record IDs、token counts、row offsets、dtype、[tokens,5120] shape、layer 26、label_shift=0 与 post_token_h_t alignment，18,684,798,798 tensor bytes 全通过。canonical real-tokenized JSONL 与 tensor 留在 5090；Git 发布 5 个小于 48MB 的 ordered token shards、manifest 和 401 个 JSON sidecars。修复并回归 cross-split axis、per-split totals、strict resume、relative path traversal/root/symlink escape 等边界。按用户要求没有计算或核对 hash；批准本地路径+Qwen2 配置不声称 byte-exact checkpoint/tokenizer identity。", "evidence": ["Pilot/molhallulens/builders/chemdfm_r_release.py", "Pilot/tests/integration/test_chemdfm_r_release.py", "Pilot/Dataset/reports/t051_chemdfm_r_release.json", "Pilot/HallucinationDataset/tokenized/chemdfm_r/manifest.json", "Pilot/HallucinationDataset/tokenized/chemdfm_r/git_shards/index.json", "Pilot/HallucinationDataset/activations/chemdfm_r/layer_26/manifest.json", "1200 records / 1824606 tokens / 1323 positive spans", "401 shards / 18684798798 tensor bytes / bfloat16 / hidden size 5120", "strict tensor payload audit all_pass", "T051 专项：14 passed", "T051+token projection+post-token alignment：101 passed", "ruff/JSON/diff checks passed"], "files_changed": ["Pilot/.gitignore", "Pilot/molhallulens/builders/chemdfm_r_release.py", "Pilot/tests/integration/test_chemdfm_r_release.py", "Pilot/Dataset/reports/t051_chemdfm_r_release.json", "Pilot/HallucinationDataset/tokenized/chemdfm_r/manifest.json", "Pilot/HallucinationDataset/tokenized/chemdfm_r/git_shards/index.json", "Pilot/HallucinationDataset/tokenized/chemdfm_r/git_shards/train/part-00000.jsonl", "Pilot/HallucinationDataset/tokenized/chemdfm_r/git_shards/train/part-00001.jsonl", "Pilot/HallucinationDataset/tokenized/chemdfm_r/git_shards/train/part-00002.jsonl", "Pilot/HallucinationDataset/tokenized/chemdfm_r/git_shards/validation/part-00000.jsonl", "Pilot/HallucinationDataset/tokenized/chemdfm_r/git_shards/test/part-00000.jsonl", "Pilot/HallucinationDataset/activations/chemdfm_r/layer_26/manifest.json", "Pilot/HallucinationDataset/activations/chemdfm_r/layer_26/*/*.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONPATH=. /home/haoqian/Data/SAERAG/venvs/chemdfm/bin/python -m pytest -q -s -p no:cacheprovider tests/integration/test_chemdfm_r_release.py", "PYTHONPATH=. /home/haoqian/Data/SAERAG/venvs/chemdfm/bin/python -m molhallulens.builders.chemdfm_r_release validate-activations --manifest-path HallucinationDataset/activations/chemdfm_r/layer_26/manifest.json --tokenized-root HallucinationDataset/tokenized/chemdfm_r --tokenized-index-path HallucinationDataset/tokenized/chemdfm_r/git_shards/index.json", "ruff check molhallulens/builders/chemdfm_r_release.py tests/integration/test_chemdfm_r_release.py", "python -m json.tool Dataset/reports/t051_chemdfm_r_release.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T052", "phase": "8_release_qa", "title": "执行最终 release QA 并发布 pilot_v1",
@@ -1468,7 +1486,7 @@
       "description": "运行 strict integrity、replay reproducibility、secret scan、shortcut/symbolic baselines，生成 manifest、dataset card、known limitations 和最终验收报告。",
       "deliverables": ["dataset_manifest.json", "release validation report", "shortcut/baseline report", "dataset card", "known limitations", "Poe private usage ledger export"],
       "acceptance_criteria": ["发布验收清单全部通过", "150 origins、1200 records、800/200/200 精确", "无 leakage、GT 泄漏或 secret", "frozen cache replay byte-identical", "风险 6 与 Poe snapshot 限制在 dataset card 披露", "pilot_v1 hash 已冻结"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "in_progress", "assigned_to": "codex", "started_at": "2026-08-30T06:42:00+08:00", "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
     }
   ]
 }

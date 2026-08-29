@@ -1,0 +1,13 @@
+# T051 canonical real-tokenized files remain on the 5090 for release QA.
+# Git carries the bounded JSONL inventory under git_shards/ instead.
+/HallucinationDataset/tokenized/chemdfm_r/train.jsonl
+/HallucinationDataset/tokenized/chemdfm_r/validation.jsonl
+/HallucinationDataset/tokenized/chemdfm_r/test.jsonl
+
+# T051 resid_post tensors are server-side binary research artifacts.
+# Their JSON sidecars and manifest remain eligible for Git.
+/HallucinationDataset/activations/chemdfm_r/layer_26/**/*.pt
+/HallucinationDataset/activations/chemdfm_r/layer_26/**/*.pt.partial
+
+# Durable local job metadata is operational state, not a release artifact.
+/runs/serverctl/molhallulens-t051-full/

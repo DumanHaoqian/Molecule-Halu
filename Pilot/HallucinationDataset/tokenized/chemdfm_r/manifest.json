@@ -1,0 +1,73 @@
+{
+  "activation_alignment": "post_token_h_t",
+  "all_token_arrays_equal_length": true,
+  "checkpoint_path": "/home/haoqian/Data/SAERAG/Open-Scopes/ChemDFM-Scope/ChemDFM-R-14B",
+  "format_version": "t051_real_tokenization_v1",
+  "git_shards": {
+    "canonical_storage": "server_only",
+    "digest_computation_performed": false,
+    "index_path": "git_shards/index.json",
+    "max_shard_bytes_exclusive": 48000000
+  },
+  "identity_handling": {
+    "carried_forward": true,
+    "recomputed": false,
+    "source": "records[*].serialized.sha256",
+    "verified_by_digest": false
+  },
+  "label_shift": 0,
+  "mode": "release",
+  "record_count": 1200,
+  "splits": [
+    {
+      "carried_text_identity_count": 800,
+      "max_tokens": 3229,
+      "min_tokens": 797,
+      "positive_span_count": 881,
+      "record_count": 800,
+      "split": "train",
+      "token_count": 1227910
+    },
+    {
+      "carried_text_identity_count": 200,
+      "max_tokens": 2548,
+      "min_tokens": 900,
+      "positive_span_count": 216,
+      "record_count": 200,
+      "split": "validation",
+      "token_count": 301085
+    },
+    {
+      "carried_text_identity_count": 200,
+      "max_tokens": 2200,
+      "min_tokens": 714,
+      "positive_span_count": 226,
+      "record_count": 200,
+      "split": "test",
+      "token_count": 295611
+    }
+  ],
+  "status": "complete",
+  "token_count": 1824606,
+  "tokenizer_fingerprint": {
+    "normalization_config": {
+      "checkpoint_path": "/home/haoqian/Data/SAERAG/Open-Scopes/ChemDFM-Scope/ChemDFM-R-14B",
+      "digest_computation_performed": false,
+      "fast_tokenizer": true,
+      "offset_unit": "python_char",
+      "padding": false,
+      "production_weights_loaded": true,
+      "tokenizer_class": "Qwen2Tokenizer",
+      "truncation": false
+    },
+    "special_token_config": {
+      "bos_token_id": null,
+      "eos_token_id": 151645,
+      "pad_token_id": 151643,
+      "unk_token_id": null
+    },
+    "tokenizer_name": "ChemDFM-R-14B",
+    "tokenizer_revision": "approved-local-checkpoint-no-digest",
+    "tokenizer_vocab_hash": "not-computed-per-user-instruction"
+  }
+}

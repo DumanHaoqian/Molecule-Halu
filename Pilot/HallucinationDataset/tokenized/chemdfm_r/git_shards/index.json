@@ -1,0 +1,85 @@
+{
+  "canonical_files_retained": true,
+  "canonical_storage": "server_only",
+  "digest_computation_performed": false,
+  "format_version": "t051_tokenized_git_shards_v1",
+  "max_shard_bytes_exclusive": 48000000,
+  "reconstruction": "byte_concatenation_in_index_order",
+  "record_count": 1200,
+  "split_order": [
+    "train",
+    "validation",
+    "test"
+  ],
+  "splits": {
+    "test": {
+      "canonical_bytes": 30612667,
+      "canonical_relative_path": "test.jsonl",
+      "record_count": 200,
+      "shard_count": 1,
+      "shards": [
+        {
+          "bytes": 30612667,
+          "first_record_id": "mol_edit.add_v2.0015__LOCAL__H",
+          "last_record_id": "mol_edit.substitute_v2.0290__TERMINAL__N",
+          "order": 0,
+          "path": "test/part-00000.jsonl",
+          "row_count": 200
+        }
+      ],
+      "token_count": 295611
+    },
+    "train": {
+      "canonical_bytes": 127121299,
+      "canonical_relative_path": "train.jsonl",
+      "record_count": 800,
+      "shard_count": 3,
+      "shards": [
+        {
+          "bytes": 47916775,
+          "first_record_id": "mol_edit.add_v2.0003__LOCAL__H",
+          "last_record_id": "mol_edit.delete_v2.0081__FULL_CF__N",
+          "order": 0,
+          "path": "train/part-00000.jsonl",
+          "row_count": 334
+        },
+        {
+          "bytes": 47849603,
+          "first_record_id": "mol_edit.delete_v2.0081__TERMINAL__H",
+          "last_record_id": "mol_edit.substitute_v2.0080__TERMINAL__H",
+          "order": 1,
+          "path": "train/part-00001.jsonl",
+          "row_count": 273
+        },
+        {
+          "bytes": 31354921,
+          "first_record_id": "mol_edit.substitute_v2.0080__TERMINAL__N",
+          "last_record_id": "mol_edit.substitute_v2.0283__TERMINAL__N",
+          "order": 2,
+          "path": "train/part-00002.jsonl",
+          "row_count": 193
+        }
+      ],
+      "token_count": 1227910
+    },
+    "validation": {
+      "canonical_bytes": 31172745,
+      "canonical_relative_path": "validation.jsonl",
+      "record_count": 200,
+      "shard_count": 1,
+      "shards": [
+        {
+          "bytes": 31172745,
+          "first_record_id": "mol_edit.add_v2.0012__LOCAL__H",
+          "last_record_id": "mol_edit.substitute_v2.0239__TERMINAL__N",
+          "order": 0,
+          "path": "validation/part-00000.jsonl",
+          "row_count": 200
+        }
+      ],
+      "token_count": 301085
+    }
+  },
+  "status": "complete",
+  "token_count": 1824606
+}
