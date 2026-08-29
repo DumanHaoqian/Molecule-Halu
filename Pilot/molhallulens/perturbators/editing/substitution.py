@@ -1150,6 +1150,7 @@ def _enumerate_substitution_proposals(
                 request,
                 source,
                 value=product,
+                product=product,
             )
         return
 

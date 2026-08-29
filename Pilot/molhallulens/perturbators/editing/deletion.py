@@ -66,9 +66,7 @@ _CLAIM_POLICIES = frozenset({PropagationPolicy.STOP, PropagationPolicy.PARTIAL})
 _DETERMINISTIC_SOURCES = frozenset(
     {CandidateSourceType.RULE, CandidateSourceType.RDKIT, CandidateSourceType.HYBRID}
 )
-_RELATION_SOURCES = frozenset(
-    {CandidateSourceType.RULE, CandidateSourceType.HYBRID}
-)
+_RELATION_SOURCES = frozenset({CandidateSourceType.RULE, CandidateSourceType.HYBRID})
 _STRUCTURAL_CAPABILITY = frozenset({OperatorCapability.STRUCTURAL_DELETION})
 _CLAIM_CAPABILITY = frozenset({OperatorCapability.CLAIM_PERTURBATION})
 
@@ -76,7 +74,9 @@ _CLAIM_CAPABILITY = frozenset({OperatorCapability.CLAIM_PERTURBATION})
 class DeletionOperatorMixin:
     """The twelve T020 members; chemistry stays in the injected engine."""
 
-    def _deletion_candidate_pool(self, context: PerturbationContext[Any]) -> CandidatePool:
+    def _deletion_candidate_pool(
+        self, context: PerturbationContext[Any]
+    ) -> CandidatePool:
         engine = self.candidate_engine  # type: ignore[attr-defined]
         if type(engine) is not DeletionCandidateEngine:
             raise OperatorRegistryError(
@@ -92,7 +92,10 @@ class DeletionOperatorMixin:
         root_fields={"product"},
         supported_policies=_STRUCTURAL_POLICIES,
         supported_sources=_DETERMINISTIC_SOURCES,
-        hallucination_types={HallucinationType.CONTRADICTION, HallucinationType.REASONING_ERROR},
+        hallucination_types={
+            HallucinationType.CONTRADICTION,
+            HallucinationType.REASONING_ERROR,
+        },
         edit_subtypes={EditErrorSubtype.REMOVE_OR_LEAVING_GROUP_IDENTIFICATION},
         required_capabilities=_STRUCTURAL_CAPABILITY,
     )
@@ -107,7 +110,10 @@ class DeletionOperatorMixin:
         root_fields={"product"},
         supported_policies=_STRUCTURAL_POLICIES,
         supported_sources=_DETERMINISTIC_SOURCES,
-        hallucination_types={HallucinationType.CONTRADICTION, HallucinationType.REASONING_ERROR},
+        hallucination_types={
+            HallucinationType.CONTRADICTION,
+            HallucinationType.REASONING_ERROR,
+        },
         edit_subtypes={EditErrorSubtype.REMOVE_OR_LEAVING_GROUP_IDENTIFICATION},
         required_capabilities=_STRUCTURAL_CAPABILITY,
     )
@@ -122,7 +128,10 @@ class DeletionOperatorMixin:
         root_fields={"product"},
         supported_policies=_STRUCTURAL_POLICIES,
         supported_sources=_DETERMINISTIC_SOURCES,
-        hallucination_types={HallucinationType.CONTRADICTION, HallucinationType.REASONING_ERROR},
+        hallucination_types={
+            HallucinationType.CONTRADICTION,
+            HallucinationType.REASONING_ERROR,
+        },
         edit_subtypes={EditErrorSubtype.ATTACHMENT_OR_BOND_EDIT},
         required_capabilities=_STRUCTURAL_CAPABILITY,
     )
@@ -137,7 +146,10 @@ class DeletionOperatorMixin:
         root_fields={"product"},
         supported_policies=_STRUCTURAL_POLICIES,
         supported_sources=_DETERMINISTIC_SOURCES,
-        hallucination_types={HallucinationType.CONTRADICTION, HallucinationType.REASONING_ERROR},
+        hallucination_types={
+            HallucinationType.CONTRADICTION,
+            HallucinationType.REASONING_ERROR,
+        },
         edit_subtypes={EditErrorSubtype.ATTACHMENT_OR_BOND_EDIT},
         required_capabilities=_STRUCTURAL_CAPABILITY,
     )
@@ -152,7 +164,10 @@ class DeletionOperatorMixin:
         root_fields={"product"},
         supported_policies=_STRUCTURAL_POLICIES,
         supported_sources=_DETERMINISTIC_SOURCES,
-        hallucination_types={HallucinationType.CONTRADICTION, HallucinationType.REASONING_ERROR},
+        hallucination_types={
+            HallucinationType.CONTRADICTION,
+            HallucinationType.REASONING_ERROR,
+        },
         edit_subtypes={EditErrorSubtype.PRODUCT_CONSTRUCTION},
         required_capabilities=_STRUCTURAL_CAPABILITY,
     )
@@ -167,13 +182,14 @@ class DeletionOperatorMixin:
         root_fields={"product"},
         supported_policies=_STRUCTURAL_POLICIES,
         supported_sources=_DETERMINISTIC_SOURCES,
-        hallucination_types={HallucinationType.CONTRADICTION, HallucinationType.REASONING_ERROR},
+        hallucination_types={
+            HallucinationType.CONTRADICTION,
+            HallucinationType.REASONING_ERROR,
+        },
         edit_subtypes={EditErrorSubtype.PRODUCT_CONSTRUCTION},
         required_capabilities=_STRUCTURAL_CAPABILITY,
     )
-    def perturb_over_deletion(
-        self, context: PerturbationContext[Any]
-    ) -> CandidatePool:
+    def perturb_over_deletion(self, context: PerturbationContext[Any]) -> CandidatePool:
         return self._deletion_candidate_pool(context)
 
     @operator(
@@ -182,7 +198,10 @@ class DeletionOperatorMixin:
         root_fields={"remove_group_step1", "remove_group_step2"},
         supported_policies=_STRUCTURAL_POLICIES,
         supported_sources=_DETERMINISTIC_SOURCES,
-        hallucination_types={HallucinationType.CONTRADICTION, HallucinationType.REASONING_ERROR},
+        hallucination_types={
+            HallucinationType.CONTRADICTION,
+            HallucinationType.REASONING_ERROR,
+        },
         edit_subtypes={EditErrorSubtype.REMOVE_OR_LEAVING_GROUP_IDENTIFICATION},
         required_capabilities=_STRUCTURAL_CAPABILITY,
     )
@@ -197,7 +216,10 @@ class DeletionOperatorMixin:
         root_fields={"product"},
         supported_policies={PropagationPolicy.FULL_CF},
         supported_sources=_DETERMINISTIC_SOURCES,
-        hallucination_types={HallucinationType.CONTRADICTION, HallucinationType.REASONING_ERROR},
+        hallucination_types={
+            HallucinationType.CONTRADICTION,
+            HallucinationType.REASONING_ERROR,
+        },
         edit_subtypes={EditErrorSubtype.PRODUCT_CONSTRUCTION},
         required_capabilities=_STRUCTURAL_CAPABILITY,
     )
@@ -227,8 +249,14 @@ class DeletionOperatorMixin:
         root_fields={"remove_heavy", "source_heavy", "product_heavy", "heavy_delta"},
         supported_policies=_CLAIM_POLICIES,
         supported_sources=_DETERMINISTIC_SOURCES,
-        hallucination_types={HallucinationType.CONTRADICTION, HallucinationType.REASONING_ERROR},
-        edit_subtypes={EditErrorSubtype.HEAVY_ATOM_COUNT, EditErrorSubtype.HEAVY_ATOM_ARITHMETIC},
+        hallucination_types={
+            HallucinationType.CONTRADICTION,
+            HallucinationType.REASONING_ERROR,
+        },
+        edit_subtypes={
+            EditErrorSubtype.HEAVY_ATOM_COUNT,
+            EditErrorSubtype.HEAVY_ATOM_ARITHMETIC,
+        },
         required_capabilities=_CLAIM_CAPABILITY,
     )
     def perturb_heavy_count_claim(
@@ -242,7 +270,10 @@ class DeletionOperatorMixin:
         root_fields={"source_rings", "product_rings", "ring_delta"},
         supported_policies=_CLAIM_POLICIES,
         supported_sources=_DETERMINISTIC_SOURCES,
-        hallucination_types={HallucinationType.CONTRADICTION, HallucinationType.REASONING_ERROR},
+        hallucination_types={
+            HallucinationType.CONTRADICTION,
+            HallucinationType.REASONING_ERROR,
+        },
         edit_subtypes={EditErrorSubtype.RING_COUNT, EditErrorSubtype.RING_ARITHMETIC},
         required_capabilities=_CLAIM_CAPABILITY,
     )
@@ -257,7 +288,10 @@ class DeletionOperatorMixin:
         root_fields={"final_answer"},
         supported_policies={PropagationPolicy.TERMINAL},
         supported_sources=_DETERMINISTIC_SOURCES,
-        hallucination_types={HallucinationType.CONTRADICTION, HallucinationType.REASONING_ERROR},
+        hallucination_types={
+            HallucinationType.CONTRADICTION,
+            HallucinationType.REASONING_ERROR,
+        },
         edit_subtypes={EditErrorSubtype.FINAL_ANSWER_IDENTITY},
         required_capabilities={OperatorCapability.TERMINAL_PERTURBATION},
     )
@@ -364,7 +398,9 @@ class DeletionCandidateEngine(CandidateEngine[Any]):
             raise RuntimeError("DeletionCandidateEngine is not bound")
         return self._owner
 
-    def enumerate_root_patches(self, context: PerturbationContext[Any]) -> CandidatePool:
+    def enumerate_root_patches(
+        self, context: PerturbationContext[Any]
+    ) -> CandidatePool:
         return self._dispatcher.invoke(self._require_owner(), context)
 
     def select_root_patch(
@@ -378,9 +414,7 @@ class DeletionCandidateEngine(CandidateEngine[Any]):
             raise TypeError("pool must be CandidatePool")
         if not pool.candidates:
             raise ValueError("cannot select from an empty Deletion candidate pool")
-        minimum = (
-            self._dispatcher.operators_config.candidate_generation.candidates_per_recipe_min
-        )
+        minimum = self._dispatcher.operators_config.candidate_generation.candidates_per_recipe_min
         if (
             len(pool.candidates) < minimum
             or "INSUFFICIENT_CANDIDATES" in pool.rejection_codes
@@ -542,18 +576,24 @@ def _source_cut_candidates(request: CandidateRequest) -> tuple[_CutCandidate, ..
             if len(boundaries) != 1:
                 continue
             boundary = boundaries[0]
-            if boundary.GetOtherAtomIdx(
-                boundary.GetBeginAtomIdx()
-                if boundary.GetBeginAtomIdx() in occurrence
-                else boundary.GetEndAtomIdx()
-            ) != anchor_index:
+            if (
+                boundary.GetOtherAtomIdx(
+                    boundary.GetBeginAtomIdx()
+                    if boundary.GetBeginAtomIdx() in occurrence
+                    else boundary.GetEndAtomIdx()
+                )
+                != anchor_index
+            ):
                 continue
             fragment = _fragment_smiles(molecule, occurrence)
             bond_type = _BOND_TYPE_NAMES.get(bond.GetBondType())
             if fragment is None or bond_type is None:
                 continue
             maps = tuple(
-                sorted(molecule.GetAtomWithIdx(index).GetAtomMapNum() for index in occurrence)
+                sorted(
+                    molecule.GetAtomWithIdx(index).GetAtomMapNum()
+                    for index in occurrence
+                )
             )
             anchor_map = molecule.GetAtomWithIdx(anchor_index).GetAtomMapNum()
             provisional = _CutCandidate(
@@ -638,21 +678,11 @@ def _structural_cut_candidates(request: CandidateRequest) -> tuple[_CutCandidate
             )
         )
     elif operator_id in {DELETION_OPERATOR_IDS[2], DELETION_OPERATOR_IDS[4]}:
-        selected = tuple(
-            cut
-            for cut in cuts
-            if _candidate_map_set(cut) < truth_removed
-        )
+        selected = tuple(cut for cut in cuts if _candidate_map_set(cut) < truth_removed)
     elif operator_id in {DELETION_OPERATOR_IDS[3], DELETION_OPERATOR_IDS[5]}:
-        selected = tuple(
-            cut
-            for cut in cuts
-            if _candidate_map_set(cut) > truth_removed
-        )
+        selected = tuple(cut for cut in cuts if _candidate_map_set(cut) > truth_removed)
     elif operator_id == DELETION_OPERATOR_IDS[6]:
-        selected = tuple(
-            cut for cut in cuts if _matched_fragment(cut, truth_fragment)
-        )
+        selected = tuple(cut for cut in cuts if _matched_fragment(cut, truth_fragment))
     elif operator_id == DELETION_OPERATOR_IDS[7]:
         selected = cuts
     else:
@@ -854,18 +884,19 @@ def _enumerate_deletion_proposals(
         # delete-with-replacement origins inside TERMINAL_PERTURBATION policy.
         for cut in _source_cut_candidates(request):
             try:
-                yield _proposal(request, source, value=cut.product_smiles)
+                yield _proposal(
+                    request,
+                    source,
+                    value=cut.product_smiles,
+                    product=cut.product_smiles,
+                )
             except ValueError:
                 continue
         return
 
     for cut in _structural_cut_candidates(request):
         action = _deletion_action(cut)
-        value = (
-            cut.product_smiles
-            if root == "product"
-            else cut.fragment_smiles
-        )
+        value = cut.product_smiles if root == "product" else cut.fragment_smiles
         try:
             yield _proposal(
                 request,

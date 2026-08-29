@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T00:32:55+08:00",
+  "updated_at": "2026-08-30T01:18:46+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 28,
+    "not_started": 27,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 24,
-    "last_completed_task": "T024"
+    "completed": 25,
+    "last_completed_task": "T025"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -600,6 +600,22 @@
       "known_gaps": ["真实 Addition 的 PARTIAL nl_formal_internal_relation bucket 在当前 schema/operator root 下不可形成非平凡连通传播；scheduler 按设计返回显式 BACKFILL_REQUIRED，不伪造 exact quota"],
       "follow_up_actions": ["T025 使用真实 deterministic candidates、T022 propagation 与本 builder 冻结三类 golden bundles", "T039/T040 后续把 draft 扩展为有 spans/token labels/natural prose 的最终 records"],
       "assessment_summary": "T024 四项验收全部满足；24 项专项和 140 项 operator/propagation/rendering/bundle 关联回归在本地与远端 main 均通过。独立对抗复审发现的稳定排序 tie、fallback 伪造、GraphDelta ledger、pair/control tamper 与 quota bucket 重叠问题全部闭环；ruff、format 与 compileall 通过。"
+    },
+    {
+      "task_id": "T025",
+      "assessed_at": "2026-08-30T01:18:46+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["6.3 每个 origin 的 8-record bundle", "6.4 数量不变量", "7.1 通用候选难度要求", "8.2 CandidateEngine", "8.4 PropagationEngine", "8.9 随机性和可复现性", "12.3 H/N phenotype invariants", "Phase 2：Deterministic perturbation pipeline"],
+      "acceptance_criteria_results": [
+        {"criterion": "24 records 全部通过 chemistry、propagation 和 bundle invariants", "passed": true, "evidence": ["Pilot/tests/golden/t025_deterministic_golden_bundles.json", "Pilot/Dataset/reports/t025_golden_bundle_validation.json", "远端 T025+T024 回归：36 passed"]},
+        {"criterion": "输出可由同 seed byte-identical 重建", "passed": true, "evidence": ["Pilot/tests/integration/test_deterministic_golden_bundles.py 的双构建 byte-identical 与 frozen artifact 检查", "本地 T025 专项：12 passed"]}
+      ],
+      "strengths": ["add/delete/substitute 三个真实 origin 均走 decorated operator、CandidateEngine、T022 propagation 和 T024 bundle builder 的生产路径", "精确冻结 3×8 records、四 policy truth table、quota bucket、patch/action replay、chemistry similarity 与 propagation changed-set 证据", "global seed、dataset version、origin/operator/policy/variant 的 SHA256 派生可独立重算，typed corpus 反向校验每条 recipe seed", "validation evidence 由 immutable typed executions 内部派生，拒绝 caller 注入、嵌套修改和伪造 FULL/PARTIAL 状态"],
+      "known_gaps": [],
+      "follow_up_actions": ["T026 开始 split-before-donor 阶段并冻结 150-origin audit artifact"],
+      "assessment_summary": "T025 两项验收全部满足；24 records 的 chemistry、propagation、bundle、pair、quota 和 provenance gates 全部通过。同 seed byte-identical 重建、本地 12 项专项、远端 T025+T024 36 项联合回归、terminal operator 10 项回归、ruff/format/compileall/JSON/diff 与两轮独立只读复审均通过。"
     }
   ],
   "tasks": [
@@ -801,7 +817,7 @@
       "description": "选择至少一个 add、delete、substitute origin，在无 LLM 条件下各生成完整 8-record bundle。",
       "deliverables": ["3 个 golden origin bundles", "validation reports"],
       "acceptance_criteria": ["24 records 全部通过 chemistry、propagation 和 bundle invariants", "输出可由同 seed byte-identical 重建"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T00:35:51+08:00", "completed_at": "2026-08-30T01:18:46+08:00", "completion_notes": "选择真实 add mol_edit.add_v2.0022、delete mol_edit.delete_v2.0016、substitute mol_edit.substitute_v2.0029 origins，通过实际 decorated operator member、CandidateEngine、T022 EditingPropagationEngine 与 T024 MatchedBundleBuilder 冻结三组 deterministic golden bundles。每组严格包含 STOP/PARTIAL/FULL_CF/TERMINAL 的 H/N pair，共 24 records；validation report 内含 chemistry sanitize/graph/action replay、Morgan terminal difficulty、propagation changed-set/connectivity/full-closure、quota bucket、pair/provenance 与 exact rendering 证据。seed 按 global_seed、dataset_version、origin、operator、policy、variant 的 NUL 分隔 SHA256 规则独立派生并由 typed corpus 反校验；同配置重建 byte-identical。", "evidence": ["Pilot/tests/golden/t025_deterministic_golden_bundles.json", "Pilot/Dataset/reports/t025_golden_bundle_validation.json", "Pilot/tests/integration/test_deterministic_golden_bundles.py", "本地 T025 专项：12 passed", "远端 T025+T024 联合回归：36 passed", "远端 terminal operator 回归：10 passed, 69 deselected", "独立 contract/adversarial reviews: APPROVE"], "files_changed": ["Pilot/molhallulens/builders/golden_bundles.py", "Pilot/molhallulens/perturbators/editing/deletion.py", "Pilot/molhallulens/perturbators/editing/substitution.py", "Pilot/tests/integration/test_deterministic_golden_bundles.py", "Pilot/tests/golden/t025_deterministic_golden_bundles.json", "Pilot/Dataset/reports/t025_golden_bundle_validation.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/integration/test_deterministic_golden_bundles.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/integration/test_deterministic_golden_bundles.py tests/unit/test_matched_bundles.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_deletion_operators.py tests/unit/test_substitution_operators.py -k terminal", "ruff check molhallulens/builders/golden_bundles.py molhallulens/perturbators/editing/deletion.py molhallulens/perturbators/editing/substitution.py tests/integration/test_deterministic_golden_bundles.py", "ruff format --check molhallulens/builders/golden_bundles.py molhallulens/perturbators/editing/deletion.py molhallulens/perturbators/editing/substitution.py tests/integration/test_deterministic_golden_bundles.py", "python -m compileall -q molhallulens tests", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T026", "phase": "3_split_and_donors", "title": "审计 150 origins 的 split 特征",
