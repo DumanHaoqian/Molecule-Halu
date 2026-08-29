@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T01:47:23+08:00",
+  "updated_at": "2026-08-30T01:53:43+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 25,
+    "not_started": 24,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 27,
-    "last_completed_task": "T027"
+    "completed": 28,
+    "last_completed_task": "T028"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -648,6 +648,24 @@
       "known_gaps": [],
       "follow_up_actions": ["T028 将每个完整 leakage group 作为不可拆原子求解 100/25/25 split"],
       "assessment_summary": "T027 两项验收全部满足。150 origins 被确定性分为 142 个穷尽互斥 groups；7 个非 singleton 覆盖 15 origins，None scaffold 不误并，9 条 trigger edges 带完整 reasons。T026+T027 远端 16 项、chemistry+T027 远端 32 项以及本地 ruff/format/compileall/JSON/diff 全部通过。"
+    },
+    {
+      "task_id": "T028",
+      "assessed_at": "2026-08-30T01:53:43+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["11.1 冻结 split 数量", "11.2 Leakage group", "11.3 正确执行顺序", "11.4 分层特征", "Phase 3：Split 和 donor pools"],
+      "acceptance_criteria_results": [
+        {"criterion": "origin 总数严格 100/25/25", "passed": true, "evidence": ["Pilot/Dataset/reports/split_balance_report.json：train=100, validation=25, test=25", "远端 T028：13 passed"]},
+        {"criterion": "leakage group 不拆", "passed": true, "evidence": ["142 groups 的 split_count 全部为 1；split group violation count=0", "T026–T028 远端联合：29 passed"]},
+        {"criterion": "subtask 目标满足或偏差有证明和记录", "passed": true, "evidence": ["add 34/8/8、delete 33/9/8、substitute 33/8/9 全部 exact，deviation=0", "DP feasibility proof 标记 exact reachable；synthetic unreachable 才进入 ±1 fallback"]},
+        {"criterion": "seed 由 dataset version 的 SHA256 派生", "passed": true, "evidence": ["pilot_v1 frozen split seed=8347206628578381721 的独立测试向量", "禁止 Python hash()/未固定 random 的 deterministic ordering tests"]}
+      ],
+      "strengths": ["纯 Python DP 把完整 leakage group 当作不可拆原子，先证明 exact target 可达，再进行稳定回溯", "只有保存 exact-unreachable proof 后才开放逐 cell ±1 fallback，且 split totals 始终硬锁 100/25/25", "hard counts 保持不变的同 subtask-vector group swap 将 soft strata objective 从 32100 降到 17000", "输入倒序和交错重排得到相同 assignment 与 report bytes"],
+      "known_gaps": [],
+      "follow_up_actions": ["T029 将 typed assignment 写成 immutable split_manifest.csv，并禁止后续 variant 二次 split"],
+      "assessment_summary": "T028 四项验收全部满足。真实 150 origins 精确分为 100/25/25，九个 subtask cells 全部 exact，142 leakage groups 零拆分；DP 记录 feasibility proof，±1 仅在合成不可达场景启用。专项 13 项、远端 T026–T028 联合 29 项与本地静态/格式/JSON 检查全部通过。"
     }
   ],
   "tasks": [
@@ -873,7 +891,7 @@
       "description": "用 MILP 或 constrained stratification 生成 100/25/25 origin split，并满足 subtask 配额或记录数学上必要的 ±1 偏差。",
       "deliverables": ["split solver", "split balance report"],
       "acceptance_criteria": ["origin 总数严格 100/25/25", "leakage group 不拆", "subtask 目标满足或偏差有证明和记录", "seed 由 dataset version 的 SHA256 派生"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T01:49:45+08:00", "completed_at": "2026-08-30T01:53:43+08:00", "completion_notes": "实现 deterministic pure-Python group-stratified split solver。直接消费并校验 T027 typed LeakageGroupAssignments，将 142 个 groups 作为不可拆 items；DP 先求解 frozen subtask matrix，真实 corpus exact reachable，得到 train/validation/test=100/25/25，add=34/8/8、delete=33/9/8、substitute=33/8/9，group split count=0。若 exact 不可达，只有在保存完整 infeasibility proof 后才枚举每 cell ±1 且总数仍严格不变；合成回归覆盖该路径。稳定 seed 由 dataset version 冻结派生；在不改变任何 hard counts 的前提下，确定性 group swap 改善 soft strata balance。输入倒序、交错后 assignment/report bytes 不变。", "evidence": ["Pilot/molhallulens/builders/splitter.py", "Pilot/Dataset/reports/split_balance_report.json", "Pilot/tests/unit/test_splitter.py", "Pilot/tests/integration/test_group_stratified_split.py", "T028 专项：13 passed（本地与远端）", "本地 T026/T027/T028：18 passed", "远端 T026–T028 全专项：29 passed", "ruff/format/compileall/JSON/diff passed"], "files_changed": ["Pilot/molhallulens/builders/splitter.py", "Pilot/molhallulens/builders/__init__.py", "Pilot/tests/unit/test_splitter.py", "Pilot/tests/integration/test_group_stratified_split.py", "Pilot/Dataset/reports/split_balance_report.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_splitter.py tests/integration/test_group_stratified_split.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_origin_audit.py tests/integration/test_origin_audit_corpus.py tests/unit/test_leakage_groups.py tests/integration/test_leakage_group_corpus.py tests/unit/test_splitter.py tests/integration/test_group_stratified_split.py", "ruff check molhallulens/builders/splitter.py molhallulens/builders/__init__.py tests/unit/test_splitter.py tests/integration/test_group_stratified_split.py", "ruff format --check molhallulens/builders/splitter.py molhallulens/builders/__init__.py tests/unit/test_splitter.py tests/integration/test_group_stratified_split.py", "python -m compileall -q molhallulens tests", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T029", "phase": "3_split_and_donors", "title": "冻结 split_manifest.csv",
