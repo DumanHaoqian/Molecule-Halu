@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T02:58:18+08:00",
+  "updated_at": "2026-08-30T03:09:03+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 16,
+    "not_started": 15,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 36,
-    "last_completed_task": "T036"
+    "completed": 37,
+    "last_completed_task": "T037"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -803,6 +803,24 @@
       "known_gaps": [],
       "follow_up_actions": ["T037 每次 LLM proposal attempt 通过 cache wrapper 获取结果", "T040 natural renderer 保存 render cache", "T044/T052 用 frozen mode 验证 byte-identical replay"],
       "assessment_summary": "T036 四项验收全部满足。canonical key 绑定 request、model catalog、prompt/schema/tools、operator 与 attempt；同请求命中单条 immutable entry，release/frozen miss 绝不调用 producer。accepted artifacts 内容定址并逐层检测篡改，所有 raw credential/header 在写盘前 fail closed。远端专项 8 项与 T031–T036 Poe 联测 74 项通过。"
+    },
+    {
+      "task_id": "T037",
+      "assessed_at": "2026-08-30T03:09:03+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["8.2 CandidateEngine", "8.3 ChemistryTools", "8.5 Tool loop hard limits", "8.10 Validate–retry–fallback", "Phase 4：LLM Agent candidate invention"],
+      "acceptance_criteria_results": [
+        {"criterion": "LLM 不是接受裁决者", "passed": true, "evidence": ["proposal schemas/source 无 accepted/label/correctness 字段", "每个 LLM proposal 必须经过 T032 evidence typing 与 T018 deterministic gate"]},
+        {"criterion": "重复、非法、等价候选被拒绝", "passed": true, "evidence": ["跨轮/跨源 proposal ID、candidate ID 与 canonical semantic dedup", "invalid SMILES/action/product、reference/symmetry equivalence 与 constraints reject ledgers"]},
+        {"criterion": "失败不放宽 chemistry gate 或改变 policy", "passed": true, "evidence": ["最多三轮复用同一 frozen request/model/operator/policy/root/constraints", "retry feedback 仅包含 reject codes；失败走预声明同 phenotype deterministic fallback 或 scheduler backfill"]},
+        {"criterion": "候选池不是 first-pass selection", "passed": true, "evidence": ["HYBRID 合并全部已验证来源后重新 rank/dedup", "FrozenCandidateSelector 要求 ranking 完整覆盖 pool，审计所有 considered candidates"]}
+      ],
+      "strengths": ["LLMAgentCandidateSource 同时兼容 T034 direct result 与 T036 cached wrapper，且不读取网络/key", "structural proposal 必须由 check_candidate_signature transcript 与本地 simulate_edit 重建 typed EditAction", "donor query 同时绑定 verified manifest、split、recipient origin，模型调用前拒绝 cross-split", "fallback ledger 明确 triggered/source/candidate IDs/reject codes/backfill requirement"],
+      "known_gaps": [],
+      "follow_up_actions": ["T038 对每个 structural operator/backend 统计 valid coverage、failure/reject codes 与 LLM material participation", "T024 scheduler 消费 empty/backfill ledger 而不放宽 operator quota"],
+      "assessment_summary": "T037 四项验收全部满足。LLM 仅生成未接受 proposals；三轮 retry 固定 request/model/phenotype 且只反馈拒绝码，所有候选经 T032/T018 gate、跨轮/跨源去重和完整池排序。失败只触发同 operator/policy/root 的预声明 deterministic fallback 或 scheduler backfill。远端专项 6 项、T018/T030/T031/T032/T034/T036/T037 关联 77 项通过。"
     }
   ],
   "tasks": [
@@ -1100,7 +1118,7 @@
       "description": "每次请求 3–5 candidates，确定性验证；最多三轮并只反馈 reject codes，随后同 phenotype deterministic fallback 或 scheduler backfill。",
       "deliverables": ["llm_agent_source.py", "hybrid_engine.py", "selector.py", "retry tests"],
       "acceptance_criteria": ["LLM 不是接受裁决者", "重复、非法、等价候选被拒绝", "失败不放宽 chemistry gate 或改变 policy", "候选池不是 first-pass selection"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T03:00:11+08:00", "completed_at": "2026-08-30T03:09:03+08:00", "completion_notes": "实现 proposal-only LLM source、HYBRID validate–retry–fallback engine 与完整池 selector。LLM response 无 accepted/label/correctness 权限；scalar proposals 保持 locally_valid/oracle_match=None，structural proposals 只有在 T034/T036 provenance 中存在严格 check_candidate_signature evidence 且 T032 本地 simulate_edit 可重建 typed EditAction 时才能进入 T018 gate。每轮固定同一 gpt-5.4-mini ProposalRequest/operator/policy/root/constraints，最多 3 次，反馈仅包含本地 reject codes；跨轮与 RULE/RDKIT/LLM 源间按 proposal/candidate/canonical semantics 去重。donors 强制绑定 T029 manifest、当前 split 与 recipient origin。三轮失败不放宽 chemistry/constraints/policy，只走预声明同 phenotype deterministic source；仍失败则结构化请求 scheduler backfill。selector 仅在合并全部已验证来源并重新 rank 后选择，ranking 必须完整覆盖 pool，绝不 first-pass 接受。", "evidence": ["Pilot/molhallulens/candidates/llm_agent_source.py", "Pilot/molhallulens/candidates/hybrid_engine.py", "Pilot/molhallulens/candidates/selector.py", "Pilot/molhallulens/candidates/__init__.py", "Pilot/tests/unit/test_hybrid_candidate_engine.py", "本地与远端 T037 专项：6 passed", "本地与远端 T018/T030/T031/T032/T034/T036/T037 关联：77 passed", "ruff/format/compileall/diff passed"], "files_changed": ["Pilot/molhallulens/candidates/llm_agent_source.py", "Pilot/molhallulens/candidates/hybrid_engine.py", "Pilot/molhallulens/candidates/selector.py", "Pilot/molhallulens/candidates/__init__.py", "Pilot/tests/unit/test_hybrid_candidate_engine.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_hybrid_candidate_engine.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_candidate_sources.py tests/unit/test_donor_pools.py tests/unit/test_poe_schemas.py tests/unit/test_chemistry_tools.py tests/unit/test_poe_clients.py tests/unit/test_poe_response_cache.py tests/unit/test_hybrid_candidate_engine.py", "ruff check molhallulens/candidates/__init__.py molhallulens/candidates/llm_agent_source.py molhallulens/candidates/hybrid_engine.py molhallulens/candidates/selector.py tests/unit/test_hybrid_candidate_engine.py", "ruff format --check molhallulens/candidates/__init__.py molhallulens/candidates/llm_agent_source.py molhallulens/candidates/hybrid_engine.py molhallulens/candidates/selector.py tests/unit/test_hybrid_candidate_engine.py", "python -m compileall -q molhallulens tests", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T038", "phase": "4_poe_candidate_agent", "title": "验证 structural operator 的候选覆盖率",
