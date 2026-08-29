@@ -926,6 +926,8 @@ def _remove_exact_occurrence(
     if anchor_index in occurrence:
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     query = _strict_replay_molecule(action.remove_fragment_smiles)
+    if len(Chem.GetMolFrags(query)) != 1:
+        raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     matched_sets = {
         frozenset(match)
         for match in source.GetSubstructMatches(
@@ -936,6 +938,12 @@ def _remove_exact_occurrence(
         )
     }
     if occurrence not in matched_sets or len(occurrence) != query.GetNumAtoms():
+        raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
+    induced_bond_count = sum(
+        bond.GetBeginAtomIdx() in occurrence and bond.GetEndAtomIdx() in occurrence
+        for bond in source.GetBonds()
+    )
+    if induced_bond_count != query.GetNumBonds():
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     boundary = []
     for atom_index in occurrence:

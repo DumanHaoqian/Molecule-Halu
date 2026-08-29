@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T21:19:32+08:00",
+  "updated_at": "2026-08-29T21:58:46+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 33,
+    "not_started": 32,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 19,
-    "last_completed_task": "T019"
+    "completed": 20,
+    "last_completed_task": "T020"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -514,6 +514,23 @@
       "known_gaps": [],
       "follow_up_actions": ["T020 复用同一 dispatcher/registry/T018 replay boundary 实现 Deletion operators", "T021 实现 Substitution operators", "T024 消费 underfilled pool 的显式 fallback/backfill 决策", "T037 实现 LLM candidate source"],
       "assessment_summary": "T019 三项验收全部满足；29 项专项、T017+T019 57 项组合回归、460 项全量、ruff、compileall、wheel、diff/secret scan 与独立 blocker review 通过。所有 11 个 Addition operators 均受 deterministic source、真实 graph replay、cap 与 underfill fail-closed contract 约束，未提前实现 T020+ deletion/substitution、propagation、renderer 或 scheduler。"
+    },
+    {
+      "task_id": "T020",
+      "assessed_at": "2026-08-29T21:58:46+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["4.4 Deletion DAG", "7.1 通用候选难度要求", "7.3 DeletionPerturbator 成员 operators", "5.5 Operator 成员方法和 registry", "8.2 CandidateEngine", "16.1 Unit tests", "Phase 2：Deterministic perturbation pipeline"],
+      "acceptance_criteria_results": [
+        {"criterion": "group boundary 由连接子图定义", "passed": true, "evidence": ["source atom-map induced connected component 枚举与 exact occurrence metadata", "disconnected query、非 induced query、零/多 boundary action tamper 回归"]},
+        {"criterion": "FULL_CF 真实切 bond 并处理 valence/H", "passed": true, "evidence": ["T018 replay_edit_action exact bond cut、retained anchor explicit-H/valence 恢复、sanitize/canonical/product identity 回归", "49 个普通 deprotection truth action 全部重放到 GT，候选 product 均不等价于 GT"]},
+        {"criterion": "异常 subtype 只启用适用 operators", "passed": true, "evidence": ["delete_v2.0081 的 8 个 structural operators 在 registry.resolve 前置返回 OPERATOR_CAPABILITY_FORBIDDEN", "cross-step/count/ring/terminal 仅用 CLAIM/TERMINAL capability；count 按 capability 移除 source-remove 与 -remove 值"]}
+      ],
+      "strengths": ["精确实现计划 7.3 的 12 个 Deletion operators，并统一走 registry→member→T018 replay boundary", "结构 occurrence 由 source graph connected induced single-boundary cut 生成，action 精确保留 occurrence maps、retained anchor 与 bond type", "replay boundary 额外拒绝 disconnected removal query 与少写内部键的非 induced query", "候选 cap 与 underfill selection fail-closed，不复制或放宽边界凑足池；49/1 subtype capability 覆盖完整"],
+      "known_gaps": [],
+      "follow_up_actions": ["T021 实现 Substitution operators，并显式处理 multi-anchor relocation provenance", "T022 消费真实 structural root patch 并实现 propagation", "T024 消费 underfilled pool 的 fallback/backfill 决策"],
+      "assessment_summary": "T020 三项验收全部满足；33 项专项、82 项 T017–T019 回归、493 项全量、ruff/format、compileall、wheel、diff/secret scan 与独立 blocker review 通过。真实结构候选严格受 connected induced single-boundary、action replay、GT exclusion、cap 与 underfill contract 约束；delete-with-replacement 未被伪装为普通 deletion。"
     }
   ],
   "tasks": [
@@ -675,7 +692,7 @@
       "description": "实现 occurrence、adjacent group、boundary、partial/over deletion、deprotection、cross-step、count 和 terminal operators。",
       "deliverables": ["perturbators/editing/deletion.py", "operator unit tests"],
       "acceptance_criteria": ["group boundary 由连接子图定义", "FULL_CF 真实切 bond 并处理 valence/H", "异常 subtype 只启用适用 operators"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T21:23:11+08:00", "completed_at": "2026-08-29T21:58:46+08:00", "completion_notes": "实现计划 7.3 的全部 12 个 Deletion operators：wrong occurrence/adjacent group、boundary contract/expand、partial/over deletion、matched remove group、alternative deprotection product、cross-step group identity、heavy/ring count 与 terminal。DeletionCandidateDispatcher 通过显式 registry.invoke 调用 member，再桥接 T018 deterministic source/replay boundary；RULE/RDKIT/HYBRID 可复现，LLM 前置拒绝。结构候选只从 source atom-map graph 的 connected induced single-boundary cuts 枚举，EditAction 精确保存 occurrence maps、retained source anchor 与 bond type；T018 replay 真实删原子/断 bond、恢复 retained anchor H/valence、sanitize 并排除 GT。replay boundary 同时加固为拒绝 disconnected removal query 和非 induced query。delete_v2.0081 的 8 个 structural operators 由 STRUCTURAL_DELETION capability 在 resolve 阶段统一拒绝，cross-step/count/ring/terminal 仅用允许的 CLAIM/TERMINAL；count 不按 ID 特判，而按 REMOVE_ONLY_DELTA_RULE capability 过滤 source-remove 与 -remove 普通 deletion 值。候选 max=10，非空低于 min=3 标记 INSUFFICIENT_CANDIDATES 并 selection fail closed；不伪造候选。未实现 T021+。", "evidence": ["Pilot/molhallulens/perturbators/editing/deletion.py", "Pilot/tests/unit/test_deletion_operators.py", "12 exact Deletion operator IDs", "49 ordinary deprotection truth actions replay to GT", "50-origin subtype/capability corpus coverage", "targeted pytest result: 33 passed", "T017-T019 regression: 82 passed", "full pytest result: 493 passed", "ruff and format clean", "compileall passed", "pip wheel build passed", "independent blocker-only review: APPROVE"], "files_changed": ["Pilot/molhallulens/candidates/core.py", "Pilot/molhallulens/perturbators/__init__.py", "Pilot/molhallulens/perturbators/editing/__init__.py", "Pilot/molhallulens/perturbators/editing/deletion.py", "Pilot/tests/unit/test_deletion_operators.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_deletion_operators.py", "PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_operator_registry.py tests/unit/test_candidate_sources.py tests/unit/test_addition_operators.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "ruff check molhallulens/candidates/core.py molhallulens/perturbators/__init__.py molhallulens/perturbators/editing/__init__.py molhallulens/perturbators/editing/deletion.py tests/unit/test_deletion_operators.py", "ruff format --check molhallulens/perturbators/editing/deletion.py tests/unit/test_deletion_operators.py", "PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t020-wheel -q", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T020 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T021", "phase": "2_deterministic_pipeline", "title": "实现 Substitution operators",

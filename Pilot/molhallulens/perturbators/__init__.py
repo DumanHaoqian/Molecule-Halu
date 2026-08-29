@@ -18,11 +18,15 @@ from .base import (
 )
 from .editing import (
     ADDITION_OPERATOR_IDS,
+    DELETION_OPERATOR_IDS,
     EDITING_REFERENCE_ENVELOPE_METADATA_KEY,
     AdditionCandidateDispatcher,
     AdditionCandidateEngine,
     AdditionOperatorMixin,
     AdditionPerturbator,
+    DeletionCandidateDispatcher,
+    DeletionCandidateEngine,
+    DeletionOperatorMixin,
     DeletionPerturbator,
     EditingReferenceEnvelope,
     MoleculeEditingPerturbator,
@@ -46,12 +50,16 @@ from .understanding import MoleculeUnderstandingPerturbator
 
 __all__ = [
     "ADDITION_OPERATOR_IDS",
+    "DELETION_OPERATOR_IDS",
     "EDITING_REFERENCE_ENVELOPE_METADATA_KEY",
     "AdditionCandidateDispatcher",
     "AdditionCandidateEngine",
     "AdditionOperatorMixin",
     "AdditionPerturbator",
     "CandidateEngine",
+    "DeletionCandidateDispatcher",
+    "DeletionCandidateEngine",
+    "DeletionOperatorMixin",
     "DeletionPerturbator",
     "EditingReferenceEnvelope",
     "FallbackDecision",
