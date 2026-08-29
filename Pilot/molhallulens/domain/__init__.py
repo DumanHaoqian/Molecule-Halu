@@ -30,6 +30,19 @@ from .errors import (
     ValidationIssue,
     ValidationReport,
 )
+from .editing_schemas import (
+    ADDITION_EDITING_SCHEMA,
+    ADDITION_STATE_SCHEMA,
+    DELETION_EDITING_SCHEMA,
+    DELETION_STATE_SCHEMA,
+    EDITING_SCHEMA_DEFINITIONS,
+    EDITING_STATE_SCHEMAS,
+    SUBSTITUTION_EDITING_SCHEMA,
+    SUBSTITUTION_STATE_SCHEMA,
+    EditingStateSchema,
+    editing_schema_for,
+    state_schema_for,
+)
 from .labels import CharAnnotation, CharSpan, ClaimLabel, TokenLabelSet, TokenizerFingerprint
 from .recipes import (
     CandidatePatch,
@@ -61,6 +74,8 @@ from .state_dag import (
 
 __all__ = [
     "ArtifactValidationError",
+    "ADDITION_EDITING_SCHEMA",
+    "ADDITION_STATE_SCHEMA",
     "BondTypeName",
     "BuildProvenance",
     "CandidatePatch",
@@ -73,9 +88,14 @@ __all__ = [
     "ClaimValue",
     "ComparatorKind",
     "DependencyType",
+    "DELETION_EDITING_SCHEMA",
+    "DELETION_STATE_SCHEMA",
     "DetectorInput",
     "DomainValidationError",
     "EditingSubtask",
+    "EditingStateSchema",
+    "EDITING_SCHEMA_DEFINITIONS",
+    "EDITING_STATE_SCHEMAS",
     "EditErrorSubtype",
     "EditAction",
     "EditKind",
@@ -99,6 +119,8 @@ __all__ = [
     "StateEdge",
     "StateNodeSpec",
     "StateSchema",
+    "SUBSTITUTION_EDITING_SCHEMA",
+    "SUBSTITUTION_STATE_SCHEMA",
     "TaskFamily",
     "TaskRecord",
     "TokenLabelSet",
@@ -112,4 +134,6 @@ __all__ = [
     "VariantLabel",
     "Visibility",
     "deep_freeze",
+    "editing_schema_for",
+    "state_schema_for",
 ]

@@ -1,0 +1,473 @@
+{
+  "normalized_subtask": "substitute",
+  "schema_id": "mol_edit.substitute",
+  "version": "1.0",
+  "nodes": [
+    {
+      "node_id": "source",
+      "value_type": "indexed_smiles",
+      "step_index": null,
+      "role": "evidence",
+      "visibility": "prompt_prefix",
+      "mutable": false,
+      "comparator": "exact",
+      "renderer_slot": null
+    },
+    {
+      "node_id": "instruction",
+      "value_type": "string",
+      "step_index": null,
+      "role": "evidence",
+      "visibility": "prompt_prefix",
+      "mutable": false,
+      "comparator": "exact",
+      "renderer_slot": null
+    },
+    {
+      "node_id": "oracle_gt",
+      "value_type": "smiles",
+      "step_index": null,
+      "role": "internal_truth",
+      "visibility": "build_only",
+      "mutable": false,
+      "comparator": "isomeric_graph_equivalence",
+      "renderer_slot": null
+    },
+    {
+      "node_id": "anchor_idx",
+      "value_type": "atom_index",
+      "step_index": 1,
+      "role": "primary_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "integer_equal",
+      "renderer_slot": "anchor.idx"
+    },
+    {
+      "node_id": "anchor_element",
+      "value_type": "element",
+      "step_index": 1,
+      "role": "primary_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "exact",
+      "renderer_slot": "anchor.element"
+    },
+    {
+      "node_id": "remove_group",
+      "value_type": "fragment",
+      "step_index": 1,
+      "role": "primary_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "fragment_graph_equivalence",
+      "renderer_slot": "remove_group.smiles"
+    },
+    {
+      "node_id": "add_fragment",
+      "value_type": "fragment",
+      "step_index": 1,
+      "role": "primary_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "fragment_graph_equivalence",
+      "renderer_slot": "add_fragment.smiles"
+    },
+    {
+      "node_id": "remove_heavy",
+      "value_type": "count",
+      "step_index": 2,
+      "role": "derived_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "integer_equal",
+      "renderer_slot": "remove_heavy"
+    },
+    {
+      "node_id": "add_heavy",
+      "value_type": "count",
+      "step_index": 3,
+      "role": "derived_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "integer_equal",
+      "renderer_slot": "add_heavy"
+    },
+    {
+      "node_id": "product",
+      "value_type": "smiles",
+      "step_index": 4,
+      "role": "derived_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "isomeric_graph_equivalence",
+      "renderer_slot": "product.smiles"
+    },
+    {
+      "node_id": "source_heavy",
+      "value_type": "count",
+      "step_index": 5,
+      "role": "derived_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "integer_equal",
+      "renderer_slot": "source_heavy"
+    },
+    {
+      "node_id": "product_heavy",
+      "value_type": "count",
+      "step_index": 5,
+      "role": "derived_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "integer_equal",
+      "renderer_slot": "product_heavy"
+    },
+    {
+      "node_id": "heavy_delta",
+      "value_type": "integer",
+      "step_index": 5,
+      "role": "derived_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "integer_equal",
+      "renderer_slot": "heavy_delta"
+    },
+    {
+      "node_id": "source_rings",
+      "value_type": "count",
+      "step_index": 6,
+      "role": "derived_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "integer_equal",
+      "renderer_slot": "source_rings"
+    },
+    {
+      "node_id": "product_rings",
+      "value_type": "count",
+      "step_index": 6,
+      "role": "derived_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "integer_equal",
+      "renderer_slot": "product_rings"
+    },
+    {
+      "node_id": "ring_delta",
+      "value_type": "integer",
+      "step_index": 6,
+      "role": "derived_claim",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "integer_equal",
+      "renderer_slot": "ring_delta"
+    },
+    {
+      "node_id": "final_answer",
+      "value_type": "smiles",
+      "step_index": null,
+      "role": "final_answer",
+      "visibility": "candidate_output",
+      "mutable": true,
+      "comparator": "isomeric_graph_equivalence",
+      "renderer_slot": "final_answer.smiles"
+    },
+    {
+      "node_id": "oracle_anchor_element",
+      "value_type": "element",
+      "step_index": null,
+      "role": "internal_truth",
+      "visibility": "build_only",
+      "mutable": false,
+      "comparator": "exact",
+      "renderer_slot": null
+    },
+    {
+      "node_id": "oracle_source_heavy",
+      "value_type": "count",
+      "step_index": null,
+      "role": "internal_truth",
+      "visibility": "build_only",
+      "mutable": false,
+      "comparator": "integer_equal",
+      "renderer_slot": null
+    },
+    {
+      "node_id": "oracle_product_heavy",
+      "value_type": "count",
+      "step_index": null,
+      "role": "internal_truth",
+      "visibility": "build_only",
+      "mutable": false,
+      "comparator": "integer_equal",
+      "renderer_slot": null
+    },
+    {
+      "node_id": "oracle_source_rings",
+      "value_type": "count",
+      "step_index": null,
+      "role": "internal_truth",
+      "visibility": "build_only",
+      "mutable": false,
+      "comparator": "integer_equal",
+      "renderer_slot": null
+    },
+    {
+      "node_id": "oracle_product_rings",
+      "value_type": "count",
+      "step_index": null,
+      "role": "internal_truth",
+      "visibility": "build_only",
+      "mutable": false,
+      "comparator": "integer_equal",
+      "renderer_slot": null
+    },
+    {
+      "node_id": "oracle_remove_heavy",
+      "value_type": "count",
+      "step_index": null,
+      "role": "internal_truth",
+      "visibility": "build_only",
+      "mutable": false,
+      "comparator": "integer_equal",
+      "renderer_slot": null
+    },
+    {
+      "node_id": "oracle_add_heavy",
+      "value_type": "count",
+      "step_index": null,
+      "role": "internal_truth",
+      "visibility": "build_only",
+      "mutable": false,
+      "comparator": "integer_equal",
+      "renderer_slot": null
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "source_to_anchor",
+      "source": "source",
+      "target": "anchor_idx",
+      "relation": "derived_from",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "instruction_to_anchor",
+      "source": "instruction",
+      "target": "anchor_idx",
+      "relation": "constrained_by_instruction",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "anchor_to_element",
+      "source": "anchor_idx",
+      "target": "anchor_element",
+      "relation": "derived_from",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "source_to_remove_group",
+      "source": "source",
+      "target": "remove_group",
+      "relation": "derived_from",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "instruction_to_remove_group",
+      "source": "instruction",
+      "target": "remove_group",
+      "relation": "constrained_by_instruction",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "instruction_to_add_fragment",
+      "source": "instruction",
+      "target": "add_fragment",
+      "relation": "constrained_by_instruction",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "source_to_add_fragment",
+      "source": "source",
+      "target": "add_fragment",
+      "relation": "derived_from",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "remove_group_to_heavy",
+      "source": "remove_group",
+      "target": "remove_heavy",
+      "relation": "count_of",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "add_fragment_to_heavy",
+      "source": "add_fragment",
+      "target": "add_heavy",
+      "relation": "count_of",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "source_to_product",
+      "source": "source",
+      "target": "product",
+      "relation": "edit_produces",
+      "mutable": true,
+      "renderer_slot": "relation.edit_produces"
+    },
+    {
+      "edge_id": "anchor_to_product",
+      "source": "anchor_idx",
+      "target": "product",
+      "relation": "attached_to",
+      "mutable": true,
+      "renderer_slot": "relation.anchor_product"
+    },
+    {
+      "edge_id": "remove_group_to_product",
+      "source": "remove_group",
+      "target": "product",
+      "relation": "removed_from",
+      "mutable": true,
+      "renderer_slot": "relation.remove_group_product"
+    },
+    {
+      "edge_id": "add_fragment_to_product",
+      "source": "add_fragment",
+      "target": "product",
+      "relation": "attached_to",
+      "mutable": true,
+      "renderer_slot": "relation.add_fragment_product"
+    },
+    {
+      "edge_id": "remove_heavy_to_delta",
+      "source": "remove_heavy",
+      "target": "heavy_delta",
+      "relation": "delta_of",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "add_heavy_to_delta",
+      "source": "add_heavy",
+      "target": "heavy_delta",
+      "relation": "delta_of",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "source_to_source_heavy",
+      "source": "source",
+      "target": "source_heavy",
+      "relation": "count_of",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "product_to_product_heavy",
+      "source": "product",
+      "target": "product_heavy",
+      "relation": "count_of",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "source_heavy_to_delta",
+      "source": "source_heavy",
+      "target": "heavy_delta",
+      "relation": "delta_of",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "product_heavy_to_delta",
+      "source": "product_heavy",
+      "target": "heavy_delta",
+      "relation": "delta_of",
+      "mutable": true,
+      "renderer_slot": "relation.heavy_delta"
+    },
+    {
+      "edge_id": "source_to_source_rings",
+      "source": "source",
+      "target": "source_rings",
+      "relation": "count_of",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "product_to_product_rings",
+      "source": "product",
+      "target": "product_rings",
+      "relation": "count_of",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "source_rings_to_delta",
+      "source": "source_rings",
+      "target": "ring_delta",
+      "relation": "delta_of",
+      "mutable": false,
+      "renderer_slot": null
+    },
+    {
+      "edge_id": "product_rings_to_delta",
+      "source": "product_rings",
+      "target": "ring_delta",
+      "relation": "delta_of",
+      "mutable": true,
+      "renderer_slot": "relation.ring_delta"
+    },
+    {
+      "edge_id": "product_to_final_answer",
+      "source": "product",
+      "target": "final_answer",
+      "relation": "molecularly_equivalent_to",
+      "mutable": true,
+      "renderer_slot": "relation.product_final"
+    }
+  ],
+  "record_field_bindings": {
+    "indexed_smiles": "source",
+    "instruction": "instruction",
+    "gt_smiles": "oracle_gt",
+    "answer_smiles": "final_answer"
+  },
+  "legacy_step_field_bindings": {
+    "step1_anchor_idx": "anchor_idx",
+    "step1_anchor_element": "anchor_element",
+    "step1_remove_group_smiles": "remove_group",
+    "step1_add_fragment_smiles": "add_fragment",
+    "step2_remove_heavy": "remove_heavy",
+    "step3_add_heavy": "add_heavy",
+    "step4_product_smiles": "product",
+    "step5_n_heavy_src": "source_heavy",
+    "step5_n_heavy_prod": "product_heavy",
+    "step5_heavy_delta": "heavy_delta",
+    "step6_n_rings_src": "source_rings",
+    "step6_n_rings_prod": "product_rings",
+    "step6_ring_delta": "ring_delta"
+  },
+  "rdkit_reference_bindings": {
+    "rdkit_elem_at_anchor": "oracle_anchor_element",
+    "rdkit_remove_heavy": "oracle_remove_heavy",
+    "rdkit_add_heavy": "oracle_add_heavy",
+    "rdkit_src_heavy": "oracle_source_heavy",
+    "rdkit_prod_heavy": "oracle_product_heavy",
+    "rdkit_src_rings": "oracle_source_rings",
+    "rdkit_prod_rings": "oracle_product_rings"
+  },
+  "semantic_state_groups": {},
+  "multi_mention_legacy_fields": {}
+}

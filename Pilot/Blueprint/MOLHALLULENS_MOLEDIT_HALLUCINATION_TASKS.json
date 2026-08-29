@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T15:18:37+08:00",
+  "updated_at": "2026-08-29T15:44:04+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 44,
+    "not_started": 43,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 8,
-    "last_completed_task": "T008"
+    "completed": 9,
+    "last_completed_task": "T009"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -294,6 +294,40 @@
       "known_gaps": [],
       "follow_up_actions": ["T009 仅消费 normalized EditingSubtask 选择三类 StateSchema，不复制 alias 表", "T015 在 strict input validator 中处理跨字段/ID 一致性，不把 opaque ID parsing 回填到 normalizer", "T016 factory 直接消费 normalized record，保持无任务名分支"],
       "assessment_summary": "T008 三项验收全部满足：权威 9 个精确 alias 稳定映射为三个 typed canonical triples，未知、模糊和歧义输入 fail closed；36 项专项、227 项全量测试、compileall、wheel build 与独立复核均通过。"
+    },
+    {
+      "task_id": "T009",
+      "assessed_at": "2026-08-29T15:44:04+08:00",
+      "assessed_by": "codex",
+      "scores": {
+        "requirements_alignment": 5,
+        "implementation_quality": 5,
+        "verification_coverage": 5,
+        "documentation_and_traceability": 5
+      },
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["4.1-4.5 State DAG 与三类 editing DAG", "5.7 数据对象与不可变 schema", "9.3 Editing-specific slot vocabulary", "15.1 建议代码目录", "16.1 Unit tests", "18. Phase 1", "21. 推荐立即开始的第一个实现批次"],
+      "acceptance_criteria_results": [
+        {
+          "criterion": "DAG 无环",
+          "passed": true,
+          "evidence": ["三个 StateSchema 构造期 cycle validation 通过", "关键 direct dependency、product ancestor、delta input 与 product→final edge 专项断言", "targeted pytest: 30 passed；full pytest: 247 passed"]
+        },
+        {
+          "criterion": "所有 legacy step fields 可映射",
+          "passed": true,
+          "evidence": ["三份真实 formal template 的 37 个 step_fields 精确集合映射", "全部 RDKit reference fields 映射到 BUILD_ONLY oracle nodes", "150 条 parsed_reference_state 均按绑定 ValueType 成功构造 ClaimValue"]
+        },
+        {
+          "criterion": "同一 semantic state 可关联多个 mention",
+          "passed": true,
+          "evidence": ["deletion remove_group semantic group 关联 step1/step2 两个 claim instances", "两个实例分别保留 mention_ids，并由单向 mutable MUST_EQUAL edge 约束", "50 条 deletion reference 的两处 legacy group 值一致"]
+        }
+      ],
+      "strengths": ["三类 schema 以 typed EditingSubtask registry 精确选择，registry、bindings 与 semantic groups 深层不可变且拒绝 StrEnum/string key 混淆", "candidate、prompt evidence 与 BUILD_ONLY oracle visibility 严格隔离；SMILES、fragment、count、integer delta comparator/type 与真实数据一致", "deletion 静态预置双 claim-instance，兼容 reference/candidate identical-schema contract 和后续 cross-step contradiction，不依赖运行时换 schema", "golden fixtures 冻结 node/edge 顺序、关系、renderer slots、legacy/RDKit bindings 和 semantic groups"],
+      "known_gaps": [],
+      "follow_up_actions": ["T010 在已冻结 schema 上实现确定性拓扑、closure、connected descendants 与 edge violation query", "T011 使用 bindings 构建 150 个 reference DAG 并生成 natural/FORMAL mention IDs", "T020 通过 remove_group_step1→step2 MUST_EQUAL 表达 cross-step contradiction"],
+      "assessment_summary": "T009 三项验收全部满足：三个无环 typed StateSchema、三份 golden fixture、37 个真实 legacy fields 与 150 条类型映射均通过；deletion shared semantic state 和 cross-step 约束可在 identical schema 内表达。30 项专项、247 项全量、compileall、wheel build 与独立 blocker-only 复核均通过。"
     }
   ],
   "tasks": [
@@ -367,7 +401,7 @@
       "description": "分别定义 addition、deletion、substitution 的节点、边、类型、visibility、comparator 和 renderer slot。",
       "deliverables": ["三个 editing StateSchema", "schema fixtures"],
       "acceptance_criteria": ["DAG 无环", "所有 legacy step fields 可映射", "同一 semantic state 可关联多个 mention"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T15:21:07+08:00", "completed_at": "2026-08-29T15:44:04+08:00", "completion_notes": "新增 addition、deletion、substitution 三类无环 typed StateSchema 及不可变 EditingStateSchema companion contract，冻结 node/edge 类型、visibility、comparator、renderer slots、legacy/RDKit bindings 和 exact-type registries。全部 37 个真实 template step fields 与 RDKit reference fields 完整映射，150 条 parsed_reference_state 均通过绑定类型构造。prompt evidence、candidate claims 与 BUILD_ONLY oracle truth 严格隔离；product/final/oracle 使用 graph equivalence，fragment 使用 fragment equivalence，可能为负的 delta 使用 INTEGER。deletion 为兼容 reference/candidate identical-schema contract，静态预置 step1/step2 remove-group claim instances，以 semantic_state_groups 聚合为同一语义状态并用单向 mutable MUST_EQUAL edge 约束，支持独立 mentions 与后续 cross-step contradiction。按任务边界未预置 attachment/bond nodes，相关 EditTruth/candidate/operator 语义留 T013/T018/T019-T021；edge violation 查询留 T010。", "evidence": ["Pilot/molhallulens/domain/editing_schemas.py", "Pilot/tests/fixtures/state_schemas/add.json", "Pilot/tests/fixtures/state_schemas/delete.json", "Pilot/tests/fixtures/state_schemas/substitute.json", "real formal template coverage: 37 legacy step fields plus all RDKit reference fields", "real process coverage: 150 records / 50 per subtask", "targeted pytest result: 30 passed", "full pytest result: 247 passed", "compileall passed", "pip wheel build passed", "independent blocker-only review: no blocker"], "files_changed": ["Pilot/molhallulens/domain/__init__.py", "Pilot/molhallulens/domain/editing_schemas.py", "Pilot/tests/unit/test_editing_state_schemas.py", "Pilot/tests/fixtures/state_schemas/add.json", "Pilot/tests/fixtures/state_schemas/delete.json", "Pilot/tests/fixtures/state_schemas/substitute.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_editing_state_schemas.py tests/unit/test_state_dag.py", "PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t009-wheel -q", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T009 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T010", "phase": "1_reference_dag", "title": "实现 DAG 基础算法",
