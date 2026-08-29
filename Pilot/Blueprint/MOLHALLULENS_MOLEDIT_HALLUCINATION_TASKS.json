@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T02:53:48+08:00",
+  "updated_at": "2026-08-30T02:58:18+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 17,
+    "not_started": 16,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 35,
-    "last_completed_task": "T035"
+    "completed": 36,
+    "last_completed_task": "T036"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -785,6 +785,24 @@
       "known_gaps": [],
       "follow_up_actions": ["T036 将 cache miss producer 通过 finite retry/usage ledger 包装", "T045–T052 build lifecycle 使用 pre/post balance 和 private ledger export"],
       "assessment_summary": "T035 四项验收全部满足。450 RPM/8 concurrency、250ms 基础退避、Retry-After 与三次有限重试合同已冻结；永久错误立即停止，transient 才重试。usage ledger 完整审计 provider IDs、model/transport、tokens/points 和失败轨迹，secret 递归脱敏；owner-only 权限无法落实时删除不安全文件并 fail closed。远端专项 21 项与 T031–T035 联测 66 项通过。"
+    },
+    {
+      "task_id": "T036",
+      "assessed_at": "2026-08-30T02:58:18+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["8.9 Poe compatibility 防线", "8.13 缓存、replay 与 provenance", "13. 随机性与可复现性", "Phase 4：LLM Agent candidate invention"],
+      "acceptance_criteria_results": [
+        {"criterion": "同请求 cache hit", "passed": true, "evidence": ["canonical request/model catalog/prompt/schema/tool/operator/attempt identity key", "重复请求只调用 producer 一次并返回同一 immutable entry"]},
+        {"criterion": "frozen replay 不发网络请求", "passed": true, "evidence": ["release_mode 强制 FROZEN_REPLAY", "hit 解码本地 T034 result；miss/corrupt/mismatch 直接 fail closed，producer call count 保持零"]},
+        {"criterion": "accepted artifact 有 content hash", "passed": true, "evidence": ["accepted namespace 以 canonical artifact content identity 定址", "path/payload/record identities 逐层校验并拒绝 tamper"]},
+        {"criterion": "raw secret/header 不落盘", "passed": true, "evidence": ["递归 forbidden key 与 bearer/basic credential rejection", "raw request/response、usage、tool/provenance 全部在写盘前扫描"]}
+      ],
+      "strengths": ["proposal、tool_runs、renders、accepted 四个 namespaces 都使用 canonical JSON 与不可变键", "temp file fsync 后用 hard-link create-once，竞争写入只接受相同内容", "cache hit 重建并重新验证 T031 request/response 与 T034 provenance，不直接信任 JSON", "cache artifact 保存 provider IDs、transport、tool transcript 与 usage，便于 release replay 审计"],
+      "known_gaps": [],
+      "follow_up_actions": ["T037 每次 LLM proposal attempt 通过 cache wrapper 获取结果", "T040 natural renderer 保存 render cache", "T044/T052 用 frozen mode 验证 byte-identical replay"],
+      "assessment_summary": "T036 四项验收全部满足。canonical key 绑定 request、model catalog、prompt/schema/tools、operator 与 attempt；同请求命中单条 immutable entry，release/frozen miss 绝不调用 producer。accepted artifacts 内容定址并逐层检测篡改，所有 raw credential/header 在写盘前 fail closed。远端专项 8 项与 T031–T036 Poe 联测 74 项通过。"
     }
   ],
   "tasks": [
@@ -1074,7 +1092,7 @@
       "description": "缓存 proposal、tool runs、renders 和 accepted artifacts，key 覆盖输入、模型 catalog、prompt/schema/tool/operator/attempt。",
       "deliverables": ["response_cache.py", "cache/replay tests"],
       "acceptance_criteria": ["同请求 cache hit", "frozen replay 不发网络请求", "accepted artifact 有 content hash", "raw secret/header 不落盘"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T02:55:47+08:00", "completed_at": "2026-08-30T02:58:18+08:00", "completion_notes": "实现 immutable content-addressed Poe response cache 与 frozen replay。proposal key 绑定 canonical T031 request、gpt-5.4-mini、verified model catalog identity、T034 prompt、proposal/tool schemas、T032 tool result identities、operator version 和 attempt index；同一合同只创建一次，cache hit 重建并重新验证 T031/T034 typed result。提供 proposals/tool_runs/renders/accepted 四个 namespaces，canonical JSON 通过临时文件 fsync + hard-link create-once 原子写入，竞争写入只接受同内容，任意 canonical/path/key/payload/record/artifact mismatch 均 fail closed。release_mode 强制 frozen replay，missing/corrupt/mismatched entry 绝不调用 producer。accepted artifact 保存任务所需 content identity；所有 raw request/response/usage/provenance/tool 数据在写盘前递归拒绝 header、API key、cookie、token、secret 与 bearer/basic credential。", "evidence": ["Pilot/molhallulens/providers/poe/response_cache.py", "Pilot/molhallulens/providers/poe/__init__.py", "Pilot/tests/unit/test_poe_response_cache.py", "本地与远端 T036 专项：8 passed", "本地与远端 T031–T036 Poe 联测：74 passed", "ruff/format/diff passed"], "files_changed": ["Pilot/molhallulens/providers/poe/response_cache.py", "Pilot/molhallulens/providers/poe/__init__.py", "Pilot/tests/unit/test_poe_response_cache.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_poe_response_cache.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_poe_schemas.py tests/unit/test_chemistry_tools.py tests/unit/test_poe_model_registry.py tests/unit/test_poe_clients.py tests/unit/test_poe_rate_limiter.py tests/unit/test_poe_usage_ledger.py tests/unit/test_poe_response_cache.py", "ruff check molhallulens/providers/poe/__init__.py molhallulens/providers/poe/response_cache.py tests/unit/test_poe_response_cache.py", "ruff format --check molhallulens/providers/poe/__init__.py molhallulens/providers/poe/response_cache.py tests/unit/test_poe_response_cache.py", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T037", "phase": "4_poe_candidate_agent", "title": "实现 LLM candidate agent 和 validate-retry-fallback",
