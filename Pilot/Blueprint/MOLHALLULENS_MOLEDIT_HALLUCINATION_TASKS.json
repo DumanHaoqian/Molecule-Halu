@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T14:28:36+08:00",
+  "updated_at": "2026-08-29T15:05:54+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 46,
+    "not_started": 45,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 6,
-    "last_completed_task": "T006"
+    "completed": 7,
+    "last_completed_task": "T007"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -231,6 +231,35 @@
       "known_gaps": [],
       "follow_up_actions": ["T042 使用 serialized offsets 验证 char-to-token 语义投影，排除 reasoning 内部同长度语义平移", "T051 对真实 ChemDFM-R resid_post 张量执行 hidden-state token 轴与 labels 长度一致断言"],
       "assessment_summary": "T006 三项验收均有直接专项证据；63 项专项、74 项专项加 domain 回归及 157 项全量测试通过。当前任务冻结 exact post-token 名称、同索引数组、segment-derived evaluation 与 ignore contract；按约束表不提前声称真实 hidden-state 或 char-to-token 语义对齐。"
+    },
+    {
+      "task_id": "T007",
+      "assessed_at": "2026-08-29T15:05:54+08:00",
+      "assessed_by": "codex",
+      "scores": {
+        "requirements_alignment": 5,
+        "implementation_quality": 5,
+        "verification_coverage": 5,
+        "documentation_and_traceability": 5
+      },
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["2.1-2.4 输入数据源与字段分层", "5.3/5.6/5.7 面向对象架构与 provenance", "12.1 InputRecordValidator", "15.1 建议代码目录", "18. Phase 1", "21. 推荐立即开始的第一个实现批次"],
+      "acceptance_criteria_results": [
+        {
+          "criterion": "150 个 origin 均唯一 join",
+          "passed": true,
+          "evidence": ["真实 Pilot adapter load：150 records / 150 unique anonymous_sample_id / 三类各 50", "反转及独立旋转 raw/process 数组后 join 结果完全一致", "mol_edit.add_v2.0295 的 legacy sample_id=299 与 7 条 answer_smiles drift 均保持按 anonymous ID 正确连接"]
+        },
+        {
+          "criterion": "缺失、重复和字段冲突产生结构化错误",
+          "passed": true,
+          "evidence": ["Pilot/tests/unit/test_chemcot_mol_edit_adapter.py", "raw/process/global duplicate、missing partner、五个 authoritative field conflict、template/manifest/schema/path/JSON 负向测试", "专项 pytest：34 passed；全量 pytest：191 passed", "两轮独立只读审查：APPROVE/no blocker"]
+        }
+      ],
+      "strengths": ["严格以 anonymous_sample_id 建立 raw/process 索引，重复 ID 在 dict 化前即 poison 并原子失败，不存在 last-write-wins 或数组位置依赖", "JoinedInputRecord 深层不可变且保留 raw/process/template 三个 namespace，T007 不越界执行 T008 normalization、T009 state mapping 或 RDKit 等价判断", "manifest identity、source count、template inventory 与五个 authoritative shared fields 全部 fail closed；GT 冲突证据仅保留类型、长度与 hash", "错误排序使用完整 evidence 的 canonical key；非有限 JSON、路径穿越、template symlink 和未来无关 template 均有对抗测试"],
+      "known_gaps": [],
+      "follow_up_actions": ["T008 在 joined pilot_subtask 之上实现唯一显式 normalization registry", "T009 将 template inventories 映射为三类具体 StateSchema", "T011/T012 执行 DAG round-trip 与 RDKit graph equivalence；不得把 answer_smiles 字符串差异误判为 T007 join 冲突"],
+      "assessment_summary": "T007 两项验收全部满足：真实数据得到 150 个唯一、确定性排序的 ID join；34 项专项和 191 项全量测试覆盖缺失、重复、冲突、schema、非有限数与路径边界，两轮独立复审均无剩余 blocker。"
     }
   ],
   "tasks": [
@@ -288,7 +317,7 @@
       "description": "按 anonymous_sample_id 连接 raw、process 和 template 数据，不依赖数组位置。",
       "deliverables": ["adapters/base.py", "adapters/chemcot_mol_edit.py"],
       "acceptance_criteria": ["150 个 origin 均唯一 join", "缺失、重复和字段冲突产生结构化错误"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T14:38:58+08:00", "completed_at": "2026-08-29T15:05:54+08:00", "completion_notes": "实现 ChemCoT molecule-editing 输入 adapter：由 active benchmark manifest 驱动读取 raw/process shard，以 anonymous_sample_id 建立确定性索引并在重复值进入 dict 前 fail closed；formal template 按 manifest identity 附着，不要求虚构 150 份 template。JoinedInputRecord 深层不可变并保留三个来源 namespace，五个 authoritative shared fields 必须精确一致。loader 聚合稳定排序的 INPUT_RECORD fatal issues，覆盖缺失/重复/字段冲突、count/schema/inventory、重复 JSON key、非有限 JSON 数、路径穿越和 template symlink；合法无关 template 被隔离。未提前执行 T008 normalization、T009 state mapping、T011/T012 RDKit 语义或 T014 subtype 特判。", "evidence": ["Pilot/molhallulens/adapters/base.py", "Pilot/molhallulens/adapters/chemcot_mol_edit.py", "Pilot/tests/unit/test_chemcot_mol_edit_adapter.py", "真实 Pilot load：150 records、150 unique anonymous_sample_id、add/delete/substitute 各 50", "targeted pytest result: 34 passed", "full pytest result: 191 passed", "two independent read-only reviews: APPROVE/no blocker"], "files_changed": ["Pilot/molhallulens/adapters/__init__.py", "Pilot/molhallulens/adapters/base.py", "Pilot/molhallulens/adapters/chemcot_mol_edit.py", "Pilot/tests/unit/test_chemcot_mol_edit_adapter.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_chemcot_mol_edit_adapter.py", "PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T007 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T008", "phase": "1_reference_dag", "title": "实现 subtask normalization",
