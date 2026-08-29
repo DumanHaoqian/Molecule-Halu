@@ -140,7 +140,9 @@ def _canonical_smiles(molecule: Chem.Mol, *, source_value: str) -> str:
     return canonical
 
 
-def _fragment_sort_key(molecule: Chem.Mol, *, source_value: str) -> tuple[int, int, str]:
+def _fragment_sort_key(
+    molecule: Chem.Mol, *, source_value: str
+) -> tuple[int, int, str]:
     canonical = _canonical_smiles(molecule, source_value=source_value)
     contains_carbon = any(atom.GetAtomicNum() == 6 for atom in molecule.GetAtoms())
     return (-molecule.GetNumHeavyAtoms(), -int(contains_carbon), canonical)
@@ -153,9 +155,7 @@ def _prepared_molecule(
     if type(fragment_policy) is not FragmentPolicy:
         raise TypeError("fragment_policy must be a FragmentPolicy")
     full_molecule = _without_atom_maps(_parse_smiles_strict(smiles))
-    fragments = tuple(
-        Chem.GetMolFrags(full_molecule, asMols=True, sanitizeFrags=True)
-    )
+    fragments = tuple(Chem.GetMolFrags(full_molecule, asMols=True, sanitizeFrags=True))
     if not fragments:
         raise _error(
             MoleculeErrorCode.CANONICALIZATION_FAILED,
@@ -210,9 +210,7 @@ def select_main_fragment(smiles: str) -> MainFragment:
     return MainFragment(
         canonical_smiles=_canonical_smiles(molecule, source_value=smiles),
         heavy_atom_count=molecule.GetNumHeavyAtoms(),
-        contains_carbon=any(
-            atom.GetAtomicNum() == 6 for atom in molecule.GetAtoms()
-        ),
+        contains_carbon=any(atom.GetAtomicNum() == 6 for atom in molecule.GetAtoms()),
         input_fragment_count=input_fragment_count,
     )
 
@@ -268,6 +266,36 @@ def murcko_scaffold_smiles(
     return _canonical_smiles(scaffold, source_value=smiles)
 
 
+def generic_murcko_scaffold_smiles(
+    smiles: str,
+    *,
+    fragment_policy: FragmentPolicy,
+) -> str | None:
+    """Return the atom/bond-generic Bemis-Murcko identity for leakage audit.
+
+    This is deliberately a separate identity from :func:`murcko_scaffold_smiles`:
+    RDKit's ``MakeScaffoldGeneric`` maps scaffold atoms to carbon and bonds to
+    single bonds, allowing T027 to conservatively group close scaffold analogues.
+    Acyclic molecules remain ``None`` and callers must never group that sentinel.
+    """
+
+    molecule, _ = _prepared_molecule(smiles, fragment_policy)
+    scaffold = MurckoScaffold.GetScaffoldForMol(molecule)
+    if scaffold.GetNumHeavyAtoms() == 0:
+        return None
+    try:
+        generic = MurckoScaffold.MakeScaffoldGeneric(scaffold)
+        Chem.SanitizeMol(generic)
+    except (RuntimeError, ValueError) as error:
+        raise _error(
+            MoleculeErrorCode.CANONICALIZATION_FAILED,
+            "generic Bemis-Murcko canonicalization failed",
+            smiles,
+        ) from error
+    generic = _without_atom_maps(generic)
+    return _canonical_smiles(generic, source_value=smiles)
+
+
 __all__ = [
     "FragmentPolicy",
     "MainFragment",
@@ -277,6 +305,7 @@ __all__ = [
     "canonicalize_smiles",
     "compute_descriptors",
     "fragment_graph_equivalent",
+    "generic_murcko_scaffold_smiles",
     "isomeric_graph_equivalent",
     "murcko_scaffold_smiles",
     "select_main_fragment",

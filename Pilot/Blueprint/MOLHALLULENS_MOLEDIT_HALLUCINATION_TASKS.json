@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T01:40:31+08:00",
+  "updated_at": "2026-08-30T01:47:23+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 26,
+    "not_started": 25,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 26,
-    "last_completed_task": "T026"
+    "completed": 27,
+    "last_completed_task": "T027"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -632,6 +632,22 @@
       "known_gaps": [],
       "follow_up_actions": ["T027 在 source、GT、exact Murcko 与 generic Murcko identities 上构建稳定 union-find leakage groups"],
       "assessment_summary": "T026 两项验收全部满足。150/150 origins 通过 strict validation 并具备 identity、scaffold、分层、缺失来源和 operator eligibility 字段；canonical source 146/3组/7条、GT 150 unique、Murcko 143/6组/13条均冻结。专项 8 项、远端依赖回归 80 项及本地 ruff/format/compileall/JSON/diff 全部通过。"
+    },
+    {
+      "task_id": "T027",
+      "assessed_at": "2026-08-30T01:47:23+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["11.2 Leakage group", "11.3 正确执行顺序", "11.4 分层特征", "Phase 3：Split 和 donor pools"],
+      "acceptance_criteria_results": [
+        {"criterion": "任何 leakage group 不可被拆分", "passed": true, "evidence": ["Pilot/Dataset/reports/leakage_group_assignments.json：150 origins→142 exhaustive disjoint groups", "7 non-singleton groups/15 origins，9 trigger edges 保留逐 reason evidence", "远端 T026+T027：16 passed；chemistry+T027：32 passed"]},
+        {"criterion": "group ID 稳定且可由输入重算", "passed": true, "evidence": ["version+sorted members 的稳定 full-length group identity contract", "输入、union、edge 顺序翻转后的 assignment 与 artifact byte stability 回归"]}
+      ],
+      "strengths": ["union-find 同时合并 canonical source、canonical GT、exact Murcko 与 generic Murcko，并保存每条触发边的 reason/identity evidence", "无环分子的 None scaffold 明确从 scaffold bucket 排除，不会误合并所有 acyclic origins", "传递闭包、成员穷尽互斥、stable group identity 与输入/union 顺序不变性均由 typed constructors 和测试双重约束", "新增 generic Murcko topology 后识别 exact scaffold 之外的一组跨 subtask near-duplicate"],
+      "known_gaps": [],
+      "follow_up_actions": ["T028 将每个完整 leakage group 作为不可拆原子求解 100/25/25 split"],
+      "assessment_summary": "T027 两项验收全部满足。150 origins 被确定性分为 142 个穷尽互斥 groups；7 个非 singleton 覆盖 15 origins，None scaffold 不误并，9 条 trigger edges 带完整 reasons。T026+T027 远端 16 项、chemistry+T027 远端 32 项以及本地 ruff/format/compileall/JSON/diff 全部通过。"
     }
   ],
   "tasks": [
@@ -849,7 +865,7 @@
       "description": "按 canonical source、canonical GT、相同或近重复 Murcko scaffold 合并 origins。",
       "deliverables": ["leakage group assignment", "grouping tests"],
       "acceptance_criteria": ["任何 leakage group 不可被拆分", "group ID 稳定且可由输入重算"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T01:43:19+08:00", "completed_at": "2026-08-30T01:47:23+08:00", "completion_notes": "实现 deterministic typed union-find leakage grouping。对 T026 的 150 个 strict audit origins，分别按 canonical source、canonical GT、LARGEST_HEAVY Bemis–Murcko 和 generic Murcko topology 生成 trigger edges，再取传递闭包；None scaffold 从 scaffold bucket 排除。结果为 142 个 exhaustive/disjoint groups，其中 135 singleton，7 non-singleton 覆盖 15 origins；exact source 3/7、exact scaffold 6/13 均保留，并识别 add_v2.0193 与 substitute_v2.0101 的 generic near-scaffold group。每组 ID 由 dataset version 与稳定排序成员完整确定，每条 edge 保存全部 trigger reason，输入及 union 顺序翻转后 assignment/report bytes 不变。", "evidence": ["Pilot/molhallulens/builders/leakage_groups.py", "Pilot/molhallulens/chemistry/structures.py", "Pilot/Dataset/reports/leakage_group_assignments.json", "Pilot/tests/unit/test_leakage_groups.py", "Pilot/tests/integration/test_leakage_group_corpus.py", "本地专项：8 passed", "本地 chemistry+T027：34 passed", "本地 T026+T027：16 passed", "远端 T026+T027：16 passed", "远端 chemistry+T027：32 passed", "ruff/format/compileall/JSON/diff passed"], "files_changed": ["Pilot/molhallulens/builders/leakage_groups.py", "Pilot/molhallulens/builders/__init__.py", "Pilot/molhallulens/chemistry/structures.py", "Pilot/molhallulens/chemistry/__init__.py", "Pilot/tests/unit/test_leakage_groups.py", "Pilot/tests/integration/test_leakage_group_corpus.py", "Pilot/Dataset/reports/leakage_group_assignments.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_origin_audit.py tests/integration/test_origin_audit_corpus.py tests/unit/test_leakage_groups.py tests/integration/test_leakage_group_corpus.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_chemistry_structures.py tests/unit/test_leakage_groups.py tests/integration/test_leakage_group_corpus.py", "ruff check molhallulens/builders/leakage_groups.py molhallulens/builders/__init__.py molhallulens/chemistry/structures.py molhallulens/chemistry/__init__.py tests/unit/test_leakage_groups.py tests/integration/test_leakage_group_corpus.py --ignore FURB192", "ruff format --check molhallulens/builders/leakage_groups.py molhallulens/builders/__init__.py molhallulens/chemistry/structures.py molhallulens/chemistry/__init__.py tests/unit/test_leakage_groups.py tests/integration/test_leakage_group_corpus.py", "python -m compileall -q molhallulens tests", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T028", "phase": "3_split_and_donors", "title": "求解 group-stratified exact split",
