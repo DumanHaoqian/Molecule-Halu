@@ -1,0 +1,23 @@
+{
+  "template_version": "detector_prompt_v1",
+  "inputs": {
+    "indexed_smiles": "[CH3:1][OH:2]",
+    "instruction": "Replace the hydroxyl group with chlorine.",
+    "reasoning_chain": "Atom 2 is the hydroxyl oxygen attached to atom 1. Replace it with chlorine.",
+    "final_answer": "[CH3:1][Cl:2]"
+  },
+  "expected_field_order": [
+    "indexed_smiles",
+    "instruction",
+    "reasoning_chain",
+    "final_answer"
+  ],
+  "expected_segments": [
+    {"field_name": "indexed_smiles", "segment_kind": "source", "start": 11, "end": 24},
+    {"field_name": "instruction", "segment_kind": "instruction", "start": 40, "end": 81},
+    {"field_name": "reasoning_chain", "segment_kind": "reasoning", "start": 95, "end": 170},
+    {"field_name": "final_answer", "segment_kind": "final_answer", "start": 187, "end": 200}
+  ],
+  "expected_text": "<MOLECULE>\n[CH3:1][OH:2]\n\n<INSTRUCTION>\nReplace the hydroxyl group with chlorine.\n\n<REASONING>\nAtom 2 is the hydroxyl oxygen attached to atom 1. Replace it with chlorine.\n\n<FINAL_ANSWER>\n[CH3:1][Cl:2]",
+  "expected_sha256": "a35ce14fe1dc79310813f0c1bf2721a88489647d10ac36b096bce6aa0c86403f"
+}

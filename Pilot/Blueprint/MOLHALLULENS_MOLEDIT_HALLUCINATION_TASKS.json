@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-28T18:18:30+08:00",
+  "updated_at": "2026-08-29T14:02:02+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 48,
+    "not_started": 47,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 4,
-    "last_completed_task": "T004"
+    "completed": 5,
+    "last_completed_task": "T005"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -163,6 +163,40 @@
       "known_gaps": [],
       "follow_up_actions": ["T005/T006 使用已冻结的 DetectorInput 和 TokenLabelSet 契约实现唯一 serializer 与专项 post-token golden tests", "T009/T010 在通用 DAG contract 上实现三类具体 editing schemas 和确定性图算法", "T039/T042 实现 Trace AST mention offsets 与 char-to-token projection", "T043 将当前对象级 invariants 接入完整 deterministic validation chain"],
       "assessment_summary": "T004 的六项交付物和两项验收条件全部满足；77 项测试、compileall、wheel、公开 API/不可变断言及三轮独立复审通过，无当前任务范围内的已知缺口。"
+    },
+    {
+      "task_id": "T005",
+      "assessed_at": "2026-08-29T14:02:02+08:00",
+      "assessed_by": "codex",
+      "scores": {
+        "requirements_alignment": 5,
+        "implementation_quality": 5,
+        "verification_coverage": 5,
+        "documentation_and_traceability": 5
+      },
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["0. 本版本冻结的决定 1-2", "3.1 唯一允许的 detector 输入格式", "3.2 GT 的隔离方式", "14.1 Dataset record serialized contract", "18. Phase 0：冻结 schema 和接口", "19. 发布验收标准"],
+      "acceptance_criteria_results": [
+        {
+          "criterion": "顺序严格为 indexed SMILES、instruction、reasoning、final answer",
+          "passed": true,
+          "evidence": ["Pilot/tests/golden/detector_prompt_v1.json", "Pilot/tests/unit/test_detector_prompt.py::test_detector_prompt_matches_frozen_golden_fixture", "T005 acceptance assertions passed with SHA256 a35ce14fe1dc79310813f0c1bf2721a88489647d10ac36b096bce6aa0c86403f"]
+        },
+        {
+          "criterion": "serializer 不接收 gt_smiles",
+          "passed": true,
+          "evidence": ["DetectorPromptSerializer.serialize exact keyword-only signature assertion", "gt_smiles unexpected-keyword negative test", "forged oracle-gap SerializedDetectorInput negative test", "DetectorInput exact four-field contract assertion"]
+        },
+        {
+          "criterion": "golden string 测试通过",
+          "passed": true,
+          "evidence": ["targeted pytest: 17 passed", "full pytest: 94 passed", "independent read-only review: no acceptance blockers", "golden text, SHA256, and four half-open offsets independently recomputed"]
+        }
+      ],
+      "strengths": ["唯一无尾随换行模板、UTF-8 SHA256 和四段 half-open offsets 均冻结为可复核 golden fixture", "公开 serializer 仅暴露四个 detector-visible keyword-only 字段，并拒绝 gt/reference 参数、reserved delimiter 注入、NUL 和空字段", "公开 SerializedDetectorInput 会重建并精确核对 canonical text、segments、LF normalization 和 hash，不能通过直接构造在 span 间夹带 oracle 内容", "运行时常量与 frozen rendering.yaml 双向测试，Unicode code-point offsets 和 CRLF canonicalization 均覆盖"],
+      "known_gaps": [],
+      "follow_up_actions": ["T006 将 delimiter 与空行等非 content 区间统一标记为 SegmentKind.SPECIAL，并固定 post-token evaluation mask 契约", "T042 复用 serialized_text SHA256 和 frozen content spans 生成 ChemDFM-R token labels"],
+      "assessment_summary": "T005 的三项验收条件均有直接自动化证据；17 项专项和 94 项全量测试通过，canonical-constructor 对抗漏洞经独立复审发现后已修复并复验，无当前范围内已知缺口。"
     }
   ],
   "tasks": [
@@ -204,7 +238,7 @@
       "description": "实现唯一字段顺序的 DetectorPromptSerializer，并从接口层排除 gt_smiles。",
       "deliverables": ["rendering/detector_prompt.py", "golden serialization fixture"],
       "acceptance_criteria": ["顺序严格为 indexed SMILES、instruction、reasoning、final answer", "serializer 不接收 gt_smiles", "golden string 测试通过"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T13:35:16+08:00", "completed_at": "2026-08-29T14:02:02+08:00", "completion_notes": "实现版本化 DetectorPromptSerializer，将唯一 detector 文本冻结为 <MOLECULE>、<INSTRUCTION>、<REASONING>、<FINAL_ANSWER> 四段且无尾随换行；接口仅接受四个 keyword-only visible 字段，并以 exact DetectorInput contract 排除 gt/reference/oracle。新增不可变 SerializedDetectorInput 与四段 normalized Python str code-point offsets，统一 CRLF/CR 为 LF，拒绝 reserved delimiter/NUL/空值。公开 serialized 类型会重新构建并核对 canonical text、segments 和 SHA256，堵住直接构造时在 span 间夹带 oracle 内容的路径。golden fixture 冻结全文、SHA256 和 offsets，并用 17 项专项测试及 94 项全量测试验证。", "evidence": ["Pilot/molhallulens/rendering/detector_prompt.py", "Pilot/tests/golden/detector_prompt_v1.json", "Pilot/tests/unit/test_detector_prompt.py", "targeted pytest result: 17 passed", "full pytest result: 94 passed", "T005 acceptance SHA256: a35ce14fe1dc79310813f0c1bf2721a88489647d10ac36b096bce6aa0c86403f", "independent read-only review: no acceptance blockers"], "files_changed": ["Pilot/molhallulens/rendering/__init__.py", "Pilot/molhallulens/rendering/detector_prompt.py", "Pilot/tests/golden/detector_prompt_v1.json", "Pilot/tests/unit/test_detector_prompt.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_detector_prompt.py", "PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "python T005 signature/order/golden/hash acceptance assertions", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "grep T005 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T006", "phase": "0_schema_and_interfaces", "title": "建立 post-token 对齐契约测试",
