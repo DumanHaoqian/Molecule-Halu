@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T17:35:45+08:00",
+  "updated_at": "2026-08-29T17:54:18+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 39,
+    "not_started": 38,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 13,
-    "last_completed_task": "T013"
+    "completed": 14,
+    "last_completed_task": "T014"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -412,7 +412,23 @@
       "strengths": ["source atom-map 与 canonical product identity 分域，避免泄漏 transient RDKit index", "direct、trace-seeded 与 bounded FMCS 均保留等价映射；trace 只在 graph-derived signatures 间消歧", "fragment 内部键与反应边界分离，bond-order change 表示为 broken old + formed new", "delete_v2.0081 客观推导出 24 removed、2 added 与双向边界编辑，不在 T014 前静默分类"],
       "known_gaps": [],
       "follow_up_actions": ["T014 将 delete_v2.0081 与边界 origin 显式登记为 anomaly", "T015 在 EditTruth 之上实施 reference/graph-edit validation gates"],
-      "assessment_summary": "T013 三项验收全部满足：10 项专项、150/150 corpus、332 项全量、compileall 与 wheel build 通过；mapping、symmetry、fragment 和 confidence 均可审计且 fail closed。"
+      "assessment_summary": "T013 三项验收全部满足：11 项专项、150/150 corpus、333 项全量、compileall 与 wheel build 通过；direct mapping 回归补充覆盖同一 target-set 的多 embedding，mapping、symmetry、fragment 和 confidence 均可审计且 fail closed。"
+    },
+    {
+      "task_id": "T014",
+      "assessed_at": "2026-08-29T17:54:18+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["2.3 已知异常", "7.3 delete-with-replacement", "7.5 operator-policy compatibility", "Phase 1：Reference DAG 和严格 validator"],
+      "acceptance_criteria_results": [
+        {"criterion": "delete_v2.0081 不使用普通 deletion delta rule", "passed": true, "evidence": ["exact structural signature: 24 removed + atomic numbers (6,7) added + 1 broken/1 formed boundary", "REMOVE_ONLY_DELTA_RULE and STRUCTURAL_DELETION explicitly forbidden", "Pilot/tests/test_anomaly_registry.py"]},
+        {"criterion": "异常处理均可追踪且无静默特判", "passed": true, "evidence": ["immutable exact-ID registry with provenance and T013 source task", "unregistered delete-with-addition fails with UNREGISTERED_DELETE_WITH_ADDITION", "Pilot/Dataset/reports/anomaly_registry_report.json: 150 classifications / registry complete"]}
+      ],
+      "strengths": ["registry entry 同时冻结 origin、subtask、结构签名、provenance 与 capability policy，避免仅按字符串 ID 静默分支", "0081 replacement 被限制为 claim/terminal perturbation；普通 49 个 deletion 保持 deprotection 分类", "0071、0064、0123、0271 的 mapping/capping/multi-anchor 边界行为可追踪但不篡改 standard subtype", "全 corpus 审计产生稳定的 100 standard / 49 deprotection / 1 replacement 报告"],
+      "known_gaps": [],
+      "follow_up_actions": ["T015 将 anomaly classification 与 reference/RDKit/graph-edit gates 串联", "T017 将 capability policy 映射到具体 operator registry"],
+      "assessment_summary": "T014 两项验收全部满足；7 项专项、150/150 registry audit、340 项全量、compileall 与 wheel build 通过，replacement 处理显式、可追踪并对未登记形状 fail closed。"
     }
   ],
   "tasks": [
@@ -518,7 +534,7 @@
       "description": "使用 source/GT graph comparison、MCS/mapping、instruction 和 trace 生成 EditTruth，保存对称等价 anchors。",
       "deliverables": ["domain/edit_truth.py", "EditTruth fixtures"],
       "acceptance_criteria": ["added/removed atoms、broken/formed bonds、fragments、descriptors 可复核", "对称歧义保存 equivalence class", "mapping confidence 有定义"],
-      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T16:46:32+08:00", "completed_at": "2026-08-29T17:35:45+08:00", "completion_notes": "实现 RDKit-free immutable EditTruth domain contract 与 deterministic EditTruthBuilder。source heavy atoms 强制使用完整、唯一、正数 atom-map；product atoms 使用 canonical ranks 的独立 identity namespace。映射按 add/delete direct subgraph、仅在 leaving-group boundary 恢复价态的 trace-seeded retained core、bounded exact FMCS，以及元素守恒时的 bond-order-relaxed FMCS 依次 fail closed；substructure embeddings 去除 query automorphism 重复但保留不同 target sites。所有最佳映射经 fragment/instruction hints、graph-derived anchor signature 与 trace 约束消歧；trace 只能在已存在的 graph signatures 中选择，不能创建 anchor。对称等价 mapping 全部保存，并以 source canonical symmetry class 扩展 valid anchors。图差异将 removed source maps、added product atom descriptors、boundary broken/formed bonds、standalone capped fragment graph、attachment atoms、molecule/fragment descriptors 与 mapping evidence 冻结；bond-order change 表示为 broken old + formed new，fragment 内部键由 FragmentSpec graph 承载。mapping confidence 版本化定义为 mapped heavy coverage × inverse inequivalent signature count，并由 immutable invariant 重算。真实 150 origins 全部成功；特殊 delete_v2.0081 客观得到 24 removed atoms、C/N 两个 added atoms、broken/formed boundary 和双 fragments，异常分类留 T014。", "evidence": ["Pilot/molhallulens/domain/edit_truth.py", "Pilot/molhallulens/domain/molecules.py", "Pilot/molhallulens/builders/edit_truth.py", "Pilot/tests/fixtures/edit_truth/synthetic_cases.json", "Pilot/tests/test_edit_truth.py", "real corpus derivation: 150/150 succeeded", "delete_v2.0081: 24 removed + 2 added + broken/formed boundaries", "targeted pytest result: 10 passed", "full pytest result: 332 passed", "compileall passed", "pip wheel build passed"], "files_changed": ["Pilot/molhallulens/domain/molecules.py", "Pilot/molhallulens/domain/edit_truth.py", "Pilot/molhallulens/domain/__init__.py", "Pilot/molhallulens/chemistry/structures.py", "Pilot/molhallulens/chemistry/__init__.py", "Pilot/molhallulens/builders/edit_truth.py", "Pilot/molhallulens/builders/__init__.py", "Pilot/tests/fixtures/edit_truth/synthetic_cases.json", "Pilot/tests/test_edit_truth.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/test_edit_truth.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t013-wheel -q", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T013 changed-file secret scan"], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T16:46:32+08:00", "completed_at": "2026-08-29T17:35:45+08:00", "completion_notes": "实现 RDKit-free immutable EditTruth domain contract 与 deterministic EditTruthBuilder。source heavy atoms 强制使用完整、唯一、正数 atom-map；product atoms 使用 canonical ranks 的独立 identity namespace。映射按 add/delete direct subgraph、仅在 leaving-group boundary 恢复价态的 trace-seeded retained core、bounded exact FMCS，以及元素守恒时的 bond-order-relaxed FMCS 依次 fail closed；substructure embeddings 去除 query automorphism 重复但保留不同 target sites；若快速 direct mapping 未覆盖 trace 所在的 graph-derived anchor class，则重试 exhaustive direct embeddings，避免同 target-set 的合法 alternative 被丢弃。所有最佳映射经 fragment/instruction hints、graph-derived anchor signature 与 trace 约束消歧；trace 只能在已存在的 graph signatures 中选择，不能创建 anchor。对称等价 mapping 全部保存，并以 source canonical symmetry class 扩展 valid anchors。图差异将 removed source maps、added product atom descriptors、boundary broken/formed bonds、standalone capped fragment graph、attachment atoms、molecule/fragment descriptors 与 mapping evidence 冻结；bond-order change 表示为 broken old + formed new，fragment 内部键由 FragmentSpec graph 承载。mapping confidence 版本化定义为 mapped heavy coverage × inverse inequivalent signature count，并由 immutable invariant 重算。真实 150 origins 全部成功；特殊 delete_v2.0081 客观得到 24 removed atoms、C/N 两个 added atoms、broken/formed boundary 和双 fragments，异常分类留 T014。", "evidence": ["Pilot/molhallulens/domain/edit_truth.py", "Pilot/molhallulens/domain/molecules.py", "Pilot/molhallulens/builders/edit_truth.py", "Pilot/tests/fixtures/edit_truth/synthetic_cases.json", "Pilot/tests/test_edit_truth.py", "real corpus derivation: 150/150 succeeded with trace/graph anchor agreement", "delete_v2.0081: 24 removed + 2 added + broken/formed boundaries", "targeted pytest result: 11 passed", "full pytest result: 333 passed", "compileall passed", "pip wheel build passed"], "files_changed": ["Pilot/molhallulens/domain/molecules.py", "Pilot/molhallulens/domain/edit_truth.py", "Pilot/molhallulens/domain/__init__.py", "Pilot/molhallulens/chemistry/structures.py", "Pilot/molhallulens/chemistry/__init__.py", "Pilot/molhallulens/builders/edit_truth.py", "Pilot/molhallulens/builders/__init__.py", "Pilot/tests/fixtures/edit_truth/synthetic_cases.json", "Pilot/tests/test_edit_truth.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/test_edit_truth.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t013-wheel -q", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T013 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T014", "phase": "1_reference_dag", "title": "实现 anomaly registry",
@@ -526,7 +542,7 @@
       "description": "显式登记 delete_v2.0081 delete-with-replacement 及审计发现的边界样本和可用 operator 限制。",
       "deliverables": ["anomaly registry", "异常分类报告"],
       "acceptance_criteria": ["delete_v2.0081 不使用普通 deletion delta rule", "异常处理均可追踪且无静默特判"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T17:42:33+08:00", "completed_at": "2026-08-29T17:54:18+08:00", "completion_notes": "实现 immutable exact-ID AnomalyRegistry、结构签名投影、subtype 分类和完整 capability allow/forbid policy。普通 add/substitute 分类为 STANDARD，49 个 remove-only delete 分类为 DEPROTECTION；delete_v2.0081 以 exact audited signature（24 removed、added atomic numbers 6/7、1 broken/1 formed boundary、24/2 heavy fragments）显式覆写为 DELETE_WITH_REPLACEMENT，并禁止 REMOVE_ONLY_DELTA_RULE 与 STRUCTURAL_DELETION，只允许 claim/terminal perturbation。未登记的 delete-with-addition 以结构化 fatal issue fail closed。另登记 add_v2.0071、substitute_v2.0064、substitute_v2.0123、substitute_v2.0271 的 T013 边界 provenance，但不改变其 STANDARD subtype。真实 150 origins 全部审计并冻结报告：100 STANDARD、49 DEPROTECTION、1 DELETE_WITH_REPLACEMENT，5 个 registry entry 全部观测。", "evidence": ["Pilot/molhallulens/domain/anomalies.py", "Pilot/molhallulens/builders/anomaly_registry.py", "Pilot/Dataset/reports/anomaly_registry_report.json", "Pilot/tests/test_anomaly_registry.py", "real corpus anomaly audit: 150/150 / 100 standard / 49 deprotection / 1 delete-with-replacement / registry complete", "targeted pytest result: 7 passed", "full pytest result: 340 passed", "compileall passed", "pip wheel build passed"], "files_changed": ["Pilot/molhallulens/domain/anomalies.py", "Pilot/molhallulens/domain/__init__.py", "Pilot/molhallulens/builders/anomaly_registry.py", "Pilot/molhallulens/builders/__init__.py", "Pilot/Dataset/reports/anomaly_registry_report.json", "Pilot/tests/test_anomaly_registry.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/test_anomaly_registry.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t014-wheel -q", "python -m json.tool Pilot/Dataset/reports/anomaly_registry_report.json >/dev/null", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T014 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T015", "phase": "1_reference_dag", "title": "实现 reference 与 graph-edit validators",

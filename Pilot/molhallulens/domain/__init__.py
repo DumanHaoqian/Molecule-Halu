@@ -1,5 +1,14 @@
 """Immutable MolHalluLens domain objects."""
 
+from .anomalies import (
+    AnomalyAuditReport,
+    AnomalyClassification,
+    AnomalyProvenance,
+    AnomalyRegistryEntry,
+    OperatorCapability,
+    OperatorCapabilityPolicy,
+    StructuralEditSignature,
+)
 from .enums import (
     BondTypeName,
     CandidateSourceType,
@@ -89,6 +98,10 @@ from .state_dag import (
 )
 
 __all__ = [
+    "AnomalyAuditReport",
+    "AnomalyClassification",
+    "AnomalyProvenance",
+    "AnomalyRegistryEntry",
     "ArtifactValidationError",
     "ADDITION_EDITING_SCHEMA",
     "ADDITION_STATE_SCHEMA",
@@ -135,6 +148,8 @@ __all__ = [
     "MutationTargetKind",
     "NodeRole",
     "OperationSubtype",
+    "OperatorCapability",
+    "OperatorCapabilityPolicy",
     "OperatorSpec",
     "OriginBundle",
     "PerturbationRecipe",
@@ -149,6 +164,7 @@ __all__ = [
     "StateSchema",
     "SUBSTITUTION_EDITING_SCHEMA",
     "SUBSTITUTION_STATE_SCHEMA",
+    "StructuralEditSignature",
     "TaskFamily",
     "TaskRecord",
     "TokenLabelSet",

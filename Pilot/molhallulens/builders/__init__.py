@@ -1,5 +1,13 @@
 """Split, bundle, and artifact builders."""
 
+from .anomaly_registry import (
+    AnomalyRegistry,
+    AnomalyRegistryError,
+    DEFAULT_ANOMALY_REGISTRY,
+    audit_anomaly_registry,
+    classify_edit_truth,
+    structural_edit_signature,
+)
 from .edit_truth import EditTruthBuildError, EditTruthBuilder, derive_edit_truth
 
 from .reference_dag import (
@@ -24,6 +32,9 @@ from .reference_dag import (
 
 __all__ = [
     "AdditionReferenceDAGBuilder",
+    "AnomalyRegistry",
+    "AnomalyRegistryError",
+    "DEFAULT_ANOMALY_REGISTRY",
     "DeletionReferenceDAGBuilder",
     "EditingReferenceDAGBuilder",
     "EditTruthBuildError",
@@ -38,9 +49,12 @@ __all__ = [
     "ReferenceSlotBinding",
     "ReferenceTraceStep",
     "SubstitutionReferenceDAGBuilder",
+    "audit_anomaly_registry",
     "audit_reference_dag_corpus",
     "build_reference_dag",
     "build_reference_dag_corpus",
+    "classify_edit_truth",
     "derive_edit_truth",
     "reference_dag_builder_for",
+    "structural_edit_signature",
 ]
