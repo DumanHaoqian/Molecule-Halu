@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T03:31:06+08:00",
+  "updated_at": "2026-08-30T03:34:55+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 14,
+    "not_started": 13,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 38,
-    "last_completed_task": "T038"
+    "completed": 39,
+    "last_completed_task": "T039"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -838,6 +838,23 @@
       "known_gaps": ["服务器无法连接 Poe，因此 live LLM participation 未执行并如实保持未测量", "失败率描述本次 canonical coverage-search 请求，不冒充 150-origin exhaustive population rate；长耗时 deletion replay 的全组合回归未跑到自然结束"],
       "follow_up_actions": ["T044 golden suite 覆盖报告中高失败率的 operator/root 组合", "网络恢复后单独执行 live measurement，禁止用 mock 替换", "T045 dry run 用实际 accepted H variants 计算 live material participation"],
       "assessment_summary": "T038 三项验收均满足。23/23 structural operators 至少有一种 deterministic verified source；报告逐 operator/backend 保存 exact 请求、成功、失败、failure rate、reject code、origin count 与 source mix。LLM target 可计算，但服务器网络不可达，live 指标保持 null，48 次 deterministic mock material requests 单独标记且不计 live。远端专项及 T018/T037 关联 38 项通过；本地专项 7 项通过，长耗时组合回归在 173 项通过后为加速而中断。"
+    },
+    {
+      "task_id": "T039",
+      "assessed_at": "2026-08-30T03:34:55+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["4.3 char span 与 token span", "9.1 renderer 总原则", "9.2 Trace AST", "Phase 5：Renderer、span 与 token labels"],
+      "acceptance_criteria_results": [
+        {"criterion": "重复值拥有独立 span", "passed": true, "evidence": ["每个 LiteralNode 具有唯一 mention_id，append 时立即捕获位置", "重复 Br 与多节点/edge occurrences 的独立 span tests"]},
+        {"criterion": "所有 span 使用半开区间", "passed": true, "evidence": ["CharSpan 严格 start < end 并以 Python Unicode code-point slice 验证", "边界、越界、重叠和 Unicode tests"]},
+        {"criterion": "literal_span 和 claim_span 均可生成", "passed": true, "evidence": ["ClaimNode 单次渲染收集共享 claim interval 与各 literal interval", "MentionSpan containment 与 stable serialization tests"]}
+      ],
+      "strengths": ["Trace AST 与 renderer 接口不接受 GT、label、operator correctness 或 oracle", "offset 在单次 append 流程中生成，完全不依赖 text.find 或事后 substring 搜索", "node/edge mention maps、segment spans 与 immutable AST/result 均稳定排序和序列化", "重复 surface values、Unicode、多 literal claim、嵌套 claim 与 overlap adversarial cases 均覆盖"],
+      "known_gaps": [],
+      "follow_up_actions": ["T040 只从 locked slots 构造相同 Trace AST", "T041 通过 mention target identity 连接 MutationEvent", "T042 将 exact char spans 投影到 tokenizer offsets"],
+      "assessment_summary": "T039 三项验收全部满足。immutable Trace AST 在 slot append 时一次性生成 segment、literal 与 claim 半开字符区间；重复值保持独立 occurrence，Unicode 使用 Python 字符索引，node/edge identity 可直接连接后续标签。远端 T023/T039 关联 70 项通过，ruff 与 diff checks 通过。"
     }
   ],
   "tasks": [
@@ -1151,7 +1168,7 @@
       "description": "实现 TraceDocument/RenderedExample，从 slot 填充时直接生成 node/edge mention offset，禁止 text.find 定位。",
       "deliverables": ["rendering/trace_ast.py", "annotation/char_spans.py"],
       "acceptance_criteria": ["重复值拥有独立 span", "所有 span 使用半开区间", "literal_span 和 claim_span 均可生成"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T03:33:42+08:00", "completed_at": "2026-08-30T03:34:55+08:00", "completion_notes": "实现 immutable TraceDocument/RenderedExample AST 与 canonical char-span contracts。Text/Literal/Sequence/Claim nodes 只包含 detector-visible locked text 和 state/edge identities，不携带 GT、correctness、operator 或 labels。renderer 单次顺序 append 时直接捕获每个 literal occurrence、共享 atomic claim 和 reasoning/final-answer segment 的 Python Unicode code-point 半开区间；从不调用 text.find。重复 surface values 通过唯一 mention_id 独立绑定，node/edge maps 保存同 target 的全部 occurrences。MentionSpan 严格校验 literal⊆claim、component/step、唯一 ID、bounds、内容、literal 非重叠及不同 claim 非重叠；所有对象 immutable 且序列化稳定。", "evidence": ["Pilot/molhallulens/rendering/trace_ast.py", "Pilot/molhallulens/annotation/char_spans.py", "Pilot/tests/unit/test_trace_ast.py", "Pilot/tests/unit/test_char_spans.py", "本地与远端 T039/T023 关联：70 passed", "ruff/diff checks passed"], "files_changed": ["Pilot/molhallulens/rendering/trace_ast.py", "Pilot/molhallulens/rendering/__init__.py", "Pilot/molhallulens/annotation/char_spans.py", "Pilot/molhallulens/annotation/__init__.py", "Pilot/tests/unit/test_trace_ast.py", "Pilot/tests/unit/test_char_spans.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_trace_ast.py tests/unit/test_char_spans.py tests/unit/test_formal_renderer.py", "ruff check molhallulens/rendering/trace_ast.py molhallulens/rendering/__init__.py molhallulens/annotation/char_spans.py molhallulens/annotation/__init__.py tests/unit/test_trace_ast.py tests/unit/test_char_spans.py", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T040", "phase": "5_rendering_and_labels", "title": "实现 label-blind natural renderer",
