@@ -1,0 +1,40 @@
+{
+  "task_family": "mol_opt",
+  "subtask": "gsk_logp",
+  "reporting_task": "MolOpt/BioTarget-Dual",
+  "all_pass_definition": "The all_pass field is the task-specific conjunction of required process verifier checks used when constructing the verified reference.",
+  "verifier_checks": [
+    {
+      "name": "S1_scaffold",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S2_edit_plan",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S3_product",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S4_scaffold",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S5_fg",
+      "description": "Task-specific deterministic verifier flag."
+    }
+  ],
+  "outcome_fields": [
+    "outcome_any",
+    "outcome_gsk",
+    "outcome_logp",
+    "outcome_qed",
+    "outcome_strict"
+  ],
+  "type_notes": [
+    "Type-I checks are intrinsic symbolic checks such as validity, arithmetic, canonicalization, scaffold preservation, or consistency.",
+    "Type-II checks compare closed-answer process states or final answers with the verified benchmark reference.",
+    "Molecular optimization uses oracle-computable constraints rather than strict path matching for the final outcome."
+  ]
+}

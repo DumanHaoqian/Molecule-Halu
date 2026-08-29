@@ -1,0 +1,46 @@
+schema_version: "1.0"
+
+dataset:
+  version_name: pilot_v1
+  global_seed: 20260828
+  origins_total: 150
+  records_total: 1200
+
+input:
+  root: Pilot/Dataset
+  family: mol_edit
+  subtasks: [add, delete, substitute]
+  origins_per_subtask:
+    add: 50
+    delete: 50
+    substitute: 50
+
+bundle:
+  policies: [LOCAL, PARTIAL, FULL_CF, TERMINAL]
+  matched_controls: true
+  records_per_origin: 8
+  hallucinated_per_origin: 4
+  faithful_per_origin: 4
+
+split:
+  train_origins: 100
+  validation_origins: 25
+  test_origins: 25
+  train_records: 800
+  validation_records: 200
+  test_records: 200
+  enforce_leakage_groups: true
+  freeze_before_donor_generation: true
+  donor_scope: same_split_only
+  subtask_origin_quotas:
+    add: {train: 34, validation: 8, test: 8}
+    delete: {train: 33, validation: 9, test: 8}
+    substitute: {train: 33, validation: 8, test: 9}
+
+detector:
+  field_order: [indexed_smiles, instruction, reasoning_chain, final_answer]
+  include_gt_smiles: false
+  include_reference_only_metadata: false
+  activation_alignment: post_token_h_t
+  ignored_evaluation_segments: [source, instruction, special, padding]
+  evaluated_segments: [reasoning_chain, final_answer]

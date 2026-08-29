@@ -1,0 +1,4128 @@
+[
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0000",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_001031",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: CC(C)(C)[O-].[Li+]\n  catalyst: CC(=O)O.CC(=O)O.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)[O-].[Li+]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 98.6922,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0001",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_001545",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1b, 6-Br-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(tBu)3\n  solvent: MeCN",
+    "meta_reactants": [
+      "1b, 6-Br-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(tBu)3",
+      "base": "",
+      "solvent": "MeCN"
+    },
+    "gt_float": 90.4141,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0002",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_002188",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "COc1ccc(Br)cc1",
+    "conditions_block": "  additive: COC(=O)c1cc(on1)c2sccc2\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "COc1ccc(Br)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "COC(=O)c1cc(on1)c2sccc2",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 37.1366,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0003",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_002170",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.Ic1ccc2ncccc2c1.[K+]",
+    "conditions_block": "  reagent: CC(C)(C)[O-].[Li+]\n  catalyst: CC(=O)O.CC(=O)O.[Pd]\n  solvent: CN(C)C=O.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.Ic1ccc2ncccc2c1.[K+]"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)[O-].[Li+]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CN(C)C=O.O"
+    },
+    "gt_float": 15.1668,
+    "gt_yield_class": "low"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0004",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_001630",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1f, 6-BPin-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: CataCXium A\n  base: Et3N\n  solvent: MeCN",
+    "meta_reactants": [
+      "1f, 6-BPin-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "CataCXium A",
+      "base": "Et3N",
+      "solvent": "MeCN"
+    },
+    "gt_float": 59.728,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0005",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_001041",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]\n  solvent: CN(C)C=O.O",
+    "meta_reactants": [
+      "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CN(C)C=O.O"
+    },
+    "gt_float": 64.7761,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0006",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_002020",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Clc1ccc2ncccc2c1",
+    "conditions_block": "  reagent: O=C([O-])O.[Na+]\n  catalyst: CC(=O)O.CC(=O)O.CC(C)c1cc(C(C)C)c(-c2ccccc2P(C2CCCCC2)C2CCCCC2)c(C(C)C)c1.[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Clc1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "O=C([O-])O.[Na+]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC(C)c1cc(C(C)C)c(-c2ccccc2P(C2CCCCC2)C2CCCCC2)c(C(C)C)c1.[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 80.7677,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0007",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_002022",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "CCc1ccc(Br)cc1",
+    "conditions_block": "  additive: CCOC(=O)c1onc(OC)c1\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C",
+    "meta_reactants": [
+      "CCc1ccc(Br)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1onc(OC)c1",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C"
+    },
+    "gt_float": 62.7857,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0008",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000558",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: dtbpf\n  base: LiOtBu\n  solvent: MeCN",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "dtbpf",
+      "base": "LiOtBu",
+      "solvent": "MeCN"
+    },
+    "gt_float": 51.0401,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0009",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000016",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1b, 6-Br-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(tBu)3\n  base: LiOtBu\n  solvent: MeCN",
+    "meta_reactants": [
+      "1b, 6-Br-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(tBu)3",
+      "base": "LiOtBu",
+      "solvent": "MeCN"
+    },
+    "gt_float": 92.0647,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0010",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000019",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Ph)3\n  base: CsF\n  solvent: MeOH",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Ph)3",
+      "base": "CsF",
+      "solvent": "MeOH"
+    },
+    "gt_float": 85.726,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0011",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000043",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Brc1cccnc1",
+    "conditions_block": "  additive: o1cc(cn1)c2ccccc2\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "Brc1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "o1cc(cn1)c2ccccc2",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 78.005,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0012",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000048",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1d, 6-I-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Ph)3\n  base: LiOtBu\n  solvent: THF",
+    "meta_reactants": [
+      "1d, 6-I-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Ph)3",
+      "base": "LiOtBu",
+      "solvent": "THF"
+    },
+    "gt_float": 81.7687,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0013",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000065",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: [K+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "[K+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 94.2023,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0014",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000050",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Ic1cccnc1",
+    "conditions_block": "  additive: CCOC(=O)c1cc(C)on1\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "Ic1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1cc(C)on1",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 87.5542,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0015",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000049",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "CCc1ccc(Br)cc1",
+    "conditions_block": "  additive: o1ccc(n1)c2ccccc2\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "CCc1ccc(Br)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "o1ccc(n1)c2ccccc2",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 83.3036,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0016",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000082",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1e, 6-BOH2-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  base: KOH\n  solvent: THF_V2",
+    "meta_reactants": [
+      "1e, 6-BOH2-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "",
+      "base": "KOH",
+      "solvent": "THF_V2"
+    },
+    "gt_float": 34.9989,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0017",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000088",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  solvent: THF",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "",
+      "base": "",
+      "solvent": "THF"
+    },
+    "gt_float": 21.2057,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0018",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000087",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1g, 6-BF3K-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(tBu)3\n  solvent: DMF",
+    "meta_reactants": [
+      "1g, 6-BF3K-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(tBu)3",
+      "base": "",
+      "solvent": "DMF"
+    },
+    "gt_float": 33.789,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0019",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000098",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: CC(C)(C)[O-].[Li+]\n  catalyst: CC(=O)O.CC(=O)O.CC(C)(C)P(C(C)(C)C)C(C)(C)C.[Pd]\n  solvent: CC#N.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)[O-].[Li+]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC(C)(C)P(C(C)(C)C)C(C)(C)C.[Pd]",
+      "solvent": "CC#N.O"
+    },
+    "gt_float": 98.4243,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0020",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000113",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Clc1ccc2ncccc2c1",
+    "conditions_block": "  reagent: CC(C)(C)[O-].[Li+]\n  catalyst: CC(=O)O.CC(=O)O.[Pd]\n  solvent: CN(C)C=O.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Clc1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)[O-].[Li+]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CN(C)C=O.O"
+    },
+    "gt_float": 7.0666,
+    "gt_yield_class": "low"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0021",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000125",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: SPhos\n  base: KOH\n  solvent: MeCN",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "SPhos",
+      "base": "KOH",
+      "solvent": "MeCN"
+    },
+    "gt_float": 84.7621,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0022",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000139",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1e, 6-BOH2-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  base: Et3N\n  solvent: THF_V2",
+    "meta_reactants": [
+      "1e, 6-BOH2-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "",
+      "base": "Et3N",
+      "solvent": "THF_V2"
+    },
+    "gt_float": 0.0,
+    "gt_yield_class": "low"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0023",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000091",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Brc1ccccn1",
+    "conditions_block": "  additive: CCOC(=O)c1onc(C)c1\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "Brc1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1onc(C)c1",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 91.6524,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0024",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000155",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  base: CsF\n  solvent: DMF",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "",
+      "base": "CsF",
+      "solvent": "DMF"
+    },
+    "gt_float": 12.7574,
+    "gt_yield_class": "low"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0025",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000160",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Ph)3\n  base: NaOH\n  solvent: DMF",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Ph)3",
+      "base": "NaOH",
+      "solvent": "DMF"
+    },
+    "gt_float": 13.3206,
+    "gt_yield_class": "low"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0026",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000170",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Ph)3\n  base: NaHCO3\n  solvent: DMF",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Ph)3",
+      "base": "NaHCO3",
+      "solvent": "DMF"
+    },
+    "gt_float": 6.8385,
+    "gt_yield_class": "low"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0027",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000171",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2c, Trifluoroborate",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(o-Tol)3\n  base: CsF\n  solvent: DMF",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2c, Trifluoroborate"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(o-Tol)3",
+      "base": "CsF",
+      "solvent": "DMF"
+    },
+    "gt_float": 17.5611,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0028",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000174",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: [K+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "[K+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 94.4707,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0029",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000181",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1b, 6-Br-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: CataCXium A\n  base: LiOtBu\n  solvent: THF",
+    "meta_reactants": [
+      "1b, 6-Br-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "CataCXium A",
+      "base": "LiOtBu",
+      "solvent": "THF"
+    },
+    "gt_float": 96.1898,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0030",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000189",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1d, 6-I-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: AmPhos\n  base: KOH\n  solvent: THF",
+    "meta_reactants": [
+      "1d, 6-I-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "AmPhos",
+      "base": "KOH",
+      "solvent": "THF"
+    },
+    "gt_float": 84.2281,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0031",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000191",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Clc1ccccn1",
+    "conditions_block": "  additive: Cc1onc(c1)n2cccc2\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "Clc1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1onc(c1)n2cccc2",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 78.7707,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0032",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000202",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1g, 6-BF3K-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: dtbpf\n  solvent: MeCN",
+    "meta_reactants": [
+      "1g, 6-BF3K-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "dtbpf",
+      "base": "",
+      "solvent": "MeCN"
+    },
+    "gt_float": 38.3626,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0033",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000227",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "COc1ccc(Br)cc1",
+    "conditions_block": "  additive: CCOC(=O)c1cc(C)on1\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+    "meta_reactants": [
+      "COc1ccc(Br)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1cc(C)on1",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2"
+    },
+    "gt_float": 16.6497,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0034",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000213",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Brc1cccnc1",
+    "conditions_block": "  additive: o1ncc2ccccc12\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+    "meta_reactants": [
+      "Brc1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "o1ncc2ccccc12",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2"
+    },
+    "gt_float": 5.9729,
+    "gt_yield_class": "low"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0035",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000240",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  base: CsF\n  solvent: THF",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "",
+      "base": "CsF",
+      "solvent": "THF"
+    },
+    "gt_float": 21.1103,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0036",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000231",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Clc1ccccn1",
+    "conditions_block": "  additive: CCOC(=O)c1cc(C)on1\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "Clc1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1cc(C)on1",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 84.6902,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0037",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000235",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Brc1cccnc1",
+    "conditions_block": "  additive: o1ccc(n1)c2ccccc2\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "Brc1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "o1ccc(n1)c2ccccc2",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 86.1051,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0038",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000273",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1d, 6-I-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Ph)3\n  base: KOH\n  solvent: MeCN",
+    "meta_reactants": [
+      "1d, 6-I-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Ph)3",
+      "base": "KOH",
+      "solvent": "MeCN"
+    },
+    "gt_float": 91.3538,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0039",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000272",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1b, 6-Br-Q | 2c, Trifluoroborate",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  base: NaOH\n  solvent: MeOH",
+    "meta_reactants": [
+      "1b, 6-Br-Q",
+      "2c, Trifluoroborate"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "",
+      "base": "NaOH",
+      "solvent": "MeOH"
+    },
+    "gt_float": 28.8869,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0040",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000274",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1b, 6-Br-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  base: KOH\n  solvent: MeCN",
+    "meta_reactants": [
+      "1b, 6-Br-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "",
+      "base": "KOH",
+      "solvent": "MeCN"
+    },
+    "gt_float": 21.3054,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0041",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000286",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1b, 6-Br-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(o-Tol)3\n  solvent: MeOH",
+    "meta_reactants": [
+      "1b, 6-Br-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(o-Tol)3",
+      "base": "",
+      "solvent": "MeOH"
+    },
+    "gt_float": 63.7819,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0042",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000285",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1d, 6-I-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: CataCXium A\n  base: LiOtBu\n  solvent: MeOH",
+    "meta_reactants": [
+      "1d, 6-I-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "CataCXium A",
+      "base": "LiOtBu",
+      "solvent": "MeOH"
+    },
+    "gt_float": 96.0384,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0043",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000287",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 96.7008,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0044",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000003",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: [K+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]\n  solvent: CC#N.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "[K+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]",
+      "solvent": "CC#N.O"
+    },
+    "gt_float": 96.1486,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0045",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000008",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Clc1cccnc1",
+    "conditions_block": "  additive: o1ncc2ccccc12\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "Clc1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "o1ncc2ccccc12",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 36.108,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0046",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000018",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: CC(C)(C)[O-].[Li+]\n  catalyst: CC(=O)O.CC(=O)O.CC(C)c1cc(C(C)C)c(-c2ccccc2P(C2CCCCC2)C2CCCCC2)c(C(C)C)c1.[Pd]\n  solvent: CC#N.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)[O-].[Li+]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC(C)c1cc(C(C)C)c(-c2ccccc2P(C2CCCCC2)C2CCCCC2)c(C(C)C)c1.[Pd]",
+      "solvent": "CC#N.O"
+    },
+    "gt_float": 91.0997,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0047",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000024",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Ic1ccccn1",
+    "conditions_block": "  additive: C(N(Cc1ccccc1)c2ccon2)c3ccccc3\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "Ic1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "C(N(Cc1ccccc1)c2ccon2)c3ccccc3",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 63.2223,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0048",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000041",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Clc1ccc2ncccc2c1",
+    "conditions_block": "  reagent: O=P([O-])([O-])[O-].[K+].[K+].[K+]\n  catalyst: CC(=O)O.CC(=O)O.[Pd]\n  solvent: CC#N.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Clc1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "O=P([O-])([O-])[O-].[K+].[K+].[K+]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CC#N.O"
+    },
+    "gt_float": 14.0168,
+    "gt_yield_class": "low"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0049",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000028",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Ic1cccnc1",
+    "conditions_block": "  additive: COC(=O)c1cc(on1)c2sccc2\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "Ic1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "COC(=O)c1cc(on1)c2sccc2",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 75.8998,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0050",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000094",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: XPhos\n  base: KOH\n  solvent: THF",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "XPhos",
+      "base": "KOH",
+      "solvent": "THF"
+    },
+    "gt_float": 79.9376,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0051",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000053",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "COc1ccc(Br)cc1",
+    "conditions_block": "  additive: Cc1cc(on1)c2ccccc2\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "COc1ccc(Br)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1cc(on1)c2ccccc2",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 36.2264,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0052",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000077",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1g, 6-BF3K-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: CataCXium A\n  base: CsF\n  solvent: MeCN",
+    "meta_reactants": [
+      "1g, 6-BF3K-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "CataCXium A",
+      "base": "CsF",
+      "solvent": "MeCN"
+    },
+    "gt_float": 62.5839,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0053",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000095",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1d, 6-I-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: dppf\n  base: NaHCO3\n  solvent: THF",
+    "meta_reactants": [
+      "1d, 6-I-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "dppf",
+      "base": "NaHCO3",
+      "solvent": "THF"
+    },
+    "gt_float": 71.5093,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0054",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000101",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1f, 6-BPin-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Ph)3\n  base: Et3N\n  solvent: THF",
+    "meta_reactants": [
+      "1f, 6-BPin-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Ph)3",
+      "base": "Et3N",
+      "solvent": "THF"
+    },
+    "gt_float": 72.7188,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0055",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000104",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: XPhos\n  base: NaHCO3\n  solvent: THF",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "XPhos",
+      "base": "NaHCO3",
+      "solvent": "THF"
+    },
+    "gt_float": 80.7677,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0056",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000117",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: AmPhos\n  base: CsF\n  solvent: DMF",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "AmPhos",
+      "base": "CsF",
+      "solvent": "DMF"
+    },
+    "gt_float": 66.5562,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0057",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000109",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Clc1ccccn1",
+    "conditions_block": "  additive: COC(=O)c1cc(on1)c2sccc2\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "Clc1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "COC(=O)c1cc(on1)c2sccc2",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 63.6532,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0058",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000108",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=CN=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN1CCCN2C1=NCCC2.CC1=CC(C)=NO1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=CN=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN1CCCN2C1=NCCC2.CC1=CC(C)=NO1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 83.8039,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0059",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000122",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=CN=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN1CCCN2C1=NCCC2.CCOC(C1=NOC=C1)=O\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=CN=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN1CCCN2C1=NCCC2.CCOC(C1=NOC=C1)=O",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 89.9742,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0060",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000126",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Brc1ccccn1",
+    "conditions_block": "  additive: Cc1onc(C)c1\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C",
+    "meta_reactants": [
+      "Brc1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1onc(C)c1",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C"
+    },
+    "gt_float": 77.6347,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0061",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000154",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2c, Trifluoroborate",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Ph)3\n  base: Et3N\n  solvent: DMF",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2c, Trifluoroborate"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Ph)3",
+      "base": "Et3N",
+      "solvent": "DMF"
+    },
+    "gt_float": 18.6323,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0062",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000138",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Ic1ccccn1",
+    "conditions_block": "  additive: C(N(Cc1ccccc1)c2ccon2)c3ccccc3\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "Ic1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "C(N(Cc1ccccc1)c2ccon2)c3ccccc3",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 60.4123,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0063",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000153",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1e, 6-BOH2-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Ph)3\n  base: Et3N\n  solvent: DMF",
+    "meta_reactants": [
+      "1e, 6-BOH2-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Ph)3",
+      "base": "Et3N",
+      "solvent": "DMF"
+    },
+    "gt_float": 35.7228,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0064",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000127",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: CC(C)(C)[O-].[Li+]\n  catalyst: CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)[O-].[Li+]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 88.7147,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0065",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000161",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: [Cs+].[F-]\n  catalyst: C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]\n  solvent: CN(C)C=O.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "[Cs+].[F-]",
+      "catalyst": "C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CN(C)C=O.O"
+    },
+    "gt_float": 93.1016,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0066",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000168",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1g, 6-BF3K-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: dppf\n  base: NaOH\n  solvent: MeOH",
+    "meta_reactants": [
+      "1g, 6-BF3K-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "dppf",
+      "base": "NaOH",
+      "solvent": "MeOH"
+    },
+    "gt_float": 68.5807,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0067",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000172",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1b, 6-Br-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: AmPhos\n  base: KOH\n  solvent: THF",
+    "meta_reactants": [
+      "1b, 6-Br-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "AmPhos",
+      "base": "KOH",
+      "solvent": "THF"
+    },
+    "gt_float": 75.6284,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0068",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000156",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Clc1ccc2ncccc2c1",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Clc1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 15.345,
+    "gt_yield_class": "low"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0069",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000177",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1f, 6-BPin-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: SPhos\n  base: K3PO4\n  solvent: DMF",
+    "meta_reactants": [
+      "1f, 6-BPin-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "SPhos",
+      "base": "K3PO4",
+      "solvent": "DMF"
+    },
+    "gt_float": 69.707,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0070",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000150",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.Clc1ccc2ncccc2c1.[K+]",
+    "conditions_block": "  reagent: [K+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.[Pd]\n  solvent: CN(C)C=O.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.Clc1ccc2ncccc2c1.[K+]"
+    ],
+    "meta_conditions": {
+      "reagent": "[K+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CN(C)C=O.O"
+    },
+    "gt_float": 18.8679,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0071",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000218",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2c, Trifluoroborate",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: Xantphos\n  base: KOH\n  solvent: DMF",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2c, Trifluoroborate"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "Xantphos",
+      "base": "KOH",
+      "solvent": "DMF"
+    },
+    "gt_float": 18.2588,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0072",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000217",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1d, 6-I-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: XPhos\n  base: NaOH\n  solvent: MeOH",
+    "meta_reactants": [
+      "1d, 6-I-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "XPhos",
+      "base": "NaOH",
+      "solvent": "MeOH"
+    },
+    "gt_float": 81.0501,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0073",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000194",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CC(C)c1cc(C(C)C)c(-c2ccccc2P(C2CCCCC2)C2CCCCC2)c(C(C)C)c1.[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC(C)c1cc(C(C)C)c(-c2ccccc2P(C2CCCCC2)C2CCCCC2)c(C(C)C)c1.[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 95.8015,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0074",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000209",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Ic1ccccn1",
+    "conditions_block": "  additive: CCOC(=O)c1conc1\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "Ic1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1conc1",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 44.939,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0075",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000207",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Clc1ccccn1",
+    "conditions_block": "  additive: C(N(Cc1ccccc1)c2ccon2)c3ccccc3\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "Clc1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "C(N(Cc1ccccc1)c2ccon2)c3ccccc3",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 62.4656,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0076",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000225",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: dppf\n  base: KOH\n  solvent: MeCN",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "dppf",
+      "base": "KOH",
+      "solvent": "MeCN"
+    },
+    "gt_float": 20.7888,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0077",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000224",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "FC(F)(F)c1ccc(Br)cc1",
+    "conditions_block": "  additive: Cc1cc(on1)c2ccccc2\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "FC(F)(F)c1ccc(Br)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1cc(on1)c2ccccc2",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 38.5375,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0078",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000242",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "COc1ccc(Cl)cc1",
+    "conditions_block": "  additive: C(N(Cc1ccccc1)c2ccon2)c3ccccc3\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "COc1ccc(Cl)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "C(N(Cc1ccccc1)c2ccon2)c3ccccc3",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 41.0379,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0079",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000239",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Clc1cccnc1",
+    "conditions_block": "  additive: o1ccc(n1)c2ccccc2\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "Clc1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "o1ccc(n1)c2ccccc2",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 63.2644,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0080",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000232",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "CCc1ccc(I)cc1",
+    "conditions_block": "  additive: o1ncc2ccccc12\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "CCc1ccc(I)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "o1ncc2ccccc12",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 69.1348,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0081",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000220",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Brc1cccnc1",
+    "conditions_block": "  additive: Cc1oncc1\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "Brc1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1oncc1",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 57.0297,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0082",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000258",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "CCc1ccc(I)cc1",
+    "conditions_block": "  additive: CCOC(=O)c1ccon1\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+    "meta_reactants": [
+      "CCc1ccc(I)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1ccon1",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2"
+    },
+    "gt_float": 42.1774,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0083",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000260",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1f, 6-BPin-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: AmPhos\n  base: NaOH\n  solvent: MeOH",
+    "meta_reactants": [
+      "1f, 6-BPin-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "AmPhos",
+      "base": "NaOH",
+      "solvent": "MeOH"
+    },
+    "gt_float": 38.2177,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0084",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000277",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: XPhos\n  base: LiOtBu\n  solvent: DMF",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "XPhos",
+      "base": "LiOtBu",
+      "solvent": "DMF"
+    },
+    "gt_float": 66.929,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0085",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000289",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: [K+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]\n  solvent: CC#N.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "[K+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]",
+      "solvent": "CC#N.O"
+    },
+    "gt_float": 93.1198,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0086",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000284",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "ClC1=NC=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN1CCCN2C1=NCCC2.C1(N(CC2=CC=CC=C2)CC3=CC=CC=C3)=NOC=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "ClC1=NC=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN1CCCN2C1=NCCC2.C1(N(CC2=CC=CC=C2)CC3=CC=CC=C3)=NOC=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 89.0766,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0087",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000268",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=CN=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN1CCCN2C1=NCCC2.C1(C2=CC=CC=C2)=NOC=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=CN=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN1CCCN2C1=NCCC2.C1(C2=CC=CC=C2)=NOC=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 95.129,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0088",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000288",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.Clc1ccc2ncccc2c1.[K+]",
+    "conditions_block": "  reagent: CC(C)(C)[O-].[Li+]\n  catalyst: CC(=O)O.CC(=O)O.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.Clc1ccc2ncccc2c1.[K+]"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)[O-].[Li+]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 17.6311,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0089",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000271",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Brc1ccccn1",
+    "conditions_block": "  additive: Cc1cc(on1)c2ccccc2\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C",
+    "meta_reactants": [
+      "Brc1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1cc(on1)c2ccccc2",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C"
+    },
+    "gt_float": 82.645,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0090",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000293",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Ic1ccccn1",
+    "conditions_block": "  additive: o1nccc1c2ccccc2\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "Ic1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "o1nccc1c2ccccc2",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 36.588,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0091",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000309",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Ic1cccnc1",
+    "conditions_block": "  additive: CCOC(=O)c1onc(OC)c1\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "Ic1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1onc(OC)c1",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 68.6732,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0092",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000308",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "COc1ccc(I)cc1",
+    "conditions_block": "  additive: CCOC(=O)c1ccon1\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "COc1ccc(I)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1ccon1",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 40.6512,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0093",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000303",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: CC(C)(C)[O-].[Li+]\n  catalyst: CC(=O)O.CC(=O)O.CN(C)c1ccc(P(C(C)(C)C)C(C)(C)C)cc1.[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)[O-].[Li+]",
+      "catalyst": "CC(=O)O.CC(=O)O.CN(C)c1ccc(P(C(C)(C)C)C(C)(C)C)cc1.[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 95.5273,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0094",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000316",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "FC(F)(F)c1ccc(I)cc1",
+    "conditions_block": "  additive: Cc1onc(c1)n2cccc2\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "FC(F)(F)c1ccc(I)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1onc(c1)n2cccc2",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 39.9095,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0095",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000326",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1b, 6-Br-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: dtbpf\n  solvent: MeCN",
+    "meta_reactants": [
+      "1b, 6-Br-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "dtbpf",
+      "base": "",
+      "solvent": "MeCN"
+    },
+    "gt_float": 41.6713,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0096",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000330",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1e, 6-BOH2-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: XPhos\n  base: KOH\n  solvent: MeOH/H2O_V2 9:1",
+    "meta_reactants": [
+      "1e, 6-BOH2-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "XPhos",
+      "base": "KOH",
+      "solvent": "MeOH/H2O_V2 9:1"
+    },
+    "gt_float": 78.0389,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0097",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000322",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "CCc1ccc(Br)cc1",
+    "conditions_block": "  additive: C(N(Cc1ccccc1)c2ccon2)c3ccccc3\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "CCc1ccc(Br)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "C(N(Cc1ccccc1)c2ccon2)c3ccccc3",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 69.0794,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0098",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000348",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1f, 6-BPin-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Cy)3\n  base: NaHCO3\n  solvent: MeOH",
+    "meta_reactants": [
+      "1f, 6-BPin-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Cy)3",
+      "base": "NaHCO3",
+      "solvent": "MeOH"
+    },
+    "gt_float": 38.4336,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0099",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000351",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: [Cs+].[F-]\n  catalyst: CC(=O)O.CC(=O)O.CN(C)c1ccc(P(C(C)(C)C)C(C)(C)C)cc1.[Pd]\n  solvent: CC#N.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "[Cs+].[F-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CN(C)c1ccc(P(C(C)(C)C)C(C)(C)C)cc1.[Pd]",
+      "solvent": "CC#N.O"
+    },
+    "gt_float": 88.2768,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0100",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000361",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1d, 6-I-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: dtbpf\n  base: Et3N\n  solvent: MeOH",
+    "meta_reactants": [
+      "1d, 6-I-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "dtbpf",
+      "base": "Et3N",
+      "solvent": "MeOH"
+    },
+    "gt_float": 72.4493,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0101",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000340",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Ic1cccnc1",
+    "conditions_block": "  additive: Cc1onc(c1)n2cccc2\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "Ic1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1onc(c1)n2cccc2",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 60.5253,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0102",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000370",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2c, Trifluoroborate",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: CataCXium A\n  base: CsF\n  solvent: THF",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2c, Trifluoroborate"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "CataCXium A",
+      "base": "CsF",
+      "solvent": "THF"
+    },
+    "gt_float": 27.274,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0103",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000341",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "FC(F)(F)c1ccc(Br)cc1",
+    "conditions_block": "  additive: Cc1onc(c1)n2cccc2\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "FC(F)(F)c1ccc(Br)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1onc(c1)n2cccc2",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 38.1408,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0104",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000350",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "COc1ccc(I)cc1",
+    "conditions_block": "  additive: COC(=O)c1cc(on1)c2sccc2\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "COc1ccc(I)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "COC(=O)c1cc(on1)c2sccc2",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 41.0846,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0105",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000359",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "IC1=CN=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN1CCCN2C1=NCCC2.CC1=CC=NO1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "IC1=CN=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN1CCCN2C1=NCCC2.CC1=CC=NO1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 91.6984,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0106",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000385",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: [Cs+].[F-]\n  catalyst: C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "[Cs+].[F-]",
+      "catalyst": "C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 88.0055,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0107",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000357",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Clc1cccnc1",
+    "conditions_block": "  additive: Cc1onc(c1)n2cccc2\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C",
+    "meta_reactants": [
+      "Clc1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1onc(c1)n2cccc2",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=CC=CC=C2P(C(C)(C)C)C(C)(C)C"
+    },
+    "gt_float": 44.5657,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0108",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000398",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Cy)3\n  base: Et3N\n  solvent: DMF",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Cy)3",
+      "base": "Et3N",
+      "solvent": "DMF"
+    },
+    "gt_float": 34.2471,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0109",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000397",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "CCc1ccc(I)cc1",
+    "conditions_block": "  additive: Cc1ccon1\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+    "meta_reactants": [
+      "CCc1ccc(I)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1ccon1",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2"
+    },
+    "gt_float": 66.2675,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0110",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000410",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: AmPhos\n  solvent: MeOH",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "AmPhos",
+      "base": "",
+      "solvent": "MeOH"
+    },
+    "gt_float": 53.3804,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0111",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000427",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1d, 6-I-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: XPhos\n  base: K3PO4\n  solvent: MeCN",
+    "meta_reactants": [
+      "1d, 6-I-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "XPhos",
+      "base": "K3PO4",
+      "solvent": "MeCN"
+    },
+    "gt_float": 65.6899,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0112",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000001",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1d, 6-I-Q | 2c, Trifluoroborate",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: SPhos\n  base: KOH\n  solvent: MeOH",
+    "meta_reactants": [
+      "1d, 6-I-Q",
+      "2c, Trifluoroborate"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "SPhos",
+      "base": "KOH",
+      "solvent": "MeOH"
+    },
+    "gt_float": 51.0815,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0113",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000435",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1b, 6-Br-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: dtbpf\n  base: K3PO4\n  solvent: MeCN",
+    "meta_reactants": [
+      "1b, 6-Br-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "dtbpf",
+      "base": "K3PO4",
+      "solvent": "MeCN"
+    },
+    "gt_float": 36.417,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0114",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000004",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: CataCXium A\n  base: K3PO4\n  solvent: MeOH",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "CataCXium A",
+      "base": "K3PO4",
+      "solvent": "MeOH"
+    },
+    "gt_float": 59.6691,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0115",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000012",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O",
+    "conditions_block": "  reagent: [Cs+].[F-]\n  catalyst: CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]\n  solvent: CN(C)C=O.O",
+    "meta_reactants": [
+      "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O"
+    ],
+    "meta_conditions": {
+      "reagent": "[Cs+].[F-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]",
+      "solvent": "CN(C)C=O.O"
+    },
+    "gt_float": 80.3625,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0116",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000010",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=NC=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.CC1=CC(C(OCC)=O)=NO1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+    "meta_reactants": [
+      "BrC1=NC=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.CC1=CC(C(OCC)=O)=NO1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+      "solvent": ""
+    },
+    "gt_float": 51.2165,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0117",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000021",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 67.8914,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0118",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000039",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: O=P([O-])([O-])[O-].[K+].[K+].[K+]\n  catalyst: CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]\n  solvent: CC#N.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "O=P([O-])([O-])[O-].[K+].[K+].[K+]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]",
+      "solvent": "CC#N.O"
+    },
+    "gt_float": 76.9085,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0119",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000026",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=CC=C(CC)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN1CCCN2C1=NCCC2.C1(C2=CC=CC=C2)=CON=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=CC=C(CC)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN1CCCN2C1=NCCC2.C1(C2=CC=CC=C2)=CON=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 49.4049,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0120",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000038",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: CCN(CC)CC\n  catalyst: CC(=O)O.CC(=O)O.COc1cccc(OC)c1-c1ccccc1P(C1CCCCC1)C1CCCCC1.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "CCN(CC)CC",
+      "catalyst": "CC(=O)O.CC(=O)O.COc1cccc(OC)c1-c1ccccc1P(C1CCCCC1)C1CCCCC1.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 72.5075,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0121",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000066",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: dtbpf\n  base: KOH\n  solvent: THF",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "dtbpf",
+      "base": "KOH",
+      "solvent": "THF"
+    },
+    "gt_float": 47.0369,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0122",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000056",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F.[K+]",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F.[K+]"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 35.2712,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0123",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000063",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=NC=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.C1(N(CC2=CC=CC=C2)CC3=CC=CC=C3)=NOC=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=NC=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.C1(N(CC2=CC=CC=C2)CC3=CC=CC=C3)=NOC=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 41.4298,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0124",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000062",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: O=C([O-])O.[Na+]\n  catalyst: CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "O=C([O-])O.[Na+]",
+      "catalyst": "CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 46.3399,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0125",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000080",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: dtbpf\n  base: CsF\n  solvent: THF",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "dtbpf",
+      "base": "CsF",
+      "solvent": "THF"
+    },
+    "gt_float": 40.8471,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0126",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000072",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "IC1=CC=C(CC)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN1CCCN2C1=NCCC2.O=C(OC)C1=NOC(C2=CC=CO2)=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "IC1=CC=C(CC)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN1CCCN2C1=NCCC2.O=C(OC)C1=NOC(C2=CC=CO2)=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 69.72,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0127",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000085",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: O=C([O-])O.[Na+]\n  catalyst: CC(=O)O.CC(=O)O.[Fe+2].[Pd].c1ccc(P(c2ccccc2)[c-]2cccc2)cc1.c1ccc(P(c2ccccc2)[c-]2cccc2)cc1\n  solvent: CC#N.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "O=C([O-])O.[Na+]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Fe+2].[Pd].c1ccc(P(c2ccccc2)[c-]2cccc2)cc1.c1ccc(P(c2ccccc2)[c-]2cccc2)cc1",
+      "solvent": "CC#N.O"
+    },
+    "gt_float": 61.6164,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0128",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000102",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Clc1ccc2ncccc2c1",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.COc1cccc(OC)c1-c1ccccc1P(C1CCCCC1)C1CCCCC1.[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Clc1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.COc1cccc(OC)c1-c1ccccc1P(C1CCCCC1)C1CCCCC1.[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 78.4125,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0129",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000083",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: CCN(CC)CC\n  catalyst: CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]\n  solvent: CC#N.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "CCN(CC)CC",
+      "catalyst": "CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]",
+      "solvent": "CC#N.O"
+    },
+    "gt_float": 79.8875,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0130",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000112",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1f, 6-BPin-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Ph)3\n  base: KOH\n  solvent: DMF",
+    "meta_reactants": [
+      "1f, 6-BPin-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Ph)3",
+      "base": "KOH",
+      "solvent": "DMF"
+    },
+    "gt_float": 46.0932,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0131",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000111",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "FC(F)(F)c1ccc(I)cc1",
+    "conditions_block": "  additive: CCOC(=O)c1cc(C)on1\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C",
+    "meta_reactants": [
+      "FC(F)(F)c1ccc(I)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1cc(C)on1",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C"
+    },
+    "gt_float": 48.8658,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0132",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000107",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "CCc1ccc(I)cc1",
+    "conditions_block": "  additive: CCOC(=O)c1onc(OC)c1\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C",
+    "meta_reactants": [
+      "CCc1ccc(I)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1onc(OC)c1",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C"
+    },
+    "gt_float": 61.6986,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0133",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000090",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "IC1=CN=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.CCOC(C1=NOC=C1)=O\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "IC1=CN=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.CCOC(C1=NOC=C1)=O",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 55.7895,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0134",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000131",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1",
+    "conditions_block": "  reagent: [K+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1"
+    ],
+    "meta_conditions": {
+      "reagent": "[K+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 66.7685,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0135",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000121",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "COc1ccc(Br)cc1",
+    "conditions_block": "  additive: CCOC(=O)c1ccon1\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C",
+    "meta_reactants": [
+      "COc1ccc(Br)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1ccon1",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C"
+    },
+    "gt_float": 47.6118,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0136",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000130",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "IC1=CC=C(CC)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.O=C(OC)C1=NOC(C2=CC=CS2)=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+    "meta_reactants": [
+      "IC1=CC=C(CC)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.O=C(OC)C1=NOC(C2=CC=CS2)=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+      "solvent": ""
+    },
+    "gt_float": 37.0215,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0137",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000106",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Clc1ccc2ncccc2c1",
+    "conditions_block": "  reagent: O=C([O-])O.[Na+]\n  catalyst: C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Clc1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "O=C([O-])O.[Na+]",
+      "catalyst": "C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 48.7538,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0138",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000133",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.Cc1ccccc1P(c1ccccc1C)c1ccccc1C.[Pd]\n  solvent: CN(C)C=O.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.Cc1ccccc1P(c1ccccc1C)c1ccccc1C.[Pd]",
+      "solvent": "CN(C)C=O.O"
+    },
+    "gt_float": 33.9176,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0139",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000135",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=CC=C(C(F)(F)F)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC.C1(C2=CC=CC=C2)=NOC=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=CC=C(C(F)(F)F)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC.C1(C2=CC=CC=C2)=NOC=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 41.5933,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0140",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000134",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: CCN(CC)CC\n  catalyst: CC(=O)O.CC(=O)O.COc1cccc(OC)c1-c1ccccc1P(C1CCCCC1)C1CCCCC1.[Pd]\n  solvent: CN(C)C=O.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "CCN(CC)CC",
+      "catalyst": "CC(=O)O.CC(=O)O.COc1cccc(OC)c1-c1ccccc1P(C1CCCCC1)C1CCCCC1.[Pd]",
+      "solvent": "CN(C)C=O.O"
+    },
+    "gt_float": 52.4315,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0141",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000146",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "IC1=CN=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.C1(C2=CC=CC=C2)=CON=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "IC1=CN=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.C1(C2=CC=CC=C2)=CON=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 58.9438,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0142",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000136",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Clc1ccc2ncccc2c1",
+    "conditions_block": "  reagent: CC(C)(C)[O-].[Li+]\n  catalyst: CC(=O)O.CC(=O)O.[Fe+2].[Pd].c1ccc(P(c2ccccc2)[c-]2cccc2)cc1.c1ccc(P(c2ccccc2)[c-]2cccc2)cc1\n  solvent: CN(C)C=O.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Clc1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)[O-].[Li+]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Fe+2].[Pd].c1ccc(P(c2ccccc2)[c-]2cccc2)cc1.c1ccc(P(c2ccccc2)[c-]2cccc2)cc1",
+      "solvent": "CN(C)C=O.O"
+    },
+    "gt_float": 9.5396,
+    "gt_yield_class": "low"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0143",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000055",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O",
+    "conditions_block": "  reagent: [Cs+].[F-]\n  catalyst: CC(=O)O.CC(=O)O.COc1cccc(OC)c1-c1ccccc1P(C1CCCCC1)C1CCCCC1.[Pd]\n  solvent: CN(C)C=O.O",
+    "meta_reactants": [
+      "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O"
+    ],
+    "meta_conditions": {
+      "reagent": "[Cs+].[F-]",
+      "catalyst": "CC(=O)O.CC(=O)O.COc1cccc(OC)c1-c1ccccc1P(C1CCCCC1)C1CCCCC1.[Pd]",
+      "solvent": "CN(C)C=O.O"
+    },
+    "gt_float": 62.2567,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0144",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000151",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: [K+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CC1(C)c2cccc(P(c3ccccc3)c3ccccc3)c2Oc2c(P(c3ccccc3)c3ccccc3)cccc21.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "[K+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC1(C)c2cccc(P(c3ccccc3)c3ccccc3)c2Oc2c(P(c3ccccc3)c3ccccc3)cccc21.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 65.8031,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0145",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000152",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: O=P([O-])([O-])[O-].[K+].[K+].[K+]\n  catalyst: CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "O=P([O-])([O-])[O-].[K+].[K+].[K+]",
+      "catalyst": "CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 70.7015,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0146",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000178",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1b, 6-Br-Q | 2c, Trifluoroborate",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: dtbpf\n  base: K3PO4\n  solvent: THF",
+    "meta_reactants": [
+      "1b, 6-Br-Q",
+      "2c, Trifluoroborate"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "dtbpf",
+      "base": "K3PO4",
+      "solvent": "THF"
+    },
+    "gt_float": 37.7755,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0147",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000187",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=NC=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.CC1=NOC(C2=CC=CC=C2)=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=NC=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.CC1=NOC(C2=CC=CC=C2)=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 41.2809,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0148",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000169",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.Ic1ccc2ncccc2c1.[K+]",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CC(C)(C)P(C(C)(C)C)C(C)(C)C.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.Ic1ccc2ncccc2c1.[K+]"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC(C)(C)P(C(C)(C)C)C(C)(C)C.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 48.3028,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0149",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000143",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "IC1=CN=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.CC1=CC(C(OCC)=O)=NO1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+    "meta_reactants": [
+      "IC1=CN=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.CC1=CC(C(OCC)=O)=NO1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+      "solvent": ""
+    },
+    "gt_float": 40.4133,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0150",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000192",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "IC1=CC=C(CC)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.CC1=CC(C(OCC)=O)=NO1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "IC1=CC=C(CC)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.CC1=CC(C(OCC)=O)=NO1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 78.6196,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0151",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000197",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "IC1=CC=C(C(F)(F)F)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC.C1(N(CC2=CC=CC=C2)CC3=CC=CC=C3)=NOC=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+    "meta_reactants": [
+      "IC1=CC=C(C(F)(F)F)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC.C1(N(CC2=CC=CC=C2)CC3=CC=CC=C3)=NOC=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+      "solvent": ""
+    },
+    "gt_float": 40.6707,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0152",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000206",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1f, 6-BPin-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: dtbpf\n  base: Et3N\n  solvent: THF",
+    "meta_reactants": [
+      "1f, 6-BPin-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "dtbpf",
+      "base": "Et3N",
+      "solvent": "THF"
+    },
+    "gt_float": 48.3377,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0153",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000204",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=NC=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC.O=C(OC)C1=NOC(C2=CC=CS2)=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=NC=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC.O=C(OC)C1=NOC(C2=CC=CS2)=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 66.4281,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0154",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000193",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F.[K+]",
+    "conditions_block": "  reagent: CCN(CC)CC\n  catalyst: C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F.[K+]"
+    ],
+    "meta_conditions": {
+      "reagent": "CCN(CC)CC",
+      "catalyst": "C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 69.2606,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0155",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000167",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.Clc1ccc2ncccc2c1.[K+]",
+    "conditions_block": "  reagent: O=C([O-])O.[Na+]\n  catalyst: CC(=O)O.CC(=O)O.[Fe+2].[Pd].c1ccc(P(c2ccccc2)[c-]2cccc2)cc1.c1ccc(P(c2ccccc2)[c-]2cccc2)cc1\n  solvent: CC#N.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.Clc1ccc2ncccc2c1.[K+]"
+    ],
+    "meta_conditions": {
+      "reagent": "O=C([O-])O.[Na+]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Fe+2].[Pd].c1ccc(P(c2ccccc2)[c-]2cccc2)cc1.c1ccc(P(c2ccccc2)[c-]2cccc2)cc1",
+      "solvent": "CC#N.O"
+    },
+    "gt_float": 26.1569,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0156",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000212",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: CataCXium A\n  base: NaHCO3\n  solvent: MeOH",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "CataCXium A",
+      "base": "NaHCO3",
+      "solvent": "MeOH"
+    },
+    "gt_float": 46.3399,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0157",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000215",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Brc1cccnc1",
+    "conditions_block": "  additive: CCOC(=O)c1onc(C)c1\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C",
+    "meta_reactants": [
+      "Brc1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1onc(C)c1",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C"
+    },
+    "gt_float": 65.7837,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0158",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000214",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Clc1ccc2ncccc2c1",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.[Fe+2].[Pd].c1ccc(P(c2ccccc2)[c-]2cccc2)cc1.c1ccc(P(c2ccccc2)[c-]2cccc2)cc1\n  solvent: CC#N.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Clc1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.[Fe+2].[Pd].c1ccc(P(c2ccccc2)[c-]2cccc2)cc1.c1ccc(P(c2ccccc2)[c-]2cccc2)cc1",
+      "solvent": "CC#N.O"
+    },
+    "gt_float": 19.4069,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0159",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000211",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Clc1ccc2ncccc2c1",
+    "conditions_block": "  reagent: CC(C)(C)[O-].[Li+]\n  catalyst: CC(=O)O.CC(=O)O.CC1(C)c2cccc(P(c3ccccc3)c3ccccc3)c2Oc2c(P(c3ccccc3)c3ccccc3)cccc21.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Clc1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)[O-].[Li+]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC1(C)c2cccc(P(c3ccccc3)c3ccccc3)c2Oc2c(P(c3ccccc3)c3ccccc3)cccc21.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 25.5475,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0160",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000216",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=CC=C(OC)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC.CC1=NOC(C(OCC)=O)=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=CC=C(OC)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC.CC1=NOC(C(OCC)=O)=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 44.6871,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0161",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000210",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Brc1cccnc1",
+    "conditions_block": "  additive: CCOC(=O)c1onc(C)c1\n  base: CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC\n  ligand: CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C",
+    "meta_reactants": [
+      "Brc1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "CCOC(=O)c1onc(C)c1",
+      "base": "CN(C)P(N(C)C)(N(C)C)=NP(N(C)C)(N(C)C)=NCC",
+      "ligand": "CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C"
+    },
+    "gt_float": 54.5636,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0162",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000238",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "IC1=CC=C(CC)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.COC1=NOC(C(OCC)=O)=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "IC1=CC=C(CC)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.COC1=NOC(C(OCC)=O)=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 61.6986,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0163",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000226",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F.[K+]",
+    "conditions_block": "  reagent: [K+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F.[K+]"
+    ],
+    "meta_conditions": {
+      "reagent": "[K+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 34.6067,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0164",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000246",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=NC=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.C1(C2=CC=CC=C2)=NOC=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=NC=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.C1(C2=CC=CC=C2)=NOC=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 66.7058,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0165",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000236",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Clc1ccc2ncccc2c1",
+    "conditions_block": "  reagent: [K+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Clc1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "[K+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 33.6117,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0166",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000251",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1c, 6-OTf-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(tBu)3\n  base: NaOH\n  solvent: MeCN",
+    "meta_reactants": [
+      "1c, 6-OTf-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(tBu)3",
+      "base": "NaOH",
+      "solvent": "MeCN"
+    },
+    "gt_float": 56.3815,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0167",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000228",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: CC(C)(C)[O-].[Li+]\n  catalyst: CC(=O)O.CC(=O)O.CN(C)c1ccc(P(C(C)(C)C)C(C)(C)C)cc1.[Pd]\n  solvent: CN(C)C=O.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)[O-].[Li+]",
+      "catalyst": "CC(=O)O.CC(=O)O.CN(C)c1ccc(P(C(C)(C)C)C(C)(C)C)cc1.[Pd]",
+      "solvent": "CN(C)C=O.O"
+    },
+    "gt_float": 67.2404,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0168",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000267",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.Ic1ccc2ncccc2c1.[K+]",
+    "conditions_block": "  reagent: CC(C)(C)[O-].[Li+]\n  catalyst: C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.Ic1ccc2ncccc2c1.[K+]"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)[O-].[Li+]",
+      "catalyst": "C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 73.7211,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0169",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000265",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: O=C([O-])O.[Na+]\n  catalyst: CC(=O)O.CC(=O)O.CC1(C)c2cccc(P(c3ccccc3)c3ccccc3)c2Oc2c(P(c3ccccc3)c3ccccc3)cccc21.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "O=C([O-])O.[Na+]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC1(C)c2cccc(P(c3ccccc3)c3ccccc3)c2Oc2c(P(c3ccccc3)c3ccccc3)cccc21.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 46.6971,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0170",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000278",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F.[K+]",
+    "conditions_block": "  reagent: CCN(CC)CC\n  catalyst: CC(=O)O.CC(=O)O.[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F.[K+]"
+    ],
+    "meta_conditions": {
+      "reagent": "CCN(CC)CC",
+      "catalyst": "CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 44.2488,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0171",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000275",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "IC1=CC=C(C(F)(F)F)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.CC1=NOC=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+    "meta_reactants": [
+      "IC1=CC=C(C(F)(F)F)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.CC1=NOC=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+      "solvent": ""
+    },
+    "gt_float": 41.1323,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0172",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000279",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=NC=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.C1(C2=CC=CC=C2)=CC=NO1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=NC=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.C1(C2=CC=CC=C2)=CC=NO1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 39.0937,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0173",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000295",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "COc1ccc(Br)cc1",
+    "conditions_block": "  additive: Cc1onc(c1)n2cccc2\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C",
+    "meta_reactants": [
+      "COc1ccc(Br)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1onc(c1)n2cccc2",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C"
+    },
+    "gt_float": 43.8389,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0174",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000298",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.[K+]",
+    "conditions_block": "  reagent: CCN(CC)CC\n  catalyst: CC(=O)O.CC(=O)O.CN(C)c1ccc(P(C(C)(C)C)C(C)(C)C)cc1.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.[K+]"
+    ],
+    "meta_conditions": {
+      "reagent": "CCN(CC)CC",
+      "catalyst": "CC(=O)O.CC(=O)O.CN(C)c1ccc(P(C(C)(C)C)C(C)(C)C)cc1.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 57.2361,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0175",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000300",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: [Cs+].[F-]\n  catalyst: C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "[Cs+].[F-]",
+      "catalyst": "C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 62.8084,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0176",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000305",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1b, 6-Br-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Ph)3\n  base: CsF\n  solvent: MeCN",
+    "meta_reactants": [
+      "1b, 6-Br-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Ph)3",
+      "base": "CsF",
+      "solvent": "MeCN"
+    },
+    "gt_float": 53.5099,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0177",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000307",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "IC1=CC=C(CC)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN1CCCN2C1=NCCC2.COC1=NOC(C(OCC)=O)=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+    "meta_reactants": [
+      "IC1=CC=C(CC)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN1CCCN2C1=NCCC2.COC1=NOC(C(OCC)=O)=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+      "solvent": ""
+    },
+    "gt_float": 53.28,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0178",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000317",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: [Cs+].[F-]\n  catalyst: CC(=O)O.CC(=O)O.Cc1ccccc1P(c1ccccc1C)c1ccccc1C.[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "[Cs+].[F-]",
+      "catalyst": "CC(=O)O.CC(=O)O.Cc1ccccc1P(c1ccccc1C)c1ccccc1C.[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 22.6507,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0179",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000312",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "IC1=CC=C(C(F)(F)F)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN1CCCN2C1=NCCC2.COC1=NOC(C(OCC)=O)=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "IC1=CC=C(C(F)(F)F)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN1CCCN2C1=NCCC2.COC1=NOC(C(OCC)=O)=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 45.7793,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0180",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000319",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1g, 6-BF3K-Q | 2d, Bromide",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: AmPhos\n  base: KOH\n  solvent: MeCN",
+    "meta_reactants": [
+      "1g, 6-BF3K-Q",
+      "2d, Bromide"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "AmPhos",
+      "base": "KOH",
+      "solvent": "MeCN"
+    },
+    "gt_float": 57.5158,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0181",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000314",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Ic1cccnc1",
+    "conditions_block": "  additive: COC(=O)c1cc(on1)c2occc2\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C",
+    "meta_reactants": [
+      "Ic1cccnc1"
+    ],
+    "meta_conditions": {
+      "additive": "COC(=O)c1cc(on1)c2occc2",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C"
+    },
+    "gt_float": 57.2462,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0182",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000310",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Brc1ccccn1",
+    "conditions_block": "  additive: o1nccc1c2ccccc2\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+    "meta_reactants": [
+      "Brc1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "o1nccc1c2ccccc2",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2"
+    },
+    "gt_float": 42.6949,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0183",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000321",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "FC(F)(F)c1ccc(I)cc1",
+    "conditions_block": "  additive: Cc1oncc1\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C",
+    "meta_reactants": [
+      "FC(F)(F)c1ccc(I)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "Cc1oncc1",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C"
+    },
+    "gt_float": 47.1194,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0184",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000349",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=CC=C(C(F)(F)F)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN1CCCN2C1=NCCC2.CC1=CC(C(OCC)=O)=NO1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=CC=C(C(F)(F)F)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN1CCCN2C1=NCCC2.CC1=CC(C(OCC)=O)=NO1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 52.1357,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0185",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000355",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F.[K+]",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1[B-](F)(F)F.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F.[K+]"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 40.0136,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0186",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000338",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: CCN(CC)CC\n  catalyst: CC(=O)O.CC(=O)O.[Fe+2].[Pd].c1ccc(P(c2ccccc2)[c-]2cccc2)cc1.c1ccc(P(c2ccccc2)[c-]2cccc2)cc1\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "CCN(CC)CC",
+      "catalyst": "CC(=O)O.CC(=O)O.[Fe+2].[Pd].c1ccc(P(c2ccccc2)[c-]2cccc2)cc1.c1ccc(P(c2ccccc2)[c-]2cccc2)cc1",
+      "solvent": "CO.O"
+    },
+    "gt_float": 91.0624,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0187",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000360",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: XPhos\n  base: NaHCO3\n  solvent: DMF",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "XPhos",
+      "base": "NaHCO3",
+      "solvent": "DMF"
+    },
+    "gt_float": 52.9348,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0188",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000358",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=CN=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN1CCCN2C1=NCCC2.CC1=C(C(OCC)=O)C=NO1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=CN=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN1CCCN2C1=NCCC2.CC1=C(C(OCC)=O)C=NO1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 43.1781,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0189",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000362",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]\n  solvent: C1CCOC1.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Ic1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]",
+      "solvent": "C1CCOC1.O"
+    },
+    "gt_float": 76.0066,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0190",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000353",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.O=S(=O)(Oc1ccc2ncccc2c1)C(F)(F)F"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.CC(C)(C)P(C1=CC=C[CH]1)C(C)(C)C.[Fe].[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 39.8029,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0191",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000364",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Clc1ccc2ncccc2c1",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1.Clc1ccc2ncccc2c1"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 42.9834,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0192",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000366",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "Brc1ccccn1",
+    "conditions_block": "  additive: o1nccc1c2ccccc2\n  base: CN(C)/C(N(C)C)=N\\C(C)(C)C\n  ligand: CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C",
+    "meta_reactants": [
+      "Brc1ccccn1"
+    ],
+    "meta_conditions": {
+      "additive": "o1nccc1c2ccccc2",
+      "base": "CN(C)/C(N(C)C)=N\\C(C)(C)C",
+      "ligand": "CC(C1=C(C2=C(OC)C=CC(OC)=C2P(C34CC5CC(C4)CC(C5)C3)C67CC8CC(C7)CC(C8)C6)C(C(C)C)=CC(C(C)C)=C1)C"
+    },
+    "gt_float": 39.0937,
+    "gt_yield_class": "medium"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0193",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000382",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1d, 6-I-Q | 2a, Boronic Acid",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Cy)3\n  base: K3PO4\n  solvent: THF",
+    "meta_reactants": [
+      "1d, 6-I-Q",
+      "2a, Boronic Acid"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Cy)3",
+      "base": "K3PO4",
+      "solvent": "THF"
+    },
+    "gt_float": 52.7951,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0194",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000371",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1",
+    "conditions_block": "  reagent: O=C([O-])O.[Na+]\n  catalyst: C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]\n  solvent: CO.O",
+    "meta_reactants": [
+      "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B1OC(C)(C)C(C)(C)O1"
+    ],
+    "meta_conditions": {
+      "reagent": "O=C([O-])O.[Na+]",
+      "catalyst": "C1CCC(P(C2CCCCC2)C2CCCCC2)CC1.CC(=O)O.CC(=O)O.[Pd]",
+      "solvent": "CO.O"
+    },
+    "gt_float": 47.0706,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0195",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000383",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "FC(F)(F)c1ccc(I)cc1",
+    "conditions_block": "  additive: COC(=O)c1oncc1\n  base: CN1CCCN2CCCN=C12\n  ligand: CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "FC(F)(F)c1ccc(I)cc1"
+    ],
+    "meta_conditions": {
+      "additive": "COC(=O)c1oncc1",
+      "base": "CN1CCCN2CCCN=C12",
+      "ligand": "CC(C)C1=CC(C(C)C)=CC(C(C)C)=C1C2=C(P(C(C)(C)C)C(C)(C)C)C(OC)=CC=C2OC"
+    },
+    "gt_float": 47.0551,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0196",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000412",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "1a, 6-Cl-Q | 2b, Boronic Ester",
+    "conditions_block": "  catalyst: Pd(OAc)2\n  ligand: P(Cy)3\n  base: NaHCO3\n  solvent: THF",
+    "meta_reactants": [
+      "1a, 6-Cl-Q",
+      "2b, Boronic Ester"
+    ],
+    "meta_conditions": {
+      "catalyst": "Pd(OAc)2",
+      "ligand": "P(Cy)3",
+      "base": "NaHCO3",
+      "solvent": "THF"
+    },
+    "gt_float": 48.7538,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0197",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000406",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=CC=C(CC)C=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CN1CCCN2C1=NCCC2.C1(C2=CC=CC=C2)=NOC=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+    "meta_reactants": [
+      "BrC1=CC=C(CC)C=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CN1CCCN2C1=NCCC2.C1(C2=CC=CC=C2)=NOC=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P([C@@]3(C[C@@H]4C5)C[C@H](C4)C[C@H]5C3)[C@]6(C7)C[C@@H](C[C@@H]7C8)C[C@@H]8C6)C(OC)=CC=C2OC",
+      "solvent": ""
+    },
+    "gt_float": 80.3959,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0198",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000404",
+    "rxn_cls": "Suzuki-Miyaura coupling",
+    "reactants": "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O",
+    "conditions_block": "  reagent: [Na+].[OH-]\n  catalyst: CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]\n  solvent: CN(C)C=O.O",
+    "meta_reactants": [
+      "Brc1ccc2ncccc2c1.CCc1cccc(CC)c1.Cc1ccc2c(cnn2C2CCCCO2)c1B(O)O"
+    ],
+    "meta_conditions": {
+      "reagent": "[Na+].[OH-]",
+      "catalyst": "CC(=O)O.CC(=O)O.CCCCP(C12CC3CC(CC(C3)C1)C2)C12CC3CC(CC(C3)C1)C2.[Pd]",
+      "solvent": "CN(C)C=O.O"
+    },
+    "gt_float": 81.089,
+    "gt_yield_class": "high"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.yield_pred.0199",
+    "task_family": "rxn_pred",
+    "subtask": "yield_pred",
+    "reporting_task": "RxnPred/Yield Prediction",
+    "id": "yield_v2_000389",
+    "rxn_cls": "Buchwald-Hartwig C-N coupling",
+    "reactants": "BrC1=NC=CC=C1.Cc1ccc(N)cc1",
+    "conditions_block": "  reagent: CC(C)(C)/N=C(N(C)C)/N(C)C.O=C(OC)C1=NOC(C2=CC=CS2)=C1\n  catalyst: O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+    "meta_reactants": [
+      "BrC1=NC=CC=C1.Cc1ccc(N)cc1"
+    ],
+    "meta_conditions": {
+      "reagent": "CC(C)(C)/N=C(N(C)C)/N(C)C.O=C(OC)C1=NOC(C2=CC=CS2)=C1",
+      "catalyst": "O=S(=O)([O][Pd]1[c]2ccccc2-c2ccccc2[NH2]~1)C(F)(F)F.CC(C)C(C=C(C(C)C)C=C1C(C)C)=C1C2=C(P(C3CCCCC3)C4CCCCC4)C=CC=C2",
+      "solvent": ""
+    },
+    "gt_float": 37.4643,
+    "gt_yield_class": "medium"
+  }
+]

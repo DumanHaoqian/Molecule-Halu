@@ -1,0 +1,5567 @@
+[
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0000",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 5,
+    "pool_id": "4401a192-0456-47b7-9810-b66c84ebd692",
+    "rxn_cls": "1,3-Dipolar cycloaddition",
+    "coarse_rxn_cls": "Aromatic Heterocycle Formation",
+    "rxn_condition": "Azide-alkyne (CuAAC click chemistry)",
+    "reagent_list": [
+      "[N-]=[N+]=N",
+      "C#C",
+      "[Cu]I"
+    ],
+    "reagents_formatted": "[N-]=[N+]=N, C#C, [Cu]I",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0001",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 8,
+    "pool_id": "320dfb61-a05c-450e-a13c-00775ce25ad1",
+    "rxn_cls": "Iodo Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0002",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 5,
+    "pool_id": "399659bf-caec-40f5-8273-d1e0d6763fa6",
+    "rxn_cls": "Azido to amino",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Hydride reduction",
+    "reagent_list": [
+      "[#6]-[N]=[N;+1]=[N;-1]",
+      "[B,Al;H1,H2,H3,H4;-1]"
+    ],
+    "reagents_formatted": "[#6]-[N]=[N;+1]=[N;-1], [B,Al;H1,H2,H3,H4;-1]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0003",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 17,
+    "pool_id": "0a18deb1-ffde-4917-844b-301bacf5603f",
+    "rxn_cls": "Ester hydrolysis",
+    "coarse_rxn_cls": "Deprotection",
+    "rxn_condition": "Deprotection with TMSI",
+    "reagent_list": [
+      "[Si]-[I]"
+    ],
+    "reagents_formatted": "[Si]-[I]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0004",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 4,
+    "pool_id": "2bd8e880-37ed-4c92-83ad-10c6d458c524",
+    "rxn_cls": "Bergman cyclization",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Enediyne thermal cyclization → 1,4-benzenediyl diradical",
+    "reagent_list": [
+      "[#6]#[#6]-[#6]=[#6]-[#6]#[#6]"
+    ],
+    "reagents_formatted": "[#6]#[#6]-[#6]=[#6]-[#6]#[#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0005",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 2,
+    "pool_id": "238eca95-a4bb-4893-9991-d258135f4e5d",
+    "rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0006",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 30,
+    "pool_id": "0a37552c-713b-4d94-a666-ce492887caca",
+    "rxn_cls": "Cope rearrangement",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "1,5-diene thermal [3,3]-sigmatropic",
+    "reagent_list": [
+      "[#6]=[#6]-[#6]-[#6]-[#6]=[#6]"
+    ],
+    "reagents_formatted": "[#6]=[#6]-[#6]-[#6]-[#6]=[#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0007",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 33,
+    "pool_id": "2219bcf5-e459-4d54-a57a-ca50ceaad085",
+    "rxn_cls": "CO2H-Me deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "rxn_condition": "Deprotection with water",
+    "reagent_list": [
+      "[O;H2]"
+    ],
+    "reagents_formatted": "[O;H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0008",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 21,
+    "pool_id": "7ec48ec4-ec79-4579-b935-790413ad2c89",
+    "rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0009",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 47,
+    "pool_id": "852cbbd8-7d4b-4941-9886-e1b61ce3e2a3",
+    "rxn_cls": "Triflyloxy Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0010",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 57,
+    "pool_id": "24bebc2a-b21d-443e-b580-4661319b3352",
+    "rxn_cls": "Carboxylic ester + amine reaction",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Reaction",
+    "reagent_list": [
+      "[#7]",
+      "[#6]-[#8]-[#6]=[#8]"
+    ],
+    "reagents_formatted": "[#7], [#6]-[#8]-[#6]=[#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0011",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 64,
+    "pool_id": "636582cf-f3a9-4003-922a-88b62a4c8d74",
+    "rxn_cls": "Chloro Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 2 ligands",
+    "reagent_list": [
+      "[!Cl;!Br;!I;!O][Pd;D2;+0][!Cl;!Br;!I;!O]"
+    ],
+    "reagents_formatted": "[!Cl;!Br;!I;!O][Pd;D2;+0][!Cl;!Br;!I;!O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0012",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 84,
+    "pool_id": "b49c416a-540c-4094-b12c-cba6310e2a57",
+    "rxn_cls": "Carboxylic acid to acid chloride",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "PCl5",
+    "reagent_list": [
+      "ClP(Cl)(Cl)(Cl)Cl",
+      "[O]=[C]-[O]"
+    ],
+    "reagents_formatted": "ClP(Cl)(Cl)(Cl)Cl, [O]=[C]-[O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0013",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 87,
+    "pool_id": "0bed7c77-161a-44e7-b598-d324aa89a2d0",
+    "rxn_cls": "Palladium Kumada coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd and P-ligand",
+    "reagent_list": [
+      "[Pd;D0;+0]",
+      "[P]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0], [P]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0014",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 92,
+    "pool_id": "28d15d8a-4b78-4a6f-b132-163b69ed1ab0",
+    "rxn_cls": "SN1 reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Tertiary carbocation + water (solvolysis)",
+    "reagent_list": [
+      "[#6](-[#6])(-[#6])(-[#6])-[#17,#35,#53]",
+      "[#8H2]"
+    ],
+    "reagents_formatted": "[#6](-[#6])(-[#6])(-[#6])-[#17,#35,#53], [#8H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0015",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 109,
+    "pool_id": "00326713-98e4-42ef-9d1a-6f15f6503958",
+    "rxn_cls": "Carboxylic acid to acid chloride",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "SOCl2 or POCl3",
+    "reagent_list": [
+      "O=[S,P](-[Cl])-[Cl]",
+      "[O]=[C]-[O]"
+    ],
+    "reagents_formatted": "O=[S,P](-[Cl])-[Cl], [O]=[C]-[O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0016",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 125,
+    "pool_id": "f18b2f54-85d5-475d-b194-cf8882d60096",
+    "rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "PCl5",
+    "reagent_list": [
+      "ClP(Cl)(Cl)(Cl)Cl",
+      "[O]"
+    ],
+    "reagents_formatted": "ClP(Cl)(Cl)(Cl)Cl, [O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0017",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 137,
+    "pool_id": "3412035c-b8b9-4a73-a019-92414ae7933a",
+    "rxn_cls": "TMS ether hydrolysis",
+    "coarse_rxn_cls": "Deprotection",
+    "rxn_condition": "Trimethylsilyl ether + F- or acid → alcohol",
+    "reagent_list": [
+      "[#6]-[#8]-[Si]([#6])([#6])[#6]",
+      "[F-],[#1+]"
+    ],
+    "reagents_formatted": "[#6]-[#8]-[Si]([#6])([#6])[#6], [F-],[#1+]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "J"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0018",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 136,
+    "pool_id": "86d8c907-1ab1-4840-80b7-7a2406e02a20",
+    "rxn_cls": "Bromo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0019",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 145,
+    "pool_id": "0a567cf0-8304-4d8f-a356-7db175e854d8",
+    "rxn_cls": "Rawal diene Diels-Alder",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "1-methoxy-3-trimethylsilyloxy-1,3-butadiene + aldehyde",
+    "reagent_list": [
+      "CO[C]=[C][C](O[Si](C)(C)C)=[C]",
+      "[#6][CH]=O",
+      "FB(F)F"
+    ],
+    "reagents_formatted": "CO[C]=[C][C](O[Si](C)(C)C)=[C], [#6][CH]=O, FB(F)F",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0020",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 138,
+    "pool_id": "28d97782-1c35-4794-a50b-dc973af5bcfa",
+    "rxn_cls": "Iodo Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0021",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 157,
+    "pool_id": "2472cae3-d6d2-411b-a43c-ab229a2422c5",
+    "rxn_cls": "Bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Bromination of alpha ketone",
+    "reagent_list": [
+      "O=C-[C;!H0]",
+      "BrBr"
+    ],
+    "reagents_formatted": "O=C-[C;!H0], BrBr",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0022",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 176,
+    "pool_id": "70e368d1-8ed2-4f50-b12e-3745ccfdc3f4",
+    "rxn_cls": "Chloro Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0023",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 191,
+    "pool_id": "96b70dfa-2f62-4c29-b4b8-4878bfb3c9a8",
+    "rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd and P-ligand",
+    "reagent_list": [
+      "[Pd;D0;+0]",
+      "[P]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0], [P]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0024",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 196,
+    "pool_id": "3bb102cb-9c1d-4c38-b1f7-5f440155aff8",
+    "rxn_cls": "TBS deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "rxn_condition": "Fluoride-mediated desilylation (TBAF)",
+    "reagent_list": [
+      "CCCC[N+](CCCC)(CCCC)CCCC.[F-]",
+      "[#6]O[Si](C(C)(C)C)(C)C"
+    ],
+    "reagents_formatted": "CCCC[N+](CCCC)(CCCC)CCCC.[F-], [#6]O[Si](C(C)(C)C)(C)C",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0025",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 195,
+    "pool_id": "50fc4807-b44f-46f4-9bd6-a137c96c3fd8",
+    "rxn_cls": "Ramberg-Backlund rearrangement",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Alpha-halo sulfone + base → alkene via episulfone",
+    "reagent_list": [
+      "[#6][S](=[#8])(=[#8])[C;H2,H1][Cl,Br,I]",
+      "[OH-].[K+]"
+    ],
+    "reagents_formatted": "[#6][S](=[#8])(=[#8])[C;H2,H1][Cl,Br,I], [OH-].[K+]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0026",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 154,
+    "pool_id": "e57e5444-214d-4faf-b1c6-6bc8c51a3a34",
+    "rxn_cls": "Bromo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0027",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 201,
+    "pool_id": "3ba1a915-4a4b-4712-86de-d7cd41448d34",
+    "rxn_cls": "McFadyen-Stevens reaction",
+    "coarse_rxn_cls": "Reduction",
+    "rxn_condition": "Tosylhydrazone + base → aldehyde",
+    "reagent_list": [
+      "[#6](=[#8])-[#7]-[#7]-[#16](=[#8])(=[#8])-[#6]",
+      "[Na+].[Na+].[O-]C([O-])=O"
+    ],
+    "reagents_formatted": "[#6](=[#8])-[#7]-[#7]-[#16](=[#8])(=[#8])-[#6], [Na+].[Na+].[O-]C([O-])=O",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0028",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 210,
+    "pool_id": "1f6f378d-1b05-46cd-ac19-3e36f6d3a277",
+    "rxn_cls": "E2 elimination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Strong base (KOtBu) on secondary alkyl halide",
+    "reagent_list": [
+      "[#6]-[#6](-[#35,#17,#53])-[#6]",
+      "[K+].[O-]-[#6](-[#6])(-[#6])-[#6]"
+    ],
+    "reagents_formatted": "[#6]-[#6](-[#35,#17,#53])-[#6], [K+].[O-]-[#6](-[#6])(-[#6])-[#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0029",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 226,
+    "pool_id": "15fc23cc-73a9-4600-a80e-8a24071f307a",
+    "rxn_cls": "CO2H-Et deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "rxn_condition": "Deprotection with water",
+    "reagent_list": [
+      "[O;H2]"
+    ],
+    "reagents_formatted": "[O;H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0030",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 220,
+    "pool_id": "91a5f4c1-713f-4cef-8ba0-5d2f36282892",
+    "rxn_cls": "Bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Using FeBr3 or AlBr3",
+    "reagent_list": [
+      "Br[Fe,Al](Br)Br"
+    ],
+    "reagents_formatted": "Br[Fe,Al](Br)Br",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0031",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 227,
+    "pool_id": "8c125155-d8df-4510-bda3-e23e0f25394d",
+    "rxn_cls": "Nitration",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Nitric anhydride",
+    "reagent_list": [
+      "[*]O[N+]([O-])=O",
+      "[c;H1]"
+    ],
+    "reagents_formatted": "[*]O[N+]([O-])=O, [c;H1]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0032",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 221,
+    "pool_id": "16afd749-b836-4d29-9531-004b564506b8",
+    "rxn_cls": "Nitration",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Acetic anhydride",
+    "reagent_list": [
+      "[N+]([O-])(=[O])[OH]",
+      "[C]([O][C](=[O])[CH3])(=[O])[CH3]",
+      "[c;H1]"
+    ],
+    "reagents_formatted": "[N+]([O-])(=[O])[OH], [C]([O][C](=[O])[CH3])(=[O])[CH3], [c;H1]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0033",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 233,
+    "pool_id": "64a61a1b-0e7f-4eaf-9dee-c6b9d6614f4b",
+    "rxn_cls": "Bromo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd and P-ligand",
+    "reagent_list": [
+      "[Pd;D0;+0]",
+      "[P]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0], [P]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0034",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 248,
+    "pool_id": "4350717d-c4d1-47ca-8191-ab0ce40f37d5",
+    "rxn_cls": "CO2H-tBu deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "rxn_condition": "Deprotection with OH-",
+    "reagent_list": [
+      "[O;H1]",
+      "[O]=[C]-[O]-[C]"
+    ],
+    "reagents_formatted": "[O;H1], [O]=[C]-[O]-[C]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0035",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 263,
+    "pool_id": "2c7ab30d-7fe4-4483-938b-1578fb6dd1e8",
+    "rxn_cls": "Grignard reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Addition to ester (to give tertiary alcohol)",
+    "reagent_list": [
+      "[#6]-[Mg]-[Br,Cl,I]",
+      "[#6]-[#6](=[#8])-[#8]-[#6]"
+    ],
+    "reagents_formatted": "[#6]-[Mg]-[Br,Cl,I], [#6]-[#6](=[#8])-[#8]-[#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0036",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 273,
+    "pool_id": "0cdf9b25-f92d-4575-aaf0-e0126b972a3d",
+    "rxn_cls": "mCPBA epoxidation",
+    "coarse_rxn_cls": "Oxidation",
+    "rxn_condition": "Peracid epoxidation of alkene",
+    "reagent_list": [
+      "C=C",
+      "c1cc(Cl)cc(c1)C(=O)OO"
+    ],
+    "reagents_formatted": "C=C, c1cc(Cl)cc(c1)C(=O)OO",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0037",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 283,
+    "pool_id": "0472d9b5-c4e6-4c2c-a51b-afd3674e2428",
+    "rxn_cls": "SN2 reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Cyanide nucleophile (nitrile synthesis)",
+    "reagent_list": [
+      "[#6]-[#17,#35,#53]",
+      "[C-]#[N]",
+      "[#6]-[#16](=[#8])-[#6]"
+    ],
+    "reagents_formatted": "[#6]-[#17,#35,#53], [C-]#[N], [#6]-[#16](=[#8])-[#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0038",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 274,
+    "pool_id": "04d107ff-74f8-4b73-a1bc-59469e3159fe",
+    "rxn_cls": "LiAlH4 reduction",
+    "coarse_rxn_cls": "Reduction",
+    "rxn_condition": "Amide reduction to amine",
+    "reagent_list": [
+      "[#6](=[#8])-[#7]",
+      "[Li+].[AlH4-]"
+    ],
+    "reagents_formatted": "[#6](=[#8])-[#7], [Li+].[AlH4-]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0039",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 271,
+    "pool_id": "55275a0b-c492-4b8a-a744-f5cbf0f8e46a",
+    "rxn_cls": "Negishi coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0040",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 285,
+    "pool_id": "26bc1787-8e82-463e-90ed-17ad82df2d90",
+    "rxn_cls": "Carboxylic acid to acid chloride",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Reaction using DMF/SOCl2",
+    "reagent_list": [
+      "[O]=[C]-[O]",
+      "[Cl,Br]-[S](=[O])-[Cl,Br]",
+      "[C][N]([C]=[O])[C]"
+    ],
+    "reagents_formatted": "[O]=[C]-[O], [Cl,Br]-[S](=[O])-[Cl,Br], [C][N]([C]=[O])[C]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0041",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 260,
+    "pool_id": "1eb0ec42-1baa-4a19-81e7-504ddfe29dba",
+    "rxn_cls": "Bromo Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0042",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 287,
+    "pool_id": "47038e19-283c-488d-883c-f6ec4cecc55f",
+    "rxn_cls": "Eschenmoser-Claisen rearrangement",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Allyl alcohol + methyl orthoester + heat",
+    "reagent_list": [
+      "[#6]=[#6]-[#6]-[#8]",
+      "[#6]-[#6](-[#8])(-[#8])-[#8,#7]"
+    ],
+    "reagents_formatted": "[#6]=[#6]-[#6]-[#8], [#6]-[#6](-[#8])(-[#8])-[#8,#7]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0043",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 270,
+    "pool_id": "13379610-7284-4bb4-8814-b416ba0b9096",
+    "rxn_cls": "Sulfoxy Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0044",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 284,
+    "pool_id": "104d161c-0313-4fdd-bd72-230166a43e47",
+    "rxn_cls": "Palladium Kumada coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd(OR)2 and amine agent",
+    "reagent_list": [
+      "[O][Pd;+0][O]",
+      "[N;+0]-[C;!H0]"
+    ],
+    "reagents_formatted": "[O][Pd;+0][O], [N;+0]-[C;!H0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0045",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 308,
+    "pool_id": "384b0b34-7d56-40aa-9281-339e083afa79",
+    "rxn_cls": "Epoxide ring opening",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Base-catalyzed (amine / azide nucleophile)",
+    "reagent_list": [
+      "[#6]1[#8][#6]1",
+      "[#7;H1,H2,H3,N+]"
+    ],
+    "reagents_formatted": "[#6]1[#8][#6]1, [#7;H1,H2,H3,N+]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0046",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 294,
+    "pool_id": "17ade242-ca95-476c-bd64-b5d7ad85d42d",
+    "rxn_cls": "Palladium Kumada coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0047",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 316,
+    "pool_id": "9f488979-735d-4f41-b9be-ae574ddfaa3f",
+    "rxn_cls": "Chloro Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0048",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 370,
+    "pool_id": "60ee4634-68d3-4647-9565-520e1ff5f126",
+    "rxn_cls": "Mannich reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Iminium ion formation (preformed iminium)",
+    "reagent_list": [
+      "[#7+]=C",
+      "C-C(=O)-C"
+    ],
+    "reagents_formatted": "[#7+]=C, C-C(=O)-C",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0049",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 351,
+    "pool_id": "677c49ad-a602-4ed1-8a88-db4ec4fce998",
+    "rxn_cls": "Iodo Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd and P-ligand",
+    "reagent_list": [
+      "[Pd;D0;+0]",
+      "[P]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0], [P]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0050",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 356,
+    "pool_id": "6b93e3a5-999f-4435-9d48-5b14bfa713be",
+    "rxn_cls": "Bromo Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0051",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 9,
+    "pool_id": "25289129-6a25-4997-ad6c-dc08580835fc",
+    "rxn_cls": "Knorr pyrrole synthesis",
+    "coarse_rxn_cls": "Aromatic Heterocycle Formation",
+    "rxn_condition": "Alpha-aminocarbonyl + beta-ketoester → pyrrole",
+    "reagent_list": [
+      "[#7]-[#6]-[#6]=[#8]",
+      "[#8]=[#6]-[#6]-[#6](=[#8])-[#8]-[#6]"
+    ],
+    "reagents_formatted": "[#7]-[#6]-[#6]=[#8], [#8]=[#6]-[#6]-[#6](=[#8])-[#8]-[#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0052",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 360,
+    "pool_id": "8796f5ad-8fce-4e30-834a-5f9222322d67",
+    "rxn_cls": "Bromo Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd and P-ligand",
+    "reagent_list": [
+      "[Pd;D0;+0]",
+      "[P]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0], [P]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0053",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 18,
+    "pool_id": "db6946bf-fd0c-4bb0-b5e0-ce89fb479dda",
+    "rxn_cls": "Triflyloxy Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0054",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 46,
+    "pool_id": "10de5006-9027-42cc-b72e-22c864cff15c",
+    "rxn_cls": "Baeyer-Villiger rearrangement",
+    "coarse_rxn_cls": "Oxidation",
+    "rxn_condition": "Above — migration of ketone to ester",
+    "reagent_list": [
+      "[#6]-[#6](=[#8])-[#6]",
+      "[#8]=[#6]-[#8]-[#8]-[#1]"
+    ],
+    "reagents_formatted": "[#6]-[#6](=[#8])-[#6], [#8]=[#6]-[#8]-[#8]-[#1]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "J"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0055",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 54,
+    "pool_id": "3fb66363-45d3-4fe6-9b7e-49baa157040a",
+    "rxn_cls": "Azido to amino",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Pd with H2",
+    "reagent_list": [
+      "[Pd;+0]",
+      "[H]-[H]",
+      "[#6]-[N]=[N;+1]=[N;-1]"
+    ],
+    "reagents_formatted": "[Pd;+0], [H]-[H], [#6]-[N]=[N;+1]=[N;-1]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0056",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 61,
+    "pool_id": "088846f5-aecc-4bea-943e-fc6187611569",
+    "rxn_cls": "Baeyer-Villiger oxidation",
+    "coarse_rxn_cls": "Oxidation",
+    "rxn_condition": "Cyclic ketone to lactone (Baeyer-Villiger)",
+    "reagent_list": [
+      "[#6]-[#6](=[#8])-[#6]",
+      "[#6]-[#6](=[#8])-[#8]-[#8]"
+    ],
+    "reagents_formatted": "[#6]-[#6](=[#8])-[#6], [#6]-[#6](=[#8])-[#8]-[#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0057",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 58,
+    "pool_id": "0208859a-4f6a-46e1-a72f-e95eb139d405",
+    "rxn_cls": "Reformatsky reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Indium-mediated variant (InBr, water-tolerant)",
+    "reagent_list": [
+      "[In]",
+      "[#6]-[#6](-[#35])-[#6](=[#8])-[#8]",
+      "[#6]-[#6]=[#8]"
+    ],
+    "reagents_formatted": "[In], [#6]-[#6](-[#35])-[#6](=[#8])-[#8], [#6]-[#6]=[#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0058",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 3,
+    "pool_id": "f5a1a2a3-cda7-4a3c-a7fa-a3f26ff9c172",
+    "rxn_cls": "Chloro Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0059",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 48,
+    "pool_id": "1c617e1c-04bf-4221-8ca1-1bd224f8698a",
+    "rxn_cls": "Petasis reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Borono-Mannich (boronate + amine + aldehyde)",
+    "reagent_list": [
+      "[#6][B]([OH])[OH]",
+      "[#7,#8][#6]=O",
+      "[#7H,H2]"
+    ],
+    "reagents_formatted": "[#6][B]([OH])[OH], [#7,#8][#6]=O, [#7H,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0060",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 68,
+    "pool_id": "6fee2fd4-d2e4-4878-85bb-5953a0eb9333",
+    "rxn_cls": "Bromo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd and P-ligand",
+    "reagent_list": [
+      "[Pd;D0;+0]",
+      "[P]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0], [P]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0061",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 63,
+    "pool_id": "11ea8d9b-442c-4c6d-a82c-72ec7285f756",
+    "rxn_cls": "Carboxy ester to carbamoyl",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation without catalyst",
+    "reagent_list": [
+      "[#8]-[#6]=[#8]",
+      "[#7,#16,#8]"
+    ],
+    "reagents_formatted": "[#8]-[#6]=[#8], [#7,#16,#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0062",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 65,
+    "pool_id": "c8a15840-bd5b-4aee-ae30-9ee1df49d1ce",
+    "rxn_cls": "Carboxylic acid + thioamide condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Methanol",
+    "reagent_list": [
+      "[CH3]-[OH]",
+      "[O]=[C]-[O]"
+    ],
+    "reagents_formatted": "[CH3]-[OH], [O]=[C]-[O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0063",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 96,
+    "pool_id": "19e1f948-5988-4db9-8207-2776dedc1c1a",
+    "rxn_cls": "Chloro Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0064",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 102,
+    "pool_id": "31e081a4-3c31-448e-bd38-8b01fc65d2b2",
+    "rxn_cls": "Pictet-Spengler reaction",
+    "coarse_rxn_cls": "Aromatic Heterocycle Formation",
+    "rxn_condition": "Beta-arylethylamine + carbonyl → tetrahydroisoquinoline (acid-catalyzed)",
+    "reagent_list": [
+      "[c]1[c][c][c][c][c]1-[#6]-[#6]-[#7]",
+      "[#6]=[#8]",
+      "[#1+]"
+    ],
+    "reagents_formatted": "[c]1[c][c][c][c][c]1-[#6]-[#6]-[#7], [#6]=[#8], [#1+]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0065",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 86,
+    "pool_id": "78352b45-ccf6-45b6-b6b3-5a399cd5dbc7",
+    "rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0066",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 117,
+    "pool_id": "33dcdf7f-420b-42c7-bcba-0a41051b7f56",
+    "rxn_cls": "Curtius rearrangement",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Acyl azide thermolysis to isocyanate",
+    "reagent_list": [
+      "[#6](=[#8])[#7]=[#7+]=[#7-]",
+      "[#6](=[#8])[OH]",
+      "O=P(Oc1ccccc1)(Oc1ccccc1)N=[N+]=[N-]"
+    ],
+    "reagents_formatted": "[#6](=[#8])[#7]=[#7+]=[#7-], [#6](=[#8])[OH], O=P(Oc1ccccc1)(Oc1ccccc1)N=[N+]=[N-]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0067",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 134,
+    "pool_id": "45133fca-0b1e-4828-8d1a-8c4003d64b47",
+    "rxn_cls": "Rosenmund reduction",
+    "coarse_rxn_cls": "Reduction",
+    "rxn_condition": "Acyl chloride → aldehyde (Pd/BaSO4, H2, quinoline)",
+    "reagent_list": [
+      "[#6](=[#8])-[#17]",
+      "[H][H]",
+      "[Pd]"
+    ],
+    "reagents_formatted": "[#6](=[#8])-[#17], [H][H], [Pd]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0068",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 127,
+    "pool_id": "2c7ab8e0-bf0c-4b1d-975f-373b8db0fa67",
+    "rxn_cls": "Chloro Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0069",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 152,
+    "pool_id": "433d9ff8-aa8d-4eff-84b9-8e7046b12f8d",
+    "rxn_cls": "Fischer-Speier esterification",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Methyl iodide",
+    "reagent_list": [
+      "[CH3]-[I]",
+      "[O]=[C]-[O]"
+    ],
+    "reagents_formatted": "[CH3]-[I], [O]=[C]-[O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0070",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 159,
+    "pool_id": "0b3081d1-9a42-40c5-a450-8bf1e8f61793",
+    "rxn_cls": "Mukaiyama aldol reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Lewis acid activation (TiCl4)",
+    "reagent_list": [
+      "[#6]=[#6]-[#8]-[Si]",
+      "[#6]=[#8]",
+      "[Ti](Cl)(Cl)(Cl)Cl"
+    ],
+    "reagents_formatted": "[#6]=[#6]-[#8]-[Si], [#6]=[#8], [Ti](Cl)(Cl)(Cl)Cl",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0071",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 130,
+    "pool_id": "30dfc8d3-31c5-49f0-a285-9241c677ed8b",
+    "rxn_cls": "Iodo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0072",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 146,
+    "pool_id": "43d374d7-6be0-4b9c-b7ea-f7e1d671b733",
+    "rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with Pd(OR)2 and amine agent",
+    "reagent_list": [
+      "[O][Pd;+0][O]",
+      "[N;+0]-[C;!H0]"
+    ],
+    "reagents_formatted": "[O][Pd;+0][O], [N;+0]-[C;!H0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0073",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 167,
+    "pool_id": "357d62a3-be45-4a3b-9df0-8cefe8e1faac",
+    "rxn_cls": "Bromo Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0074",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 170,
+    "pool_id": "4a9b286d-49ad-4632-a0e8-dec705092ed0",
+    "rxn_cls": "Chloro Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0075",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 168,
+    "pool_id": "474e0586-5224-4932-bd37-e56724298516",
+    "rxn_cls": "Carboxylic acid + sulfonamide condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Methyl iodide",
+    "reagent_list": [
+      "[CH3]-[I]",
+      "[O]=[C]-[O]"
+    ],
+    "reagents_formatted": "[CH3]-[I], [O]=[C]-[O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0076",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 200,
+    "pool_id": "12436e8c-9795-4655-8396-6df2ad303c70",
+    "rxn_cls": "Carboxylic acid + amidine condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Methyl iodide",
+    "reagent_list": [
+      "[CH3]-[I]",
+      "[O]=[C]-[O]"
+    ],
+    "reagents_formatted": "[CH3]-[I], [O]=[C]-[O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0077",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 216,
+    "pool_id": "09e04b07-df58-4bf7-89e5-79228e99e0ed",
+    "rxn_cls": "Triflyloxy Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with Pd(OR)2 and amine agent",
+    "reagent_list": [
+      "[O][Pd;+0][O]",
+      "[N;+0]-[C;!H0]"
+    ],
+    "reagents_formatted": "[O][Pd;+0][O], [N;+0]-[C;!H0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0078",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 249,
+    "pool_id": "3555d19e-042e-4d6c-bc53-8a55aa97bc85",
+    "rxn_cls": "Carboxylic ester + amine reaction",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation using DCC",
+    "reagent_list": [
+      "[N]=[C]=[N]",
+      "[#8]=[#6]-[#8]",
+      "[#7,#16,#8]"
+    ],
+    "reagents_formatted": "[N]=[C]=[N], [#8]=[#6]-[#8], [#7,#16,#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0079",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 247,
+    "pool_id": "ca21f8d6-2c2b-43e8-9df9-f453eaf9359f",
+    "rxn_cls": "Chloro Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0080",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 250,
+    "pool_id": "57a2c2e2-adb4-4207-a176-82665aec3cd6",
+    "rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0081",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 279,
+    "pool_id": "33b2a712-7ed7-4cd1-92e3-6e2ac56aff39",
+    "rxn_cls": "Catalytic hydrogenation",
+    "coarse_rxn_cls": "Reduction",
+    "rxn_condition": "Alkene reduction (Pd/C, H2)",
+    "reagent_list": [
+      "[#6]=[#6]",
+      "[#1]-[#1]",
+      "[Pd]"
+    ],
+    "reagents_formatted": "[#6]=[#6], [#1]-[#1], [Pd]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0082",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 298,
+    "pool_id": "059c876f-3fdc-46dd-a7ae-1c43ecc4d052",
+    "rxn_cls": "Jacobsen-Katsuki epoxidation",
+    "coarse_rxn_cls": "Oxidation",
+    "rxn_condition": "Mn-salen catalyst + oxidant (NaOCl)",
+    "reagent_list": [
+      "[Mn]",
+      "[Na+].[O-]Cl",
+      "[#6]=[#6]"
+    ],
+    "reagents_formatted": "[Mn], [Na+].[O-]Cl, [#6]=[#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0083",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 277,
+    "pool_id": "47332dd2-99c3-4b11-8582-e06905ef9912",
+    "rxn_cls": "Carboxylic acid + amide reaction",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Methanol",
+    "reagent_list": [
+      "[CH3]-[OH]",
+      "[O]=[C]-[O]"
+    ],
+    "reagents_formatted": "[CH3]-[OH], [O]=[C]-[O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0084",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 311,
+    "pool_id": "501ec2aa-75f0-4575-8df7-5f2a9684ca62",
+    "rxn_cls": "SN2 reaction",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Finkelstein reaction (halide exchange, acetone)",
+    "reagent_list": [
+      "[Na+].[I-]",
+      "CC(=O)C",
+      "[#6][Cl,Br]"
+    ],
+    "reagents_formatted": "[Na+].[I-], CC(=O)C, [#6][Cl,Br]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "J"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0085",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 313,
+    "pool_id": "0b052072-4612-43c8-aa6c-a39a594c41e7",
+    "rxn_cls": "Pictet-Spengler reaction",
+    "coarse_rxn_cls": "Aromatic Heterocycle Formation",
+    "rxn_condition": "Beta-arylethylamine + aldehyde + H+",
+    "reagent_list": [
+      "[c]1[c][c][c][c][c]1[C][C][N]",
+      "[#6][CH]=[O]",
+      "[H+]"
+    ],
+    "reagents_formatted": "[c]1[c][c][c][c][c]1[C][C][N], [#6][CH]=[O], [H+]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0086",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 258,
+    "pool_id": "24f41654-5b32-4fda-8c20-54c1aa7a2bf9",
+    "rxn_cls": "Carboxylic acid + amine condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Methyl iodide",
+    "reagent_list": [
+      "[CH3]-[I]",
+      "[O]=[C]-[O]"
+    ],
+    "reagents_formatted": "[CH3]-[I], [O]=[C]-[O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0087",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 341,
+    "pool_id": "32541db9-a048-43db-ae06-089f6135c3e8",
+    "rxn_cls": "Grignard reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Addition to aldehyde",
+    "reagent_list": [
+      "[#6]-[Mg]-[Br]",
+      "[#6]-[#6](=[#8])-[#1]",
+      "[#6]-[#6]-[#8]-[#6]-[#6]"
+    ],
+    "reagents_formatted": "[#6]-[Mg]-[Br], [#6]-[#6](=[#8])-[#1], [#6]-[#6]-[#8]-[#6]-[#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0088",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 335,
+    "pool_id": "458e9d0f-7d26-4d06-a3c4-28804f8d70ad",
+    "rxn_cls": "Triflyloxy Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd and P-ligand",
+    "reagent_list": [
+      "[Pd;D0;+0]",
+      "[P]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0], [P]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0089",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 321,
+    "pool_id": "555a8102-0146-40dc-9cc3-65a020559789",
+    "rxn_cls": "Chloro Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0090",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 345,
+    "pool_id": "1f492a0f-26fc-4ce2-b552-7123a3acf254",
+    "rxn_cls": "Epoxide ring opening",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Acid-catalyzed (water / alcohol nucleophile)",
+    "reagent_list": [
+      "[#6]1-[#8]-[#6]1",
+      "[#8]",
+      "[H+]"
+    ],
+    "reagents_formatted": "[#6]1-[#8]-[#6]1, [#8], [H+]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0091",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 346,
+    "pool_id": "15294bf6-be2e-47ba-bfbb-8a88a1a4d66c",
+    "rxn_cls": "Allyl ester deprotection",
+    "coarse_rxn_cls": "Deprotection",
+    "rxn_condition": "Allyl ester → carboxylic acid via Pd(0) allyl transfer",
+    "reagent_list": [
+      "[#6](=[#8])[#8][#6][#6]=[#6]",
+      "[Pd]",
+      "[#7H1,#6H2]"
+    ],
+    "reagents_formatted": "[#6](=[#8])[#8][#6][#6]=[#6], [Pd], [#7H1,#6H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0092",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 348,
+    "pool_id": "9447a31f-4493-45ea-9353-138911e04842",
+    "rxn_cls": "Triflyloxy Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0093",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 377,
+    "pool_id": "05970765-37c7-40bf-9ca5-e2d11a35e782",
+    "rxn_cls": "Overman rearrangement",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Allylic trichloroacetimidate [3,3]-sigmatropic",
+    "reagent_list": [
+      "[#6]=[#6]-[#6]-[#8]",
+      "[Cl][#6]([Cl])([Cl])[#6]#[#7]",
+      "[Na+].[H-]"
+    ],
+    "reagents_formatted": "[#6]=[#6]-[#6]-[#8], [Cl][#6]([Cl])([Cl])[#6]#[#7], [Na+].[H-]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0094",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 357,
+    "pool_id": "175b0feb-292f-472e-968a-c999a2941aea",
+    "rxn_cls": "Chloro Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with Pd(OR)2 and amine agent",
+    "reagent_list": [
+      "[O][Pd;+0][O]",
+      "[N;+0]-[C;!H0]"
+    ],
+    "reagents_formatted": "[O][Pd;+0][O], [N;+0]-[C;!H0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0095",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 374,
+    "pool_id": "2ebcef7a-696f-489c-91da-345d872ee8df",
+    "rxn_cls": "Tosyloxy Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0096",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 8,
+    "pool_id": "2b68b718-7527-4a31-9f63-1cc856f1bac2",
+    "rxn_cls": "Cobalt-catalyzed hydroformylation",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Terminal alkene + CO + H2 → linear/branched aldehyde",
+    "reagent_list": [
+      "[#6]=[#6]",
+      "[#6]#[#8]",
+      "[#1]-[#1]",
+      "[Co]"
+    ],
+    "reagents_formatted": "[#6]=[#6], [#6]#[#8], [#1]-[#1], [Co]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0097",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 380,
+    "pool_id": "025917e2-5431-46f4-8434-1a6eb0d7f078",
+    "rxn_cls": "Chloro Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0098",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 368,
+    "pool_id": "153507b5-e354-46fd-9848-be60c2ff7af4",
+    "rxn_cls": "Chloro Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with element Pd and P-ligand",
+    "reagent_list": [
+      "[Pd;D0;+0]",
+      "[P]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0], [P]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0099",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 12,
+    "pool_id": "0496b4d6-f8d4-4f72-bb2f-f0f88996cee8",
+    "rxn_cls": "Esterification",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation using BOP",
+    "reagent_list": [
+      "[#8]=[#6]-[#8]",
+      "[#7,#16,#8]",
+      "[#7]-[#8]-[P+]"
+    ],
+    "reagents_formatted": "[#8]=[#6]-[#8], [#7,#16,#8], [#7]-[#8]-[P+]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0100",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 22,
+    "pool_id": "481876b3-bc5a-4ee2-990c-331248f27aed",
+    "rxn_cls": "Carbonylative Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "CO insertion between Pd and aryl group",
+    "reagent_list": [
+      "[#6]-[#35,#17,#53]",
+      "[#6][B]([OH])[OH]",
+      "[C-]#[O+]",
+      "[Pd]"
+    ],
+    "reagents_formatted": "[#6]-[#35,#17,#53], [#6][B]([OH])[OH], [C-]#[O+], [Pd]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0101",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 24,
+    "pool_id": "0d7405e4-41be-4aad-9d35-72383661f0b6",
+    "rxn_cls": "Carboxylic acid + amide condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Thionyl chloride",
+    "reagent_list": [
+      "[#6]-[#8]",
+      "[#8]=[#6]-[#8]",
+      "[Cl]-[S](=[O])-[Cl]"
+    ],
+    "reagents_formatted": "[#6]-[#8], [#8]=[#6]-[#8], [Cl]-[S](=[O])-[Cl]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0102",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 39,
+    "pool_id": "46d0568e-7d0b-4179-84a4-95fdac0bb35e",
+    "rxn_cls": "Barton-McCombie deoxygenation",
+    "coarse_rxn_cls": "Reduction",
+    "rxn_condition": "Xanthate ester → alkane via radical chain (Bu3SnH/AIBN)",
+    "reagent_list": [
+      "[#6]-[#8]-[#6](=[#16])-[#16]-[#6]",
+      "[#6]-[#6]-[#6]-[#6]-[SnH]",
+      "[#6]-[#6](-[#6])(-[#7]#[#6])-[#7]=[#7]-[#6](-[#6])(-[#6])-[#7]#[#6]"
+    ],
+    "reagents_formatted": "[#6]-[#8]-[#6](=[#16])-[#16]-[#6], [#6]-[#6]-[#6]-[#6]-[SnH], [#6]-[#6](-[#6])(-[#7]#[#6])-[#7]=[#7]-[#6](-[#6])(-[#6])-[#7]#[#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0103",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 51,
+    "pool_id": "367127c0-df92-4987-81bf-e90400729158",
+    "rxn_cls": "Carboxy to carbamoyl",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation using CDI",
+    "reagent_list": [
+      "[#8]=[#6]-[#8]",
+      "[#7,#16,#8]",
+      "[#7]-[#6](=[#8])-[#7]"
+    ],
+    "reagents_formatted": "[#8]=[#6]-[#8], [#7,#16,#8], [#7]-[#6](=[#8])-[#7]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0104",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 71,
+    "pool_id": "0f563548-748d-43f9-afd5-2c81e47d771e",
+    "rxn_cls": "Ring-opening metathesis polymerization",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "ROMP of norbornene (Grubbs-I)",
+    "reagent_list": [
+      "[Ru]=[CH][#6]",
+      "C1=CC2CCC1C2",
+      "Cl[Ru](Cl)(=[CH]c1ccccc1)(P(C2CCCCC2)(C2CCCCC2)C2CCCCC2)P(C3CCCCC3)(C3CCCCC3)C3CCCCC3"
+    ],
+    "reagents_formatted": "[Ru]=[CH][#6], C1=CC2CCC1C2, Cl[Ru](Cl)(=[CH]c1ccccc1)(P(C2CCCCC2)(C2CCCCC2)C2CCCCC2)P(C3CCCCC3)(C3CCCCC3)C3CCCCC3",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "J"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0105",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 88,
+    "pool_id": "4ac85ba2-f8df-4db3-81fd-50e72b1dbeb2",
+    "rxn_cls": "Esterification",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation using CDI",
+    "reagent_list": [
+      "[#8]=[#6]-[#8]",
+      "[#7,#16,#8]",
+      "[#7]-[#6](=[#8])-[#7]"
+    ],
+    "reagents_formatted": "[#8]=[#6]-[#8], [#7,#16,#8], [#7]-[#6](=[#8])-[#7]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0106",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 90,
+    "pool_id": "1f3d405e-c694-4cb6-b06b-978498069e21",
+    "rxn_cls": "Darzens glycidic ester condensation",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Base + alpha-halo ester",
+    "reagent_list": [
+      "[#6](-[#35,#17])-[#6](=[#8])-[#8]",
+      "[#6]=[#8]",
+      "[Na+].[O-][#6]"
+    ],
+    "reagents_formatted": "[#6](-[#35,#17])-[#6](=[#8])-[#8], [#6]=[#8], [Na+].[O-][#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0107",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 110,
+    "pool_id": "07734523-fa03-4e0d-8c56-76eb06839465",
+    "rxn_cls": "Malonic ester synthesis",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Diethyl malonate + base + alkyl halide → acid",
+    "reagent_list": [
+      "C(C(=O)OCC)C(=O)OCC",
+      "[Na].[O]CC",
+      "[#6]-[#17,#35,#53]",
+      "[H+].[H2O]"
+    ],
+    "reagents_formatted": "C(C(=O)OCC)C(=O)OCC, [Na].[O]CC, [#6]-[#17,#35,#53], [H+].[H2O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0108",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 155,
+    "pool_id": "0622aaa6-6a83-4f13-89be-4fbffe565a48",
+    "rxn_cls": "Methyl esterification",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation using CDI",
+    "reagent_list": [
+      "[#8]=[#6]-[#8]",
+      "[#7,#16,#8]",
+      "[#7]-[#6](=[#8])-[#7]"
+    ],
+    "reagents_formatted": "[#8]=[#6]-[#8], [#7,#16,#8], [#7]-[#6](=[#8])-[#7]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0109",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 184,
+    "pool_id": "32464d40-7fbc-4906-9a8d-f5bb7fa5de41",
+    "rxn_cls": "Staudinger ligation",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Azide + triphenylphosphine → amide bond (bioorthogonal)",
+    "reagent_list": [
+      "[P]([#6])([#6])[#6]",
+      "[N-]=[N+]=N",
+      "[#6](=[#8])-[#8]-[#6]"
+    ],
+    "reagents_formatted": "[P]([#6])([#6])[#6], [N-]=[N+]=N, [#6](=[#8])-[#8]-[#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0110",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 189,
+    "pool_id": "245091e2-398c-423b-b001-b11b420342c4",
+    "rxn_cls": "Barton deoxygenation",
+    "coarse_rxn_cls": "Reduction",
+    "rxn_condition": "Barton-McCombie xanthate radical removal",
+    "reagent_list": [
+      "[#6]-[#8]-[#6](=[#16])-[#16]-[#6]",
+      "[SnH](CCCC)(CCCC)CCCC",
+      "CC(C)(C#N)N=NC(C)(C)C#N"
+    ],
+    "reagents_formatted": "[#6]-[#8]-[#6](=[#16])-[#16]-[#6], [SnH](CCCC)(CCCC)CCCC, CC(C)(C#N)N=NC(C)(C)C#N",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "J"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0111",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 199,
+    "pool_id": "364fc3b9-a0f6-4031-83a9-a706e7f04a14",
+    "rxn_cls": "Davis oxaziridine oxidation",
+    "coarse_rxn_cls": "Oxidation",
+    "rxn_condition": "Asymmetric alpha-hydroxylation with Davis reagent",
+    "reagent_list": [
+      "[#6]-[#6](=[#8])",
+      "[#8]1-[#6]-[#7]1",
+      "[#3]-[#7]([#6](C)C)[#6](C)C"
+    ],
+    "reagents_formatted": "[#6]-[#6](=[#8]), [#8]1-[#6]-[#7]1, [#3]-[#7]([#6](C)C)[#6](C)C",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0112",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 69,
+    "pool_id": "e8952614-b1c3-4ffe-97de-8c47adaaf538",
+    "rxn_cls": "Triflyloxy Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0113",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 219,
+    "pool_id": "b70a4d40-b064-4266-8ecb-63281923d000",
+    "rxn_cls": "Carboxylic acid + imine condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation using DCC and HOBt",
+    "reagent_list": [
+      "[#7]=[#6]=[#7]",
+      "[#8]=[#6]-[#8]",
+      "[#7,#16,#8]",
+      "[O;H1]-[#7]"
+    ],
+    "reagents_formatted": "[#7]=[#6]=[#7], [#8]=[#6]-[#8], [#7,#16,#8], [O;H1]-[#7]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "J"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0114",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 214,
+    "pool_id": "411b9963-f841-4545-971d-6c3967225da6",
+    "rxn_cls": "Carboxylic acid + thiol condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation using BOP",
+    "reagent_list": [
+      "[#8]=[#6]-[#8]",
+      "[#7,#16,#8]",
+      "[#7]-[#8]-[P+]"
+    ],
+    "reagents_formatted": "[#8]=[#6]-[#8], [#7,#16,#8], [#7]-[#8]-[P+]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0115",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 224,
+    "pool_id": "0e72f59f-4a5d-4de3-9470-6c1dfe53c905",
+    "rxn_cls": "Intramolecular aldol condensation",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Base-catalyzed ring closure",
+    "reagent_list": [
+      "[#6](=[#8])-[#6]-[#6]-[#6]-[#6](=[#8])",
+      "[K+].[OH-]",
+      "CCO"
+    ],
+    "reagents_formatted": "[#6](=[#8])-[#6]-[#6]-[#6]-[#6](=[#8]), [K+].[OH-], CCO",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0116",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 234,
+    "pool_id": "0c2c45f9-90da-48d6-8e7d-1f9839afd4ae",
+    "rxn_cls": "Carboxylic acid + amine condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation using DCC",
+    "reagent_list": [
+      "[#7]=[#6]=[#7]",
+      "[#8]=[#6]-[#8]",
+      "[#7,#16,#8]"
+    ],
+    "reagents_formatted": "[#7]=[#6]=[#7], [#8]=[#6]-[#8], [#7,#16,#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0117",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 235,
+    "pool_id": "16cbbe81-bcac-4dc3-b8e6-cef1f50f35e5",
+    "rxn_cls": "NaBH4 reduction",
+    "coarse_rxn_cls": "Reduction",
+    "rxn_condition": "Selective 1,2-reduction of alpha,beta-unsaturated ketone",
+    "reagent_list": [
+      "[#6]=[#6]-[#6]=[#8]",
+      "[Na+].[BH4-]",
+      "[Ce+3].[Cl-].[Cl-].[Cl-]",
+      "[#6]-[#8]"
+    ],
+    "reagents_formatted": "[#6]=[#6]-[#6]=[#8], [Na+].[BH4-], [Ce+3].[Cl-].[Cl-].[Cl-], [#6]-[#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0118",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 267,
+    "pool_id": "33cc1a6f-fa7b-443f-91ee-03b3711cb89d",
+    "rxn_cls": "Carboxylic acid + sulfonamide condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation using HATU/HBTU",
+    "reagent_list": [
+      "[#8]=[#6]-[#8]",
+      "[#7,#16,#8]",
+      "[#7;+1]=[#6](-[*])-[#7]"
+    ],
+    "reagents_formatted": "[#8]=[#6]-[#8], [#7,#16,#8], [#7;+1]=[#6](-[*])-[#7]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0119",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 266,
+    "pool_id": "13f54985-ee40-4e6e-a85e-2f9e4c9dda1b",
+    "rxn_cls": "Ethyl esterification",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation using DCC and HOBt",
+    "reagent_list": [
+      "[#7]=[#6]=[#7]",
+      "[#8]=[#6]-[#8]",
+      "[#7,#16,#8]",
+      "[O;H1]-[#7]"
+    ],
+    "reagents_formatted": "[#7]=[#6]=[#7], [#8]=[#6]-[#8], [#7,#16,#8], [O;H1]-[#7]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "J"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0120",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 242,
+    "pool_id": "5d675b77-3dd9-46c8-ad9c-76ec773c8319",
+    "rxn_cls": "Triflyloxy Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0121",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 304,
+    "pool_id": "4da6b4b0-5c9d-4bb1-bc1f-585968125f26",
+    "rxn_cls": "Sharpless asymmetric epoxidation",
+    "coarse_rxn_cls": "Oxidation",
+    "rxn_condition": "Allylic alcohol + TBHP + Ti(IV)/tartrate → chiral epoxide",
+    "reagent_list": [
+      "[#8]-[#6]-[#6]=[#6]",
+      "[#6]([#6])([#6])([#6])[#8]-[#8]-[#1]",
+      "[Ti]"
+    ],
+    "reagents_formatted": "[#8]-[#6]-[#6]=[#6], [#6]([#6])([#6])([#6])[#8]-[#8]-[#1], [Ti]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0122",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 309,
+    "pool_id": "0e9d4d49-d1de-41f8-b4d4-39918de3af51",
+    "rxn_cls": "Hydroboration-oxidation",
+    "coarse_rxn_cls": "Oxidation",
+    "rxn_condition": "Anti-Markovnikov alkene → alcohol (BH3 or 9-BBN)",
+    "reagent_list": [
+      "[#6]=[#6]",
+      "[B]",
+      "[#8]-[#8]"
+    ],
+    "reagents_formatted": "[#6]=[#6], [B], [#8]-[#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0123",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 325,
+    "pool_id": "4fb99db4-3264-4ec5-812a-610711263804",
+    "rxn_cls": "Acetoacetic ester synthesis",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Ethyl acetoacetate + base + alkyl halide → ketone",
+    "reagent_list": [
+      "[#6][#6](=[#8])[#6][#6](=[#8])[#8][#6]",
+      "[#6]-[#17,#35,#53]",
+      "[Na][O][#6]",
+      "[#8]"
+    ],
+    "reagents_formatted": "[#6][#6](=[#8])[#6][#6](=[#8])[#8][#6], [#6]-[#17,#35,#53], [Na][O][#6], [#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0124",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 319,
+    "pool_id": "dacda1d9-6d4f-4926-ac02-e8e2d5e7f833",
+    "rxn_cls": "Triflyloxy Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0125",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 362,
+    "pool_id": "4cef4b4e-4639-478f-bac3-9146715e7ccc",
+    "rxn_cls": "Wacker oxidation",
+    "coarse_rxn_cls": "Oxidation",
+    "rxn_condition": "Pd(II)-catalyzed alkene to ketone",
+    "reagent_list": [
+      "[#6]=[#6]",
+      "[Pd]",
+      "[Cu]",
+      "[#8H2]",
+      "[#8]=[#8]"
+    ],
+    "reagents_formatted": "[#6]=[#6], [Pd], [Cu], [#8H2], [#8]=[#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0126",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 389,
+    "pool_id": "1fc3ebc4-a843-4f98-b1b2-2c8f969a1a24",
+    "rxn_cls": "Stetter reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "NHC-catalyzed (N-heterocyclic carbene, Sila-Stetter)",
+    "reagent_list": [
+      "[#14]-[#6](=[#8])-[#6]",
+      "[#6]=[#6]-[#6]=[#8]",
+      "[#6]1=[#7]-[#6]=[#7]-[#7+]1"
+    ],
+    "reagents_formatted": "[#14]-[#6](=[#8])-[#6], [#6]=[#6]-[#6]=[#8], [#6]1=[#7]-[#6]=[#7]-[#7+]1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0127",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 392,
+    "pool_id": "2534f0cf-0413-43fc-acb1-cdfe8cbdf049",
+    "rxn_cls": "Carboxy ester to carbamoyl",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation using DCC and HOBt",
+    "reagent_list": [
+      "[#7]=[#6]=[#7]",
+      "[#8]=[#6]-[#8]",
+      "[#7,#16,#8]",
+      "[O;H1]-[#7]"
+    ],
+    "reagents_formatted": "[#7]=[#6]=[#7], [#8]=[#6]-[#8], [#7,#16,#8], [O;H1]-[#7]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0128",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 399,
+    "pool_id": "c0b993a9-a869-408f-90a8-09d1e9c21079",
+    "rxn_cls": "Radical halogenation",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "NBS benzylic bromination (radical chain)",
+    "reagent_list": [
+      "O=C1CCC(=O)N1Br",
+      "CC(C)(C#N)N=NC(C)(C)C#N",
+      "c1ccccc1C"
+    ],
+    "reagents_formatted": "O=C1CCC(=O)N1Br, CC(C)(C#N)N=NC(C)(C)C#N, c1ccccc1C",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0129",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 396,
+    "pool_id": "17eaca63-c380-485f-abe2-b342589a3bf0",
+    "rxn_cls": "Grignard reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Addition to ketone",
+    "reagent_list": [
+      "[#6][Mg][Br]",
+      "[#6][#6](=[#8])[#6]",
+      "[#6][#8][#6]"
+    ],
+    "reagents_formatted": "[#6][Mg][Br], [#6][#6](=[#8])[#6], [#6][#8][#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0130",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 343,
+    "pool_id": "b9e27758-9a6c-4aee-b0d3-f26484fac831",
+    "rxn_cls": "Sulfoxy Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0131",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 280,
+    "pool_id": "4427f688-45b9-40ad-84ac-637307f71dc6",
+    "rxn_cls": "Corey-Chaykovsky reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Dimethylsulfonium methylide + ketone → epoxide",
+    "reagent_list": [
+      "[#6](=[#8])([#6])[#6]",
+      "[#6]-[#16+](-[#6])-[#6]",
+      "[Na+].[H-]"
+    ],
+    "reagents_formatted": "[#6](=[#8])([#6])[#6], [#6]-[#16+](-[#6])-[#6], [Na+].[H-]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "J"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0132",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 85,
+    "pool_id": "47c5f812-6c7e-4f5f-8a6c-057ff0b8fd64",
+    "rxn_cls": "Carboxy ester to carbamoyl",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Methyl iodide",
+    "reagent_list": [
+      "[CH3]-[I]",
+      "[O]=[C]-[O]"
+    ],
+    "reagents_formatted": "[CH3]-[I], [O]=[C]-[O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0133",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "pool_idx": 15,
+    "pool_id": "233a4a68-3bf1-43e6-8261-e5bf933f3733",
+    "rxn_cls": "Paternò-Büchi reaction",
+    "coarse_rxn_cls": "OTHER",
+    "rxn_condition": "[2+2] Photocycloaddition (carbonyl + alkene → oxetane)",
+    "reagent_list": [
+      "[#6]=[#8]",
+      "[#6]=[#6]"
+    ],
+    "reagents_formatted": "[#6]=[#8], [#6]=[#6]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0134",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "9d01f5c6-0797-4d62-b28b-215fcba1b13c",
+    "pool_idx": 16,
+    "pool_id": "9d01f5c6-0797-4d62-b28b-215fcba1b13c",
+    "rxn_cls": "Bromo Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0135",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "da45d70f-9355-43bd-880d-15af57c54910",
+    "pool_idx": 1,
+    "pool_id": "da45d70f-9355-43bd-880d-15af57c54910",
+    "rxn_cls": "Bromo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0136",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "50ca45ac-c16e-4087-ab63-eb21c2fabd68",
+    "pool_idx": 6,
+    "pool_id": "50ca45ac-c16e-4087-ab63-eb21c2fabd68",
+    "rxn_cls": "Triflyloxy Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd(OR)2 and amine agent",
+    "reagent_list": [
+      "[O][Pd;+0][O]",
+      "[N;+0]-[C;!H0]"
+    ],
+    "reagents_formatted": "[O][Pd;+0][O], [N;+0]-[C;!H0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0137",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "0fd81552-fdd3-4fdc-b5f8-ce00aaa756bb",
+    "pool_idx": 55,
+    "pool_id": "0fd81552-fdd3-4fdc-b5f8-ce00aaa756bb",
+    "rxn_cls": "Iodo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd(OR)2 and amine agent",
+    "reagent_list": [
+      "[O][Pd;+0][O]",
+      "[N;+0]-[C;!H0]"
+    ],
+    "reagents_formatted": "[O][Pd;+0][O], [N;+0]-[C;!H0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0138",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "46f69e23-0f71-4fce-a36e-848ce4f13cc8",
+    "pool_idx": 49,
+    "pool_id": "46f69e23-0f71-4fce-a36e-848ce4f13cc8",
+    "rxn_cls": "Iodo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0139",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "a25fec45-a4c9-42c2-a256-eb17bf1a14f0",
+    "pool_idx": 105,
+    "pool_id": "a25fec45-a4c9-42c2-a256-eb17bf1a14f0",
+    "rxn_cls": "Triflyloxy Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd and P-ligand",
+    "reagent_list": [
+      "[Pd;D0;+0]",
+      "[P]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0], [P]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0140",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "daeac80b-5a81-4056-9170-4fe9fbe9dd52",
+    "pool_idx": 10,
+    "pool_id": "daeac80b-5a81-4056-9170-4fe9fbe9dd52",
+    "rxn_cls": "Sulfoxy Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd(OR)2 and amine agent",
+    "reagent_list": [
+      "[O][Pd;+0][O]",
+      "[N;+0]-[C;!H0]"
+    ],
+    "reagents_formatted": "[O][Pd;+0][O], [N;+0]-[C;!H0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0141",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "2886c8fe-80bc-4377-b1e6-6761a49e9887",
+    "pool_idx": 94,
+    "pool_id": "2886c8fe-80bc-4377-b1e6-6761a49e9887",
+    "rxn_cls": "Chloro Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0142",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "c66baf89-43a9-4cdf-af26-7e90ddf5e17d",
+    "pool_idx": 126,
+    "pool_id": "c66baf89-43a9-4cdf-af26-7e90ddf5e17d",
+    "rxn_cls": "Chloro Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0143",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "5845ef8b-0059-4272-a3f5-f3320cbf5afe",
+    "pool_idx": 124,
+    "pool_id": "5845ef8b-0059-4272-a3f5-f3320cbf5afe",
+    "rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0144",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "c1748463-d9dd-46ba-b9c9-50decbdd67b5",
+    "pool_idx": 158,
+    "pool_id": "c1748463-d9dd-46ba-b9c9-50decbdd67b5",
+    "rxn_cls": "Bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Bromination on benzene",
+    "reagent_list": [
+      "BrBr",
+      "[c;H1]"
+    ],
+    "reagents_formatted": "BrBr, [c;H1]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0145",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "de719ca1-cab1-434a-a2e8-4dbea95d759c",
+    "pool_idx": 142,
+    "pool_id": "de719ca1-cab1-434a-a2e8-4dbea95d759c",
+    "rxn_cls": "Triflyloxy Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0146",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "c62365ac-ece4-4ef3-bfc7-6db8b5db3229",
+    "pool_idx": 194,
+    "pool_id": "c62365ac-ece4-4ef3-bfc7-6db8b5db3229",
+    "rxn_cls": "Iodo Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0147",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "bda533ee-61db-4862-b041-3f0de7f7457a",
+    "pool_idx": 161,
+    "pool_id": "bda533ee-61db-4862-b041-3f0de7f7457a",
+    "rxn_cls": "Negishi coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0148",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "d5a6286d-b8c4-43d1-944d-0df49490b56b",
+    "pool_idx": 186,
+    "pool_id": "d5a6286d-b8c4-43d1-944d-0df49490b56b",
+    "rxn_cls": "Iodo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0149",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "22191cb1-5da5-400c-a15e-a1736dcdd390",
+    "pool_idx": 208,
+    "pool_id": "22191cb1-5da5-400c-a15e-a1736dcdd390",
+    "rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0150",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "6b087d48-fe91-41be-a731-7e6794a4ec1d",
+    "pool_idx": 245,
+    "pool_id": "6b087d48-fe91-41be-a731-7e6794a4ec1d",
+    "rxn_cls": "Bromo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0151",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "37ee6a0f-c909-4097-af16-f654ec86824e",
+    "pool_idx": 225,
+    "pool_id": "37ee6a0f-c909-4097-af16-f654ec86824e",
+    "rxn_cls": "Palladium Kumada coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0152",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "38498610-dc6e-4b3f-8803-6b2eadfce8b9",
+    "pool_idx": 238,
+    "pool_id": "38498610-dc6e-4b3f-8803-6b2eadfce8b9",
+    "rxn_cls": "Negishi coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0153",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "fa490fb5-ed17-4ac5-bed4-dab74573bf19",
+    "pool_idx": 286,
+    "pool_id": "fa490fb5-ed17-4ac5-bed4-dab74573bf19",
+    "rxn_cls": "Chloro Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0154",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "e47b818f-c64a-4117-b203-abc605d49fe5",
+    "pool_idx": 307,
+    "pool_id": "e47b818f-c64a-4117-b203-abc605d49fe5",
+    "rxn_cls": "Chloro Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0155",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "34d42d8f-7fe7-42b4-bae9-59f99ab35978",
+    "pool_idx": 324,
+    "pool_id": "34d42d8f-7fe7-42b4-bae9-59f99ab35978",
+    "rxn_cls": "Iodo Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0156",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "07116981-172d-453d-8f4c-607553a63c46",
+    "pool_idx": 301,
+    "pool_id": "07116981-172d-453d-8f4c-607553a63c46",
+    "rxn_cls": "Triflyloxy Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd",
+    "reagent_list": [
+      "[Pd;D0;+0]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0157",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "fc3aea31-8789-429e-bfad-d6fb0c5a3161",
+    "pool_idx": 303,
+    "pool_id": "fc3aea31-8789-429e-bfad-d6fb0c5a3161",
+    "rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with element Pd and P-ligand",
+    "reagent_list": [
+      "[Pd;D0;+0]",
+      "[P]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0], [P]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0158",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "aacd8bee-c78a-45cc-9f1c-c37e843f4742",
+    "pool_idx": 331,
+    "pool_id": "aacd8bee-c78a-45cc-9f1c-c37e843f4742",
+    "rxn_cls": "Bromination",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "Using NBS",
+    "reagent_list": [
+      "BrN"
+    ],
+    "reagents_formatted": "BrN",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0159",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "63a4b4be-c057-4506-8480-32dfeedca6c8",
+    "pool_idx": 340,
+    "pool_id": "63a4b4be-c057-4506-8480-32dfeedca6c8",
+    "rxn_cls": "Hydroxy to chloro",
+    "coarse_rxn_cls": "Functional Group Interconversion",
+    "rxn_condition": "SOCl2 or POCl3",
+    "reagent_list": [
+      "O=[S,P](-[Cl])-[Cl]",
+      "[O]"
+    ],
+    "reagents_formatted": "O=[S,P](-[Cl])-[Cl], [O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0160",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "31fd8e04-c8ea-472a-8bd8-f9a0268e5b4a",
+    "pool_idx": 379,
+    "pool_id": "31fd8e04-c8ea-472a-8bd8-f9a0268e5b4a",
+    "rxn_cls": "Iodo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with element Pd and P-ligand",
+    "reagent_list": [
+      "[Pd;D0;+0]",
+      "[P]"
+    ],
+    "reagents_formatted": "[Pd;D0;+0], [P]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0161",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "c93d2519-943b-463d-9dbe-bd42854b3022",
+    "pool_idx": 77,
+    "pool_id": "c93d2519-943b-463d-9dbe-bd42854b3022",
+    "rxn_cls": "Methyl esterification",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation without catalyst",
+    "reagent_list": [
+      "[#8]-[#6]=[#8]",
+      "[#7,#16,#8]"
+    ],
+    "reagents_formatted": "[#8]-[#6]=[#8], [#7,#16,#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0162",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "43b42b83-17bd-4a2f-9c56-2c1318f20eb7",
+    "pool_idx": 101,
+    "pool_id": "43b42b83-17bd-4a2f-9c56-2c1318f20eb7",
+    "rxn_cls": "Iodo Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0163",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "d0320604-13bc-4337-ab0b-f51b01b36f57",
+    "pool_idx": 93,
+    "pool_id": "d0320604-13bc-4337-ab0b-f51b01b36f57",
+    "rxn_cls": "Triflyloxy Sonogashira coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0164",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "0d187b3f-e2d2-4140-a3cb-936d095da648",
+    "pool_idx": 100,
+    "pool_id": "0d187b3f-e2d2-4140-a3cb-936d095da648",
+    "rxn_cls": "Tosyloxy Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0165",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "0e9fd627-7857-43fd-9e4c-ce3339d0dd63",
+    "pool_idx": 108,
+    "pool_id": "0e9fd627-7857-43fd-9e4c-ce3339d0dd63",
+    "rxn_cls": "Triflyloxy Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0166",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "76697e3a-238d-4a6f-8b88-6826de6ff8e0",
+    "pool_idx": 115,
+    "pool_id": "76697e3a-238d-4a6f-8b88-6826de6ff8e0",
+    "rxn_cls": "Triflyloxy Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0167",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "06a12074-eda4-4222-a26d-cb7fffaf6201",
+    "pool_idx": 147,
+    "pool_id": "06a12074-eda4-4222-a26d-cb7fffaf6201",
+    "rxn_cls": "Negishi coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0168",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "88592579-68df-4fc2-88a5-1817edbb5742",
+    "pool_idx": 141,
+    "pool_id": "88592579-68df-4fc2-88a5-1817edbb5742",
+    "rxn_cls": "Tosyloxy Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd(OR)2 and amine agent",
+    "reagent_list": [
+      "[O][Pd;+0][O]",
+      "[N;+0]-[C;!H0]"
+    ],
+    "reagents_formatted": "[O][Pd;+0][O], [N;+0]-[C;!H0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0169",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "8c9cdc7d-6dc0-4c59-a76e-5147b9790cc8",
+    "pool_idx": 181,
+    "pool_id": "8c9cdc7d-6dc0-4c59-a76e-5147b9790cc8",
+    "rxn_cls": "Chloro Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd(OR)2 and amine agent",
+    "reagent_list": [
+      "[O][Pd;+0][O]",
+      "[N;+0]-[C;!H0]"
+    ],
+    "reagents_formatted": "[O][Pd;+0][O], [N;+0]-[C;!H0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0170",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "fa81daad-aa59-4a28-a1c0-d62dfd865aa9",
+    "pool_idx": 187,
+    "pool_id": "fa81daad-aa59-4a28-a1c0-d62dfd865aa9",
+    "rxn_cls": "Chloro Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd(OR)2 and amine agent",
+    "reagent_list": [
+      "[O][Pd;+0][O]",
+      "[N;+0]-[C;!H0]"
+    ],
+    "reagents_formatted": "[O][Pd;+0][O], [N;+0]-[C;!H0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0171",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "bf96bbd9-a4de-4eb2-a253-db4edbaba35e",
+    "pool_idx": 166,
+    "pool_id": "bf96bbd9-a4de-4eb2-a253-db4edbaba35e",
+    "rxn_cls": "Bromo Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0172",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "6f1fe6b9-5779-4ec0-b15c-5a57d9b5048f",
+    "pool_idx": 217,
+    "pool_id": "6f1fe6b9-5779-4ec0-b15c-5a57d9b5048f",
+    "rxn_cls": "Triflyloxy Stille reaction",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0173",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "1dfcd920-f7f5-40f6-b4ac-4abfc8a88971",
+    "pool_idx": 289,
+    "pool_id": "1dfcd920-f7f5-40f6-b4ac-4abfc8a88971",
+    "rxn_cls": "Bromo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd(OR)2 and amine agent",
+    "reagent_list": [
+      "[O][Pd;+0][O]",
+      "[N;+0]-[C;!H0]"
+    ],
+    "reagents_formatted": "[O][Pd;+0][O], [N;+0]-[C;!H0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0174",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "fd17b4c1-4614-4e41-b768-2482fbbe5349",
+    "pool_idx": 300,
+    "pool_id": "fd17b4c1-4614-4e41-b768-2482fbbe5349",
+    "rxn_cls": "Weinreb amide synthesis",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation without catalyst",
+    "reagent_list": [
+      "[#8]-[#6]=[#8]",
+      "[#7,#16,#8]"
+    ],
+    "reagents_formatted": "[#8]-[#6]=[#8], [#7,#16,#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "I"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0175",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "8075f160-ff9e-4cdb-90af-73c4d3513b3a",
+    "pool_idx": 299,
+    "pool_id": "8075f160-ff9e-4cdb-90af-73c4d3513b3a",
+    "rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with Pd coordinated with 3 or 4 ligands",
+    "reagent_list": [
+      "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]"
+    ],
+    "reagents_formatted": "[Pd;D3,D4;$([Pd](-[*])(-[*])-[*]),$([Pd](-[*])(-[*])(-[*])-[*]);!$([Pd]([Cl,Br,I,O])[Cl,Br,I,O]);+0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0176",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "51c2cafc-6ec3-437a-803d-ec613bad4b9e",
+    "pool_idx": 310,
+    "pool_id": "51c2cafc-6ec3-437a-803d-ec613bad4b9e",
+    "rxn_cls": "Triflyloxy Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd(OR)2 and amine agent",
+    "reagent_list": [
+      "[O][Pd;+0][O]",
+      "[N;+0]-[C;!H0]"
+    ],
+    "reagents_formatted": "[O][Pd;+0][O], [N;+0]-[C;!H0]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0177",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "102c3ccd-5b6a-4796-a625-02a80f7a575f",
+    "pool_idx": 328,
+    "pool_id": "102c3ccd-5b6a-4796-a625-02a80f7a575f",
+    "rxn_cls": "Fischer-Speier esterification",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation without catalyst",
+    "reagent_list": [
+      "[#8]-[#6]=[#8]",
+      "[#7,#16,#8]"
+    ],
+    "reagents_formatted": "[#8]-[#6]=[#8], [#7,#16,#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0178",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "c1c9f951-62c2-4bcd-af9d-f61f13f88741",
+    "pool_idx": 383,
+    "pool_id": "c1c9f951-62c2-4bcd-af9d-f61f13f88741",
+    "rxn_cls": "Carboxylic acid + thiol condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation without catalyst",
+    "reagent_list": [
+      "[#8]-[#6]=[#8]",
+      "[#7,#16,#8]"
+    ],
+    "reagents_formatted": "[#8]-[#6]=[#8], [#7,#16,#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0179",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "d31d988f-a63a-40fd-b608-fe0b56974f42",
+    "pool_idx": 382,
+    "pool_id": "d31d988f-a63a-40fd-b608-fe0b56974f42",
+    "rxn_cls": "Carboxylic acid + thiol condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Methanol",
+    "reagent_list": [
+      "[CH3]-[OH]",
+      "[O]=[C]-[O]"
+    ],
+    "reagents_formatted": "[CH3]-[OH], [O]=[C]-[O]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0180",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "3091eba5-1bcb-4334-9cb6-8d775af2c9ab",
+    "pool_idx": 1,
+    "pool_id": "3091eba5-1bcb-4334-9cb6-8d775af2c9ab",
+    "rxn_cls": "Iodo Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0181",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "5c1bd3ed-37b4-4edd-a855-777b2f45911f",
+    "pool_idx": 395,
+    "pool_id": "5c1bd3ed-37b4-4edd-a855-777b2f45911f",
+    "rxn_cls": "Iodo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0182",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "2c7e58fc-e299-4577-8f7f-f46081775d57",
+    "pool_idx": 394,
+    "pool_id": "2c7e58fc-e299-4577-8f7f-f46081775d57",
+    "rxn_cls": "Bromo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2 and 1,5-cyclooctadiene",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "C1=CCCC=CCC1"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], C1=CCCC=CCC1",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0183",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "46b47612-f397-4bcc-9411-31f9e694e190",
+    "pool_idx": 38,
+    "pool_id": "46b47612-f397-4bcc-9411-31f9e694e190",
+    "rxn_cls": "Ethyl esterification",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Condensation without catalyst",
+    "reagent_list": [
+      "[#8]-[#6]=[#8]",
+      "[#7,#16,#8]"
+    ],
+    "reagents_formatted": "[#8]-[#6]=[#8], [#7,#16,#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0184",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "96ab72b4-1959-45b3-a6f0-c9513e653e1e",
+    "pool_idx": 79,
+    "pool_id": "96ab72b4-1959-45b3-a6f0-c9513e653e1e",
+    "rxn_cls": "Chloro Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0185",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "e4e9e731-7c8b-476e-a2c7-5543d03ae0ff",
+    "pool_idx": 148,
+    "pool_id": "e4e9e731-7c8b-476e-a2c7-5543d03ae0ff",
+    "rxn_cls": "Iodo Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0186",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "5f9ef301-dfe0-4d1e-8986-d569f1edb798",
+    "pool_idx": 165,
+    "pool_id": "5f9ef301-dfe0-4d1e-8986-d569f1edb798",
+    "rxn_cls": "Chloro Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0187",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "d2fe392a-1e3b-4b86-ae0a-cdd0f6564cdd",
+    "pool_idx": 232,
+    "pool_id": "d2fe392a-1e3b-4b86-ae0a-cdd0f6564cdd",
+    "rxn_cls": "Bromo Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0188",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "1e0e4e0b-d4cd-405d-99bc-d6fcc9424f21",
+    "pool_idx": 67,
+    "pool_id": "1e0e4e0b-d4cd-405d-99bc-d6fcc9424f21",
+    "rxn_cls": "Chloro Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "C"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0189",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "5ce6f4ef-5446-4d79-b9a1-81767bfd4bcb",
+    "pool_idx": 254,
+    "pool_id": "5ce6f4ef-5446-4d79-b9a1-81767bfd4bcb",
+    "rxn_cls": "Bromo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0190",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "2c5e2bc2-8b80-41c4-ab12-29fd29c84850",
+    "pool_idx": 207,
+    "pool_id": "2c5e2bc2-8b80-41c4-ab12-29fd29c84850",
+    "rxn_cls": "Triflyloxy Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "D"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0191",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "84102ce3-56bd-4ca2-b23c-de4599eb6fdd",
+    "pool_idx": 363,
+    "pool_id": "84102ce3-56bd-4ca2-b23c-de4599eb6fdd",
+    "rxn_cls": "Bromo Suzuki coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with PdX2, PPh3, and water",
+    "reagent_list": [
+      "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,O][Pd;+0][Cl,Br,I,O], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0192",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "d1799b8d-72f2-48bd-b8f4-c378e9d08e39",
+    "pool_idx": 320,
+    "pool_id": "d1799b8d-72f2-48bd-b8f4-c378e9d08e39",
+    "rxn_cls": "Bromo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "E"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0193",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "7fe46997-a011-434b-a02e-86faa05374b9",
+    "pool_idx": 365,
+    "pool_id": "7fe46997-a011-434b-a02e-86faa05374b9",
+    "rxn_cls": "Iodo Miyaura boration",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "G"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0194",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "b0203e39-32bf-4ca2-a24c-2960a385e4d1",
+    "pool_idx": 332,
+    "pool_id": "b0203e39-32bf-4ca2-a24c-2960a385e4d1",
+    "rxn_cls": "Iodo Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0195",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "9cdaa0b2-0733-41df-ac85-6cabf20a666b",
+    "pool_idx": 376,
+    "pool_id": "9cdaa0b2-0733-41df-ac85-6cabf20a666b",
+    "rxn_cls": "Carboxylic acid + amide condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Williamson ether synthesis type",
+    "reagent_list": [
+      "[Cl,Br,I,S&$([S](=O)(-O))]-[C]",
+      "[#7,#16,#8]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,S&$([S](=O)(-O))]-[C], [#7,#16,#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "H"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0196",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "27729177-7225-4558-9b39-0b66c15c6a36",
+    "pool_idx": 302,
+    "pool_id": "27729177-7225-4558-9b39-0b66c15c6a36",
+    "rxn_cls": "Palladium Kumada coupling",
+    "coarse_rxn_cls": "C-C Coupling",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "gt_letter": "F"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0197",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "639a5c4b-cb92-43a5-86da-c676c9eccd2a",
+    "pool_idx": 393,
+    "pool_id": "639a5c4b-cb92-43a5-86da-c676c9eccd2a",
+    "rxn_cls": "Chloro Buchwald-Hartwig amination",
+    "coarse_rxn_cls": "Heteroatom Alkylation and Arylation",
+    "rxn_condition": "Reaction with Pd2+",
+    "reagent_list": [
+      "[Pd;+2]",
+      "[Cl,Br,I,O,-1]",
+      "[P]",
+      "[O;H1,H2]"
+    ],
+    "reagents_formatted": "[Pd;+2], [Cl,Br,I,O,-1], [P], [O;H1,H2]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "gt_letter": "A"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0198",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "0a676c8d-a6c1-4b02-b571-4ed2ba927696",
+    "pool_idx": 240,
+    "pool_id": "0a676c8d-a6c1-4b02-b571-4ed2ba927696",
+    "rxn_cls": "Esterification",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Williamson ether synthesis type",
+    "reagent_list": [
+      "[Cl,Br,I,S&$([S](=O)(-O))]-[C]",
+      "[#7,#16,#8]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,S&$([S](=O)(-O))]-[C], [#7,#16,#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "B"
+  },
+  {
+    "anonymous_sample_id": "rxn_pred.mech_sel.0199",
+    "task_family": "rxn_pred",
+    "subtask": "mech_sel",
+    "reporting_task": "RxnPred/Template/Mechanism Reasoning",
+    "record_id": "2ef9fb71-0d77-4ee0-bde9-a942780c4840",
+    "pool_idx": 128,
+    "pool_id": "2ef9fb71-0d77-4ee0-bde9-a942780c4840",
+    "rxn_cls": "Carboxylic acid + imine condensation",
+    "coarse_rxn_cls": "Acylation",
+    "rxn_condition": "Williamson ether synthesis type",
+    "reagent_list": [
+      "[Cl,Br,I,S&$([S](=O)(-O))]-[C]",
+      "[#7,#16,#8]"
+    ],
+    "reagents_formatted": "[Cl,Br,I,S&$([S](=O)(-O))]-[C], [#7,#16,#8]",
+    "valid_choices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "gt_letter": "J"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "task_family": "mol_und",
+  "subtask": "fg_detect",
+  "reporting_task": "MolUnd/Functional Group",
+  "all_pass_definition": "The all_pass field is the task-specific conjunction of required process verifier checks used when constructing the verified reference.",
+  "verifier_checks": [
+    {
+      "name": "S1_semantic",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S1_syntax",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S2_count",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S3_arith",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S4_ans",
+      "description": "Task-specific deterministic verifier flag."
+    }
+  ],
+  "outcome_fields": [
+    "outcome",
+    "outcome_mae"
+  ],
+  "type_notes": [
+    "Type-I checks are intrinsic symbolic checks such as validity, arithmetic, canonicalization, scaffold preservation, or consistency.",
+    "Type-II checks compare closed-answer process states or final answers with the verified benchmark reference.",
+    "Molecular optimization uses oracle-computable constraints rather than strict path matching for the final outcome."
+  ]
+}

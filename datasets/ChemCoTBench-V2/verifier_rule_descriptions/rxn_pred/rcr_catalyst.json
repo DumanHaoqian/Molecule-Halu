@@ -1,0 +1,45 @@
+{
+  "task_family": "rxn_pred",
+  "subtask": "rcr_catalyst",
+  "reporting_task": "RxnPred/Component Recommendation",
+  "all_pass_definition": "The all_pass field is the task-specific conjunction of required process verifier checks used when constructing the verified reference.",
+  "verifier_checks": [
+    {
+      "name": "S1_rxn_class_exact",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S2_transformation_logic",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S3_catalyst_role_presence",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S4_class_grounding",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S5_class_self_consistency",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S6_mol_valid",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S7_answer_consistent",
+      "description": "Task-specific deterministic verifier flag."
+    }
+  ],
+  "outcome_fields": [
+    "outcome",
+    "outcome_fts"
+  ],
+  "type_notes": [
+    "Type-I checks are intrinsic symbolic checks such as validity, arithmetic, canonicalization, scaffold preservation, or consistency.",
+    "Type-II checks compare closed-answer process states or final answers with the verified benchmark reference.",
+    "Molecular optimization uses oracle-computable constraints rather than strict path matching for the final outcome."
+  ]
+}

@@ -1,0 +1,57 @@
+schema_version: "1.0"
+
+provider:
+  name: poe
+  base_url: https://api.poe.com/v1
+  api_key_env: POE_API_KEY
+  model_id: gpt-5.4-mini
+  bot_name: GPT-5.4-Mini
+  primary_transport: responses
+  fallback_transports: [chat_completions, fastapi_poe]
+
+model_discovery:
+  endpoint: /models
+  require_model_id: gpt-5.4-mini
+  require_endpoints: [/v1/responses, /v1/chat/completions]
+  require_features: [tools]
+  fail_closed: true
+  cache_ttl_hours: 1
+
+proposal:
+  model_id: gpt-5.4-mini
+  reasoning_effort: medium
+  retry_reasoning_effort: high
+  temperature: 0.4
+  parallel_tool_calls: false
+  web_search: false
+  max_attempts: 3
+  candidates_per_attempt: 5
+  max_tool_calls: 6
+  structured_output_schema: proposal_v1
+  local_schema_validation: true
+
+renderer:
+  model_id: gpt-5.4-mini
+  reasoning_effort: low
+  temperature: 0.2
+  label_blind: true
+  output_mode: placeholder_template
+  local_schema_validation: true
+
+rate_limit:
+  requests_per_minute: 450
+  max_concurrency: 8
+  retry_base_ms: 250
+  respect_retry_after: true
+
+usage:
+  check_balance_before_build: true
+  balance_endpoint: https://api.poe.com/usage/current_balance
+  history_endpoint: https://api.poe.com/usage/points_history
+  export_private_ledger: true
+
+cache:
+  enabled: true
+  content_addressed: true
+  replay_only_for_release: true
+  include_model_catalog_hash: true

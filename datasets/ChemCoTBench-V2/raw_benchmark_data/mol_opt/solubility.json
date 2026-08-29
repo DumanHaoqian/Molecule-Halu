@@ -1,0 +1,1202 @@
+[
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0000",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 0,
+    "tgt_mol": "O=C(O)COc1cc(-c2ccccc2)nc2ccccc12",
+    "tgt_solubility": -3.8477050000000017,
+    "idx": 0
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0001",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 8,
+    "tgt_mol": "CN1CC2C=C(c3cncc(F)c3)CC(C2)C1",
+    "tgt_solubility": -3.0509634,
+    "idx": 8
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0002",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 23,
+    "tgt_mol": "CCC(=O)Nc1c(-c2ccc(C)cc2)nc2ccc(C)cn12",
+    "tgt_solubility": -4.313877200000002,
+    "idx": 23
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0003",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 26,
+    "tgt_mol": "NS(=O)(=O)c1ccc(NC(=O)Nc2ccccc2)cc1",
+    "tgt_solubility": -2.9163984000000003,
+    "idx": 26
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0004",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 27,
+    "tgt_mol": "COc1cc(Cc2cnc(N)nc2N)cc(OC)c1OCC(O)CO",
+    "tgt_solubility": -2.402355,
+    "idx": 27
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0005",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 33,
+    "tgt_mol": "CC1(C)CCN(c2ccc(C#Cc3cncc(F)c3)cn2)C(=O)O1",
+    "tgt_solubility": -4.131830600000002,
+    "idx": 33
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0006",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 39,
+    "tgt_mol": "CCNc1nc(N)c2nc(O)n(Cc3ccccc3)c2n1",
+    "tgt_solubility": -2.9271485999999998,
+    "idx": 39
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0007",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 40,
+    "tgt_mol": "COc1ccccc1N1CCN(C2CCCN(C(=O)Cn3cccn3)C2)CC1",
+    "tgt_solubility": -3.735762200000001,
+    "idx": 40
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0008",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 41,
+    "tgt_mol": "CCOC(=O)C1=C(C)NC(C)=C(C(=O)OCC)C1c1cc(=O)cc(C)o1",
+    "tgt_solubility": -3.987451400000001,
+    "idx": 41
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0009",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 47,
+    "tgt_mol": "CC(CCc1ccccc1)(C(=O)NO)S(C)(=O)=O",
+    "tgt_solubility": -2.2708725999999997,
+    "idx": 47
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0010",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 48,
+    "tgt_mol": "COc1ccc(Oc2c(Cl)cnn(CC(=O)O)c2=O)cc1",
+    "tgt_solubility": -3.2670826,
+    "idx": 48
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0011",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 50,
+    "tgt_mol": "N#CCOc1nc(N2CCOCC2)nc(N2CCOCC2)n1",
+    "tgt_solubility": -2.056944600000001,
+    "idx": 50
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0012",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 52,
+    "tgt_mol": "Cc1cnc(C(=O)N2CCC3CN(c4ncccn4)CCOC3C2)cn1",
+    "tgt_solubility": -3.1491544000000005,
+    "idx": 52
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0013",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 54,
+    "tgt_mol": "CSc1ccc(Oc2ncccc2C(N)=NO)cc1C",
+    "tgt_solubility": -3.7612256000000004,
+    "idx": 54
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0014",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 56,
+    "tgt_mol": "CC(C)CCNC(=O)c1nn(C)c2c1CSc1ccccc1-2",
+    "tgt_solubility": -4.211021400000002,
+    "idx": 56
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0015",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 60,
+    "tgt_mol": "CC(COC(=O)C1CC1)C1CCC2C(O)CCCC12C",
+    "tgt_solubility": -3.7209196000000015,
+    "idx": 60
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0016",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 61,
+    "tgt_mol": "COc1cc(-c2nnc(SCC(=O)NC(C)C)o2)cc(OC)c1OC",
+    "tgt_solubility": -4.142880400000001,
+    "idx": 61
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0017",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 63,
+    "tgt_mol": "O=C(O)c1c[nH]c2cc(Cl)c(-c3ccc(N4CCCC4=O)cc3)cc12",
+    "tgt_solubility": -4.773095600000002,
+    "idx": 63
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0018",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 64,
+    "tgt_mol": "O=C(Nc1ccccn1)NC1CCN(Cc2ccccc2)CC1",
+    "tgt_solubility": -3.6611372000000006,
+    "idx": 64
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0019",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 65,
+    "tgt_mol": "CCCNC(=O)Cn1c(=O)oc2ccccc21",
+    "tgt_solubility": -2.2284219999999992,
+    "idx": 65
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0020",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 71,
+    "tgt_mol": "Cc1cc(CCCOc2c(C)cc(-c3nnn(C)n3)cc2C)on1",
+    "tgt_solubility": -4.153040400000001,
+    "idx": 71
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0021",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 75,
+    "tgt_mol": "CC(C)C(NC(=O)c1ccccc1F)C(=O)NCCCn1ccnc1",
+    "tgt_solubility": -3.4010701999999995,
+    "idx": 75
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0022",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 76,
+    "tgt_mol": "COc1cc2c3c(n(C)c2cc1OC)C(=O)NCC=C3",
+    "tgt_solubility": -2.9881077999999994,
+    "idx": 76
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0023",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 80,
+    "tgt_mol": "CCOC(=O)N1CCN(S(=O)(=O)c2ccc(C(=O)Nc3ccc4c(c3)C(=O)NC4=O)cc2)CC1",
+    "tgt_solubility": -4.052076200000001,
+    "idx": 80
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0024",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 84,
+    "tgt_mol": "Cn1c(C2CCOC2)nc(C(=O)NCc2ccc(F)cc2)c(O)c1=O",
+    "tgt_solubility": -2.9726522,
+    "idx": 84
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0025",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 89,
+    "tgt_mol": "Cc1ccc(-c2nc(NC(=O)CN3CCN(C)CC3)cc(-c3nccs3)n2)o1",
+    "tgt_solubility": -4.319935,
+    "idx": 89
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0026",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 93,
+    "tgt_mol": "N#Cc1cc(S(=O)(=O)Nc2nccs2)ccc1Oc1ccc(Cl)cc1CN1CCOCC1",
+    "tgt_solubility": -5.989055200000005,
+    "idx": 93
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0027",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 97,
+    "tgt_mol": "CCOc1ccc(C(=O)CC2(O)C(=O)Nc3c(Cl)ccc(Cl)c32)cc1",
+    "tgt_solubility": -4.758431400000002,
+    "idx": 97
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0028",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 106,
+    "tgt_mol": "CC(=O)Nc1ccc2c(C)cc(N)nc2c1",
+    "tgt_solubility": -2.5773937999999994,
+    "idx": 106
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0029",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 110,
+    "tgt_mol": "CCNC(=O)NC1CCC(C(=O)N(C)c2ccc(-c3nc4ccccc4n3C)cc2)C1",
+    "tgt_solubility": -4.930346800000003,
+    "idx": 110
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0030",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 116,
+    "tgt_mol": "O=C(O)COc1ccc2c(=O)c(-c3ccc(O)cc3)coc2c1",
+    "tgt_solubility": -3.6703874000000005,
+    "idx": 116
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0031",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 135,
+    "tgt_mol": "Cc1ccc(CN2C(=O)CCC2C(=O)N2CC3CC(CN(C(=O)OC(C)(C)C)C3)C2)cc1",
+    "tgt_solubility": -4.890641000000003,
+    "idx": 135
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0032",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 138,
+    "tgt_mol": "CCCCn1c(=O)c2c(ncn2S(=O)(=O)c2cc(F)ccc2C)n(CCCC)c1=O",
+    "tgt_solubility": -4.804340400000002,
+    "idx": 138
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0033",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 164,
+    "tgt_mol": "COc1cc(OC)c2c(=O)cc(-c3ccc(OCC(O)CO)cc3)oc2c1",
+    "tgt_solubility": -3.926508600000001,
+    "idx": 164
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0034",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 177,
+    "tgt_mol": "NC(=O)c1c(NC(=O)c2ccccc2)sc2c1CCCC2",
+    "tgt_solubility": -3.6685776000000017,
+    "idx": 177
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0035",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 180,
+    "tgt_mol": "COC(=O)c1c(C)[nH]c(C)c1C(=O)c1ccccc1F",
+    "tgt_solubility": -3.4593210000000005,
+    "idx": 180
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0036",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 181,
+    "tgt_mol": "CC1(C)Oc2ccc(C#N)cc2C(NC=O)C1O",
+    "tgt_solubility": -2.0835356,
+    "idx": 181
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0037",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 183,
+    "tgt_mol": "OC1CCN(c2cccnc2Oc2ccc(Nc3ccccn3)cc2)CC1",
+    "tgt_solubility": -4.902452600000002,
+    "idx": 183
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0038",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 184,
+    "tgt_mol": "COCCCNC(=O)c1oc2ccc(S(=O)(=O)N(C)C3CCCCC3)cc2c1C",
+    "tgt_solubility": -4.944045000000004,
+    "idx": 184
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0039",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 185,
+    "tgt_mol": "Cn1c(=O)c2c(nc(NCCO)n2C)n(C)c1=O",
+    "tgt_solubility": -0.8464114,
+    "idx": 185
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0040",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 186,
+    "tgt_mol": "O=S(=O)(c1cccc(CO)c1)c1cc(Cl)c2oc3c(c2c1)CNCC3",
+    "tgt_solubility": -4.346573800000002,
+    "idx": 186
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0041",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 187,
+    "tgt_mol": "CC(O)CNS(=O)(=O)Cc1ccccc1-c1ccc(-c2cnc(N)cn2)c(F)c1",
+    "tgt_solubility": -4.137386600000001,
+    "idx": 187
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0042",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 189,
+    "tgt_mol": "CCN1c2ncc(CCc3ccnc(N)c3)cc2C(=O)N(C)c2ccc(Cl)nc21",
+    "tgt_solubility": -5.0465886000000015,
+    "idx": 189
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0043",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 191,
+    "tgt_mol": "CCNS(=O)(=O)c1ccc2c(c1)C(n1ccccc1=O)=CC(C)(C)O2",
+    "tgt_solubility": -3.768918000000001,
+    "idx": 191
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0044",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 193,
+    "tgt_mol": "CS(=O)(=O)Cc1cncc(-c2cnc3c(c2)CCCN3C(N)=O)c1",
+    "tgt_solubility": -3.2490394000000014,
+    "idx": 193
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0045",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 194,
+    "tgt_mol": "NC(=O)Cn1cc(C(=O)c2ccccc2F)c2ccccc21",
+    "tgt_solubility": -3.4059872000000007,
+    "idx": 194
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0046",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 195,
+    "tgt_mol": "CN1C(=O)CCC2(C)C3CCC4(C)C(O)CCC4C3CCC12",
+    "tgt_solubility": -3.838605400000002,
+    "idx": 195
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0047",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 197,
+    "tgt_mol": "Nc1cnc(-c2ccc(-c3ccccc3C(=O)NC3CCOCC3)cc2F)cn1",
+    "tgt_solubility": -4.678731800000003,
+    "idx": 197
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0048",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 198,
+    "tgt_mol": "Cc1noc(C)c1S(=O)(=O)N1CCCC(C(=O)NCC2CCCO2)C1",
+    "tgt_solubility": -3.1430700000000007,
+    "idx": 198
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0049",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 199,
+    "tgt_mol": "COc1ccc(S(N)(=O)=O)cc1N(C)S(=O)(=O)c1ccccc1",
+    "tgt_solubility": -3.0894860000000004,
+    "idx": 199
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0050",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 201,
+    "tgt_mol": "CCOC(=O)Cn1cc(C=C[N+](=O)[O-])c2ccccc21",
+    "tgt_solubility": -3.4551452000000005,
+    "idx": 201
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0051",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 203,
+    "tgt_mol": "CC(=O)c1c(-c2ccc(Cl)cc2)c(-c2ccc(Cl)cc2)nn(CC(N)=O)c1=O",
+    "tgt_solubility": -4.975196800000003,
+    "idx": 203
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0052",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 204,
+    "tgt_mol": "CCS(=O)(=O)C(NC(C)=O)C(=O)NCc1ccccc1",
+    "tgt_solubility": -1.9796678000000003,
+    "idx": 204
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0053",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 205,
+    "tgt_mol": "O=C(NCCC1CCCCN1S(=O)(=O)c1ccc(F)cc1)C(=O)NC1CC1",
+    "tgt_solubility": -3.1952204000000006,
+    "idx": 205
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0054",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 206,
+    "tgt_mol": "CC(C)OCCNC(=O)c1ccc(NC(=O)N2Cc3ccccc3C2)cc1",
+    "tgt_solubility": -4.343316800000002,
+    "idx": 206
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0055",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 207,
+    "tgt_mol": "O=C1CCC(N2C(=O)c3ccc([N+](=O)[O-])cc3C2=O)C(=O)N1",
+    "tgt_solubility": -2.095506,
+    "idx": 207
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0056",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 208,
+    "tgt_mol": "COc1ccccc1-c1ccc(CC(NC(=O)C2(C)CCCS2(=O)=O)C(=O)O)cc1",
+    "tgt_solubility": -4.291444,
+    "idx": 208
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0057",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 209,
+    "tgt_mol": "COc1ccc(S(=O)(=O)N2CCCCC2)cc1NC(=O)C1CC1",
+    "tgt_solubility": -3.5657888000000004,
+    "idx": 209
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0058",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 210,
+    "tgt_mol": "COC(=O)c1cc(=O)c(O)c2oc3cc(N(C)C)ccc3nc1-2",
+    "tgt_solubility": -3.4067714000000002,
+    "idx": 210
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0059",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 211,
+    "tgt_mol": "CCOCCOC(=O)C1=C(C)NC(=O)NC1c1ccc([N+](=O)[O-])cc1",
+    "tgt_solubility": -3.4534386000000006,
+    "idx": 211
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0060",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 213,
+    "tgt_mol": "Cc1cc(N=S(C)(C)=O)cc2ncnc(Nc3ccc(F)cc3OC(C)CN)c12",
+    "tgt_solubility": -5.275354600000003,
+    "idx": 213
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0061",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 215,
+    "tgt_mol": "CSc1nnc(CSc2nc3nc(C)ccn3n2)o1",
+    "tgt_solubility": -3.4839126,
+    "idx": 215
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0062",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 216,
+    "tgt_mol": "CCc1nc2c(C)cc(C)nc2n1Cc1ccc(O)c(Cl)c1",
+    "tgt_solubility": -4.559224000000002,
+    "idx": 216
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0063",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 217,
+    "tgt_mol": "NC(=O)c1ccc(NC(=O)c2ccc3c(c2)OCO3)cc1",
+    "tgt_solubility": -2.8793751999999992,
+    "idx": 217
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0064",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 221,
+    "tgt_mol": "O=C(O)CCCc1ccc(NC(=O)CBr)cc1",
+    "tgt_solubility": -3.2461414000000004,
+    "idx": 221
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0065",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 222,
+    "tgt_mol": "Cc1ccc(S(=O)(=O)N2C(=O)CCC2C(=O)NCc2ccco2)cc1",
+    "tgt_solubility": -3.3889190000000005,
+    "idx": 222
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0066",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 223,
+    "tgt_mol": "Cn1cccc1CCNc1cc(C(F)(F)F)nc(-c2ccc(S(C)(=O)=O)cc2)n1",
+    "tgt_solubility": -5.0917476000000015,
+    "idx": 223
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0067",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 224,
+    "tgt_mol": "CCCCCc1ccc(S(N)(=O)=O)cc1",
+    "tgt_solubility": -2.6334608000000004,
+    "idx": 224
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0068",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 225,
+    "tgt_mol": "CCOCCn1c(N(C)Cc2ccccc2)nc2c1c(=O)[nH]c(=O)n2C",
+    "tgt_solubility": -3.198572800000001,
+    "idx": 225
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0069",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 226,
+    "tgt_mol": "COc1cccc(-c2cc(C(F)(F)F)nc(S(C)(=O)=O)n2)c1",
+    "tgt_solubility": -3.8922136000000003,
+    "idx": 226
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0070",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 227,
+    "tgt_mol": "CC(=O)NC(C)Cc1ccc(C#Cc2cnc(OC3CCOC3)nc2)cc1",
+    "tgt_solubility": -3.7397406000000015,
+    "idx": 227
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0071",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 228,
+    "tgt_mol": "Nc1cnc(Oc2c(C3CCC3)ccc(-c3cnc(N)cn3)c2F)nc1",
+    "tgt_solubility": -4.4877596,
+    "idx": 228
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0072",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 230,
+    "tgt_mol": "NC1=NC2(c3ccc(F)cc3F)COC(C(F)F)CC2CS1",
+    "tgt_solubility": -3.9647296000000014,
+    "idx": 230
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0073",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 234,
+    "tgt_mol": "COc1ccc(-c2ccn(CC(F)(F)C(=O)O)c2-c2ccc(C(N)=O)cc2C)cc1",
+    "tgt_solubility": -5.066819200000002,
+    "idx": 234
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0074",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 236,
+    "tgt_mol": "O=C(NCCc1ccccc1)c1ccccc1O",
+    "tgt_solubility": -2.8417590000000006,
+    "idx": 236
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0075",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 237,
+    "tgt_mol": "COc1ccc(OC)c(C2CC(c3cccnc3)=NN2)c1",
+    "tgt_solubility": -3.4992772000000008,
+    "idx": 237
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0076",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 238,
+    "tgt_mol": "CCC(=O)N(c1ccccc1)C1(C(=O)OC)CCN(CCn2ccc(=O)n(CC)c2=O)CC1",
+    "tgt_solubility": -4.195407600000002,
+    "idx": 238
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0077",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 240,
+    "tgt_mol": "N#CCNC(=O)CNC(=O)OCc1ccccc1",
+    "tgt_solubility": -1.8851001999999994,
+    "idx": 240
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0078",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 241,
+    "tgt_mol": "NC(=O)c1noc(C(CCCC2CCCCC2)CC(=O)NO)n1",
+    "tgt_solubility": -3.2930281999999993,
+    "idx": 241
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0079",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 242,
+    "tgt_mol": "CNC1CN(c2cc3c(cc2F)c(=O)c(C(=O)O)cn3C2CC2)C1",
+    "tgt_solubility": -3.1288224000000002,
+    "idx": 242
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0080",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 246,
+    "tgt_mol": "O=C(Nc1cc[nH]c(=O)c1)c1ccc(C(F)(F)F)cc1OCC1CCCC1",
+    "tgt_solubility": -4.943719200000004,
+    "idx": 246
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0081",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 248,
+    "tgt_mol": "COc1ccc(C2C(C(=O)NCc3ccccn3)c3cc(OC)c(OC)cc3C(=O)N2C)cc1",
+    "tgt_solubility": -5.180020600000002,
+    "idx": 248
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0082",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 250,
+    "tgt_mol": "O=C(NCC1(CO)COC1)c1ccc(NC(=O)N2Cc3ccccc3C2)cc1",
+    "tgt_solubility": -3.5458684000000003,
+    "idx": 250
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0083",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 252,
+    "tgt_mol": "CCN1c2ncccc2C(=O)N(C)c2ccc(N(C)C)nc21",
+    "tgt_solubility": -3.4967224000000003,
+    "idx": 252
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0084",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 254,
+    "tgt_mol": "COc1ccc(NCCNC(=O)C(NC(=O)c2cccc(C)c2)c2ccncc2)cc1",
+    "tgt_solubility": -4.558434000000001,
+    "idx": 254
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0085",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 255,
+    "tgt_mol": "NC(=O)CC1OC(CO)C(O)C(O)C1O",
+    "tgt_solubility": 0.7508581999999999,
+    "idx": 255
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0086",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 256,
+    "tgt_mol": "CC(C)c1ccc(NC2CCCN(C(=O)CCN3CCCO3)C2)cc1",
+    "tgt_solubility": -4.253408400000002,
+    "idx": 256
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0087",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 257,
+    "tgt_mol": "Cc1c2c(nc3sc(C(N)=O)c(N)c13)CCCCCC2",
+    "tgt_solubility": -3.6535414000000013,
+    "idx": 257
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0088",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 258,
+    "tgt_mol": "CC(=O)NCCCc1nc2ccccc2n1Cc1ccc(C)cc1",
+    "tgt_solubility": -4.169712400000002,
+    "idx": 258
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0089",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 260,
+    "tgt_mol": "NC1=NC(=O)C(Cc2c[nH]c3ccccc23)S1",
+    "tgt_solubility": -2.5011763999999994,
+    "idx": 260
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0090",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 262,
+    "tgt_mol": "NC1CC1c1ccccc1NC(=O)c1ccccc1",
+    "tgt_solubility": -3.1550704000000005,
+    "idx": 262
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0091",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 263,
+    "tgt_mol": "COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1CN1CCCC1C(N)=O",
+    "tgt_solubility": -5.100520600000003,
+    "idx": 263
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0092",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 264,
+    "tgt_mol": "Cc1csc(N2CCCN(C(=O)Cn3cncn3)CC2)n1",
+    "tgt_solubility": -2.7502586000000004,
+    "idx": 264
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0093",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 267,
+    "tgt_mol": "CC(C)(CO)NC(=O)c1cccnc1Oc1ccc(Nc2ccccn2)cc1",
+    "tgt_solubility": -4.645594400000001,
+    "idx": 267
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0094",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 268,
+    "tgt_mol": "COc1ccc(-n2ncc3c2CC(C)(C)CC3NC(=O)CCn2cncn2)cc1",
+    "tgt_solubility": -4.4339818000000015,
+    "idx": 268
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0095",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 269,
+    "tgt_mol": "COc1cc2ccc(CC(N)=O)cc2cc1OC",
+    "tgt_solubility": -2.7041476,
+    "idx": 269
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0096",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 270,
+    "tgt_mol": "COc1ccc(NC(=O)Nc2ccc(Cl)cc2)cc1",
+    "tgt_solubility": -4.087020600000001,
+    "idx": 270
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0097",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 271,
+    "tgt_mol": "CCCCOc1ccc(S(=O)(=O)N2CCN(C)CC2)cc1",
+    "tgt_solubility": -3.2081049999999998,
+    "idx": 271
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0098",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 272,
+    "tgt_mol": "Cn1c(=O)c(-c2c(Cl)cccc2Cl)cc2cnc(N)nc21",
+    "tgt_solubility": -3.952470400000001,
+    "idx": 272
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0099",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 273,
+    "tgt_mol": "CCNC(=O)OCC1OC(n2cnc3c(N)ncnc32)C(O)C1O",
+    "tgt_solubility": -1.641102800000001,
+    "idx": 273
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0100",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 274,
+    "tgt_mol": "NC(=O)c1ccc2cc(Oc3ccc(C(F)(F)F)cn3)ccc2n1",
+    "tgt_solubility": -4.366341800000001,
+    "idx": 274
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0101",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 275,
+    "tgt_mol": "COc1ccc(C=Cc2cc(OC)cc(OC)c2CO)cc1",
+    "tgt_solubility": -4.058507800000001,
+    "idx": 275
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0102",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 276,
+    "tgt_mol": "CN(C)c1ccc(C=CC(=O)c2ccc(NS(=O)(=O)c3ccccc3)cc2)cc1",
+    "tgt_solubility": -5.393528400000003,
+    "idx": 276
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0103",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 277,
+    "tgt_mol": "NS(=O)(=O)c1ccc([N+](=O)[O-])c(C(F)(F)F)c1",
+    "tgt_solubility": -2.5395955999999997,
+    "idx": 277
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0104",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 278,
+    "tgt_mol": "CC(O)C(O)c1cc(C(N)=O)nc(-c2ccc(Oc3ccc(F)cc3)cc2)c1",
+    "tgt_solubility": -4.394477200000001,
+    "idx": 278
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0105",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 280,
+    "tgt_mol": "Nc1ncnc2c1ncn2C1CCCCC1",
+    "tgt_solubility": -2.6967421999999996,
+    "idx": 280
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0106",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 282,
+    "tgt_mol": "CCc1nc(N)nc(N)c1-c1ccc2c(c1)N(CCNC(C)=O)C(=O)C(C)(C)O2",
+    "tgt_solubility": -3.5821104000000012,
+    "idx": 282
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0107",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 283,
+    "tgt_mol": "O=C(CN1CCC(C(=O)c2ccc(F)cc2)CC1)NCc1nc2c(c(=O)[nH]1)COCC2",
+    "tgt_solubility": -3.5599408000000015,
+    "idx": 283
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0108",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 285,
+    "tgt_mol": "Cc1ccc(CNC(=O)c2nn(C)c3c2CS(=O)(=O)c2ccccc2-3)cc1",
+    "tgt_solubility": -4.155110000000001,
+    "idx": 285
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0109",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 286,
+    "tgt_mol": "Cc1cc(-c2n[nH]c3cc(NC(=O)NCC4CN(C)CCO4)ncc23)ccn1",
+    "tgt_solubility": -3.5725926000000006,
+    "idx": 286
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0110",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 287,
+    "tgt_mol": "CCCn1c(=O)c2nc(C)[nH]c2n(CCC)c1=O",
+    "tgt_solubility": -2.3351459999999995,
+    "idx": 287
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0111",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 289,
+    "tgt_mol": "O=C(CN1C(=O)CCC1=O)Nc1ccc(S(=O)(=O)N2CCOCC2)cc1",
+    "tgt_solubility": -2.4535920000000018,
+    "idx": 289
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0112",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 290,
+    "tgt_mol": "CNS(=O)(=O)c1ccc2c(c1)[nH]c1ccccc12",
+    "tgt_solubility": -2.8743676000000002,
+    "idx": 290
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0113",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 291,
+    "tgt_mol": "CC(C)CN(Cc1ccc(N2CCN(C(=O)CO)CC2)cc1)S(=O)(=O)Cc1ccccc1",
+    "tgt_solubility": -4.4523594000000015,
+    "idx": 291
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0114",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 292,
+    "tgt_mol": "O=C(Cn1ccccc1=O)Nc1ccccc1",
+    "tgt_solubility": -2.3479662,
+    "idx": 292
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0115",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 293,
+    "tgt_mol": "O=C(O)CCc1cccc(CCNS(=O)(=O)c2ccc(Cl)cc2)c1",
+    "tgt_solubility": -4.0239608,
+    "idx": 293
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0116",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 295,
+    "tgt_mol": "CC(C)NC(=O)N(C)CC1Oc2c(NC(=O)c3cnccn3)cccc2C(=O)N(C(C)CO)CC1C",
+    "tgt_solubility": -4.510464800000001,
+    "idx": 295
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0117",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 296,
+    "tgt_mol": "COc1ccc(C(=O)NCCCn2ccnc2)cc1OC1CCN(C(C)C)CC1",
+    "tgt_solubility": -4.568184600000002,
+    "idx": 296
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0118",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 298,
+    "tgt_mol": "CN(CCO)c1nc(Cl)nc(Nc2ccc(S(N)(=O)=O)cc2)n1",
+    "tgt_solubility": -2.6756632000000002,
+    "idx": 298
+  },
+  {
+    "anonymous_sample_id": "mol_opt.solubility.0119",
+    "task_family": "mol_opt",
+    "subtask": "solubility",
+    "reporting_task": "MolOpt/PhysChem-Single",
+    "pool_idx": 299,
+    "tgt_mol": "CC(=O)Nc1nc(C)nc(C)c1C(C)=O",
+    "tgt_solubility": -2.1451417999999993,
+    "idx": 299
+  }
+]

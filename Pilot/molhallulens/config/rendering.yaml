@@ -1,0 +1,36 @@
+schema_version: "1.0"
+
+detector_template:
+  field_order: [indexed_smiles, instruction, reasoning_chain, final_answer]
+  delimiters:
+    indexed_smiles: "<MOLECULE>"
+    instruction: "<INSTRUCTION>"
+    reasoning_chain: "<REASONING>"
+    final_answer: "<FINAL_ANSWER>"
+  include_gt_smiles: false
+  include_reference_only_metadata: false
+
+natural_renderer:
+  backends: [rule, poe_placeholder]
+  label_blind: true
+  output_mode: placeholder_template
+  locked_slots_are_immutable: true
+  styles: [style_01, style_02, style_03, style_04, style_05, style_06, style_07, style_08]
+
+deterministic_renderer:
+  formal: true
+  numeric_claims: true
+  final_answer: true
+  placeholder_fill: true
+
+spans:
+  construct_offsets_during_render: true
+  allow_text_find_localization: false
+  interval: half_open
+  emit_literal_span: true
+  emit_claim_span: true
+
+leakage_scan:
+  prohibited_inputs: [gt_smiles, hallucination_label, oracle_state, operator_correctness]
+  prohibited_phrases: [incorrect, corrupted, hallucinated, "reference answer", ground_truth]
+  fail_closed: true

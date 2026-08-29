@@ -1,0 +1,44 @@
+{
+  "task_family": "rxn_pred",
+  "subtask": "nepp",
+  "reporting_task": "RxnPred/Product-Level Prediction",
+  "all_pass_definition": "The all_pass field is the task-specific conjunction of required process verifier checks used when constructing the verified reference.",
+  "verifier_checks": [
+    {
+      "name": "S1_reactant_charge",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S2_elem_mech",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S3_bond_change",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S4_mol_valid",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S5_product_charge",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S6_charge_balanced",
+      "description": "Task-specific deterministic verifier flag."
+    },
+    {
+      "name": "S7_atom_conserved",
+      "description": "Task-specific deterministic verifier flag."
+    }
+  ],
+  "outcome_fields": [
+    "outcome"
+  ],
+  "type_notes": [
+    "Type-I checks are intrinsic symbolic checks such as validity, arithmetic, canonicalization, scaffold preservation, or consistency.",
+    "Type-II checks compare closed-answer process states or final answers with the verified benchmark reference.",
+    "Molecular optimization uses oracle-computable constraints rather than strict path matching for the final outcome."
+  ]
+}
