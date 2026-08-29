@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterator, Mapping
+from collections.abc import Callable, Iterable, Iterator, Mapping
 from dataclasses import dataclass, field, fields, is_dataclass, replace
 from enum import Enum
+from heapq import heapify, heappop, heappush
 from math import isfinite
 from types import MappingProxyType
 from typing import Any, Generic, TypeVar
@@ -426,6 +427,168 @@ class StateSchema:
     def edges_by_id(self) -> FrozenMap[str, StateEdge]:
         return FrozenMap({edge.edge_id: edge for edge in self.edges})
 
+    def _validated_node_ids(
+        self,
+        node_ids: Iterable[str],
+        *,
+        name: str,
+    ) -> frozenset[str]:
+        if isinstance(node_ids, (str, bytes)) or not isinstance(node_ids, Iterable):
+            raise TypeError(f"{name} must be a non-string iterable of node IDs")
+        collected: set[str] = set()
+        for node_id in node_ids:
+            if type(node_id) is not str:
+                raise TypeError(f"{name} must contain only string node IDs")
+            collected.add(node_id)
+        unknown = tuple(sorted(collected - set(self.nodes_by_id)))
+        if unknown:
+            raise KeyError(f"{name} contains unknown node IDs: {unknown!r}")
+        return frozenset(collected)
+
+    def _validated_node_id(self, node_id: str, *, name: str) -> str:
+        if type(node_id) is not str:
+            raise TypeError(f"{name} must be a string node ID")
+        if node_id not in self.nodes_by_id:
+            raise KeyError(node_id)
+        return node_id
+
+    def _adjacency(self) -> tuple[dict[str, tuple[str, ...]], dict[str, tuple[str, ...]]]:
+        outgoing_sets = {node.node_id: set() for node in self.nodes}
+        incoming_sets = {node.node_id: set() for node in self.nodes}
+        for edge in self.edges:
+            outgoing_sets[edge.source].add(edge.target)
+            incoming_sets[edge.target].add(edge.source)
+        outgoing = {
+            node_id: tuple(sorted(targets))
+            for node_id, targets in outgoing_sets.items()
+        }
+        incoming = {
+            node_id: tuple(sorted(sources))
+            for node_id, sources in incoming_sets.items()
+        }
+        return outgoing, incoming
+
+    def topological_order(self) -> tuple[str, ...]:
+        """Return the unique lexical-tie-broken topological node order."""
+
+        indegree = {node.node_id: 0 for node in self.nodes}
+        outgoing = {node.node_id: [] for node in self.nodes}
+        for edge in self.edges:
+            indegree[edge.target] += 1
+            outgoing[edge.source].append(edge.target)
+        for targets in outgoing.values():
+            targets.sort()
+        ready = [node_id for node_id, degree in indegree.items() if degree == 0]
+        heapify(ready)
+        ordered: list[str] = []
+        while ready:
+            node_id = heappop(ready)
+            ordered.append(node_id)
+            for target in outgoing[node_id]:
+                indegree[target] -= 1
+                if indegree[target] == 0:
+                    heappush(ready, target)
+        if len(ordered) != len(self.nodes):
+            raise ValueError("StateSchema must be acyclic")
+        return tuple(ordered)
+
+    def descendants(self, root_node_id: str) -> tuple[str, ...]:
+        """Return strict reachable downstream nodes in deterministic topo order."""
+
+        root = self._validated_node_id(root_node_id, name="root_node_id")
+        outgoing, _ = self._adjacency()
+        reachable: set[str] = set()
+        frontier = list(outgoing[root])
+        while frontier:
+            node_id = frontier.pop()
+            if node_id in reachable:
+                continue
+            reachable.add(node_id)
+            frontier.extend(outgoing[node_id])
+        return tuple(
+            node_id for node_id in self.topological_order() if node_id in reachable
+        )
+
+    def dependency_closure(self, seed_node_ids: Iterable[str]) -> tuple[str, ...]:
+        """Return seeds and all reachable descendants in deterministic topo order."""
+
+        seeds = self._validated_node_ids(seed_node_ids, name="seed_node_ids")
+        outgoing, _ = self._adjacency()
+        closure = set(seeds)
+        frontier = list(seeds)
+        while frontier:
+            node_id = frontier.pop()
+            for target in outgoing[node_id]:
+                if target not in closure:
+                    closure.add(target)
+                    frontier.append(target)
+        return tuple(
+            node_id for node_id in self.topological_order() if node_id in closure
+        )
+
+    def is_connected_downstream_subgraph(
+        self,
+        root_node_ids: Iterable[str],
+        selected_node_ids: Iterable[str],
+    ) -> bool:
+        """Whether selected nodes form a directed root-reachable downstream subgraph."""
+
+        roots = self._validated_node_ids(root_node_ids, name="root_node_ids")
+        if not roots:
+            raise ValueError("root_node_ids cannot be empty")
+        selected = self._validated_node_ids(
+            selected_node_ids,
+            name="selected_node_ids",
+        )
+        full_downstream = frozenset(self.dependency_closure(roots))
+        if not roots <= selected or not selected <= full_downstream:
+            return False
+        outgoing, _ = self._adjacency()
+        reached = set(roots)
+        frontier = list(roots)
+        while frontier:
+            node_id = frontier.pop()
+            for target in outgoing[node_id]:
+                if target in selected and target not in reached:
+                    reached.add(target)
+                    frontier.append(target)
+        if reached != set(selected):
+            return False
+        return True
+
+    def stale_downstream_edges(
+        self,
+        changed_node_ids: Iterable[str],
+    ) -> tuple[StateEdge, ...]:
+        """Return the deterministic stale-downstream frontier of a changed set.
+
+        This is a structural propagation query: an edge is reported when its source
+        changed but its target did not. Chemistry and comparator-based truth checks
+        remain validator responsibilities.
+        """
+
+        changed = self._validated_node_ids(
+            changed_node_ids,
+            name="changed_node_ids",
+        )
+        topo_index = {
+            node_id: index for index, node_id in enumerate(self.topological_order())
+        }
+        return tuple(
+            sorted(
+                (
+                    edge
+                    for edge in self.edges
+                    if edge.source in changed and edge.target not in changed
+                ),
+                key=lambda edge: (
+                    topo_index[edge.source],
+                    topo_index[edge.target],
+                    edge.edge_id,
+                ),
+            )
+        )
+
 
 @dataclass(frozen=True, slots=True)
 class StateDAG:
@@ -465,6 +628,70 @@ class StateDAG:
 
     def value_for(self, node_id: str) -> ClaimValue:
         return self.values[node_id]
+
+    def edge_satisfaction(
+        self,
+        edge_id: str,
+        evaluator: Callable[[StateEdge, StateDAG], bool | None] | None = None,
+    ) -> bool | None:
+        """Return a known edge-satisfaction status, or ``None`` when unverified.
+
+        A relation can be evaluated by an explicit edge claim's ``locally_valid``
+        flag or an injected chemistry/derivation evaluator. Independent known
+        statuses must agree. No relation is inferred from raw endpoint equality.
+        """
+
+        if type(edge_id) is not str:
+            raise TypeError("edge_id must be a string")
+        edge = next(
+            (item for item in self.schema.edges if item.edge_id == edge_id),
+            None,
+        )
+        if edge is None:
+            raise KeyError(edge_id)
+        if evaluator is not None and not callable(evaluator):
+            raise TypeError("evaluator must be callable or None")
+        return self._edge_satisfaction(edge, evaluator)
+
+    def _edge_satisfaction(
+        self,
+        edge: StateEdge,
+        evaluator: Callable[[StateEdge, StateDAG], bool | None] | None,
+    ) -> bool | None:
+        statuses: list[bool] = []
+        if edge.edge_id in self.edge_values:
+            explicit_status = self.edge_values[edge.edge_id].locally_valid
+            if explicit_status is not None:
+                statuses.append(explicit_status)
+        if evaluator is not None:
+            evaluated_status = evaluator(edge, self)
+            if evaluated_status is not None and type(evaluated_status) is not bool:
+                raise TypeError("edge evaluator must return bool or None")
+            if evaluated_status is not None:
+                statuses.append(evaluated_status)
+        if len(set(statuses)) > 1:
+            raise ValueError(
+                f"conflicting satisfaction statuses for edge {edge.edge_id!r}"
+            )
+        return statuses[0] if statuses else None
+
+    def violated_edges(
+        self,
+        evaluator: Callable[[StateEdge, StateDAG], bool | None] | None = None,
+    ) -> tuple[StateEdge, ...]:
+        """Return known-unsatisfied edges in deterministic edge-ID order.
+
+        Edges with no built-in, explicit, or injected status remain unknown and are
+        not silently treated as either satisfied or violated.
+        """
+
+        if evaluator is not None and not callable(evaluator):
+            raise TypeError("evaluator must be callable or None")
+        return tuple(
+            edge
+            for edge in sorted(self.schema.edges, key=lambda item: item.edge_id)
+            if self._edge_satisfaction(edge, evaluator) is False
+        )
 
     def semantic_differences(
         self,

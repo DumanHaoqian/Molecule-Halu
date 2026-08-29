@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T15:44:04+08:00",
+  "updated_at": "2026-08-29T16:04:59+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 43,
+    "not_started": 42,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 9,
-    "last_completed_task": "T009"
+    "completed": 10,
+    "last_completed_task": "T010"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -328,6 +328,40 @@
       "known_gaps": [],
       "follow_up_actions": ["T010 在已冻结 schema 上实现确定性拓扑、closure、connected descendants 与 edge violation query", "T011 使用 bindings 构建 150 个 reference DAG 并生成 natural/FORMAL mention IDs", "T020 通过 remove_group_step1→step2 MUST_EQUAL 表达 cross-step contradiction"],
       "assessment_summary": "T009 三项验收全部满足：三个无环 typed StateSchema、三份 golden fixture、37 个真实 legacy fields 与 150 条类型映射均通过；deletion shared semantic state 和 cross-step 约束可在 identical schema 内表达。30 项专项、247 项全量、compileall、wheel build 与独立 blocker-only 复核均通过。"
+    },
+    {
+      "task_id": "T010",
+      "assessed_at": "2026-08-29T16:04:59+08:00",
+      "assessed_by": "codex",
+      "scores": {
+        "requirements_alignment": 5,
+        "implementation_quality": 5,
+        "verification_coverage": 5,
+        "documentation_and_traceability": 5
+      },
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["4.1-4.6 State DAG 与 GraphDelta", "6.1-6.2 propagation changed-set definitions", "12.3 H/N phenotype invariants", "15.1 deterministic graph implementation guidance", "16.1 Unit tests", "16.2 Property tests"],
+      "acceptance_criteria_results": [
+        {
+          "criterion": "循环被拒绝",
+          "passed": true,
+          "evidence": ["StateSchema 构造期拒绝 2-cycle、随机长 cycle 和 disconnected cyclic component", "Hypothesis forward-rank DAG strategy 与 independent cycle strategy", "targeted pytest: 68 passed"]
+        },
+        {
+          "criterion": "结果顺序稳定",
+          "passed": true,
+          "evidence": ["lexical-ready Kahn topological order 与 nodes/edges declaration order 无关", "descendants/closure 统一按 canonical topo 输出", "stale frontier 按 topo(source)、topo(target)、edge_id；semantic violations 按 edge_id"]
+        },
+        {
+          "criterion": "closure 和连通性 property tests 通过",
+          "passed": true,
+          "evidence": ["100-example random DAG properties 覆盖 downstream-inclusive closure 的 extensive/idempotent/monotone/union laws", "multi-root induced directed connectivity 与独立 BFS oracle 一致", "diamond、parallel edges、isolated nodes、unknown inputs 和 full frontier 边界测试"]
+        }
+      ],
+      "strengths": ["不依赖 networkx，以 lexical heap Kahn 和小图邻接遍历提供 immutable deterministic tuples", "严格区分 strict descendants、downstream-inclusive dependency closure、multi-root induced connectivity 与 changed→unchanged structural frontier", "结构性 stale edge 与真实 semantic violation 分离；edge_values.locally_valid 保留 True/False/None 三态，并支持 whole-DAG evaluator 注入", "unknown edge truth 不默认为 pass，显式状态与 evaluator 冲突、非法返回和未知 ID 均 fail closed"],
+      "known_gaps": [],
+      "follow_up_actions": ["T011 使用 downstream closure 和 stable topo 构建 150 个 reference DAG", "T012/T015 提供 fragment/isomeric 与多输入 relation evaluators，不在 T010 裸比较 chemistry", "T022 在基础 connectivity query 之上强制 PARTIAL 非平凡且严格小于 full closure，并执行 derivation rules"],
+      "assessment_summary": "T010 三项验收全部满足：cycle rejection、声明顺序无关的稳定拓扑/reachability、downstream closure、multi-root directed connectivity、structural stale frontier 与三态 semantic edge query 均完成。68 项专项、285 项全量、Hypothesis property tests、compileall、wheel build及独立 APPROVE 复核通过。"
     }
   ],
   "tasks": [
@@ -409,7 +443,7 @@
       "description": "实现确定性拓扑排序、descendants、dependency closure、连通下游子图和 edge violation 查询。",
       "deliverables": ["StateDAG 算法", "unit/property tests"],
       "acceptance_criteria": ["循环被拒绝", "结果顺序稳定", "closure 和连通性 property tests 通过"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T15:46:59+08:00", "completed_at": "2026-08-29T16:04:59+08:00", "completion_notes": "在 StateSchema 实现 lexical tie-break 的 deterministic Kahn topological_order、strict descendants、支持多 root 的 downstream-inclusive dependency_closure、induced directed connected-subgraph query，以及按 topo 边界排序的 changed→unchanged stale_downstream_edges。所有 node collection 输入精确类型/known-ID 校验，返回 immutable tuple；cycle 不返回 partial order。StateDAG 新增三态 edge_satisfaction/violated_edges：只消费显式 edge_values.locally_valid 或注入的 whole-DAG evaluator，missing/None 保持 unknown，独立状态冲突和非法 evaluator return fail closed；不在 T010 用裸 endpoint equality 猜 fragment/isomeric/多输入 chemistry relation。新增 Hypothesis random-rank DAG property suite，覆盖声明重排、reachability oracle、closure 集合律、multi-root connectivity、parallel edges、cycle、frontier 与 semantic edge query。PARTIAL strict-size/derivation eligibility 留 T022，chemistry comparator/relation evaluators 留 T012/T015。", "evidence": ["Pilot/molhallulens/domain/state_dag.py", "Pilot/tests/unit/test_state_dag.py", "Pilot/tests/property/test_state_dag_algorithms.py", "targeted pytest result: 68 passed", "full pytest result: 285 passed", "Hypothesis generated DAG properties: 100 examples per core query", "compileall passed", "pip wheel build passed", "independent blocker-only review: APPROVE"], "files_changed": ["Pilot/molhallulens/domain/state_dag.py", "Pilot/tests/unit/test_state_dag.py", "Pilot/tests/property/test_state_dag_algorithms.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["python -m pip install --target /tmp/molhallulens-t010-testdeps hypothesis==6.165.10 -q", "PYTHONPATH=/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_state_dag.py tests/unit/test_editing_state_schemas.py tests/property/test_state_dag_algorithms.py", "PYTHONPATH=/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t010-wheel -q", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T010 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T011", "phase": "1_reference_dag", "title": "构建 reference DAG",

@@ -124,6 +124,31 @@ def _dag() -> StateDAG:
     )
 
 
+def _algorithm_schema(*, reverse_declarations: bool = False) -> StateSchema:
+    nodes = tuple(
+        _node(
+            node_id,
+            ValueType.STRING,
+            NodeRole.PRIMARY_CLAIM,
+            Visibility.CANDIDATE_OUTPUT,
+        )
+        for node_id in ("root", "left", "right", "join", "leaf", "isolated")
+    )
+    edges = (
+        StateEdge("edge.root.left", "root", "left", DependencyType.DERIVED_FROM),
+        StateEdge("edge.root.right", "root", "right", DependencyType.DERIVED_FROM),
+        StateEdge("edge.left.join", "left", "join", DependencyType.DERIVED_FROM),
+        StateEdge("edge.right.join", "right", "join", DependencyType.DERIVED_FROM),
+        StateEdge("edge.join.leaf", "join", "leaf", DependencyType.DERIVED_FROM),
+    )
+    return StateSchema(
+        schema_id="algorithm.test",
+        version="1.0",
+        nodes=tuple(reversed(nodes)) if reverse_declarations else nodes,
+        edges=tuple(reversed(edges)) if reverse_declarations else edges,
+    )
+
+
 def test_claim_value_recursively_freezes_container_values() -> None:
     original = {"atoms": [1, 2]}
     claim = ClaimValue(
@@ -355,6 +380,156 @@ def test_state_schema_rejects_cycles() -> None:
 
     with pytest.raises(ValueError, match="acyclic"):
         StateSchema("cyclic", "1.0", nodes, edges)
+
+
+def test_graph_algorithms_are_deterministic_and_directionally_distinct() -> None:
+    schema = _algorithm_schema()
+    reversed_schema = _algorithm_schema(reverse_declarations=True)
+    expected_topology = ("isolated", "root", "left", "right", "join", "leaf")
+
+    assert schema.topological_order() == expected_topology
+    assert reversed_schema.topological_order() == expected_topology
+    assert schema.descendants("root") == ("left", "right", "join", "leaf")
+    assert schema.descendants("isolated") == ()
+    assert schema.dependency_closure(("root",)) == (
+        "root",
+        "left",
+        "right",
+        "join",
+        "leaf",
+    )
+    assert schema.dependency_closure(("right", "left", "right")) == (
+        "left",
+        "right",
+        "join",
+        "leaf",
+    )
+    assert schema.dependency_closure(()) == ()
+
+
+def test_connected_downstream_subgraph_requires_induced_directed_paths() -> None:
+    schema = _algorithm_schema()
+    full = {"root", *schema.descendants("root")}
+
+    assert schema.is_connected_downstream_subgraph(("root",), {"root"})
+    assert schema.is_connected_downstream_subgraph(
+        ("root",), {"root", "left", "join"}
+    )
+    assert schema.is_connected_downstream_subgraph(
+        ("root",), {"root", "left"}
+    )
+    assert schema.is_connected_downstream_subgraph(("root",), full)
+    assert not schema.is_connected_downstream_subgraph(
+        ("root",), {"root", "join"}
+    )
+    assert not schema.is_connected_downstream_subgraph(
+        ("root",), {"root", "isolated"}
+    )
+    assert schema.is_connected_downstream_subgraph(
+        ("left", "right"), {"left", "right", "join", "leaf"}
+    )
+
+
+def test_violated_edges_are_the_stable_stale_downstream_frontier() -> None:
+    schema = _algorithm_schema(reverse_declarations=True)
+
+    assert tuple(edge.edge_id for edge in schema.stale_downstream_edges(("root",))) == (
+        "edge.root.left",
+        "edge.root.right",
+    )
+    assert tuple(
+        edge.edge_id for edge in schema.stale_downstream_edges(("root", "left"))
+    ) == ("edge.root.right", "edge.left.join")
+    assert tuple(edge.edge_id for edge in schema.stale_downstream_edges(("left",))) == (
+        "edge.left.join",
+    )
+    assert schema.stale_downstream_edges(()) == ()
+    assert schema.stale_downstream_edges(schema.topological_order()) == ()
+
+
+def test_edge_violation_query_preserves_unknown_and_accepts_evaluators() -> None:
+    schema = StateSchema(
+        schema_id="edge-status.test",
+        version="1.0",
+        nodes=(
+            _node("a", ValueType.STRING, NodeRole.PRIMARY_CLAIM, Visibility.CANDIDATE_OUTPUT),
+            _node("b", ValueType.STRING, NodeRole.DERIVED_CLAIM, Visibility.CANDIDATE_OUTPUT),
+            _node("c", ValueType.STRING, NodeRole.DERIVED_CLAIM, Visibility.CANDIDATE_OUTPUT),
+        ),
+        edges=(
+            StateEdge("edge.must", "a", "b", DependencyType.MUST_EQUAL),
+            StateEdge("edge.explicit", "a", "c", DependencyType.DERIVED_FROM),
+            StateEdge("edge.unknown", "b", "c", DependencyType.DERIVED_FROM),
+        ),
+    )
+    dag = StateDAG(
+        schema=schema,
+        values={
+            "a": _claim("C", ValueType.STRING, ValueProvenance.REFERENCE),
+            "b": _claim("[CH4]", ValueType.STRING, ValueProvenance.REFERENCE),
+            "c": _claim("C", ValueType.STRING, ValueProvenance.REFERENCE),
+        },
+        edge_values={
+            "edge.explicit": ClaimValue(
+                raw_value=True,
+                normalized_value=True,
+                value_type=ValueType.BOOLEAN,
+                provenance=ValueProvenance.REFERENCE,
+                locally_valid=False,
+            )
+        },
+    )
+
+    assert dag.edge_satisfaction("edge.explicit") is False
+    assert dag.edge_satisfaction("edge.must") is None
+    assert dag.edge_satisfaction("edge.unknown") is None
+    assert tuple(edge.edge_id for edge in dag.violated_edges()) == ("edge.explicit",)
+
+    def evaluator(edge: StateEdge, _dag: StateDAG) -> bool | None:
+        return {
+            "edge.explicit": False,
+            "edge.must": True,
+            "edge.unknown": False,
+        }[edge.edge_id]
+
+    assert dag.edge_satisfaction("edge.must", evaluator) is True
+    assert tuple(edge.edge_id for edge in dag.violated_edges(evaluator)) == (
+        "edge.explicit",
+        "edge.unknown",
+    )
+    with pytest.raises(ValueError, match="conflicting satisfaction"):
+        dag.edge_satisfaction("edge.explicit", lambda _edge, _dag: True)
+    with pytest.raises(TypeError, match="bool or None"):
+        dag.edge_satisfaction("edge.must", lambda _edge, _dag: "yes")  # type: ignore[return-value]
+    with pytest.raises(TypeError, match="callable"):
+        dag.violated_edges(False)  # type: ignore[arg-type]
+    with pytest.raises(TypeError, match="edge_id"):
+        dag.edge_satisfaction(1)  # type: ignore[arg-type]
+    with pytest.raises(KeyError):
+        dag.edge_satisfaction("missing")
+
+
+def test_graph_algorithm_inputs_fail_closed() -> None:
+    schema = _algorithm_schema()
+
+    with pytest.raises(TypeError, match="root_node_id"):
+        schema.descendants(1)  # type: ignore[arg-type]
+    with pytest.raises(KeyError):
+        schema.descendants("missing")
+    with pytest.raises(TypeError, match="non-string iterable"):
+        schema.dependency_closure("root")  # type: ignore[arg-type]
+    with pytest.raises(KeyError, match="missing"):
+        schema.dependency_closure(("missing",))
+    with pytest.raises(TypeError, match="root_node_ids"):
+        schema.is_connected_downstream_subgraph(
+            "root", ("root",)  # type: ignore[arg-type]
+        )
+    with pytest.raises(ValueError, match="cannot be empty"):
+        schema.is_connected_downstream_subgraph((), ())
+    with pytest.raises(TypeError, match="non-string iterable"):
+        schema.stale_downstream_edges("root")  # type: ignore[arg-type]
+    with pytest.raises(KeyError, match="missing"):
+        schema.stale_downstream_edges(("missing",))
 
 
 def test_dag_requires_one_typed_value_for_every_node() -> None:
