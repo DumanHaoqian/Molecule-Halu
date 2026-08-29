@@ -17,9 +17,13 @@ from .base import (
     ValidatorChain,
 )
 from .editing import (
+    ADDITION_OPERATOR_IDS,
+    EDITING_REFERENCE_ENVELOPE_METADATA_KEY,
+    AdditionCandidateDispatcher,
+    AdditionCandidateEngine,
+    AdditionOperatorMixin,
     AdditionPerturbator,
     DeletionPerturbator,
-    EDITING_REFERENCE_ENVELOPE_METADATA_KEY,
     EditingReferenceEnvelope,
     MoleculeEditingPerturbator,
     SubstitutionPerturbator,
@@ -41,13 +45,17 @@ from .registry import (
 from .understanding import MoleculeUnderstandingPerturbator
 
 __all__ = [
+    "ADDITION_OPERATOR_IDS",
+    "EDITING_REFERENCE_ENVELOPE_METADATA_KEY",
+    "AdditionCandidateDispatcher",
+    "AdditionCandidateEngine",
+    "AdditionOperatorMixin",
     "AdditionPerturbator",
     "CandidateEngine",
     "DeletionPerturbator",
-    "EDITING_REFERENCE_ENVELOPE_METADATA_KEY",
     "EditingReferenceEnvelope",
-    "FinalTemplateMethodError",
     "FallbackDecision",
+    "FinalTemplateMethodError",
     "LabelProjector",
     "MolecularOptimizationPerturbator",
     "MoleculeEditingPerturbator",

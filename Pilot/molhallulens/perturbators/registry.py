@@ -36,6 +36,7 @@ from .base import PerturbationContext, Perturbator
 from .editing import MoleculeEditingPerturbator
 
 _DECLARATION_ATTRIBUTE = "__molhallulens_operator_declaration__"
+_MEMBER_MIXINS_ATTRIBUTE = "__molhallulens_operator_member_mixins__"
 _RESERVED_CANDIDATE_METADATA_KEYS = frozenset(
     {
         "candidate_graph",
@@ -372,13 +373,26 @@ class PerturbatorRegistry:
                     code="INVALID_OPERATOR_OWNER",
                     detail="operator owner has no exact editing family/subtask identity",
                 ) from error
+            member_mixins = vars(perturbator_type).get(
+                _MEMBER_MIXINS_ATTRIBUTE, ()
+            )
+            if type(member_mixins) is not tuple or any(
+                not inspect.isclass(owner) for owner in member_mixins
+            ):
+                raise OperatorRegistryError(
+                    code="INVALID_OPERATOR_OWNER",
+                    detail="operator member mixins must be an exact tuple of classes",
+                )
+            member_owners = (perturbator_type, *member_mixins)
             visible_names = {
-                name
-                for owner in perturbator_type.__mro__
-                for name in vars(owner)
+                name for owner in member_owners for name in vars(owner)
             }
             for method_name in sorted(visible_names):
-                member = inspect.getattr_static(perturbator_type, method_name)
+                member = next(
+                    vars(owner)[method_name]
+                    for owner in member_owners
+                    if method_name in vars(owner)
+                )
                 declaration = getattr(member, _DECLARATION_ATTRIBUTE, None)
                 if declaration is None:
                     continue
@@ -617,17 +631,17 @@ class PerturbatorRegistry:
                 operator_id=operator_id,
                 detail="recipe target is not an operator root field",
             )
-        if context.recipe.policy not in registration.spec.supported_policies:
-            raise OperatorRegistryError(
-                code="INCOMPATIBLE_POLICY",
-                operator_id=operator_id,
-                detail="recipe propagation policy is not supported",
-            )
         if context.recipe.candidate_source_mode not in registration.spec.supported_sources:
             raise OperatorRegistryError(
                 code="INCOMPATIBLE_SOURCE",
                 operator_id=operator_id,
                 detail="recipe candidate source is not supported",
+            )
+        if context.recipe.policy not in registration.spec.supported_policies:
+            raise OperatorRegistryError(
+                code="INCOMPATIBLE_POLICY",
+                operator_id=operator_id,
+                detail="recipe propagation policy is not supported",
             )
         if type(context.truth) is not EditTruth:
             raise OperatorRegistryError(

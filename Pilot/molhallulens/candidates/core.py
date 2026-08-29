@@ -62,6 +62,7 @@ class CandidateRejectCode(StrEnum):
     SYMMETRY_EQUIVALENT = "SYMMETRY_EQUIVALENT"
     DUPLICATE = "DUPLICATE"
     ACTION_PRODUCT_MISMATCH = "ACTION_PRODUCT_MISMATCH"
+    INSUFFICIENT_CANDIDATES = "INSUFFICIENT_CANDIDATES"
 
 
 class CandidateSourceError(RuntimeError):
@@ -961,18 +962,17 @@ def _remove_exact_occurrence(
     return editable.GetMol(), shifted_anchor, removed_bond_type
 
 
-def _replay_action_products(
+def replay_edit_action(
     request: CandidateRequest,
-    proposal: CandidateProposal,
+    action: EditAction,
 ) -> tuple[str, ...]:
-    action = proposal.patch.edit_action
-    if action is None:
-        return ()
-    if (
-        action.source_anchor_index is None
-        or action.bond_type is None
-        or proposal.candidate_product_smiles is None
-    ):
+    """Replay one typed graph action using the same strict T018 chemistry gate."""
+
+    if type(request) is not CandidateRequest:
+        raise TypeError("request must be CandidateRequest")
+    if type(action) is not EditAction:
+        raise TypeError("action must be EditAction")
+    if action.source_anchor_index is None or action.bond_type is None:
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     source = _strict_replay_molecule(request.context.record.indexed_smiles)
     anchor_index, map_to_index = _source_anchor(
@@ -1039,6 +1039,18 @@ def _replay_action_products(
     else:  # pragma: no cover - EditKind is sealed and exhaustive
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     return (_canonical_replay_product(product),)
+
+
+def _replay_action_products(
+    request: CandidateRequest,
+    proposal: CandidateProposal,
+) -> tuple[str, ...]:
+    action = proposal.patch.edit_action
+    if action is None:
+        return ()
+    if proposal.candidate_product_smiles is None:
+        raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
+    return replay_edit_action(request, action)
 
 
 def _validate_action_product(
@@ -1498,4 +1510,5 @@ __all__ = [
     "canonical_candidate_key",
     "compute_difficulty_features",
     "rank_candidates",
+    "replay_edit_action",
 ]

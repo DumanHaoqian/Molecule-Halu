@@ -15,6 +15,7 @@ from .core import (
     canonical_candidate_key,
     compute_difficulty_features,
     rank_candidates,
+    replay_edit_action,
 )
 from .rdkit_source import RDKitCandidateSource
 from .rule_source import RuleCandidateSource
@@ -36,4 +37,5 @@ __all__ = [
     "canonical_candidate_key",
     "compute_difficulty_features",
     "rank_candidates",
+    "replay_edit_action",
 ]

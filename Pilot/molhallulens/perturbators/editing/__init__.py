@@ -8,8 +8,8 @@ from typing import TYPE_CHECKING, Any, ClassVar
 
 from molhallulens.adapters import JoinedInputRecord
 from molhallulens.domain import (
-    EditKind,
     EditingSubtask,
+    EditKind,
     EditTruth,
     StateDAG,
     StateSchema,
@@ -279,11 +279,25 @@ class MoleculeEditingPerturbator(Perturbator[EditTruth], ABC):
         )
 
 
-class AdditionPerturbator(MoleculeEditingPerturbator):
+from .addition import (
+    ADDITION_OPERATOR_IDS,
+    AdditionCandidateDispatcher,
+    AdditionCandidateEngine,
+    AdditionOperatorMixin,
+)
+
+
+class AdditionPerturbator(AdditionOperatorMixin, MoleculeEditingPerturbator):
     """Concrete normalized ``mol_edit/add`` perturbator type."""
 
     subtask: ClassVar[str] = "add"
     normalized_subtask: ClassVar[EditingSubtask] = EditingSubtask.ADD
+    __molhallulens_operator_member_mixins__ = (AdditionOperatorMixin,)
+
+    def __init__(self, **ports: Any) -> None:
+        super().__init__(**ports)
+        if type(self.candidate_engine) is AdditionCandidateEngine:
+            self.candidate_engine.bind_owner(self)
 
     def expected_edit_kind(self) -> EditKind:
         return EditKind.ADDITION
@@ -310,9 +324,13 @@ class SubstitutionPerturbator(MoleculeEditingPerturbator):
 
 
 __all__ = [
+    "ADDITION_OPERATOR_IDS",
+    "EDITING_REFERENCE_ENVELOPE_METADATA_KEY",
+    "AdditionCandidateDispatcher",
+    "AdditionCandidateEngine",
+    "AdditionOperatorMixin",
     "AdditionPerturbator",
     "DeletionPerturbator",
-    "EDITING_REFERENCE_ENVELOPE_METADATA_KEY",
     "EditingReferenceEnvelope",
     "MoleculeEditingPerturbator",
     "SubstitutionPerturbator",

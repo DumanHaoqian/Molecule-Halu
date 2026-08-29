@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T20:25:25+08:00",
+  "updated_at": "2026-08-29T21:19:32+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 34,
+    "not_started": 33,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 18,
-    "last_completed_task": "T018"
+    "completed": 19,
+    "last_completed_task": "T019"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -497,6 +497,23 @@
       "known_gaps": [],
       "follow_up_actions": ["T019/T020 在同一 replay boundary 上实现真实 Addition/Deletion operators", "T021 实现 Substitution operators", "T037 扩展 LLM/HYBRID candidate agent，但不得放宽 T018 chemistry gates"],
       "assessment_summary": "T018 三项验收全部满足；25 项专项、431 项全量、ruff、compileall、wheel、diff/secret scan 与多轮独立 blocker review 通过。已闭环 action/product 伪造、source 空 ledger、symmetry、metadata 去重与 seed-ordering 缺口，未实现 T019+ operators、propagation、renderer 或 scheduler。"
+    },
+    {
+      "task_id": "T019",
+      "assessed_at": "2026-08-29T21:19:32+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["7.1 通用候选难度要求", "7.2 Addition", "5.5 Operator 成员方法和 registry", "8.2 CandidateEngine", "8.9 随机性和可复现性", "16.1 Unit tests", "Phase 2：Deterministic perturbation pipeline"],
+      "acceptance_criteria_results": [
+        {"criterion": "所有 operator 只改 root patch", "passed": true, "evidence": ["11 个 decorated member 均通过 registry.invoke 返回 exact root-only CandidatePool", "Pilot/tests/unit/test_addition_operators.py 的 root/reference/source/provenance 与 closed-payload 回归"]},
+        {"criterion": "none→halogen 不成为核心高频模式", "passed": true, "evidence": ["Addition operator 集合不含 leaving-group operator", "LEAVING=none 的 50-origin corpus 回归确认未改变 leaving claim"]},
+        {"criterion": "FULL_CF 候选由真实 graph edit 产生", "passed": true, "evidence": ["结构候选携带 T018 EditAction 并由 replay_edit_action 重放", "wrong-site/regioisomer product、attachment atom/bond 与 sanitize/product identity 回归"]}
+      ],
+      "strengths": ["精确实现计划 7.2 的 11 个 Addition operators，并按 family/policy/root/capability 显式注册", "RULE/RDKIT/HYBRID 经 dispatcher→registry→member→T018 engine 单一路径生成，LLM 在 member 调用前 fail closed", "FULL_CF 使用真实 RDKit graph edit；候选上限、结构化拒绝 ledger 与低于最小池的显式 INSUFFICIENT_CANDIDATES 均已闭环", "registry 改为显式 member-mixin discovery，既注册生产 mixin 又隔离 synthetic subclass fixture，保持确定性和无全局副作用"],
+      "known_gaps": [],
+      "follow_up_actions": ["T020 复用同一 dispatcher/registry/T018 replay boundary 实现 Deletion operators", "T021 实现 Substitution operators", "T024 消费 underfilled pool 的显式 fallback/backfill 决策", "T037 实现 LLM candidate source"],
+      "assessment_summary": "T019 三项验收全部满足；29 项专项、T017+T019 57 项组合回归、460 项全量、ruff、compileall、wheel、diff/secret scan 与独立 blocker review 通过。所有 11 个 Addition operators 均受 deterministic source、真实 graph replay、cap 与 underfill fail-closed contract 约束，未提前实现 T020+ deletion/substitution、propagation、renderer 或 scheduler。"
     }
   ],
   "tasks": [
@@ -650,7 +667,7 @@
       "description": "实现 alternate anchor、fragment、attachment、bond、valid wrong product、count/relation 和 terminal operators。",
       "deliverables": ["perturbators/editing/addition.py", "operator unit tests"],
       "acceptance_criteria": ["所有 operator 只改 root patch", "none→halogen 不成为核心高频模式", "FULL_CF 候选由真实 graph edit 产生"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T20:28:30+08:00", "completed_at": "2026-08-29T21:19:32+08:00", "completion_notes": "实现计划 7.2 的全部 11 个 Addition operators：alternate anchor、neighborhood anchor、fragment bucket、fragment attachment atom、attachment bond order、valid wrong-site/regioisomer product、heavy/ring count、internal relation 与 terminal。AdditionCandidateDispatcher 通过显式 registry.invoke 调用 decorated member，再统一桥接 T018 CandidateRequest/DeterministicCandidateEngine；RULE/RDKIT/HYBRID 可复现，LLM 在调用 member 前拒绝并留 T037。结构性 FULL_CF 候选均为可由 T018 replay_edit_action 重放的真实 RDKit graph edit，保留 source anchor、fragment attachment、bond order、product/action identity；LEAVING=none 不被改变且无 leaving-group operator。池大小受 operators config max=10 限制；真实有限化学导致非空池低于 min=3 时记录 INSUFFICIENT_CANDIDATES，selection fail closed 并留 T024 fallback/backfill。registry discovery 改为显式 member-mixin 边界，使生产 mixin 可注册且 synthetic subclass 不会意外继承生产 operators。未实现 T020+。", "evidence": ["Pilot/molhallulens/perturbators/editing/addition.py", "Pilot/tests/unit/test_addition_operators.py", "11 exact Addition operator IDs", "50-origin × 11-operator corpus coverage", "targeted pytest result: 29 passed", "T017+T019 regression: 57 passed", "full pytest result: 460 passed", "ruff clean", "compileall passed", "pip wheel build passed", "independent blocker-only review: APPROVE"], "files_changed": ["Pilot/molhallulens/candidates/__init__.py", "Pilot/molhallulens/candidates/core.py", "Pilot/molhallulens/perturbators/__init__.py", "Pilot/molhallulens/perturbators/registry.py", "Pilot/molhallulens/perturbators/editing/__init__.py", "Pilot/molhallulens/perturbators/editing/addition.py", "Pilot/tests/unit/test_addition_operators.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_addition_operators.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_operator_registry.py tests/unit/test_addition_operators.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "ruff check molhallulens/candidates/__init__.py molhallulens/candidates/core.py molhallulens/perturbators/__init__.py molhallulens/perturbators/registry.py molhallulens/perturbators/editing/__init__.py molhallulens/perturbators/editing/addition.py tests/unit/test_addition_operators.py", "PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t019-wheel -q", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T019 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T020", "phase": "2_deterministic_pipeline", "title": "实现 Deletion operators",
