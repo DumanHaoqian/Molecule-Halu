@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T14:02:02+08:00",
+  "updated_at": "2026-08-29T14:28:36+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 47,
+    "not_started": 46,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 5,
-    "last_completed_task": "T005"
+    "completed": 6,
+    "last_completed_task": "T006"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -197,6 +197,40 @@
       "known_gaps": [],
       "follow_up_actions": ["T006 将 delimiter 与空行等非 content 区间统一标记为 SegmentKind.SPECIAL，并固定 post-token evaluation mask 契约", "T042 复用 serialized_text SHA256 和 frozen content spans 生成 ChemDFM-R token labels"],
       "assessment_summary": "T005 的三项验收条件均有直接自动化证据；17 项专项和 94 项全量测试通过，canonical-constructor 对抗漏洞经独立复审发现后已修复并复验，无当前范围内已知缺口。"
+    },
+    {
+      "task_id": "T006",
+      "assessed_at": "2026-08-29T14:28:36+08:00",
+      "assessed_by": "codex",
+      "scores": {
+        "requirements_alignment": 5,
+        "implementation_quality": 5,
+        "verification_coverage": 5,
+        "documentation_and_traceability": 5
+      },
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["3.3 Post-token 对齐", "3.4 哪些 token 参与评测", "10.5 TokenLabelSet", "16.1 Unit tests", "18. Phase 0：冻结 schema 和接口", "MOLHALLULENS_MOLEDIT_CONSTRAINT_REVIEW.md 约束 3"],
+      "acceptance_criteria_results": [
+        {
+          "criterion": "无 label shift",
+          "passed": true,
+          "evidence": ["exact post_token_h_t only；pre-token、未知 post-token、空值和非字符串均 fail closed", "唯一 token IDs 的 reasoning/answer 同索引断言", "13 类 direct token arrays 与 semantic/edit/causal nested masks 的 T-1/T+1 参数化拒绝", "8 个 token index 的 evaluation mask 单点翻转均被拒绝"]
+        },
+        {
+          "criterion": "source、instruction、special、padding token 被忽略",
+          "passed": true,
+          "evidence": ["8-token mixed fixture 覆盖 BOS special、attended nonempty-offset delimiter special、source、instruction、trailing special 和 padding", "所有 ignored segment evaluation_mask=0", "六个 ignored token index 放置配套一致的 positive label 均 fail closed", "special/padding attention 0/1 均保持 evaluation ignore，符合模型配置决定"]
+        },
+        {
+          "criterion": "reasoning 与 answer token 可评测",
+          "passed": true,
+          "evidence": ["reasoning_mask 与 answer_mask 精确命中各自同索引 token", "reasoning ROOT positive 与 final-answer TERMINAL positive 均合法构造并保持原索引", "targeted pytest: 63 passed；full pytest: 157 passed"]
+        }
+      ],
+      "strengths": ["专项 contract tests 将 exact alignment literal、所有 token-length arrays、三类 taxonomy masks、六类 segment 和 evaluation/attention 边界转化为逐字段 fail-closed 断言", "内部 attended 且 nonempty-offset 的 SPECIAL token 与 tokenizer BOS/EOS/PADDING 同时覆盖，delimiter 与模型 special 均不会进入 evaluation", "移除 padding attention=0 的过强旧假设，使 special/padding attention 真正服从模型配置而 evaluation 始终 ignore", "两轮独立只读复审确认最终实现无 blocker"],
+      "known_gaps": [],
+      "follow_up_actions": ["T042 使用 serialized offsets 验证 char-to-token 语义投影，排除 reasoning 内部同长度语义平移", "T051 对真实 ChemDFM-R resid_post 张量执行 hidden-state token 轴与 labels 长度一致断言"],
+      "assessment_summary": "T006 三项验收均有直接专项证据；63 项专项、74 项专项加 domain 回归及 157 项全量测试通过。当前任务冻结 exact post-token 名称、同索引数组、segment-derived evaluation 与 ignore contract；按约束表不提前声称真实 hidden-state 或 char-to-token 语义对齐。"
     }
   ],
   "tasks": [
@@ -246,7 +280,7 @@
       "description": "固定 activation_alignment=post_token_h_t，定义 evaluation mask 和数组等长断言。",
       "deliverables": ["post-token alignment unit tests"],
       "acceptance_criteria": ["无 label shift", "source、instruction、special、padding token 被忽略", "reasoning 与 answer token 可评测"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T14:11:23+08:00", "completed_at": "2026-08-29T14:28:36+08:00", "completion_notes": "新增独立 post-token alignment contract tests，以 8 个唯一 token ID 覆盖 BOS special、source、attended delimiter special、instruction、reasoning、final answer、trailing special 和 padding；逐索引冻结 evaluation/reasoning/answer masks，并对 13 类 direct arrays、semantic/edit/causal nested masks 的 T-1/T+1 漂移、所有 evaluation 单点 shift、visible attention 缺失及 ignored segment positive labels 实施 fail-closed 负测。移除 padding attention 必须为 0 的旧硬编码，使 special/padding attention 按模型配置取 0/1 时仍始终忽略。T006 仅证明 exact alignment 名称、数组等长及 segment-derived 同索引 mask；真实 char-to-token 语义投影和 hidden-state 轴对齐分别保留给 T042/T051。", "evidence": ["Pilot/tests/unit/test_post_token_alignment.py", "Pilot/molhallulens/domain/labels.py", "targeted pytest result: 63 passed", "targeted plus domain-label regression: 74 passed", "full pytest result: 157 passed", "T006 acceptance assertions passed", "two independent read-only reviews: APPROVE/no blocker"], "files_changed": ["Pilot/molhallulens/domain/labels.py", "Pilot/tests/unit/test_post_token_alignment.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_post_token_alignment.py", "PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_post_token_alignment.py tests/unit/test_domain_labels.py", "PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "python T006 alignment/mask/length/config acceptance assertions", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "grep T006 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T007", "phase": "1_reference_dag", "title": "实现输入 adapter 和 ID join",

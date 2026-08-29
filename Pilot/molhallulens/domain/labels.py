@@ -385,9 +385,6 @@ class TokenLabelSet:
                 raise ValueError("reasoning_mask does not match token segment")
             if self.answer_mask[index] != int(segment is SegmentKind.FINAL_ANSWER):
                 raise ValueError("answer_mask does not match token segment")
-            if segment is SegmentKind.PADDING and self.attention_mask[index] != 0:
-                raise ValueError("padding tokens must have attention_mask=0")
-
             semantic_positive = any(mask[index] for mask in semantic_masks.values())
             if (
                 semantic_masks[HallucinationType.UNVERIFIABLE][index]
