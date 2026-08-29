@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T03:44:42+08:00",
+  "updated_at": "2026-08-30T03:58:10+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 10,
+    "not_started": 9,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 42,
-    "last_completed_task": "T042"
+    "completed": 43,
+    "last_completed_task": "T043"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -907,6 +907,24 @@
       "known_gaps": ["真实 ChemDFM-R checkpoint/tokenizer 未在本任务下载；生产契约已冻结，T051 使用已批准 snapshot 实例化"],
       "follow_up_actions": ["T043 验证 token alignment 与 N zero-mask", "T044 冻结 tokenizer fixture snapshots", "T051 对 1200 records 运行真实 ChemDFM-R tokenizer"],
       "assessment_summary": "T042 四项验收全部满足。T041 char annotations 经 T005 coordinate map 投影到 ChemDFM-R fast-tokenizer any-overlap masks，所有数组等长并保存 fingerprint、offset、boundary ambiguity 与 char fraction；每个 positive span 必须命中 evaluated token，N masks 强制全零。远端与本地 T005/T006/T039–T042 关联 166 项通过。"
+    },
+    {
+      "task_id": "T043",
+      "assessed_at": "2026-08-30T03:58:10+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["10.1 validation 顺序", "10.2 strict gate", "10.4 bundle integrity", "11. split 与 leakage", "Phase 5：Renderer、span 与 token labels"],
+      "acceptance_criteria_results": [
+        {"criterion": "四类 H phenotype invariants 被验证", "passed": true, "evidence": ["真实 T024 STOP/PARTIAL/FULL_CF/TERMINAL H 逐一贯通 semantic/propagation/renderer/token validators", "root/closure/final-answer component 与 hallucination phenotype 对抗测试"]},
+        {"criterion": "所有 N faithful 且 mask 为 0", "passed": true, "evidence": ["N state/FORMAL/Answer 与 reference faithfulness 独立校验", "N natural mention locked-state binding、zero positive masks 与 matched target exactness tests"]},
+        {"criterion": "GT/reference-only header 和泄漏词被扫描", "passed": true, "evidence": ["renderer validator 扫描 detector text、headers 和 label leakage phrases", "GT SMILES、GT_PRODUCT、Reference_Only_Answer 等变体对抗测试"]},
+        {"criterion": "每 origin 的 pair 与 split 完整", "passed": true, "evidence": ["bundle validator 强制 exact 8 records/4 reciprocal H-N pairs/4 policies", "仅接受 loader-verified T029 manifest，并由 origin row 内部派生 split 与 leakage group"]}
+      ],
+      "strengths": ["五个 validators 和 chain 全部返回稳定 structured ValidationIssue，不修补 artifact 或放宽 gate", "token validator 反算 projections、要求 offsets 覆盖完整 serialized text，并拒绝尾部/Answer 静默截断", "matched_target_span 必须精确命中 authoritative target mention，不能在同 segment 内平移", "独立复审发现的五条 all-pass 漏检全部转为明确 adversarial regression tests"],
+      "known_gaps": [],
+      "follow_up_actions": ["T044 将完整 validator reports 纳入 golden snapshots", "T045 对 120 dry-run records 运行 strict bundle chain", "T052 对全 release 运行相同 chain 与 secret/leakage scans"],
+      "assessment_summary": "T043 四项验收全部满足。semantic、propagation、renderer、token alignment 与 bundle integrity 五类 validators 已贯通真实 T024 8-record bundle；四类 H、faithful N/zero masks、泄漏扫描及 manifest-bound split/pair 完整性均 strict 验证。对抗复审的 N 文本改值、span 平移、token 截断、header 绕过和 caller 自报 split/group 五条漏检全部封闭。远端关联 104 项、本地关联 197 项通过。"
     }
   ],
   "tasks": [
@@ -1252,7 +1270,7 @@
       "description": "实现 semantic、propagation、renderer、token alignment 和 bundle integrity validators。",
       "deliverables": ["五类 validators", "validation chain integration tests"],
       "acceptance_criteria": ["四类 H phenotype invariants 被验证", "所有 N faithful 且 mask 为 0", "GT/reference-only header 和泄漏词被扫描", "每 origin 的 pair 与 split 完整"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T03:46:20+08:00", "completed_at": "2026-08-30T03:58:10+08:00", "completion_notes": "实现剩余 strict validation chain：HallucinationSemanticValidator、PropagationValidator、RendererValidator、TokenAlignmentValidator、BundleIntegrityValidator 及 fail-closed orchestrator。逐 artifact 验证四类 phenotype、mutation/labels、locked natural/FORMAL/Answer、GT/reference-only/leakage 词、token arrays/offset coverage/重投影/matched target；N 必须 reference-faithful 且所有 positive masks 为零。逐 bundle 强制 8 records、4 policies、4 reciprocal H/N pairs、origin/pair identity 完整，并只信任 loader-verified T029 manifest 内部派生 split/leakage group。独立对抗复审发现的 N mention 改值、target span 平移、token 尾部截断、GT header 变体与 caller 自报 split/group 五个漏检均已修复。另将三处 validation 顶层反向 import 改为函数内 direct-reference import，fresh public package import 不再循环。", "evidence": ["Pilot/molhallulens/validation/chain.py", "Pilot/tests/integration/test_validation_chain.py", "本地 T043 专项：20 passed", "本地 T024/T029/T040–T043 关联：197 passed", "远端 T024/T029/T040–T043 关联：104 passed", "fresh public import passed", "ruff/diff checks passed"], "files_changed": ["Pilot/molhallulens/validation/chain.py", "Pilot/molhallulens/validation/__init__.py", "Pilot/tests/integration/test_validation_chain.py", "Pilot/molhallulens/builders/leakage_groups.py", "Pilot/molhallulens/builders/origin_audit.py", "Pilot/molhallulens/candidates/donors.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/integration/test_validation_chain.py tests/unit/test_matched_bundles.py tests/unit/test_split_manifest.py tests/unit/test_natural_renderers.py tests/unit/test_char_annotations.py tests/unit/test_token_projection.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps python -c 'import molhallulens.validation; assert molhallulens.validation.ValidatorChain.__name__ == \"ValidatorChain\"'", "ruff check molhallulens/validation/chain.py molhallulens/validation/__init__.py molhallulens/builders/leakage_groups.py molhallulens/builders/origin_audit.py molhallulens/candidates/donors.py tests/integration/test_validation_chain.py", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T044", "phase": "5_rendering_and_labels", "title": "扩展 golden test suite",

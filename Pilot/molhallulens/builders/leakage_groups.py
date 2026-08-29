@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from enum import StrEnum
 from itertools import combinations
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from molhallulens.adapters import ChemCoTMolEditAdapter
 from molhallulens.chemistry import (
@@ -19,10 +19,6 @@ from molhallulens.chemistry import (
     generic_murcko_scaffold_smiles,
 )
 from molhallulens.config import ConfigBundle
-from molhallulens.validation import (
-    OriginValidationInput,
-    validate_reference_origin_strict,
-)
 
 from .edit_truth import derive_edit_truth
 from .origin_audit import (
@@ -30,6 +26,9 @@ from .origin_audit import (
     audit_origin_split_features,
 )
 from .reference_dag import build_reference_dag
+
+if TYPE_CHECKING:
+    from molhallulens.validation.reference import OriginValidationInput
 
 LEAKAGE_ASSIGNMENTS_FORMAT_VERSION = "leakage_group_assignments_v1"
 DEFAULT_LEAKAGE_ASSIGNMENTS_FILENAME = "leakage_group_assignments.json"
@@ -620,6 +619,8 @@ def build_leakage_group_assignments(
 ) -> LeakageGroupAssignments:
     """Build T026, then derive T027 from the same validated typed corpus."""
 
+    from molhallulens.validation.reference import OriginValidationInput
+
     values = tuple(items)
     if any(type(item) is not OriginValidationInput for item in values):
         raise TypeError("items must contain OriginValidationInput values")
@@ -640,6 +641,11 @@ def build_leakage_group_assignments_from_dataset(
     dataset_root: Path,
 ) -> LeakageGroupAssignments:
     """Load the frozen Dataset directory and build all T027 assignments."""
+
+    from molhallulens.validation.reference import (
+        OriginValidationInput,
+        validate_reference_origin_strict,
+    )
 
     if not isinstance(dataset_root, Path):
         raise TypeError("dataset_root must be pathlib.Path")

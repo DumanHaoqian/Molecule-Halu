@@ -21,10 +21,10 @@ from molhallulens.domain import (
     EditTruth,
     FragmentSpec,
 )
-from molhallulens.validation import OriginValidationInput
 
 if TYPE_CHECKING:
     from molhallulens.builders.split_manifest import VerifiedSplitManifest
+    from molhallulens.validation.reference import OriginValidationInput
 
 
 DONOR_POOL_FORMAT_VERSION = "split_local_donor_pool_v1"
@@ -629,6 +629,8 @@ def build_split_local_donor_pools(
     audit: OriginSplitAudit,
 ) -> tuple[SplitDonorPool, ...]:
     """Build three pools without invoking or mutating any split solver/manifest."""
+
+    from molhallulens.validation.reference import OriginValidationInput
 
     verified = _require_verified_manifest(manifest)
     if type(audit) is not OriginSplitAudit:

@@ -10,7 +10,7 @@ from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from math import ceil, isfinite
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import rdkit
 from rdkit import Chem
@@ -25,15 +25,13 @@ from molhallulens.perturbators import (
     PerturbatorRegistry,
     SubstitutionPerturbator,
 )
-from molhallulens.validation import (
-    OriginValidationInput,
-    audit_reference_corpus,
-    validate_reference_origin_strict,
-)
 
 from .anomaly_registry import classify_edit_truth
 from .edit_truth import derive_edit_truth
 from .reference_dag import build_reference_dag
+
+if TYPE_CHECKING:
+    from molhallulens.validation.reference import OriginValidationInput
 
 AUDIT_FORMAT_VERSION = "origin_split_audit_v1"
 FEATURE_DISTRIBUTION_FORMAT_VERSION = "origin_split_feature_distribution_v1"
@@ -905,6 +903,12 @@ def audit_origin_split_features(
 ) -> OriginSplitAuditResult:
     """Validate and audit exactly 150 T013/T015 origin inputs."""
 
+    from molhallulens.validation.reference import (
+        OriginValidationInput,
+        audit_reference_corpus,
+        validate_reference_origin_strict,
+    )
+
     values = tuple(items)
     if any(type(item) is not OriginValidationInput for item in values):
         raise TypeError("items must contain OriginValidationInput values")
@@ -1075,6 +1079,8 @@ def audit_origin_split_features(
 
 def build_origin_split_audit(dataset_root: Path) -> OriginSplitAuditResult:
     """Load the frozen corpus and build both T026 artifacts."""
+
+    from molhallulens.validation.reference import OriginValidationInput
 
     if not isinstance(dataset_root, Path):
         raise TypeError("dataset_root must be a pathlib.Path")
