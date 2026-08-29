@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T23:54:58+08:00",
+  "updated_at": "2026-08-30T00:32:55+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 29,
+    "not_started": 28,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 23,
-    "last_completed_task": "T023"
+    "completed": 24,
+    "last_completed_task": "T024"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -582,6 +582,24 @@
       "known_gaps": [],
       "follow_up_actions": ["T024 以 pair/variant 信息裁决 TERMINAL H/N relation并构造 matched controls", "T039 为 FORMAL/Answer mentions 生成精确 char spans", "T040 在 locked slots 外层添加 label-blind natural prose"],
       "assessment_summary": "T023 两项验收全部满足；55 项专项、119 项 T011/T022/rendering 关联回归、150-origin byte-exact smoke、630 项远端全量、ruff/format、compileall、wheel、diff 与独立 blocker-only review 全部通过。renderer 不接触GT、不改 locked state；FORMAL typed round-trip 与 Answer policy/graph-equivalence 边界闭合。"
+    },
+    {
+      "task_id": "T024",
+      "assessed_at": "2026-08-30T00:32:55+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["6.1 四种 policy 的精确定义", "6.3 每个 origin 的 8-record bundle", "6.4 数量不变量", "7.5 Operator-policy compatibility", "7.6 初始 operator/root-subtype 配额", "8.10 Validate–retry–fallback", "12.3 H/N phenotype invariants", "Phase 2：Deterministic perturbation pipeline"],
+      "acceptance_criteria_results": [
+        {"criterion": "每 origin 恰好 8 records", "passed": true, "evidence": ["150/150 origins 均确定性构造 LOCAL/PARTIAL/FULL_CF/TERMINAL 的 H/N 稳定序列", "Pilot/tests/unit/test_matched_bundles.py"]},
+        {"criterion": "每个 H 有唯一 matched N", "passed": true, "evidence": ["reciprocal pair links、policy/target/matching axes 与 reference graph 逐项绑定，pair/control tamper fail closed"]},
+        {"criterion": "N 不是简单重复 clean trace", "passed": true, "evidence": ["每个 faithful control 具有 pair-specific control_identity 与 render_identity；同 origin 四个 N 身份互异"]},
+        {"criterion": "fallback deviation 被记录", "passed": true, "evidence": ["requested/selected operator family、attempt history、source、bucket、reason、quota deviation 与 backfill 均结构化记录并重放 registry 契约"]}
+      ],
+      "strengths": ["Phase-2 immutable draft 明确不伪造 T039/T040 char spans、token labels 或 natural prose", "quota scheduler 使用 global seed/namespace 的 SHA256 稳定排序，精确执行每 policy 50-slot frozen quota 并显式报告不可满足 backfill", "explicit exact quota_bucket 防止重叠 family mappings 把同一候选伪装为多个 bucket", "FULL_CF/TERMINAL H/N chemistry truth table、T023 exact render binding、GraphDelta before/after ledger 与 fallback registry history 全部 fail closed"],
+      "known_gaps": ["真实 Addition 的 PARTIAL nl_formal_internal_relation bucket 在当前 schema/operator root 下不可形成非平凡连通传播；scheduler 按设计返回显式 BACKFILL_REQUIRED，不伪造 exact quota"],
+      "follow_up_actions": ["T025 使用真实 deterministic candidates、T022 propagation 与本 builder 冻结三类 golden bundles", "T039/T040 后续把 draft 扩展为有 spans/token labels/natural prose 的最终 records"],
+      "assessment_summary": "T024 四项验收全部满足；24 项专项和 140 项 operator/propagation/rendering/bundle 关联回归在本地与远端 main 均通过。独立对抗复审发现的稳定排序 tie、fallback 伪造、GraphDelta ledger、pair/control tamper 与 quota bucket 重叠问题全部闭环；ruff、format 与 compileall 通过。"
     }
   ],
   "tasks": [
@@ -775,7 +793,7 @@
       "description": "每个 origin 构造四组 H/N pair，并按 policy、operator family、difficulty 和 renderer 属性匹配。",
       "deliverables": ["builders/bundles.py", "quota scheduler", "bundle tests"],
       "acceptance_criteria": ["每 origin 恰好 8 records", "每个 H 有唯一 matched N", "N 不是简单重复 clean trace", "fallback deviation 被记录"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T23:57:32+08:00", "completed_at": "2026-08-30T00:32:55+08:00", "completion_notes": "实现 immutable Phase-2 MatchedBundleDraft、严格的 MatchedBundleBuilder 与 seeded DeterministicQuotaScheduler。每个 origin 从四个真实 propagated H assignments 生成稳定的 4H+4N reciprocal pairs；faithful controls 使用 pair-specific control/render identities，不复用 clean trace 身份。builder 逐 policy 执行 STOP/PARTIAL/FULL_CF/TERMINAL truth table，绑定 reference/candidate StateDAG、GraphDelta event before/after、T023 FORMAL/Answer exact rendering与匹配轴。scheduler 以 global seed/namespace SHA256 排序 origin/candidate，按 frozen per-policy 50-slot vectors 做 deterministic matching；exact quota bucket 显式携带并校验，重叠 family mapping 不可冒充 phenotype；same-family fallback 优先，cross-family deviation、attempt ledger、reason 与 backfill 均结构化记录并重放 registry policy/source/root/subtask 契约。真实 ADD 不可满足的 PARTIAL relation bucket 明确 BACKFILL_REQUIRED，不静默改变 phenotype。范围止于 Phase-2 draft，不生成 T039/T040 spans、token labels 或 natural prose。", "evidence": ["Pilot/molhallulens/builders/bundles.py", "Pilot/tests/unit/test_matched_bundles.py", "150/150 origins each build exactly 8 records", "targeted pytest: 24 passed", "local related regression: 140 passed", "remote main related regression: 140 passed", "ruff/format/compileall passed", "independent blocker-only review closed all findings"], "files_changed": ["Pilot/molhallulens/builders/bundles.py", "Pilot/molhallulens/builders/__init__.py", "Pilot/tests/unit/test_matched_bundles.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps python -m pytest -q tests/unit/test_matched_bundles.py", "PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps python -m pytest -q tests/unit/test_operator_registry.py tests/unit/test_editing_propagation.py tests/unit/test_formal_renderer.py tests/unit/test_matched_bundles.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_operator_registry.py tests/unit/test_editing_propagation.py tests/unit/test_formal_renderer.py tests/unit/test_matched_bundles.py", "ruff check molhallulens/builders/bundles.py molhallulens/builders/__init__.py tests/unit/test_matched_bundles.py", "ruff format --check molhallulens/builders/bundles.py molhallulens/builders/__init__.py tests/unit/test_matched_bundles.py", "python -m compileall -q molhallulens/builders/bundles.py tests/unit/test_matched_bundles.py", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T025", "phase": "2_deterministic_pipeline", "title": "生成三类 deterministic golden bundles",
