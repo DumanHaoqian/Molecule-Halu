@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T21:58:46+08:00",
+  "updated_at": "2026-08-29T22:49:52+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 32,
+    "not_started": 31,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 20,
-    "last_completed_task": "T020"
+    "completed": 21,
+    "last_completed_task": "T021"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -531,6 +531,23 @@
       "known_gaps": [],
       "follow_up_actions": ["T021 实现 Substitution operators，并显式处理 multi-anchor relocation provenance", "T022 消费真实 structural root patch 并实现 propagation", "T024 消费 underfilled pool 的 fallback/backfill 决策"],
       "assessment_summary": "T020 三项验收全部满足；33 项专项、82 项 T017–T019 回归、493 项全量、ruff/format、compileall、wheel、diff/secret scan 与独立 blocker review 通过。真实结构候选严格受 connected induced single-boundary、action replay、GT exclusion、cap 与 underfill contract 约束；delete-with-replacement 未被伪装为普通 deletion。"
+    },
+    {
+      "task_id": "T021",
+      "assessed_at": "2026-08-29T22:49:52+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["4.5 Substitution DAG", "7.1 通用候选难度要求", "7.4 SubstitutionPerturbator 成员 operators", "5.5 Operator 成员方法和 registry", "8.2 CandidateEngine", "8.9 随机性和可复现性", "16.1 Unit tests", "Phase 2：Deterministic perturbation pipeline"],
+      "acceptance_criteria_results": [
+        {"criterion": "source anchor 与 fragment attachment atom 独立保存", "passed": true, "evidence": ["EditAction typed source_anchor_index/remove_anchor_index/fragment_attachment_atom contract", "0271 dual-anchor exact replay、canonical identity 与 metadata-smuggling rejection 回归"]},
+        {"criterion": "halogen replacement 可交叉平衡", "passed": true, "evidence": ["F→Cl→Br→I→F static cyclic derangement", "34 个 halogen origins 的 truth-backed corpus count 与输入顺序不变性回归；未提前建立 T030 cross-record donor pool"]},
+        {"criterion": "FULL_CF downstream 可从真实 candidate product 重算", "passed": true, "evidence": ["结构候选全部通过 T018 strict replay、sanitize、candidate product identity 与 GT exclusion", "48/50 reference substitutions 可由 typed action exact replay；0191 charge 与 0276 stereo 边界显式 fail-closed"]}
+      ],
+      "strengths": ["精确实现计划 7.4 的 12 个 Substitution operators，并统一走 registry→member→T018 replay boundary", "双锚 action 独立保存移除 retained anchor 与新增 attachment source anchor，支持 0271 真正 relocation provenance", "partial incoming fragment 使用有界 connected-induced bridge/ball/trim 枚举，避免 16-heavy fragment 指数爆炸", "role inversion、halogen cycle 与 terminal 均保持 actionless root-only；terminal 值仍由内部真实 replayed wrong product 产生", "0191/0276 不猜测 charge/stereo 或 reference attachment，按 typed empty/underfill fail closed"],
+      "known_gaps": [],
+      "follow_up_actions": ["T022 从真实 structural root patch 重算完整 downstream state", "T024 消费真实 underfilled pool 并记录 fallback deviation", "T030 在 split 冻结后建立 split-local cross-record donor pools"],
+      "assessment_summary": "T021 三项验收全部满足；46 项专项、126 项 bridge/domain/operator 回归、539 项远端全量、ruff/format、compileall、wheel、JSON/diff 与独立 blocker review 通过。12 个 operators、双锚 replay、静态 halogen balance、有界 partial、actionless terminal、cap/underfill 和 0191/0276 fail-closed 边界均有直接回归证据。"
     }
   ],
   "tasks": [
@@ -700,7 +717,7 @@
       "description": "实现 site、leaving、incoming fragment、attachment、bond、partial substitution、regioisomer、count 和 terminal operators。",
       "deliverables": ["perturbators/editing/substitution.py", "operator unit tests"],
       "acceptance_criteria": ["source anchor 与 fragment attachment atom 独立保存", "halogen replacement 可交叉平衡", "FULL_CF downstream 可从真实 candidate product 重算"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T22:04:54+08:00", "completed_at": "2026-08-29T22:49:52+08:00", "completion_notes": "实现计划 7.4 的全部 12 个 Substitution operators：alternate site/occurrence、incoming fragment、fragment attachment atom、bond order、leaving-group claim、partial substitution、valid wrong regioisomer、add/remove role inversion、heavy/ring count 与 terminal。SubstitutionCandidateDispatcher 通过 registry.invoke 调用 exact decorated member，再统一桥接 T018 deterministic source/replay boundary；RULE/RDKIT/HYBRID 可复现，LLM 在 member 调用前拒绝。EditAction 新增 typed remove_anchor_index：source_anchor_index 独立表示 add-side retained anchor，remove_anchor_index 表示 removal-side retained boundary anchor，fragment_attachment_atom 独立表示 incoming fragment atom；canonical identity 将 legacy None 与显式 same-anchor 统一，addition/deletion 拒绝该字段，metadata 不能伪装 typed anchor。T018 substitution replay 同时验证两个 source anchor、occurrence connected/induced/single-boundary、index shift、bond/valence/H、sanitize 与 product identity；0271 双锚 exact replay，0191 charge 与 0276 stereo 不被猜测而显式 fail closed。halogen leaving swap 使用 truth-backed F→Cl→Br→I→F 静态循环，不提前创建 T030 donor provenance；partial fragment 枚举有界且保持 connected induced，terminal patch actionless但值来自内部真实 wrong-product replay。候选 max=10，非空低于 min=3 标记 INSUFFICIENT_CANDIDATES 并 selection fail closed。未实现 T022+。", "evidence": ["Pilot/molhallulens/domain/recipes.py", "Pilot/molhallulens/candidates/core.py", "Pilot/molhallulens/perturbators/editing/substitution.py", "Pilot/tests/unit/test_substitution_operators.py", "12 exact Substitution operator IDs", "48/50 typed reference substitutions replay exactly; 0191/0276 fail closed", "34 halogen origins static cyclic balance", "targeted pytest result: 46 passed", "bridge/domain/operator regression: 126 passed", "full pytest result: 539 passed", "ruff check and new-file format clean", "compileall passed", "pip wheel build passed", "independent blocker-only review: APPROVE"], "files_changed": ["Pilot/molhallulens/domain/recipes.py", "Pilot/molhallulens/candidates/core.py", "Pilot/molhallulens/perturbators/__init__.py", "Pilot/molhallulens/perturbators/editing/__init__.py", "Pilot/molhallulens/perturbators/editing/substitution.py", "Pilot/tests/unit/test_substitution_operators.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_substitution_operators.py", "PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_domain_records_recipes_errors.py tests/unit/test_candidate_sources.py tests/unit/test_operator_registry.py tests/unit/test_addition_operators.py tests/unit/test_deletion_operators.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "ruff check molhallulens/domain/recipes.py molhallulens/candidates/core.py molhallulens/perturbators/__init__.py molhallulens/perturbators/editing/__init__.py molhallulens/perturbators/editing/substitution.py tests/unit/test_substitution_operators.py", "ruff format --check molhallulens/perturbators/editing/substitution.py tests/unit/test_substitution_operators.py", "PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t021-wheel -q", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T022", "phase": "2_deterministic_pipeline", "title": "实现 PropagationEngine 和 derivation rules",

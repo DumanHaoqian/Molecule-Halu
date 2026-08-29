@@ -291,6 +291,12 @@ from .deletion import (
     DeletionCandidateEngine,
     DeletionOperatorMixin,
 )
+from .substitution import (
+    SUBSTITUTION_OPERATOR_IDS,
+    SubstitutionCandidateDispatcher,
+    SubstitutionCandidateEngine,
+    SubstitutionOperatorMixin,
+)
 
 
 class AdditionPerturbator(AdditionOperatorMixin, MoleculeEditingPerturbator):
@@ -325,11 +331,17 @@ class DeletionPerturbator(DeletionOperatorMixin, MoleculeEditingPerturbator):
         return EditKind.DELETION
 
 
-class SubstitutionPerturbator(MoleculeEditingPerturbator):
+class SubstitutionPerturbator(SubstitutionOperatorMixin, MoleculeEditingPerturbator):
     """Concrete normalized ``mol_edit/substitute`` perturbator type."""
 
     subtask: ClassVar[str] = "substitute"
     normalized_subtask: ClassVar[EditingSubtask] = EditingSubtask.SUBSTITUTE
+    __molhallulens_operator_member_mixins__ = (SubstitutionOperatorMixin,)
+
+    def __init__(self, **ports: Any) -> None:
+        super().__init__(**ports)
+        if type(self.candidate_engine) is SubstitutionCandidateEngine:
+            self.candidate_engine.bind_owner(self)
 
     def expected_edit_kind(self) -> EditKind:
         return EditKind.SUBSTITUTION
@@ -339,6 +351,7 @@ __all__ = [
     "ADDITION_OPERATOR_IDS",
     "DELETION_OPERATOR_IDS",
     "EDITING_REFERENCE_ENVELOPE_METADATA_KEY",
+    "SUBSTITUTION_OPERATOR_IDS",
     "AdditionCandidateDispatcher",
     "AdditionCandidateEngine",
     "AdditionOperatorMixin",
@@ -349,6 +362,9 @@ __all__ = [
     "DeletionPerturbator",
     "EditingReferenceEnvelope",
     "MoleculeEditingPerturbator",
+    "SubstitutionCandidateDispatcher",
+    "SubstitutionCandidateEngine",
+    "SubstitutionOperatorMixin",
     "SubstitutionPerturbator",
     "task_record_from_joined_input",
     "task_record_from_validated_reference",

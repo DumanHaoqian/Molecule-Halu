@@ -474,9 +474,16 @@ def canonical_candidate_key(proposal: CandidateProposal) -> str:
     action = canonical.patch.edit_action
     action_payload = None
     if action is not None:
+        remove_anchor = (
+            action.source_anchor_index
+            if action.edit_kind is EditKind.SUBSTITUTION
+            and action.remove_anchor_index is None
+            else action.remove_anchor_index
+        )
         action_payload = {
             "edit_kind": action.edit_kind,
             "source_anchor_index": action.source_anchor_index,
+            "remove_anchor_index": remove_anchor,
             "remove_fragment_smiles": action.remove_fragment_smiles,
             "add_fragment_smiles": action.add_fragment_smiles,
             "fragment_attachment_atom": action.fragment_attachment_atom,
@@ -759,11 +766,21 @@ def _validate_attachment_semantics(
     if action.edit_kind is not expected_kind:
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     occurrence_keys = {"remove_atom_maps", "occurrence_atom_maps"}
+    forbidden_anchor_metadata = {
+        "add_anchor_index",
+        "addition_anchor_index",
+        "remove_anchor_index",
+        "removal_anchor_index",
+        "source_anchor_index",
+    }
+    if forbidden_anchor_metadata.intersection(action.metadata):
+        raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     if action.edit_kind is EditKind.ADDITION:
         shape_valid = (
             action.remove_fragment_smiles is None
             and action.add_fragment_smiles is not None
             and action.fragment_attachment_atom is not None
+            and action.remove_anchor_index is None
             and not occurrence_keys.intersection(action.metadata)
         )
     elif action.edit_kind is EditKind.DELETION:
@@ -771,6 +788,7 @@ def _validate_attachment_semantics(
             action.remove_fragment_smiles is not None
             and action.add_fragment_smiles is None
             and action.fragment_attachment_atom is None
+            and action.remove_anchor_index is None
             and bool(occurrence_keys.intersection(action.metadata))
         )
     else:
@@ -983,7 +1001,7 @@ def replay_edit_action(
     if action.source_anchor_index is None or action.bond_type is None:
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     source = _strict_replay_molecule(request.context.record.indexed_smiles)
-    anchor_index, map_to_index = _source_anchor(
+    add_anchor_index, map_to_index = _source_anchor(
         source,
         action.source_anchor_index,
     )
@@ -993,7 +1011,7 @@ def replay_edit_action(
             raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
         product = _combine_and_bond(
             source,
-            anchor_index,
+            add_anchor_index,
             action.add_fragment_smiles,
             action.fragment_attachment_atom,
             action.bond_type,
@@ -1002,7 +1020,7 @@ def replay_edit_action(
     elif action.edit_kind is EditKind.DELETION:
         product, shifted_anchor, _ = _remove_exact_occurrence(
             source,
-            anchor_index,
+            add_anchor_index,
             map_to_index,
             action,
             require_boundary_bond_type=True,
@@ -1016,12 +1034,34 @@ def replay_edit_action(
     elif action.edit_kind is EditKind.SUBSTITUTION:
         if action.add_fragment_smiles is None or action.fragment_attachment_atom is None:
             raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
-        core, shifted_anchor, removed_bond = _remove_exact_occurrence(
+        remove_anchor_map = (
+            action.source_anchor_index
+            if action.remove_anchor_index is None
+            else action.remove_anchor_index
+        )
+        if remove_anchor_map not in map_to_index:
+            raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
+        remove_anchor_index = map_to_index[remove_anchor_map]
+        occurrence_indices = frozenset(
+            map_to_index[atom_map]
+            for atom_map in _occurrence_atom_maps(action)
+            if atom_map in map_to_index
+        )
+        if (
+            len(occurrence_indices) != len(_occurrence_atom_maps(action))
+            or add_anchor_index in occurrence_indices
+            or remove_anchor_index in occurrence_indices
+        ):
+            raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
+        core, shifted_remove_anchor, removed_bond = _remove_exact_occurrence(
             source,
-            anchor_index,
+            remove_anchor_index,
             map_to_index,
             action,
             require_boundary_bond_type=False,
+        )
+        shifted_add_anchor = add_anchor_index - sum(
+            atom_index < add_anchor_index for atom_index in occurrence_indices
         )
         try:
             removed_units = _RDKIT_BOND_VALENCE_UNITS[removed_bond]
@@ -1029,20 +1069,32 @@ def replay_edit_action(
             raise ValueError(
                 CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value
             ) from error
-        if removed_units > bond_units:
+        same_anchor = remove_anchor_index == add_anchor_index
+        if same_anchor and removed_units > bond_units:
             editable = Chem.RWMol(core)
             _add_explicit_hydrogens(
-                editable.GetAtomWithIdx(shifted_anchor),
+                editable.GetAtomWithIdx(shifted_remove_anchor),
                 removed_units - bond_units,
+            )
+            core = editable.GetMol()
+        elif not same_anchor:
+            editable = Chem.RWMol(core)
+            _add_explicit_hydrogens(
+                editable.GetAtomWithIdx(shifted_remove_anchor),
+                removed_units,
             )
             core = editable.GetMol()
         product = _combine_and_bond(
             core,
-            shifted_anchor,
+            shifted_add_anchor,
             action.add_fragment_smiles,
             action.fragment_attachment_atom,
             action.bond_type,
-            consume_core_hydrogens=max(0, bond_units - removed_units),
+            consume_core_hydrogens=(
+                max(0, bond_units - removed_units)
+                if same_anchor
+                else bond_units
+            ),
         )
     else:  # pragma: no cover - EditKind is sealed and exhaustive
         raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
@@ -1076,6 +1128,35 @@ def _validate_action_product(
         if type(root_value) is not str or not isomeric_graph_equivalent(
             root_value,
             candidate_product,
+        ):
+            raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
+    elif proposal.patch.root_node_id == "anchor_idx":
+        if proposal.patch.new_value.normalized_value != action.source_anchor_index:
+            raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
+    elif proposal.patch.root_node_id in {
+        "remove_group",
+        "remove_group_step1",
+        "remove_group_step2",
+    }:
+        root_value = proposal.patch.new_value.normalized_value
+        if (
+            type(root_value) is not str
+            or action.remove_fragment_smiles is None
+            or not isomeric_graph_equivalent(
+                root_value,
+                action.remove_fragment_smiles,
+            )
+        ):
+            raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
+    elif proposal.patch.root_node_id == "add_fragment":
+        root_value = proposal.patch.new_value.normalized_value
+        if (
+            type(root_value) is not str
+            or action.add_fragment_smiles is None
+            or not isomeric_graph_equivalent(
+                root_value,
+                action.add_fragment_smiles,
+            )
         ):
             raise ValueError(CandidateRejectCode.ACTION_PRODUCT_MISMATCH.value)
     replayed = _replay_action_products(request, proposal)

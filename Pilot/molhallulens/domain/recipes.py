@@ -25,6 +25,7 @@ class EditAction:
     fragment_attachment_atom: int | None = None
     bond_type: BondTypeName | None = None
     metadata: Mapping[str, Any] = field(default_factory=dict)
+    remove_anchor_index: int | None = None
 
     def __post_init__(self) -> None:
         if type(self.edit_kind) is not EditKind:
@@ -42,6 +43,7 @@ class EditAction:
         for index, name in (
             (self.source_anchor_index, "source_anchor_index"),
             (self.fragment_attachment_atom, "fragment_attachment_atom"),
+            (self.remove_anchor_index, "remove_anchor_index"),
         ):
             if index is not None and type(index) is not int:
                 raise TypeError(f"EditAction {name} must be an integer or None")
@@ -56,11 +58,19 @@ class EditAction:
             raise ValueError("addition EditAction requires add_fragment_smiles")
         if self.edit_kind is EditKind.DELETION and not self.remove_fragment_smiles:
             raise ValueError("deletion EditAction requires remove_fragment_smiles")
-        if self.edit_kind is EditKind.SUBSTITUTION:
-            if not self.remove_fragment_smiles or not self.add_fragment_smiles:
-                raise ValueError(
-                    "substitution EditAction requires remove_fragment_smiles and add_fragment_smiles"
-                )
+        if (
+            self.edit_kind in {EditKind.ADDITION, EditKind.DELETION}
+            and self.remove_anchor_index is not None
+        ):
+            raise ValueError(
+                "remove_anchor_index is only valid for substitution EditAction"
+            )
+        if self.edit_kind is EditKind.SUBSTITUTION and (
+            not self.remove_fragment_smiles or not self.add_fragment_smiles
+        ):
+            raise ValueError(
+                "substitution EditAction requires remove_fragment_smiles and add_fragment_smiles"
+            )
 
 
 @dataclass(frozen=True, slots=True)
