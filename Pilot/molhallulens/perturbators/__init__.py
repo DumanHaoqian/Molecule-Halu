@@ -29,6 +29,15 @@ from .editing import (
 from .factory import PerturbatorFactory, PerturbatorFactoryError
 from .optimization import MolecularOptimizationPerturbator
 from .reaction_prediction import ReactionPredictionPerturbator
+from .registry import (
+    FallbackDecision,
+    OperatorFallbackError,
+    OperatorRegistration,
+    OperatorRegistryError,
+    OperatorResolution,
+    PerturbatorRegistry,
+    operator,
+)
 from .understanding import MoleculeUnderstandingPerturbator
 
 __all__ = [
@@ -38,10 +47,15 @@ __all__ = [
     "EDITING_REFERENCE_ENVELOPE_METADATA_KEY",
     "EditingReferenceEnvelope",
     "FinalTemplateMethodError",
+    "FallbackDecision",
     "LabelProjector",
     "MolecularOptimizationPerturbator",
     "MoleculeEditingPerturbator",
     "MoleculeUnderstandingPerturbator",
+    "OperatorFallbackError",
+    "OperatorRegistration",
+    "OperatorRegistryError",
+    "OperatorResolution",
     "PerturbationContext",
     "PerturbationDraft",
     "PerturbationStage",
@@ -50,6 +64,7 @@ __all__ = [
     "PerturbatorExecutionError",
     "PerturbatorFactory",
     "PerturbatorFactoryError",
+    "PerturbatorRegistry",
     "PropagationEngine",
     "PropagationOutcome",
     "ReactionPredictionPerturbator",
@@ -57,6 +72,7 @@ __all__ = [
     "SubstitutionPerturbator",
     "TraceRenderer",
     "ValidatorChain",
+    "operator",
     "task_record_from_joined_input",
     "task_record_from_validated_reference",
 ]

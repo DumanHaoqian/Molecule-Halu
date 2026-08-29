@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T19:10:49+08:00",
+  "updated_at": "2026-08-29T19:41:54+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 36,
+    "not_started": 35,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 16,
-    "last_completed_task": "T016"
+    "completed": 17,
+    "last_completed_task": "T017"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -463,6 +463,23 @@
       "known_gaps": [],
       "follow_up_actions": ["T017 在当前 hierarchy 上实现 operator decorator、registry、compatibility 与显式 fallback contracts", "T018-T024 分别提供真实 candidates、propagation、rendering 与 bundle scheduling strategies", "T043 将剩余 artifact/bundle validators 注入 ValidatorChain"],
       "assessment_summary": "T016 三项验收全部满足；21 项专项、378 项全量、compileall、wheel、diff/secret scan 与两轮独立 blocker review 通过。此前发现的实例级 Template Method shadow 与 concrete reference/truth hook 未接线问题均已闭环，无已知验收缺口。"
+    },
+    {
+      "task_id": "T017",
+      "assessed_at": "2026-08-29T19:41:54+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["5.5 Operator 成员方法和 registry", "7.5 Operator-policy compatibility", "8.1 三层职责分离", "8.2 CandidateEngine", "8.10 Validate–retry–fallback", "16.1 Unit tests", "Phase 2：Deterministic perturbation pipeline"],
+      "acceptance_criteria_results": [
+        {"criterion": "operator 仅返回 root-only CandidatePatch", "passed": true, "evidence": ["Pilot/molhallulens/perturbators/registry.py exact CandidatePool/root/reference/source/edit-kind contract", "四个开放 payload carrier 的递归 closed-schema tests", "Pilot/tests/unit/test_operator_registry.py"]},
+        {"criterion": "不兼容 policy 被拒绝", "passed": true, "evidence": ["operators.yaml 六 family policy/source 子集验证", "canonical StateSchema root 与 T014 capability pre-invocation checks", "delete_v2.0081 structural/remove-delta rejection tests"]},
+        {"criterion": "候选失败不会静默改变 phenotype", "passed": true, "evidence": ["fallback 仅返回显式 immutable decision，不自动调用 operator 或改 recipe", "same policy/source、requested-attempt、quota-bucket binding 与 deterministic same-family-first tests", "跨 family 必须显式 quota deviation，耗尽后 BACKFILL_REQUIRED"]}
+      ],
+      "strengths": ["metadata-only decorator 无 import-order global side effect；registry 由显式 owner discovery 构建并深度不可变", "公开构造路径会重验 decorated binding、canonical mutable root、YAML compatibility、terminal shape 和 exact owner identity", "CandidatePool 中每个 patch 必须绑定权威 old value、recipe target/source 和 editing phenotype，四类开放 carrier 均拒绝 downstream artifact 偷渡", "fallback matrix 绑定真实 quota bucket、attempt history、policy/source/capability，且永不自动执行或改 target", "T014 delete-with-replacement capability policy 已接线，普通 deletion 保持可用"],
+      "known_gaps": [],
+      "follow_up_actions": ["T018 在 registry contract 上实现 rule/RDKit candidate enumeration、sanitize、dedupe、equivalence exclusion 与 ranking", "T019-T021 使用 decorator 注册三个 editing subtask 的真实 operators", "T024 消费显式 FallbackDecision 并记录 quota deviation/backfill"],
+      "assessment_summary": "T017 三项验收全部满足；28 项专项、406 项全量、ruff、compileall、wheel、diff/secret scan 与独立 blocker review 通过。直接构造、错误 quota bucket、空 attempt history及四个 payload carrier 绕过均已由回归测试闭环，未提前实现 T018+ chemistry、propagation、renderer 或 scheduler。"
     }
   ],
   "tasks": [
@@ -600,7 +617,7 @@
       "description": "注册 OperatorSpec、root fields、supported policies/sources、error types 和 fallback matrix。",
       "deliverables": ["operator registry", "operator-policy compatibility tests"],
       "acceptance_criteria": ["operator 仅返回 root-only CandidatePatch", "不兼容 policy 被拒绝", "候选失败不会静默改变 phenotype"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T19:14:49+08:00", "completed_at": "2026-08-29T19:41:54+08:00", "completion_notes": "实现 metadata-only @operator、显式不可变 PerturbatorRegistry、typed OperatorRegistration/Resolution/FallbackDecision 与结构化 registry/fallback errors。registry 将六类 operators.yaml family 的 policy/source compatibility、三类真实 StateSchema canonical mutable roots、terminal exact shape 和 T014 OperatorCapabilityPolicy 绑定到 pre-invocation resolution；delete_v2.0081 禁止 structural deletion/remove-only delta，保留 claim/terminal。invoke 仅接受 exact CandidatePool，并逐 patch 核对 recipe root、权威 reference old value、source mode、edit kind；candidate metadata、EditAction metadata 及 new ClaimValue raw/normalized 四个开放 carrier 都使用递归 closed payload schema，禁止携带 graph/propagation/rendering state。fallback 不执行 operator、不改 recipe/target；必须从已失败 requested operator 开始，同 policy/source/capability 且绑定 exact quota bucket，先同 family，跨 family 需显式 quota deviation，耗尽后返回 BACKFILL_REQUIRED。未实现 T018+ candidate chemistry、ranking、propagation、rendering 或 quota scheduler。", "evidence": ["Pilot/molhallulens/perturbators/registry.py", "Pilot/tests/unit/test_operator_registry.py", "targeted pytest result: 28 passed", "full pytest result: 406 passed", "ruff clean", "compileall passed", "pip wheel build passed", "independent blocker-only review: APPROVE"], "files_changed": ["Pilot/molhallulens/perturbators/registry.py", "Pilot/molhallulens/perturbators/__init__.py", "Pilot/tests/unit/test_operator_registry.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_operator_registry.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "ruff check molhallulens/perturbators/registry.py tests/unit/test_operator_registry.py", "PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t017-wheel -q", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T017 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T018", "phase": "2_deterministic_pipeline", "title": "实现 rule 与 RDKit candidate sources",
