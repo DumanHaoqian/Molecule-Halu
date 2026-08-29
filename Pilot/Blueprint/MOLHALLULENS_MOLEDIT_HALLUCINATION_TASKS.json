@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T01:53:43+08:00",
+  "updated_at": "2026-08-30T02:10:19+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 24,
+    "not_started": 23,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 28,
-    "last_completed_task": "T028"
+    "completed": 29,
+    "last_completed_task": "T029"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -666,6 +666,23 @@
       "known_gaps": [],
       "follow_up_actions": ["T029 将 typed assignment 写成 immutable split_manifest.csv，并禁止后续 variant 二次 split"],
       "assessment_summary": "T028 四项验收全部满足。真实 150 origins 精确分为 100/25/25，九个 subtask cells 全部 exact，142 leakage groups 零拆分；DP 记录 feasibility proof，±1 仅在合成不可达场景启用。专项 13 项、远端 T026–T028 联合 29 项与本地静态/格式/JSON 检查全部通过。"
+    },
+    {
+      "task_id": "T029",
+      "assessed_at": "2026-08-30T02:10:19+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["11.1 冻结 split 数量", "11.2 Leakage group", "11.3 正确执行顺序", "11.5 split manifest", "Phase 3：Split 和 donor pools"],
+      "acceptance_criteria_results": [
+        {"criterion": "字段完整符合计划", "passed": true, "evidence": ["Pilot/HallucinationDataset/split_manifest.csv：固定 10 列、150 rows/151 lines", "T026 identity、T027 group 与 T028 assignment 逐行绑定"]},
+        {"criterion": "后续 donor 和 LLM generation 只能使用该 manifest", "passed": true, "evidence": ["VerifiedSplitManifest 仅由 strict loader 的私有验证 token 构造", "同 split 查询、origin lookup 与跨 split rejection API"]},
+        {"criterion": "重跑得到相同 bytes", "passed": true, "evidence": ["正序/倒序构建、write→load→render byte-identical 回归", "远端 T028+T029：24 passed"]}
+      ],
+      "strengths": ["CSV 列序、origin_id 排序、UTF-8/LF、无时间戳和 canonical sidecar 均冻结", "strict loader 校验未知列、缺失/重复 origin、版本/seed、100/25/25、subtask matrix、142 groups 与 source artifacts", "已有不同内容拒绝覆盖，相同内容幂等，不会静默改写 frozen split", "VerifiedSplitManifest 将后续 donor/provider API 从任意 dict assignment 隔离"],
+      "known_gaps": [],
+      "follow_up_actions": ["T030 只接受 VerifiedSplitManifest 构建 split-local donor pools", "T031 proposal request 绑定 verified manifest identity 与 origin split"],
+      "assessment_summary": "T029 三项验收全部满足。150-origin immutable CSV 与 canonical metadata 已冻结，字段、计数、group、版本和 source binding 由 strict loader fail closed 验证；冲突覆盖、拆组、篡改、未知列、缺失/重复行和跨 split 查询均有对抗回归。远端 T028+T029 24 项及本地静态/格式/compile 检查通过。"
     }
   ],
   "tasks": [
@@ -899,7 +916,7 @@
       "description": "写出 immutable split manifest、hash 和版本元数据，并禁止 variant 二次随机 split。",
       "deliverables": ["HallucinationDataset/split_manifest.csv", "manifest hash"],
       "acceptance_criteria": ["字段完整符合计划", "后续 donor 和 LLM generation 只能使用该 manifest", "重跑得到相同 bytes"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T01:56:54+08:00", "completed_at": "2026-08-30T02:10:19+08:00", "completion_notes": "实现 immutable split manifest builder、writer 与 strict loader。CSV 固定为计划要求的 10 列，按 origin_id 稳定排序，UTF-8 LF、无时间戳，150 origins 严格一次出现，split=100/25/25，subtask matrix exact，142 leakage groups 不跨 split；每行绑定 T026 identities、T027 group 与 T028 assignment。sidecar 保存版本与 source artifact bindings。不同内容的已有 manifest/metadata 直接拒绝覆盖，相同内容幂等；只有 loader 完成字段、行数、唯一性、版本、seed、counts、groups 和 source bindings 全验证后才能创建 VerifiedSplitManifest，供后续 donor/LLM API 使用。输入重排和重跑 byte-identical。", "evidence": ["Pilot/molhallulens/builders/split_manifest.py", "Pilot/HallucinationDataset/split_manifest.csv", "Pilot/HallucinationDataset/split_manifest.metadata.json", "Pilot/tests/unit/test_split_manifest.py", "本地 T029 专项+T028 联合：24 passed", "远端 T029 专项+T028 联合：24 passed", "ruff/format/compileall/JSON/diff passed"], "files_changed": ["Pilot/molhallulens/builders/split_manifest.py", "Pilot/molhallulens/builders/__init__.py", "Pilot/tests/unit/test_split_manifest.py", "Pilot/HallucinationDataset/split_manifest.csv", "Pilot/HallucinationDataset/split_manifest.metadata.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_splitter.py tests/integration/test_group_stratified_split.py tests/unit/test_split_manifest.py", "ruff check molhallulens/builders/split_manifest.py molhallulens/builders/__init__.py tests/unit/test_split_manifest.py", "ruff format --check molhallulens/builders/split_manifest.py molhallulens/builders/__init__.py tests/unit/test_split_manifest.py", "python -m compileall -q molhallulens tests", "python -m json.tool HallucinationDataset/split_manifest.metadata.json >/dev/null", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T030", "phase": "3_split_and_donors", "title": "建立 split-local donor pools",
