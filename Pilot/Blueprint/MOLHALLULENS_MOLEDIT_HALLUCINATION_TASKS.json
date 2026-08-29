@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T03:41:50+08:00",
+  "updated_at": "2026-08-30T03:44:42+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 11,
+    "not_started": 10,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 41,
-    "last_completed_task": "T041"
+    "completed": 42,
+    "last_completed_task": "T042"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -889,6 +889,24 @@
       "known_gaps": [],
       "follow_up_actions": ["T042 对每个 CharAnnotation 投影 any-overlap token masks", "T043 验证 phenotype、root linkage 与 N zero-mask invariants", "T044 冻结 omission 和 propagated-final-answer golden cases"],
       "assessment_summary": "T041 三项验收全部满足。MutationEvent 通过 exact target identity 投影 semantic、editing、evidence、causal 与 root-linkage 多轴标签；重复 mentions 各自保留 span，纯 omission 只进 unlocalized ledger。验收额外修正 FULL_CF propagated final_answer 的合法 component，并以真实 builder 贯通 T043 bundle。远端 T022/T039/T040/T041 关联 102 项通过。"
+    },
+    {
+      "task_id": "T042",
+      "assessed_at": "2026-08-30T03:44:42+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["4.3 char span 与 token span", "6.1 ChemDFM-R 输入序列化", "6.2 offset mapping", "6.3 token labels", "Phase 5：Renderer、span 与 token labels"],
+      "acceptance_criteria_results": [
+        {"criterion": "每个 positive char span 覆盖 evaluated token", "passed": true, "evidence": ["any-overlap projection 后逐 annotation 反查至少一个 evaluation token", "special/zero-width/越界/未覆盖 offsets 全部 fail closed"]},
+        {"criterion": "所有 token arrays 等长", "passed": true, "evidence": ["TokenLabelSet 构造时统一验证 ids、attention、offset、segment、evaluation、所有轴 masks 与 fractions 长度", "长度漂移和 malformed tokenizer output tests"]},
+        {"criterion": "N positive masks 全 0", "passed": true, "evidence": ["VariantLabel.N 分支拒绝 annotations 并生成全零 semantic/edit/causal/error masks", "matched target span 单独保存且不变成 positive label"]},
+        {"criterion": "serialized text identity 与 tokenizer 输入一致", "passed": true, "evidence": ["tokenizer 仅调用一次且 exact input 被记录验证", "T005 detector coordinates 与 T039 trace-local spans 通过显式 coordinate map 重基"]}
+      ],
+      "strengths": ["兼容 ChemDFM-R fast-tokenizer offset_mapping，同时以 protocol 支持 deterministic fixture", "保存 tokenizer fingerprint、offsets、segment/evaluation masks、boundary ambiguity 与 error char fraction", "Answer claim context 仅在验证 exact prefix 后安全裁剪，不移动 literal bounds", "omission、span collision、non-monotonic offsets、runtime tokenizer drift 与文本不一致均结构化 fail closed"],
+      "known_gaps": ["真实 ChemDFM-R checkpoint/tokenizer 未在本任务下载；生产契约已冻结，T051 使用已批准 snapshot 实例化"],
+      "follow_up_actions": ["T043 验证 token alignment 与 N zero-mask", "T044 冻结 tokenizer fixture snapshots", "T051 对 1200 records 运行真实 ChemDFM-R tokenizer"],
+      "assessment_summary": "T042 四项验收全部满足。T041 char annotations 经 T005 coordinate map 投影到 ChemDFM-R fast-tokenizer any-overlap masks，所有数组等长并保存 fingerprint、offset、boundary ambiguity 与 char fraction；每个 positive span 必须命中 evaluated token，N masks 强制全零。远端与本地 T005/T006/T039–T042 关联 166 项通过。"
     }
   ],
   "tasks": [
@@ -1226,7 +1244,7 @@
       "description": "使用可靠 offset mapping 投影 any-overlap token masks，保存 boundary ambiguity、char fraction 和 tokenizer fingerprint。",
       "deliverables": ["annotation/token_projection.py", "TokenLabelSet writer", "projection tests"],
       "acceptance_criteria": ["每个 positive char span 覆盖 evaluated token", "所有 token arrays 等长", "N positive masks 全 0", "serialized text hash 与 tokenizer 输入一致"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T03:43:16+08:00", "completed_at": "2026-08-30T03:44:42+08:00", "completion_notes": "实现 ChemDFM-R char-to-token projection 与 TokenLabelSet writer。一次 exact tokenizer 调用获取 input_ids/attention_mask/offset_mapping，验证 runtime fingerprint、Python Unicode offsets、special token zero-width、单调 bounds 和序列化输入 identity。T039 trace-local annotations 通过 T005 DetectorCoordinateMap 重基到完整输入；以 any-overlap 投影 semantic、editing、causal、local-falsehood、off-task、reasoning/answer 与 error masks，保存 boundary ambiguity 和每 token error char fraction。每个 positive char span 必须覆盖 evaluated token，全部 token arrays 强制等长；N variant 拒绝 positive annotations 并输出全零 positive masks。omission、越界、碰撞、未覆盖、文本或 tokenizer drift 均结构化 fail closed。", "evidence": ["Pilot/molhallulens/annotation/token_projection.py", "Pilot/tests/unit/test_token_projection.py", "本地与远端 T005/T006/T039–T042 关联：166 passed", "T043 真实 bundle 集成通过", "ruff/diff checks passed"], "files_changed": ["Pilot/molhallulens/annotation/token_projection.py", "Pilot/molhallulens/annotation/__init__.py", "Pilot/tests/unit/test_token_projection.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_token_projection.py tests/unit/test_post_token_alignment.py tests/unit/test_detector_prompt.py tests/unit/test_char_annotations.py tests/unit/test_char_spans.py tests/unit/test_trace_ast.py tests/unit/test_natural_renderers.py tests/unit/test_domain_labels.py tests/unit/test_domain_records_recipes_errors.py", "ruff check molhallulens/annotation/__init__.py molhallulens/annotation/token_projection.py tests/unit/test_token_projection.py", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T043", "phase": "5_rendering_and_labels", "title": "实现剩余 validation chain",
