@@ -394,6 +394,11 @@ DEFAULT_ANOMALY_REGISTRY = AnomalyRegistry(
             provenance=(AnomalyProvenance.AROMATIC_FRAGMENT_CAPPING,),
         ),
         AnomalyRegistryEntry(
+            anonymous_sample_id="mol_edit.substitute_v2.0191",
+            expected_subtask=EditingSubtask.SUBSTITUTE,
+            provenance=(AnomalyProvenance.RETAINED_BOUNDARY_VALENCE_RELAXATION,),
+        ),
+        AnomalyRegistryEntry(
             anonymous_sample_id="mol_edit.substitute_v2.0271",
             expected_subtask=EditingSubtask.SUBSTITUTE,
             provenance=(AnomalyProvenance.MULTI_ANCHOR_RELOCATION,),

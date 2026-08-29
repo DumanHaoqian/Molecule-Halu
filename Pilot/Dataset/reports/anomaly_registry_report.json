@@ -3805,8 +3805,10 @@
       },
       "normalized_subtask": "substitute",
       "operation_subtype": "standard",
-      "provenance": [],
-      "registered": false,
+      "provenance": [
+        "retained_boundary_valence_relaxation"
+      ],
+      "registered": true,
       "structural_signature": {
         "add_fragment_heavy_atoms": 2,
         "added_atomic_numbers": [
@@ -4447,6 +4449,7 @@
     "mol_edit.delete_v2.0081",
     "mol_edit.substitute_v2.0064",
     "mol_edit.substitute_v2.0123",
+    "mol_edit.substitute_v2.0191",
     "mol_edit.substitute_v2.0271"
   ],
   "observed_registry_ids": [
@@ -4454,6 +4457,7 @@
     "mol_edit.delete_v2.0081",
     "mol_edit.substitute_v2.0064",
     "mol_edit.substitute_v2.0123",
+    "mol_edit.substitute_v2.0191",
     "mol_edit.substitute_v2.0271"
   ],
   "provenance_counts": {
@@ -4461,9 +4465,9 @@
     "delete_with_replacement": 1,
     "mapping_trace_disambiguation": 1,
     "multi_anchor_relocation": 1,
-    "retained_boundary_valence_relaxation": 1
+    "retained_boundary_valence_relaxation": 2
   },
-  "registered_count": 5,
+  "registered_count": 6,
   "registry_id": "molhallulens.anomaly_registry.v1",
   "subtype_counts": {
     "delete_with_replacement": 1,

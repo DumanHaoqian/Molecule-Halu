@@ -1,0 +1,4828 @@
+{
+  "format_version": "reference_validation_report_v1",
+  "origins": [
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0003",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0012",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0013",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0015",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0016",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0022",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0023",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0035",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0040",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0044",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0047",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0049",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0051",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0052",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0057",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0063",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0071",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0079",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0081",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0098",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0101",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0110",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0111",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0112",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0114",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0116",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0119",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0125",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0135",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0140",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0142",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0148",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0150",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0172",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0174",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0176",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0183",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0185",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0193",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0194",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0214",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0216",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0229",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0235",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0258",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0274",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0279",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0282",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0287",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.add_v2.0295",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "add",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0016",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0024",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0028",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0033",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0036",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0046",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0056",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0070",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0071",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0073",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0078",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0081",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "delete_with_replacement",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0083",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0087",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0107",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0108",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0112",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0117",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0125",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0126",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0134",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0135",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0136",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0137",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0138",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0142",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0161",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0166",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0181",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0185",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0186",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0189",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0194",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0202",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0204",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0205",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0219",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0232",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0234",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0236",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0252",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0255",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0260",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0273",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0275",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0285",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0287",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0290",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0298",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.delete_v2.0299",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "delete",
+      "operation_subtype": "deprotection",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0000",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0001",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0005",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0009",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0029",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0032",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0035",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0040",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0043",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0054",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0057",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0058",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0064",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0065",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0078",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0080",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0082",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0091",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0101",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0122",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0123",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0128",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0134",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0136",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0150",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0152",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0157",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0165",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0174",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0185",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0191",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0195",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0197",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0216",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0222",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0232",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0239",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0243",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0248",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0250",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0256",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0259",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0270",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0271",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0272",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0274",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0276",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0281",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0283",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    },
+    {
+      "anonymous_sample_id": "mol_edit.substitute_v2.0290",
+      "gates": [
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "input_record",
+          "validator_id": "molhallulens.validation.input_record.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "reference_dag",
+          "validator_id": "molhallulens.validation.reference_dag.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "rdkit_structure",
+          "validator_id": "molhallulens.validation.rdkit_structure.v1"
+        },
+        {
+          "all_pass": true,
+          "issues": [],
+          "stage": "graph_edit",
+          "validator_id": "molhallulens.validation.graph_edit.v1"
+        }
+      ],
+      "normalized_subtask": "substitute",
+      "operation_subtype": "standard",
+      "status": "passed"
+    }
+  ],
+  "summary": {
+    "all_pass": true,
+    "attempted": 150,
+    "counts_by_operation_subtype": {
+      "delete_with_replacement": 1,
+      "deprotection": 49,
+      "standard": 100
+    },
+    "counts_by_subtask": {
+      "add": 50,
+      "delete": 50,
+      "substitute": 50
+    },
+    "failed": 0,
+    "gate_failure_counts": {
+      "molhallulens.validation.graph_edit.v1": 0,
+      "molhallulens.validation.input_record.v1": 0,
+      "molhallulens.validation.rdkit_structure.v1": 0,
+      "molhallulens.validation.reference_dag.v1": 0
+    },
+    "issue_count": 0,
+    "passed": 150
+  }
+}

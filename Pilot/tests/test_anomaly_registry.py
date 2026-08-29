@@ -40,6 +40,9 @@ BOUNDARY_PROVENANCE = {
         AnomalyProvenance.RETAINED_BOUNDARY_VALENCE_RELAXATION
     ),
     "mol_edit.substitute_v2.0123": AnomalyProvenance.AROMATIC_FRAGMENT_CAPPING,
+    "mol_edit.substitute_v2.0191": (
+        AnomalyProvenance.RETAINED_BOUNDARY_VALENCE_RELAXATION
+    ),
     "mol_edit.substitute_v2.0271": AnomalyProvenance.MULTI_ANCHOR_RELOCATION,
 }
 
@@ -75,7 +78,7 @@ def test_real_150_subtype_counts_and_report_are_frozen() -> None:
         OperationSubtype.DEPROTECTION: 49,
         OperationSubtype.DELETE_WITH_REPLACEMENT: 1,
     }
-    assert report.registered_count == 5
+    assert report.registered_count == 6
     assert report.complete_registry is True
     assert report.observed_registry_ids == report.expected_registry_ids
     assert report.to_dict() == _report_fixture()
