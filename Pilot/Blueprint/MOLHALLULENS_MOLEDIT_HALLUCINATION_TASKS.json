@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T19:41:54+08:00",
+  "updated_at": "2026-08-29T20:25:25+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 35,
+    "not_started": 34,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 17,
-    "last_completed_task": "T017"
+    "completed": 18,
+    "last_completed_task": "T018"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -480,6 +480,23 @@
       "known_gaps": [],
       "follow_up_actions": ["T018 在 registry contract 上实现 rule/RDKit candidate enumeration、sanitize、dedupe、equivalence exclusion 与 ranking", "T019-T021 使用 decorator 注册三个 editing subtask 的真实 operators", "T024 消费显式 FallbackDecision 并记录 quota deviation/backfill"],
       "assessment_summary": "T017 三项验收全部满足；28 项专项、406 项全量、ruff、compileall、wheel、diff/secret scan 与独立 blocker review 通过。直接构造、错误 quota bucket、空 attempt history及四个 payload carrier 绕过均已由回归测试闭环，未提前实现 T018+ chemistry、propagation、renderer 或 scheduler。"
+    },
+    {
+      "task_id": "T018",
+      "assessed_at": "2026-08-29T20:25:25+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["7.1 通用候选难度要求", "8.2 CandidateEngine", "8.4 Agent tools / simulate_edit", "8.9 随机性和可复现性", "16.1 Unit tests", "Phase 2：Deterministic perturbation pipeline"],
+      "acceptance_criteria_results": [
+        {"criterion": "候选保留 attachment atom/bond semantics", "passed": true, "evidence": ["严格 RDKit action→product replay 覆盖 ADDITION/DELETION/SUBSTITUTION", "source atom-map、fragment attachment、bond order、exact removal occurrence 与 product-root identity 对抗测试"]},
+        {"criterion": "对称等价 site 被排除", "passed": true, "evidence": ["truth valid/symmetry groups 与 map-free stereochemical automorphism orbit 排除", "product-root action anchor 与 symmetric fragment attachment 回归"]},
+        {"criterion": "reject reasons 结构化记录", "passed": true, "evidence": ["immutable CandidateRejection ledger", "action/product mismatch、source unavailable/unsupported、sanitize/equivalence/dedupe 结构化回归"]}
+      ],
+      "strengths": ["RULE/RDKit/HYBRID source contract 逐 request 精确绑定并 fail closed", "canonical identity 保留 root、attachment、bond 与规范 occurrence 语义，audit metadata 无法绕过去重", "候选产品严格 sanitize、排除 GT 等价并由 action 重放复核", "难度排序对输入排列不敏感，derived seed 稳定控制同难度候选次序"],
+      "known_gaps": [],
+      "follow_up_actions": ["T019/T020 在同一 replay boundary 上实现真实 Addition/Deletion operators", "T021 实现 Substitution operators", "T037 扩展 LLM/HYBRID candidate agent，但不得放宽 T018 chemistry gates"],
+      "assessment_summary": "T018 三项验收全部满足；25 项专项、431 项全量、ruff、compileall、wheel、diff/secret scan 与多轮独立 blocker review 通过。已闭环 action/product 伪造、source 空 ledger、symmetry、metadata 去重与 seed-ordering 缺口，未实现 T019+ operators、propagation、renderer 或 scheduler。"
     }
   ],
   "tasks": [
@@ -625,7 +642,7 @@
       "description": "实现候选枚举、canonicalize、去重、sanitize、equivalence 排除、难度特征和排序。",
       "deliverables": ["rule_source.py", "rdkit_source.py", "candidate pool tests"],
       "acceptance_criteria": ["候选保留 attachment atom/bond semantics", "对称等价 site 被排除", "reject reasons 结构化记录"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T19:45:38+08:00", "completed_at": "2026-08-29T20:25:25+08:00", "completion_notes": "实现 deterministic RULE/RDKit/HYBRID candidate boundary：request/source/provenance 精确绑定，strict canonicalize/sanitize、GT/root equivalence 排除、semantic dedupe、difficulty features 与 derived-seed stable ranking。结构性候选必须提供 exact EditAction 与 candidate product；RDKit 按 source atom-map 重放 ADDITION/DELETION/SUBSTITUTION，验证 fragment attachment、bond order、exact removal occurrence、valence/H、product-root identity 和 isomeric graph 一致性。wrong-anchor 候选排除 truth valid/symmetry groups 与 map-free stereochemical automorphism orbit；symmetric fragment attachment 与 occurrence aliases 规范化，未消费 audit metadata 不影响化学 identity。所有 source/action/sanitize/equivalence/symmetry/duplicate 失败进入 immutable structured rejection ledger。未实现 T019+ concrete operators、propagation、renderer、scheduler 或 LLM 行为。", "evidence": ["Pilot/molhallulens/candidates/core.py", "Pilot/molhallulens/candidates/rule_source.py", "Pilot/molhallulens/candidates/rdkit_source.py", "Pilot/tests/unit/test_candidate_sources.py", "targeted pytest result: 25 passed", "full pytest result: 431 passed", "ruff clean", "compileall passed", "pip wheel build passed", "independent blocker-only review: APPROVE"], "files_changed": ["Pilot/molhallulens/candidates/__init__.py", "Pilot/molhallulens/candidates/core.py", "Pilot/molhallulens/candidates/rule_source.py", "Pilot/molhallulens/candidates/rdkit_source.py", "Pilot/tests/unit/test_candidate_sources.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_candidate_sources.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "ruff check molhallulens/candidates tests/unit/test_candidate_sources.py", "PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t018-wheel -q", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T018 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T019", "phase": "2_deterministic_pipeline", "title": "实现 Addition operators",
