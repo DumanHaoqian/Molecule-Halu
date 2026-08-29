@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T04:55:00+08:00",
+  "updated_at": "2026-08-30T04:58:00+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 6,
+    "not_started": 5,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 46,
-    "last_completed_task": "T046"
+    "completed": 47,
+    "last_completed_task": "T047"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -978,6 +978,25 @@
       "known_gaps": ["本轮没有独立外部人类化学家参与；交付如实标记为 Codex-assisted structured chemistry review"],
       "follow_up_actions": ["若发布前获得外部化学家资源，可在不替换本报告的前提下追加独立复审", "T052 将两项 resolved systemic issues 写入 dataset card/known limitations"],
       "assessment_summary": "T046 三项验收全部满足。对最终 cross-balanced T045 的 15 origins/60 pairs/120 records 做六域全量审查，60/60 pairs 全部通过、0 unresolved findings；真实 instruction 与 Answer-to-oracle 两项系统问题均已修复并按完整 matched pairs 重建。报告透明披露为 Codex-assisted，无外部人类化学家声明。专项 5 项通过。"
+    },
+    {
+      "task_id": "T047",
+      "assessed_at": "2026-08-30T04:58:00+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["13. dry-run shortcut audit", "17. shortcut/baseline thresholds", "Phase 6：15-origin dry run", "test isolation frozen constraint"],
+      "acceptance_criteria_results": [
+        {"criterion": "metadata AUROC≤0.55", "passed": true, "evidence": ["development train+validation grouped OOF metadata AUROC=0.5000000", "origin/leakage groups never cross folds"]},
+        {"criterion": "span-only TF-IDF AUROC≤0.55", "passed": true, "evidence": ["development grouped OOF char TF-IDF AUROC=0.5249566", "strict-valid target literal cross-balance used development only"]},
+        {"criterion": "reasoning-only shallow AUROC≤0.60", "passed": true, "evidence": ["development grouped OOF reasoning-only AUROC=0.5243056", "held-out test reasoning diagnostic=0.5104167"]},
+        {"criterion": "H/N token-length standardized difference<0.1", "passed": true, "evidence": ["development token-length SMD=0.0", "held-out test token-length SMD=0.0；style mismatch count=0"]},
+        {"criterion": "不满足时已修复设计并重跑", "passed": true, "evidence": ["初始 span AUROC 超阈值后仅在 train+validation strict-valid origins 中重选并重建 complete bundles", "test .0023/.0046/.0057 冻结，未用于 candidate、metric threshold 或 renderer selection"]}
+      ],
+      "strengths": ["metadata/span/reasoning 三类攻击均按 leakage group 做 grouped five-fold out-of-fold evaluation", "同时运行 retrieval、RDKit validity、visible/hidden symbolic comparators 与 length/style diagnostics", "strict CLI 对 mandatory development gate 失败返回非零，不能静默发布", "test isolation 协议将 mandatory dev gate 与一次性 held-out diagnostic 明确分开"],
+      "known_gaps": ["dry-run development inventory 仅 12 origins，指标用于工程 shortcut gate，不应解释为模型性能估计"],
+      "follow_up_actions": ["T048–T050 按冻结 renderer/candidate design 构建，不再使用 test 调参", "T052 对完整 release 重跑相同 baselines 并披露 symbolic comparator 结果"],
+      "assessment_summary": "T047 五项验收全部满足。development-only mandatory gates：metadata 0.5、span-only 0.5249566、reasoning-only 0.5243056、token-length SMD 0、style mismatch 0，全部过阈值。初始 span shortcut 通过只使用 train+validation 的 strict-valid origin cross-balance 修复；held-out test 三 origins 全程冻结，最终只读诊断一次且未参与选择。严格 CLI 退出 0，专项 11 项通过。"
     }
   ],
   "tasks": [
@@ -1355,7 +1374,7 @@
       "description": "运行 metadata、TF-IDF、target-span、reasoning-only、validity、retrieval 和 symbolic comparator baselines，并检查长度/style 匹配。",
       "deliverables": ["dry-run shortcut report", "operator/renderer failure analysis"],
       "acceptance_criteria": ["metadata AUROC≤0.55", "span-only TF-IDF AUROC≤0.55", "reasoning-only shallow AUROC≤0.60", "H/N token-length standardized difference<0.1", "不满足时已修复设计并重跑"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T04:31:00+08:00", "completed_at": "2026-08-30T04:58:00+08:00", "completion_notes": "实现并运行 dry-run shortcut audit。对 train+validation development inventory 使用 leakage-group grouped five-fold out-of-fold attacks：metadata AUROC=0.5000000、target-span char TF-IDF AUROC=0.5249566、reasoning-only shallow AUROC=0.5243056；H/N token-length standardized difference=0.0、style mismatch count=0，全部满足 mandatory thresholds。另运行 RDKit validity、retrieval、visible symbolic 与 hidden-oracle symbolic comparators，并保存 operator/renderer failure analysis。初始全量与 dev span attack 超阈值后，没有修改 metric 或阈值；仅在 train+validation 已通过 strict chemistry/validation 的 origin 组合中做 target-literal cross-balance，并按 complete 8-record bundles 重建。held-out test origins .0023/.0046/.0057 全程冻结，未用于 candidate、renderer、layer 或 threshold 选择；设计冻结后仅做一次 diagnostic：metadata/span/reasoning=0.5/0.5/0.5104167，token SMD/style mismatch=0/0。strict CLI 仅根据 development mandatory gates 决定退出码并最终 exit 0。", "evidence": ["Pilot/molhallulens/audit/shortcut_audit.py", "Pilot/tests/integration/test_shortcut_audit.py", "Pilot/Dataset/reports/t047_shortcut_audit.json", "dev metadata/span/reasoning AUROC=0.5/0.5249566/0.5243056", "dev token-length SMD=0; style mismatch=0", "held-out test read once after design freeze", "strict CLI exit 0", "T047 专项：11 passed", "T045+T047 联合：19 passed", "T045+T046+T047 联合：24 passed", "ruff/JSON/diff checks passed"], "files_changed": ["Pilot/molhallulens/audit/shortcut_audit.py", "Pilot/tests/integration/test_shortcut_audit.py", "Pilot/Dataset/reports/t047_shortcut_audit.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps python -m pytest -q -s -p no:cacheprovider tests/integration/test_shortcut_audit.py", "PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps python -m pytest -q -p no:cacheprovider tests/integration/test_dry_run_build.py tests/integration/test_dry_run_human_review.py tests/integration/test_shortcut_audit.py", "PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps python -m molhallulens.audit.shortcut_audit --dry-run-root HallucinationDataset/dry_run --report Dataset/reports/t047_shortcut_audit.json --strict", "ruff check molhallulens/audit/shortcut_audit.py tests/integration/test_shortcut_audit.py", "python -m json.tool Dataset/reports/t047_shortcut_audit.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T048", "phase": "7_full_build", "title": "构建并冻结 train split",
