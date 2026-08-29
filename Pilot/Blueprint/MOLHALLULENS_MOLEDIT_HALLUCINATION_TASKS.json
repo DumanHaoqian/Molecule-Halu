@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T18:31:37+08:00",
+  "updated_at": "2026-08-29T19:10:49+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 37,
+    "not_started": 36,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 15,
-    "last_completed_task": "T015"
+    "completed": 16,
+    "last_completed_task": "T016"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -446,6 +446,23 @@
       "known_gaps": [],
       "follow_up_actions": ["T016 将四 gate 作为 composition 注入 perturbator skeleton", "T017 将 T014 capability policy 绑定到具体 operator registry", "T043 实现不属于 T015 的 semantic/propagation/renderer/token/bundle validators"],
       "assessment_summary": "T015 三项验收全部满足；17 项专项、150/150 corpus、357 项全量、compileall、wheel 和独立 blocker review 通过。四阶段报告可追踪，语义假为 ERROR，前置契约/无法比较为 FATAL；对抗测试冻结 exact 0191 capping allowance，并确认 registry FATAL 不会被降级。"
+    },
+    {
+      "task_id": "T016",
+      "assessed_at": "2026-08-29T19:10:49+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["5.1 Family 继承层次", "5.2 继承和组合的边界", "5.3 抽象基类与固定 Template Method", "5.4 Editing family 公共能力", "5.6 Factory 和 subtask normalization", "16.1 Unit tests", "Phase 2：Deterministic perturbation pipeline"],
+      "acceptance_criteria_results": [
+        {"criterion": "Template Method 不可被 subclass 改写", "passed": true, "evidence": ["Pilot/tests/unit/test_perturbator_hierarchy.py direct/grandchild/pre-MRO/class-rebind/instance-shadow tests", "runtime FinalTemplateMethodError enforcement"]},
+        {"criterion": "candidate、propagation、renderer、validator、label projector 通过 composition 注入", "passed": true, "evidence": ["五个 required keyword-only typed ports", "factory 与 concrete constructor exact-identity forwarding tests", "fixed stage-order and fail-stop test"]},
+        {"criterion": "factory 可由 normalized record 构造实例", "passed": true, "evidence": ["typed family/subtask immutable mapping dispatches add/delete/substitute", "public validated-reference TaskRecord converters", "unknown/future/tampered records fail closed"]}
+      ],
+      "strengths": ["Perturbator 唯一拥有固定 orchestration；direct、间接、多继承、类级和实例级覆盖均被拒绝", "三个 concrete editor 与三个 future abstract family 精确表达稳定类型层次", "五项策略完全由 composition 注入且异常立即停止下游，不提供隐式默认或 fallback", "validated envelope 无损接线 T011/T013/T015，canonical origin 使用 anonymous_sample_id，缺失或漂移时结构化失败", "factory 只消费 typed normalized family/subtask，不重解析 source alias"],
+      "known_gaps": [],
+      "follow_up_actions": ["T017 在当前 hierarchy 上实现 operator decorator、registry、compatibility 与显式 fallback contracts", "T018-T024 分别提供真实 candidates、propagation、rendering 与 bundle scheduling strategies", "T043 将剩余 artifact/bundle validators 注入 ValidatorChain"],
+      "assessment_summary": "T016 三项验收全部满足；21 项专项、378 项全量、compileall、wheel、diff/secret scan 与两轮独立 blocker review 通过。此前发现的实例级 Template Method shadow 与 concrete reference/truth hook 未接线问题均已闭环，无已知验收缺口。"
     }
   ],
   "tasks": [
@@ -575,7 +592,7 @@
       "description": "实现 Perturbator、MoleculeEditingPerturbator、三个 concrete subtask 和三个 future abstract family。",
       "deliverables": ["perturbators hierarchy", "factory tests"],
       "acceptance_criteria": ["Template Method 不可被 subclass 改写", "candidate、propagation、renderer、validator、label projector 通过 composition 注入", "factory 可由 normalized record 构造实例"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T18:34:04+08:00", "completed_at": "2026-08-29T19:10:49+08:00", "completion_notes": "实现 Perturbator sealed Template Method、五个 required composition ports、三个 molecule-editing concrete subtasks、三个 future abstract families 与 typed normalized-record factory。Template Method 的 direct/grandchild/pre-MRO/class/instance 覆盖均运行时拒绝；固定阶段顺序严格 fail-stop。新增 validated-reference TaskRecord converters 与 frozen envelope，无损接线既有 T011 reference DAG、T013 EditTruth 和 T015 strict validation，三类真实 Pilot origin 均可由 factory 构造并重放权威 reference/truth。未实现 T017+ operator registry、真实 candidate、propagation、renderer、labels 或 bundle 行为。", "evidence": ["Pilot/molhallulens/perturbators/base.py", "Pilot/molhallulens/perturbators/factory.py", "Pilot/molhallulens/perturbators/editing/__init__.py", "Pilot/tests/unit/test_perturbator_hierarchy.py", "targeted pytest result: 21 passed", "full pytest result: 378 passed", "compileall passed", "pip wheel build passed", "independent blocker-only review: APPROVE"], "files_changed": ["Pilot/molhallulens/perturbators/__init__.py", "Pilot/molhallulens/perturbators/base.py", "Pilot/molhallulens/perturbators/factory.py", "Pilot/molhallulens/perturbators/editing/__init__.py", "Pilot/molhallulens/perturbators/optimization/__init__.py", "Pilot/molhallulens/perturbators/understanding/__init__.py", "Pilot/molhallulens/perturbators/reaction_prediction/__init__.py", "Pilot/tests/unit/test_perturbator_hierarchy.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_perturbator_hierarchy.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t016-wheel -q", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T016 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T017", "phase": "2_deterministic_pipeline", "title": "实现 operator decorator、registry 与 compatibility",

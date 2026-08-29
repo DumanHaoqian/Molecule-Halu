@@ -1,1 +1,62 @@
-"""Family and subtask perturbators."""
+"""Family/subtask perturbators and their composition boundaries."""
+
+from .base import (
+    CandidateEngine,
+    FinalTemplateMethodError,
+    LabelProjector,
+    PerturbationContext,
+    PerturbationDraft,
+    PerturbationStage,
+    Perturbator,
+    PerturbatorConfigurationError,
+    PerturbatorExecutionError,
+    PropagationEngine,
+    PropagationOutcome,
+    RenderedPerturbation,
+    TraceRenderer,
+    ValidatorChain,
+)
+from .editing import (
+    AdditionPerturbator,
+    DeletionPerturbator,
+    EDITING_REFERENCE_ENVELOPE_METADATA_KEY,
+    EditingReferenceEnvelope,
+    MoleculeEditingPerturbator,
+    SubstitutionPerturbator,
+    task_record_from_joined_input,
+    task_record_from_validated_reference,
+)
+from .factory import PerturbatorFactory, PerturbatorFactoryError
+from .optimization import MolecularOptimizationPerturbator
+from .reaction_prediction import ReactionPredictionPerturbator
+from .understanding import MoleculeUnderstandingPerturbator
+
+__all__ = [
+    "AdditionPerturbator",
+    "CandidateEngine",
+    "DeletionPerturbator",
+    "EDITING_REFERENCE_ENVELOPE_METADATA_KEY",
+    "EditingReferenceEnvelope",
+    "FinalTemplateMethodError",
+    "LabelProjector",
+    "MolecularOptimizationPerturbator",
+    "MoleculeEditingPerturbator",
+    "MoleculeUnderstandingPerturbator",
+    "PerturbationContext",
+    "PerturbationDraft",
+    "PerturbationStage",
+    "Perturbator",
+    "PerturbatorConfigurationError",
+    "PerturbatorExecutionError",
+    "PerturbatorFactory",
+    "PerturbatorFactoryError",
+    "PropagationEngine",
+    "PropagationOutcome",
+    "ReactionPredictionPerturbator",
+    "RenderedPerturbation",
+    "SubstitutionPerturbator",
+    "TraceRenderer",
+    "ValidatorChain",
+    "task_record_from_joined_input",
+    "task_record_from_validated_reference",
+]
