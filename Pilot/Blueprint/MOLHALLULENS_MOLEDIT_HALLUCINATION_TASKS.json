@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T04:53:30+08:00",
+  "updated_at": "2026-08-30T04:55:00+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 7,
+    "not_started": 6,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 45,
-    "last_completed_task": "T045"
+    "completed": 46,
+    "last_completed_task": "T046"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -961,6 +961,23 @@
       "known_gaps": ["T045 tokenized artifact 使用明确标识的 deterministic fast-offset offline fixture，未冒充真实 ChemDFM-R weights；真实 tokenizer 留给 T051"],
       "follow_up_actions": ["T046 冻结 120-record chemistry/label review", "T047 提交已通过的 dev-only shortcut audit 与 held-out diagnostic", "T051 使用批准的真实 ChemDFM-R tokenizer snapshot 重写 tokenized artifacts"],
       "assessment_summary": "T045 四项验收全部满足。实际构建 15 个真实 origins、120 records（60H/60N），480 个 artifact gates 和 15 个 bundle gates 全通过。预提交审查发现并修复 instruction identity 与 PARTIAL Answer correctness 两处系统问题，完整重建受影响 pairs；随后仅用 train+validation 做 strict-valid origin cross-balance，dev span/reasoning shortcut AUROC 降至 0.52496/0.52431，held-out test 未参与选择。关联回归 123 项通过。"
+    },
+    {
+      "task_id": "T046",
+      "assessed_at": "2026-08-30T04:55:00+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["10. strict validation", "13. dry-run human chemistry review", "Phase 6：15-origin dry run"],
+      "acceptance_criteria_results": [
+        {"criterion": "无系统性标签错误", "passed": true, "evidence": ["15 origins、60 matched pairs、120 records 六个审查域全量 census", "root truth、candidate chemistry、propagation/GT labels、H/N matching、natural↔FORMAL、char↔token 均 60/60 pairs pass"]},
+        {"criterion": "发现的问题已修复并重建受影响的完整 matched pairs", "passed": true, "evidence": ["通用 instruction 系统问题修复后重建全部 60 pairs/120 records", "PARTIAL Answer correctness 修复后重建 15 pairs/30 records；最终 unresolved findings 为 0"]},
+        {"criterion": "抽检人和时间可追踪", "passed": true, "evidence": ["reviewer_id=openai-codex-t046-reviewer，reviewed_at=2026-08-30T04:49:05+08:00", "明确披露 Codex-assisted，external_human_reviewer_present=false"]}
+      ],
+      "strengths": ["审查器逐 pair 连接 detector、oracle、state、token 与 provenance artifacts", "RDKit candidate/answer strict parsing 与 anchor、fragment、edit direction/count claims 联合核验", "两项预提交系统问题被固定为 resolved issue log 和 regression gates", "报告未冒充外部人工审查，reviewer identity、方法和时间完整可追踪"],
+      "known_gaps": ["本轮没有独立外部人类化学家参与；交付如实标记为 Codex-assisted structured chemistry review"],
+      "follow_up_actions": ["若发布前获得外部化学家资源，可在不替换本报告的前提下追加独立复审", "T052 将两项 resolved systemic issues 写入 dataset card/known limitations"],
+      "assessment_summary": "T046 三项验收全部满足。对最终 cross-balanced T045 的 15 origins/60 pairs/120 records 做六域全量审查，60/60 pairs 全部通过、0 unresolved findings；真实 instruction 与 Answer-to-oracle 两项系统问题均已修复并按完整 matched pairs 重建。报告透明披露为 Codex-assisted，无外部人类化学家声明。专项 5 项通过。"
     }
   ],
   "tasks": [
@@ -1330,7 +1347,7 @@
       "description": "人工检查 root truth、candidate chemistry、propagation、H/N matching、自然语言与 FORMAL 一致性和 token spans。",
       "deliverables": ["human review checklist", "issue log and adjudications"],
       "acceptance_criteria": ["无系统性标签错误", "发现的问题已修复并重建受影响的完整 matched pairs", "抽检人和时间可追踪"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T04:31:00+08:00", "completed_at": "2026-08-30T04:55:00+08:00", "completion_notes": "完成 T045 dry-run 的 Codex-assisted structured chemistry review。审查器对 15 origins、60 reciprocal matched pairs、120 records 做全量 census，逐 pair 核验 root truth、RDKit candidate chemistry、anchor/fragment/edit direction/count claims、四类 propagation 与 Answer-to-oracle labels、H/N reciprocal matching、natural↔FORMAL 一致性及 char↔token span 投影。六个审查域均 60/60 pairs 通过，最终 failed_pair_count、unresolved_finding_count 和 systemic_label_error_count_after_rebuild 均为 0。审查过程中发现两项系统问题：全部 records 使用通用 instruction，以及 15 条 PARTIAL H 的 answer_correct 参照 candidate product；两者均已在 T045 根因修复，分别重建 60 pairs/120 records 与 15 pairs/30 records，并加入 fail-closed validators/regressions。审查 identity、时间、checklist、issue log 与 adjudications 均落盘；明确披露 external_human_reviewer_present=false，不冒充外部人类化学家。", "evidence": ["Pilot/molhallulens/builders/dry_run_review.py", "Pilot/tests/integration/test_dry_run_human_review.py", "Pilot/HallucinationDataset/dry_run/reports/human_review_checklist.json", "Pilot/HallucinationDataset/dry_run/reports/human_review_issue_log.json", "Pilot/HallucinationDataset/dry_run/reports/human_review_adjudications.json", "Pilot/Dataset/reports/t046_dry_run_human_review.json", "15 origins / 60 pairs / 120 records reviewed", "six domains 60/60 pass; 0 unresolved findings", "2 systemic issues resolved with complete-pair rebuild evidence", "T046 专项：5 passed", "T045+T046 联合：13 passed", "ruff/JSON/diff checks passed"], "files_changed": ["Pilot/molhallulens/builders/dry_run_review.py", "Pilot/tests/integration/test_dry_run_human_review.py", "Pilot/HallucinationDataset/dry_run/reports/human_review_checklist.json", "Pilot/HallucinationDataset/dry_run/reports/human_review_issue_log.json", "Pilot/HallucinationDataset/dry_run/reports/human_review_adjudications.json", "Pilot/Dataset/reports/t046_dry_run_human_review.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps python -m pytest -q -s -p no:cacheprovider tests/integration/test_dry_run_human_review.py", "PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps python -m pytest -q -p no:cacheprovider tests/integration/test_dry_run_build.py tests/integration/test_dry_run_human_review.py", "ruff check molhallulens/builders/dry_run_review.py tests/integration/test_dry_run_human_review.py", "python -m json.tool Dataset/reports/t046_dry_run_human_review.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T047", "phase": "6_dry_run", "title": "运行 dry-run shortcut audit",

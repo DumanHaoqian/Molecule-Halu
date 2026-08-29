@@ -1,0 +1,82 @@
+{
+  "acceptance": {
+    "affected_complete_pairs_rebuilt": true,
+    "all_120_records_reviewed": true,
+    "all_15_origins_reviewed": true,
+    "all_60_pairs_reviewed": true,
+    "all_discovered_issues_adjudicated": true,
+    "digest_or_sha_verification_performed": false,
+    "no_systemic_label_errors": true,
+    "reviewer_and_time_traceable": true
+  },
+  "all_pass": true,
+  "dataset_version": "pilot_v1",
+  "domain_counts": {
+    "candidate_chemistry": {
+      "failed_pair_count": 0,
+      "passed_pair_count": 60,
+      "reviewed_pair_count": 60
+    },
+    "h_n_matching": {
+      "failed_pair_count": 0,
+      "passed_pair_count": 60,
+      "reviewed_pair_count": 60
+    },
+    "natural_formal_consistency": {
+      "failed_pair_count": 0,
+      "passed_pair_count": 60,
+      "reviewed_pair_count": 60
+    },
+    "propagation": {
+      "failed_pair_count": 0,
+      "passed_pair_count": 60,
+      "reviewed_pair_count": 60
+    },
+    "root_truth": {
+      "failed_pair_count": 0,
+      "passed_pair_count": 60,
+      "reviewed_pair_count": 60
+    },
+    "token_spans": {
+      "failed_pair_count": 0,
+      "passed_pair_count": 60,
+      "reviewed_pair_count": 60
+    }
+  },
+  "dry_run_id": "t045_frozen_offline_15_origin_v1",
+  "format_version": "t046_codex_assisted_chemistry_review_v1",
+  "limitations": [
+    "The review is Codex-assisted; no external human chemist participated.",
+    "T045 uses an offline tokenizer fixture rather than production ChemDFM-R weights.",
+    "No digest or SHA verification was performed."
+  ],
+  "reviewer": {
+    "disclosure": "This is a Codex-assisted chemistry review; no external human chemist is claimed.",
+    "display_name": "OpenAI Codex (T046 chemistry review agent)",
+    "external_human_reviewer_present": false,
+    "review_method": "Codex-assisted structured chemistry review",
+    "reviewed_at": "2026-08-30T04:49:05+08:00",
+    "reviewer_id": "openai-codex-t046-reviewer"
+  },
+  "summary": {
+    "failed_pair_count": 0,
+    "origin_count": 15,
+    "pair_count": 60,
+    "passed_pair_count": 60,
+    "record_count": 120,
+    "resolved_systemic_issue_count": 2,
+    "reviewed_policies": {
+      "FULL_CF": 15,
+      "LOCAL": 15,
+      "PARTIAL": 15,
+      "TERMINAL": 15
+    },
+    "reviewed_subtasks": {
+      "add": 20,
+      "delete": 20,
+      "substitute": 20
+    },
+    "systemic_label_error_count_after_rebuild": 0,
+    "unresolved_finding_count": 0
+  }
+}
