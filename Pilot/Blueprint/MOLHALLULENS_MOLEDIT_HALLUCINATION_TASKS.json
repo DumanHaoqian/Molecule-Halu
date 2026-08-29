@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T03:58:10+08:00",
+  "updated_at": "2026-08-30T04:20:00+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 9,
+    "not_started": 8,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 43,
-    "last_completed_task": "T043"
+    "completed": 44,
+    "last_completed_task": "T044"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -925,6 +925,24 @@
       "known_gaps": [],
       "follow_up_actions": ["T044 将完整 validator reports 纳入 golden snapshots", "T045 对 120 dry-run records 运行 strict bundle chain", "T052 对全 release 运行相同 chain 与 secret/leakage scans"],
       "assessment_summary": "T043 四项验收全部满足。semantic、propagation、renderer、token alignment 与 bundle integrity 五类 validators 已贯通真实 T024 8-record bundle；四类 H、faithful N/zero masks、泄漏扫描及 manifest-bound split/pair 完整性均 strict 验证。对抗复审的 N 文本改值、span 平移、token 截断、header 绕过和 caller 自报 split/group 五条漏检全部封闭。远端关联 104 项、本地关联 197 项通过。"
+    },
+    {
+      "task_id": "T044",
+      "assessed_at": "2026-08-30T04:20:00+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["10. validation 与 strict gate", "12. golden tests", "Phase 5：Renderer、span 与 token labels"],
+      "acceptance_criteria_results": [
+        {"criterion": "至少 9 个 complete golden origins", "passed": true, "evidence": ["add/delete/substitute 各 3 个真实 corpus origins", "每 origin 冻结 4 个 propagation policies 的 reciprocal H/N 共 8 records，总计 72 records"]},
+        {"criterion": "覆盖 delete-with-replacement、对称/多候选和 terminal near-miss", "passed": true, "evidence": ["36 个 hallucinated executions 均保留多候选池与 deterministic selected candidate", "每个 origin 含 terminal near-miss；.0081 非法 delete-with-replacement 被冻结为 OPERATOR_CAPABILITY_FORBIDDEN 结构化负例"]},
+        {"criterion": "state、mutation、text、span、token、validation snapshots 完整", "passed": true, "evidence": ["72-record fixture 保存完整 draft/state/mutation/render/char/token/validation snapshot", "9 个 bundles 通过 T043 strict bundle chain，288 个 artifact gates 全通过"]},
+        {"criterion": "cache replay 与 deterministic parts 可重复", "passed": true, "evidence": ["golden fixture 与 validation report exact replay tests", "测试完全离线，live Poe attempt count 为 0"]}
+      ],
+      "strengths": ["全部 golden origin 来自真实 frozen corpus 与 verified split manifest", "覆盖三类 subtasks、四类 propagation、rule/label-blind rendering、多轴 char/token labels 和 strict validation", "候选池最少 3、最多 10，所有 36 个 H executions 都验证多候选选择", "annotation package 改为 lazy public re-export，消除 fresh builder import cycle"],
+      "known_gaps": ["真实 corpus 的 .0081 明确禁止 structural delete-with-replacement，因此作为 fail-closed capability negative 冻结，不伪造非法 FULL_CF success"],
+      "follow_up_actions": ["T045 将相同构建与 strict gates 扩展到 15 origins/120 records", "T046 对 dry-run chemistry 与 labels 做可追踪审查"],
+      "assessment_summary": "T044 两项验收全部满足。扩展 golden suite 冻结 9 个真实 origins、72 records，覆盖三 subtasks、四 propagation policies、多候选与 terminal near-miss；所有 288 个 artifact gates 和 9 个 bundle gates 通过。非法 .0081 delete-with-replacement 被如实保留为结构化 capability negative。远端专项 8 项、本地联合回归 89 项通过。"
     }
   ],
   "tasks": [
@@ -1278,7 +1296,7 @@
       "description": "每个 subtask 选择标准、hard、多候选或异常各至少 3 origins，冻结完整 8-record outputs。",
       "deliverables": ["至少 9 个 golden origin fixtures", "state、mutation、text、span、token、validation snapshots"],
       "acceptance_criteria": ["golden suite 覆盖 delete-with-replacement、对称/多候选和 terminal near-miss", "cache replay 与 deterministic parts 可重复"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T04:00:10+08:00", "completed_at": "2026-08-30T04:20:00+08:00", "completion_notes": "扩展 golden validation suite：从 frozen corpus 选择 add/delete/substitute 各 3 个真实 origins，为 STOP/PARTIAL/FULL_CF/TERMINAL 四类 propagation 冻结 reciprocal H/N 完整 8-record bundles，共 9 origins、72 records、36H/36N。snapshot 覆盖 state、mutation、rule-rendered text、char annotations、token projection 和 T043 strict validation；全部 288 个 artifact gates 与 9 个 bundle gates 通过。36 个 H executions 均从 3–10 个候选中 deterministic 选择，9 个 origins 全含 terminal near-miss。真实 .0081 delete-with-replacement 因 operator registry 禁止 structural FULL_CF，被如实冻结为 OPERATOR_CAPABILITY_FORBIDDEN 负例，不伪造成功。测试只使用 deterministic offline replay，无 live Poe 调用。另将 annotation package public exports 改为 lazy loading，消除 fresh golden builder import cycle。", "evidence": ["Pilot/molhallulens/builders/golden_validation.py", "Pilot/tests/integration/test_extended_golden_suite.py", "Pilot/tests/golden/t044_extended_golden_suite.json", "Pilot/Dataset/reports/t044_golden_validation.json", "9 real origins / 72 records / 36H / 36N", "288 artifact gates + 9 bundle gates passed", "本地 T044 专项：8 passed", "本地 T025/T040–T044 联合回归：89 passed", "远端 T044 专项：8 passed", "ruff/JSON/diff checks passed"], "files_changed": ["Pilot/molhallulens/builders/golden_validation.py", "Pilot/molhallulens/annotation/__init__.py", "Pilot/tests/integration/test_extended_golden_suite.py", "Pilot/tests/golden/t044_extended_golden_suite.json", "Pilot/Dataset/reports/t044_golden_validation.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps python -m pytest -q -s -p no:cacheprovider tests/integration/test_extended_golden_suite.py", "PYTHONPATH=/tmp/molhallulens-t016-full-deps:/tmp/molhallulens-t016-testdeps python -m pytest -q -p no:cacheprovider tests/integration/test_deterministic_golden_bundles.py tests/unit/test_natural_renderers.py tests/unit/test_char_annotations.py tests/unit/test_token_projection.py tests/integration/test_validation_chain.py tests/integration/test_extended_golden_suite.py", "ruff check molhallulens/annotation/__init__.py molhallulens/builders/golden_validation.py tests/integration/test_extended_golden_suite.py", "python -m json.tool Dataset/reports/t044_golden_validation.json >/dev/null", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T045", "phase": "6_dry_run", "title": "运行 15-origin dry run",

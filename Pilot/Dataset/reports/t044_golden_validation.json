@@ -1,0 +1,229 @@
+{
+  "all_pass": true,
+  "dataset_version": "pilot_v1",
+  "delete_with_replacement": {
+    "attempt": {
+      "candidate_source": "RULE",
+      "policy": "LOCAL",
+      "target_node_id": "product"
+    },
+    "attempted_registration": {
+      "operator_family": "wrong_fragment_group",
+      "operator_id": "mol_edit.delete.wrong_group_occurrence",
+      "required_capabilities": [
+        "structural_deletion"
+      ]
+    },
+    "classification": {
+      "anonymous_sample_id": "mol_edit.delete_v2.0081",
+      "capability_policy": {
+        "allowed": [
+          "claim_perturbation",
+          "terminal_perturbation"
+        ],
+        "forbidden": [
+          "remove_only_delta_rule",
+          "structural_deletion"
+        ]
+      },
+      "normalized_subtask": "delete",
+      "operation_subtype": "delete_with_replacement",
+      "provenance": [
+        "delete_with_replacement"
+      ],
+      "registered": true,
+      "structural_signature": {
+        "add_fragment_heavy_atoms": 2,
+        "added_atomic_numbers": [
+          6,
+          7
+        ],
+        "broken_boundary_bond_count": 1,
+        "formed_boundary_bond_count": 1,
+        "remove_fragment_heavy_atoms": 24,
+        "removed_atom_count": 24
+      }
+    },
+    "expected_rejection": {
+      "code": "OPERATOR_CAPABILITY_FORBIDDEN",
+      "detail": "origin capability policy forbids this operator",
+      "evidence": {
+        "forbidden_capabilities": [
+          "structural_deletion"
+        ]
+      },
+      "operator_id": "mol_edit.delete.wrong_group_occurrence"
+    },
+    "full_eight_record_status": "not_constructed_by_design",
+    "origin_id": "mol_edit.delete_v2.0081",
+    "permitted_claim_terminal_operator_ids": [
+      "mol_edit.delete.cross_step_group_identity",
+      "mol_edit.delete.heavy_count_claim",
+      "mol_edit.delete.ring_count_claim",
+      "mol_edit.delete.terminal_answer"
+    ],
+    "reason": "replacement capability forbids structural deletion; remaining claim and terminal operators cannot supply a legal FULL_CF product",
+    "structural_operator_ids": [
+      "mol_edit.delete.wrong_group_occurrence",
+      "mol_edit.delete.wrong_adjacent_group",
+      "mol_edit.delete.group_boundary_contract",
+      "mol_edit.delete.group_boundary_expand",
+      "mol_edit.delete.partial_deletion",
+      "mol_edit.delete.over_deletion",
+      "mol_edit.delete.matched_remove_group",
+      "mol_edit.delete.alternative_deprotection_product"
+    ],
+    "unsupported_policy": "FULL_CF"
+  },
+  "format_version": "t044_golden_validation_v1",
+  "origins": [
+    {
+      "all_pass": true,
+      "candidate_pool_sizes": [
+        6,
+        10,
+        3,
+        10
+      ],
+      "case_id": "add.standard",
+      "issue_codes": [],
+      "origin_id": "mol_edit.add_v2.0022",
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "all_pass": true,
+      "candidate_pool_sizes": [
+        6,
+        10,
+        10,
+        10
+      ],
+      "case_id": "add.multi_mapping",
+      "issue_codes": [],
+      "origin_id": "mol_edit.add_v2.0071",
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "all_pass": true,
+      "candidate_pool_sizes": [
+        7,
+        10,
+        3,
+        10
+      ],
+      "case_id": "add.hard_large",
+      "issue_codes": [],
+      "origin_id": "mol_edit.add_v2.0229",
+      "record_count": 8,
+      "subtask": "add"
+    },
+    {
+      "all_pass": true,
+      "candidate_pool_sizes": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "case_id": "delete.standard",
+      "issue_codes": [],
+      "origin_id": "mol_edit.delete_v2.0016",
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "all_pass": true,
+      "candidate_pool_sizes": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "case_id": "delete.hard_large",
+      "issue_codes": [],
+      "origin_id": "mol_edit.delete_v2.0202",
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "all_pass": true,
+      "candidate_pool_sizes": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "case_id": "delete.duplicate_scaffold",
+      "issue_codes": [],
+      "origin_id": "mol_edit.delete_v2.0185",
+      "record_count": 8,
+      "subtask": "delete"
+    },
+    {
+      "all_pass": true,
+      "candidate_pool_sizes": [
+        10,
+        10,
+        6,
+        10
+      ],
+      "case_id": "substitute.standard",
+      "issue_codes": [],
+      "origin_id": "mol_edit.substitute_v2.0029",
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "all_pass": true,
+      "candidate_pool_sizes": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "case_id": "substitute.multi_anchor",
+      "issue_codes": [],
+      "origin_id": "mol_edit.substitute_v2.0271",
+      "record_count": 8,
+      "subtask": "substitute"
+    },
+    {
+      "all_pass": true,
+      "candidate_pool_sizes": [
+        10,
+        10,
+        7,
+        10
+      ],
+      "case_id": "substitute.valence_boundary",
+      "issue_codes": [],
+      "origin_id": "mol_edit.substitute_v2.0064",
+      "record_count": 8,
+      "subtask": "substitute"
+    }
+  ],
+  "required_validator_ids": [
+    "molhallulens.validation.hallucination_semantics.v1",
+    "molhallulens.validation.propagation.v1",
+    "molhallulens.validation.renderer.v1",
+    "molhallulens.validation.token_alignment.v1",
+    "molhallulens.validation.bundle_integrity.v1"
+  ],
+  "summary": {
+    "complete_real_origin_count": 9,
+    "delete_with_replacement_expected_rejection_count": 1,
+    "faithful_record_count": 36,
+    "hallucinated_record_count": 36,
+    "live_poe_attempt_count": 0,
+    "maximum_candidate_pool_size": 10,
+    "minimum_candidate_pool_size": 3,
+    "multi_candidate_execution_count": 36,
+    "record_count": 72,
+    "terminal_near_miss_count": 9,
+    "terminal_selected_is_pool_similarity_max": true,
+    "validated_artifact_gate_count": 288,
+    "validated_bundle_gate_count": 9
+  }
+}
