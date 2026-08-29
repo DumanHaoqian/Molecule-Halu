@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T02:16:48+08:00",
+  "updated_at": "2026-08-30T02:22:17+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 22,
+    "not_started": 21,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 30,
-    "last_completed_task": "T030"
+    "completed": 31,
+    "last_completed_task": "T031"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -699,6 +699,22 @@
       "known_gaps": [],
       "follow_up_actions": ["T031 proposal schema 绑定 verified manifest 与 origin split", "T037 hybrid candidate engine 只接收当前 split 的 typed donor query"],
       "assessment_summary": "T030 两项验收全部满足。三份 split-local artifacts 共包含 train 234/1104、validation 58/76、test 59/68 donors/edges；所有边同 split，cross-split/未知 origin/manifest mismatch 导入均 fail closed 且不会改变 split。远端 T029+T030 20 项、Phase 3 全链 49 项与本地静态检查全部通过。"
+    },
+    {
+      "task_id": "T031",
+      "assessed_at": "2026-08-30T02:22:17+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["5.5 Operator 成员方法和 registry", "8.2 CandidateEngine", "8.3 ChemistryTools", "8.8 Proposal JSON Schema", "8.9 随机性和可复现性", "Phase 4：LLM Agent candidate invention"],
+      "acceptance_criteria_results": [
+        {"criterion": "Pydantic schema 拒绝额外字段", "passed": true, "evidence": ["request/response/candidate/tool 的 frozen strict recursive extra=forbid models", "JSON Schema object nodes 全部 additionalProperties=false", "远端 T031：11 passed"]},
+        {"criterion": "tool 参数、operator、candidate root 和 replacement 字段均被强校验", "passed": true, "evidence": ["九个 tool 独立 args models 与固定 allow-list", "request-aware response 校验 request_id、target root、candidate IDs/count/abstain", "远端关联回归：84 passed"]}
+      ],
+      "strengths": ["ProposalRequest 从真实 T017 CandidateRequest 与 T029 VerifiedSplitManifest factory 构建，绑定 origin/operator/policy/source/root/constraints/seed/split/manifest", "Response 只允许 3–5 unique candidates 或 zero+nonempty abstain，二者互斥，并拒绝 accepted/label/correctness 注入", "九个 chemistry tools 各自有 strict typed args；unknown tool、额外参数、bool 冒充 int、非法 index/bond/family 在 dispatch 前拒绝", "schema module 不实现网络或工具执行，并用延迟 import 避免 provider/candidate 循环依赖"],
+      "known_gaps": [],
+      "follow_up_actions": ["T032 将只读 ChemistryTools handlers 绑定这些 args schemas", "T033–T035 实现 Poe transport/capability/usage layers"],
+      "assessment_summary": "T031 两项验收全部满足。proposal request/response/candidate 与九个 chemistry tool schemas 均 strict/frozen/recursive extra-forbid；manifest、root、request、candidate count、abstain 和 tool allow-list 边界闭合。远端专项 11 项、T017/T018/T029/T030/T031 关联 84 项及本地 ruff/format/compile/diff 全部通过。"
     }
   ],
   "tasks": [
@@ -948,7 +964,7 @@
       "description": "实现 ProposalRequest、ProposalResponse、CandidatePatch 和 chemistry tool argument 的 Pydantic/JSON Schema 强校验。",
       "deliverables": ["providers/poe/schemas.py", "schema tests"],
       "acceptance_criteria": ["模型不能输出 accepted 或最终标签", "未知字段、非法 root 和未校验 tool args 被拒绝", "derived seed 使用 SHA256"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T02:18:24+08:00", "completed_at": "2026-08-30T02:22:17+08:00", "completion_notes": "实现 Poe proposal/tool trust-boundary schemas。所有 Pydantic v2 models strict、frozen、递归 extra=forbid，导出的 JSON Schema object nodes 统一 additionalProperties=false。ProposalRequest factory 只接受真实 T017 CandidateRequest 与 T029 VerifiedSplitManifest，绑定 request/origin/operator/policy/source/唯一 target root/constraints/derived seed/split/manifest/source identity。ProposalResponse 强制 request_id 匹配、candidate root 限于当前 request、candidate ID 唯一，并严格互斥 3–5 candidates 与 zero+abstain；accepted、labels、correctness 和未知字段全部拒绝。九个计划内 chemistry tools 各有独立 args/call model与固定 allow-list，未知 tool、额外 args、bool 冒充 int、非法 index/bond/family 均在执行前拒绝。范围止于 schema/local validation，不实现网络 client 或 tool handler。", "evidence": ["Pilot/molhallulens/providers/poe/schemas.py", "Pilot/molhallulens/providers/poe/__init__.py", "Pilot/tests/unit/test_poe_schemas.py", "本地与远端 T031 专项：11 passed", "本地与远端 T017/T018/T029/T030/T031 关联：84 passed", "ruff/format/compileall/diff passed"], "files_changed": ["Pilot/molhallulens/providers/poe/schemas.py", "Pilot/molhallulens/providers/poe/__init__.py", "Pilot/tests/unit/test_poe_schemas.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_poe_schemas.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_operator_registry.py tests/unit/test_candidate_sources.py tests/unit/test_split_manifest.py tests/unit/test_donor_pools.py tests/unit/test_poe_schemas.py", "ruff check molhallulens/providers/poe/schemas.py molhallulens/providers/poe/__init__.py tests/unit/test_poe_schemas.py", "ruff format --check molhallulens/providers/poe/schemas.py molhallulens/providers/poe/__init__.py tests/unit/test_poe_schemas.py", "python -m compileall -q molhallulens tests", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T032", "phase": "4_poe_candidate_agent", "title": "实现只读 chemistry tools",
