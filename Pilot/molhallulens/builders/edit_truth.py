@@ -253,6 +253,42 @@ class EditTruthBuilder:
             add_hint=add_hint,
             anonymous_sample_id=anonymous_sample_id,
         )
+        if algorithm.startswith("direct_") and trace_anchors:
+            source_symmetry = self._source_symmetry_by_map(source_clean, source_maps)
+            inferred_anchor_classes = {
+                source_symmetry[anchor]
+                for candidate in candidates
+                for anchor in candidate.anchors
+            }
+            trace_is_represented = all(
+                any(anchor in group for group in inferred_anchor_classes)
+                for anchor in trace_anchors
+            )
+            if not trace_is_represented:
+                # `uniquify=True` intentionally removes query-automorphism
+                # duplicates. Rarely, two correspondences cover the same target
+                # atom set but imply non-equivalent source edit sites. Only pay
+                # for exhaustive enumeration when the graph-derived site cannot
+                # represent the trace anchor (for example add_v2.0071).
+                raw_mappings, algorithm, mcs_smarts = self._choose_mappings(
+                    source_clean,
+                    product_clean,
+                    normalized_subtask=normalized_subtask,
+                    remove_hint=remove_hint,
+                    anonymous_sample_id=anonymous_sample_id,
+                    exhaustive_direct_embeddings=True,
+                )
+                candidates = self._analyze_candidates(
+                    raw_mappings,
+                    source_clean,
+                    product_clean,
+                    source_maps,
+                    product_ids,
+                    trace_anchors=trace_anchors,
+                    remove_hint=remove_hint,
+                    add_hint=add_hint,
+                    anonymous_sample_id=anonymous_sample_id,
+                )
         best_score = max(candidate.hint_score for candidate in candidates)
         candidates = tuple(
             candidate for candidate in candidates if candidate.hint_score == best_score
@@ -442,14 +478,17 @@ class EditTruthBuilder:
             )
         return ids
 
-    def _matches(self, target: Chem.Mol, query: Chem.Mol) -> tuple[tuple[int, ...], ...]:
+    def _matches(
+        self,
+        target: Chem.Mol,
+        query: Chem.Mol,
+        *,
+        uniquify: bool = True,
+    ) -> tuple[tuple[int, ...], ...]:
         matches = tuple(
             target.GetSubstructMatches(
                 query,
-                # Query automorphisms repeat the same target atom set and can
-                # inflate an FMCS cross-product by orders of magnitude. Target
-                # embeddings remain distinct, preserving real site ambiguity.
-                uniquify=True,
+                uniquify=uniquify,
                 useChirality=False,
                 maxMatches=self.max_matches,
             )
@@ -466,10 +505,15 @@ class EditTruthBuilder:
         normalized_subtask: EditingSubtask,
         remove_hint: str | None,
         anonymous_sample_id: str,
+        exhaustive_direct_embeddings: bool = False,
     ) -> tuple[tuple[tuple[tuple[int, int], ...], ...], str, str | None]:
         try:
             if normalized_subtask is EditingSubtask.ADD:
-                direct = self._matches(product, source)
+                direct = self._matches(
+                    product,
+                    source,
+                    uniquify=not exhaustive_direct_embeddings,
+                )
                 if direct:
                     return (
                         tuple(
@@ -480,7 +524,11 @@ class EditTruthBuilder:
                         "not_applicable",
                     )
             elif normalized_subtask is EditingSubtask.DELETE:
-                direct = self._matches(source, product)
+                direct = self._matches(
+                    source,
+                    product,
+                    uniquify=not exhaustive_direct_embeddings,
+                )
                 if direct:
                     return (
                         tuple(

@@ -201,6 +201,7 @@ def test_all_150_real_origins_derive_reconciled_graph_truth() -> None:
         assert truth.source_descriptors.ring_count == state["rdkit_src_rings"]
         assert truth.product_descriptors.ring_count == state["rdkit_prod_rings"]
         assert 0.0 <= truth.mapping_confidence <= 1.0
+        assert truth.mapping_evidence.trace_anchor_agreement is True
         assert (
             truth.removed_atom_maps
             or truth.added_atoms
@@ -211,6 +212,21 @@ def test_all_150_real_origins_derive_reconciled_graph_truth() -> None:
 
     assert len(truths) == 150
     assert tuple(item[0] for item in truths) == tuple(sorted(item[0] for item in truths))
+
+
+def test_direct_embeddings_preserve_trace_selected_non_equivalent_site() -> None:
+    record = next(
+        item
+        for item in ChemCoTMolEditAdapter().load(DATASET_ROOT)
+        if item.anonymous_sample_id == "mol_edit.add_v2.0071"
+    )
+    truth = derive_edit_truth(build_reference_dag(record))
+
+    assert truth.mapping_evidence.algorithm == "direct_source_subgraph"
+    assert truth.mapping_evidence.trace_anchor_indices == (30,)
+    assert truth.mapping_evidence.trace_anchor_agreement is True
+    assert truth.valid_anchor_indices == (30,)
+    assert truth.mapping_evidence.optimal_mapping_count > 1
 
 
 def test_delete_v2_0081_contains_both_removal_and_addition_graph_edits() -> None:
