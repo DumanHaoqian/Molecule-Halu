@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T02:43:36+08:00",
+  "updated_at": "2026-08-30T02:48:20+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 19,
+    "not_started": 18,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 33,
-    "last_completed_task": "T033"
+    "completed": 34,
+    "last_completed_task": "T034"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -749,6 +749,24 @@
       "known_gaps": ["5090 当前无法连接 Poe endpoint；远端 key 已配置但 live probe fail closed 为 POE_TRANSPORT_FAILED，未产生真实 catalog snapshot 或费用"],
       "follow_up_actions": ["服务器网络恢复后重跑 live probe 并替换 offline 状态", "T034 每次请求前使用 verified catalog capability gate", "T052 在 release manifest 披露 Poe snapshot 状态"],
       "assessment_summary": "T033 实现与 fail-closed 验收完成。registry 延迟读取 secret，严格验证 gpt-5.4-mini 的 catalog identity、bot、owner、双 endpoint 与 tools，并实现三项能力探针。远端专项 16 项、config/T031/T032/T033 联测 52 项通过；真实 key 存在但服务器网络不可达，报告如实标记 POE_TRANSPORT_FAILED，未伪造 live 结果。"
+    },
+    {
+      "task_id": "T034",
+      "assessed_at": "2026-08-30T02:48:20+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["8.4 Poe model discovery", "8.5 Tool loop hard limits", "8.8 Poe client/transport 分层", "8.9 Poe compatibility 防线", "Phase 4：LLM Agent candidate invention"],
+      "acceptance_criteria_results": [
+        {"criterion": "parallel_tool_calls=false", "passed": true, "evidence": ["Responses 与 Chat 每次 tool request 都显式传 false", "tool calls 先批量校验再按稳定顺序逐个本地执行"]},
+        {"criterion": "fallback 不改变 phenotype 或模型", "passed": true, "evidence": ["同一个 frozen ProposalRequest 对象依次传给三 transport", "PoeClientProvenance 校验 request/model/operator/policy/constraints/source/root identity"]},
+        {"criterion": "response 和 request IDs 可追踪", "passed": true, "evidence": ["attempt ledger 保存 response/query/x-request IDs、turns 与 tool executions", "fallback provenance 保留所有失败 attempt 与最终成功 attempt"]},
+        {"criterion": "不依赖 API seed、strict 或 Chat response_format", "passed": true, "evidence": ["所有 kwargs 对抗测试断言无 seed/function strict/Chat response_format", "T031 本地 schema 在每个最终输出上重新校验"]}
+      ],
+      "strengths": ["Responses 主路径使用 text.format、reasoning medium 与 previous_response_id continuation", "Chat fallback 显式维护 assistant/tool messages，并强制最多三 agent turns 和六 chemistry calls", "fastapi_poe 仅作为无工具 simple-text compatibility 路径并使用 verified bot display name", "所有模型输出、tool args 和 proposal JSON 在本地 trust boundary 校验，测试全程 mock 无网络和费用"],
+      "known_gaps": [],
+      "follow_up_actions": ["T035 将 transport 调用包入 rate/error/usage audit", "T036 在三个 transport 外层实现 frozen cache/replay", "T037 只把 client 结果作为未接受 proposal source"],
+      "assessment_summary": "T034 四项验收全部满足。Responses、Chat 和 fastapi_poe 三个 adapters 固定到同一 gpt-5.4-mini/request phenotype；tool loop 串行且受 3 turns/6 calls 硬限制，所有失败与 provider IDs 完整进入 provenance。远端专项 7 项、T031–T034 联测 45 项及本地静态检查通过，未发真实网络请求。"
     }
   ],
   "tasks": [
@@ -1022,7 +1040,7 @@
       "description": "实现 Responses primary、Chat Completions tool-loop 和 fastapi_poe simple fallback，固定相同 model/operator/constraints。",
       "deliverables": ["三个 Poe client adapters", "mocked transport tests"],
       "acceptance_criteria": ["parallel_tool_calls=false", "fallback 不改变 phenotype 或模型", "response 和 request IDs 可追踪", "不依赖 API seed、strict 或 Chat response_format"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T02:45:25+08:00", "completed_at": "2026-08-30T02:48:20+08:00", "completion_notes": "实现 Poe Responses 主 client、Chat Completions 串行 tool-loop fallback、fastapi_poe simple-text fallback 和固定 transport orchestrator。三个 adapters 均先通过 T033 catalog gate，固定 gpt-5.4-mini 与同一 T031 ProposalRequest，不改变 operator、propagation phenotype、constraints、source mode 或 target root。Responses 使用 text.format、reasoning medium、parallel_tool_calls=false 与 previous_response_id；Chat 不使用 response_format/strict/seed，显式回填 tool messages；两者全部 tool args 先过 T031 allow-list/schema，再经 T032 dispatcher 串行执行，最多 3 agent turns/6 calls。所有最终 JSON 再做 request-aware local schema validation。provenance 保存每次 transport attempt、request/response/query/x-request IDs、model、turns、tool calls 和结构化错误；fallback 仅更换 transport，失败全保留。测试均使用 mock transports，无真实网络、key 读取或费用。", "evidence": ["Pilot/molhallulens/providers/poe/client.py", "Pilot/molhallulens/providers/poe/__init__.py", "Pilot/tests/unit/test_poe_clients.py", "本地与远端 T034 专项：7 passed", "本地与远端 T031–T034 联测：45 passed", "ruff/format/compileall/diff passed"], "files_changed": ["Pilot/molhallulens/providers/poe/client.py", "Pilot/molhallulens/providers/poe/__init__.py", "Pilot/tests/unit/test_poe_clients.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_poe_clients.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_poe_schemas.py tests/unit/test_chemistry_tools.py tests/unit/test_poe_model_registry.py tests/unit/test_poe_clients.py", "ruff check molhallulens/providers/poe/__init__.py molhallulens/providers/poe/client.py tests/unit/test_poe_clients.py", "ruff format --check molhallulens/providers/poe/__init__.py molhallulens/providers/poe/client.py tests/unit/test_poe_clients.py", "python -m compileall -q molhallulens tests", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T035", "phase": "4_poe_candidate_agent", "title": "实现 rate limiter、错误分类和 usage ledger",
