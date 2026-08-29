@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T03:38:05+08:00",
+  "updated_at": "2026-08-30T03:41:50+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 12,
+    "not_started": 11,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 40,
-    "last_completed_task": "T040"
+    "completed": 41,
+    "last_completed_task": "T041"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -872,6 +872,23 @@
       "known_gaps": ["Poe live rendering 未执行；所有 provider tests 使用 deterministic mock，release 必须依赖 frozen replay 或明确 offline 状态"],
       "follow_up_actions": ["T041 从 RenderedExample mentions 建立标签", "T044 冻结 rule/mock renderer snapshots", "T052 披露 Poe snapshot 状态并执行 leakage scan"],
       "assessment_summary": "T040 三项验收全部满足。rule renderer 仅消费 locked typed AST；Poe renderer 只改写 narrative placeholder template，事实、数字、FORMAL 和 Answer 均由程序用原 LiteralNode 重建。任何 placeholder、数字、语义限定、identity 或泄漏词变化都 fail closed；frozen cache miss 不触发 producer。远端与本地 T023/T034/T036/T039/T040 关联 125 项通过。"
+    },
+    {
+      "task_id": "T041",
+      "assessed_at": "2026-08-30T03:41:50+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["4.2 多标签体系", "4.3 char span 与 token span", "7.8 propagation phenotype", "Phase 5：Renderer、span 与 token labels"],
+      "acceptance_criteria_results": [
+        {"criterion": "多标签非互斥", "passed": true, "evidence": ["每个 CharAnnotation 保存 semantic_types、edit_subtypes、evidence_relations 三个 frozen sets", "contradiction+reasoning error 与多 edit subtypes 联合测试"]},
+        {"criterion": "ROOT/PROPAGATED_FALSE/PROPAGATED_CONDITIONAL/TERMINAL 可区分", "passed": true, "evidence": ["exact event causal_role 逐 occurrence 投影并保留 root_span_id", "FULL_CF propagated final_answer 合法位于 final-answer component 的真实集成测试"]},
+        {"criterion": "纯 omission 不被错误投到邻近 token", "passed": true, "evidence": ["pure omission 仅生成 UnlocalizedOmission ledger", "即使存在误绑 neighbor mention 也 suppress 且不生成 CharAnnotation"]}
+      ],
+      "strengths": ["只允许 (target_kind,state_or_edge_id) exact join，不使用相邻文本或字符串猜测", "每个重复 occurrence 复制完整多轴标签，ROOT occurrences 自链接，传播事件链接 canonical root span", "TERMINAL 仅允许 final Answer；FULL_CF 传播到 final_answer 的语义边界被单独建模", "evidence relations 从 typed event/subtype 和显式审计输入推导，不读取 detector wording"],
+      "known_gaps": [],
+      "follow_up_actions": ["T042 对每个 CharAnnotation 投影 any-overlap token masks", "T043 验证 phenotype、root linkage 与 N zero-mask invariants", "T044 冻结 omission 和 propagated-final-answer golden cases"],
+      "assessment_summary": "T041 三项验收全部满足。MutationEvent 通过 exact target identity 投影 semantic、editing、evidence、causal 与 root-linkage 多轴标签；重复 mentions 各自保留 span，纯 omission 只进 unlocalized ledger。验收额外修正 FULL_CF propagated final_answer 的合法 component，并以真实 builder 贯通 T043 bundle。远端 T022/T039/T040/T041 关联 102 项通过。"
     }
   ],
   "tasks": [
@@ -1201,7 +1218,7 @@
       "description": "从 MutationEvent 和 mentions 生成 semantic type、editing subtype、evidence relation、causal role、root linkage 标签。",
       "deliverables": ["CharAnnotation builder", "taxonomy tests"],
       "acceptance_criteria": ["多标签非互斥", "ROOT/PROPAGATED_FALSE/PROPAGATED_CONDITIONAL/TERMINAL 可区分", "纯 omission 不被错误投到邻近 token"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T03:40:05+08:00", "completed_at": "2026-08-30T03:41:50+08:00", "completion_notes": "实现 CharAnnotation 多轴标签 builder。仅以 (MutationTargetKind,state_or_edge_id) exact join 将 GraphDelta MutationEvent 连接到 T039 mentions；每个 rendered occurrence 独立复制 semantic types、editing subtypes、evidence relations、causal role 与 root_span_id。ROOT occurrences 各自 self-root，PROPAGATED_FALSE/CONDITIONAL 链接首个 canonical root span，TERMINAL 只允许 final Answer；FULL_CF 传播到 final_answer 的事件明确允许 final-answer component 并仍链接 reasoning root。纯 OMISSION 即使存在误绑 mention 也只写 UnlocalizedOmission/suppressed IDs，不生成字符标签。所有缺 target、component mismatch、未知 evidence event 和不可定位 propagation 均结构化 fail closed。", "evidence": ["Pilot/molhallulens/annotation/char_annotations.py", "Pilot/tests/unit/test_char_annotations.py", "本地与远端 T022/T039/T040/T041 关联：102 passed", "T043 真实 T024 8-record bundle 使用真实 T041 builder：13 passed", "ruff/diff checks passed"], "files_changed": ["Pilot/molhallulens/annotation/char_annotations.py", "Pilot/molhallulens/annotation/__init__.py", "Pilot/tests/unit/test_char_annotations.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_char_annotations.py tests/unit/test_char_spans.py tests/unit/test_trace_ast.py tests/unit/test_natural_renderers.py tests/unit/test_domain_labels.py tests/unit/test_state_dag.py tests/unit/test_editing_propagation.py tests/property/test_propagation_policies.py", "ruff check molhallulens/annotation/__init__.py molhallulens/annotation/char_annotations.py tests/unit/test_char_annotations.py", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T042", "phase": "5_rendering_and_labels", "title": "实现 ChemDFM-R char-to-token projection",
