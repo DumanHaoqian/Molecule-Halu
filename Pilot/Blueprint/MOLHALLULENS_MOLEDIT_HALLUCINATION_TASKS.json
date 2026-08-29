@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-30T01:18:46+08:00",
+  "updated_at": "2026-08-30T01:40:31+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 27,
+    "not_started": 26,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 25,
-    "last_completed_task": "T025"
+    "completed": 26,
+    "last_completed_task": "T026"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -616,6 +616,22 @@
       "known_gaps": [],
       "follow_up_actions": ["T026 开始 split-before-donor 阶段并冻结 150-origin audit artifact"],
       "assessment_summary": "T025 两项验收全部满足；24 records 的 chemistry、propagation、bundle、pair、quota 和 provenance gates 全部通过。同 seed byte-identical 重建、本地 12 项专项、远端 T025+T024 36 项联合回归、terminal operator 10 项回归、ruff/format/compileall/JSON/diff 与两轮独立只读复审均通过。"
+    },
+    {
+      "task_id": "T026",
+      "assessed_at": "2026-08-30T01:40:31+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["2.1 三类输入文件的职责", "2.3 已知分布和异常", "11.2 Leakage group", "11.3 正确执行顺序", "11.4 分层特征", "Phase 3：Split 和 donor pools"],
+      "acceptance_criteria_results": [
+        {"criterion": "150 origins 均有 hash 和 stratification fields", "passed": true, "evidence": ["Pilot/Dataset/reports/origin_split_audit.json 的 150 个完整 origin rows", "Pilot/Dataset/reports/origin_split_feature_distribution.json", "远端专项：8 passed；依赖回归：80 passed"]},
+        {"criterion": "已知 3 个重复 groups 共 7 origins 被识别", "passed": true, "evidence": ["canonical source 审计：146 unique、3 groups、7 origins；成员与计划逐项一致", "额外真实 Murcko 审计：143 unique、6 groups、13 origins"]}
+      ],
+      "strengths": ["所有 feature 只从 T011→T013→T015 strict-passing typed origins 派生，不信任裸 answer 字符串或 raw delta", "严格区分 canonical-source 3/7 与真实 Bemis–Murcko 6/13，避免后续 leakage union 漏组", "删除任务缺失的 50 个 complexity/tanimoto 显式落为 missing strata，不插值也不混用来源", "T014 capability policy 与 T017 35-member registry 静态投影 operator eligibility，并明确限制 delete-with-replacement 异常 origin", "正序、逆序构建得到相同 typed rows 与 canonical artifact bytes"],
+      "known_gaps": [],
+      "follow_up_actions": ["T027 在 source、GT、exact Murcko 与 generic Murcko identities 上构建稳定 union-find leakage groups"],
+      "assessment_summary": "T026 两项验收全部满足。150/150 origins 通过 strict validation 并具备 identity、scaffold、分层、缺失来源和 operator eligibility 字段；canonical source 146/3组/7条、GT 150 unique、Murcko 143/6组/13条均冻结。专项 8 项、远端依赖回归 80 项及本地 ruff/format/compileall/JSON/diff 全部通过。"
     }
   ],
   "tasks": [
@@ -825,7 +841,7 @@
       "description": "计算 canonical source/GT/scaffold hashes、分层特征、operator availability 和已知重复 groups。",
       "deliverables": ["origin audit artifact", "feature distribution report"],
       "acceptance_criteria": ["150 origins 均有 hash 和 stratification fields", "已知 3 个重复 groups 共 7 origins 被识别"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-30T01:22:36+08:00", "completed_at": "2026-08-30T01:40:31+08:00", "completion_notes": "实现 deterministic typed origin split audit。150 条输入逐条经过 ChemCoTMolEditAdapter、reference DAG、T013 EditTruth 与 T015 strict validation 后才生成 feature；每条保存 canonical source/GT/scaffold identity 摘要、subtask/rxn class/anchor、source heavy/ring quantile、heavy/ring delta、fragment size、raw complexity/tanimoto source+missing bin，以及由 T014 capability policy 与 T017 registry 静态推导的 operator eligibility。确认 canonical source 146 unique、3 known groups/7 origins；GT 150 unique；真实 LARGEST_HEAVY Bemis–Murcko 143 unique、6 groups/13 origins。50 条 deletion 缺少 raw complexity/tanimoto 被显式记录，不插值。输入顺序翻转后 typed result 与 artifact bytes 保持一致。", "evidence": ["Pilot/molhallulens/builders/origin_audit.py", "Pilot/Dataset/reports/origin_split_audit.json", "Pilot/Dataset/reports/origin_split_feature_distribution.json", "Pilot/tests/unit/test_origin_audit.py", "Pilot/tests/integration/test_origin_audit_corpus.py", "本地专项：8 passed", "本地关联回归：66 passed", "远端专项：8 passed", "远端 T013/T015/T017/chemistry 回归：80 passed", "ruff/format/compileall/JSON/diff passed"], "files_changed": ["Pilot/molhallulens/builders/origin_audit.py", "Pilot/molhallulens/builders/__init__.py", "Pilot/molhallulens/cli/origin_audit.py", "Pilot/tests/unit/test_origin_audit.py", "Pilot/tests/integration/test_origin_audit_corpus.py", "Pilot/Dataset/reports/origin_split_audit.json", "Pilot/Dataset/reports/origin_split_feature_distribution.json", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/unit/test_origin_audit.py tests/integration/test_origin_audit_corpus.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/test_edit_truth.py tests/test_reference_graph_validation.py tests/unit/test_operator_registry.py tests/unit/test_chemistry_structures.py", "ruff check molhallulens/builders/origin_audit.py molhallulens/builders/__init__.py molhallulens/cli/origin_audit.py tests/unit/test_origin_audit.py tests/integration/test_origin_audit_corpus.py", "ruff format --check molhallulens/builders/origin_audit.py molhallulens/cli/origin_audit.py tests/unit/test_origin_audit.py tests/integration/test_origin_audit_corpus.py", "python -m compileall -q molhallulens tests", "python -m json.tool Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check"], "blocker": null
     },
     {
       "id": "T027", "phase": "3_split_and_donors", "title": "构建 union-find leakage groups",
