@@ -4,7 +4,7 @@
   "source_plan": "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_IMPLEMENTATION_PLAN.md",
   "source_plan_version": "v0.2",
   "created_at": "2026-08-28",
-  "updated_at": "2026-08-29T16:07:57+08:00",
+  "updated_at": "2026-08-29T17:35:45+08:00",
   "instructions_for_agents": {
     "execution_order": "按 tasks 数组顺序执行；开始任务前确认 depends_on 中的任务均为 completed。",
     "status_values": ["not_started", "in_progress", "blocked", "completed"],
@@ -18,11 +18,11 @@
   },
   "progress_summary": {
     "total_tasks": 52,
-    "not_started": 41,
-    "in_progress": 1,
+    "not_started": 39,
+    "in_progress": 0,
     "blocked": 0,
-    "completed": 10,
-    "last_completed_task": "T010"
+    "completed": 13,
+    "last_completed_task": "T013"
   },
   "quality_assessment_schema": {
     "task_id": "对应 tasks[].id",
@@ -362,6 +362,57 @@
       "known_gaps": [],
       "follow_up_actions": ["T011 使用 downstream closure 和 stable topo 构建 150 个 reference DAG", "T012/T015 提供 fragment/isomeric 与多输入 relation evaluators，不在 T010 裸比较 chemistry", "T022 在基础 connectivity query 之上强制 PARTIAL 非平凡且严格小于 full closure，并执行 derivation rules"],
       "assessment_summary": "T010 三项验收全部满足：cycle rejection、声明顺序无关的稳定拓扑/reachability、downstream closure、multi-root directed connectivity、structural stale frontier 与三态 semantic edge query 均完成。68 项专项、285 项全量、Hypothesis property tests、compileall、wheel build及独立 APPROVE 复核通过。"
+    },
+    {
+      "task_id": "T011",
+      "assessed_at": "2026-08-29T16:22:30+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["4.1-4.6 typed State DAG", "16.1 Unit tests", "Phase 1：Reference DAG 和严格 validator"],
+      "acceptance_criteria_results": [
+        {"criterion": "150 origins 均生成 reference DAG 或明确异常报告", "passed": true, "evidence": ["Pilot/Dataset/reports/reference_dag_build_report.json: 150 attempted / 150 succeeded / 0 failed", "tests/integration/test_reference_dag_corpus.py"]},
+        {"criterion": "无 silent fallback", "passed": true, "evidence": ["controlled trace/schema failures produce structured REFERENCE_DAG issues and no artifact"]},
+        {"criterion": "BUILD_ONLY 节点不会成为 detector 文本", "passed": true, "evidence": ["2800 logical mentions; 0 BUILD_ONLY detector mentions", "oracle-canary projection unit test"]}
+      ],
+      "strengths": ["三类 typed builder 共用 binding-driven core，并冻结 typed FORMAL 与 step byte round-trip", "结构化 corpus report 完整记录 800 trace steps、2350 FORMAL slots 与失败原因"],
+      "known_gaps": [],
+      "follow_up_actions": ["T013 从 source/GT 图差异复核 EditTruth", "T015 将 reference 与 chemistry checks 组装为 validation gates"],
+      "assessment_summary": "T011 的三个验收条件均有 corpus 与单元测试证据；11 项专项和 296 项全量测试通过。"
+    },
+    {
+      "task_id": "T012",
+      "assessed_at": "2026-08-29T16:43:49+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["4.7 EditTruth 必须由图差异复核", "15.1 deterministic chemistry guidance", "16.1 Unit tests", "Phase 1：Reference DAG 和严格 validator"],
+      "acceptance_criteria_results": [
+        {"criterion": "不使用裸 SMILES 相等判断", "passed": true, "evidence": ["strict sanitize + canonical isomeric graph comparison", "7 answer/GT raw-string drifts all graph-equivalent"]},
+        {"criterion": "等价非 canonical SMILES 被识别", "passed": true, "evidence": ["canonicalization/equivalence unit matrix", "150/150 real answer ~= GT"]},
+        {"criterion": "stereo 和 sanitize 策略有测试", "passed": true, "evidence": ["tetrahedral/E-Z/isotope/charge tests", "600 full molecules + 200 fragments strict sanitize"]}
+      ],
+      "strengths": ["invalid parse/sanitize 明确抛稳定错误且无宽松降级", "fragment policy、descriptor vocabulary 与 Murcko policy 全部显式且不可变"],
+      "known_gaps": [],
+      "follow_up_actions": ["T013 使用这些 utilities 构建 atom mapping 与 graph diff", "T026 分别使用 canonical source identity 与真实 Murcko identity"],
+      "assessment_summary": "T012 三项验收全部满足；26 项专项、322 项全量、compileall、wheel 和真实 corpus reconciliation 均通过。"
+    },
+    {
+      "task_id": "T013",
+      "assessed_at": "2026-08-29T17:35:45+08:00",
+      "assessed_by": "codex",
+      "scores": {"requirements_alignment": 5, "implementation_quality": 5, "verification_coverage": 5, "documentation_and_traceability": 5},
+      "overall_score": 5.0,
+      "plan_sections_rechecked": ["4.7 EditTruth 必须由图差异复核", "16.1 Unit tests", "Phase 1：Reference DAG 和严格 validator", "21. 推荐立即开始的第一个实现批次"],
+      "acceptance_criteria_results": [
+        {"criterion": "added/removed atoms、broken/formed bonds、fragments、descriptors 可复核", "passed": true, "evidence": ["Pilot/molhallulens/domain/edit_truth.py immutable JSON-safe contract", "synthetic add/delete/substitute/bond-order fixtures", "150/150 real origin derivation"]},
+        {"criterion": "对称歧义保存 equivalence class", "passed": true, "evidence": ["ethane terminal-addition fixture retains anchors (1,2) and multiple optimal mappings", "non-equivalent ambiguity fails closed"]},
+        {"criterion": "mapping confidence 有定义", "passed": true, "evidence": ["mapped_heavy_over_smaller_graph_times_inverse_signature_count_v1", "coverage/penalty/confidence invariant tests"]}
+      ],
+      "strengths": ["source atom-map 与 canonical product identity 分域，避免泄漏 transient RDKit index", "direct、trace-seeded 与 bounded FMCS 均保留等价映射；trace 只在 graph-derived signatures 间消歧", "fragment 内部键与反应边界分离，bond-order change 表示为 broken old + formed new", "delete_v2.0081 客观推导出 24 removed、2 added 与双向边界编辑，不在 T014 前静默分类"],
+      "known_gaps": [],
+      "follow_up_actions": ["T014 将 delete_v2.0081 与边界 origin 显式登记为 anomaly", "T015 在 EditTruth 之上实施 reference/graph-edit validation gates"],
+      "assessment_summary": "T013 三项验收全部满足：10 项专项、150/150 corpus、332 项全量、compileall 与 wheel build 通过；mapping、symmetry、fragment 和 confidence 均可审计且 fail closed。"
     }
   ],
   "tasks": [
@@ -467,7 +518,7 @@
       "description": "使用 source/GT graph comparison、MCS/mapping、instruction 和 trace 生成 EditTruth，保存对称等价 anchors。",
       "deliverables": ["domain/edit_truth.py", "EditTruth fixtures"],
       "acceptance_criteria": ["added/removed atoms、broken/formed bonds、fragments、descriptors 可复核", "对称歧义保存 equivalence class", "mapping confidence 有定义"],
-      "status": "not_started", "assigned_to": null, "started_at": null, "completed_at": null, "completion_notes": null, "evidence": [], "files_changed": [], "verification_commands": [], "blocker": null
+      "status": "completed", "assigned_to": "codex", "started_at": "2026-08-29T16:46:32+08:00", "completed_at": "2026-08-29T17:35:45+08:00", "completion_notes": "实现 RDKit-free immutable EditTruth domain contract 与 deterministic EditTruthBuilder。source heavy atoms 强制使用完整、唯一、正数 atom-map；product atoms 使用 canonical ranks 的独立 identity namespace。映射按 add/delete direct subgraph、仅在 leaving-group boundary 恢复价态的 trace-seeded retained core、bounded exact FMCS，以及元素守恒时的 bond-order-relaxed FMCS 依次 fail closed；substructure embeddings 去除 query automorphism 重复但保留不同 target sites。所有最佳映射经 fragment/instruction hints、graph-derived anchor signature 与 trace 约束消歧；trace 只能在已存在的 graph signatures 中选择，不能创建 anchor。对称等价 mapping 全部保存，并以 source canonical symmetry class 扩展 valid anchors。图差异将 removed source maps、added product atom descriptors、boundary broken/formed bonds、standalone capped fragment graph、attachment atoms、molecule/fragment descriptors 与 mapping evidence 冻结；bond-order change 表示为 broken old + formed new，fragment 内部键由 FragmentSpec graph 承载。mapping confidence 版本化定义为 mapped heavy coverage × inverse inequivalent signature count，并由 immutable invariant 重算。真实 150 origins 全部成功；特殊 delete_v2.0081 客观得到 24 removed atoms、C/N 两个 added atoms、broken/formed boundary 和双 fragments，异常分类留 T014。", "evidence": ["Pilot/molhallulens/domain/edit_truth.py", "Pilot/molhallulens/domain/molecules.py", "Pilot/molhallulens/builders/edit_truth.py", "Pilot/tests/fixtures/edit_truth/synthetic_cases.json", "Pilot/tests/test_edit_truth.py", "real corpus derivation: 150/150 succeeded", "delete_v2.0081: 24 removed + 2 added + broken/formed boundaries", "targeted pytest result: 10 passed", "full pytest result: 332 passed", "compileall passed", "pip wheel build passed"], "files_changed": ["Pilot/molhallulens/domain/molecules.py", "Pilot/molhallulens/domain/edit_truth.py", "Pilot/molhallulens/domain/__init__.py", "Pilot/molhallulens/chemistry/structures.py", "Pilot/molhallulens/chemistry/__init__.py", "Pilot/molhallulens/builders/edit_truth.py", "Pilot/molhallulens/builders/__init__.py", "Pilot/tests/fixtures/edit_truth/synthetic_cases.json", "Pilot/tests/test_edit_truth.py", "Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json"], "verification_commands": ["PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider tests/test_edit_truth.py", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -s -p no:cacheprovider", "PYTHONPATH=/tmp/molhallulens-t012-testdeps:/tmp/molhallulens-t010-testdeps PYTHONDONTWRITEBYTECODE=1 python -m compileall -q molhallulens tests", "python -m pip wheel . --no-deps --no-build-isolation --wheel-dir /tmp/molhallulens-t013-wheel -q", "python -m json.tool Pilot/Blueprint/MOLHALLULENS_MOLEDIT_HALLUCINATION_TASKS.json >/dev/null", "git diff --check", "T013 changed-file secret scan"], "blocker": null
     },
     {
       "id": "T014", "phase": "1_reference_dag", "title": "实现 anomaly registry",

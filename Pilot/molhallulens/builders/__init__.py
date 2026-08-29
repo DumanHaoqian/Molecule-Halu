@@ -1,5 +1,7 @@
 """Split, bundle, and artifact builders."""
 
+from .edit_truth import EditTruthBuildError, EditTruthBuilder, derive_edit_truth
+
 from .reference_dag import (
     AdditionReferenceDAGBuilder,
     DeletionReferenceDAGBuilder,
@@ -24,6 +26,8 @@ __all__ = [
     "AdditionReferenceDAGBuilder",
     "DeletionReferenceDAGBuilder",
     "EditingReferenceDAGBuilder",
+    "EditTruthBuildError",
+    "EditTruthBuilder",
     "ReferenceDAGArtifact",
     "ReferenceDAGBuildError",
     "ReferenceDAGBuildReport",
@@ -37,5 +41,6 @@ __all__ = [
     "audit_reference_dag_corpus",
     "build_reference_dag",
     "build_reference_dag_corpus",
+    "derive_edit_truth",
     "reference_dag_builder_for",
 ]

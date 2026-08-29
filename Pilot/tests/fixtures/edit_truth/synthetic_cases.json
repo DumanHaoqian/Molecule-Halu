@@ -1,0 +1,130 @@
+{
+  "format_version": "edit_truth_fixture_v1",
+  "cases": [
+    {
+      "case_id": "addition_at_unique_oxygen",
+      "normalized_subtask": "add",
+      "source_smiles": "[CH3:1][OH:2]",
+      "gt_smiles": "COC",
+      "trace_anchor_indices": [2],
+      "remove_fragment_hint": null,
+      "add_fragment_hint": "C",
+      "expected": {
+        "valid_anchor_indices": [2],
+        "removed_atom_maps": [],
+        "added_atomic_numbers": [6],
+        "broken_bond_count": 0,
+        "formed_bond_count": 1,
+        "remove_fragment_heavy_atoms": null,
+        "add_fragment_heavy_atoms": 1,
+        "source_heavy_atoms": 2,
+        "product_heavy_atoms": 3
+      }
+    },
+    {
+      "case_id": "deletion_of_ester_methyl",
+      "normalized_subtask": "delete",
+      "source_smiles": "[CH3:1][C:2](=[O:3])[O:4][CH3:5]",
+      "gt_smiles": "CC(=O)O",
+      "trace_anchor_indices": [4],
+      "remove_fragment_hint": "C",
+      "add_fragment_hint": null,
+      "expected": {
+        "valid_anchor_indices": [4],
+        "removed_atom_maps": [5],
+        "added_atomic_numbers": [],
+        "broken_bond_count": 1,
+        "formed_bond_count": 0,
+        "remove_fragment_heavy_atoms": 1,
+        "add_fragment_heavy_atoms": null,
+        "source_heavy_atoms": 5,
+        "product_heavy_atoms": 4
+      }
+    },
+    {
+      "case_id": "halogen_substitution",
+      "normalized_subtask": "substitute",
+      "source_smiles": "[CH3:1][Cl:2]",
+      "gt_smiles": "CBr",
+      "trace_anchor_indices": [1],
+      "remove_fragment_hint": "Cl",
+      "add_fragment_hint": "Br",
+      "expected": {
+        "valid_anchor_indices": [1],
+        "removed_atom_maps": [2],
+        "added_atomic_numbers": [35],
+        "broken_bond_count": 1,
+        "formed_bond_count": 1,
+        "remove_fragment_heavy_atoms": 1,
+        "add_fragment_heavy_atoms": 1,
+        "source_heavy_atoms": 2,
+        "product_heavy_atoms": 2
+      }
+    },
+    {
+      "case_id": "double_to_single_bond_order_change",
+      "normalized_subtask": "substitute",
+      "source_smiles": "[CH2:1]=[CH2:2]",
+      "gt_smiles": "CC",
+      "trace_anchor_indices": [],
+      "remove_fragment_hint": null,
+      "add_fragment_hint": null,
+      "expected": {
+        "removed_atom_maps": [],
+        "added_atomic_numbers": [],
+        "broken_bond_count": 1,
+        "formed_bond_count": 1,
+        "broken_bond_types": ["DOUBLE"],
+        "formed_bond_types": ["SINGLE"],
+        "source_heavy_atoms": 2,
+        "product_heavy_atoms": 2
+      }
+    },
+    {
+      "case_id": "symmetric_ethane_terminal_addition",
+      "normalized_subtask": "add",
+      "source_smiles": "[CH3:1][CH3:2]",
+      "gt_smiles": "CCC",
+      "trace_anchor_indices": [],
+      "remove_fragment_hint": null,
+      "add_fragment_hint": "C",
+      "expected": {
+        "valid_anchor_indices": [1, 2],
+        "symmetry_equivalent_anchors": [[1, 2]],
+        "removed_atom_maps": [],
+        "added_atomic_numbers": [6],
+        "broken_bond_count": 0,
+        "formed_bond_count": 1,
+        "source_heavy_atoms": 2,
+        "product_heavy_atoms": 3
+      }
+    }
+  ],
+  "invalid_source_maps": [
+    {
+      "case_id": "missing_source_atom_map",
+      "source_smiles": "[CH3:1]O",
+      "gt_smiles": "COC",
+      "normalized_subtask": "add",
+      "expected_error_code": "MISSING_SOURCE_ATOM_MAP"
+    },
+    {
+      "case_id": "duplicate_source_atom_map",
+      "source_smiles": "[CH3:1][OH:1]",
+      "gt_smiles": "COC",
+      "normalized_subtask": "add",
+      "expected_error_code": "DUPLICATE_SOURCE_ATOM_MAP"
+    }
+  ],
+  "adversarial_trace_hint": {
+    "case_id": "removed_atom_cannot_become_anchor_from_trace",
+    "normalized_subtask": "substitute",
+    "source_smiles": "[CH3:1][Cl:2]",
+    "gt_smiles": "CBr",
+    "trace_anchor_indices": [2],
+    "remove_fragment_hint": "Cl",
+    "add_fragment_hint": "Br",
+    "graph_truth_anchor": 1,
+    "untrusted_trace_anchor": 2
+  }
+}

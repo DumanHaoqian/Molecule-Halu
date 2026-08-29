@@ -1,9 +1,8 @@
 """Strict, deterministic molecular structure utilities."""
 
+from ..domain.molecules import FragmentPolicy, MainFragment, MoleculeDescriptors
+
 from .structures import (
-    FragmentPolicy,
-    MainFragment,
-    MoleculeDescriptors,
     MoleculeErrorCode,
     MoleculeParseError,
     canonicalize_smiles,

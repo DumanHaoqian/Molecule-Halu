@@ -30,6 +30,14 @@ from .errors import (
     ValidationIssue,
     ValidationReport,
 )
+from .edit_truth import (
+    AtomMapping,
+    AtomMappingPair,
+    BondEdit,
+    EditTruth,
+    FragmentSpec,
+    MappingEvidence,
+)
 from .editing_schemas import (
     ADDITION_EDITING_SCHEMA,
     ADDITION_STATE_SCHEMA,
@@ -44,6 +52,14 @@ from .editing_schemas import (
     state_schema_for,
 )
 from .labels import CharAnnotation, CharSpan, ClaimLabel, TokenLabelSet, TokenizerFingerprint
+from .molecules import (
+    AtomDescriptor,
+    AtomReference,
+    AtomReferenceNamespace,
+    FragmentPolicy,
+    MainFragment,
+    MoleculeDescriptors,
+)
 from .recipes import (
     CandidatePatch,
     CandidatePool,
@@ -76,7 +92,13 @@ __all__ = [
     "ArtifactValidationError",
     "ADDITION_EDITING_SCHEMA",
     "ADDITION_STATE_SCHEMA",
+    "AtomDescriptor",
+    "AtomMapping",
+    "AtomMappingPair",
+    "AtomReference",
+    "AtomReferenceNamespace",
     "BondTypeName",
+    "BondEdit",
     "BuildProvenance",
     "CandidatePatch",
     "CandidatePool",
@@ -99,10 +121,16 @@ __all__ = [
     "EditErrorSubtype",
     "EditAction",
     "EditKind",
+    "EditTruth",
     "EvidenceRelation",
     "FrozenMap",
+    "FragmentPolicy",
+    "FragmentSpec",
     "GraphDelta",
     "HallucinationType",
+    "MainFragment",
+    "MappingEvidence",
+    "MoleculeDescriptors",
     "MutationEvent",
     "MutationTargetKind",
     "NodeRole",
