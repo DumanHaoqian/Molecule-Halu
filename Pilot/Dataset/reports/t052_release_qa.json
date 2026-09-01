@@ -1,0 +1,235 @@
+{
+  "all_effective_gates_pass": true,
+  "dataset_manifest_path": "dataset_manifest.json",
+  "dataset_version": "pilot_v1",
+  "effective_acceptance_status": "approved_with_explicit_identity_override_and_disclosed_shortcut_findings",
+  "evaluated_at": "2026-08-30T06:30:00+08:00",
+  "format_version": "t052_release_qa_v1",
+  "gate_count": 14,
+  "gates": [
+    {
+      "evidence": {
+        "origin_count": 150,
+        "record_count": 1200,
+        "split_record_counts": {
+          "test": 200,
+          "train": 800,
+          "validation": 200
+        }
+      },
+      "gate_id": "exact_release_inventory",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "faithful_per_origin": 4,
+        "hallucinated_per_origin": 4,
+        "records_per_origin": 8
+      },
+      "gate_id": "complete_reciprocal_bundles",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "per_origin_each_label": 1,
+        "policies": [
+          "LOCAL",
+          "PARTIAL",
+          "FULL_CF",
+          "TERMINAL"
+        ]
+      },
+      "gate_id": "policy_balance",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "families": [
+          "records",
+          "oracle",
+          "state_graphs",
+          "tokenized",
+          "provenance"
+        ],
+        "joined_record_count": 1200
+      },
+      "gate_id": "five_family_identity",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "cross_split_donor_count": 0,
+        "cross_split_group_count": 0,
+        "cross_split_origin_count": 0
+      },
+      "gate_id": "split_leakage_and_donor_isolation",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "credential_finding_count": 0,
+        "public_oracle_field_count": 0
+      },
+      "gate_id": "gt_and_secret_boundary",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "direct_utf8_byte_match_count": 1200,
+        "order": [
+          "indexed_smiles",
+          "instruction",
+          "reasoning_chain",
+          "final_answer"
+        ]
+      },
+      "gate_id": "detector_serialization_order",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "artifact_gate_count": 4800,
+        "bundle_gate_count": 150,
+        "graph_edit_verified_record_count": 1200
+      },
+      "gate_id": "strict_chemistry_and_bundle_chain",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "activation_alignment": "post_token_h_t",
+        "equal_length": true,
+        "record_count": 1200
+      },
+      "gate_id": "real_token_projection",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "activation_alignment_exact": true,
+        "activation_dtype": "bfloat16",
+        "activation_shape_exact": true,
+        "hidden_size": 5120,
+        "label_shift": 0,
+        "layer_index": 26,
+        "ordered_record_ids_exact": true,
+        "record_count": 1200,
+        "row_offsets_exact": true,
+        "shard_count": 401,
+        "tensor_payload_validation_performed": true,
+        "token_count": 1824606,
+        "token_counts_exact": true
+      },
+      "gate_id": "activation_manifest_alignment",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "strict_record_acceptance_only": true,
+        "used_for_selection": false
+      },
+      "gate_id": "test_isolation",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "audit_completed": true,
+        "failed_recommended_gates": [
+          "reasoning_only_shallow_auroc",
+          "span_only_tfidf_auroc"
+        ],
+        "heldout_feedback": false,
+        "recommended_go_no_go_all_pass": false,
+        "recommended_screen_count": 5
+      },
+      "gate_id": "shortcut_and_symbolic_baselines",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "cache_entry_count": 0,
+        "model_id": "gpt-5.4-mini",
+        "network_request_count": 0
+      },
+      "gate_id": "poe_private_zero_call_ledger",
+      "status": "passed"
+    },
+    {
+      "evidence": {
+        "byte_identity_claimed": false,
+        "comparable_cache_entry_count": 0,
+        "network_calls": 0,
+        "status": "passed_vacuously_empty_cache",
+        "t044_deterministic_replay": {
+          "all_pass": true,
+          "fixture_path": "tests/golden/t044_extended_golden_suite.json",
+          "live_poe_attempt_count": 0,
+          "origin_count": 9,
+          "record_count": 72,
+          "report_path": "Dataset/reports/t044_golden_validation.json"
+        }
+      },
+      "gate_id": "empty_cache_replay_safety",
+      "status": "passed"
+    }
+  ],
+  "identity_override": {
+    "checkpoint_tokenizer_identity_scope": {
+      "byte_exact_identity_proven": false,
+      "byte_exact_reproducibility_claimed": false,
+      "evidence": "approved_local_path_plus_qwen2_configuration",
+      "provenance_claim_only": true
+    },
+    "original_acceptance_item": "pilot_v1 cryptographic identity frozen",
+    "passed": null,
+    "reason": "explicit user instruction prohibits computation or verification",
+    "replacement_freeze": {
+      "dataset_version": "pilot_v1",
+      "exact_origin_identity_set": true,
+      "exact_paths": true,
+      "exact_record_identity_set": true,
+      "exact_row_counts": true
+    },
+    "status": "overridden_not_evaluated"
+  },
+  "poe_snapshot": {
+    "deterministic_mock_status": "passed",
+    "live_probe_reason_code": "POE_TRANSPORT_FAILED",
+    "live_probe_status": "offline_not_executed",
+    "required_model_id": "gpt-5.4-mini",
+    "upstream_snapshot_selectable": false
+  },
+  "release_id": "molhallulens_moledit_pilot_v1",
+  "replay": {
+    "byte_identity_check_status": "not_applicable_empty_cache",
+    "byte_identity_claimed": false,
+    "cache_entry_count": 0,
+    "cache_replay_status": "passed_vacuously_empty_cache",
+    "comparable_cache_entry_count": 0,
+    "detector_input_serialization_direct_utf8_byte_match_count": 1200,
+    "release_network_request_count": 0,
+    "t044_deterministic_replay_evidence": {
+      "all_pass": true,
+      "fixture_path": "tests/golden/t044_extended_golden_suite.json",
+      "live_poe_attempt_count": 0,
+      "origin_count": 9,
+      "record_count": 72,
+      "report_path": "Dataset/reports/t044_golden_validation.json"
+    }
+  },
+  "shortcut_diagnostics": {
+    "audit_completed": true,
+    "failed_recommended_gates": [
+      "reasoning_only_shallow_auroc",
+      "span_only_tfidf_auroc"
+    ],
+    "recommended_go_no_go_all_pass": false,
+    "release_acceptance_role": "diagnostic_disclosure_not_a_threshold_gate_in_section_19"
+  },
+  "shortcut_report_path": "reports/shortcut_baseline_report.json",
+  "strict_validation": {
+    "all_pass": true,
+    "artifact_gate_count": 4800,
+    "bundle_gate_count": 150
+  }
+}

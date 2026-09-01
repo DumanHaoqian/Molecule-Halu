@@ -1050,6 +1050,14 @@ def _run_development_rows(
             "SHORTCUT_EMPTY_INVENTORY",
             "shortcut audit requires non-empty development and release inventories",
         )
+    audit_inventory_id = rows[0].record.get("dry_run_id")
+    if audit_inventory_id is None:
+        audit_inventory_id = rows[0].record.get("dataset_version")
+    if type(audit_inventory_id) is not str or not audit_inventory_id:
+        raise ShortcutAuditError(
+            "SHORTCUT_INVENTORY_ID_MISSING",
+            "shortcut inventory needs a dry-run identity or release dataset version",
+        )
     labels = [row.label for row in rows]
     metadata_documents = [_metadata_terms(row) for row in rows]
     span_documents = [_target_span_text(row) for row in rows]
@@ -1167,7 +1175,7 @@ def _run_development_rows(
     development_groups = {row.leakage_group_id for row in rows}
     report = {
         "format_version": T047_REPORT_FORMAT_VERSION,
-        "dry_run_id": rows[0].record["dry_run_id"],
+        "dry_run_id": audit_inventory_id,
         "audit_protocol": {
             "id": T047_AUDIT_PROTOCOL,
             "fold_count": T047_FOLD_COUNT,

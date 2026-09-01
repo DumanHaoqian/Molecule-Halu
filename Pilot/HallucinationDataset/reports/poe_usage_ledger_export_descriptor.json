@@ -1,0 +1,14 @@
+{
+  "descriptor_visibility": "public_secret_free",
+  "export_kind": "external_private_ledger_reference",
+  "external_ledger_path": "/home/haoqian/.local/share/molhallulens/pilot_v1/poe_usage_ledger.json",
+  "external_ledger_required_mode": "0600",
+  "format_version": "t052_poe_ledger_export_descriptor_v1",
+  "mode_verification": "required_before_public_artifact_publication",
+  "network_request_count": 0,
+  "project_contains_private_ledger": false,
+  "record_count": 0,
+  "recorded_cost_points": 0.0,
+  "release_id": "molhallulens_moledit_pilot_v1",
+  "secret_free": true
+}
