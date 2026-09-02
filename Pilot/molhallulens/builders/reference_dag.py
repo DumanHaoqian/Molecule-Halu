@@ -6,6 +6,7 @@ import re
 from collections import Counter
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
+from pathlib import Path
 from string import Formatter
 from types import MappingProxyType
 from typing import Any, ClassVar
@@ -1165,3 +1166,114 @@ __all__ = [
     "build_reference_dag_corpus",
     "reference_dag_builder_for",
 ]
+
+
+if __name__ == "__main__":
+    # Import locally so importing the production builder does not pull the
+    # filesystem adapter into normal library use.
+    from molhallulens.adapters import ChemCoTMolEditAdapter
+
+    dataset_root = Path(__file__).resolve().parents[2] / "Dataset"
+    records = ChemCoTMolEditAdapter().load(dataset_root)
+    # import ipdb;ipdb.set_trace()
+    requested = (
+        ("add", EditingSubtask.ADD),
+        ("sub", EditingSubtask.SUBSTITUTE),
+        ("del", EditingSubtask.DELETE),
+    )
+
+    print(f"Dataset: {dataset_root}")
+    print("Examples: [add, sub, del]")
+
+    for label, expected_subtask in requested:
+        record = next(
+            item
+            for item in records
+            if DEFAULT_SUBTASK_NORMALIZER.normalize(
+                item.pilot_subtask
+            ).normalized_subtask
+            is expected_subtask
+        )
+
+        print("\n" + "=" * 88)
+        print(f"EXAMPLE: {label.upper()}")
+        print(f"origin_id:   {record.anonymous_sample_id}")
+        print(f"raw subtask: {record.pilot_subtask}")
+        print(f"instruction: {record.raw_record['instruction']}")
+
+        print("\n[1] Normalize the raw subtask")
+        mapping = DEFAULT_SUBTASK_NORMALIZER.normalize(record.pilot_subtask)
+        print(
+            f"    {record.pilot_subtask!r} -> "
+            f"EditingSubtask.{mapping.normalized_subtask.name}"
+        )
+
+        print("\n[2] Select the fixed graph schema and FORMAL grammar")
+        definition = editing_schema_for(mapping.normalized_subtask)
+        builder = reference_dag_builder_for(mapping.normalized_subtask)
+        print(f"    schema_id: {definition.schema.schema_id}")
+        print(f"    builder:   {type(builder).__name__}")
+        print(f"    steps:     {len(builder.trace_contracts)}")
+
+        print("\n[3] Parse each FORMAL step and identify its DAG nodes")
+        state = record.process_record["parsed_reference_state"]
+        value_types = {
+            field_name: definition.schema.nodes_by_id[node_id].value_type
+            for field_name, node_id in definition.legacy_step_field_bindings.items()
+        }
+        trace = record.process_record["formal_cot_trace"]
+        for payload, contract in zip(trace, builder.trace_contracts, strict=True):
+            parsed = contract.parse(
+                payload["formal_ab"],
+                state=state,
+                value_types=value_types,
+            )
+            if parsed is None:  # The real builder would fail closed here too.
+                raise RuntimeError(
+                    f"demo could not parse step {contract.step_index} for "
+                    f"{record.anonymous_sample_id}"
+                )
+            print(f"\n    Step {contract.step_index}: {contract.step_name}")
+            print(f"      FORMAL: {payload['formal_ab']}")
+            for source_field in contract.fields:
+                node_id = definition.legacy_step_field_bindings[source_field]
+                rendered_value = repr(parsed[source_field])
+                if len(rendered_value) > 96:
+                    rendered_value = f"{rendered_value[:93]}..."
+                print(
+                    f"      field {source_field:<28}"
+                    f" -> node {node_id:<24}"
+                    f" = {rendered_value}"
+                )
+
+        print("\n[4] Call the real builder: StateDAG(schema, ClaimValue nodes)")
+        artifact = builder.build(record)
+        graph = artifact.state_dag
+        print(
+            f"    built {len(graph.values)} nodes and "
+            f"{len(graph.schema.edges)} directed edges"
+        )
+
+        print("\n[5] Final nodes (topological order)")
+        for node_id in graph.schema.topological_order():
+            spec = graph.schema.nodes_by_id[node_id]
+            claim = graph.values[node_id]
+            rendered_value = repr(claim.normalized_value)
+            if len(rendered_value) > 96:
+                rendered_value = f"{rendered_value[:93]}..."
+            print(
+                f"    {node_id:<24}"
+                f" type={spec.value_type.value:<16}"
+                f" provenance={claim.provenance.value:<10}"
+                f" visibility={spec.visibility.value:<16}"
+                f" value={rendered_value}"
+            )
+
+        print("\n[6] Final graph edges: source --relation--> target")
+        for edge in graph.schema.edges:
+            print(
+                f"    {edge.source:<24}"
+                f" --{edge.relation.value}--> "
+                f"{edge.target}"
+            )
+        break
