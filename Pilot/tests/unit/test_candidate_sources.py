@@ -9,13 +9,13 @@ from typing import Any
 
 import pytest
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.builders import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.reference import (
     EditTruthBuilder,
     build_reference_dag,
     derive_edit_truth,
 )
-from molhallulens.candidates import (
+from molhallulens.modules.error_planning import (
     CandidateBuildResult,
     CandidateDifficultyFeatures,
     CandidateProposal,
@@ -29,7 +29,7 @@ from molhallulens.candidates import (
     rank_candidates,
 )
 from molhallulens.config import load_config_bundle
-from molhallulens.domain import (
+from molhallulens.core import (
     BondTypeName,
     CandidatePatch,
     CandidateSourceType,
@@ -46,7 +46,7 @@ from molhallulens.domain import (
     ValueProvenance,
     ValueType,
 )
-from molhallulens.perturbators import (
+from molhallulens.modules.error_injection import (
     AdditionPerturbator,
     CandidateEngine,
     DeletionPerturbator,
@@ -59,7 +59,7 @@ from molhallulens.perturbators import (
     operator,
     task_record_from_validated_reference,
 )
-from molhallulens.validation import OriginValidationInput
+from molhallulens.infrastructure.validation import OriginValidationInput
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"
 OPERATOR_ID = "mol_edit.add.t018_candidate_contract"
@@ -1364,7 +1364,7 @@ def test_product_root_requires_action_and_edit_kind_shapes_are_exact() -> None:
             source_anchor_index=truth.valid_anchor_indices[0],
             remove_fragment_smiles=truth.remove_fragment.canonical_smiles,
             add_fragment_smiles="C",
-            fragment_attachment_atom=None,
+            fragment_attachment_atom=0,
             bond_type=truth.broken_bonds[0].bond_type,
             metadata={"remove_atom_maps": tuple(sorted(truth.removed_atom_maps))},
         ),

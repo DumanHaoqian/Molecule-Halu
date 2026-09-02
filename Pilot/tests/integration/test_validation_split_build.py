@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.builders.validation_split import (
+from molhallulens.modules.release.validation import (
     T049_H_COUNT,
     T049_N_COUNT,
     T049_ORIGIN_COUNT,
@@ -19,7 +19,7 @@ from molhallulens.builders.validation_split import (
     build_t049_validation_split,
     write_t049_validation_artifacts,
 )
-from molhallulens.domain import EditingSubtask, PropagationPolicy, VariantLabel
+from molhallulens.core import EditingSubtask, PropagationPolicy, VariantLabel
 
 
 @pytest.fixture(scope="module")

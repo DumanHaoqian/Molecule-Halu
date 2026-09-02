@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.builders.chemdfm_r_release import (
+from molhallulens.modules.release.chemdfm import (
     ACTIVATION_ALIGNMENT,
     EXPECTED_HIDDEN_SIZE,
     FROZEN_LAYER_INDEX,

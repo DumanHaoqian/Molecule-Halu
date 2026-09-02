@@ -10,11 +10,11 @@ from pathlib import Path
 import pytest
 from rdkit import Chem
 
-from molhallulens.adapters import ChemCoTMolEditAdapter, JoinedInputRecord
-from molhallulens.builders import build_reference_dag, derive_edit_truth
-from molhallulens.chemistry import isomeric_graph_equivalent
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter, JoinedInputRecord
+from molhallulens.modules.reference import build_reference_dag, derive_edit_truth
+from molhallulens.infrastructure.chemistry import isomeric_graph_equivalent
 from molhallulens.config import load_config_bundle
-from molhallulens.domain import (
+from molhallulens.core import (
     CandidatePatch,
     CandidatePool,
     CandidateSourceType,
@@ -29,7 +29,7 @@ from molhallulens.domain import (
     Visibility,
     editing_schema_for,
 )
-from molhallulens.perturbators import (
+from molhallulens.modules.error_injection import (
     AdditionPerturbator,
     DeletionPerturbator,
     LabelProjector,
@@ -40,20 +40,20 @@ from molhallulens.perturbators import (
     ValidatorChain,
     task_record_from_joined_input,
 )
-from molhallulens.perturbators.editing.addition import (
+from molhallulens.modules.error_injection.operators.addition import (
     ADDITION_OPERATOR_IDS,
     AdditionCandidateEngine,
 )
-from molhallulens.perturbators.editing.deletion import (
+from molhallulens.modules.error_injection.operators.deletion import (
     DELETION_OPERATOR_IDS,
     DeletionCandidateEngine,
 )
-from molhallulens.perturbators.editing.substitution import (
+from molhallulens.modules.error_injection.operators.substitution import (
     SUBSTITUTION_OPERATOR_IDS,
     SubstitutionCandidateEngine,
 )
-from molhallulens.propagation import EditingPropagationEngine
-from molhallulens.rendering import (
+from molhallulens.modules.trajectory import EditingPropagationEngine
+from molhallulens.modules.text_realization import (
     DeterministicAnswerRenderer,
     DeterministicFormalRenderer,
     FormalRenderError,

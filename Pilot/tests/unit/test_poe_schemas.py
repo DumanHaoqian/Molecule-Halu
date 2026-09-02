@@ -9,42 +9,42 @@ from pathlib import Path
 import pytest
 from pydantic import ValidationError
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.builders.edit_truth import derive_edit_truth
-from molhallulens.builders.leakage_groups import assign_leakage_groups
-from molhallulens.builders.origin_audit import audit_origin_split_features
-from molhallulens.builders.reference_dag import build_reference_dag
-from molhallulens.builders.split_manifest import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.reference.truth import derive_edit_truth
+from molhallulens.modules.release.leakage import assign_leakage_groups
+from molhallulens.modules.release.origin_audit import audit_origin_split_features
+from molhallulens.modules.reference.builder import build_reference_dag
+from molhallulens.modules.release.manifest import (
     VerifiedSplitManifest,
     load_verified_split_manifest,
 )
-from molhallulens.builders.splitter import (
+from molhallulens.modules.release.splitter import (
     GroupStratifiedSplitter,
     split_origins_from_audit,
 )
-from molhallulens.candidates import CandidateRequest
+from molhallulens.modules.error_planning import CandidateRequest
 from molhallulens.config import load_config_bundle
-from molhallulens.domain import (
+from molhallulens.core import (
     CandidateSourceType,
     PerturbationRecipe,
     PropagationPolicy,
     RewriteBudget,
 )
-from molhallulens.perturbators import (
+from molhallulens.modules.error_injection import (
     AdditionPerturbator,
     PerturbationContext,
     task_record_from_joined_input,
 )
-from molhallulens.perturbators.base import (
+from molhallulens.orchestration import (
     CandidateEngine,
     LabelProjector,
     PropagationEngine,
     TraceRenderer,
     ValidatorChain,
 )
-from molhallulens.perturbators.editing.addition import ADDITION_OPERATOR_IDS
-from molhallulens.perturbators.registry import PerturbatorRegistry
-from molhallulens.providers.poe.schemas import (
+from molhallulens.modules.error_injection.operators.addition import ADDITION_OPERATOR_IDS
+from molhallulens.modules.error_injection.registry import PerturbatorRegistry
+from molhallulens.infrastructure.providers.poe.schemas import (
     CHEMISTRY_TOOL_ARGUMENT_MODELS,
     CHEMISTRY_TOOL_NAMES,
     FROZEN_GLOBAL_SEED,
@@ -64,7 +64,7 @@ from molhallulens.providers.poe.schemas import (
     proposal_response_json_schema,
     validate_chemistry_tool_arguments,
 )
-from molhallulens.validation import OriginValidationInput
+from molhallulens.infrastructure.validation import OriginValidationInput
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATASET_ROOT = PROJECT_ROOT / "Dataset"

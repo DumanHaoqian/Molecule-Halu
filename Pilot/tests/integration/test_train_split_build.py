@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.builders.train_split import (
+from molhallulens.modules.release.train import (
     T048_H_COUNT,
     T048_N_COUNT,
     T048_ORIGIN_COUNT,
@@ -19,7 +19,7 @@ from molhallulens.builders.train_split import (
     build_t048_train_split,
     write_t048_train_artifacts,
 )
-from molhallulens.domain import EditingSubtask, PropagationPolicy, VariantLabel
+from molhallulens.core import EditingSubtask, PropagationPolicy, VariantLabel
 
 
 @pytest.fixture(scope="module")

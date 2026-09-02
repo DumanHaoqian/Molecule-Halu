@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.builders.splitter import (
+from molhallulens.modules.release.splitter import (
     FROZEN_SPLIT_SEED,
     GroupStratifiedSplitter,
     SplitName,
@@ -16,7 +16,7 @@ from molhallulens.builders.splitter import (
     SplitSolverError,
     derive_split_seed,
 )
-from molhallulens.domain import EditingSubtask
+from molhallulens.core import EditingSubtask
 
 
 def _origins(
@@ -166,7 +166,8 @@ def test_source_uses_no_process_randomization_primitives() -> None:
     source = (
         Path(__file__).resolve().parents[2]
         / "molhallulens"
-        / "builders"
+        / "modules"
+        / "release"
         / "splitter.py"
     ).read_text(encoding="utf-8")
     assert "import random" not in source

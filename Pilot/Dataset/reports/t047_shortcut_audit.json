@@ -619,7 +619,7 @@
   "remediation": {
     "required": false,
     "status": "not_needed",
-    "strict_rerun_command": "python -m molhallulens.audit.shortcut_audit --strict"
+    "strict_rerun_command": "python -m molhallulens.modules.release.shortcut_audit --strict"
   },
   "report_scope": "final_with_heldout_test_diagnostic",
   "threshold_failure_count": 0,

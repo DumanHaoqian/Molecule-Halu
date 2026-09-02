@@ -20,6 +20,11 @@ dependencies = [
   "rdkit==2025.9.6",
 ]
 
+[project.scripts]
+molhallulens-build-subset = "molhallulens.modules.ingestion.build_subset:main"
+molhallulens-audit-origins = "molhallulens.cli.audit_origins:main"
+molhallulens-chemdfm = "molhallulens.modules.release.chemdfm:main"
+
 [project.optional-dependencies]
 dev = [
   "hypothesis==6.165.10",

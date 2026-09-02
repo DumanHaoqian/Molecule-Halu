@@ -6,7 +6,7 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
-from molhallulens.providers.poe.rate_limiter import (
+from molhallulens.infrastructure.providers.poe.rate_limiter import (
     INITIAL_MAX_CONCURRENCY,
     REQUESTS_PER_MINUTE_CEILING,
     RETRY_BASE_SECONDS,

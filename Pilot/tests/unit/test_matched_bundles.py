@@ -9,10 +9,10 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens import builders
-from molhallulens.adapters import ChemCoTMolEditAdapter, JoinedInputRecord
-from molhallulens.builders import build_reference_dag
-from molhallulens.builders.bundles import (
+from molhallulens.modules.release import assembly as builders
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter, JoinedInputRecord
+from molhallulens.modules.reference import build_reference_dag
+from molhallulens.modules.release.assembly import (
     BundleDraftError,
     DeterministicQuotaScheduler,
     MatchedBundleBuilder,
@@ -23,9 +23,9 @@ from molhallulens.builders.bundles import (
     QuotaScheduleError,
     QuotaScheduleRequest,
 )
-from molhallulens.chemistry import isomeric_graph_equivalent
+from molhallulens.infrastructure.chemistry import isomeric_graph_equivalent
 from molhallulens.config import load_config_bundle
-from molhallulens.domain import (
+from molhallulens.core import (
     CandidateSourceType,
     CausalRole,
     EditErrorSubtype,
@@ -42,15 +42,15 @@ from molhallulens.domain import (
     ValueProvenance,
     VariantLabel,
 )
-from molhallulens.perturbators import (
+from molhallulens.modules.error_injection import (
     AdditionPerturbator,
     DeletionPerturbator,
     SubstitutionPerturbator,
 )
-from molhallulens.perturbators.editing.addition import ADDITION_OPERATOR_IDS
-from molhallulens.perturbators.editing.deletion import DELETION_OPERATOR_IDS
-from molhallulens.perturbators.editing.substitution import SUBSTITUTION_OPERATOR_IDS
-from molhallulens.perturbators.registry import (
+from molhallulens.modules.error_injection.operators.addition import ADDITION_OPERATOR_IDS
+from molhallulens.modules.error_injection.operators.deletion import DELETION_OPERATOR_IDS
+from molhallulens.modules.error_injection.operators.substitution import SUBSTITUTION_OPERATOR_IDS
+from molhallulens.modules.error_injection.registry import (
     FallbackDecision,
     PerturbatorRegistry,
     operator,

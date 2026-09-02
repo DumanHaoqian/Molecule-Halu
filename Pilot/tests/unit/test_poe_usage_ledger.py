@@ -9,13 +9,13 @@ from types import SimpleNamespace
 
 import pytest
 
-from molhallulens.providers.poe.rate_limiter import (
+from molhallulens.infrastructure.providers.poe.rate_limiter import (
     PoeErrorAction,
     PoeErrorClassification,
     PoeErrorCode,
     PoeRetryEvent,
 )
-from molhallulens.providers.poe.usage_ledger import (
+from molhallulens.infrastructure.providers.poe.usage_ledger import (
     POE_BALANCE_ENDPOINT,
     POE_MODEL_ID,
     POE_POINTS_HISTORY_ENDPOINT,

@@ -6,14 +6,14 @@ from dataclasses import dataclass
 
 import pytest
 
-from molhallulens.domain.enums import (
+from molhallulens.core.enums import (
     CausalRole,
     EditErrorSubtype,
     EvidenceRelation,
     HallucinationType,
     SegmentKind,
 )
-from molhallulens.domain.labels import (
+from molhallulens.core.labels import (
     CharAnnotation,
     CharSpan,
     ClaimLabel,

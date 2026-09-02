@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from molhallulens.domain.enums import (
+from molhallulens.core.enums import (
     CausalRole,
     DependencyType,
     EditErrorSubtype,

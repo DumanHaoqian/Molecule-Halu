@@ -11,12 +11,12 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.builders.edit_truth import derive_edit_truth
-from molhallulens.builders.leakage_groups import assign_leakage_groups
-from molhallulens.builders.origin_audit import audit_origin_split_features
-from molhallulens.builders.reference_dag import build_reference_dag
-from molhallulens.builders.split_manifest import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.reference.truth import derive_edit_truth
+from molhallulens.modules.release.leakage import assign_leakage_groups
+from molhallulens.modules.release.origin_audit import audit_origin_split_features
+from molhallulens.modules.reference.builder import build_reference_dag
+from molhallulens.modules.release.manifest import (
     MANIFEST_FIELDS,
     FrozenSplitManifest,
     SplitManifestError,
@@ -25,12 +25,12 @@ from molhallulens.builders.split_manifest import (
     load_verified_split_manifest,
     write_frozen_split_manifest,
 )
-from molhallulens.builders.splitter import (
+from molhallulens.modules.release.splitter import (
     GroupStratifiedSplitResult,
     SplitName,
     build_group_stratified_split,
 )
-from molhallulens.validation import OriginValidationInput
+from molhallulens.infrastructure.validation import OriginValidationInput
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"
 

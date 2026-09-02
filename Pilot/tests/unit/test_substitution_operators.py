@@ -9,9 +9,9 @@ from pathlib import Path
 import pytest
 from rdkit import Chem
 
-from molhallulens.adapters import ChemCoTMolEditAdapter, JoinedInputRecord
-from molhallulens.builders import build_reference_dag, derive_edit_truth
-from molhallulens.candidates import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter, JoinedInputRecord
+from molhallulens.modules.reference import build_reference_dag, derive_edit_truth
+from molhallulens.modules.error_planning import (
     CandidateDifficultyFeatures,
     CandidateProposal,
     CandidateRejectCode,
@@ -21,12 +21,12 @@ from molhallulens.candidates import (
     canonical_candidate_key,
     replay_edit_action,
 )
-from molhallulens.chemistry import (
+from molhallulens.infrastructure.chemistry import (
     fragment_graph_equivalent,
     isomeric_graph_equivalent,
 )
 from molhallulens.config import load_config_bundle
-from molhallulens.domain import (
+from molhallulens.core import (
     AtomReferenceNamespace,
     BondTypeName,
     CandidatePatch,
@@ -43,7 +43,7 @@ from molhallulens.domain import (
     RewriteBudget,
     ValueProvenance,
 )
-from molhallulens.perturbators import (
+from molhallulens.modules.error_injection import (
     CandidateEngine,
     LabelProjector,
     OperatorRegistration,
@@ -56,8 +56,8 @@ from molhallulens.perturbators import (
     ValidatorChain,
     task_record_from_joined_input,
 )
-from molhallulens.perturbators.editing import substitution as substitution_module
-from molhallulens.perturbators.editing.substitution import (
+from molhallulens.modules.error_injection.operators import substitution as substitution_module
+from molhallulens.modules.error_injection.operators.substitution import (
     SUBSTITUTION_OPERATOR_IDS,
     SubstitutionCandidateDispatcher,
     SubstitutionCandidateEngine,

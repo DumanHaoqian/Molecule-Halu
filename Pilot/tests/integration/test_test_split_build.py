@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.builders.test_split import (
+from molhallulens.modules.release.test import (
     T050_H_COUNT,
     T050_N_COUNT,
     T050_ORIGIN_COUNT,
@@ -17,10 +17,10 @@ from molhallulens.builders.test_split import (
     build_t050_test_split,
     write_t050_test_artifacts,
 )
-from molhallulens.builders.test_split import TestBuildAttempt as BuildAttempt
-from molhallulens.builders.test_split import TestSplitBuild as SplitBuild
-from molhallulens.builders.test_split import TestSplitBuildError as SplitBuildError
-from molhallulens.domain import EditingSubtask, PropagationPolicy, VariantLabel
+from molhallulens.modules.release.test import TestBuildAttempt as BuildAttempt
+from molhallulens.modules.release.test import TestSplitBuild as SplitBuild
+from molhallulens.modules.release.test import TestSplitBuildError as SplitBuildError
+from molhallulens.core import EditingSubtask, PropagationPolicy, VariantLabel
 
 
 @pytest.fixture(scope="module")

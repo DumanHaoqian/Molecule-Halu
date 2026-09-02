@@ -7,22 +7,22 @@ from collections import Counter, defaultdict
 from functools import cache
 from pathlib import Path
 
-from molhallulens.adapters import ChemCoTMolEditAdapter, JoinedInputRecord
-from molhallulens.builders.edit_truth import derive_edit_truth
-from molhallulens.builders.leakage_groups import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter, JoinedInputRecord
+from molhallulens.modules.reference.truth import derive_edit_truth
+from molhallulens.modules.release.leakage import (
     KNOWN_GENERIC_MURCKO_GROUPS,
     LeakageGroupAssignments,
     LeakageReason,
     assign_leakage_groups,
     stable_leakage_group_id,
 )
-from molhallulens.builders.origin_audit import (
+from molhallulens.modules.release.origin_audit import (
     KNOWN_DUPLICATE_SOURCE_GROUPS,
     OriginSplitAuditResult,
     audit_origin_split_features,
 )
-from molhallulens.builders.reference_dag import build_reference_dag
-from molhallulens.validation import (
+from molhallulens.modules.reference.builder import build_reference_dag
+from molhallulens.infrastructure.validation import (
     OriginValidationInput,
     validate_reference_origin_strict,
 )

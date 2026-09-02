@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.builders.operator_coverage import (
+from molhallulens.modules.release.operator_coverage import (
     FROZEN_DATASET_VERSION,
     REPORT_FORMAT_VERSION,
     STRUCTURAL_OPERATOR_IDS,
@@ -20,8 +20,8 @@ from molhallulens.builders.operator_coverage import (
     build_operator_candidate_coverage_report,
 )
 from molhallulens.config import load_config_bundle
-from molhallulens.domain import CandidateSourceType
-from molhallulens.perturbators import (
+from molhallulens.core import CandidateSourceType
+from molhallulens.modules.error_injection import (
     AdditionPerturbator,
     DeletionPerturbator,
     PerturbatorRegistry,

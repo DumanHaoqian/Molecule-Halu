@@ -8,14 +8,14 @@ from typing import Any
 
 import pytest
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.builders import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.reference import (
     EditTruthBuildError,
     EditTruthBuilder,
     build_reference_dag,
     derive_edit_truth,
 )
-from molhallulens.domain import EditingSubtask
+from molhallulens.core import EditingSubtask
 
 
 DATASET_ROOT = Path(__file__).resolve().parents[1] / "Dataset"

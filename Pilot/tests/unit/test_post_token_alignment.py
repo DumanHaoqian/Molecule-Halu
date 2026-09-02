@@ -7,7 +7,7 @@ from dataclasses import fields, replace
 import pytest
 
 from molhallulens.config.loader import load_config_bundle
-from molhallulens.domain import (
+from molhallulens.core import (
     CausalRole,
     EditErrorSubtype,
     HallucinationType,

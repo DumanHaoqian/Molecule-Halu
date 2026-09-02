@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.builders.dry_run import (
+from molhallulens.modules.release.dry_run import (
     _FORBIDDEN_DATASET_KEYS,
     T045_DRY_RUN_ID,
     T045_ORIGIN_COUNT,
@@ -21,8 +21,8 @@ from molhallulens.builders.dry_run import (
     build_t045_dry_run,
     write_t045_dry_run_artifacts,
 )
-from molhallulens.chemistry import isomeric_graph_equivalent
-from molhallulens.domain import EditingSubtask, PropagationPolicy, VariantLabel
+from molhallulens.infrastructure.chemistry import isomeric_graph_equivalent
+from molhallulens.core import EditingSubtask, PropagationPolicy, VariantLabel
 
 
 @pytest.fixture(scope="module")

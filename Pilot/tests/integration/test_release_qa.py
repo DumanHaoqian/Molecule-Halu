@@ -9,8 +9,8 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.builders import release_qa
-from molhallulens.builders.release_qa import (
+from molhallulens.modules.release import qa as release_qa
+from molhallulens.modules.release.qa import (
     ReleaseQAError,
     run_t052_release_qa,
     write_t052_release_artifacts,

@@ -6,12 +6,12 @@ from collections import Counter, defaultdict
 from functools import cache
 from pathlib import Path
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.builders.edit_truth import derive_edit_truth
-from molhallulens.builders.leakage_groups import assign_leakage_groups
-from molhallulens.builders.origin_audit import audit_origin_split_features
-from molhallulens.builders.reference_dag import build_reference_dag
-from molhallulens.builders.splitter import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.reference.truth import derive_edit_truth
+from molhallulens.modules.release.leakage import assign_leakage_groups
+from molhallulens.modules.release.origin_audit import audit_origin_split_features
+from molhallulens.modules.reference.builder import build_reference_dag
+from molhallulens.modules.release.splitter import (
     FROZEN_SPLIT_SEED,
     GroupStratifiedSplitResult,
     GroupStratifiedSplitter,
@@ -19,8 +19,8 @@ from molhallulens.builders.splitter import (
     SplitOrigin,
     split_origins_from_audit,
 )
-from molhallulens.domain import EditingSubtask
-from molhallulens.validation import OriginValidationInput
+from molhallulens.core import EditingSubtask
+from molhallulens.infrastructure.validation import OriginValidationInput
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"
 REPORT_PATH = DATASET_ROOT / "reports" / "split_balance_report.json"

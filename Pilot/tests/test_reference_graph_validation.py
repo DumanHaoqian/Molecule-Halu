@@ -12,24 +12,24 @@ from typing import Any
 
 import pytest
 
-from molhallulens.adapters import ChemCoTMolEditAdapter, JoinedInputRecord
-from molhallulens.builders import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter, JoinedInputRecord
+from molhallulens.modules.reference import (
     build_reference_dag,
     classify_edit_truth,
     derive_edit_truth,
 )
-from molhallulens.chemistry import (
+from molhallulens.infrastructure.chemistry import (
     fragment_graph_equivalent,
     isomeric_graph_equivalent,
 )
-from molhallulens.domain import (
+from molhallulens.core import (
     AtomReferenceNamespace,
     EditingSubtask,
     OperationSubtype,
     Severity,
     ValidationStage,
 )
-from molhallulens.validation import (
+from molhallulens.infrastructure.validation import (
     GraphEditValidator,
     InputRecordValidator,
     OriginValidationInput,

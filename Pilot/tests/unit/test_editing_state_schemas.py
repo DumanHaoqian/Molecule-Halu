@@ -9,8 +9,8 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.adapters import DEFAULT_SUBTASK_NORMALIZER
-from molhallulens.domain import (
+from molhallulens.modules.ingestion import DEFAULT_SUBTASK_NORMALIZER
+from molhallulens.core import (
     ADDITION_EDITING_SCHEMA,
     DELETION_EDITING_SCHEMA,
     EDITING_SCHEMA_DEFINITIONS,

@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.builders import build_reference_dag_corpus
-from molhallulens.domain import Visibility
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.reference import build_reference_dag_corpus
+from molhallulens.core import Visibility
 
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"

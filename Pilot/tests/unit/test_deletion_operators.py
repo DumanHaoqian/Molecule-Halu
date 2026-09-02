@@ -9,21 +9,21 @@ from pathlib import Path
 import pytest
 from rdkit import Chem
 
-from molhallulens.adapters import ChemCoTMolEditAdapter, JoinedInputRecord
-from molhallulens.builders import build_reference_dag, derive_edit_truth
-from molhallulens.candidates import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter, JoinedInputRecord
+from molhallulens.modules.reference import build_reference_dag, derive_edit_truth
+from molhallulens.modules.error_planning import (
     CandidateRejectCode,
     CandidateRequest,
     replay_edit_action,
 )
-from molhallulens.chemistry import (
+from molhallulens.infrastructure.chemistry import (
     canonicalize_smiles,
     compute_descriptors,
     fragment_graph_equivalent,
     isomeric_graph_equivalent,
 )
 from molhallulens.config import load_config_bundle
-from molhallulens.domain import (
+from molhallulens.core import (
     BondTypeName,
     CandidatePatch,
     CandidatePool,
@@ -39,7 +39,7 @@ from molhallulens.domain import (
     RewriteBudget,
     ValueProvenance,
 )
-from molhallulens.perturbators import (
+from molhallulens.modules.error_injection import (
     CandidateEngine,
     DeletionPerturbator,
     LabelProjector,
@@ -52,7 +52,7 @@ from molhallulens.perturbators import (
     ValidatorChain,
     task_record_from_joined_input,
 )
-from molhallulens.perturbators.editing.deletion import (
+from molhallulens.modules.error_injection.operators.deletion import (
     DELETION_OPERATOR_IDS,
     REPLACEMENT_DELETION_OPERATOR_ID,
     DeletionCandidateDispatcher,

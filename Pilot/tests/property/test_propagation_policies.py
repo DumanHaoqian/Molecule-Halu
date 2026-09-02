@@ -9,9 +9,9 @@ from pathlib import Path
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.builders import build_reference_dag, derive_edit_truth
-from molhallulens.domain import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.reference import build_reference_dag, derive_edit_truth
+from molhallulens.core import (
     CandidatePatch,
     CandidateSourceType,
     ClaimValue,
@@ -30,9 +30,9 @@ from molhallulens.domain import (
     ValueType,
     Visibility,
 )
-from molhallulens.perturbators import PerturbationContext, task_record_from_joined_input
-from molhallulens.perturbators.editing.addition import ADDITION_OPERATOR_IDS
-from molhallulens.propagation import (
+from molhallulens.modules.error_injection import PerturbationContext, task_record_from_joined_input
+from molhallulens.modules.error_injection.operators.addition import ADDITION_OPERATOR_IDS
+from molhallulens.modules.trajectory import (
     DerivationRuleRegistry,
     EditingPropagationEngine,
     TypedDerivationRule,

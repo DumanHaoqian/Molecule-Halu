@@ -7,13 +7,13 @@ from dataclasses import FrozenInstanceError
 
 import pytest
 
-from molhallulens.builders.leakage_groups import (
+from molhallulens.modules.release.leakage import (
     LeakageGroupIndex,
     LeakageIdentity,
     LeakageReason,
     stable_leakage_group_id,
 )
-from molhallulens.chemistry import (
+from molhallulens.infrastructure.chemistry import (
     FragmentPolicy,
     generic_murcko_scaffold_smiles,
     murcko_scaffold_smiles,

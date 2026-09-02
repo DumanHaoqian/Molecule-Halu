@@ -6,7 +6,7 @@ from dataclasses import FrozenInstanceError
 
 import pytest
 
-from molhallulens.chemistry import (
+from molhallulens.infrastructure.chemistry import (
     FragmentPolicy,
     MoleculeErrorCode,
     MoleculeParseError,

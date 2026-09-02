@@ -8,8 +8,8 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.annotation.token_projection import rebase_char_annotations
-from molhallulens.builders.golden_validation import (
+from molhallulens.modules.annotation.token_projection import rebase_char_annotations
+from molhallulens.modules.release.record_build import (
     DEFAULT_FIXTURE_PATH,
     DEFAULT_REPORT_PATH,
     DELETE_WITH_REPLACEMENT_ORIGIN_ID,
@@ -19,14 +19,14 @@ from molhallulens.builders.golden_validation import (
     ExtendedGoldenSuiteBuild,
     build_t044_extended_golden_suite,
 )
-from molhallulens.chemistry import isomeric_graph_equivalent
-from molhallulens.domain import (
+from molhallulens.infrastructure.chemistry import isomeric_graph_equivalent
+from molhallulens.core import (
     EditingSubtask,
     OperatorCapability,
     PropagationPolicy,
     VariantLabel,
 )
-from molhallulens.perturbators.editing.deletion import (
+from molhallulens.modules.error_injection.operators.deletion import (
     REPLACEMENT_DELETION_OPERATOR_ID,
 )
 

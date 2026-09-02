@@ -10,7 +10,7 @@ from typing import Any
 
 import pytest
 
-from molhallulens.providers.poe.model_registry import (
+from molhallulens.infrastructure.providers.poe.model_registry import (
     POE_CHAT_COMPLETIONS_URL,
     POE_MODEL_CATALOG_URL,
     POE_RESPONSES_URL,

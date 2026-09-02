@@ -8,7 +8,7 @@ from unittest.mock import Mock
 
 import pytest
 
-from molhallulens.domain.enums import (
+from molhallulens.core.enums import (
     CausalRole,
     ComparatorKind,
     DependencyType,
@@ -20,7 +20,7 @@ from molhallulens.domain.enums import (
     ValueType,
     Visibility,
 )
-from molhallulens.domain.state_dag import (
+from molhallulens.core.state_dag import (
     ClaimValue,
     FrozenMap,
     GraphDelta,

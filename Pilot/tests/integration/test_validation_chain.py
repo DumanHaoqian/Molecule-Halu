@@ -9,24 +9,24 @@ from typing import Any
 
 import pytest
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.annotation.char_annotations import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.annotation.char_annotations import (
     CharAnnotationBuildResult,
     build_char_annotations,
 )
-from molhallulens.annotation.token_projection import TokenLabelSetWriter
+from molhallulens.modules.annotation.token_projection import TokenLabelSetWriter
 
 # Import the builder package before validation.  This preserves the repository's
 # current package initialization order while T043 itself remains __init__-free.
-from molhallulens.builders.edit_truth import derive_edit_truth
-from molhallulens.builders.golden_bundles import build_t025_golden_corpus
-from molhallulens.builders.leakage_groups import assign_leakage_groups
-from molhallulens.builders.origin_audit import audit_origin_split_features
-from molhallulens.builders.reference_dag import build_reference_dag
-from molhallulens.builders.split_manifest import load_verified_split_manifest
-from molhallulens.builders.splitter import SplitName, build_group_stratified_split
-from molhallulens.chemistry import isomeric_graph_equivalent
-from molhallulens.domain import (
+from molhallulens.modules.reference.truth import derive_edit_truth
+from molhallulens.modules.release.generation import build_t025_golden_corpus
+from molhallulens.modules.release.leakage import assign_leakage_groups
+from molhallulens.modules.release.origin_audit import audit_origin_split_features
+from molhallulens.modules.reference.builder import build_reference_dag
+from molhallulens.modules.release.manifest import load_verified_split_manifest
+from molhallulens.modules.release.splitter import SplitName, build_group_stratified_split
+from molhallulens.infrastructure.chemistry import isomeric_graph_equivalent
+from molhallulens.core import (
     CharSpan,
     MutationTargetKind,
     PropagationPolicy,
@@ -35,15 +35,15 @@ from molhallulens.domain import (
     TraceLabels,
     VariantLabel,
 )
-from molhallulens.rendering.detector_prompt import DetectorPromptSerializer
-from molhallulens.rendering.natural_rule import (
+from molhallulens.modules.text_realization.detector_prompt import DetectorPromptSerializer
+from molhallulens.modules.text_realization.natural_rule import (
     LockedFinalAnswer,
     LockedNaturalStep,
     NaturalRenderRequest,
     render_natural_rule,
 )
-from molhallulens.rendering.trace_ast import ClaimNode, LiteralNode, SequenceNode
-from molhallulens.validation.chain import (
+from molhallulens.modules.text_realization.trace_ast import ClaimNode, LiteralNode, SequenceNode
+from molhallulens.infrastructure.validation.chain import (
     ArtifactValidationInput,
     BundleIntegrityValidator,
     BundleValidationInput,
@@ -52,7 +52,7 @@ from molhallulens.validation.chain import (
     TokenAlignmentValidator,
     ValidatorChain,
 )
-from molhallulens.validation.reference import OriginValidationInput
+from molhallulens.infrastructure.validation.reference import OriginValidationInput
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"
 MANIFEST_ROOT = Path(__file__).resolve().parents[2] / "HallucinationDataset"

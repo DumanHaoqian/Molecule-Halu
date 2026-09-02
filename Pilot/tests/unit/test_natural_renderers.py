@@ -9,18 +9,18 @@ from typing import Any
 
 import pytest
 
-from molhallulens.domain import MutationTargetKind
-from molhallulens.providers.poe.response_cache import (
+from molhallulens.core import MutationTargetKind
+from molhallulens.infrastructure.providers.poe.response_cache import (
     CacheMode,
     PoeResponseCache,
     PoeResponseCacheError,
 )
-from molhallulens.rendering.natural_llm import (
+from molhallulens.modules.text_realization.natural_llm import (
     LLMNaturalRenderer,
     NarrativeRewriteRequest,
     validate_narrative_template,
 )
-from molhallulens.rendering.natural_rule import (
+from molhallulens.modules.text_realization.natural_rule import (
     LockedFinalAnswer,
     LockedNaturalStep,
     NaturalRenderError,
@@ -28,7 +28,7 @@ from molhallulens.rendering.natural_rule import (
     RuleNaturalRenderer,
     render_natural_rule,
 )
-from molhallulens.rendering.trace_ast import (
+from molhallulens.modules.text_realization.trace_ast import (
     ClaimNode,
     LiteralNode,
     SequenceNode,

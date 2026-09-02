@@ -7,9 +7,9 @@ from dataclasses import FrozenInstanceError
 
 import pytest
 
-from molhallulens.annotation.char_spans import CharSpan
-from molhallulens.domain import MutationTargetKind
-from molhallulens.rendering.trace_ast import (
+from molhallulens.modules.text_realization.spans import CharSpan
+from molhallulens.core import MutationTargetKind
+from molhallulens.modules.text_realization.trace_ast import (
     AnswerDocument,
     ClaimNode,
     LiteralNode,

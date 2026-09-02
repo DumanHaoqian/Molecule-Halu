@@ -8,7 +8,7 @@ from typing import Any
 
 import pytest
 
-from molhallulens.providers.poe.client import (
+from molhallulens.infrastructure.providers.poe.client import (
     POE_BOT_NAME,
     POE_CHAT_ENDPOINT,
     POE_MODEL_ID,
@@ -21,7 +21,7 @@ from molhallulens.providers.poe.client import (
     PoeTransport,
     PoeTransportFallbackClient,
 )
-from molhallulens.providers.poe.schemas import (
+from molhallulens.infrastructure.providers.poe.schemas import (
     FROZEN_GLOBAL_SEED,
     ProposalConstraints,
     ProposalManifestIdentity,

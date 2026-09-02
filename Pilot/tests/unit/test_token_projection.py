@@ -7,12 +7,12 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.annotation.char_annotations import (
+from molhallulens.modules.annotation.char_annotations import (
     CharAnnotationBuildResult,
     EventAnnotationLink,
     UnlocalizedOmission,
 )
-from molhallulens.annotation.token_projection import (
+from molhallulens.modules.annotation.token_projection import (
     ACTIVATION_ALIGNMENT,
     DetectorCoordinateMap,
     TokenLabelSetWriter,
@@ -20,7 +20,7 @@ from molhallulens.annotation.token_projection import (
     project_char_annotations,
     rebase_char_annotations,
 )
-from molhallulens.domain import (
+from molhallulens.core import (
     CausalRole,
     CharAnnotation,
     CharSpan,
@@ -32,11 +32,11 @@ from molhallulens.domain import (
     TokenizerFingerprint,
     VariantLabel,
 )
-from molhallulens.rendering.detector_prompt import (
+from molhallulens.modules.text_realization.detector_prompt import (
     DetectorPromptSerializer,
     SerializedDetectorInput,
 )
-from molhallulens.rendering.trace_ast import (
+from molhallulens.modules.text_realization.trace_ast import (
     AnswerDocument,
     ClaimNode,
     LiteralNode,

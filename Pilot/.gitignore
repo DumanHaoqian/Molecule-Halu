@@ -11,3 +11,8 @@
 
 # Durable local job metadata is operational state, not a release artifact.
 /runs/serverctl/molhallulens-t051-full/
+
+# Generated Python packaging and interpreter caches.
+*.egg-info/
+__pycache__/
+*.py[cod]

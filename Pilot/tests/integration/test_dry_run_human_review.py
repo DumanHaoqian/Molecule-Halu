@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.builders.dry_run_review import (
+from molhallulens.modules.release.dry_run_review import (
     T046_EXPECTED_ORIGIN_COUNT,
     T046_EXPECTED_PAIR_COUNT,
     T046_EXPECTED_RECORD_COUNT,

@@ -7,7 +7,7 @@ from unittest.mock import Mock
 
 import pytest
 
-from molhallulens.domain.enums import (
+from molhallulens.core.enums import (
     CandidateSourceType,
     CausalRole,
     ComparatorKind,
@@ -29,28 +29,28 @@ from molhallulens.domain.enums import (
     VariantLabel,
     Visibility,
 )
-from molhallulens.domain.errors import ValidationIssue, ValidationReport
-from molhallulens.domain.labels import (
+from molhallulens.core.errors import ValidationIssue, ValidationReport
+from molhallulens.core.labels import (
     CharAnnotation,
     CharSpan,
     TokenLabelSet,
     TokenizerFingerprint,
 )
-from molhallulens.domain.recipes import (
+from molhallulens.core.recipes import (
     CandidatePatch,
     EditAction,
     OperatorSpec,
     PerturbationRecipe,
     RewriteBudget,
 )
-from molhallulens.domain.records import (
+from molhallulens.core.records import (
     BuildProvenance,
     DetectorInput,
     PerturbationResult,
     TaskRecord,
     TraceLabels,
 )
-from molhallulens.domain.state_dag import (
+from molhallulens.core.state_dag import (
     ClaimValue,
     GraphDelta,
     MutationEvent,

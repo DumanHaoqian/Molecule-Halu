@@ -10,18 +10,17 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.builders import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.reference import build_reference_dag, derive_edit_truth
+from molhallulens.modules.release.origin_audit import (
     KNOWN_DUPLICATE_SCAFFOLD_GROUPS,
     KNOWN_DUPLICATE_SOURCE_GROUPS,
     QuantileThresholds,
     audit_origin_split_features,
-    build_reference_dag,
-    derive_edit_truth,
 )
-from molhallulens.chemistry import FragmentPolicy, murcko_scaffold_smiles
-from molhallulens.domain import EditingSubtask, OperatorCapability
-from molhallulens.validation import OriginValidationInput
+from molhallulens.infrastructure.chemistry import FragmentPolicy, murcko_scaffold_smiles
+from molhallulens.core import EditingSubtask, OperatorCapability
+from molhallulens.infrastructure.validation import OriginValidationInput
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"
 

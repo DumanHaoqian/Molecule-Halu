@@ -7,14 +7,13 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.builders import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.reference import build_reference_dag, derive_edit_truth
+from molhallulens.modules.release.origin_audit import (
     audit_origin_split_features,
     build_origin_split_audit,
-    build_reference_dag,
-    derive_edit_truth,
 )
-from molhallulens.validation import OriginValidationInput
+from molhallulens.infrastructure.validation import OriginValidationInput
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"
 AUDIT_PATH = DATASET_ROOT / "reports" / "origin_split_audit.json"

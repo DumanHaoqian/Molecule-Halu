@@ -13,9 +13,9 @@ from typing import Any
 import pytest
 from rdkit import Chem, rdBase
 
-from molhallulens.builders import golden_bundles as golden_bundle_module
-from molhallulens.builders.bundles import MatchedBundleBuilder
-from molhallulens.builders.golden_bundles import (
+from molhallulens.modules.release import generation as golden_bundle_module
+from molhallulens.modules.release.assembly import MatchedBundleBuilder
+from molhallulens.modules.release.generation import (
     DEFAULT_DATASET_ROOT,
     DEFAULT_GOLDEN_BUNDLE_PATH,
     DEFAULT_GOLDEN_VALIDATION_PATH,
@@ -25,10 +25,10 @@ from molhallulens.builders.golden_bundles import (
     GoldenOriginBundle,
     build_t025_golden_corpus,
 )
-from molhallulens.candidates import replay_edit_action_from_source
-from molhallulens.chemistry import isomeric_graph_equivalent
+from molhallulens.modules.error_planning import replay_edit_action_from_source
+from molhallulens.infrastructure.chemistry import isomeric_graph_equivalent
 from molhallulens.config import load_config_bundle
-from molhallulens.domain import (
+from molhallulens.core import (
     EditingSubtask,
     GraphDelta,
     MutationTargetKind,
@@ -36,7 +36,7 @@ from molhallulens.domain import (
     StateDAG,
     StateSchema,
 )
-from molhallulens.perturbators import (
+from molhallulens.modules.error_injection import (
     AdditionCandidateEngine,
     AdditionPerturbator,
     DeletionCandidateEngine,
@@ -44,9 +44,9 @@ from molhallulens.perturbators import (
     SubstitutionCandidateEngine,
     SubstitutionPerturbator,
 )
-from molhallulens.perturbators.base import PropagationOutcome
-from molhallulens.perturbators.registry import PerturbatorRegistry
-from molhallulens.propagation import EditingPropagationEngine
+from molhallulens.orchestration import PropagationOutcome
+from molhallulens.modules.error_injection.registry import PerturbatorRegistry
+from molhallulens.modules.trajectory import EditingPropagationEngine
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 POLICIES = ("LOCAL", "PARTIAL", "FULL_CF", "TERMINAL")

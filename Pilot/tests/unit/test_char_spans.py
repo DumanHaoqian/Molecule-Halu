@@ -6,7 +6,7 @@ from dataclasses import FrozenInstanceError, replace
 
 import pytest
 
-from molhallulens.annotation.char_spans import (
+from molhallulens.modules.text_realization.spans import (
     CharSpan,
     MentionSpan,
     span_text,
@@ -14,7 +14,7 @@ from molhallulens.annotation.char_spans import (
     validate_mention_spans,
     validate_non_overlapping_spans,
 )
-from molhallulens.domain import MutationTargetKind, SegmentKind
+from molhallulens.core import MutationTargetKind, SegmentKind
 
 
 def _mention(

@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.adapters import (
+from molhallulens.modules.ingestion import (
     AmbiguousSubtaskError,
     ChemCoTMolEditAdapter,
     DEFAULT_SUBTASK_NORMALIZER,
@@ -18,7 +18,7 @@ from molhallulens.adapters import (
     UnknownSubtaskError,
 )
 from molhallulens.config.loader import load_config_bundle
-from molhallulens.domain import EditingSubtask
+from molhallulens.core import EditingSubtask
 
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"

@@ -8,31 +8,31 @@ from types import SimpleNamespace
 
 import pytest
 
-from molhallulens.candidates.core import (
+from molhallulens.modules.error_planning.core import (
     CandidateDifficultyFeatures,
     CandidateProposal,
     CandidateRequest,
 )
-from molhallulens.candidates.donors import (
+from molhallulens.modules.error_planning.donors import (
     DonorEntry,
     DonorKind,
     SplitBoundDonorQuery,
 )
-from molhallulens.candidates.hybrid_engine import (
+from molhallulens.modules.error_planning.hybrid import (
     HybridCandidateEngine,
     T018CandidateGate,
 )
-from molhallulens.candidates.llm_agent_source import (
+from molhallulens.modules.error_planning.llm import (
     LLMAgentCandidateSource,
     LLMProposalRound,
     verified_candidate_adapter,
 )
-from molhallulens.candidates.rule_source import RuleCandidateSource
-from molhallulens.candidates.selector import (
+from molhallulens.modules.error_planning.rules import RuleCandidateSource
+from molhallulens.modules.error_planning.selector import (
     CandidateSelectionError,
     FrozenCandidateSelector,
 )
-from molhallulens.domain import (
+from molhallulens.core import (
     CandidatePatch,
     CandidateSourceType,
     ClaimValue,
@@ -42,7 +42,7 @@ from molhallulens.domain import (
     ValueProvenance,
     ValueType,
 )
-from molhallulens.providers.poe.schemas import (
+from molhallulens.infrastructure.providers.poe.schemas import (
     FROZEN_GLOBAL_SEED,
     ProposalCandidatePatch,
     ProposalConstraints,

@@ -11,8 +11,8 @@ from pathlib import Path
 import pytest
 
 from molhallulens.config.loader import load_config_bundle
-from molhallulens.domain import DetectorInput, SegmentKind
-from molhallulens.rendering import (
+from molhallulens.core import DetectorInput, SegmentKind
+from molhallulens.modules.text_realization import (
     DETECTOR_DELIMITERS,
     DETECTOR_FIELD_ORDER,
     DETECTOR_PROMPT_VERSION,

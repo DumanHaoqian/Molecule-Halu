@@ -6,7 +6,7 @@ from dataclasses import is_dataclass
 
 import pytest
 
-from molhallulens import domain
+from molhallulens import core as domain
 
 
 CORE_DATACLASSES = (

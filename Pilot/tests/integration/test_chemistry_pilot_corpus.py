@@ -7,8 +7,8 @@ from pathlib import Path
 
 import rdkit
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.chemistry import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.infrastructure.chemistry import (
     FragmentPolicy,
     canonicalize_smiles,
     compute_descriptors,

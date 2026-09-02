@@ -9,10 +9,10 @@ from pathlib import Path
 from typing import Any
 
 import pytest
-from molhallulens.adapters import ChemCoTMolEditAdapter, JoinedInputRecord
-from molhallulens.builders import build_reference_dag, derive_edit_truth
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter, JoinedInputRecord
+from molhallulens.modules.reference import build_reference_dag, derive_edit_truth
 from molhallulens.config import load_config_bundle
-from molhallulens.domain import (
+from molhallulens.core import (
     CandidatePatch,
     CandidatePool,
     CandidateSourceType,
@@ -32,7 +32,7 @@ from molhallulens.domain import (
     ValueProvenance,
     ValueType,
 )
-from molhallulens.perturbators import (
+from molhallulens.modules.error_injection import (
     AdditionPerturbator,
     CandidateEngine,
     DeletionPerturbator,
@@ -49,7 +49,7 @@ from molhallulens.perturbators import (
     operator,
     task_record_from_validated_reference,
 )
-from molhallulens.validation import OriginValidationInput
+from molhallulens.infrastructure.validation import OriginValidationInput
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"
 OPERATORS_CONFIG = load_config_bundle().operators

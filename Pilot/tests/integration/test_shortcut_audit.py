@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-import molhallulens.audit.shortcut_audit as shortcut
+import molhallulens.modules.release.shortcut_audit as shortcut
 
 
 @pytest.fixture(scope="module")
@@ -213,7 +213,7 @@ def test_passed_release_needs_no_remediation(
         "required": False,
         "status": "not_needed",
         "strict_rerun_command": (
-            "python -m molhallulens.audit.shortcut_audit --strict"
+            "python -m molhallulens.modules.release.shortcut_audit --strict"
         ),
     }
 

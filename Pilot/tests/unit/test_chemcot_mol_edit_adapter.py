@@ -10,12 +10,12 @@ from typing import Any
 
 import pytest
 
-from molhallulens.adapters import (
+from molhallulens.modules.ingestion import (
     ChemCoTMolEditAdapter,
     InputAdapterError,
     JoinedInputRecord,
 )
-from molhallulens.domain import DomainValidationError, Severity, ValidationStage
+from molhallulens.core import DomainValidationError, Severity, ValidationStage
 
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"

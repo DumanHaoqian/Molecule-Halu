@@ -10,7 +10,7 @@ from heapq import heapify, heappop, heappush
 import pytest
 from hypothesis import given, settings, strategies as st
 
-from molhallulens.domain.enums import (
+from molhallulens.core.enums import (
     ComparatorKind,
     DependencyType,
     NodeRole,
@@ -18,7 +18,7 @@ from molhallulens.domain.enums import (
     ValueType,
     Visibility,
 )
-from molhallulens.domain.state_dag import (
+from molhallulens.core.state_dag import (
     ClaimValue,
     StateDAG,
     StateEdge,

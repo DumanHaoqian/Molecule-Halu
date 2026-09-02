@@ -9,20 +9,20 @@ from typing import Any
 import pytest
 from rdkit import Chem
 
-from molhallulens.adapters import ChemCoTMolEditAdapter, JoinedInputRecord
-from molhallulens.builders import build_reference_dag, derive_edit_truth
-from molhallulens.candidates import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter, JoinedInputRecord
+from molhallulens.modules.reference import build_reference_dag, derive_edit_truth
+from molhallulens.modules.error_planning import (
     CandidateRejectCode,
     CandidateRequest,
     replay_edit_action,
 )
-from molhallulens.chemistry import (
+from molhallulens.infrastructure.chemistry import (
     canonicalize_smiles,
     compute_descriptors,
     isomeric_graph_equivalent,
 )
 from molhallulens.config import load_config_bundle
-from molhallulens.domain import (
+from molhallulens.core import (
     BondTypeName,
     CandidatePatch,
     CandidatePool,
@@ -36,7 +36,7 @@ from molhallulens.domain import (
     RewriteBudget,
     ValueProvenance,
 )
-from molhallulens.perturbators import (
+from molhallulens.modules.error_injection import (
     AdditionPerturbator,
     CandidateEngine,
     LabelProjector,
@@ -49,7 +49,7 @@ from molhallulens.perturbators import (
     ValidatorChain,
     task_record_from_joined_input,
 )
-from molhallulens.perturbators.editing.addition import (
+from molhallulens.modules.error_injection.operators.addition import (
     ADDITION_OPERATOR_IDS,
     AdditionCandidateDispatcher,
     AdditionCandidateEngine,

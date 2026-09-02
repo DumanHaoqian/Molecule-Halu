@@ -6,13 +6,13 @@ from types import MappingProxyType
 import pytest
 from pydantic import ValidationError
 
-import molhallulens.providers.poe.chemistry_tools as chemistry_tools_module
-from molhallulens.providers.poe.chemistry_tools import (
+import molhallulens.infrastructure.providers.poe.chemistry_tools as chemistry_tools_module
+from molhallulens.infrastructure.providers.poe.chemistry_tools import (
     CHEMISTRY_TOOL_HANDLERS,
     CHEMISTRY_TOOL_RESULT_VERSION,
     ChemistryTools,
 )
-from molhallulens.providers.poe.schemas import CHEMISTRY_TOOL_NAMES
+from molhallulens.infrastructure.providers.poe.schemas import CHEMISTRY_TOOL_NAMES
 
 MAPPED_BROMOETHANE = "[CH3:1][CH2:2][Br:3]"
 

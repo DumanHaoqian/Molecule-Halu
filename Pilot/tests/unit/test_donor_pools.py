@@ -9,20 +9,20 @@ from tempfile import TemporaryDirectory
 
 import pytest
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.builders.edit_truth import derive_edit_truth
-from molhallulens.builders.leakage_groups import assign_leakage_groups
-from molhallulens.builders.origin_audit import audit_origin_split_features
-from molhallulens.builders.reference_dag import build_reference_dag
-from molhallulens.builders.split_manifest import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.reference.truth import derive_edit_truth
+from molhallulens.modules.release.leakage import assign_leakage_groups
+from molhallulens.modules.release.origin_audit import audit_origin_split_features
+from molhallulens.modules.reference.builder import build_reference_dag
+from molhallulens.modules.release.manifest import (
     FrozenSplitManifest,
     VerifiedSplitManifest,
     build_frozen_split_manifest,
     load_verified_split_manifest,
     write_frozen_split_manifest,
 )
-from molhallulens.builders.splitter import build_group_stratified_split
-from molhallulens.candidates.donors import (
+from molhallulens.modules.release.splitter import build_group_stratified_split
+from molhallulens.modules.error_planning.donors import (
     DONOR_POOL_FORMAT_VERSION,
     DONOR_POOL_SCHEMA_VERSION,
     DonorKind,
@@ -33,7 +33,7 @@ from molhallulens.candidates.donors import (
     load_split_donor_pool,
     write_split_donor_pools,
 )
-from molhallulens.validation import OriginValidationInput
+from molhallulens.infrastructure.validation import OriginValidationInput
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"
 DONOR_POOL_ROOT = (
@@ -292,7 +292,7 @@ def test_import_rejects_manifest_unknown_and_cross_split_tampering(
 
 
 def test_builder_does_not_call_split_solver_or_rewrite_manifest(monkeypatch) -> None:
-    from molhallulens.builders.splitter import GroupStratifiedSplitter
+    from molhallulens.modules.release.splitter import GroupStratifiedSplitter
 
     _, _, _, _, manifest = _sources()
     rows_before = manifest.rows

@@ -10,9 +10,9 @@ from pathlib import Path
 
 import pytest
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.builders import build_reference_dag, derive_edit_truth
-from molhallulens.domain import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.reference import build_reference_dag, derive_edit_truth
+from molhallulens.core import (
     BuildProvenance,
     CandidatePatch,
     CandidatePool,
@@ -41,7 +41,7 @@ from molhallulens.domain import (
     Visibility,
     state_schema_for,
 )
-from molhallulens.perturbators import (
+from molhallulens.modules.error_injection import (
     AdditionPerturbator,
     CandidateEngine,
     DeletionPerturbator,
@@ -65,7 +65,7 @@ from molhallulens.perturbators import (
     task_record_from_joined_input,
     task_record_from_validated_reference,
 )
-from molhallulens.validation import OriginValidationInput
+from molhallulens.infrastructure.validation import OriginValidationInput
 
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"

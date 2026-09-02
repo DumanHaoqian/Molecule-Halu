@@ -11,8 +11,8 @@ from typing import Any
 
 import pytest
 
-from molhallulens.adapters import ChemCoTMolEditAdapter
-from molhallulens.builders import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
+from molhallulens.modules.reference import (
     DEFAULT_ANOMALY_REGISTRY,
     AnomalyRegistryError,
     audit_anomaly_registry,
@@ -21,7 +21,7 @@ from molhallulens.builders import (
     derive_edit_truth,
     structural_edit_signature,
 )
-from molhallulens.domain import (
+from molhallulens.core import (
     AnomalyProvenance,
     EditingSubtask,
     EditTruth,

@@ -8,8 +8,8 @@ from typing import Any
 
 import pytest
 
-from molhallulens.adapters import ChemCoTMolEditAdapter, JoinedInputRecord
-from molhallulens.builders import (
+from molhallulens.modules.ingestion import ChemCoTMolEditAdapter, JoinedInputRecord
+from molhallulens.modules.reference import (
     AdditionReferenceDAGBuilder,
     DeletionReferenceDAGBuilder,
     ReferenceDAGBuildError,
@@ -18,7 +18,7 @@ from molhallulens.builders import (
     build_reference_dag,
     reference_dag_builder_for,
 )
-from molhallulens.domain import (
+from molhallulens.core import (
     ClaimValue,
     EditingSubtask,
     StateDAG,
@@ -27,7 +27,7 @@ from molhallulens.domain import (
     Visibility,
     editing_schema_for,
 )
-from molhallulens.rendering import DetectorPromptSerializer
+from molhallulens.modules.text_realization import DetectorPromptSerializer
 
 
 DATASET_ROOT = Path(__file__).resolve().parents[2] / "Dataset"

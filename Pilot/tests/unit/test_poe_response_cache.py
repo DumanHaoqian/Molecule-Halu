@@ -9,7 +9,7 @@ from typing import Any
 
 import pytest
 
-from molhallulens.providers.poe.client import (
+from molhallulens.infrastructure.providers.poe.client import (
     POE_MODEL_ID,
     PoeAttemptStatus,
     PoeClientConfig,
@@ -19,7 +19,7 @@ from molhallulens.providers.poe.client import (
     PoeTransport,
     PoeTransportAttempt,
 )
-from molhallulens.providers.poe.response_cache import (
+from molhallulens.infrastructure.providers.poe.response_cache import (
     CACHE_SCHEMA,
     CacheMode,
     PoeCacheContext,
@@ -27,7 +27,7 @@ from molhallulens.providers.poe.response_cache import (
     PoeResponseCacheError,
     canonical_json_bytes,
 )
-from molhallulens.providers.poe.schemas import (
+from molhallulens.infrastructure.providers.poe.schemas import (
     FROZEN_GLOBAL_SEED,
     ProposalConstraints,
     ProposalManifestIdentity,

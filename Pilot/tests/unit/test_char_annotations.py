@@ -6,13 +6,13 @@ from collections.abc import Iterable
 
 import pytest
 
-from molhallulens.annotation.char_annotations import (
+from molhallulens.modules.annotation.char_annotations import (
     CharAnnotationBuildError,
     build_char_annotations,
     derive_evidence_relations,
     is_pure_omission,
 )
-from molhallulens.domain import (
+from molhallulens.core import (
     CausalRole,
     ClaimValue,
     EditErrorSubtype,
@@ -24,7 +24,7 @@ from molhallulens.domain import (
     ValueProvenance,
     ValueType,
 )
-from molhallulens.rendering.trace_ast import (
+from molhallulens.modules.text_realization.trace_ast import (
     AnswerDocument,
     ClaimNode,
     LiteralNode,
