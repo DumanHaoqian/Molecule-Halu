@@ -2,13 +2,28 @@
 
 from __future__ import annotations
 
-from .pipeline import PIPELINE_ORDER, PipelineModule, PipelineStage, SequentialPipeline
+from .pipeline import (
+    AnnotationModule,
+    ErrorInjectionModule,
+    ErrorPlanningModule,
+    IngestionModule,
+    ReferenceModule,
+    ReleaseModule,
+    SequentialPipeline,
+    TextRealizationModule,
+    TrajectoryModule,
+)
 
 __all__ = [
-    "PIPELINE_ORDER",
-    "PipelineModule",
-    "PipelineStage",
+    "AnnotationModule",
+    "ErrorInjectionModule",
+    "ErrorPlanningModule",
+    "IngestionModule",
+    "ReferenceModule",
+    "ReleaseModule",
     "SequentialPipeline",
+    "TextRealizationModule",
+    "TrajectoryModule",
     "__version__",
 ]
 
