@@ -136,6 +136,13 @@ class MutationTargetKind(_DomainStrEnum):
     EDGE = "edge"
 
 
+class CausalRole(_DomainStrEnum):
+    """Whether a changed claim is the sampled error or its deterministic consequence."""
+
+    ROOT_HALLUCINATION = "root_hallucination"
+    PROPAGATED_ERROR = "propagated_error"
+
+
 class Severity(_DomainStrEnum):
     INFO = "info"
     WARNING = "warning"

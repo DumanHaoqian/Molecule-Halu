@@ -12,11 +12,13 @@ license = "LicenseRef-Proprietary"
 authors = [{ name = "MolHalluLens contributors" }]
 dependencies = [
   "fastapi-poe==0.0.83",
+  "gradio==6.26.0",
   "rdkit==2025.9.6",
 ]
 
 [project.scripts]
 molhallulens-build-subset = "molhallulens.modules.ingestion.build_subset:main"
+molhallulens-demo = "molhallulens.demo:main"
 molhallulens-generate = "molhallulens.generate_dataset:main"
 
 [project.optional-dependencies]

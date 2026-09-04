@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import re
-from collections import Counter
 from dataclasses import dataclass
 from typing import Any
 
@@ -17,14 +16,19 @@ from molhallulens.core import (
 from molhallulens.modules.reference import ReferenceDAGArtifact
 
 from .poe_agent import (
+    FORMAL_MARKER,
     PoeRewriteRequest,
+    RequiredHallucinationOccurrence,
     PoeStepRewriteInput,
     PoeStepTextAgent,
+    PoeTextRealizationError,
+    parse_hallucination_markers,
+    strip_hallucination_markers,
+    validate_rewritten_step_text,
 )
 
 
-_FORMAL_MARKER = "\n  FORMAL: "
-_PLACEHOLDER = re.compile(r"\{\{([a-z][a-z0-9_]*)\}\}", flags=re.ASCII)
+_FORMAL_MARKER = FORMAL_MARKER
 
 
 @dataclass(frozen=True, slots=True)
@@ -44,7 +48,7 @@ def _add_step(
     *,
     origin_id: str,
     graph: StateDAG,
-    edited_nodes: frozenset[str],
+    causal_roles_by_node: dict[str, Any],
     step_index: int,
     parts: tuple[str | _Literal, ...],
     reasoning_offset: int,
@@ -73,7 +77,8 @@ def _add_step(
                 start=start,
                 end=end,
                 value=value,
-                hallucinated=part.node_id in edited_nodes,
+                hallucinated=part.node_id in causal_roles_by_node,
+                causal_role=causal_roles_by_node.get(part.node_id),
             )
         )
     return buffer, tuple(mentions)
@@ -344,13 +349,6 @@ def _split_step_parts(
     return tuple(natural), tuple(formal)
 
 
-def _placeholder_template(parts: tuple[str | _Literal, ...]) -> str:
-    return "".join(
-        part if type(part) is str else "{{" + part.node_id + "}}"
-        for part in parts
-    )
-
-
 def _render_value_text(parts: tuple[str | _Literal, ...], graph: StateDAG) -> str:
     return "".join(
         part if type(part) is str else _value_text(graph, part)
@@ -369,41 +367,261 @@ def _literal_flags(parts: tuple[str | _Literal, ...]) -> dict[str, bool]:
     return result
 
 
+def _captured_spans(pattern: str, text: str) -> set[tuple[int, int]]:
+    return {
+        match.span("value")
+        for match in re.finditer(pattern, text, flags=re.IGNORECASE)
+    }
+
+
+def _original_occurrence_spans(
+    node_id: str,
+    before_text: str,
+    natural_body: str,
+) -> tuple[tuple[int, int], ...]:
+    """Locate node-specific natural-language mentions in ChemCoT's fixed steps."""
+
+    escaped = re.escape(before_text)
+    numeric_nodes = {
+        "anchor_idx",
+        "source_heavy",
+        "product_heavy",
+        "heavy_delta",
+        "source_rings",
+        "product_rings",
+        "ring_delta",
+        "fragment_heavy",
+        "remove_heavy",
+        "add_heavy",
+    }
+    needle = rf"(?<!\d){escaped}" if node_id in numeric_nodes else escaped
+    spans: set[tuple[int, int]] = set()
+    if node_id == "anchor_idx":
+        spans |= _captured_spans(
+            rf"\b(?:atom|idx|index|map)\s*(?:=|:)?\s*(?P<value>{needle})(?!\d)",
+            natural_body,
+        )
+        spans |= _captured_spans(
+            rf"\b[A-Z][a-z]?(?P<value>{needle})(?!\d)",
+            natural_body,
+        )
+        spans |= _captured_spans(
+            rf"\[\s*[A-Za-z]+[^\]]*:\s*(?P<value>{needle})(?!\d)",
+            natural_body,
+        )
+    elif node_id == "anchor_element":
+        spans |= _captured_spans(
+            rf"\belement\s*(?:=|:)?\s*[\"']?(?P<value>{needle})(?![a-z])",
+            natural_body,
+        )
+        spans |= _captured_spans(
+            rf"\(\s*(?P<value>{needle})\s*\)",
+            natural_body,
+        )
+    elif node_id in {"source_heavy", "product_heavy"}:
+        subject = "source" if node_id == "source_heavy" else "product"
+        spans |= _captured_spans(
+            rf"\b{subject}\b[^,.;\n]{{0,120}}?\b(?:has|contains)\s+"
+            rf"(?P<value>{needle})\s+heavy\s+atoms?",
+            natural_body,
+        )
+        if node_id == "source_heavy":
+            spans |= _captured_spans(
+                rf"(?:max(?:imum)?\s+(?:atom[- ]?map|map)|map)\s*(?:number)?\s*:"
+                rf"?\s*(?P<value>{needle})(?!\d)",
+                natural_body,
+            )
+        equation_context = (
+            r"(?:HEAVY_ATOM_DELTA|net\s+change|change\s+in\s+heavy\s+atoms|"
+            r"check)"
+        )
+        if node_id == "product_heavy":
+            spans |= _captured_spans(
+                rf"{equation_context}[^.\n]{{0,120}}?(?:is|=|:)\s*"
+                rf"(?P<value>{needle})\s*-",
+                natural_body,
+            )
+        else:
+            spans |= _captured_spans(
+                rf"{equation_context}[^.\n]{{0,120}}?(?:is|=|:)\s*"
+                rf"\d+\s*-\s*(?P<value>{needle})\s*=",
+                natural_body,
+            )
+    elif node_id in {"source_rings", "product_rings"}:
+        subject = "source" if node_id == "source_rings" else "product"
+        spans |= _captured_spans(
+            rf"\b{subject}\b[^,.;\n]{{0,120}}?\b(?:has|contains)\s+"
+            rf"(?P<value>{needle})\s+rings?",
+            natural_body,
+        )
+        equation_context = r"(?:RING_DELTA|net\s+change(?:\s+in\s+rings)?|check)"
+        if node_id == "product_rings":
+            spans |= _captured_spans(
+                rf"{equation_context}[^.\n]{{0,120}}?(?:is|=|:)\s*"
+                rf"(?P<value>{needle})\s*-",
+                natural_body,
+            )
+        else:
+            spans |= _captured_spans(
+                rf"{equation_context}[^.\n]{{0,120}}?(?:is|=|:)\s*"
+                rf"\d+\s*-\s*(?P<value>{needle})\s*=",
+                natural_body,
+            )
+    elif node_id in {"heavy_delta", "ring_delta"}:
+        label = "HEAVY_ATOM_DELTA" if node_id == "heavy_delta" else "RING_DELTA"
+        spans |= _captured_spans(
+            rf"\b{label}\b[^.\n]*?=\s*(?P<value>{needle})(?!\d)",
+            natural_body,
+        )
+        spans |= _captured_spans(
+            rf"\b(?:claimed\s+delta|net\s+change|change\s+in\s+"
+            rf"(?:heavy\s+atoms|rings))\b[^.\n]*?=\s*"
+            rf"(?P<value>{needle})(?!\d)",
+            natural_body,
+        )
+        spans |= _captured_spans(
+            rf"\b(?:expected\s+(?:difference|change)|matches|cross-check)\b"
+            rf"[^.\n]*?=\s*(?P<value>{needle})(?!\d)",
+            natural_body,
+        )
+        spans |= _captured_spans(
+            rf"\b(?:claimed\s+delta|net\s+change(?:\s+in\s+rings)?)\b"
+            rf"[^.\n]{{0,80}}?\bis\s*(?P<value>{needle})(?!\d)",
+            natural_body,
+        )
+    elif node_id == "fragment_heavy":
+        spans |= _captured_spans(
+            rf"\b(?:ADD_FRAGMENT|fragment)\b[^.\n]{{0,180}}?"
+            rf"(?:has|contains|consists\s+of)\s+(?P<value>{needle})\s+"
+            rf"heavy\s+atoms?",
+            natural_body,
+        )
+        spans |= _captured_spans(
+            rf"\b(?:fragment\s+heavy(?:-atom)?\s+count|total\s+k|k)\b"
+            rf"\s*(?:=|is|:)\s*(?P<value>{needle})(?!\d)",
+            natural_body,
+        )
+    elif node_id == "remove_heavy":
+        spans |= _captured_spans(
+            rf"\b(?:REMOVE_HEAVY|k_remove)\b\s*(?:=|\()\s*"
+            rf"(?P<value>{needle})(?!\d)",
+            natural_body,
+        )
+        spans |= _captured_spans(
+            rf"\bremoved\s+group\b\s*\(\s*(?P<value>{needle})\s*\)",
+            natural_body,
+        )
+        spans |= _captured_spans(
+            rf"\b(?:matches|cross-check|equals|difference)\b[^.\n]{{0,120}}?"
+            rf"\d+\s*-\s*(?P<value>{needle})(?=\s*(?:=|[).,]))",
+            natural_body,
+        )
+        spans |= _captured_spans(
+            rf"\b(?:leaving\s+group|REMOVE_GROUP)\b[^.\n]{{0,180}}?"
+            rf"(?:has|contains|consists\s+of(?:\s+exactly)?)\s+"
+            rf"(?P<value>{needle})\s+heavy\s+atoms?",
+            natural_body,
+        )
+    elif node_id == "add_heavy":
+        spans |= _captured_spans(
+            rf"\b(?:ADD_HEAVY|k_add)\b\s*(?:=|\()\s*"
+            rf"(?P<value>{needle})(?!\d)",
+            natural_body,
+        )
+        spans |= _captured_spans(
+            rf"\badded\s+fragment\b\s*\(\s*(?P<value>{needle})\s*\)",
+            natural_body,
+        )
+        spans |= _captured_spans(
+            rf"\b(?:matches|cross-check|equals|difference)\b[^.\n]{{0,120}}?"
+            rf"(?P<value>{needle})\s*-\s*\d+",
+            natural_body,
+        )
+    else:
+        spans |= {
+            match.span()
+            for match in re.finditer(re.escape(before_text), natural_body)
+        }
+    return tuple(sorted(spans))
+
+
+def _required_occurrences(
+    *,
+    original_step_text: str,
+    prefix: str,
+    natural_parts: tuple[str | _Literal, ...],
+    reference_graph: StateDAG,
+    candidate_graph: StateDAG,
+    changed_nodes: frozenset[str],
+) -> tuple[RequiredHallucinationOccurrence, ...]:
+    original_head, _ = original_step_text.split(_FORMAL_MARKER, 1)
+    natural_body = original_head[len(prefix) :]
+    literal_flags = _literal_flags(natural_parts)
+    nodes_to_scan = changed_nodes & frozenset(literal_flags)
+    if "heavy_delta" in literal_flags:
+        # ChemCoT's heavy-atom verification prose often repeats the fragment
+        # counts in a cross-check even though those nodes are absent from that
+        # step's FORMAL expression.
+        nodes_to_scan |= changed_nodes & {
+            "fragment_heavy",
+            "remove_heavy",
+            "add_heavy",
+        }
+    requirements = []
+    for node_id in sorted(nodes_to_scan):
+        if node_id not in reference_graph.values or node_id not in candidate_graph.values:
+            continue
+        signed = literal_flags.get(node_id, node_id in {"heavy_delta", "ring_delta"})
+        before = _value_text(reference_graph, _Literal(node_id, signed=signed))
+        after = _value_text(candidate_graph, _Literal(node_id, signed=signed))
+        if before == after:
+            continue
+        spans = _original_occurrence_spans(node_id, before, natural_body)
+        for occurrence_index, (start, end) in enumerate(spans, start=1):
+            requirements.append(
+                RequiredHallucinationOccurrence(
+                    occurrence_id=f"{node_id}.{occurrence_index:02d}",
+                    node_id=node_id,
+                    before_text=natural_body[start:end],
+                    after_text=after,
+                    original_start=start,
+                    original_end=end,
+                )
+            )
+    return tuple(requirements)
+
+
 def build_poe_rewrite_request(
     artifact: ReferenceDAGArtifact,
     injected: InjectedHallucination,
 ) -> PoeRewriteRequest:
-    """Build the label-free Poe input while keeping modified FORMAL locally owned."""
+    """Pair every original complete step_text with its locally modified FORMAL."""
 
     _validate_render_input(artifact, injected)
     graph = injected.candidate_graph
+    changed_nodes = frozenset(injected.changed_node_ids)
     templates = _templates(artifact.normalized_subtask)
     if len(templates) != len(artifact.trace_steps):
         raise ValueError("renderer template count does not match the reference trace")
     steps = []
     for trace_step, parts in zip(artifact.trace_steps, templates, strict=True):
         natural_parts, formal_parts = _split_step_parts(parts)
-        full_natural_template = _placeholder_template(natural_parts)
+        original_step_text = trace_step.render(include_answer=False)
         prefix = f"Step {trace_step.step_index} [{trace_step.step_name}]: "
-        if not full_natural_template.startswith(prefix):
-            raise ValueError("natural template has an unexpected fixed step prefix")
-        natural_template = full_natural_template[len(prefix) :]
-        placeholder_counts = Counter(_PLACEHOLDER.findall(natural_template))
-        flags = _literal_flags(natural_parts)
-        placeholder_values = {
-            node_id: _value_text(graph, _Literal(node_id, signed=signed))
-            for node_id, signed in flags.items()
-        }
         steps.append(
             PoeStepRewriteInput(
                 step_index=trace_step.step_index,
                 step_name=trace_step.step_name,
-                original_natural_language=trace_step.natural_language,
-                original_formal_ab=trace_step.formal_ab,
+                original_step_text=original_step_text,
                 modified_formal_ab=_render_value_text(formal_parts, graph),
-                natural_template_draft=natural_template,
-                placeholder_values=placeholder_values,
-                required_placeholder_counts=placeholder_counts,
+                required_hallucination_occurrences=_required_occurrences(
+                    original_step_text=original_step_text,
+                    prefix=prefix,
+                    natural_parts=natural_parts,
+                    reference_graph=artifact.state_dag,
+                    candidate_graph=graph,
+                    changed_nodes=changed_nodes,
+                ),
             )
         )
     return PoeRewriteRequest(
@@ -427,29 +645,54 @@ def _validate_render_input(
         raise ValueError("artifact and injection must share the same reference graph")
 
 
-def _render_placeholder_body(
+def _render_marked_natural_body(
     *,
-    template: str,
-    graph: StateDAG,
-    signed_by_node: dict[str, bool],
+    marked_natural_body: str,
     origin_id: str,
-    edited_nodes: frozenset[str],
     step_index: int,
     reasoning_offset: int,
     occurrence_counts: dict[str, int],
+    expected: PoeStepRewriteInput,
+    causal_roles_by_node: dict[str, Any],
 ) -> tuple[str, tuple[RenderedMention, ...]]:
-    buffer = ""
+    """Strip Poe markers and convert their exact locations into mentions."""
+
+    parsed_markers = parse_hallucination_markers(marked_natural_body)
+    clean_body = strip_hallucination_markers(marked_natural_body)
+
+    # Do not mistake an old value embedded in the planned replacement itself
+    # (for example ``5`` inside ``15``) for an unmodified occurrence.  Mask all
+    # correctly marked replacements first, then search the remaining prose for
+    # every node's old surface value using the same node-aware inventory rules.
+    stale_search_body = list(clean_body)
+    for _, _, start, end in parsed_markers:
+        stale_search_body[start:end] = " " * (end - start)
+    stale_search_body_text = "".join(stale_search_body)
+
+    checked: set[tuple[str, str]] = set()
+    for requirement in expected.required_hallucination_occurrences:
+        key = (requirement.node_id, requirement.before_text)
+        if key in checked:
+            continue
+        checked.add(key)
+        if _original_occurrence_spans(
+            requirement.node_id,
+            requirement.before_text,
+            stale_search_body_text,
+        ):
+            raise PoeTextRealizationError(
+                "rewritten natural language retained a stale value for "
+                f"{requirement.node_id!r}"
+            )
     mentions = []
-    cursor = 0
-    for match in _PLACEHOLDER.finditer(template):
-        buffer += template[cursor : match.start()]
-        node_id = match.group(1)
-        if node_id not in signed_by_node:
-            raise ValueError(f"natural template contains unknown placeholder {node_id!r}")
-        value = _value_text(graph, _Literal(node_id, signed_by_node[node_id]))
-        start = reasoning_offset + len(buffer)
-        buffer += value
-        end = reasoning_offset + len(buffer)
+    requirements = {
+        item.occurrence_id: item
+        for item in expected.required_hallucination_occurrences
+    }
+    for occurrence_id, value, local_start, local_end in parsed_markers:
+        node_id = requirements[occurrence_id].node_id
+        start = reasoning_offset + local_start
+        end = reasoning_offset + local_end
         occurrence_counts[node_id] = occurrence_counts.get(node_id, 0) + 1
         mentions.append(
             RenderedMention(
@@ -463,56 +706,70 @@ def _render_placeholder_body(
                 start=start,
                 end=end,
                 value=value,
-                hallucinated=node_id in edited_nodes,
+                hallucinated=True,
+                causal_role=causal_roles_by_node[node_id],
             )
         )
-        cursor = match.end()
-    buffer += template[cursor:]
-    return buffer, tuple(mentions)
+    return clean_body, tuple(mentions)
 
 
 def _assemble_rendered_text(
     artifact: ReferenceDAGArtifact,
     injected: InjectedHallucination,
-    natural_templates: tuple[str, ...],
+    request: PoeRewriteRequest,
+    rewritten_step_texts: tuple[str, ...],
     realization: dict[str, Any],
 ) -> RenderedHallucination:
     _validate_render_input(artifact, injected)
     graph = injected.candidate_graph
-    edited_nodes = frozenset(injected.plan.edited_node_ids)
+    changed_nodes = frozenset(injected.changed_node_ids)
+    causal_roles_by_node = dict(injected.causal_roles_by_node)
     step_definitions = _templates(artifact.normalized_subtask)
-    if len(natural_templates) != len(step_definitions):
-        raise ValueError("natural template count does not match the trace")
+    if request.origin_id != artifact.anonymous_sample_id:
+        raise ValueError("Poe request does not belong to this reference artifact")
+    if not (
+        len(rewritten_step_texts)
+        == len(request.steps)
+        == len(step_definitions)
+        == len(artifact.trace_steps)
+    ):
+        raise ValueError("rewritten step count does not match the trace")
 
     step_texts: list[str] = []
     mentions: list[RenderedMention] = []
     occurrence_counts: dict[str, int] = {}
     reasoning_length = 0
-    for trace_step, parts, natural_template in zip(
+    for trace_step, parts, expected, rewritten_step_text in zip(
         artifact.trace_steps,
         step_definitions,
-        natural_templates,
+        request.steps,
+        rewritten_step_texts,
         strict=True,
     ):
         if step_texts:
             reasoning_length += 2
-        natural_parts, formal_parts = _split_step_parts(parts)
+        _, formal_parts = _split_step_parts(parts)
         prefix = f"Step {trace_step.step_index} [{trace_step.step_name}]: "
-        natural_body, natural_mentions = _render_placeholder_body(
-            template=natural_template,
-            graph=graph,
-            signed_by_node=_literal_flags(natural_parts),
+        validate_rewritten_step_text(rewritten_step_text, expected)
+        marked_head, returned_formal = rewritten_step_text.split(_FORMAL_MARKER, 1)
+        locally_rendered_formal = _render_value_text(formal_parts, graph)
+        if returned_formal != locally_rendered_formal:
+            raise ValueError("validated Poe FORMAL differs from the candidate DAG")
+        marked_natural_body = marked_head[len(prefix) :]
+        natural_body, natural_mentions = _render_marked_natural_body(
+            marked_natural_body=marked_natural_body,
             origin_id=artifact.anonymous_sample_id,
-            edited_nodes=edited_nodes,
             step_index=trace_step.step_index,
             reasoning_offset=reasoning_length + len(prefix),
             occurrence_counts=occurrence_counts,
+            expected=expected,
+            causal_roles_by_node=causal_roles_by_node,
         )
         natural_text = prefix + natural_body
         formal_text, formal_mentions = _add_step(
             origin_id=artifact.anonymous_sample_id,
             graph=graph,
-            edited_nodes=edited_nodes,
+            causal_roles_by_node=causal_roles_by_node,
             step_index=trace_step.step_index,
             parts=formal_parts,
             reasoning_offset=(
@@ -537,7 +794,8 @@ def _assemble_rendered_text(
             start=0,
             end=len(final_answer),
             value=final_answer,
-            hallucinated="final_answer" in edited_nodes,
+            hallucinated="final_answer" in changed_nodes,
+            causal_role=causal_roles_by_node.get("final_answer"),
         )
     )
     return RenderedHallucination(
@@ -558,14 +816,52 @@ class DeterministicTextRenderer:
         injected: InjectedHallucination,
     ) -> RenderedHallucination:
         request = build_poe_rewrite_request(artifact, injected)
+        graph = injected.candidate_graph
+        rewritten_steps = []
+        for expected, parts in zip(
+            request.steps,
+            _templates(artifact.normalized_subtask),
+            strict=True,
+        ):
+            natural_parts, _ = _split_step_parts(parts)
+            del natural_parts
+            marked_head = expected.original_step_text.split(_FORMAL_MARKER, 1)[0]
+            prefix = f"Step {expected.step_index} [{expected.step_name}]: "
+            marked_body = marked_head[len(prefix) :]
+            for occurrence in sorted(
+                expected.required_hallucination_occurrences,
+                key=lambda item: item.original_start,
+                reverse=True,
+            ):
+                if (
+                    marked_body[occurrence.original_start : occurrence.original_end]
+                    != occurrence.before_text
+                ):
+                    raise ValueError("required occurrence no longer matches original text")
+                marker = (
+                    f"[[HALLU:{occurrence.occurrence_id}]]"
+                    f"{occurrence.after_text}[[/HALLU]]"
+                )
+                marked_body = (
+                    marked_body[: occurrence.original_start]
+                    + marker
+                    + marked_body[occurrence.original_end :]
+                )
+            marked_head = prefix + marked_body
+            rewritten_steps.append(
+                marked_head + _FORMAL_MARKER + expected.modified_formal_ab
+            )
         return _assemble_rendered_text(
             artifact,
             injected,
-            tuple(step.natural_template_draft for step in request.steps),
+            request,
+            tuple(rewritten_steps),
             {
                 "backend": "deterministic_test_renderer",
                 "provider": None,
                 "network_request_count": 0,
+                "rewrite_mode": "minimal_original_step_text",
+                "annotation_protocol": "temporary_hallu_markers",
             },
         )
 
@@ -588,7 +884,8 @@ class PoeTextRenderer:
         return _assemble_rendered_text(
             artifact,
             injected,
-            result.natural_templates,
+            request,
+            result.rewritten_step_texts,
             {
                 "backend": "poe_agent",
                 "provider": "poe",
@@ -598,6 +895,8 @@ class PoeTextRenderer:
                 "response_sha256": result.response_sha256,
                 "network_request_count": result.network_request_count,
                 "cache_hit": result.cache_hit,
+                "rewrite_mode": "minimal_original_step_text",
+                "annotation_protocol": "temporary_hallu_markers",
             },
         )
 

@@ -39,7 +39,7 @@ class GenerationSummary:
 def generate_dataset(
     *,
     dataset_root: Path = DEFAULT_DATASET_ROOT,
-    output_path: Path = DEFAULT_GENERATED_ROOT / "hallucinations.jsonl",
+    output_path: Path = DEFAULT_GENERATED_ROOT / "example.jsonl",
     variants_per_origin: int = 1,
     config: HallucinationGenerationConfig = DEFAULT_HALLUCINATION_CONFIG,
 ) -> GenerationSummary:
@@ -59,7 +59,7 @@ def generate_dataset(
 
     # C-G: each variant independently selects, applies, renders and annotates edits.
     planner = UnifiedHallucinationPlanner(fragment_pool, config)
-    injector = UnifiedHallucinationInjector()
+    injector = UnifiedHallucinationInjector(config)
     renderer = PoeTextRenderer(PoeStepTextAgent(config))
     annotator = UnifiedHallucinationAnnotator()
     record_builder = UnifiedRecordBuilder()
@@ -69,7 +69,7 @@ def generate_dataset(
             plan = planner.plan(reference, variant_index=variant_index)
             injected = injector.apply(reference.state_dag, plan)
             rendered = renderer.render(reference, injected)
-            annotated = annotator.annotate(rendered, plan)
+            annotated = annotator.annotate(rendered, injected)
             records.append(record_builder.build(reference, injected, annotated))
 
     # H: release exactly the records made by the unified path.
@@ -93,7 +93,7 @@ def main() -> None:
     parser.add_argument(
         "--output",
         type=Path,
-        default=DEFAULT_GENERATED_ROOT / "hallucinations.jsonl",
+        default=DEFAULT_GENERATED_ROOT / "example.jsonl",
     )
     parser.add_argument("--variants-per-origin", type=int, default=1)
     args = parser.parse_args()

@@ -3,6 +3,7 @@
 This version turns ChemCoTBench-V2 molecule-editing traces into **always-positive,
 configurable hallucination records**. A record contains one or more independently
 selected edits in the reasoning steps and/or final-answer SMILES, plus exact text spans.
+Sampled root errors are separated from deterministic downstream consequences.
 
 The single data flow is:
 
@@ -10,8 +11,8 @@ The single data flow is:
 A ingestion
   -> B reference DAG + fragment pool
   -> C edit planning
-  -> D direct graph mutation
-  -> E Poe natural-language rewrite + locally locked FORMAL
+  -> D root mutation + deterministic propagation + edge audit
+  -> E Poe minimally edits original step_text from modified FORMAL
   -> F span annotation
   -> G record assembly
   -> H JSONL release
@@ -47,6 +48,9 @@ Activate the existing environment and work from `Pilot/`:
 ```bash
 conda activate molhallulens
 
+# Launch the local A-to-E visual walkthrough (annotation is merged into E).
+molhallulens-demo
+
 # Inspect one sample module by module; stage E calls Poe.
 python -m molhallulens.pipeline
 
@@ -56,13 +60,17 @@ python -m molhallulens.pipeline --no-pause
 # Generate the complete 150-origin dataset.
 python -m molhallulens.generate_dataset \
   --variants-per-origin 1 \
-  --output GeneratedDataset/hallucinations.jsonl
+  --output GeneratedDataset/example.jsonl
 
 # Verify the implementation.
 python -m pytest
 ```
 
 Every output record has `hallucination_present: true` and one unified schema.
+Poe receives each original complete `step_text` together with its modified `formal_ab`.
+It marks every identified occurrence of each changed natural-language value with an
+occurrence-specific temporary HALLU marker. Local code rejects missing/duplicate markers,
+locks natural text when only FORMAL changed, removes markers, and derives character spans.
 The test suite uses an injected fake Poe transport and therefore spends no points.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for file-level module ownership and contracts.

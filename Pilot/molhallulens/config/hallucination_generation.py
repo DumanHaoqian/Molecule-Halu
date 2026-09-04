@@ -70,10 +70,8 @@ EDITABLE_NODES_BY_SUBTASK: Mapping[str, tuple[str, ...]] = MappingProxyType(
             "product",
             "source_heavy",
             "product_heavy",
-            "heavy_delta",
             "source_rings",
             "product_rings",
-            "ring_delta",
             "final_answer",
         ),
         "delete": (
@@ -84,10 +82,8 @@ EDITABLE_NODES_BY_SUBTASK: Mapping[str, tuple[str, ...]] = MappingProxyType(
             "product",
             "source_heavy",
             "product_heavy",
-            "heavy_delta",
             "source_rings",
             "product_rings",
-            "ring_delta",
             "final_answer",
         ),
         "substitute": (
@@ -100,10 +96,8 @@ EDITABLE_NODES_BY_SUBTASK: Mapping[str, tuple[str, ...]] = MappingProxyType(
             "product",
             "source_heavy",
             "product_heavy",
-            "heavy_delta",
             "source_rings",
             "product_rings",
-            "ring_delta",
             "final_answer",
         ),
     }
@@ -171,7 +165,19 @@ REQUIRE_DIFFERENT_FROM_REFERENCE = True
 
 
 # ---------------------------------------------------------------------------
-# 8. Poe agent：把修改后的 FORMAL 变成上下文连贯的 step_text
+# 8. 确定性传播与一致性审计
+# ---------------------------------------------------------------------------
+
+# 根错误注入后，自动更新可以精确计算的关联节点，例如：
+# product_rings -> ring_delta，product -> final_answer / count / delta。
+ENABLE_DETERMINISTIC_PROPAGATION = True
+
+# 算术、重复值和 product/final-answer 等硬关系若传播后仍冲突，立即拒绝样本。
+# 化学语义关系（例如 instruction 是否真的支持 product）允许作为核心幻觉保留。
+FAIL_ON_TRIVIAL_EDGE_VIOLATION = True
+
+# ---------------------------------------------------------------------------
+# 9. Poe agent：依据修改后的 FORMAL 最小修改原始 step_text
 # ---------------------------------------------------------------------------
 
 # API token 只允许从这个环境变量读取。代码不会接收命令行 token，也不会把
@@ -183,7 +189,7 @@ POE_API_KEY_ENV = "POE_API_KEY"
 POE_BOT_NAME = "GPT-5.4"
 POE_TEMPERATURE = 0.20
 
-# 一次输出不符合 JSON/placeholder 合约时允许重新请求；这里表示总尝试次数。
+# 一次输出不符合 JSON/HALLU-marker 合约时允许重新请求；这里表示总尝试次数。
 POE_MAX_ATTEMPTS = 2
 
 # 已验证的 response 会缓存。相对路径以 Pilot/ 为根目录；cache 不包含 token。
@@ -191,7 +197,7 @@ POE_CACHE_DIRECTORY = "GeneratedDataset/.poe_text_cache"
 
 
 # ---------------------------------------------------------------------------
-# 9. 可复现性
+# 10. 可复现性
 # ---------------------------------------------------------------------------
 
 # 每条记录的最终 seed = GLOBAL_SEED + origin_id + variant_index 的稳定哈希。
@@ -229,6 +235,8 @@ class HallucinationGenerationConfig:
     smiles_similarity_max: float
     require_valid_smiles: bool
     require_different_from_reference: bool
+    enable_deterministic_propagation: bool
+    fail_on_trivial_edge_violation: bool
     poe_api_key_env: str
     poe_bot_name: str
     poe_temperature: float
@@ -258,6 +266,12 @@ class HallucinationGenerationConfig:
             raise ValueError("fragment similarity bounds are invalid")
         if not 0.0 <= self.smiles_similarity_min < self.smiles_similarity_max <= 1.0:
             raise ValueError("SMILES similarity bounds are invalid")
+        for value, name in (
+            (self.enable_deterministic_propagation, "enable_deterministic_propagation"),
+            (self.fail_on_trivial_edge_violation, "fail_on_trivial_edge_violation"),
+        ):
+            if type(value) is not bool:
+                raise TypeError(f"{name} must be bool")
         for value, name in (
             (self.poe_api_key_env, "poe_api_key_env"),
             (self.poe_bot_name, "poe_bot_name"),
@@ -324,6 +338,8 @@ DEFAULT_HALLUCINATION_CONFIG = HallucinationGenerationConfig(
     smiles_similarity_max=SMILES_SIMILARITY_MAX,
     require_valid_smiles=REQUIRE_VALID_SMILES,
     require_different_from_reference=REQUIRE_DIFFERENT_FROM_REFERENCE,
+    enable_deterministic_propagation=ENABLE_DETERMINISTIC_PROPAGATION,
+    fail_on_trivial_edge_violation=FAIL_ON_TRIVIAL_EDGE_VIOLATION,
     poe_api_key_env=POE_API_KEY_ENV,
     poe_bot_name=POE_BOT_NAME,
     poe_temperature=POE_TEMPERATURE,

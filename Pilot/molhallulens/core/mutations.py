@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from math import isfinite
 from typing import Any
 
-from .enums import MutationCategory, ValueType
+from .enums import CausalRole, DependencyType, MutationCategory, ValueType
 from .state_dag import FrozenMap, StateDAG, deep_freeze
 
 
@@ -134,22 +134,142 @@ class UnifiedHallucinationPlan:
 
 
 @dataclass(frozen=True, slots=True)
+class PropagationEvent:
+    """One deterministic claim change caused by a sampled root mutation."""
+
+    event_id: str
+    root_mutation_id: str
+    root_semantic_target_id: str
+    source_node_ids: tuple[str, ...]
+    target_node_id: str
+    rule_id: str
+    before: Any
+    after: Any
+
+    def __post_init__(self) -> None:
+        for value, name in (
+            (self.event_id, "event_id"),
+            (self.root_mutation_id, "root_mutation_id"),
+            (self.root_semantic_target_id, "root_semantic_target_id"),
+            (self.target_node_id, "target_node_id"),
+            (self.rule_id, "rule_id"),
+        ):
+            if type(value) is not str or not value:
+                raise ValueError(f"{name} must be non-empty text")
+        sources = tuple(self.source_node_ids)
+        if not sources or any(type(item) is not str or not item for item in sources):
+            raise ValueError("source_node_ids must contain non-empty node IDs")
+        if len(sources) != len(set(sources)):
+            raise ValueError("source_node_ids cannot contain duplicates")
+        before = deep_freeze(self.before)
+        after = deep_freeze(self.after)
+        if type(before) is not type(after) or before == after:
+            raise ValueError("a propagation event must change a value without changing type")
+        object.__setattr__(self, "source_node_ids", sources)
+        object.__setattr__(self, "before", before)
+        object.__setattr__(self, "after", after)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "event_id": self.event_id,
+            "root_mutation_id": self.root_mutation_id,
+            "root_semantic_target_id": self.root_semantic_target_id,
+            "source_node_ids": list(self.source_node_ids),
+            "target_node_id": self.target_node_id,
+            "rule_id": self.rule_id,
+            "before": self.before,
+            "after": self.after,
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class EdgeAuditResult:
+    """Materialized satisfaction status for one candidate-DAG dependency."""
+
+    edge_id: str
+    relation: DependencyType
+    status: bool | None
+
+    def __post_init__(self) -> None:
+        if type(self.edge_id) is not str or not self.edge_id:
+            raise ValueError("edge_id must be non-empty text")
+        if type(self.relation) is not DependencyType:
+            raise TypeError("relation must be DependencyType")
+        if self.status is not None and type(self.status) is not bool:
+            raise TypeError("status must be bool or None")
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "edge_id": self.edge_id,
+            "relation": self.relation.value,
+            "status": self.status,
+        }
+
+
+@dataclass(frozen=True, slots=True)
 class InjectedHallucination:
-    """Reference/candidate graph pair after all planned edits are applied directly."""
+    """Reference/candidate pair with sampled roots and deterministic consequences."""
 
     reference_graph: StateDAG
     candidate_graph: StateDAG
     plan: UnifiedHallucinationPlan
+    propagation_events: tuple[PropagationEvent, ...] = ()
+    edge_audit: tuple[EdgeAuditResult, ...] = ()
 
     def __post_init__(self) -> None:
         if type(self.reference_graph) is not StateDAG or type(self.candidate_graph) is not StateDAG:
             raise TypeError("reference_graph and candidate_graph must be StateDAG values")
         if type(self.plan) is not UnifiedHallucinationPlan:
             raise TypeError("plan must be UnifiedHallucinationPlan")
+        events = tuple(self.propagation_events)
+        audit = tuple(self.edge_audit)
+        if any(type(item) is not PropagationEvent for item in events):
+            raise TypeError("propagation_events must contain PropagationEvent values")
+        if any(type(item) is not EdgeAuditResult for item in audit):
+            raise TypeError("edge_audit must contain EdgeAuditResult values")
+        propagated_nodes = tuple(item.target_node_id for item in events)
+        if len(propagated_nodes) != len(set(propagated_nodes)):
+            raise ValueError("a propagated node may be changed only once")
+        if set(propagated_nodes) & set(self.plan.edited_node_ids):
+            raise ValueError("root and propagated node sets must be disjoint")
         differences = self.reference_graph.semantic_differences(self.candidate_graph)
         actual_nodes = {target_id for target_kind, target_id in differences if target_kind.value == "node"}
-        if actual_nodes != set(self.plan.edited_node_ids) or len(differences) != len(actual_nodes):
-            raise ValueError("candidate graph differences must exactly match planned node edits")
+        expected_nodes = set(self.plan.edited_node_ids) | set(propagated_nodes)
+        if actual_nodes != expected_nodes or len(differences) != len(actual_nodes):
+            raise ValueError(
+                "candidate graph differences must exactly match root and propagated edits"
+            )
+        if audit:
+            audit_ids = tuple(item.edge_id for item in audit)
+            schema_ids = tuple(sorted(self.candidate_graph.schema.edges_by_id))
+            if tuple(sorted(audit_ids)) != schema_ids or len(audit_ids) != len(set(audit_ids)):
+                raise ValueError("edge_audit must contain every schema edge exactly once")
+        object.__setattr__(self, "propagation_events", events)
+        object.__setattr__(self, "edge_audit", audit)
+
+    @property
+    def changed_node_ids(self) -> tuple[str, ...]:
+        return self.plan.edited_node_ids + tuple(
+            item.target_node_id for item in self.propagation_events
+        )
+
+    @property
+    def causal_roles_by_node(self) -> FrozenMap[str, CausalRole]:
+        roles = {
+            node_id: CausalRole.ROOT_HALLUCINATION
+            for node_id in self.plan.edited_node_ids
+        }
+        roles.update(
+            {
+                item.target_node_id: CausalRole.PROPAGATED_ERROR
+                for item in self.propagation_events
+            }
+        )
+        return FrozenMap(roles)
+
+    @property
+    def violated_edge_ids(self) -> tuple[str, ...]:
+        return tuple(item.edge_id for item in self.edge_audit if item.status is False)
 
 
 @dataclass(frozen=True, slots=True)
@@ -164,6 +284,7 @@ class RenderedMention:
     end: int
     value: str
     hallucinated: bool
+    causal_role: CausalRole | None = None
 
     def __post_init__(self) -> None:
         if self.component not in {"reasoning_chain", "final_answer"}:
@@ -185,6 +306,11 @@ class RenderedMention:
             raise ValueError("step_index must be positive or None")
         if type(self.hallucinated) is not bool:
             raise TypeError("hallucinated must be bool")
+        if self.hallucinated:
+            if type(self.causal_role) is not CausalRole:
+                raise TypeError("hallucinated mentions require a CausalRole")
+        elif self.causal_role is not None:
+            raise ValueError("non-hallucinated mentions cannot have a causal_role")
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -195,6 +321,9 @@ class RenderedMention:
             "span": [self.start, self.end],
             "value": self.value,
             "hallucinated": self.hallucinated,
+            "causal_role": (
+                self.causal_role.value if self.causal_role is not None else None
+            ),
         }
 
 
@@ -234,7 +363,9 @@ class RenderedHallucination:
 
 __all__ = [
     "InjectedHallucination",
+    "EdgeAuditResult",
     "PlannedMutation",
+    "PropagationEvent",
     "RenderedHallucination",
     "RenderedMention",
     "UnifiedHallucinationPlan",

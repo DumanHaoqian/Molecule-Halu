@@ -1,7 +1,8 @@
-"""Poe agent boundary for context-aware natural-language step rewriting.
+"""Poe boundary for minimal, marker-tracked edits of original ``step_text``.
 
-The agent never owns FORMAL text. It returns only natural-language templates whose
-claim placeholders are validated locally before candidate DAG values are inserted.
+Poe receives each original complete step and its locally rendered modified FORMAL.
+It returns a minimally edited complete step. Temporary HALLU markers identify only
+the changed natural-language claim values; local code validates and removes them.
 """
 
 from __future__ import annotations
@@ -10,11 +11,9 @@ import hashlib
 import json
 import os
 import re
-from collections import Counter
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
-from types import MappingProxyType
 from typing import Any
 
 from molhallulens.config.hallucination_generation import (
@@ -24,77 +23,148 @@ from molhallulens.config.hallucination_generation import (
 from molhallulens.config.paths import PROJECT_ROOT
 
 
-POE_RENDERER_VERSION = "poe_step_text_v1"
-_PLACEHOLDER = re.compile(r"\{\{([a-z][a-z0-9_]*)\}\}", flags=re.ASCII)
-_RESERVED_STRUCTURE = re.compile(
-    r"(?:^|\n)\s*(?:Step\s+\d+\s*\[|FORMAL:|Answer:)",
-    flags=re.IGNORECASE,
+POE_RENDERER_VERSION = "poe_step_text_v3"
+FORMAL_MARKER = "\n  FORMAL: "
+HALLU_MARKER_PATTERN = re.compile(
+    r"\[\[HALLU:([a-z][a-z0-9_]*\.[0-9]{2})\]\](.*?)\[\[/HALLU\]\]",
+    flags=re.ASCII | re.DOTALL,
 )
+_NODE_ID = re.compile(r"[a-z][a-z0-9_]*", flags=re.ASCII)
+_MARKER_TOKEN = re.compile(r"\[\[(?:HALLU:[^\]]*|/HALLU)\]\]", flags=re.ASCII)
 
 
 class PoeTextRealizationError(RuntimeError):
     """Fail-closed Poe configuration, transport, or response error."""
 
 
+def _split_complete_step(step_text: str) -> tuple[str, str]:
+    if step_text.count(FORMAL_MARKER) != 1:
+        raise PoeTextRealizationError(
+            "rewritten step_text must contain exactly one canonical FORMAL boundary"
+        )
+    head, formal = step_text.split(FORMAL_MARKER, 1)
+    return head, formal
+
+
+@dataclass(frozen=True, slots=True)
+class RequiredHallucinationOccurrence:
+    """One exact original mention that Poe must replace and mark once."""
+
+    occurrence_id: str
+    node_id: str
+    before_text: str
+    after_text: str
+    original_start: int
+    original_end: int
+
+    def __post_init__(self) -> None:
+        if (
+            type(self.occurrence_id) is not str
+            or re.fullmatch(r"[a-z][a-z0-9_]*\.[0-9]{2}", self.occurrence_id) is None
+        ):
+            raise ValueError("occurrence_id must be node_id plus a two-digit suffix")
+        if type(self.node_id) is not str or _NODE_ID.fullmatch(self.node_id) is None:
+            raise ValueError("node_id is invalid")
+        if not self.occurrence_id.startswith(self.node_id + "."):
+            raise ValueError("occurrence_id must be namespaced by node_id")
+        for value, name in (
+            (self.before_text, "before_text"),
+            (self.after_text, "after_text"),
+        ):
+            if type(value) is not str or not value:
+                raise ValueError(f"{name} must be non-empty text")
+            if _MARKER_TOKEN.search(value) is not None:
+                raise ValueError(f"{name} cannot contain marker tokens")
+        if type(self.original_start) is not int or type(self.original_end) is not int:
+            raise TypeError("original occurrence offsets must be integers")
+        if (
+            self.original_start < 0
+            or self.original_end <= self.original_start
+            or self.original_end - self.original_start != len(self.before_text)
+        ):
+            raise ValueError("original occurrence offsets must exactly cover before_text")
+
+    def to_prompt_dict(self) -> dict[str, str]:
+        return {
+            "occurrence_id": self.occurrence_id,
+            "node_id": self.node_id,
+            "before_text": self.before_text,
+            "after_text": self.after_text,
+            "original_span": [self.original_start, self.original_end],
+        }
+
+
 @dataclass(frozen=True, slots=True)
 class PoeStepRewriteInput:
+    """One original step plus the exact FORMAL the rewritten step must express."""
+
     step_index: int
     step_name: str
-    original_natural_language: str
-    original_formal_ab: str
+    original_step_text: str
     modified_formal_ab: str
-    natural_template_draft: str
-    placeholder_values: Mapping[str, str]
-    required_placeholder_counts: Mapping[str, int]
+    required_hallucination_occurrences: tuple[RequiredHallucinationOccurrence, ...]
 
     def __post_init__(self) -> None:
         if type(self.step_index) is not int or self.step_index < 1:
             raise ValueError("step_index must be a positive integer")
         for value, name in (
             (self.step_name, "step_name"),
-            (self.original_natural_language, "original_natural_language"),
-            (self.original_formal_ab, "original_formal_ab"),
+            (self.original_step_text, "original_step_text"),
             (self.modified_formal_ab, "modified_formal_ab"),
-            (self.natural_template_draft, "natural_template_draft"),
         ):
             if type(value) is not str or not value.strip():
                 raise ValueError(f"{name} must be non-empty text")
-        values = dict(self.placeholder_values)
-        counts = dict(self.required_placeholder_counts)
-        if set(values) != set(counts):
-            raise ValueError("placeholder values and counts must use identical names")
-        if any(
-            type(name) is not str
-            or _PLACEHOLDER.fullmatch("{{" + name + "}}") is None
-            or type(value) is not str
-            or not value
-            for name, value in values.items()
-        ):
-            raise ValueError("placeholder_values contains an invalid name or value")
-        if any(type(count) is not int or count < 1 for count in counts.values()):
-            raise ValueError("required placeholder counts must be positive integers")
-        validate_natural_template(self.natural_template_draft, counts)
+        prefix = f"Step {self.step_index} [{self.step_name}]: "
+        if not self.original_step_text.startswith(prefix):
+            raise ValueError("original_step_text has an unexpected step header")
+        if self.original_step_text != self.original_step_text.strip():
+            raise ValueError("original_step_text must be trimmed")
+        if _MARKER_TOKEN.search(self.original_step_text) is not None:
+            raise ValueError("original_step_text must not contain HALLU markers")
+        if any(character in self.modified_formal_ab for character in ("\r", "\n", "\x00")):
+            raise ValueError("modified_formal_ab must be a single safe line")
+        _split_complete_step(self.original_step_text)
+
+        required = tuple(self.required_hallucination_occurrences)
+        if any(type(item) is not RequiredHallucinationOccurrence for item in required):
+            raise TypeError(
+                "required_hallucination_occurrences must contain occurrence values"
+            )
+        occurrence_ids = tuple(item.occurrence_id for item in required)
+        if len(occurrence_ids) != len(set(occurrence_ids)):
+            raise ValueError("required hallucination occurrence IDs must be unique")
+        original_head, _ = _split_complete_step(self.original_step_text)
+        original_natural = original_head[len(prefix) :]
+        ordered_by_position = sorted(required, key=lambda item: item.original_start)
+        previous_end = 0
+        for item in ordered_by_position:
+            if item.original_start < previous_end:
+                raise ValueError("required hallucination occurrences cannot overlap")
+            if original_natural[item.original_start : item.original_end] != item.before_text:
+                raise ValueError(
+                    "required hallucination occurrence does not match original_step_text"
+                )
+            previous_end = item.original_end
         object.__setattr__(
             self,
-            "placeholder_values",
-            MappingProxyType(dict(sorted(values.items()))),
+            "required_hallucination_occurrences",
+            tuple(sorted(required, key=lambda item: item.occurrence_id)),
         )
-        object.__setattr__(
-            self,
-            "required_placeholder_counts",
-            MappingProxyType(dict(sorted(counts.items()))),
-        )
+
+    @property
+    def original_formal_ab(self) -> str:
+        return _split_complete_step(self.original_step_text)[1]
 
     def to_prompt_dict(self) -> dict[str, Any]:
         return {
             "step_index": self.step_index,
             "step_name": self.step_name,
-            "original_natural_language": self.original_natural_language,
-            "original_formal_ab": self.original_formal_ab,
+            "original_step_text": self.original_step_text,
             "modified_formal_ab": self.modified_formal_ab,
-            "natural_template_draft": self.natural_template_draft,
-            "placeholder_values": dict(self.placeholder_values),
-            "required_placeholder_counts": dict(self.required_placeholder_counts),
+            "required_hallucination_occurrences": [
+                item.to_prompt_dict()
+                for item in self.required_hallucination_occurrences
+            ],
         }
 
 
@@ -134,7 +204,7 @@ class PoeRewriteRequest:
 
 @dataclass(frozen=True, slots=True)
 class PoeRewriteResult:
-    natural_templates: tuple[str, ...]
+    rewritten_step_texts: tuple[str, ...]
     bot_name: str
     api_key_environment_variable: str
     prompt_sha256: str
@@ -146,46 +216,123 @@ class PoeRewriteResult:
 PoeTransport = Callable[[str, str, str, float], str]
 
 
-def validate_natural_template(
-    template: str,
-    required_counts: Mapping[str, int],
-) -> str:
-    """Require the exact placeholder multiset and forbid structural injection."""
+def parse_hallucination_markers(
+    marked_natural_language: str,
+) -> tuple[tuple[str, str, int, int], ...]:
+    """Return ``(occurrence_id, value, start, end)`` after marker removal."""
 
-    if type(template) is not str or not template.strip():
-        raise PoeTextRealizationError("natural template must be non-empty text")
-    if template != template.strip() or "\r" in template or "\x00" in template:
+    if type(marked_natural_language) is not str:
+        raise TypeError("marked_natural_language must be text")
+    results = []
+    clean_length = 0
+    cursor = 0
+    for match in HALLU_MARKER_PATTERN.finditer(marked_natural_language):
+        prefix = marked_natural_language[cursor : match.start()]
+        if _MARKER_TOKEN.search(prefix) is not None:
+            raise PoeTextRealizationError("natural language contains malformed HALLU markers")
+        value = match.group(2)
+        if not value or _MARKER_TOKEN.search(value) is not None:
+            raise PoeTextRealizationError("HALLU marker value is empty or nested")
+        clean_length += len(prefix)
+        start = clean_length
+        end = start + len(value)
+        results.append((match.group(1), value, start, end))
+        clean_length = end
+        cursor = match.end()
+    if _MARKER_TOKEN.search(marked_natural_language[cursor:]) is not None:
+        raise PoeTextRealizationError("natural language contains malformed HALLU markers")
+    return tuple(results)
+
+
+def strip_hallucination_markers(marked_natural_language: str) -> str:
+    """Remove validated temporary markers while preserving their inner values."""
+
+    parse_hallucination_markers(marked_natural_language)
+    return HALLU_MARKER_PATTERN.sub(lambda match: match.group(2), marked_natural_language)
+
+
+def validate_rewritten_step_text(
+    rewritten_step_text: str,
+    expected: PoeStepRewriteInput,
+) -> str:
+    """Validate structure, exact FORMAL, and the marker-to-mutation contract."""
+
+    if type(expected) is not PoeStepRewriteInput:
+        raise TypeError("expected must be PoeStepRewriteInput")
+    if type(rewritten_step_text) is not str or not rewritten_step_text.strip():
+        raise PoeTextRealizationError("rewritten step_text must be non-empty text")
+    if (
+        rewritten_step_text != rewritten_step_text.strip()
+        or "\r" in rewritten_step_text
+        or "\x00" in rewritten_step_text
+    ):
         raise PoeTextRealizationError(
-            "natural template must be trimmed and contain no CR/NUL characters"
+            "rewritten step_text must be trimmed and contain no CR/NUL characters"
         )
-    if _RESERVED_STRUCTURE.search(template):
+    prefix = f"Step {expected.step_index} [{expected.step_name}]: "
+    if not rewritten_step_text.startswith(prefix):
+        raise PoeTextRealizationError("Poe response changed the exact Step header")
+    marked_head, formal_ab = _split_complete_step(rewritten_step_text)
+    if formal_ab != expected.modified_formal_ab:
+        raise PoeTextRealizationError("Poe response did not preserve modified_formal_ab exactly")
+    if "\n\nAnswer:" in marked_head or marked_head.startswith("Answer:"):
+        raise PoeTextRealizationError("Poe response must not contain a final answer")
+
+    marked_natural = marked_head[len(prefix) :]
+    markers = parse_hallucination_markers(marked_natural)
+    required = {
+        item.occurrence_id: item
+        for item in expected.required_hallucination_occurrences
+    }
+    observed: set[str] = set()
+    for occurrence_id, value, _, _ in markers:
+        if occurrence_id not in required:
+            raise PoeTextRealizationError(
+                "Poe marked an unplanned natural-language occurrence: "
+                f"{occurrence_id}"
+            )
+        if occurrence_id in observed:
+            raise PoeTextRealizationError(
+                f"Poe duplicated HALLU marker occurrence: {occurrence_id}"
+            )
+        if value != required[occurrence_id].after_text:
+            raise PoeTextRealizationError(
+                f"Poe marker for {occurrence_id} does not contain its exact modified value"
+            )
+        observed.add(occurrence_id)
+    missing = sorted(set(required) - observed)
+    if missing:
         raise PoeTextRealizationError(
-            "agent output must contain natural-language body only, without Step/FORMAL/Answer"
+            f"Poe omitted required natural-language HALLU occurrences: {missing}"
         )
-    actual = Counter(_PLACEHOLDER.findall(template))
-    expected = Counter(dict(required_counts))
-    if actual != expected:
-        raise PoeTextRealizationError(
-            "placeholder counts changed; "
-            f"expected={dict(expected)}, actual={dict(actual)}"
-        )
-    without_placeholders = _PLACEHOLDER.sub("", template)
-    if "{" in without_placeholders or "}" in without_placeholders:
-        raise PoeTextRealizationError("agent output contains malformed braces")
-    return template
+
+    # If FORMAL is the only changed channel, the natural-language head remains
+    # byte-identical. This closes the product-only hole where Poe could previously
+    # paraphrase an unlabelled step merely because modified_formal_ab had changed.
+    if not required:
+        original_head, _ = _split_complete_step(expected.original_step_text)
+        if marked_head != original_head:
+            raise PoeTextRealizationError(
+                "Poe changed natural language without any required occurrences"
+            )
+    return rewritten_step_text
 
 
 def _system_prompt() -> str:
     return (
-        "You rewrite molecule-editing chain-of-thought steps for dataset construction. "
-        "The MODIFIED_FORMAL fields are authoritative claims, even when they are "
-        "chemically false or mutually inconsistent. Rewrite only the natural-language "
-        "body of every step so it reads fluently and agrees with those claims. Preserve "
-        "the original level of detail and the reasoning flow across steps. Never correct "
-        "a modified claim, never disclose that it was modified, and never output a Step "
-        "header, FORMAL line, final answer, Markdown fence, or commentary. Variable claim "
-        "values are locked placeholders such as {{anchor_idx}}. Preserve the exact "
-        "placeholder multiset specified for each step. Return JSON only."
+        "You minimally edit existing molecule-editing step_text records. For each step, "
+        "ORIGINAL_STEP_TEXT is the text to preserve and MODIFIED_FORMAL_AB is the new "
+        "authoritative claim, even when chemically false or internally inconsistent. "
+        "Change only the natural-language phrases necessary to agree with the modified "
+        "FORMAL; retain the original wording, detail, order, Step header, and formatting "
+        "as much as possible. Copy an unaffected step byte-for-byte. Return the complete "
+        "rewritten step_text and include exactly one FORMAL line whose content is exactly "
+        "MODIFIED_FORMAL_AB. Never add an Answer or commentary. In natural language, wrap "
+        "each REQUIRED_HALLUCINATION_OCCURRENCE exactly once with its occurrence-specific "
+        "temporary marker: [[HALLU:occurrence_id]]after_text[[/HALLU]]. Never mark an "
+        "unplanned occurrence, never omit or duplicate an occurrence, never alter a "
+        "marker value, never expose that the claim was modified, and never put markers in "
+        "FORMAL. Return JSON only."
     )
 
 
@@ -194,13 +341,13 @@ def _user_prompt(request: PoeRewriteRequest) -> str:
         "steps": [
             {
                 "step_index": step.step_index,
-                "natural_language_template": "string",
+                "rewritten_step_text": "string",
             }
             for step in request.steps
         ]
     }
     return (
-        "Rewrite this complete reasoning chain.\n"
+        "Minimally update these original step_text records from their modified FORMAL.\n"
         "RESPONSE_SHAPE:\n"
         + json.dumps(response_shape, ensure_ascii=False, separators=(",", ":"))
         + "\nINPUT:\n"
@@ -244,20 +391,19 @@ def _parse_and_validate_response(
     rows = value["steps"]
     if len(rows) != len(request.steps):
         raise PoeTextRealizationError("Poe response step count does not match the request")
-    templates = []
+    rewritten = []
     for expected, row in zip(request.steps, rows, strict=True):
         if not isinstance(row, Mapping) or set(row) != {
             "step_index",
-            "natural_language_template",
+            "rewritten_step_text",
         }:
             raise PoeTextRealizationError("each Poe step has an invalid JSON shape")
         if row["step_index"] != expected.step_index:
             raise PoeTextRealizationError("Poe response changed the step order")
-        template = row["natural_language_template"]
-        templates.append(
-            validate_natural_template(template, expected.required_placeholder_counts)
+        rewritten.append(
+            validate_rewritten_step_text(row["rewritten_step_text"], expected)
         )
-    return tuple(templates)
+    return tuple(rewritten)
 
 
 def _default_poe_transport(
@@ -300,7 +446,7 @@ def _default_poe_transport(
 
 
 class PoeStepTextAgent:
-    """Call Poe, validate its placeholder JSON, and cache only secret-free output."""
+    """Call Poe, validate its marked step_text JSON, and cache secret-free output."""
 
     __slots__ = ("config", "transport", "_environment", "cache_directory")
 
@@ -320,8 +466,6 @@ class PoeStepTextAgent:
             raise TypeError("environment must be a mapping or None")
         self.config = config
         self.transport = transport
-        # Keep the environment behind a private boundary.  It is consulted only at
-        # request time and is never serialized into provenance, cache, or output.
         self._environment = os.environ if environment is None else environment
         configured_cache = Path(config.poe_cache_directory)
         self.cache_directory = (
@@ -365,10 +509,10 @@ class PoeStepTextAgent:
             ):
                 raise PoeTextRealizationError("cached Poe response metadata is invalid")
             response_text = payload["response_text"]
-            templates = _parse_and_validate_response(response_text, request)
+            rewritten = _parse_and_validate_response(response_text, request)
         except (OSError, json.JSONDecodeError) as error:
             raise PoeTextRealizationError("cached Poe response cannot be read") from error
-        return response_text, templates
+        return response_text, rewritten
 
     def _store_cache(self, prompt_sha256: str, response_text: str) -> None:
         path = self._cache_path(prompt_sha256)
@@ -397,9 +541,9 @@ class PoeStepTextAgent:
 
         cached = self._load_cache(prompt_sha256, request)
         if cached is not None:
-            response_text, templates = cached
+            response_text, rewritten = cached
             return PoeRewriteResult(
-                natural_templates=templates,
+                rewritten_step_texts=rewritten,
                 bot_name=self.config.poe_bot_name,
                 api_key_environment_variable=self.config.poe_api_key_env,
                 prompt_sha256=prompt_sha256,
@@ -434,13 +578,13 @@ class PoeStepTextAgent:
                     self.config.poe_temperature,
                 )
             try:
-                templates = _parse_and_validate_response(response_text, request)
+                rewritten = _parse_and_validate_response(response_text, request)
             except PoeTextRealizationError as error:
                 validation_error = str(error)
                 continue
             self._store_cache(prompt_sha256, response_text)
             return PoeRewriteResult(
-                natural_templates=templates,
+                rewritten_step_texts=rewritten,
                 bot_name=self.config.poe_bot_name,
                 api_key_environment_variable=self.config.poe_api_key_env,
                 prompt_sha256=prompt_sha256,
@@ -455,12 +599,17 @@ class PoeStepTextAgent:
 
 
 __all__ = [
+    "FORMAL_MARKER",
+    "HALLU_MARKER_PATTERN",
     "POE_RENDERER_VERSION",
     "PoeRewriteRequest",
     "PoeRewriteResult",
+    "RequiredHallucinationOccurrence",
     "PoeStepRewriteInput",
     "PoeStepTextAgent",
     "PoeTextRealizationError",
     "PoeTransport",
-    "validate_natural_template",
+    "parse_hallucination_markers",
+    "strip_hallucination_markers",
+    "validate_rewritten_step_text",
 ]

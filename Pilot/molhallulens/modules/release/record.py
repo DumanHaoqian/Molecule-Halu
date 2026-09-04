@@ -73,6 +73,11 @@ class UnifiedRecordBuilder:
             "derived_seed": plan.derived_seed,
             "edit_count": len(plan.mutations),
             "mutation_events": [item.to_dict() for item in plan.mutations],
+            "propagation_events": [
+                item.to_dict() for item in injected.propagation_events
+            ],
+            "edge_audit": [item.to_dict() for item in injected.edge_audit],
+            "violated_edge_ids": list(injected.violated_edge_ids),
             "detector_input": {
                 "indexed_smiles": source,
                 "instruction": instruction,
@@ -89,6 +94,9 @@ class UnifiedRecordBuilder:
             "labels": {
                 "hallucination_present": True,
                 "hallucinated_semantic_points": len(plan.mutations),
+                "root_changed_nodes": len(plan.edited_node_ids),
+                "propagated_changed_nodes": len(injected.propagation_events),
+                "violated_edges": len(injected.violated_edge_ids),
                 "hallucinated_text_spans": len(serialized_spans),
             },
         }

@@ -39,6 +39,47 @@ class _SemanticTarget:
     before: Any
 
 
+_FRAGMENT_SIZE_NODES = {
+    EditingSubtask.ADD: frozenset({"fragment_heavy"}),
+    EditingSubtask.DELETE: frozenset({"remove_heavy"}),
+    EditingSubtask.SUBSTITUTE: frozenset({"remove_heavy", "add_heavy"}),
+}
+
+
+def _propagation_footprint(
+    subtask: EditingSubtask,
+    target: _SemanticTarget,
+) -> frozenset[str]:
+    """Return nodes one root may own after deterministic consistency closure."""
+
+    nodes = frozenset(target.node_ids)
+    fragment_sizes = _FRAGMENT_SIZE_NODES[subtask]
+    if target.semantic_id in {"product", "final_answer"}:
+        return nodes | {
+            "product",
+            "final_answer",
+            "product_heavy",
+            "heavy_delta",
+            "product_rings",
+            "ring_delta",
+        } | fragment_sizes
+    if target.semantic_id in {
+        "add_fragment",
+        "remove_group",
+        "fragment_heavy",
+        "remove_heavy",
+        "add_heavy",
+        "source_heavy",
+        "product_heavy",
+    }:
+        return nodes | fragment_sizes | {"product_heavy", "heavy_delta"}
+    if target.semantic_id in {"source_rings", "product_rings"}:
+        return nodes | {"ring_delta"}
+    if target.semantic_id == "anchor_idx":
+        return nodes | {"anchor_element"}
+    return nodes
+
+
 def _stable_seed(global_seed: int, origin_id: str, variant_index: int) -> int:
     payload = f"{global_seed}\0{origin_id}\0{variant_index}".encode("utf-8")
     return int.from_bytes(hashlib.sha256(payload).digest()[:8], "big")
@@ -143,21 +184,55 @@ class UnifiedHallucinationPlanner:
         # Build only the candidates we may actually use. This matters for product
         # SMILES, whose chemically valid candidate enumeration is comparatively
         # expensive on large molecules.
-        mutations: list[PlannedMutation] = []
+        mutation_cache: dict[str, PlannedMutation] = {}
         failures: dict[str, str] = {}
-        for semantic_id in target_order:
-            if len(mutations) == requested_count:
-                break
-            try:
-                mutations.append(
-                    self._propose(
-                        artifact,
-                        targets_by_id[semantic_id],
-                        Random(_target_seed(derived_seed, semantic_id)),
+        footprints = {
+            semantic_id: _propagation_footprint(
+                artifact.normalized_subtask,
+                target,
+            )
+            for semantic_id, target in targets_by_id.items()
+        }
+
+        def select(order: list[str]) -> list[PlannedMutation]:
+            selected: list[PlannedMutation] = []
+            claimed_nodes: set[str] = set()
+            for semantic_id in order:
+                if len(selected) == requested_count:
+                    break
+                overlap = sorted(footprints[semantic_id] & claimed_nodes)
+                if overlap:
+                    failures[semantic_id] = (
+                        "deterministic propagation footprint overlaps an already "
+                        f"selected root: {overlap}"
                     )
-                )
-            except (HallucinationPlanningError, ValueError) as error:
-                failures[semantic_id] = str(error)
+                    continue
+                try:
+                    mutation = mutation_cache.get(semantic_id)
+                    if mutation is None:
+                        mutation = self._propose(
+                            artifact,
+                            targets_by_id[semantic_id],
+                            Random(_target_seed(derived_seed, semantic_id)),
+                        )
+                        mutation_cache[semantic_id] = mutation
+                    selected.append(mutation)
+                    claimed_nodes.update(footprints[semantic_id])
+                except (HallucinationPlanningError, ValueError) as error:
+                    failures[semantic_id] = str(error)
+            return selected
+
+        mutations = select(target_order)
+        if len(mutations) != requested_count:
+            # A broad product/final-answer root can consume two deterministic
+            # subsystems. Retry with narrow footprints first so configured K remains
+            # satisfiable without allowing conflicting roots.
+            stable_position = {name: index for index, name in enumerate(target_order)}
+            retry_order = sorted(
+                target_order,
+                key=lambda name: (len(footprints[name]), stable_position[name]),
+            )
+            mutations = select(retry_order)
 
         if len(mutations) != requested_count:
             raise HallucinationPlanningError(
@@ -184,6 +259,10 @@ class UnifiedHallucinationPlanner:
         graph = artifact.state_dag
         targets = []
         for semantic_id in configured:
+            if semantic_id in {"heavy_delta", "ring_delta"}:
+                raise HallucinationPlanningError(
+                    f"{semantic_id!r} is a deterministic result and cannot be a root edit"
+                )
             if semantic_id in definition.semantic_state_groups:
                 node_ids = tuple(definition.semantic_state_groups[semantic_id])
             elif semantic_id in graph.schema.nodes_by_id:

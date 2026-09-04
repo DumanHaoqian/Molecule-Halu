@@ -14,6 +14,7 @@ from .editing_schemas import (
     state_schema_for,
 )
 from .enums import (
+    CausalRole,
     ComparatorKind,
     DependencyType,
     EditingSubtask,
@@ -34,8 +35,10 @@ from .errors import (
 )
 from .molecules import FragmentPolicy, MainFragment, MoleculeDescriptors
 from .mutations import (
+    EdgeAuditResult,
     InjectedHallucination,
     PlannedMutation,
+    PropagationEvent,
     RenderedHallucination,
     RenderedMention,
     UnifiedHallucinationPlan,
@@ -56,6 +59,7 @@ __all__ = [
     "ADDITION_STATE_SCHEMA",
     "ArtifactValidationError",
     "ClaimValue",
+    "CausalRole",
     "ComparatorKind",
     "DELETION_EDITING_SCHEMA",
     "DELETION_STATE_SCHEMA",
@@ -66,6 +70,7 @@ __all__ = [
     "EDITING_STATE_SCHEMAS",
     "EditingStateSchema",
     "EditingSubtask",
+    "EdgeAuditResult",
     "FragmentPolicy",
     "FrozenMap",
     "InjectedHallucination",
@@ -75,6 +80,7 @@ __all__ = [
     "MutationTargetKind",
     "NodeRole",
     "PlannedMutation",
+    "PropagationEvent",
     "RenderedHallucination",
     "RenderedMention",
     "SUBSTITUTION_EDITING_SCHEMA",

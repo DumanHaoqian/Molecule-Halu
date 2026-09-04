@@ -164,14 +164,14 @@ if __name__ == "__main__":
     if pause:
         input("\nPress Enter to continue to D ERROR INJECTION...")
 
-    # D. Plan -> 只应用 plan 中显式列出的节点修改；没有隐式传播。
-    injection_module = UnifiedHallucinationInjector()
+    # D. Plan -> 应用根修改，再传播确定性的下游 claim 并审计全部 DAG edges。
+    injection_module = UnifiedHallucinationInjector(DEFAULT_HALLUCINATION_CONFIG)
     injected = injection_module.apply(
         reference_artifact.state_dag,
         hallucination_plan,
     )
     _print_stage(
-        "D ERROR INJECTION — apply every planned semantic edit",
+        "D ERROR INJECTION — apply roots, propagate deterministic claims, audit edges",
         hallucination_plan,
         injected,
     )
@@ -181,7 +181,7 @@ if __name__ == "__main__":
     # E. 代码锁定 FORMAL；Poe 只重写自然语言；再拼成完整 step_text。
     poe_request = build_poe_rewrite_request(reference_artifact, injected)
     _print_stage(
-        "E1 POE REQUEST — original context + modified FORMAL + locked placeholders",
+        "E1 POE REQUEST — original step_text + modified FORMAL + HALLU markers",
         injected,
         poe_request,
     )
@@ -193,7 +193,7 @@ if __name__ == "__main__":
     except PoeTextRealizationError as error:
         raise SystemExit(str(error)) from None
     _print_stage(
-        "E2 TEXT REALIZATION — Poe prose + locally locked FORMAL",
+        "E2 TEXT REALIZATION — minimally edited step_text with locally locked FORMAL",
         poe_request,
         rendered,
     )
@@ -202,7 +202,7 @@ if __name__ == "__main__":
 
     # F. Rendered text -> 每个被修改语义点对应的全部文本 span。
     annotation_module = UnifiedHallucinationAnnotator()
-    annotated = annotation_module.annotate(rendered, hallucination_plan)
+    annotated = annotation_module.annotate(rendered, injected)
     _print_stage(
         "F ANNOTATION — label every occurrence of every edited node",
         rendered,
