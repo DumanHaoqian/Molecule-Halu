@@ -56,3 +56,24 @@ steps now emit one or more node-attributed value spans rather than a whole-body 
   variant-0 mode distribution changed from 442 copy / 166 occurrence patch / 192
   derivation rewrite to 442 / 158 / 200.
 - All 150 variant-0 outputs from `DeterministicTextRenderer` passed the enumeration audit.
+
+## Task 4 — character-level molecular spans
+
+Measured on all 150 default variant-0 origins, except the bond-order row, which uses the
+same 150 origins with `product` as the only root and the bond-order operator enabled.
+
+| Operator / propagation rule | Whole-value mean before | Character span mean after |
+|---|---:|---:|
+| `smiles_atom_replacement` | 70.22 | 3.72 |
+| `smiles_bond_order_change` | 71.85 | 2.96 |
+| `smiles_terminal_atom_deletion` | 65.11 | 1.00 |
+| `final_answer_to_product` | 69.87 | 4.38 |
+| `product_to_final_answer` | 69.25 | 1.54 |
+
+- Each molecular occurrence has one contiguous H interval and one contiguous N interval;
+  pure insertions/deletions expand across one common neighbor so both are non-empty.
+- `context_span` and `serialized_context_span` retain the complete SMILES location, while
+  `diff_opcodes` records every non-equal SequenceMatcher opcode.
+- Canonical SMILES can change its traversal after a one-atom edit. The renderer therefore
+  deterministically chooses an equivalent rooted candidate traversal that minimizes the
+  paired interval. This is display-only: planner and injection state are unchanged.

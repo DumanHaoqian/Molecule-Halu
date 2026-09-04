@@ -82,6 +82,11 @@ class _LocalControl:
     start: int
     end: int
     value: str
+    context_start: int | None = None
+    context_end: int | None = None
+    paired_start: int | None = None
+    paired_end: int | None = None
+    diff_opcodes: tuple[tuple[str, int, int, int, int], ...] = ()
 
 
 def _surface_truth(artifact: ReferenceDAGArtifact, mention: RenderedMention) -> str:
@@ -92,7 +97,18 @@ def _surface_truth(artifact: ReferenceDAGArtifact, mention: RenderedMention) -> 
         and value > 0
     ):
         return f"+{value}"
-    return str(value)
+    text = str(value)
+    if mention.diff_opcodes:
+        if mention.paired_start is None or mention.paired_end is None:
+            raise PoeTextRealizationError(
+                "molecular H mention lacks its paired reference interval"
+            )
+        text = text[mention.paired_start : mention.paired_end]
+        if not text:
+            raise PoeTextRealizationError(
+                "molecular paired reference interval must be non-empty"
+            )
+    return text
 
 
 def _replace_step_mentions(
@@ -115,6 +131,13 @@ def _replace_step_mentions(
             raise PoeTextRealizationError(
                 "H mention offsets overlap or do not round-trip during pair construction"
             )
+        local_context_start = mention.context_start - reasoning_start
+        local_context_end = mention.context_end - reasoning_start
+        if local_context_start < cursor or local_context_end < local_end:
+            raise PoeTextRealizationError(
+                "H molecular context overlaps a preceding replacement"
+            )
+        output_before_prefix = output_length
         prefix = step_text[cursor:local_start]
         pieces.append(prefix)
         output_length += len(prefix)
@@ -122,6 +145,8 @@ def _replace_step_mentions(
         start = output_length
         pieces.append(truth)
         output_length += len(truth)
+        context_start = output_before_prefix + (local_context_start - cursor)
+        context_end = output_length + (local_context_end - local_end)
         controls.append(
             _LocalControl(
                 mention_id=mention.mention_id,
@@ -130,6 +155,19 @@ def _replace_step_mentions(
                 start=start,
                 end=output_length,
                 value=truth,
+                context_start=context_start,
+                context_end=context_end,
+                paired_start=(
+                    mention.start - mention.context_start
+                    if mention.diff_opcodes
+                    else None
+                ),
+                paired_end=(
+                    mention.end - mention.context_start
+                    if mention.diff_opcodes
+                    else None
+                ),
+                diff_opcodes=mention.diff_opcodes,
             )
         )
         cursor = local_end
@@ -172,6 +210,11 @@ def _natural_h_controls(
                 start=step_start - len(prefix),
                 end=step_end - len(prefix),
                 value=mention.value,
+                context_start=mention.context_start - reasoning_start - len(prefix),
+                context_end=mention.context_end - reasoning_start - len(prefix),
+                paired_start=mention.paired_start,
+                paired_end=mention.paired_end,
+                diff_opcodes=mention.diff_opcodes,
             )
         )
     return tuple(controls)
@@ -214,10 +257,17 @@ def _step_validation_errors(
     h_head = hallucinated_step.split(FORMAL_MARKER, 1)[0]
     h_natural_body = h_head[len(prefix) :]
     h_search_body = _masked_text(h_natural_body, hallucinated_controls)
+    affected_claims = {
+        claim.node_id: claim for claim in expected.affected_node_claims
+    }
     for node_id in injected.changed_node_ids:
         candidate_value = injected.candidate_graph.values[node_id].normalized_value
-        candidate_text = str(candidate_value)
-        if (
+        candidate_text = (
+            affected_claims[node_id].after_text
+            if node_id in affected_claims
+            else str(candidate_value)
+        )
+        if node_id not in affected_claims and (
             node_id in {"heavy_delta", "ring_delta"}
             and type(candidate_value) is int
             and candidate_value > 0
@@ -409,14 +459,38 @@ def _regenerated_step(
             regenerated,
             strict=True,
         ):
+            control_start = len(prefix) + start
+            control_end = len(prefix) + end
+            control_value = value
+            context_start = control_start
+            context_end = control_end
+            paired_start = None
+            paired_end = None
+            if h_mention.diff_opcodes:
+                if h_mention.paired_start is None or h_mention.paired_end is None:
+                    raise PoeTextRealizationError(
+                        "molecular H mention lacks a reference-side diff interval"
+                    )
+                control_start += h_mention.paired_start
+                control_end = len(prefix) + start + h_mention.paired_end
+                control_value = value[
+                    h_mention.paired_start : h_mention.paired_end
+                ]
+                paired_start = h_mention.start - h_mention.context_start
+                paired_end = h_mention.end - h_mention.context_start
             controls.append(
                 _LocalControl(
                     mention_id=h_mention.mention_id,
                     node_id=node_id,
                     step_index=expected.step_index,
-                    start=len(prefix) + start,
-                    end=len(prefix) + end,
-                    value=value,
+                    start=control_start,
+                    end=control_end,
+                    value=control_value,
+                    context_start=context_start,
+                    context_end=context_end,
+                    paired_start=paired_start,
+                    paired_end=paired_end,
+                    diff_opcodes=h_mention.diff_opcodes,
                 )
             )
 
@@ -434,6 +508,11 @@ def _regenerated_step(
                 start=control.start + shift,
                 end=control.end + shift,
                 value=control.value,
+                context_start=control.context_start + shift,
+                context_end=control.context_end + shift,
+                paired_start=control.paired_start,
+                paired_end=control.paired_end,
+                diff_opcodes=control.diff_opcodes,
             )
         )
     return clean_step, tuple(sorted(controls, key=lambda item: item.start)), result.network_request_count
@@ -580,6 +659,11 @@ class MatchedNegativeTextBuilder:
                         end=n_offset + control.end,
                         value=control.value,
                         hallucinated=False,
+                        context_start=n_offset + control.context_start,
+                        context_end=n_offset + control.context_end,
+                        paired_start=control.paired_start,
+                        paired_end=control.paired_end,
+                        diff_opcodes=control.diff_opcodes,
                     )
                 )
             n_offset += len(n_step) + 2
@@ -606,6 +690,11 @@ class MatchedNegativeTextBuilder:
                     end=control.end,
                     value=control.value,
                     hallucinated=False,
+                    context_start=control.context_start,
+                    context_end=control.context_end,
+                    paired_start=control.paired_start,
+                    paired_end=control.paired_end,
+                    diff_opcodes=control.diff_opcodes,
                 )
             )
         reference_answer = str(

@@ -285,6 +285,11 @@ class RenderedMention:
     value: str
     hallucinated: bool
     causal_role: CausalRole | None = None
+    context_start: int | None = None
+    context_end: int | None = None
+    paired_start: int | None = None
+    paired_end: int | None = None
+    diff_opcodes: tuple[tuple[str, int, int, int, int], ...] = ()
 
     def __post_init__(self) -> None:
         if self.component not in {"reasoning_chain", "final_answer"}:
@@ -311,6 +316,34 @@ class RenderedMention:
                 raise TypeError("hallucinated mentions require a CausalRole")
         elif self.causal_role is not None:
             raise ValueError("non-hallucinated mentions cannot have a causal_role")
+        if (self.context_start is None) != (self.context_end is None):
+            raise ValueError("context offsets must both be present or both be absent")
+        if self.context_start is None:
+            object.__setattr__(self, "context_start", self.start)
+            object.__setattr__(self, "context_end", self.end)
+        elif not (
+            0 <= self.context_start <= self.start
+            and self.end <= self.context_end
+        ):
+            raise ValueError("context span must contain the mention span")
+        if (self.paired_start is None) != (self.paired_end is None):
+            raise ValueError("paired offsets must both be present or both be absent")
+        if self.paired_start is not None and not (
+            0 <= self.paired_start < self.paired_end
+        ):
+            raise ValueError("paired offsets must describe a non-empty interval")
+        opcodes = tuple(self.diff_opcodes)
+        for opcode in opcodes:
+            if (
+                type(opcode) is not tuple
+                or len(opcode) != 5
+                or opcode[0] not in {"replace", "delete", "insert"}
+                or any(type(value) is not int or value < 0 for value in opcode[1:])
+            ):
+                raise ValueError("diff_opcodes contains an invalid SequenceMatcher opcode")
+        if bool(opcodes) != (self.paired_start is not None):
+            raise ValueError("molecular diff opcodes and paired offsets must appear together")
+        object.__setattr__(self, "diff_opcodes", opcodes)
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -319,7 +352,16 @@ class RenderedMention:
             "node_id": self.node_id,
             "step_index": self.step_index,
             "span": [self.start, self.end],
+            "context_span": [self.context_start, self.context_end],
             "value": self.value,
+            "diff_opcodes": [
+                {
+                    "tag": item[0],
+                    "reference_span": [item[1], item[2]],
+                    "candidate_span": [item[3], item[4]],
+                }
+                for item in self.diff_opcodes
+            ],
             "hallucinated": self.hallucinated,
             "causal_role": (
                 self.causal_role.value if self.causal_role is not None else None

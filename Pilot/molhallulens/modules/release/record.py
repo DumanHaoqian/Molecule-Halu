@@ -71,10 +71,16 @@ class UnifiedRecordBuilder:
             )
             global_start = component_start + span.start
             global_end = component_start + span.end
+            global_context_start = component_start + span.context_start
+            global_context_end = component_start + span.context_end
             if serialized_text[global_start:global_end] != span.text:
                 raise ValueError("serialized hallucination span does not round-trip")
             item = span.to_dict()
             item["serialized_span"] = [global_start, global_end]
+            item["serialized_context_span"] = [
+                global_context_start,
+                global_context_end,
+            ]
             item["pair_occurrence_id"] = span.mention_id
             item["same_char_length"] = (
                 len(span.text) == paired_lengths[span.mention_id]
@@ -90,10 +96,16 @@ class UnifiedRecordBuilder:
             )
             global_start = component_start + span.start
             global_end = component_start + span.end
+            global_context_start = component_start + span.context_start
+            global_context_end = component_start + span.context_end
             if serialized_text[global_start:global_end] != span.text:
                 raise ValueError("serialized control span does not round-trip")
             item = span.to_dict()
             item["serialized_span"] = [global_start, global_end]
+            item["serialized_context_span"] = [
+                global_context_start,
+                global_context_end,
+            ]
             serialized_controls.append(item)
 
         present = annotated.hallucination_present

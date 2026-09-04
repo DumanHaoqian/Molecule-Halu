@@ -12,6 +12,7 @@ from molhallulens.core import (
     RenderedHallucination,
     RenderedMention,
     StateDAG,
+    ValueType,
 )
 from molhallulens.modules.reference import ReferenceDAGArtifact
 
@@ -32,6 +33,7 @@ from .occurrence_audit import (
     loose_occurrence_spans,
     requires_derivation_rewrite,
 )
+from .smiles_diff import align_candidate_molecular_text, molecular_text_diff
 
 
 _FORMAL_MARKER = FORMAL_MARKER
@@ -50,8 +52,16 @@ class _StepRewriteContract:
     affected_claims: tuple[AffectedNodeClaim, ...]
 
 
-def _value_text(graph: StateDAG, literal: _Literal) -> str:
-    value = graph.values[literal.node_id].normalized_value
+def _value_text(
+    graph: StateDAG,
+    literal: _Literal,
+    value_overrides: dict[str, str] | None = None,
+) -> str:
+    value = (
+        value_overrides[literal.node_id]
+        if value_overrides is not None and literal.node_id in value_overrides
+        else graph.values[literal.node_id].normalized_value
+    )
     if literal.signed and type(value) is int and value > 0:
         return f"+{value}"
     return str(value)
@@ -61,6 +71,8 @@ def _add_step(
     *,
     origin_id: str,
     graph: StateDAG,
+    reference_graph: StateDAG,
+    value_overrides: dict[str, str],
     causal_roles_by_node: dict[str, Any],
     step_index: int,
     parts: tuple[str | _Literal, ...],
@@ -73,10 +85,31 @@ def _add_step(
         if type(part) is str:
             buffer += part
             continue
-        value = _value_text(graph, part)
-        start = reasoning_offset + len(buffer)
+        value = _value_text(graph, part, value_overrides)
+        full_start = reasoning_offset + len(buffer)
         buffer += value
-        end = reasoning_offset + len(buffer)
+        full_end = reasoning_offset + len(buffer)
+        start = full_start
+        end = full_end
+        mention_value = value
+        paired_start = None
+        paired_end = None
+        diff_opcodes = ()
+        if (
+            part.node_id in causal_roles_by_node
+            and graph.values[part.node_id].value_type
+            in {ValueType.SMILES, ValueType.MOLECULE}
+        ):
+            reference_value = _value_text(reference_graph, part)
+            difference = molecular_text_diff(reference_value, value)
+            start = full_start + difference.candidate_start
+            end = full_start + difference.candidate_end
+            mention_value = value[
+                difference.candidate_start : difference.candidate_end
+            ]
+            paired_start = difference.reference_start
+            paired_end = difference.reference_end
+            diff_opcodes = difference.opcodes
         occurrence_counts[part.node_id] = occurrence_counts.get(part.node_id, 0) + 1
         mentions.append(
             RenderedMention(
@@ -89,9 +122,14 @@ def _add_step(
                 step_index=step_index,
                 start=start,
                 end=end,
-                value=value,
+                value=mention_value,
                 hallucinated=part.node_id in causal_roles_by_node,
                 causal_role=causal_roles_by_node.get(part.node_id),
+                context_start=full_start,
+                context_end=full_end,
+                paired_start=paired_start,
+                paired_end=paired_end,
+                diff_opcodes=diff_opcodes,
             )
         )
     return buffer, tuple(mentions)
@@ -362,11 +400,31 @@ def _split_step_parts(
     return tuple(natural), tuple(formal)
 
 
-def _render_value_text(parts: tuple[str | _Literal, ...], graph: StateDAG) -> str:
+def _render_value_text(
+    parts: tuple[str | _Literal, ...],
+    graph: StateDAG,
+    value_overrides: dict[str, str] | None = None,
+) -> str:
     return "".join(
-        part if type(part) is str else _value_text(graph, part)
+        part if type(part) is str else _value_text(graph, part, value_overrides)
         for part in parts
     )
+
+
+def _molecular_display_values(
+    reference_graph: StateDAG,
+    candidate_graph: StateDAG,
+    changed_nodes: frozenset[str],
+) -> dict[str, str]:
+    values: dict[str, str] = {}
+    for node_id in sorted(changed_nodes):
+        claim = candidate_graph.values[node_id]
+        if claim.value_type not in {ValueType.SMILES, ValueType.MOLECULE}:
+            continue
+        reference = str(reference_graph.values[node_id].normalized_value)
+        candidate = str(claim.normalized_value)
+        values[node_id] = align_candidate_molecular_text(reference, candidate)
+    return values
 
 
 def _literal_flags(parts: tuple[str | _Literal, ...]) -> dict[str, bool]:
@@ -567,6 +625,7 @@ def _step_rewrite_contract(
     natural_parts: tuple[str | _Literal, ...],
     reference_graph: StateDAG,
     candidate_graph: StateDAG,
+    candidate_value_overrides: dict[str, str],
     changed_nodes: frozenset[str],
 ) -> _StepRewriteContract:
     """Audit strict recall and choose COPY, PATCH, or full derivation rewrite."""
@@ -585,7 +644,11 @@ def _step_rewrite_contract(
             continue
         signed = literal_flags.get(node_id, node_id in {"heavy_delta", "ring_delta"})
         before = _value_text(reference_graph, _Literal(node_id, signed=signed))
-        after = _value_text(candidate_graph, _Literal(node_id, signed=signed))
+        after = _value_text(
+            candidate_graph,
+            _Literal(node_id, signed=signed),
+            candidate_value_overrides,
+        )
         if before == after:
             continue
         strict_spans = set(_original_occurrence_spans(node_id, before, natural_body))
@@ -667,6 +730,11 @@ def build_poe_rewrite_request(
     _validate_render_input(artifact, injected)
     graph = injected.candidate_graph
     changed_nodes = frozenset(injected.changed_node_ids)
+    value_overrides = _molecular_display_values(
+        artifact.state_dag,
+        graph,
+        changed_nodes,
+    )
     templates = _templates(artifact.normalized_subtask)
     if len(templates) != len(artifact.trace_steps):
         raise ValueError("renderer template count does not match the reference trace")
@@ -682,6 +750,7 @@ def build_poe_rewrite_request(
             natural_parts=natural_parts,
             reference_graph=artifact.state_dag,
             candidate_graph=graph,
+            candidate_value_overrides=value_overrides,
             changed_nodes=changed_nodes,
         )
         steps.append(
@@ -689,7 +758,11 @@ def build_poe_rewrite_request(
                 step_index=trace_step.step_index,
                 step_name=trace_step.step_name,
                 original_step_text=original_step_text,
-                modified_formal_ab=_render_value_text(formal_parts, graph),
+                modified_formal_ab=_render_value_text(
+                    formal_parts,
+                    graph,
+                    value_overrides,
+                ),
                 required_hallucination_occurrences=contract.occurrences,
                 rewrite_mode=contract.mode,
                 affected_node_claims=contract.affected_claims,
@@ -745,6 +818,7 @@ def _render_marked_natural_body(
     occurrence_counts: dict[str, int],
     expected: PoeStepRewriteInput,
     causal_roles_by_node: dict[str, Any],
+    reference_graph: StateDAG | None = None,
 ) -> tuple[str, tuple[RenderedMention, ...]]:
     """Strip Poe markers and convert their exact locations into mentions."""
 
@@ -798,8 +872,30 @@ def _render_marked_natural_body(
             and requirements[occurrence_id].node_id != node_id
         ):
             raise PoeTextRealizationError("marker namespace disagrees with its DAG node")
-        start = reasoning_offset + local_start
-        end = reasoning_offset + local_end
+        full_start = reasoning_offset + local_start
+        full_end = reasoning_offset + local_end
+        start = full_start
+        end = full_end
+        mention_value = value
+        paired_start = None
+        paired_end = None
+        diff_opcodes = ()
+        if reference_graph is not None and reference_graph.values[node_id].value_type in {
+            ValueType.SMILES,
+            ValueType.MOLECULE,
+        }:
+            reference_value = str(
+                reference_graph.values[node_id].normalized_value
+            )
+            difference = molecular_text_diff(reference_value, value)
+            start = full_start + difference.candidate_start
+            end = full_start + difference.candidate_end
+            mention_value = value[
+                difference.candidate_start : difference.candidate_end
+            ]
+            paired_start = difference.reference_start
+            paired_end = difference.reference_end
+            diff_opcodes = difference.opcodes
         occurrence_counts[node_id] = occurrence_counts.get(node_id, 0) + 1
         mentions.append(
             RenderedMention(
@@ -812,9 +908,14 @@ def _render_marked_natural_body(
                 step_index=step_index,
                 start=start,
                 end=end,
-                value=value,
+                value=mention_value,
                 hallucinated=True,
                 causal_role=causal_roles_by_node[node_id],
+                context_start=full_start,
+                context_end=full_end,
+                paired_start=paired_start,
+                paired_end=paired_end,
+                diff_opcodes=diff_opcodes,
             )
         )
     return clean_body, tuple(mentions)
@@ -824,6 +925,7 @@ def _render_deterministic_derivation_body(
     expected: PoeStepRewriteInput,
     natural_parts: tuple[str | _Literal, ...],
     graph: StateDAG,
+    value_overrides: dict[str, str],
 ) -> str:
     """Render a coherent fixture body with one marker per claim occurrence."""
 
@@ -835,7 +937,7 @@ def _render_deterministic_derivation_body(
         if type(part) is str:
             marked_head += part
             continue
-        value = _value_text(graph, part)
+        value = _value_text(graph, part, value_overrides)
         claim = claims.get(part.node_id)
         if claim is None:
             marked_head += value
@@ -869,6 +971,11 @@ def _assemble_rendered_text(
     _validate_render_input(artifact, injected)
     graph = injected.candidate_graph
     changed_nodes = frozenset(injected.changed_node_ids)
+    value_overrides = _molecular_display_values(
+        artifact.state_dag,
+        graph,
+        changed_nodes,
+    )
     causal_roles_by_node = dict(injected.causal_roles_by_node)
     step_definitions = _templates(artifact.normalized_subtask)
     if request.origin_id != artifact.anonymous_sample_id:
@@ -898,7 +1005,11 @@ def _assemble_rendered_text(
         prefix = f"Step {trace_step.step_index} [{trace_step.step_name}]: "
         validate_rewritten_step_text(rewritten_step_text, expected)
         marked_head, returned_formal = rewritten_step_text.split(_FORMAL_MARKER, 1)
-        locally_rendered_formal = _render_value_text(formal_parts, graph)
+        locally_rendered_formal = _render_value_text(
+            formal_parts,
+            graph,
+            value_overrides,
+        )
         if returned_formal != locally_rendered_formal:
             raise ValueError("validated Poe FORMAL differs from the candidate DAG")
         marked_natural_body = marked_head[len(prefix) :]
@@ -910,11 +1021,14 @@ def _assemble_rendered_text(
             occurrence_counts=occurrence_counts,
             expected=expected,
             causal_roles_by_node=causal_roles_by_node,
+            reference_graph=artifact.state_dag,
         )
         natural_text = prefix + natural_body
         formal_text, formal_mentions = _add_step(
             origin_id=artifact.anonymous_sample_id,
             graph=graph,
+            reference_graph=artifact.state_dag,
+            value_overrides=value_overrides,
             causal_roles_by_node=causal_roles_by_node,
             step_index=trace_step.step_index,
             parts=formal_parts,
@@ -930,18 +1044,43 @@ def _assemble_rendered_text(
         reasoning_length += len(step_text)
 
     reasoning_chain = "\n\n".join(step_texts)
-    final_answer = str(graph.values["final_answer"].normalized_value)
+    final_answer = value_overrides.get(
+        "final_answer",
+        str(graph.values["final_answer"].normalized_value),
+    )
+    final_start = 0
+    final_end = len(final_answer)
+    final_value = final_answer
+    paired_start = None
+    paired_end = None
+    diff_opcodes = ()
+    if "final_answer" in changed_nodes:
+        reference_answer = str(
+            artifact.state_dag.values["final_answer"].normalized_value
+        )
+        difference = molecular_text_diff(reference_answer, final_answer)
+        final_start = difference.candidate_start
+        final_end = difference.candidate_end
+        final_value = final_answer[final_start:final_end]
+        paired_start = difference.reference_start
+        paired_end = difference.reference_end
+        diff_opcodes = difference.opcodes
     mentions.append(
         RenderedMention(
             mention_id=f"{artifact.anonymous_sample_id}.final_answer.final_answer.01",
             component="final_answer",
             node_id="final_answer",
             step_index=None,
-            start=0,
-            end=len(final_answer),
-            value=final_answer,
+            start=final_start,
+            end=final_end,
+            value=final_value,
             hallucinated="final_answer" in changed_nodes,
             causal_role=causal_roles_by_node.get("final_answer"),
+            context_start=0,
+            context_end=len(final_answer),
+            paired_start=paired_start,
+            paired_end=paired_end,
+            diff_opcodes=diff_opcodes,
         )
     )
     return RenderedHallucination(
@@ -963,6 +1102,11 @@ class DeterministicTextRenderer:
     ) -> RenderedHallucination:
         request = build_poe_rewrite_request(artifact, injected)
         graph = injected.candidate_graph
+        value_overrides = _molecular_display_values(
+            artifact.state_dag,
+            graph,
+            frozenset(injected.changed_node_ids),
+        )
         rewritten_steps = []
         for expected, parts in zip(
             request.steps,
@@ -976,6 +1120,7 @@ class DeterministicTextRenderer:
                     expected,
                     natural_parts,
                     graph,
+                    value_overrides,
                 )
             else:
                 marked_head = expected.original_step_text.split(_FORMAL_MARKER, 1)[0]

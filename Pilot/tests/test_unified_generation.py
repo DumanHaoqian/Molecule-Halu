@@ -635,7 +635,16 @@ def test_variant_zero_full_corpus_removes_every_changed_before_surface(
                         if mention.node_id == claim.node_id
                     ]
                     assert matching
-                    assert all(mention.value == claim.after_text for mention in matching)
+                    for mention in matching:
+                        if mention.diff_opcodes:
+                            assert (
+                                rendered.reasoning_chain[
+                                    mention.context_start : mention.context_end
+                                ]
+                                == claim.after_text
+                            )
+                        else:
+                            assert mention.value == claim.after_text
                 assert all(
                     mention.end - mention.start < len(natural_body)
                     for mention in natural_mentions

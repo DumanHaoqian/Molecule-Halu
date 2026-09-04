@@ -20,14 +20,22 @@ class HallucinationSpan:
     start: int
     end: int
     text: str
+    context_start: int
+    context_end: int
     causal_role: CausalRole
     propagation_event_id: str | None = None
+    diff_opcodes: tuple[tuple[str, int, int, int, int], ...] = ()
 
     def __post_init__(self) -> None:
         if type(self.mention_id) is not str or not self.mention_id:
             raise ValueError("mention_id must be non-empty text")
         if type(self.causal_role) is not CausalRole:
             raise TypeError("causal_role must be CausalRole")
+        if not (
+            0 <= self.context_start <= self.start
+            and self.end <= self.context_end
+        ):
+            raise ValueError("context span must contain the hallucination span")
         if self.causal_role is CausalRole.ROOT_HALLUCINATION:
             if self.propagation_event_id is not None:
                 raise ValueError("root spans cannot reference a propagation event")
@@ -44,7 +52,16 @@ class HallucinationSpan:
             "component": self.component,
             "step_index": self.step_index,
             "span": [self.start, self.end],
+            "context_span": [self.context_start, self.context_end],
             "text": self.text,
+            "diff_opcodes": [
+                {
+                    "tag": item[0],
+                    "reference_span": [item[1], item[2]],
+                    "candidate_span": [item[3], item[4]],
+                }
+                for item in self.diff_opcodes
+            ],
             "causal_role": self.causal_role.value,
             "propagation_event_id": self.propagation_event_id,
         }
@@ -61,7 +78,10 @@ class ControlSpan:
     start: int
     end: int
     text: str
+    context_start: int
+    context_end: int
     same_char_length: bool
+    diff_opcodes: tuple[tuple[str, int, int, int, int], ...] = ()
 
     def __post_init__(self) -> None:
         for value, name in (
@@ -80,6 +100,11 @@ class ControlSpan:
             raise ValueError("control offsets must describe a non-empty span")
         if self.end - self.start != len(self.text):
             raise ValueError("control offsets must exactly cover text")
+        if not (
+            0 <= self.context_start <= self.start
+            and self.end <= self.context_end
+        ):
+            raise ValueError("context span must contain the control span")
         if type(self.same_char_length) is not bool:
             raise TypeError("same_char_length must be bool")
 
@@ -90,7 +115,16 @@ class ControlSpan:
             "component": self.component,
             "step_index": self.step_index,
             "span": [self.start, self.end],
+            "context_span": [self.context_start, self.context_end],
             "text": self.text,
+            "diff_opcodes": [
+                {
+                    "tag": item[0],
+                    "reference_span": [item[1], item[2]],
+                    "candidate_span": [item[3], item[4]],
+                }
+                for item in self.diff_opcodes
+            ],
             "same_char_length": self.same_char_length,
         }
 
@@ -180,8 +214,11 @@ class UnifiedHallucinationAnnotator:
                     start=mention.start,
                     end=mention.end,
                     text=mention.value,
+                    context_start=mention.context_start,
+                    context_end=mention.context_end,
                     causal_role=causal_role,
                     propagation_event_id=propagation_event_id,
+                    diff_opcodes=mention.diff_opcodes,
                 )
             )
         spans = tuple(spans)
@@ -226,6 +263,7 @@ class UnifiedHallucinationAnnotator:
                 mention.node_id != span.node_id
                 or mention.component != span.component
                 or mention.step_index != span.step_index
+                or mention.diff_opcodes != span.diff_opcodes
             ):
                 raise ValueError("negative control metadata disagrees with positive span")
             controls.append(
@@ -237,7 +275,10 @@ class UnifiedHallucinationAnnotator:
                     start=mention.start,
                     end=mention.end,
                     text=mention.value,
+                    context_start=mention.context_start,
+                    context_end=mention.context_end,
                     same_char_length=len(span.text) == len(mention.value),
+                    diff_opcodes=mention.diff_opcodes,
                 )
             )
         return AnnotatedHallucination(

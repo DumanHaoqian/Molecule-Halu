@@ -91,6 +91,12 @@ candidate-value residuals, arithmetic, and explicit component sums after replace
 safely is reverse-regenerated through Poe and disclosed as `pair_alignment: regenerated`;
 otherwise its alignment is `byte_identical`. Each N `control_span` maps to one H span by
 `pair_occurrence_id`, and both sides record `same_char_length`.
+For changed product/final-answer molecular strings, the paired span is the smallest single
+contiguous character interval that reconstructs N from H. `context_span` points to the full
+SMILES and `diff_opcodes` records the underlying changed SequenceMatcher operations. Pure
+insertions/deletions include one shared boundary character so both H and N remain non-empty.
+The text layer may choose an equivalent rooted SMILES traversal to keep a local graph edit
+local in text; planning and injected DAG values are unchanged.
 The test suite uses an injected fake Poe transport and therefore spends no points.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for file-level module ownership and contracts.

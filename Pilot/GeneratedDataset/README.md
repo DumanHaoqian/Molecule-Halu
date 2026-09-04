@@ -19,6 +19,11 @@ component-sum checks is
 regenerated with Poe and explicitly released as `pair_alignment: regenerated`. This weaker
 alignment class must be reported separately in downstream experiments. Every paired
 occurrence also records whether its two values have the same character length.
+SMILES/MOLECULE edits use character-level paired spans rather than labeling the whole
+product. Each such span carries `context_span`/`serialized_context_span` for the complete
+SMILES plus `diff_opcodes` for the changed reference/candidate ranges. The emitted candidate
+may use a deterministic, molecularly equivalent rooted traversal to avoid canonical-SMILES
+start-atom churn; its molecular identity remains the injected candidate.
 
 After exporting `POE_API_KEY`, generate records with:
 
