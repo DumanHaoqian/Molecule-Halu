@@ -36,3 +36,9 @@ molhallulens-generate --max-origins 3 --output GeneratedDataset/example.jsonl
 
 Validated, secret-free Poe responses are stored in `.poe_text_cache/` so interrupted
 builds can resume without repeating completed requests.
+Each complete H/N pair is also flushed to the output JSONL immediately. Per-origin/variant
+failures are written to a sibling `<output-stem>.failures.jsonl` manifest with origin,
+variant, stage, exception type, and message. A non-empty failure manifest is reflected in
+the printed summary and the generator exits nonzero only after processing the remaining
+items. The summary separately reports rewrite modes, pair alignments, retry rate, and
+arithmetic/enumeration validation rejection counts.

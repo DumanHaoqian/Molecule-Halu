@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import argparse
+import json
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 from molhallulens.config.hallucination_generation import (
     DEFAULT_HALLUCINATION_CONFIG,
@@ -17,7 +19,7 @@ from molhallulens.modules.error_injection import UnifiedHallucinationInjector
 from molhallulens.modules.error_planning import FragmentPool, UnifiedHallucinationPlanner
 from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
 from molhallulens.modules.reference import build_reference_dag
-from molhallulens.modules.release import UnifiedRecordBuilder, write_jsonl
+from molhallulens.modules.release import UnifiedRecordBuilder
 from molhallulens.modules.text_realization import (
     MatchedNegativeTextBuilder,
     PoeStepTextAgent,
@@ -29,7 +31,13 @@ from molhallulens.modules.text_realization import (
 @dataclass(frozen=True, slots=True)
 class GenerationSummary:
     output_path: Path
+    failure_manifest_path: Path
     origin_count: int
+    successful_origin_count: int
+    failed_origin_count: int
+    attempted_variant_count: int
+    successful_variant_count: int
+    failed_variant_count: int
     record_count: int
     variants_per_origin: int
     fragment_pool_size: int
@@ -40,12 +48,68 @@ class GenerationSummary:
     same_char_length_count: int
     paired_span_count: int
     same_char_length_ratio: float
+    rewrite_mode_distribution: dict[str, int]
+    poe_rewrite_call_count: int
+    poe_uncached_request_count: int
+    poe_cache_hit_count: int
+    poe_network_request_count: int
+    poe_retry_count: int
+    poe_requests_with_retry: int
+    poe_retry_rate: float
+    poe_validation_rejection_counts: dict[str, int]
+    failures: tuple[dict[str, Any], ...]
+
+
+def _default_failure_manifest_path(output_path: Path) -> Path:
+    suffix = output_path.suffix or ".jsonl"
+    stem = (
+        output_path.name[: -len(output_path.suffix)]
+        if output_path.suffix
+        else output_path.name
+    )
+    return output_path.with_name(f"{stem}.failures{suffix}")
+
+
+def _write_json_line(handle: Any, payload: dict[str, Any]) -> None:
+    handle.write(json.dumps(payload, ensure_ascii=False, sort_keys=True))
+    handle.write("\n")
+
+
+def _telemetry_delta(
+    before: dict[str, Any],
+    after: dict[str, Any],
+) -> dict[str, Any]:
+    scalar_keys = (
+        "rewrite_call_count",
+        "uncached_request_count",
+        "cache_hit_count",
+        "network_request_count",
+        "retry_count",
+        "requests_with_retry",
+    )
+    delta = {key: after[key] - before[key] for key in scalar_keys}
+    rejection_keys = set(before["validation_rejection_counts"]) | set(
+        after["validation_rejection_counts"]
+    )
+    delta["validation_rejection_counts"] = {
+        key: (
+            after["validation_rejection_counts"].get(key, 0)
+            - before["validation_rejection_counts"].get(key, 0)
+        )
+        for key in sorted(rejection_keys)
+        if (
+            after["validation_rejection_counts"].get(key, 0)
+            - before["validation_rejection_counts"].get(key, 0)
+        )
+    }
+    return delta
 
 
 def generate_dataset(
     *,
     dataset_root: Path = DEFAULT_DATASET_ROOT,
     output_path: Path = DEFAULT_GENERATED_ROOT / "example.jsonl",
+    failure_manifest_path: Path | None = None,
     variants_per_origin: int = 1,
     max_origins: int | None = None,
     config: HallucinationGenerationConfig = DEFAULT_HALLUCINATION_CONFIG,
@@ -74,6 +138,15 @@ def generate_dataset(
         all_references if max_origins is None else all_references[:max_origins]
     )
 
+    output_path = Path(output_path)
+    manifest_path = (
+        _default_failure_manifest_path(output_path)
+        if failure_manifest_path is None
+        else Path(failure_manifest_path)
+    )
+    if output_path.resolve() == manifest_path.resolve():
+        raise ValueError("output_path and failure_manifest_path must be different")
+
     # C-G: each variant independently selects, applies, renders and annotates edits.
     planner = UnifiedHallucinationPlanner(fragment_pool, config)
     injector = UnifiedHallucinationInjector(config)
@@ -82,53 +155,121 @@ def generate_dataset(
     pair_builder = MatchedNegativeTextBuilder(agent)
     annotator = UnifiedHallucinationAnnotator()
     record_builder = UnifiedRecordBuilder()
-    records = []
-    for reference in references:
-        for variant_index in range(variants_per_origin):
-            plan = planner.plan(reference, variant_index=variant_index)
-            injected = injector.apply(reference.state_dag, plan)
-            rendered = renderer.render(reference, injected)
-            positive = annotator.annotate(rendered, injected)
-            if config.emit_matched_negative:
-                rendered_pair = pair_builder.build(reference, injected, rendered)
-                negative = annotator.annotate_negative(
-                    rendered_pair.negative,
-                    positive,
+    subtask_counts = Counter(reference.normalized_subtask.value for reference in references)
+    edit_counts: Counter[int] = Counter()
+    variant_counts: Counter[str] = Counter()
+    alignment_counts: Counter[str] = Counter()
+    rewrite_mode_counts: Counter[str] = Counter()
+    record_count = 0
+    same_length_count = 0
+    paired_span_count = 0
+    successful_variant_count = 0
+    failed_variant_count = 0
+    successful_origin_count = 0
+    failed_origin_count = 0
+    failures: list[dict[str, Any]] = []
+    telemetry_before = agent.telemetry()
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    with (
+        output_path.open("w", encoding="utf-8") as output_handle,
+        manifest_path.open("w", encoding="utf-8") as failure_handle,
+    ):
+        for reference in references:
+            origin_failed = False
+            for variant_index in range(variants_per_origin):
+                stage = "C_ERROR_PLANNING"
+                try:
+                    plan = planner.plan(reference, variant_index=variant_index)
+                    stage = "D_ERROR_INJECTION"
+                    injected = injector.apply(reference.state_dag, plan)
+                    stage = "E_TEXT_REALIZATION"
+                    rendered = renderer.render(reference, injected)
+                    stage = "F_ANNOTATION"
+                    positive = annotator.annotate(rendered, injected)
+                    if config.emit_matched_negative:
+                        stage = "E_MATCHED_NEGATIVE"
+                        rendered_pair = pair_builder.build(
+                            reference,
+                            injected,
+                            rendered,
+                        )
+                        stage = "F_ANNOTATION"
+                        negative = annotator.annotate_negative(
+                            rendered_pair.negative,
+                            positive,
+                        )
+                        stage = "G_RELEASE"
+                        released_records = record_builder.build_pair(
+                            reference,
+                            injected,
+                            rendered_pair,
+                            positive,
+                            negative,
+                        )
+                    else:
+                        stage = "G_RELEASE"
+                        released_records = (
+                            record_builder.build(reference, injected, positive),
+                        )
+                except Exception as error:
+                    origin_failed = True
+                    failed_variant_count += 1
+                    failure = {
+                        "origin_id": reference.anonymous_sample_id,
+                        "subtask": reference.normalized_subtask.value,
+                        "variant_index": variant_index,
+                        "stage": stage,
+                        "error_type": type(error).__name__,
+                        "error_message": str(error) or type(error).__name__,
+                    }
+                    failures.append(failure)
+                    _write_json_line(failure_handle, failure)
+                    failure_handle.flush()
+                    continue
+
+                # H: write a complete H/N pair together, then flush so an
+                # interrupted later origin cannot erase completed work.
+                for released in released_records:
+                    _write_json_line(output_handle, released.to_dict())
+                    record_count += 1
+                    edit_counts[released.data["edit_count"]] += 1
+                    variant_counts[released.data["variant_label"]] += 1
+                output_handle.flush()
+                successful_variant_count += 1
+                h_record = released_records[0]
+                alignment_counts.update(
+                    item["pair_alignment"]
+                    for item in h_record.data["pair_alignment"]
                 )
-                records.extend(
-                    record_builder.build_pair(
-                        reference,
-                        injected,
-                        rendered_pair,
-                        positive,
-                        negative,
+                rewrite_mode_counts.update(
+                    h_record.data["text_realization"].get(
+                        "step_rewrite_modes",
+                        (),
                     )
                 )
+                positive_spans = h_record.data["hallucination_spans"]
+                paired_span_count += len(positive_spans)
+                same_length_count += sum(
+                    item["same_char_length"] for item in positive_spans
+                )
+            if origin_failed:
+                failed_origin_count += 1
             else:
-                records.append(record_builder.build(reference, injected, positive))
+                successful_origin_count += 1
 
-    # H: release exactly the records made by the unified path.
-    write_jsonl(records, Path(output_path))
-    subtask_counts = Counter(reference.normalized_subtask.value for reference in references)
-    edit_counts = Counter(record.data["edit_count"] for record in records)
-    variant_counts = Counter(record.data["variant_label"] for record in records)
-    alignment_counts = Counter(
-        item["pair_alignment"]
-        for record in records
-        if record.data["variant_label"] == "H"
-        for item in record.data["pair_alignment"]
-    )
-    positive_spans = [
-        span
-        for record in records
-        if record.data["variant_label"] == "H"
-        for span in record.data["hallucination_spans"]
-    ]
-    same_length_count = sum(item["same_char_length"] for item in positive_spans)
+    telemetry = _telemetry_delta(telemetry_before, agent.telemetry())
     return GenerationSummary(
-        output_path=Path(output_path).resolve(),
+        output_path=output_path.resolve(),
+        failure_manifest_path=manifest_path.resolve(),
         origin_count=len(references),
-        record_count=len(records),
+        successful_origin_count=successful_origin_count,
+        failed_origin_count=failed_origin_count,
+        attempted_variant_count=len(references) * variants_per_origin,
+        successful_variant_count=successful_variant_count,
+        failed_variant_count=failed_variant_count,
+        record_count=record_count,
         variants_per_origin=variants_per_origin,
         fragment_pool_size=len(fragment_pool),
         subtask_counts=dict(sorted(subtask_counts.items())),
@@ -136,10 +277,26 @@ def generate_dataset(
         variant_label_counts=dict(sorted(variant_counts.items())),
         pair_alignment_distribution=dict(sorted(alignment_counts.items())),
         same_char_length_count=same_length_count,
-        paired_span_count=len(positive_spans),
+        paired_span_count=paired_span_count,
         same_char_length_ratio=(
-            same_length_count / len(positive_spans) if positive_spans else 0.0
+            same_length_count / paired_span_count if paired_span_count else 0.0
         ),
+        rewrite_mode_distribution=dict(sorted(rewrite_mode_counts.items())),
+        poe_rewrite_call_count=telemetry["rewrite_call_count"],
+        poe_uncached_request_count=telemetry["uncached_request_count"],
+        poe_cache_hit_count=telemetry["cache_hit_count"],
+        poe_network_request_count=telemetry["network_request_count"],
+        poe_retry_count=telemetry["retry_count"],
+        poe_requests_with_retry=telemetry["requests_with_retry"],
+        poe_retry_rate=(
+            telemetry["requests_with_retry"] / telemetry["uncached_request_count"]
+            if telemetry["uncached_request_count"]
+            else 0.0
+        ),
+        poe_validation_rejection_counts=telemetry[
+            "validation_rejection_counts"
+        ],
+        failures=tuple(failures),
     )
 
 
@@ -153,6 +310,12 @@ def main() -> None:
     )
     parser.add_argument("--variants-per-origin", type=int, default=1)
     parser.add_argument(
+        "--failure-manifest",
+        type=Path,
+        default=None,
+        help="Failure JSONL path (default: <output-stem>.failures.jsonl).",
+    )
+    parser.add_argument(
         "--max-origins",
         type=int,
         default=None,
@@ -163,23 +326,49 @@ def main() -> None:
         summary = generate_dataset(
             dataset_root=args.dataset_root,
             output_path=args.output,
+            failure_manifest_path=args.failure_manifest,
             variants_per_origin=args.variants_per_origin,
             max_origins=args.max_origins,
         )
     except PoeTextRealizationError as error:
         raise SystemExit(str(error)) from None
     print(f"wrote {summary.record_count} records to {summary.output_path}")
-    print(f"origins: {summary.origin_count}; variants/origin: {summary.variants_per_origin}")
+    print(
+        f"origins: {summary.successful_origin_count} succeeded, "
+        f"{summary.failed_origin_count} failed, {summary.origin_count} attempted; "
+        f"variants/origin: {summary.variants_per_origin}"
+    )
+    print(
+        f"variants: {summary.successful_variant_count} succeeded, "
+        f"{summary.failed_variant_count} failed"
+    )
     print(f"fragment pool: {summary.fragment_pool_size}")
     print(f"subtasks: {summary.subtask_counts}")
     print(f"edit-count distribution: {summary.edit_count_distribution}")
     print(f"variant labels: {summary.variant_label_counts}")
     print(f"pair alignments: {summary.pair_alignment_distribution}")
+    print(f"rewrite modes: {summary.rewrite_mode_distribution}")
+    print(
+        "Poe: "
+        f"{summary.poe_network_request_count} network attempts, "
+        f"{summary.poe_retry_count} retries, retry rate {summary.poe_retry_rate:.2%}, "
+        f"rejections {summary.poe_validation_rejection_counts}"
+    )
     print(
         "same-character-length controls: "
         f"{summary.same_char_length_count}/{summary.paired_span_count} "
         f"({summary.same_char_length_ratio:.2%})"
     )
+    print(f"failure manifest: {summary.failure_manifest_path}")
+    if summary.failures:
+        print(
+            "failed items: "
+            + ", ".join(
+                f"{item['origin_id']}[v{item['variant_index']}]@{item['stage']}"
+                for item in summary.failures
+            )
+        )
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

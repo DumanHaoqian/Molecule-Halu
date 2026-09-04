@@ -1198,6 +1198,9 @@ class PoeTextRenderer:
                 "response_sha256": result.response_sha256,
                 "network_request_count": result.network_request_count,
                 "cache_hit": result.cache_hit,
+                "validation_rejection_codes": list(
+                    result.validation_rejection_codes
+                ),
                 "rewrite_mode": "audited_step_routing",
                 "step_rewrite_modes": [
                     step.rewrite_mode.value for step in request.steps

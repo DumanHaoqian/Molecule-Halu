@@ -68,7 +68,7 @@ python -m molhallulens.generate_dataset \
 # Small real-Poe smoke test: 3 origins -> 3 H/N pairs -> 6 records.
 python -m molhallulens.generate_dataset \
   --max-origins 3 \
-  --output GeneratedDataset/example.jsonl
+  --output GeneratedDataset/smoke.jsonl
 
 # Verify the implementation.
 python -m pytest
@@ -97,6 +97,13 @@ SMILES and `diff_opcodes` records the underlying changed SequenceMatcher operati
 insertions/deletions include one shared boundary character so both H and N remain non-empty.
 The text layer may choose an equivalent rooted SMILES traversal to keep a local graph edit
 local in text; planning and injected DAG values are unchanged.
+Generation writes and flushes each complete pair immediately. Failures do not erase earlier
+pairs or stop later origins: each failed origin/variant is written to
+`<output-stem>.failures.jsonl`, counted in the summary, and causes a nonzero CLI exit after
+the batch finishes. Summary telemetry includes rewrite modes, pair alignments, Poe network
+attempts/retries, and arithmetic/enumeration rejection counts. A cache entry with stale
+metadata or a response rejected by the current validator is treated as a cache miss and
+refreshed; malformed unreadable cache JSON still fails closed.
 The test suite uses an injected fake Poe transport and therefore spends no points.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for file-level module ownership and contracts.

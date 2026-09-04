@@ -36,10 +36,10 @@ steps now emit one or more node-attributed value spans rather than a whole-body 
 
 ## Validation
 
-- `conda run -n molhallulens python -m pytest -q` — 32 passed.
+- `conda run -n molhallulens python -m pytest -q` — 52 passed.
 - `conda run -n molhallulens python -m compileall -q molhallulens` — passed.
 - `conda run -n molhallulens python -m molhallulens.generate_dataset --help` — passed;
-  `--max-origins` is exposed.
+  `--max-origins` and `--failure-manifest` are exposed.
 
 ## Task 3 — enumeration consistency
 
@@ -74,6 +74,34 @@ same 150 origins with `product` as the only root and the bond-order operator ena
   pure insertions/deletions expand across one common neighbor so both are non-empty.
 - `context_span` and `serialized_context_span` retain the complete SMILES location, while
   `diff_opcodes` records every non-equal SequenceMatcher opcode.
+- The post-change 150-origin pair audit remained 800/800 `byte_identical`; 923/1300 paired
+  spans (71.00%) now have equal character length.
 - Canonical SMILES can change its traversal after a one-atom edit. The renderer therefore
   deterministically chooses an equivalent rooted candidate traversal that minimizes the
   paired interval. This is display-only: planner and injection state are unchanged.
+
+## Task 5 — batch robustness and Poe smoke status
+
+- Generation now flushes each complete H/N pair incrementally. An injected interruption
+  test confirms the first pair remains readable when the second origin is interrupted.
+- Per-origin/variant exceptions are written immediately to a separate failure JSONL with
+  stage and error type. The batch continues, `GenerationSummary` reports success/failure
+  counts and the full failure list, and the CLI exits with status 1 after completion when
+  any failure occurred.
+- Stale renderer/bot/prompt/hash metadata and cached responses rejected by the current
+  validator are cache misses and are refreshed. Malformed/unreadable cache JSON remains a
+  hard error.
+- Poe telemetry now reports logical calls, cache hits, network attempts, retry count,
+  requests requiring retry, and rejection counts split into `false_enumeration`,
+  `false_arithmetic`, and other step-text contract errors. Fake-transport tests verify that
+  both new logical checks reject attempt 1 and recover on attempt 2.
+- **Real Poe smoke: blocked.** `POE_API_KEY` was absent from this execution environment, so
+  no real `--max-origins 3` request was attempted and no real regenerated/rewrite/retry
+  percentages are claimed. Required condition: export `POE_API_KEY` in the running shell,
+  then run `python -m molhallulens.generate_dataset --max-origins 3 --output
+  GeneratedDataset/smoke.jsonl`.
+- `POE_MAX_ATTEMPTS` remains 2. Recommendation: keep 2 provisionally—the deterministic and
+  injected-rejection tests recover with one retry—but do not treat this as production
+  evidence. Re-evaluate only from the real smoke's `poe_retry_rate`, terminal failure
+  manifest, and rejection distribution; increase the limit only if valid responses
+  repeatedly require more than one correction.

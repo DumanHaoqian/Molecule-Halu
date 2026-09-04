@@ -14,7 +14,7 @@
 | E3 | `modules/text_realization/renderer.py` + `smiles_diff.py` | marked Poe natural bodies + candidate DAG | `RenderedHallucination` | Locally append the exact Step header and modified FORMAL, strip markers, and calculate claim or character-level molecular spans |
 | E4 | `modules/text_realization/pairing.py` | validated H rendering + reference DAG | `MatchedRenderedPair` | Swap marked claims back to truth; regenerate only a step that fails FORMAL, residual, arithmetic, or enumeration checks |
 | F | `modules/annotation/spans.py` | H/N rendered mentions + injection trace | positive/negative `AnnotatedHallucination` | Label H root/propagated spans and one-to-one N control spans without weakening positive validation |
-| G/H | `modules/release/record.py` | graph, paired text, spans | paired JSONL records | Assemble H/N records, verify offsets and the byte-identical substitution invariant, then write the dataset |
+| G/H | `modules/release/record.py` + `generate_dataset.py` | graph, paired text, spans | paired JSONL records + failure manifest | Assemble H/N records, verify offsets and the byte-identical substitution invariant, then incrementally write each complete pair and explicitly record per-item failures |
 
 The two entry points are explicit:
 
@@ -62,3 +62,4 @@ molhallulens/
 16. A `byte_identical` step is reconstructed exactly by replacing each H span value with its paired N control value. A failed truth swap is never accepted: that step is reverse-regenerated and disclosed as `regenerated`.
 17. N records have `hallucination_present=false`, no hallucination spans, and one truth-valued `control_span` for every H span. `same_char_length` is recorded occurrence by occurrence.
 18. Changed SMILES/MOLECULE claims use one contiguous `SequenceMatcher` bounding interval on each side. Pure insertions/deletions include one shared boundary character so neither side is empty. `context_span` retains the complete molecular string and `diff_opcodes` retains the changed opcodes. A deterministic renderer-only rooted-SMILES traversal prevents RDKit canonical start-atom changes from turning local graph edits into whole-string labels; the displayed SMILES remains molecularly equivalent to the injected DAG value.
+19. Batch generation flushes every complete H/N pair before starting the next item. A failed origin/variant is written immediately to a separate JSONL failure manifest, processing continues, the summary reports all failures and Poe retry/validation counters, and the CLI exits nonzero if any item failed. Stale cache metadata or a response rejected by the current validator is a cache miss; unreadable cache JSON remains a hard error.

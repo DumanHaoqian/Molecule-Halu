@@ -311,9 +311,19 @@ class PoeRewriteResult:
     response_sha256: str
     network_request_count: int
     cache_hit: bool
+    validation_rejection_codes: tuple[str, ...]
 
 
 PoeTransport = Callable[[str, str, str, float], str]
+
+
+def _validation_rejection_code(error: PoeTextRealizationError) -> str:
+    message = str(error).lower()
+    if "enumeration" in message or "component sum" in message:
+        return "false_enumeration"
+    if "arithmetic" in message:
+        return "false_arithmetic"
+    return "step_text_contract"
 
 
 def parse_hallucination_markers(
@@ -734,7 +744,19 @@ def _default_poe_transport(
 class PoeStepTextAgent:
     """Call Poe, validate its marked step_text JSON, and cache secret-free output."""
 
-    __slots__ = ("config", "transport", "_environment", "cache_directory")
+    __slots__ = (
+        "config",
+        "transport",
+        "_environment",
+        "cache_directory",
+        "_rewrite_call_count",
+        "_uncached_request_count",
+        "_cache_hit_count",
+        "_network_request_count",
+        "_retry_count",
+        "_requests_with_retry",
+        "_validation_rejection_counts",
+    )
 
     def __init__(
         self,
@@ -763,6 +785,28 @@ class PoeStepTextAgent:
                 else PROJECT_ROOT / configured_cache
             )
         )
+        self._rewrite_call_count = 0
+        self._uncached_request_count = 0
+        self._cache_hit_count = 0
+        self._network_request_count = 0
+        self._retry_count = 0
+        self._requests_with_retry = 0
+        self._validation_rejection_counts: dict[str, int] = {}
+
+    def telemetry(self) -> dict[str, Any]:
+        """Return secret-free cumulative counters for batch summaries."""
+
+        return {
+            "rewrite_call_count": self._rewrite_call_count,
+            "uncached_request_count": self._uncached_request_count,
+            "cache_hit_count": self._cache_hit_count,
+            "network_request_count": self._network_request_count,
+            "retry_count": self._retry_count,
+            "requests_with_retry": self._requests_with_retry,
+            "validation_rejection_counts": dict(
+                sorted(self._validation_rejection_counts.items())
+            ),
+        }
 
     def _api_key(self) -> str:
         value = self._environment.get(self.config.poe_api_key_env)
@@ -786,18 +830,28 @@ class PoeStepTextAgent:
             return None
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
-            if (
-                not isinstance(payload, Mapping)
-                or payload.get("renderer_version") != POE_RENDERER_VERSION
-                or payload.get("bot_name") != self.config.poe_bot_name
-                or payload.get("prompt_sha256") != prompt_sha256
-                or type(payload.get("response_text")) is not str
-            ):
-                raise PoeTextRealizationError("cached Poe response metadata is invalid")
-            response_text = payload["response_text"]
-            rewritten = _parse_and_validate_response(response_text, request)
         except (OSError, json.JSONDecodeError) as error:
             raise PoeTextRealizationError("cached Poe response cannot be read") from error
+        if (
+            not isinstance(payload, Mapping)
+            or payload.get("renderer_version") != POE_RENDERER_VERSION
+            or payload.get("bot_name") != self.config.poe_bot_name
+            or payload.get("prompt_sha256") != prompt_sha256
+            or type(payload.get("response_text")) is not str
+            or payload.get("response_sha256")
+            != hashlib.sha256(
+                str(payload.get("response_text", "")).encode("utf-8")
+            ).hexdigest()
+        ):
+            return None
+        response_text = payload["response_text"]
+        try:
+            rewritten = _parse_and_validate_response(response_text, request)
+        except PoeTextRealizationError:
+            # A stricter validator may invalidate an otherwise well-formed old
+            # cache entry even when prompt text did not change. Treat it as a
+            # stale artifact and obtain a fresh response.
+            return None
         return response_text, rewritten
 
     def _store_cache(self, prompt_sha256: str, response_text: str) -> None:
@@ -820,6 +874,7 @@ class PoeStepTextAgent:
     def rewrite(self, request: PoeRewriteRequest) -> PoeRewriteResult:
         if type(request) is not PoeRewriteRequest:
             raise TypeError("request must be PoeRewriteRequest")
+        self._rewrite_call_count += 1
         system_prompt = _system_prompt()
         base_user_prompt = _user_prompt(request)
         prompt_identity = system_prompt + "\n\n" + base_user_prompt
@@ -827,6 +882,7 @@ class PoeStepTextAgent:
 
         cached = self._load_cache(prompt_sha256, request)
         if cached is not None:
+            self._cache_hit_count += 1
             response_text, rewritten = cached
             return PoeRewriteResult(
                 rewritten_step_texts=rewritten,
@@ -836,11 +892,18 @@ class PoeStepTextAgent:
                 response_sha256=hashlib.sha256(response_text.encode("utf-8")).hexdigest(),
                 network_request_count=0,
                 cache_hit=True,
+                validation_rejection_codes=(),
             )
 
+        self._uncached_request_count += 1
         validation_error = ""
+        validation_rejection_codes: list[str] = []
         response_text = ""
         for attempt in range(1, self.config.poe_max_attempts + 1):
+            if attempt > 1:
+                self._retry_count += 1
+                if attempt == 2:
+                    self._requests_with_retry += 1
             user_prompt = base_user_prompt
             if validation_error:
                 user_prompt += (
@@ -848,6 +911,7 @@ class PoeStepTextAgent:
                     + validation_error
                     + "\nReturn a corrected JSON object."
                 )
+            self._network_request_count += 1
             if self.transport is None:
                 response_text = _default_poe_transport(
                     system_prompt,
@@ -867,6 +931,11 @@ class PoeStepTextAgent:
                 rewritten = _parse_and_validate_response(response_text, request)
             except PoeTextRealizationError as error:
                 validation_error = str(error)
+                rejection_code = _validation_rejection_code(error)
+                validation_rejection_codes.append(rejection_code)
+                self._validation_rejection_counts[rejection_code] = (
+                    self._validation_rejection_counts.get(rejection_code, 0) + 1
+                )
                 continue
             self._store_cache(prompt_sha256, response_text)
             return PoeRewriteResult(
@@ -877,6 +946,7 @@ class PoeStepTextAgent:
                 response_sha256=hashlib.sha256(response_text.encode("utf-8")).hexdigest(),
                 network_request_count=attempt,
                 cache_hit=False,
+                validation_rejection_codes=tuple(validation_rejection_codes),
             )
         raise PoeTextRealizationError(
             "Poe response failed the local step_text contract after "
