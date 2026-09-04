@@ -11,7 +11,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATASET_ROOT = PROJECT_ROOT / "Dataset"
-DEFAULT_RELEASE_ROOT = PROJECT_ROOT / "HallucinationDataset"
+DEFAULT_GENERATED_ROOT = PROJECT_ROOT / "GeneratedDataset"
 
 
-__all__ = ["DEFAULT_DATASET_ROOT", "DEFAULT_RELEASE_ROOT", "PROJECT_ROOT"]
+__all__ = ["DEFAULT_DATASET_ROOT", "DEFAULT_GENERATED_ROOT", "PROJECT_ROOT"]

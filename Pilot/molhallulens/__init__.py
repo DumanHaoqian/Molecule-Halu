@@ -1,30 +1,7 @@
-"""MolHalluLens molecular hallucination dataset builder."""
+"""MolHalluLens: configurable multi-point molecular hallucination generation."""
 
 from __future__ import annotations
 
-from .pipeline import (
-    AnnotationModule,
-    ErrorInjectionModule,
-    ErrorPlanningModule,
-    IngestionModule,
-    ReferenceModule,
-    ReleaseModule,
-    SequentialPipeline,
-    TextRealizationModule,
-    TrajectoryModule,
-)
+__all__ = ["__version__"]
 
-__all__ = [
-    "AnnotationModule",
-    "ErrorInjectionModule",
-    "ErrorPlanningModule",
-    "IngestionModule",
-    "ReferenceModule",
-    "ReleaseModule",
-    "SequentialPipeline",
-    "TextRealizationModule",
-    "TrajectoryModule",
-    "__version__",
-]
-
-__version__ = "0.1.0"
+__version__ = "0.2.0"

@@ -1,93 +1,19 @@
-"""Explicit A-to-H dataset pipeline with visible inputs and outputs."""
+"""Explicit A-to-H pipeline for the single multi-point hallucination design."""
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from collections.abc import Mapping
-from dataclasses import dataclass, fields, is_dataclass
+from dataclasses import fields, is_dataclass
 from enum import Enum
 from pathlib import Path
-from typing import Any, Protocol
-
-
-class IngestionModule(Protocol):
-    """Input: dataset source. Output: normalized ChemCoTBench records."""
-
-    def run(self, dataset_source: Any) -> Any: ...
-
-
-class ReferenceModule(Protocol):
-    """Input: normalized records. Output: validated reference DAGs and truth."""
-
-    def run(self, ingested_records: Any) -> Any: ...
-
-
-class ErrorPlanningModule(Protocol):
-    """Input: reference states. Output: selected error plans."""
-
-    def run(self, reference_states: Any) -> Any: ...
-
-
-class ErrorInjectionModule(Protocol):
-    """Input: selected error plans. Output: root-mutated states."""
-
-    def run(self, error_plans: Any) -> Any: ...
-
-
-class TrajectoryModule(Protocol):
-    """Input: root mutations. Output: propagated DAGs and graph deltas."""
-
-    def run(self, root_mutations: Any) -> Any: ...
-
-
-class TextRealizationModule(Protocol):
-    """Input: propagated DAGs. Output: rendered step text and mentions."""
-
-    def run(self, trajectories: Any) -> Any: ...
-
-
-class AnnotationModule(Protocol):
-    """Input: rendered text and mentions. Output: character/token labels."""
-
-    def run(self, rendered_text: Any) -> Any: ...
-
-
-class ReleaseModule(Protocol):
-    """Input: annotated records. Output: released dataset artifacts."""
-
-    def run(self, annotated_records: Any) -> Any: ...
-
-
-@dataclass(frozen=True, slots=True)
-class SequentialPipeline:
-    """Run the eight named modules in one visible, fixed sequence."""
-
-    ingestion: IngestionModule
-    reference: ReferenceModule
-    error_planning: ErrorPlanningModule
-    error_injection: ErrorInjectionModule
-    trajectory: TrajectoryModule
-    text_realization: TextRealizationModule
-    annotation: AnnotationModule
-    release: ReleaseModule
-
-    def run(self, dataset_source: Any) -> Any:
-        """Transform one dataset source into released dataset artifacts."""
-
-        ingested_records = self.ingestion.run(dataset_source)
-        reference_states = self.reference.run(ingested_records)
-        error_plans = self.error_planning.run(reference_states)
-        root_mutations = self.error_injection.run(error_plans)
-        trajectories = self.trajectory.run(root_mutations)
-        rendered_text = self.text_realization.run(trajectories)
-        annotated_records = self.annotation.run(rendered_text)
-        released_dataset = self.release.run(annotated_records)
-        return released_dataset
+from typing import Any
 
 
 def _plain_data(value: Any) -> Any:
-    """Convert immutable domain objects into complete JSON-printable data."""
+    """Convert immutable project objects into complete JSON-printable data."""
 
     if isinstance(value, Enum):
         return value.value
@@ -107,9 +33,7 @@ def _plain_data(value: Any) -> Any:
     return value
 
 
-def _print_full_stage(stage: str, input_value: Any, output_value: Any) -> None:
-    """Print an untruncated module input and output as indented JSON."""
-
+def _print_stage(stage: str, input_value: Any, output_value: Any) -> None:
     print("\n" + "=" * 100)
     print(stage)
     print("-" * 100)
@@ -119,255 +43,214 @@ def _print_full_stage(stage: str, input_value: Any, output_value: Any) -> None:
     print(json.dumps(_plain_data(output_value), ensure_ascii=False, indent=2))
 
 
-def _read_jsonl_record(path: Path, record_id: str) -> dict[str, Any]:
-    """Read one complete stored artifact by record_id."""
-
-    with path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            record = json.loads(line)
-            if record.get("record_id") == record_id:
-                return record
-    raise RuntimeError(f"record {record_id!r} was not found in {path}")
-
-
-__all__ = [
-    "AnnotationModule",
-    "ErrorInjectionModule",
-    "ErrorPlanningModule",
-    "IngestionModule",
-    "ReferenceModule",
-    "ReleaseModule",
-    "SequentialPipeline",
-    "TextRealizationModule",
-    "TrajectoryModule",
-]
+def _parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Generate one configurable multi-point hallucination record."
+    )
+    parser.add_argument(
+        "--origin-id",
+        default="mol_edit.add_v2.0003",
+        help="ChemCoTBench-V2 anonymous origin ID.",
+    )
+    parser.add_argument(
+        "--variant-index",
+        type=int,
+        default=0,
+        help="Non-negative deterministic variant number.",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=None,
+        help="Output JSONL path; default: Pilot/GeneratedDataset/example.jsonl.",
+    )
+    parser.add_argument(
+        "--no-pause",
+        action="store_true",
+        help="Run without the interactive Enter pauses.",
+    )
+    return parser.parse_args()
 
 
 if __name__ == "__main__":
-    # Make this file runnable both ways:
-    #   1. From Pilot:       python -m molhallulens.pipeline
-    #   2. From molhallulens: python pipeline.py
+    # 支持两种运行方式：
+    #   Pilot/ 下运行:       python -m molhallulens.pipeline
+    #   molhallulens/ 下运行: python pipeline.py
     project_root = Path(__file__).resolve().parents[1]
     if str(project_root) not in sys.path:
         sys.path.insert(0, str(project_root))
 
-    from molhallulens.modules.ingestion import (
-        ChemCoTMolEditAdapter,
-        JoinedInputRecord,
+    from molhallulens.config.hallucination_generation import (
+        DEFAULT_HALLUCINATION_CONFIG,
     )
+    from molhallulens.modules.annotation import UnifiedHallucinationAnnotator
+    from molhallulens.modules.error_injection import UnifiedHallucinationInjector
+    from molhallulens.modules.error_planning import (
+        FragmentPool,
+        UnifiedHallucinationPlanner,
+    )
+    from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
     from molhallulens.modules.reference import build_reference_dag
+    from molhallulens.modules.release import UnifiedRecordBuilder, write_jsonl
+    from molhallulens.modules.text_realization import (
+        PoeStepTextAgent,
+        PoeTextRealizationError,
+        PoeTextRenderer,
+        build_poe_rewrite_request,
+    )
 
-    origin_id = "mol_edit.add_v2.0003"
-    record_id = "mol_edit.add_v2.0003__LOCAL__H"
+    args = _parse_args()
     dataset_root = project_root / "Dataset"
-    generated_root = project_root / "HallucinationDataset"
+    output_path = args.output or project_root / "GeneratedDataset" / "example.jsonl"
+    pause = not args.no_pause
 
-    # C-H replay the project's complete, already-generated artifacts for one
-    # real LOCAL-H record.  A and B are executed live below.
-    stored_provenance = _read_jsonl_record(
-        generated_root / "provenance" / "train.jsonl",
-        record_id,
+    print("MolHalluLens unified multi-point hallucination pipeline")
+    print("Every output is one configurable, always-positive hallucination sample")
+    print(f"origin_id: {args.origin_id}")
+    print(f"variant_index: {args.variant_index}")
+
+    # A. 原始 Dataset -> 经过校验并按 ID join 的 150 条输入记录。
+    ingestion_module = ChemCoTMolEditAdapter()
+    all_records = ingestion_module.load(dataset_root)
+    selected_record = next(
+        (item for item in all_records if item.anonymous_sample_id == args.origin_id),
+        None,
     )
-    stored_state_graph = _read_jsonl_record(
-        generated_root / "state_graphs" / "train.jsonl",
-        record_id,
+    if selected_record is None:
+        raise SystemExit(f"unknown origin ID: {args.origin_id}")
+    _print_stage(
+        "A INGESTION — load and join raw/process/template data",
+        {"dataset_root": dataset_root, "origin_id": args.origin_id},
+        selected_record,
     )
-    stored_release_record = _read_jsonl_record(
-        generated_root / "records" / "train.jsonl",
-        record_id,
+    if pause:
+        input("\nPress Enter to continue to B REFERENCE...")
+
+    # B. Joined records -> Reference DAG；同时从全语料建立 fragment pool。
+    all_reference_artifacts = tuple(build_reference_dag(item) for item in all_records)
+    reference_artifact = next(
+        item
+        for item in all_reference_artifacts
+        if item.anonymous_sample_id == args.origin_id
     )
+    fragment_pool = FragmentPool.from_reference_artifacts(all_reference_artifacts)
+    reference_output = {
+        "reference_artifact": reference_artifact,
+        "fragment_pool_size": len(fragment_pool),
+        "fragment_pool": fragment_pool.entries,
+    }
+    _print_stage(
+        "B REFERENCE — build DAG and corpus fragment pool",
+        selected_record,
+        reference_output,
+    )
+    if pause:
+        input("\nPress Enter to continue to C ERROR PLANNING...")
 
-    class DemoIngestion:
-        def run(self, dataset_source: Any) -> Any:
-            ingestion_input = {
-                "dataset_root": str(dataset_source),
-                "target_origin_id": origin_id,
-            }
-            all_records = ChemCoTMolEditAdapter().load(Path(dataset_source))
-            selected_record = next(
-                record
-                for record in all_records
-                if record.anonymous_sample_id == origin_id
-            )
-            ingested_records = _plain_data(selected_record)
-            _print_full_stage(
-                "A INGESTION — load, validate, and join raw/process/template data",
-                ingestion_input,
-                ingested_records,
-            )
-            return ingested_records
+    # C. Reference DAG -> 一份包含 K 个直接修改点的统一 plan。
+    planning_module = UnifiedHallucinationPlanner(
+        fragment_pool=fragment_pool,
+        config=DEFAULT_HALLUCINATION_CONFIG,
+    )
+    hallucination_plan = planning_module.plan(
+        reference_artifact,
+        variant_index=args.variant_index,
+    )
+    _print_stage(
+        "C ERROR PLANNING — select edit count, targets, operators, and magnitudes",
+        reference_output,
+        hallucination_plan,
+    )
+    if pause:
+        input("\nPress Enter to continue to D ERROR INJECTION...")
 
-    class DemoReference:
-        def run(self, ingested_records: Any) -> Any:
-            joined_record = JoinedInputRecord(
-                anonymous_sample_id=ingested_records["anonymous_sample_id"],
-                raw_record=ingested_records["raw_record"],
-                process_record=ingested_records["process_record"],
-                formal_template=ingested_records["formal_template"],
-            )
-            reference_states = _plain_data(build_reference_dag(joined_record))
-            _print_full_stage(
-                "B REFERENCE — build the complete typed reference DAG",
-                ingested_records,
-                reference_states,
-            )
-            return reference_states
+    # D. Plan -> 只应用 plan 中显式列出的节点修改；没有隐式传播。
+    injection_module = UnifiedHallucinationInjector()
+    injected = injection_module.apply(
+        reference_artifact.state_dag,
+        hallucination_plan,
+    )
+    _print_stage(
+        "D ERROR INJECTION — apply every planned semantic edit",
+        hallucination_plan,
+        injected,
+    )
+    if pause:
+        input("\nPress Enter to continue to E TEXT REALIZATION...")
 
-    class DemoErrorPlanning:
-        def run(self, reference_states: Any) -> Any:
-            error_plans = {
-                "reference_artifact": reference_states,
-                "record_id": stored_provenance["record_id"],
-                "origin_id": stored_provenance["origin_id"],
-                "pair_id": stored_provenance["pair_id"],
-                "bundle_id": stored_provenance["bundle_id"],
-                "recipe": stored_provenance["recipe"],
-                "candidate_selection": stored_provenance["candidate_selection"],
-                "donor": stored_provenance["donor"],
-                "fallback": stored_provenance["fallback"],
-                "execution_mode": stored_provenance["execution_mode"],
-            }
-            _print_full_stage(
-                "C ERROR PLANNING — choose target, operator, candidate, and seed",
-                reference_states,
-                error_plans,
-            )
-            return error_plans
+    # E. 代码锁定 FORMAL；Poe 只重写自然语言；再拼成完整 step_text。
+    poe_request = build_poe_rewrite_request(reference_artifact, injected)
+    _print_stage(
+        "E1 POE REQUEST — original context + modified FORMAL + locked placeholders",
+        injected,
+        poe_request,
+    )
+    if pause:
+        input("\nPress Enter to send this request to Poe...")
+    text_module = PoeTextRenderer(PoeStepTextAgent(DEFAULT_HALLUCINATION_CONFIG))
+    try:
+        rendered = text_module.render(reference_artifact, injected)
+    except PoeTextRealizationError as error:
+        raise SystemExit(str(error)) from None
+    _print_stage(
+        "E2 TEXT REALIZATION — Poe prose + locally locked FORMAL",
+        poe_request,
+        rendered,
+    )
+    if pause:
+        input("\nPress Enter to continue to F ANNOTATION...")
 
-    class DemoErrorInjection:
-        def run(self, error_plans: Any) -> Any:
-            root_mutations = {
-                "record_id": record_id,
-                "error_plan": error_plans,
-                "mutation_descriptor": stored_release_record["mutation"],
-                "mutation_events": stored_state_graph["mutation_events"],
-                "reference_graph": stored_state_graph["reference"],
-                # For LOCAL, selected_nodes contains only the root, so the
-                # stored locked graph is also the root-mutated graph.
-                "root_mutated_graph": stored_state_graph["locked"],
-            }
-            _print_full_stage(
-                "D ERROR INJECTION — apply product_heavy: 43 -> 37",
-                error_plans,
-                root_mutations,
-            )
-            return root_mutations
+    # F. Rendered text -> 每个被修改语义点对应的全部文本 span。
+    annotation_module = UnifiedHallucinationAnnotator()
+    annotated = annotation_module.annotate(rendered, hallucination_plan)
+    _print_stage(
+        "F ANNOTATION — label every occurrence of every edited node",
+        rendered,
+        annotated,
+    )
+    if pause:
+        input("\nPress Enter to continue to G RECORD ASSEMBLY...")
 
-    class DemoTrajectory:
-        def run(self, root_mutations: Any) -> Any:
-            trajectories = {
-                "record_id": record_id,
-                "policy": stored_provenance["recipe"]["policy"],
-                "root_mutation": stored_state_graph["mutation_events"],
-                "propagation": stored_provenance["propagation"],
-                "semantic_difference_targets": stored_state_graph[
-                    "semantic_difference_targets"
-                ],
-                "candidate_graph_after_trajectory": stored_state_graph["locked"],
-                "formal_trace_after_trajectory": stored_state_graph["formal_trace"],
-            }
-            _print_full_stage(
-                "E TRAJECTORY — apply LOCAL propagation and record graph differences",
-                root_mutations,
-                trajectories,
-            )
-            return trajectories
+    # G. Graph + text + spans -> 单一格式的 positive hallucination record。
+    record_module = UnifiedRecordBuilder()
+    released_record = record_module.build(
+        reference_artifact,
+        injected,
+        annotated,
+    )
+    _print_stage(
+        "G RECORD ASSEMBLY — create the new always-hallucinated schema",
+        annotated,
+        released_record,
+    )
+    if pause:
+        input("\nPress Enter to continue to H RELEASE...")
 
-    class DemoTextRealization:
-        def run(self, trajectories: Any) -> Any:
-            rendered_text = {
-                "record_id": record_id,
-                "trajectory": trajectories,
-                "renderer": stored_provenance["renderer"],
-                "detector_input": stored_release_record["detector_input"],
-                "serialized": stored_release_record["serialized"],
-            }
-            _print_full_stage(
-                "F TEXT REALIZATION — render every step and the complete detector prompt",
-                trajectories,
-                rendered_text,
-            )
-            return rendered_text
-
-    class DemoAnnotation:
-        def run(self, rendered_text: Any) -> Any:
-            annotated_records = {
-                "record_id": record_id,
-                "rendered_text": rendered_text,
-                "spans": stored_release_record["spans"],
-                "trace_labels": stored_release_record["trace_labels"],
-                "verification": stored_release_record["verification"],
-                "tokenizer": stored_provenance["tokenizer"],
-            }
-            _print_full_stage(
-                "G ANNOTATION — attach hallucination spans, labels, and QA results",
-                rendered_text,
-                annotated_records,
-            )
-            return annotated_records
-
-    class DemoRelease:
-        def run(self, annotated_records: Any) -> Any:
-            released_dataset = stored_release_record
-            _print_full_stage(
-                "H RELEASE — emit the exact complete JSONL record",
-                annotated_records,
-                released_dataset,
-            )
-            return released_dataset
-
-    print("MolHalluLens detailed A-to-H pipeline demo")
-    print(f"Origin: {origin_id}")
-    print(f"Hallucinated record: {record_id}")
-    print("A-B run live; C-H replay the complete stored real artifact.")
-    print("Nothing below is abbreviated or truncated.")
-
-    # A. Dataset path -> one complete joined ChemCoTBench-V2 record.
-    ingestion_module = DemoIngestion()
-    ingested_records = ingestion_module.run(dataset_root)
-    input("\nPress Enter to continue to B REFERENCE...")
-
-    # B. Joined record -> complete reference DAG.
-    reference_module = DemoReference()
-    reference_states = reference_module.run(ingested_records)
-    input("\nPress Enter to continue to C ERROR PLANNING...")
-
-    # C. Reference DAG -> one complete, reproducible error plan.
-    error_planning_module = DemoErrorPlanning()
-    error_plans = error_planning_module.run(reference_states)
-    input("\nPress Enter to continue to D ERROR INJECTION...")
-
-    # D. Error plan -> graph containing the root mutation.
-    error_injection_module = DemoErrorInjection()
-    root_mutations = error_injection_module.run(error_plans)
-    input("\nPress Enter to continue to E TRAJECTORY...")
-
-    # E. Root mutation -> graph after applying the propagation policy.
-    trajectory_module = DemoTrajectory()
-    trajectories = trajectory_module.run(root_mutations)
-    input("\nPress Enter to continue to F TEXT REALIZATION...")
-
-    # F. Candidate graph -> complete textual reasoning and detector prompt.
-    text_realization_module = DemoTextRealization()
-    rendered_text = text_realization_module.run(trajectories)
-    input("\nPress Enter to continue to G ANNOTATION...")
-
-    # G. Rendered text -> hallucination spans and validation labels.
-    annotation_module = DemoAnnotation()
-    annotated_records = annotation_module.run(rendered_text)
-    input("\nPress Enter to continue to H RELEASE...")
-
-    # H. Annotated sample -> exact released JSONL record.
-    release_module = DemoRelease()
-    final_output = release_module.run(annotated_records)
+    # H. 最终 record -> JSONL 文件。
+    write_jsonl((released_record,), output_path)
+    _print_stage(
+        "H RELEASE — write one JSONL record",
+        released_record,
+        {
+            "output_path": output_path,
+            "record_count": 1,
+            "record_id": released_record.data["record_id"],
+        },
+    )
 
     print("\n" + "=" * 100)
     print("PIPELINE FINISHED")
-    print(f"record_id: {final_output['record_id']}")
+    print(f"output: {output_path}")
+    print(f"record_id: {released_record.data['record_id']}")
+    print(f"edit_count: {released_record.data['edit_count']}")
     print(
-        "root mutation: "
-        f"{final_output['mutation']['root_state_id']} "
-        "43 -> "
-        f"{stored_state_graph['mutation_events'][0]['after']}"
+        "edited semantic points: "
+        + ", ".join(
+            item["semantic_target_id"]
+            for item in released_record.data["mutation_events"]
+        )
     )
-    print(f"hallucination spans: {len(final_output['spans'])}")
+    print(
+        "hallucination spans: "
+        f"{len(released_record.data['hallucination_spans'])}"
+    )

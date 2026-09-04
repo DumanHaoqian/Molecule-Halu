@@ -11,17 +11,6 @@ from importlib import import_module
 
 _EXPORTS = {
     **{
-        name: ".anomaly_registry"
-        for name in (
-            "DEFAULT_ANOMALY_REGISTRY",
-            "AnomalyRegistry",
-            "AnomalyRegistryError",
-            "audit_anomaly_registry",
-            "classify_edit_truth",
-            "structural_edit_signature",
-        )
-    },
-    **{
         name: ".builder"
         for name in (
             "AdditionReferenceDAGBuilder",
@@ -41,14 +30,6 @@ _EXPORTS = {
             "build_reference_dag",
             "build_reference_dag_corpus",
             "reference_dag_builder_for",
-        )
-    },
-    **{
-        name: ".truth"
-        for name in (
-            "EditTruthBuildError",
-            "EditTruthBuilder",
-            "derive_edit_truth",
         )
     },
 }

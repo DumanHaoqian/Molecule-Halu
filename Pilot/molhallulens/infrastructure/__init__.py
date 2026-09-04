@@ -1,3 +1,3 @@
-"""Cross-cutting chemistry, validation, and provider integrations."""
+"""Cross-cutting local chemistry utilities."""
 
-__all__ = ["chemistry", "providers", "validation"]
+__all__ = ["chemistry"]

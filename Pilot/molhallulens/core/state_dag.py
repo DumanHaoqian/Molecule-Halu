@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable, Iterable, Iterator, Mapping
+from collections.abc import Callable, Iterator, Mapping
 from dataclasses import dataclass, field, fields, is_dataclass, replace
 from enum import Enum
 from heapq import heapify, heappop, heappush
@@ -11,11 +11,8 @@ from types import MappingProxyType
 from typing import Any, Generic, TypeVar
 
 from .enums import (
-    CausalRole,
     ComparatorKind,
     DependencyType,
-    EditErrorSubtype,
-    HallucinationType,
     MutationTargetKind,
     NodeRole,
     ValueProvenance,
@@ -427,47 +424,6 @@ class StateSchema:
     def edges_by_id(self) -> FrozenMap[str, StateEdge]:
         return FrozenMap({edge.edge_id: edge for edge in self.edges})
 
-    def _validated_node_ids(
-        self,
-        node_ids: Iterable[str],
-        *,
-        name: str,
-    ) -> frozenset[str]:
-        if isinstance(node_ids, (str, bytes)) or not isinstance(node_ids, Iterable):
-            raise TypeError(f"{name} must be a non-string iterable of node IDs")
-        collected: set[str] = set()
-        for node_id in node_ids:
-            if type(node_id) is not str:
-                raise TypeError(f"{name} must contain only string node IDs")
-            collected.add(node_id)
-        unknown = tuple(sorted(collected - set(self.nodes_by_id)))
-        if unknown:
-            raise KeyError(f"{name} contains unknown node IDs: {unknown!r}")
-        return frozenset(collected)
-
-    def _validated_node_id(self, node_id: str, *, name: str) -> str:
-        if type(node_id) is not str:
-            raise TypeError(f"{name} must be a string node ID")
-        if node_id not in self.nodes_by_id:
-            raise KeyError(node_id)
-        return node_id
-
-    def _adjacency(self) -> tuple[dict[str, tuple[str, ...]], dict[str, tuple[str, ...]]]:
-        outgoing_sets = {node.node_id: set() for node in self.nodes}
-        incoming_sets = {node.node_id: set() for node in self.nodes}
-        for edge in self.edges:
-            outgoing_sets[edge.source].add(edge.target)
-            incoming_sets[edge.target].add(edge.source)
-        outgoing = {
-            node_id: tuple(sorted(targets))
-            for node_id, targets in outgoing_sets.items()
-        }
-        incoming = {
-            node_id: tuple(sorted(sources))
-            for node_id, sources in incoming_sets.items()
-        }
-        return outgoing, incoming
-
     def topological_order(self) -> tuple[str, ...]:
         """Return the unique lexical-tie-broken topological node order."""
 
@@ -491,104 +447,6 @@ class StateSchema:
         if len(ordered) != len(self.nodes):
             raise ValueError("StateSchema must be acyclic")
         return tuple(ordered)
-
-    def descendants(self, root_node_id: str) -> tuple[str, ...]:
-        """Return strict reachable downstream nodes in deterministic topo order."""
-
-        root = self._validated_node_id(root_node_id, name="root_node_id")
-        outgoing, _ = self._adjacency()
-        reachable: set[str] = set()
-        frontier = list(outgoing[root])
-        while frontier:
-            node_id = frontier.pop()
-            if node_id in reachable:
-                continue
-            reachable.add(node_id)
-            frontier.extend(outgoing[node_id])
-        return tuple(
-            node_id for node_id in self.topological_order() if node_id in reachable
-        )
-
-    def dependency_closure(self, seed_node_ids: Iterable[str]) -> tuple[str, ...]:
-        """Return seeds and all reachable descendants in deterministic topo order."""
-
-        seeds = self._validated_node_ids(seed_node_ids, name="seed_node_ids")
-        outgoing, _ = self._adjacency()
-        closure = set(seeds)
-        frontier = list(seeds)
-        while frontier:
-            node_id = frontier.pop()
-            for target in outgoing[node_id]:
-                if target not in closure:
-                    closure.add(target)
-                    frontier.append(target)
-        return tuple(
-            node_id for node_id in self.topological_order() if node_id in closure
-        )
-
-    def is_connected_downstream_subgraph(
-        self,
-        root_node_ids: Iterable[str],
-        selected_node_ids: Iterable[str],
-    ) -> bool:
-        """Whether selected nodes form a directed root-reachable downstream subgraph."""
-
-        roots = self._validated_node_ids(root_node_ids, name="root_node_ids")
-        if not roots:
-            raise ValueError("root_node_ids cannot be empty")
-        selected = self._validated_node_ids(
-            selected_node_ids,
-            name="selected_node_ids",
-        )
-        full_downstream = frozenset(self.dependency_closure(roots))
-        if not roots <= selected or not selected <= full_downstream:
-            return False
-        outgoing, _ = self._adjacency()
-        reached = set(roots)
-        frontier = list(roots)
-        while frontier:
-            node_id = frontier.pop()
-            for target in outgoing[node_id]:
-                if target in selected and target not in reached:
-                    reached.add(target)
-                    frontier.append(target)
-        if reached != set(selected):
-            return False
-        return True
-
-    def stale_downstream_edges(
-        self,
-        changed_node_ids: Iterable[str],
-    ) -> tuple[StateEdge, ...]:
-        """Return the deterministic stale-downstream frontier of a changed set.
-
-        This is a structural propagation query: an edge is reported when its source
-        changed but its target did not. Chemistry and comparator-based truth checks
-        remain validator responsibilities.
-        """
-
-        changed = self._validated_node_ids(
-            changed_node_ids,
-            name="changed_node_ids",
-        )
-        topo_index = {
-            node_id: index for index, node_id in enumerate(self.topological_order())
-        }
-        return tuple(
-            sorted(
-                (
-                    edge
-                    for edge in self.edges
-                    if edge.source in changed and edge.target not in changed
-                ),
-                key=lambda edge: (
-                    topo_index[edge.source],
-                    topo_index[edge.target],
-                    edge.edge_id,
-                ),
-            )
-        )
-
 
 @dataclass(frozen=True, slots=True)
 class StateDAG:
@@ -719,112 +577,3 @@ class StateDAG:
             return not self.semantic_differences(other)
         except (TypeError, ValueError):
             return False
-
-
-@dataclass(frozen=True, slots=True)
-class MutationEvent:
-    event_id: str
-    target_kind: MutationTargetKind
-    node_or_edge_id: str
-    before: ClaimValue
-    after: ClaimValue
-    causal_role: CausalRole
-    hallucination_types: frozenset[HallucinationType]
-    edit_subtypes: frozenset[EditErrorSubtype]
-    operator_id: str
-    root_event_id: str
-
-    def __post_init__(self) -> None:
-        if type(self.target_kind) is not MutationTargetKind:
-            raise TypeError("MutationEvent target_kind must be a MutationTargetKind")
-        if type(self.causal_role) is not CausalRole:
-            raise TypeError("MutationEvent causal_role must be a CausalRole")
-        if type(self.before) is not ClaimValue or type(self.after) is not ClaimValue:
-            raise TypeError("MutationEvent before and after must be ClaimValue values")
-        object.__setattr__(self, "hallucination_types", frozenset(self.hallucination_types))
-        object.__setattr__(self, "edit_subtypes", frozenset(self.edit_subtypes))
-        if any(type(value) is not HallucinationType for value in self.hallucination_types):
-            raise TypeError("MutationEvent hallucination_types must contain HallucinationType values")
-        if any(type(value) is not EditErrorSubtype for value in self.edit_subtypes):
-            raise TypeError("MutationEvent edit_subtypes must contain EditErrorSubtype values")
-        for value, name in (
-            (self.event_id, "event_id"),
-            (self.node_or_edge_id, "node_or_edge_id"),
-            (self.operator_id, "operator_id"),
-            (self.root_event_id, "root_event_id"),
-        ):
-            if type(value) is not str:
-                raise TypeError(f"MutationEvent {name} must be a string")
-            if not value:
-                raise ValueError(f"MutationEvent {name} cannot be empty")
-        if self.before.value_type is not self.after.value_type:
-            raise ValueError("MutationEvent cannot change a claim's ValueType")
-        if self.before.semantically_equals(self.after):
-            raise ValueError("MutationEvent before and after normalized values must differ")
-        if not self.hallucination_types:
-            raise ValueError("MutationEvent must carry at least one semantic type")
-        if HallucinationType.UNVERIFIABLE in self.hallucination_types:
-            raise ValueError("adjudicated MutationEvent values cannot be UNVERIFIABLE")
-        if not self.edit_subtypes:
-            raise ValueError("MutationEvent must carry at least one editing subtype")
-        if self.causal_role in {CausalRole.ROOT, CausalRole.TERMINAL}:
-            if self.root_event_id != self.event_id:
-                raise ValueError("ROOT and TERMINAL events must identify themselves as root")
-        elif self.root_event_id == self.event_id:
-            raise ValueError("propagated events must refer to a distinct root event")
-        if self.causal_role is CausalRole.TERMINAL:
-            if (
-                self.target_kind is not MutationTargetKind.NODE
-                or self.node_or_edge_id != "final_answer"
-            ):
-                raise ValueError("TERMINAL events must target the final_answer node")
-            if EditErrorSubtype.FINAL_ANSWER_IDENTITY not in self.edit_subtypes:
-                raise ValueError("TERMINAL events must carry FINAL_ANSWER_IDENTITY")
-        if (
-            self.causal_role is CausalRole.ROOT
-            and self.target_kind is MutationTargetKind.NODE
-            and self.node_or_edge_id == "final_answer"
-        ):
-            raise ValueError("an independent final_answer mutation must use TERMINAL")
-
-
-@dataclass(frozen=True, slots=True)
-class GraphDelta:
-    events: tuple[MutationEvent, ...]
-
-    def __post_init__(self) -> None:
-        object.__setattr__(self, "events", tuple(self.events))
-        if any(type(event) is not MutationEvent for event in self.events):
-            raise TypeError("GraphDelta events must contain MutationEvent values")
-        event_ids = tuple(event.event_id for event in self.events)
-        if len(event_ids) != len(set(event_ids)):
-            raise ValueError("GraphDelta event IDs must be unique")
-        event_targets = tuple(
-            (event.target_kind, event.node_or_edge_id) for event in self.events
-        )
-        if len(event_targets) != len(set(event_targets)):
-            raise ValueError("GraphDelta mutation targets must be unique")
-        if len({event.operator_id for event in self.events}) > 1:
-            raise ValueError("GraphDelta events must share one operator_id")
-        root_ids = {
-            event.event_id
-            for event in self.events
-            if event.causal_role in {CausalRole.ROOT, CausalRole.TERMINAL}
-        }
-        missing_roots = sorted({event.root_event_id for event in self.events} - root_ids)
-        if missing_roots:
-            raise ValueError(f"GraphDelta references non-root or unknown root events: {missing_roots}")
-        if self.events and len(root_ids) != 1:
-            raise ValueError("a non-empty GraphDelta must contain exactly one independent root event")
-        if any(event.causal_role is CausalRole.TERMINAL for event in self.events) and len(
-            self.events
-        ) != 1:
-            raise ValueError("a TERMINAL GraphDelta cannot contain propagated events")
-
-    @property
-    def root_events(self) -> tuple[MutationEvent, ...]:
-        return tuple(
-            event
-            for event in self.events
-            if event.causal_role in {CausalRole.ROOT, CausalRole.TERMINAL}
-        )

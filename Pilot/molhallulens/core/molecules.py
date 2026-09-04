@@ -109,65 +109,7 @@ class MoleculeDescriptors:
             raise ValueError("weight and polar-surface descriptors must be non-negative")
 
 
-class AtomReferenceNamespace(StrEnum):
-    """Stable identity space used by graph-difference artifacts."""
-
-    SOURCE_MAP = "source_map"
-    PRODUCT_CANONICAL = "product_canonical"
-
-
-@dataclass(frozen=True, slots=True)
-class AtomReference:
-    """Stable atom identity independent of transient RDKit atom order."""
-
-    namespace: AtomReferenceNamespace
-    atom_id: int
-
-    def __post_init__(self) -> None:
-        if type(self.namespace) is not AtomReferenceNamespace:
-            raise TypeError("namespace must be AtomReferenceNamespace")
-        if type(self.atom_id) is not int or self.atom_id <= 0:
-            raise ValueError("atom_id must be a positive integer")
-
-    @property
-    def sort_key(self) -> tuple[int, int]:
-        rank = 0 if self.namespace is AtomReferenceNamespace.SOURCE_MAP else 1
-        return (rank, self.atom_id)
-
-
-@dataclass(frozen=True, slots=True)
-class AtomDescriptor:
-    """JSON-safe atom attributes used to audit changed fragments."""
-
-    reference: AtomReference
-    atomic_number: int
-    element: str
-    isotope: int
-    formal_charge: int
-    aromatic: bool
-    chiral_tag: str
-
-    def __post_init__(self) -> None:
-        if type(self.reference) is not AtomReference:
-            raise TypeError("reference must be AtomReference")
-        if type(self.atomic_number) is not int or self.atomic_number <= 0:
-            raise ValueError("atomic_number must be positive")
-        if type(self.element) is not str or not self.element:
-            raise ValueError("element must be non-empty text")
-        if type(self.isotope) is not int or self.isotope < 0:
-            raise ValueError("isotope must be non-negative")
-        if type(self.formal_charge) is not int:
-            raise TypeError("formal_charge must be int")
-        if type(self.aromatic) is not bool:
-            raise TypeError("aromatic must be bool")
-        if type(self.chiral_tag) is not str or not self.chiral_tag:
-            raise ValueError("chiral_tag must be non-empty text")
-
-
 __all__ = [
-    "AtomDescriptor",
-    "AtomReference",
-    "AtomReferenceNamespace",
     "FragmentPolicy",
     "MainFragment",
     "MoleculeDescriptors",
