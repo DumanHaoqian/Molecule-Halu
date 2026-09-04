@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -12,6 +12,14 @@ from typing import Any
 from molhallulens.core import InjectedHallucination
 from molhallulens.modules.annotation import AnnotatedHallucination
 from molhallulens.modules.reference import ReferenceDAGArtifact
+
+
+def _plain(value: Any) -> Any:
+    if isinstance(value, Mapping):
+        return {key: _plain(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_plain(item) for item in value]
+    return value
 
 
 @dataclass(frozen=True, slots=True)
@@ -85,7 +93,7 @@ class UnifiedRecordBuilder:
                 "final_answer": rendered.final_answer,
             },
             "step_texts": list(rendered.step_texts),
-            "text_realization": dict(rendered.realization),
+            "text_realization": _plain(rendered.realization),
             "hallucination_spans": serialized_spans,
             "serialized": {
                 "text": serialized_text,

@@ -14,6 +14,7 @@ from molhallulens.modules.error_injection import UnifiedHallucinationInjector
 from molhallulens.modules.error_planning import UnifiedHallucinationPlanner
 from molhallulens.modules.release import UnifiedRecordBuilder
 from molhallulens.modules.text_realization import (
+    AffectedNodeClaim,
     DeterministicTextRenderer,
     FORMAL_MARKER,
     PoeStepRewriteInput,
@@ -21,9 +22,12 @@ from molhallulens.modules.text_realization import (
     PoeTextRealizationError,
     PoeTextRenderer,
     RequiredHallucinationOccurrence,
+    StepRewriteMode,
     build_poe_rewrite_request,
     validate_rewritten_step_text,
 )
+from molhallulens.modules.text_realization.occurrence_audit import arithmetic_violations
+from molhallulens.modules.text_realization.poe_agent import _extract_natural_body
 from molhallulens.modules.text_realization.renderer import (
     _original_occurrence_spans,
     _render_marked_natural_body,
@@ -39,6 +43,12 @@ def _only_target(subtask: str, semantic_id: str):
 
 def _mark_required_occurrences(step: dict) -> str:
     prefix = f"Step {step['step_index']} [{step['step_name']}]: "
+    if step["rewrite_mode"] == "derivation_rewrite":
+        claims = "; ".join(
+            f"{item['node_id']}={item['after_text']}"
+            for item in step["affected_node_claims"]
+        )
+        return f"[[HALLU:rewrite.01]]Updated claims: {claims}.[[/HALLU]]"
     head = step["original_step_text"].split(FORMAL_MARKER, 1)[0]
     body = head[len(prefix) :]
     for occurrence in sorted(
@@ -53,7 +63,7 @@ def _mark_required_occurrences(step: dict) -> str:
             f"{occurrence['after_text']}[[/HALLU]]"
         )
         body = body[:start] + marker + body[end:]
-    return prefix + body
+    return body
 
 
 def _record(reference, plan):
@@ -217,7 +227,7 @@ def test_default_end_to_end_for_all_three_subtasks(references, fragment_pool):
         plan = planner.plan(reference, variant_index=variant_index)
         injected, rendered, annotated, record = _record(reference, plan)
         data = record.to_dict()
-        assert len(plan.mutations) in {1, 2, 3}
+        assert 1 <= len(plan.mutations) <= planner.maximum_edit_count(reference)
         assert len(injected.reference_graph.semantic_differences(injected.candidate_graph)) \
             == len(injected.changed_node_ids)
         assert len(rendered.step_texts) == (6 if reference.normalized_subtask.value == "substitute" else 5)
@@ -263,6 +273,72 @@ def test_full_corpus_has_deterministic_closure_and_complete_occurrence_contract(
         )
 
 
+def test_variant_zero_full_corpus_routes_incomplete_mentions_fail_closed(
+    all_references,
+    fragment_pool,
+):
+    planner = UnifiedHallucinationPlanner(fragment_pool)
+    injector = UnifiedHallucinationInjector()
+    rewrite_count = 0
+    for reference in all_references:
+        plan = planner.plan(reference, variant_index=0)
+        injected = injector.apply(reference.state_dag, plan)
+        request = build_poe_rewrite_request(reference, injected)
+        rewrite_count += sum(
+            step.rewrite_mode is StepRewriteMode.DERIVATION_REWRITE
+            for step in request.steps
+        )
+        rendered = DeterministicTextRenderer().render(reference, injected)
+        assert not arithmetic_violations(rendered.reasoning_chain)
+        annotated = UnifiedHallucinationAnnotator().annotate(rendered, injected)
+        assert {span.node_id for span in annotated.spans} == set(
+            injected.changed_node_ids
+        )
+    assert rewrite_count > 0
+
+
+@pytest.mark.parametrize(
+    ("origin_id", "step_index", "node_id", "after_text"),
+    (
+        ("mol_edit.add_v2.0016", 2, "fragment_heavy", "2"),
+        ("mol_edit.add_v2.0022", 4, "product_heavy", "47"),
+        ("mol_edit.add_v2.0057", 2, "fragment_heavy", "8"),
+    ),
+)
+def test_claude_recall_examples_use_derivation_rewrite(
+    all_references,
+    fragment_pool,
+    origin_id,
+    step_index,
+    node_id,
+    after_text,
+):
+    reference = next(
+        item for item in all_references if item.anonymous_sample_id == origin_id
+    )
+    # Preserve the original three-edit sampling envelope used to discover these
+    # exact regression fixtures; the production default now auto-detects capacity.
+    fixture_config = replace(DEFAULT_HALLUCINATION_CONFIG, max_edit_count=3)
+    plan = UnifiedHallucinationPlanner(fragment_pool, fixture_config).plan(
+        reference,
+        variant_index=0,
+    )
+    injected = UnifiedHallucinationInjector(fixture_config).apply(
+        reference.state_dag,
+        plan,
+    )
+    request = build_poe_rewrite_request(reference, injected)
+    step = request.steps[step_index - 1]
+    assert step.rewrite_mode is StepRewriteMode.DERIVATION_REWRITE
+    assert any(
+        claim.node_id == node_id and claim.after_text == after_text
+        for claim in step.affected_node_claims
+    )
+    rendered = DeterministicTextRenderer().render(reference, injected)
+    assert after_text in rendered.step_texts[step_index - 1]
+    assert not arithmetic_violations(rendered.step_texts[step_index - 1])
+
+
 def test_poe_agent_rewrites_natural_text_but_local_code_locks_formal_and_spans(
     references,
     fragment_pool,
@@ -297,14 +373,21 @@ def test_poe_agent_rewrites_natural_text_but_local_code_locks_formal_and_spans(
                 "steps": [
                     {
                         "step_index": step["step_index"],
-                        "rewritten_step_text": (
-                            (
-                                step["original_step_text"].split(FORMAL_MARKER, 1)[0]
-                                if not step["required_hallucination_occurrences"]
+                        "rewritten_natural_language": (
+                            "\n  "
+                            f"Step {step['step_index']} [{step['step_name']}]: "
+                            + (
+                                step["original_step_text"].split(FORMAL_MARKER, 1)[0][
+                                    len(
+                                        f"Step {step['step_index']} "
+                                        f"[{step['step_name']}]: "
+                                    ) :
+                                ]
+                                if step["rewrite_mode"] == "copy"
                                 else _mark_required_occurrences(step)
                             )
                             + FORMAL_MARKER
-                            + step["modified_formal_ab"]
+                            + "POE_MUST_NOT_CONTROL_THIS\n"
                         ),
                     }
                     for step in payload["steps"]
@@ -325,6 +408,7 @@ def test_poe_agent_rewrites_natural_text_but_local_code_locks_formal_and_spans(
     assert rendered.realization["backend"] == "poe_agent"
     assert rendered.realization["network_request_count"] == 1
     assert f"PRODUCT_SMILES[n_rings={mutation.after}]" in rendered.step_texts[4]
+    assert "POE_MUST_NOT_CONTROL_THIS" not in rendered.reasoning_chain
     assert "[[HALLU:" not in rendered.reasoning_chain
     assert rendered.step_texts[:4] == tuple(
         step.render(include_answer=False) for step in reference.trace_steps[:4]
@@ -492,6 +576,94 @@ def test_poe_requires_every_occurrence_exactly_once():
                 "[[HALLU:count.02]]5[[/HALLU]]",
                 "[[HALLU:count.01]]5[[/HALLU]]",
             ),
+            expected,
+        )
+
+
+def test_derivation_rewrite_rejects_stale_claims_and_false_arithmetic():
+    expected = PoeStepRewriteInput(
+        step_index=2,
+        step_name="FRAGMENT_IDENTIFICATION",
+        original_step_text=(
+            "Step 2 [FRAGMENT_IDENTIFICATION]: Count precisely: 3 heavy atoms "
+            "(two carbons and one oxygen).\n  FORMAL: HEAVY_ATOMS(3)"
+        ),
+        modified_formal_ab="HEAVY_ATOMS(2)",
+        required_hallucination_occurrences=(),
+        rewrite_mode=StepRewriteMode.DERIVATION_REWRITE,
+        affected_node_claims=(
+            AffectedNodeClaim(
+                node_id="fragment_heavy",
+                before_text="3",
+                after_text="2",
+            ),
+        ),
+        rewrite_node_id="fragment_heavy",
+    )
+    valid = (
+        "Step 2 [FRAGMENT_IDENTIFICATION]: "
+        "[[HALLU:rewrite.01]]The fragment contains 2 heavy atoms.[[/HALLU]]"
+        "\n  FORMAL: HEAVY_ATOMS(2)"
+    )
+    assert validate_rewritten_step_text(valid, expected) == valid
+    with pytest.raises(PoeTextRealizationError, match="stale claim"):
+        validate_rewritten_step_text(
+            valid.replace("2 heavy atoms", "3 heavy atoms"),
+            expected,
+        )
+    with pytest.raises(PoeTextRealizationError, match="false displayed arithmetic"):
+        validate_rewritten_step_text(
+            valid.replace(
+                "The fragment contains 2 heavy atoms.",
+                "The fragment contains 2 heavy atoms because 1 + 1 = 3.",
+            ),
+            expected,
+        )
+
+
+def test_poe_redundant_step_header_inside_derivation_marker_is_removed():
+    expected = PoeStepRewriteInput(
+        step_index=5,
+        step_name="RING_VERIFICATION",
+        original_step_text=(
+            "Step 5 [RING_VERIFICATION]: Verify ring count."
+            "\n  FORMAL: RING_DELTA(0)"
+        ),
+        modified_formal_ab="RING_DELTA(+1)",
+        required_hallucination_occurrences=(),
+        rewrite_mode=StepRewriteMode.DERIVATION_REWRITE,
+        affected_node_claims=(
+            AffectedNodeClaim(
+                node_id="ring_delta",
+                before_text="0",
+                after_text="+1",
+            ),
+        ),
+        rewrite_node_id="ring_delta",
+    )
+    raw = (
+        "[[HALLU:rewrite.01]]Step 5 [RING_VERIFICATION]: "
+        "The product contains 5 rings, so 5 - 4 = +1."
+        "[[/HALLU]]"
+    )
+
+    normalized = _extract_natural_body(raw, expected)
+    assert normalized == (
+        "[[HALLU:rewrite.01]]The product contains 5 rings, so 5 - 4 = +1."
+        "[[/HALLU]]"
+    )
+    complete = (
+        "Step 5 [RING_VERIFICATION]: "
+        + normalized
+        + FORMAL_MARKER
+        + expected.modified_formal_ab
+    )
+    assert complete.count("Step 5 [RING_VERIFICATION]:") == 1
+    assert validate_rewritten_step_text(complete, expected) == complete
+
+    with pytest.raises(PoeTextRealizationError, match="mismatched Step header"):
+        _extract_natural_body(
+            raw.replace("Step 5 [RING_VERIFICATION]", "Step 4 [RING_VERIFICATION]"),
             expected,
         )
 

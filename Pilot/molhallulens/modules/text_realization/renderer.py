@@ -16,15 +16,21 @@ from molhallulens.core import (
 from molhallulens.modules.reference import ReferenceDAGArtifact
 
 from .poe_agent import (
+    AffectedNodeClaim,
     FORMAL_MARKER,
     PoeRewriteRequest,
     RequiredHallucinationOccurrence,
     PoeStepRewriteInput,
     PoeStepTextAgent,
     PoeTextRealizationError,
+    StepRewriteMode,
     parse_hallucination_markers,
     strip_hallucination_markers,
     validate_rewritten_step_text,
+)
+from .occurrence_audit import (
+    loose_occurrence_spans,
+    requires_derivation_rewrite,
 )
 
 
@@ -35,6 +41,14 @@ _FORMAL_MARKER = FORMAL_MARKER
 class _Literal:
     node_id: str
     signed: bool = False
+
+
+@dataclass(frozen=True, slots=True)
+class _StepRewriteContract:
+    mode: StepRewriteMode
+    occurrences: tuple[RequiredHallucinationOccurrence, ...]
+    affected_claims: tuple[AffectedNodeClaim, ...]
+    rewrite_node_id: str | None
 
 
 def _value_text(graph: StateDAG, literal: _Literal) -> str:
@@ -545,15 +559,19 @@ def _original_occurrence_spans(
     return tuple(sorted(spans))
 
 
-def _required_occurrences(
+def _step_rewrite_contract(
     *,
     original_step_text: str,
     prefix: str,
+    step_name: str,
     natural_parts: tuple[str | _Literal, ...],
     reference_graph: StateDAG,
     candidate_graph: StateDAG,
     changed_nodes: frozenset[str],
-) -> tuple[RequiredHallucinationOccurrence, ...]:
+    root_node_ids: frozenset[str],
+) -> _StepRewriteContract:
+    """Audit strict recall and choose COPY, PATCH, or full derivation rewrite."""
+
     original_head, _ = original_step_text.split(_FORMAL_MARKER, 1)
     natural_body = original_head[len(prefix) :]
     literal_flags = _literal_flags(natural_parts)
@@ -568,6 +586,8 @@ def _required_occurrences(
             "add_heavy",
         }
     requirements = []
+    affected_claims = []
+    incomplete_coverage = False
     for node_id in sorted(nodes_to_scan):
         if node_id not in reference_graph.values or node_id not in candidate_graph.values:
             continue
@@ -576,8 +596,30 @@ def _required_occurrences(
         after = _value_text(candidate_graph, _Literal(node_id, signed=signed))
         if before == after:
             continue
-        spans = _original_occurrence_spans(node_id, before, natural_body)
-        for occurrence_index, (start, end) in enumerate(spans, start=1):
+        strict_spans = set(_original_occurrence_spans(node_id, before, natural_body))
+        loose_spans = strict_spans | set(
+            loose_occurrence_spans(
+                node_id,
+                before,
+                natural_body,
+                step_name=step_name,
+            )
+        )
+        if not loose_spans:
+            continue
+        affected_claims.append(
+            AffectedNodeClaim(
+                node_id=node_id,
+                before_text=before,
+                after_text=after,
+            )
+        )
+        if loose_spans - strict_spans:
+            incomplete_coverage = True
+        for occurrence_index, (start, end) in enumerate(
+            sorted(strict_spans),
+            start=1,
+        ):
             requirements.append(
                 RequiredHallucinationOccurrence(
                     occurrence_id=f"{node_id}.{occurrence_index:02d}",
@@ -588,7 +630,38 @@ def _required_occurrences(
                     original_end=end,
                 )
             )
-    return tuple(requirements)
+    affected_node_ids = frozenset(item.node_id for item in affected_claims)
+    if affected_claims and (
+        incomplete_coverage
+        or requires_derivation_rewrite(natural_body, affected_node_ids)
+    ):
+        rewrite_node_id = next(
+            (
+                node_id
+                for node_id in sorted(affected_node_ids)
+                if node_id in root_node_ids
+            ),
+            sorted(affected_node_ids)[0],
+        )
+        return _StepRewriteContract(
+            mode=StepRewriteMode.DERIVATION_REWRITE,
+            occurrences=(),
+            affected_claims=tuple(affected_claims),
+            rewrite_node_id=rewrite_node_id,
+        )
+    if requirements:
+        return _StepRewriteContract(
+            mode=StepRewriteMode.OCCURRENCE_PATCH,
+            occurrences=tuple(requirements),
+            affected_claims=tuple(affected_claims),
+            rewrite_node_id=None,
+        )
+    return _StepRewriteContract(
+        mode=StepRewriteMode.COPY,
+        occurrences=(),
+        affected_claims=(),
+        rewrite_node_id=None,
+    )
 
 
 def build_poe_rewrite_request(
@@ -600,6 +673,7 @@ def build_poe_rewrite_request(
     _validate_render_input(artifact, injected)
     graph = injected.candidate_graph
     changed_nodes = frozenset(injected.changed_node_ids)
+    root_node_ids = frozenset(injected.plan.edited_node_ids)
     templates = _templates(artifact.normalized_subtask)
     if len(templates) != len(artifact.trace_steps):
         raise ValueError("renderer template count does not match the reference trace")
@@ -608,20 +682,26 @@ def build_poe_rewrite_request(
         natural_parts, formal_parts = _split_step_parts(parts)
         original_step_text = trace_step.render(include_answer=False)
         prefix = f"Step {trace_step.step_index} [{trace_step.step_name}]: "
+        contract = _step_rewrite_contract(
+            original_step_text=original_step_text,
+            prefix=prefix,
+            step_name=trace_step.step_name,
+            natural_parts=natural_parts,
+            reference_graph=artifact.state_dag,
+            candidate_graph=graph,
+            changed_nodes=changed_nodes,
+            root_node_ids=root_node_ids,
+        )
         steps.append(
             PoeStepRewriteInput(
                 step_index=trace_step.step_index,
                 step_name=trace_step.step_name,
                 original_step_text=original_step_text,
                 modified_formal_ab=_render_value_text(formal_parts, graph),
-                required_hallucination_occurrences=_required_occurrences(
-                    original_step_text=original_step_text,
-                    prefix=prefix,
-                    natural_parts=natural_parts,
-                    reference_graph=artifact.state_dag,
-                    candidate_graph=graph,
-                    changed_nodes=changed_nodes,
-                ),
+                required_hallucination_occurrences=contract.occurrences,
+                rewrite_mode=contract.mode,
+                affected_node_claims=contract.affected_claims,
+                rewrite_node_id=contract.rewrite_node_id,
             )
         )
     return PoeRewriteRequest(
@@ -643,6 +723,27 @@ def _validate_render_input(
         raise TypeError("injected must be InjectedHallucination")
     if not artifact.state_dag.semantically_equals(injected.reference_graph):
         raise ValueError("artifact and injection must share the same reference graph")
+
+
+def _rewrite_contract_metadata(request: PoeRewriteRequest) -> list[dict[str, Any]]:
+    """Release the per-step routing decision for later dataset audits."""
+
+    return [
+        {
+            "step_index": step.step_index,
+            "step_name": step.step_name,
+            "mode": step.rewrite_mode.value,
+            "rewrite_node_id": step.rewrite_node_id,
+            "affected_node_claims": [
+                item.to_prompt_dict() for item in step.affected_node_claims
+            ],
+            "required_occurrence_ids": [
+                item.occurrence_id
+                for item in step.required_hallucination_occurrences
+            ],
+        }
+        for step in request.steps
+    ]
 
 
 def _render_marked_natural_body(
@@ -690,7 +791,13 @@ def _render_marked_natural_body(
         for item in expected.required_hallucination_occurrences
     }
     for occurrence_id, value, local_start, local_end in parsed_markers:
-        node_id = requirements[occurrence_id].node_id
+        node_id = (
+            expected.rewrite_node_id
+            if expected.rewrite_mode is StepRewriteMode.DERIVATION_REWRITE
+            else requirements[occurrence_id].node_id
+        )
+        if node_id is None:
+            raise PoeTextRealizationError("rewritten marker has no causal DAG node")
         start = reasoning_offset + local_start
         end = reasoning_offset + local_end
         occurrence_counts[node_id] = occurrence_counts.get(node_id, 0) + 1
@@ -824,29 +931,39 @@ class DeterministicTextRenderer:
             strict=True,
         ):
             natural_parts, _ = _split_step_parts(parts)
-            del natural_parts
-            marked_head = expected.original_step_text.split(_FORMAL_MARKER, 1)[0]
             prefix = f"Step {expected.step_index} [{expected.step_name}]: "
-            marked_body = marked_head[len(prefix) :]
-            for occurrence in sorted(
-                expected.required_hallucination_occurrences,
-                key=lambda item: item.original_start,
-                reverse=True,
-            ):
-                if (
-                    marked_body[occurrence.original_start : occurrence.original_end]
-                    != occurrence.before_text
-                ):
-                    raise ValueError("required occurrence no longer matches original text")
-                marker = (
-                    f"[[HALLU:{occurrence.occurrence_id}]]"
-                    f"{occurrence.after_text}[[/HALLU]]"
-                )
+            if expected.rewrite_mode is StepRewriteMode.DERIVATION_REWRITE:
+                canonical_head = _render_value_text(natural_parts, graph)
+                if not canonical_head.startswith(prefix):
+                    raise ValueError("canonical natural template changed the Step header")
+                canonical_body = canonical_head[len(prefix) :]
                 marked_body = (
-                    marked_body[: occurrence.original_start]
-                    + marker
-                    + marked_body[occurrence.original_end :]
+                    "[[HALLU:rewrite.01]]" + canonical_body + "[[/HALLU]]"
                 )
+            else:
+                marked_head = expected.original_step_text.split(_FORMAL_MARKER, 1)[0]
+                marked_body = marked_head[len(prefix) :]
+                for occurrence in sorted(
+                    expected.required_hallucination_occurrences,
+                    key=lambda item: item.original_start,
+                    reverse=True,
+                ):
+                    if (
+                        marked_body[occurrence.original_start : occurrence.original_end]
+                        != occurrence.before_text
+                    ):
+                        raise ValueError(
+                            "required occurrence no longer matches original text"
+                        )
+                    marker = (
+                        f"[[HALLU:{occurrence.occurrence_id}]]"
+                        f"{occurrence.after_text}[[/HALLU]]"
+                    )
+                    marked_body = (
+                        marked_body[: occurrence.original_start]
+                        + marker
+                        + marked_body[occurrence.original_end :]
+                    )
             marked_head = prefix + marked_body
             rewritten_steps.append(
                 marked_head + _FORMAL_MARKER + expected.modified_formal_ab
@@ -860,7 +977,11 @@ class DeterministicTextRenderer:
                 "backend": "deterministic_test_renderer",
                 "provider": None,
                 "network_request_count": 0,
-                "rewrite_mode": "minimal_original_step_text",
+                "rewrite_mode": "audited_step_routing",
+                "step_rewrite_modes": [
+                    step.rewrite_mode.value for step in request.steps
+                ],
+                "step_rewrite_contracts": _rewrite_contract_metadata(request),
                 "annotation_protocol": "temporary_hallu_markers",
             },
         )
@@ -895,7 +1016,11 @@ class PoeTextRenderer:
                 "response_sha256": result.response_sha256,
                 "network_request_count": result.network_request_count,
                 "cache_hit": result.cache_hit,
-                "rewrite_mode": "minimal_original_step_text",
+                "rewrite_mode": "audited_step_routing",
+                "step_rewrite_modes": [
+                    step.rewrite_mode.value for step in request.steps
+                ],
+                "step_rewrite_contracts": _rewrite_contract_metadata(request),
                 "annotation_protocol": "temporary_hallu_markers",
             },
         )

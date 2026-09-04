@@ -11,7 +11,7 @@ import re
 import sys
 from collections import defaultdict
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass, fields, is_dataclass
+from dataclasses import dataclass, fields, is_dataclass, replace
 from enum import Enum
 from functools import lru_cache
 from pathlib import Path
@@ -126,13 +126,45 @@ def load_demo_corpus() -> DemoCorpus:
     )
 
 
-def prepare_local_run(origin_id: str, variant_index: int) -> LocalDemoRun:
+@lru_cache(maxsize=512)
+def maximum_root_edit_count(origin_id: str) -> int:
+    """Return this origin's exact safe maximum under current propagation rules."""
+
+    corpus = load_demo_corpus()
+    if origin_id not in corpus.references_by_id:
+        raise ValueError(f"unknown origin ID: {origin_id}")
+    return UnifiedHallucinationPlanner(
+        corpus.fragment_pool,
+        DEFAULT_HALLUCINATION_CONFIG,
+    ).maximum_edit_count(corpus.references_by_id[origin_id])
+
+
+def prepare_local_run(
+    origin_id: str,
+    variant_index: int,
+    edit_count: int | None = None,
+) -> LocalDemoRun:
     """Execute the same real A-to-D modules used by ``pipeline.py``."""
 
     if type(origin_id) is not str or not origin_id:
         raise ValueError("origin_id must be non-empty text")
     if type(variant_index) is not int or variant_index < 0:
         raise ValueError("variant_index must be a non-negative integer")
+    run_config = DEFAULT_HALLUCINATION_CONFIG
+    if edit_count is not None:
+        if type(edit_count) is not int:
+            raise TypeError("edit_count must be an integer")
+        minimum = DEFAULT_HALLUCINATION_CONFIG.min_edit_count
+        maximum = maximum_root_edit_count(origin_id)
+        if not minimum <= edit_count <= maximum:
+            raise ValueError(
+                f"edit_count must be between {minimum} and {maximum}, inclusive"
+            )
+        run_config = replace(
+            DEFAULT_HALLUCINATION_CONFIG,
+            edit_count_mode="fixed",
+            fixed_edit_count=edit_count,
+        )
     corpus = load_demo_corpus()
     if origin_id not in corpus.records_by_id:
         raise ValueError(f"unknown origin ID: {origin_id}")
@@ -140,9 +172,9 @@ def prepare_local_run(origin_id: str, variant_index: int) -> LocalDemoRun:
     reference = corpus.references_by_id[origin_id]
     plan = UnifiedHallucinationPlanner(
         corpus.fragment_pool,
-        DEFAULT_HALLUCINATION_CONFIG,
+        run_config,
     ).plan(reference, variant_index=variant_index)
-    injected = UnifiedHallucinationInjector().apply(reference.state_dag, plan)
+    injected = UnifiedHallucinationInjector(run_config).apply(reference.state_dag, plan)
     return LocalDemoRun(source_record, reference, plan, injected)
 
 
@@ -491,6 +523,7 @@ def _local_outputs(local: LocalDemoRun) -> tuple[Any, ...]:
     token = {
         "origin_id": reference.anonymous_sample_id,
         "variant_index": plan.variant_index,
+        "edit_count": plan.requested_edit_count,
     }
     a_summary = (
         f"### A · 原始数据\n加载并按 `{reference.anonymous_sample_id}` 连接 raw、"
@@ -549,6 +582,11 @@ def _text_outputs(run: TextDemoRun) -> tuple[Any, ...]:
     rendered = run.annotated.rendered
     realization = dict(rendered.realization)
     cache_text = "命中缓存" if realization.get("cache_hit") else "调用了 Poe"
+    rewrite_modes = realization.get("step_rewrite_modes", ())
+    mode_summary = ", ".join(
+        f"{mode}={rewrite_modes.count(mode)}"
+        for mode in ("copy", "occurrence_patch", "derivation_rewrite")
+    )
     span_rows = [
         [
             span.step_index if span.step_index is not None else "final_answer",
@@ -564,10 +602,10 @@ def _text_outputs(run: TextDemoRun) -> tuple[Any, ...]:
     ]
     e_status = (
         f"### E · 文本对比 + Hallucination span\n✅ `{cache_text}`；network request count = "
-        f"`{realization.get('network_request_count')}`。Poe 根据 modified `formal_ab` 重写"
-        "受影响的原始 step_text；临时 HALLU markers 经本地校验、移除并转成"
-        "精确 span，FORMAL 始终等于 modified `formal_ab`。左右栏直接高亮所有文本差异；"
-        f"下方列出 **{len(run.annotated.spans)} 个精确训练标签 span**。"
+        f"`{realization.get('network_request_count')}`；`{mode_summary}`。Poe 根据覆盖审计"
+        "结果逐 occurrence 修改或整段重写；临时 HALLU markers 经旧值、算术和 FORMAL"
+        "校验后移除。局部 patch 产生细粒度 span，derivation rewrite 产生整段粗粒度 span；"
+        f"下方共列出 **{len(run.annotated.spans)} 个训练标签 span**。"
     )
     return (
         e_status,
@@ -587,9 +625,50 @@ def _coerce_variant(value: Any) -> int:
     return converted
 
 
-def _run_local_ui(origin_id: str, variant_index: Any) -> tuple[Any, ...]:
+def _coerce_edit_count(value: Any) -> int:
+    minimum = DEFAULT_HALLUCINATION_CONFIG.min_edit_count
+    if type(value) is bool or not isinstance(value, (int, float)):
+        raise ValueError(f"修改 node 数量必须是大于或等于 {minimum} 的整数")
+    converted = int(value)
+    if float(value) != converted or converted < minimum:
+        raise ValueError(f"修改 node 数量必须是大于或等于 {minimum} 的整数")
+    return converted
+
+
+def _edit_count_slider_update(origin_id: str, current_value: Any) -> gr.Slider:
+    """Update the selectable maximum when the user changes the origin."""
+
     try:
-        return _local_outputs(prepare_local_run(origin_id, _coerce_variant(variant_index)))
+        maximum = maximum_root_edit_count(origin_id)
+        try:
+            current = _coerce_edit_count(current_value)
+        except ValueError:
+            current = DEFAULT_HALLUCINATION_CONFIG.fixed_edit_count
+        return gr.Slider(
+            minimum=DEFAULT_HALLUCINATION_CONFIG.min_edit_count,
+            maximum=maximum,
+            value=min(current, maximum),
+            step=1,
+            label="修改 root node 数量",
+            info=f"当前样本的无冲突范围是 1–{maximum}；传播产生的下游 node 不计入这里",
+        )
+    except Exception as error:
+        raise gr.Error(f"无法计算当前样本的最大修改数量：{error}") from None
+
+
+def _run_local_ui(
+    origin_id: str,
+    variant_index: Any,
+    edit_count: Any,
+) -> tuple[Any, ...]:
+    try:
+        return _local_outputs(
+            prepare_local_run(
+                origin_id,
+                _coerce_variant(variant_index),
+                _coerce_edit_count(edit_count),
+            )
+        )
     except Exception as error:
         raise gr.Error(f"A–D 运行失败：{error}") from None
 
@@ -601,6 +680,7 @@ def _run_poe_ui(run_token: Mapping[str, Any] | None) -> tuple[Any, ...]:
         local = prepare_local_run(
             str(run_token["origin_id"]),
             _coerce_variant(run_token["variant_index"]),
+            _coerce_edit_count(run_token["edit_count"]),
         )
         return _text_outputs(complete_text_run(local))
     except PoeTextRealizationError as error:
@@ -658,6 +738,7 @@ def build_demo() -> gr.Blocks:
         if "mol_edit.add_v2.0003" in corpus.records_by_id
         else origin_ids[0]
     )
+    default_maximum_edit_count = maximum_root_edit_count(default_origin)
     token_available = bool(os.environ.get(DEFAULT_HALLUCINATION_CONFIG.poe_api_key_env))
     token_message = (
         "已检测到 `POE_API_KEY`。"
@@ -692,6 +773,22 @@ def build_demo() -> gr.Blocks:
                 label="Variant index",
                 info="相同 origin + variant + config 会产生相同 plan",
                 scale=1,
+            )
+            edit_count_input = gr.Slider(
+                minimum=DEFAULT_HALLUCINATION_CONFIG.min_edit_count,
+                maximum=default_maximum_edit_count,
+                value=min(
+                    DEFAULT_HALLUCINATION_CONFIG.fixed_edit_count,
+                    default_maximum_edit_count,
+                ),
+                step=1,
+                label="修改 root node 数量",
+                info=(
+                    f"当前样本的无冲突范围是 "
+                    f"{DEFAULT_HALLUCINATION_CONFIG.min_edit_count}–"
+                    f"{default_maximum_edit_count}；传播产生的下游 node 不计入这里"
+                ),
+                scale=2,
             )
         with gr.Row():
             local_button = gr.Button("① 运行 A–D（本地，不调用 Poe）", variant="primary")
@@ -791,7 +888,7 @@ def build_demo() -> gr.Blocks:
 
         local_button.click(
             fn=_run_local_ui,
-            inputs=[origin_input, variant_input],
+            inputs=[origin_input, variant_input, edit_count_input],
             outputs=[
                 run_state,
                 overall_status,
@@ -810,6 +907,12 @@ def build_demo() -> gr.Blocks:
                 d_json,
             ],
             api_name="run_local_stages",
+        )
+        origin_input.change(
+            fn=_edit_count_slider_update,
+            inputs=[origin_input, edit_count_input],
+            outputs=edit_count_input,
+            api_name="update_edit_count_limit",
         )
         poe_button.click(
             fn=_run_poe_ui,

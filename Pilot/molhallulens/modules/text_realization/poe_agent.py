@@ -1,8 +1,8 @@
-"""Poe boundary for minimal, marker-tracked edits of original ``step_text``.
+"""Poe boundary for audited, marker-tracked edits of original ``step_text``.
 
 Poe receives each original complete step and its locally rendered modified FORMAL.
-It returns a minimally edited complete step. Temporary HALLU markers identify only
-the changed natural-language claim values; local code validates and removes them.
+Simple claims are patched occurrence by occurrence; incomplete or derived prose is
+rewritten as one marked block. Local code validates and removes all markers.
 """
 
 from __future__ import annotations
@@ -13,6 +13,7 @@ import os
 import re
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
+from enum import StrEnum
 from pathlib import Path
 from typing import Any
 
@@ -22,8 +23,9 @@ from molhallulens.config.hallucination_generation import (
 )
 from molhallulens.config.paths import PROJECT_ROOT
 
+from .occurrence_audit import arithmetic_violations, loose_occurrence_spans
 
-POE_RENDERER_VERSION = "poe_step_text_v3"
+POE_RENDERER_VERSION = "poe_step_text_v6"
 FORMAL_MARKER = "\n  FORMAL: "
 HALLU_MARKER_PATTERN = re.compile(
     r"\[\[HALLU:([a-z][a-z0-9_]*\.[0-9]{2})\]\](.*?)\[\[/HALLU\]\]",
@@ -31,10 +33,26 @@ HALLU_MARKER_PATTERN = re.compile(
 )
 _NODE_ID = re.compile(r"[a-z][a-z0-9_]*", flags=re.ASCII)
 _MARKER_TOKEN = re.compile(r"\[\[(?:HALLU:[^\]]*|/HALLU)\]\]", flags=re.ASCII)
+_LEADING_STEP_HEADER = re.compile(
+    r"^Step\s+([0-9]+)\s+\[([^\]\r\n]+)\]:[ \t]*",
+    flags=re.ASCII,
+)
+_LINE_INITIAL_STEP_HEADER = re.compile(
+    r"(?:^|\n)[ \t]*Step\s+[0-9]+\s+\[[^\]\r\n]+\]:",
+    flags=re.ASCII,
+)
 
 
 class PoeTextRealizationError(RuntimeError):
     """Fail-closed Poe configuration, transport, or response error."""
+
+
+class StepRewriteMode(StrEnum):
+    """How one step's natural-language channel may be changed."""
+
+    COPY = "copy"
+    OCCURRENCE_PATCH = "occurrence_patch"
+    DERIVATION_REWRITE = "derivation_rewrite"
 
 
 def _split_complete_step(step_text: str) -> tuple[str, str]:
@@ -95,6 +113,36 @@ class RequiredHallucinationOccurrence:
 
 
 @dataclass(frozen=True, slots=True)
+class AffectedNodeClaim:
+    """One changed DAG claim audited against a step's natural language."""
+
+    node_id: str
+    before_text: str
+    after_text: str
+
+    def __post_init__(self) -> None:
+        if type(self.node_id) is not str or _NODE_ID.fullmatch(self.node_id) is None:
+            raise ValueError("node_id is invalid")
+        for value, name in (
+            (self.before_text, "before_text"),
+            (self.after_text, "after_text"),
+        ):
+            if type(value) is not str or not value:
+                raise ValueError(f"{name} must be non-empty text")
+            if _MARKER_TOKEN.search(value) is not None:
+                raise ValueError(f"{name} cannot contain marker tokens")
+        if self.before_text == self.after_text:
+            raise ValueError("an affected claim must change its rendered value")
+
+    def to_prompt_dict(self) -> dict[str, str]:
+        return {
+            "node_id": self.node_id,
+            "before_text": self.before_text,
+            "after_text": self.after_text,
+        }
+
+
+@dataclass(frozen=True, slots=True)
 class PoeStepRewriteInput:
     """One original step plus the exact FORMAL the rewritten step must express."""
 
@@ -103,6 +151,9 @@ class PoeStepRewriteInput:
     original_step_text: str
     modified_formal_ab: str
     required_hallucination_occurrences: tuple[RequiredHallucinationOccurrence, ...]
+    rewrite_mode: StepRewriteMode | None = None
+    affected_node_claims: tuple[AffectedNodeClaim, ...] = ()
+    rewrite_node_id: str | None = None
 
     def __post_init__(self) -> None:
         if type(self.step_index) is not int or self.step_index < 1:
@@ -150,6 +201,40 @@ class PoeStepRewriteInput:
             "required_hallucination_occurrences",
             tuple(sorted(required, key=lambda item: item.occurrence_id)),
         )
+        claims = tuple(self.affected_node_claims)
+        if any(type(item) is not AffectedNodeClaim for item in claims):
+            raise TypeError("affected_node_claims must contain AffectedNodeClaim values")
+        claim_ids = tuple(item.node_id for item in claims)
+        if len(claim_ids) != len(set(claim_ids)):
+            raise ValueError("affected_node_claims cannot repeat a node")
+        mode = self.rewrite_mode
+        if mode is None:
+            mode = (
+                StepRewriteMode.OCCURRENCE_PATCH
+                if required
+                else StepRewriteMode.COPY
+            )
+        if type(mode) is not StepRewriteMode:
+            raise TypeError("rewrite_mode must be a StepRewriteMode or None")
+        if mode is StepRewriteMode.COPY:
+            if required or self.rewrite_node_id is not None:
+                raise ValueError("COPY steps cannot have markers or a rewrite node")
+        elif mode is StepRewriteMode.OCCURRENCE_PATCH:
+            if not required or self.rewrite_node_id is not None:
+                raise ValueError("OCCURRENCE_PATCH requires occurrences only")
+        else:
+            if required or not claims:
+                raise ValueError(
+                    "DERIVATION_REWRITE requires affected claims and no patch occurrences"
+                )
+            if self.rewrite_node_id not in set(claim_ids):
+                raise ValueError("rewrite_node_id must name an affected claim")
+        object.__setattr__(self, "rewrite_mode", mode)
+        object.__setattr__(
+            self,
+            "affected_node_claims",
+            tuple(sorted(claims, key=lambda item: item.node_id)),
+        )
 
     @property
     def original_formal_ab(self) -> str:
@@ -161,6 +246,11 @@ class PoeStepRewriteInput:
             "step_name": self.step_name,
             "original_step_text": self.original_step_text,
             "modified_formal_ab": self.modified_formal_ab,
+            "rewrite_mode": self.rewrite_mode.value,
+            "rewrite_node_id": self.rewrite_node_id,
+            "affected_node_claims": [
+                item.to_prompt_dict() for item in self.affected_node_claims
+            ],
             "required_hallucination_occurrences": [
                 item.to_prompt_dict()
                 for item in self.required_hallucination_occurrences
@@ -284,51 +374,98 @@ def validate_rewritten_step_text(
         item.occurrence_id: item
         for item in expected.required_hallucination_occurrences
     }
-    observed: set[str] = set()
-    for occurrence_id, value, _, _ in markers:
-        if occurrence_id not in required:
+    if expected.rewrite_mode is StepRewriteMode.DERIVATION_REWRITE:
+        if (
+            len(markers) != 1
+            or markers[0][0] != "rewrite.01"
+            or HALLU_MARKER_PATTERN.fullmatch(marked_natural) is None
+        ):
             raise PoeTextRealizationError(
-                "Poe marked an unplanned natural-language occurrence: "
-                f"{occurrence_id}"
+                "DERIVATION_REWRITE must wrap the entire natural-language body "
+                "once with [[HALLU:rewrite.01]]...[[/HALLU]]"
             )
-        if occurrence_id in observed:
+    else:
+        observed: set[str] = set()
+        for occurrence_id, value, _, _ in markers:
+            if occurrence_id not in required:
+                raise PoeTextRealizationError(
+                    "Poe marked an unplanned natural-language occurrence: "
+                    f"{occurrence_id}"
+                )
+            if occurrence_id in observed:
+                raise PoeTextRealizationError(
+                    f"Poe duplicated HALLU marker occurrence: {occurrence_id}"
+                )
+            if value != required[occurrence_id].after_text:
+                raise PoeTextRealizationError(
+                    f"Poe marker for {occurrence_id} does not contain its exact modified value"
+                )
+            observed.add(occurrence_id)
+        missing = sorted(set(required) - observed)
+        if missing:
             raise PoeTextRealizationError(
-                f"Poe duplicated HALLU marker occurrence: {occurrence_id}"
+                f"Poe omitted required natural-language HALLU occurrences: {missing}"
             )
-        if value != required[occurrence_id].after_text:
-            raise PoeTextRealizationError(
-                f"Poe marker for {occurrence_id} does not contain its exact modified value"
-            )
-        observed.add(occurrence_id)
-    missing = sorted(set(required) - observed)
-    if missing:
-        raise PoeTextRealizationError(
-            f"Poe omitted required natural-language HALLU occurrences: {missing}"
-        )
 
-    # If FORMAL is the only changed channel, the natural-language head remains
-    # byte-identical. This closes the product-only hole where Poe could previously
-    # paraphrase an unlabelled step merely because modified_formal_ab had changed.
-    if not required:
+    # COPY means the coverage audit proved that no changed claim is present in
+    # prose. It is deliberately independent of whether FORMAL changed.
+    if expected.rewrite_mode is StepRewriteMode.COPY:
         original_head, _ = _split_complete_step(expected.original_step_text)
         if marked_head != original_head:
             raise PoeTextRealizationError(
-                "Poe changed natural language without any required occurrences"
+                "Poe changed natural language without any required occurrences "
+                "(COPY mode)"
+            )
+
+    clean_natural = strip_hallucination_markers(marked_natural)
+    if _LINE_INITIAL_STEP_HEADER.search(clean_natural) is not None:
+        raise PoeTextRealizationError(
+            "Poe natural-language body still contains a redundant Step header"
+        )
+    stale_search = list(clean_natural)
+    if expected.rewrite_mode is StepRewriteMode.OCCURRENCE_PATCH:
+        for _, _, start, end in markers:
+            stale_search[start:end] = " " * (end - start)
+    stale_search_text = "".join(stale_search)
+    for claim in expected.affected_node_claims:
+        stale = loose_occurrence_spans(
+            claim.node_id,
+            claim.before_text,
+            stale_search_text,
+            step_name=expected.step_name,
+        )
+        if stale:
+            raise PoeTextRealizationError(
+                "rewritten natural language retained a stale claim for "
+                f"{claim.node_id!r}"
+            )
+    if expected.affected_node_claims:
+        invalid_equations = arithmetic_violations(clean_natural)
+        if invalid_equations:
+            raise PoeTextRealizationError(
+                "rewritten natural language contains false displayed arithmetic: "
+                f"{list(invalid_equations)}"
             )
     return rewritten_step_text
 
 
 def _system_prompt() -> str:
     return (
-        "You minimally edit existing molecule-editing step_text records. For each step, "
+        "You rewrite existing molecule-editing step_text records under a strict local "
+        "contract. For each step, "
         "ORIGINAL_STEP_TEXT is the text to preserve and MODIFIED_FORMAL_AB is the new "
-        "authoritative claim, even when chemically false or internally inconsistent. "
-        "Change only the natural-language phrases necessary to agree with the modified "
-        "FORMAL; retain the original wording, detail, order, Step header, and formatting "
-        "as much as possible. Copy an unaffected step byte-for-byte. Return the complete "
-        "rewritten step_text and include exactly one FORMAL line whose content is exactly "
-        "MODIFIED_FORMAL_AB. Never add an Answer or commentary. In natural language, wrap "
-        "each REQUIRED_HALLUCINATION_OCCURRENCE exactly once with its occurrence-specific "
+        "authoritative candidate-world claim, even when chemically false relative to the "
+        "source molecule. Obey REWRITE_MODE. In copy mode, copy natural language byte-for-"
+        "byte. In occurrence_patch mode, replace every listed occurrence and preserve all "
+        "other wording. In derivation_rewrite mode, rewrite the complete natural-language "
+        "body so its explanations, enumerations, totals, and displayed arithmetic agree "
+        "internally with AFFECTED_NODE_CLAIMS and MODIFIED_FORMAL_AB; remove every stale "
+        "before value, and wrap the entire rewritten body once as "
+        "[[HALLU:rewrite.01]]body[[/HALLU]]. Return only the rewritten natural-language "
+        "body for each step. Do not return the Step header, FORMAL line, Answer, or "
+        "commentary; local code owns and appends those fields. In natural language, wrap "
+        "each REQUIRED_HALLUCINATION_OCCURRENCE in occurrence_patch mode exactly once with "
+        "its occurrence-specific "
         "temporary marker: [[HALLU:occurrence_id]]after_text[[/HALLU]]. Never mark an "
         "unplanned occurrence, never omit or duplicate an occurrence, never alter a "
         "marker value, never expose that the claim was modified, and never put markers in "
@@ -341,13 +478,13 @@ def _user_prompt(request: PoeRewriteRequest) -> str:
         "steps": [
             {
                 "step_index": step.step_index,
-                "rewritten_step_text": "string",
+                "rewritten_natural_language": "string",
             }
             for step in request.steps
         ]
     }
     return (
-        "Minimally update these original step_text records from their modified FORMAL.\n"
+        "Update these original step_text records under each explicit REWRITE_MODE.\n"
         "RESPONSE_SHAPE:\n"
         + json.dumps(response_shape, ensure_ascii=False, separators=(",", ":"))
         + "\nINPUT:\n"
@@ -381,6 +518,76 @@ def _extract_json_object(text: str) -> Mapping[str, Any]:
     return value
 
 
+def _strip_model_step_header(body: str, expected: PoeStepRewriteInput) -> str:
+    """Remove one redundant exact header and reject a mismatched one."""
+
+    match = _LEADING_STEP_HEADER.match(body)
+    if match is None:
+        return body
+    observed_index = int(match.group(1))
+    observed_name = match.group(2)
+    if observed_index != expected.step_index or observed_name != expected.step_name:
+        raise PoeTextRealizationError(
+            "Poe returned a mismatched Step header inside rewritten natural language"
+        )
+    return body[match.end() :].lstrip()
+
+
+def _discard_model_owned_suffix(body: str) -> str:
+    """Discard FORMAL/Answer fields because local typed state owns both."""
+
+    boundary = re.search(r"\n[ \t]*FORMAL\s*:\s*", body, flags=re.IGNORECASE)
+    if boundary is not None:
+        body = body[: boundary.start()].rstrip()
+    answer = re.search(r"\n[ \t]*Answer\s*:\s*", body, flags=re.IGNORECASE)
+    if answer is not None:
+        body = body[: answer.start()].rstrip()
+    return body
+
+
+def _extract_natural_body(value: Any, expected: PoeStepRewriteInput) -> str:
+    """Recover only prose even when Poe redundantly returns a complete step.
+
+    Model-supplied Step headers, FORMAL blocks, and Answers are discarded rather
+    than trusted. The caller always reconstructs them from local typed state.
+    """
+
+    if type(value) is not str or not value.strip():
+        raise PoeTextRealizationError(
+            "Poe rewritten_natural_language must be non-empty text"
+        )
+    if "\x00" in value:
+        raise PoeTextRealizationError(
+            "Poe rewritten_natural_language contains a forbidden NUL token"
+        )
+    body = value.replace("\r\n", "\n").replace("\r", "\n").strip()
+
+    # Poe returns the redundant header outside the rewrite marker in some
+    # responses and inside it in others. Normalize both shapes before local
+    # code adds the one authoritative header.
+    body = _strip_model_step_header(body, expected)
+    marker = HALLU_MARKER_PATTERN.fullmatch(body)
+    if (
+        expected.rewrite_mode is StepRewriteMode.DERIVATION_REWRITE
+        and marker is not None
+        and marker.group(1) == "rewrite.01"
+    ):
+        inner = _strip_model_step_header(marker.group(2).strip(), expected)
+        inner = _discard_model_owned_suffix(inner)
+        if not inner:
+            raise PoeTextRealizationError(
+                "Poe response contains no natural language inside derivation marker"
+            )
+        body = f"[[HALLU:rewrite.01]]{inner}[[/HALLU]]"
+    else:
+        body = _discard_model_owned_suffix(body)
+    if not body:
+        raise PoeTextRealizationError(
+            "Poe response contains no natural language after local field extraction"
+        )
+    return body
+
+
 def _parse_and_validate_response(
     response_text: str,
     request: PoeRewriteRequest,
@@ -395,14 +602,20 @@ def _parse_and_validate_response(
     for expected, row in zip(request.steps, rows, strict=True):
         if not isinstance(row, Mapping) or set(row) != {
             "step_index",
-            "rewritten_step_text",
+            "rewritten_natural_language",
         }:
             raise PoeTextRealizationError("each Poe step has an invalid JSON shape")
         if row["step_index"] != expected.step_index:
             raise PoeTextRealizationError("Poe response changed the step order")
-        rewritten.append(
-            validate_rewritten_step_text(row["rewritten_step_text"], expected)
+        natural_body = _extract_natural_body(
+            row["rewritten_natural_language"],
+            expected,
         )
+        prefix = f"Step {expected.step_index} [{expected.step_name}]: "
+        complete_step = (
+            prefix + natural_body + FORMAL_MARKER + expected.modified_formal_ab
+        )
+        rewritten.append(validate_rewritten_step_text(complete_step, expected))
     return tuple(rewritten)
 
 
@@ -599,12 +812,14 @@ class PoeStepTextAgent:
 
 
 __all__ = [
+    "AffectedNodeClaim",
     "FORMAL_MARKER",
     "HALLU_MARKER_PATTERN",
     "POE_RENDERER_VERSION",
     "PoeRewriteRequest",
     "PoeRewriteResult",
     "RequiredHallucinationOccurrence",
+    "StepRewriteMode",
     "PoeStepRewriteInput",
     "PoeStepTextAgent",
     "PoeTextRealizationError",

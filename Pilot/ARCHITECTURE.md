@@ -9,9 +9,9 @@
 | B | `modules/error_planning/fragment_pool.py` | all reference DAGs | `FragmentPool` | Build a deduplicated corpus-level functional-group pool |
 | C | `modules/error_planning/unified.py` | DAG + config + pool | `UnifiedHallucinationPlan` | Select K points, operators, replacements, and magnitudes |
 | D | `modules/error_injection/` | DAG + plan | `InjectedHallucination` | Apply root edits, propagate deterministic claims, and audit every edge |
-| E1 | `modules/text_realization/renderer.py` | original `step_text` + candidate DAG | original complete steps + modified `formal_ab` + required HALLU occurrences | Inventory every changed natural-language mention |
-| E2 | `modules/text_realization/poe_agent.py` | E1 request | validated, minimally rewritten complete `step_text` with temporary markers | Update only prose affected by modified FORMAL |
-| E3 | `modules/text_realization/renderer.py` | marked Poe steps + candidate DAG | `RenderedHallucination` | Strip markers, append exact local FORMAL, and calculate spans |
+| E1 | `modules/text_realization/occurrence_audit.py` + `renderer.py` | original `step_text` + candidate DAG | coverage audit + `copy` / `occurrence_patch` / `derivation_rewrite` contract | Compare strict mention inventory with a high-recall semantic scan; route incomplete or derived prose to whole-step rewrite |
+| E2 | `modules/text_realization/poe_agent.py` | E1 request | validated natural-language bodies with temporary markers | Patch simple claims or rewrite a complete derivation; Poe never returns the Step header or FORMAL |
+| E3 | `modules/text_realization/renderer.py` | marked Poe natural bodies + candidate DAG | `RenderedHallucination` | Locally append the exact Step header and modified FORMAL, strip markers, and calculate spans |
 | F | `modules/annotation/spans.py` | rendered mentions + injection trace | `AnnotatedHallucination` | Label root and propagated spans with separate causal roles |
 | G/H | `modules/release/record.py` | graph, text, spans | JSONL record | Assemble, verify span offsets, and write the dataset |
 
@@ -50,8 +50,10 @@ molhallulens/
 5. Product and final-answer changes are sanitized structural SMILES edits.
 6. Candidate/reference DAG differences exactly equal root nodes plus recorded propagation nodes.
 7. Every root or propagated node appears in at least one verified hallucination span.
-8. Poe receives the original complete `step_text`; its returned FORMAL must exactly equal the locally rendered modified `formal_ab`.
-9. Every identified natural occurrence is wrapped exactly once using `[[HALLU:node_id.NN]]...[[/HALLU]]`; missing, duplicate, and unplanned occurrences fail closed.
-10. If a step changes only in FORMAL, its natural-language head remains byte-identical.
-11. Arithmetic, repeated-value, and product/final-answer edges must pass after propagation; all known edge statuses are released for audit.
-12. The Poe token is read only from `POE_API_KEY` and is absent from cache and records.
+8. Poe receives the original `step_text` and modified `formal_ab` as context but returns only natural language. If it redundantly returns outer whitespace, a Step header, FORMAL, or Answer, the parser extracts prose and discards those model-owned copies. Local code exclusively owns and appends the canonical Step header and modified FORMAL.
+9. Strict occurrence matches are compared with a separate high-recall scan. Extra loose matches never fail silently: the step is routed to `derivation_rewrite`.
+10. Simple patches wrap every occurrence exactly once using `[[HALLU:node_id.NN]]...[[/HALLU]]`; derivation rewrites wrap the complete natural body with `[[HALLU:rewrite.01]]...[[/HALLU]]` and therefore receive a deliberately coarse hallucination span.
+11. Natural language is byte-identical only in explicit `copy` mode; an empty strict match list alone is not evidence that a step is unaffected.
+12. Old semantic claims and false displayed arithmetic are checked after rewriting. Any violation triggers a Poe retry and ultimately rejects the record.
+13. Arithmetic, repeated-value, and product/final-answer DAG edges must pass after propagation; all known edge statuses are released for audit.
+14. The Poe token is read only from `POE_API_KEY` and is absent from cache and records.

@@ -1,12 +1,14 @@
 """Locked-FORMAL text realization with a context-aware Poe agent."""
 
 from .poe_agent import (
+    AffectedNodeClaim,
     FORMAL_MARKER,
     HALLU_MARKER_PATTERN,
     POE_RENDERER_VERSION,
     PoeRewriteRequest,
     PoeRewriteResult,
     RequiredHallucinationOccurrence,
+    StepRewriteMode,
     PoeStepRewriteInput,
     PoeStepTextAgent,
     PoeTextRealizationError,
@@ -21,6 +23,7 @@ from .renderer import (
 )
 
 __all__ = [
+    "AffectedNodeClaim",
     "DeterministicTextRenderer",
     "FORMAL_MARKER",
     "HALLU_MARKER_PATTERN",
@@ -28,6 +31,7 @@ __all__ = [
     "PoeRewriteRequest",
     "PoeRewriteResult",
     "RequiredHallucinationOccurrence",
+    "StepRewriteMode",
     "PoeStepRewriteInput",
     "PoeStepTextAgent",
     "PoeTextRealizationError",

@@ -80,6 +80,32 @@ def _propagation_footprint(
     return nodes
 
 
+def _maximum_non_overlapping_footprints(
+    footprints: tuple[frozenset[str], ...],
+) -> int:
+    """Return the exact largest safe root set for a small editing schema."""
+
+    ordered = tuple(
+        sorted(footprints, key=lambda item: (len(item), tuple(sorted(item))))
+    )
+    best = 0
+
+    def search(index: int, claimed: frozenset[str], selected: int) -> None:
+        nonlocal best
+        if selected + len(ordered) - index <= best:
+            return
+        if index == len(ordered):
+            best = max(best, selected)
+            return
+        footprint = ordered[index]
+        if not footprint & claimed:
+            search(index + 1, claimed | footprint, selected + 1)
+        search(index + 1, claimed, selected)
+
+    search(0, frozenset(), 0)
+    return best
+
+
 def _stable_seed(global_seed: int, origin_id: str, variant_index: int) -> int:
     payload = f"{global_seed}\0{origin_id}\0{variant_index}".encode("utf-8")
     return int.from_bytes(hashlib.sha256(payload).digest()[:8], "big")
@@ -143,6 +169,22 @@ class UnifiedHallucinationPlanner:
         self.fragment_pool = fragment_pool
         self.config = config
 
+    def maximum_edit_count(self, artifact: ReferenceDAGArtifact) -> int:
+        """Return the exact number of mutually non-conflicting editable roots."""
+
+        if type(artifact) is not ReferenceDAGArtifact:
+            raise TypeError("artifact must be ReferenceDAGArtifact")
+        targets = self._available_targets(artifact)
+        maximum = _maximum_non_overlapping_footprints(
+            tuple(
+                _propagation_footprint(artifact.normalized_subtask, target)
+                for target in targets
+            )
+        )
+        if maximum < 1:
+            raise HallucinationPlanningError("reference DAG has no editable root target")
+        return maximum
+
     def plan(
         self,
         artifact: ReferenceDAGArtifact,
@@ -160,10 +202,25 @@ class UnifiedHallucinationPlanner:
             variant_index,
         )
         selection_random = Random(derived_seed)
-        requested_count = self.config.requested_edit_count(selection_random)
         targets = self._available_targets(artifact)
 
         targets_by_id = {target.semantic_id: target for target in targets}
+        footprints = {
+            semantic_id: _propagation_footprint(
+                artifact.normalized_subtask,
+                target,
+            )
+            for semantic_id, target in targets_by_id.items()
+        }
+        maximum_available = _maximum_non_overlapping_footprints(
+            tuple(footprints.values())
+        )
+        # Draw K before any target-order randomness so existing origin/variant
+        # seeds remain reproducible when an explicit max_edit_count is supplied.
+        requested_count = self.config.requested_edit_count(
+            selection_random,
+            maximum_available=maximum_available,
+        )
         reasoning_ids = sorted(
             semantic_id for semantic_id in targets_by_id if semantic_id != "final_answer"
         )
@@ -186,13 +243,6 @@ class UnifiedHallucinationPlanner:
         # expensive on large molecules.
         mutation_cache: dict[str, PlannedMutation] = {}
         failures: dict[str, str] = {}
-        footprints = {
-            semantic_id: _propagation_footprint(
-                artifact.normalized_subtask,
-                target,
-            )
-            for semantic_id, target in targets_by_id.items()
-        }
 
         def select(order: list[str]) -> list[PlannedMutation]:
             selected: list[PlannedMutation] = []

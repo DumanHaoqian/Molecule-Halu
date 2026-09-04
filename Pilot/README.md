@@ -12,7 +12,7 @@ A ingestion
   -> B reference DAG + fragment pool
   -> C edit planning
   -> D root mutation + deterministic propagation + edge audit
-  -> E Poe minimally edits original step_text from modified FORMAL
+  -> E audit prose coverage, then patch occurrences or rewrite a derivation with Poe
   -> F span annotation
   -> G record assembly
   -> H JSONL release
@@ -68,9 +68,12 @@ python -m pytest
 
 Every output record has `hallucination_present: true` and one unified schema.
 Poe receives each original complete `step_text` together with its modified `formal_ab`.
-It marks every identified occurrence of each changed natural-language value with an
-occurrence-specific temporary HALLU marker. Local code rejects missing/duplicate markers,
-locks natural text when only FORMAL changed, removes markers, and derives character spans.
+Before the call, local code compares a precise occurrence finder with a separate high-recall
+semantic scan. Complete simple matches use occurrence-specific HALLU markers; incomplete,
+arithmetic, or compositional prose uses a whole-derivation rewrite marker. Local validation
+rejects stale old claims, false displayed arithmetic, and missing/duplicate markers. Poe
+returns natural-language bodies only; local code appends the exact Step header and modified
+FORMAL, making FORMAL drift impossible. Only explicit `copy` steps are locked byte-for-byte.
 The test suite uses an injected fake Poe transport and therefore spends no points.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for file-level module ownership and contracts.

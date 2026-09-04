@@ -37,10 +37,12 @@ MUTATION_CATEGORIES = (
 # ---------------------------------------------------------------------------
 
 # "fixed" 固定修改 FIXED_EDIT_COUNT 处；"range" 在 MIN/MAX 之间采样。
+# MAX_EDIT_COUNT=None 表示不设置人为上限，由每条 Reference DAG 的可编辑
+# 节点和传播冲突共同计算该样本真正能够支持的最大值。
 EDIT_COUNT_MODE: Literal["fixed", "range"] = "range"
 FIXED_EDIT_COUNT = 2
 MIN_EDIT_COUNT = 1
-MAX_EDIT_COUNT = 3
+MAX_EDIT_COUNT: int | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -211,7 +213,7 @@ class HallucinationGenerationConfig:
     edit_count_mode: Literal["fixed", "range"]
     fixed_edit_count: int
     min_edit_count: int
-    max_edit_count: int
+    max_edit_count: int | None
     include_reasoning_steps: bool
     include_final_answer: bool
     final_answer_probability: float
@@ -247,9 +249,16 @@ class HallucinationGenerationConfig:
     def __post_init__(self) -> None:
         if self.edit_count_mode not in {"fixed", "range"}:
             raise ValueError("edit_count_mode must be 'fixed' or 'range'")
-        if min(self.fixed_edit_count, self.min_edit_count, self.max_edit_count) < 1:
+        if min(self.fixed_edit_count, self.min_edit_count) < 1:
             raise ValueError("edit counts must be positive")
-        if self.min_edit_count > self.max_edit_count:
+        if self.max_edit_count is not None and (
+            type(self.max_edit_count) is not int or self.max_edit_count < 1
+        ):
+            raise ValueError("max_edit_count must be positive or None")
+        if (
+            self.max_edit_count is not None
+            and self.min_edit_count > self.max_edit_count
+        ):
             raise ValueError("min_edit_count cannot exceed max_edit_count")
         if not 0.0 <= self.final_answer_probability <= 1.0:
             raise ValueError("final_answer_probability must be in [0, 1]")
@@ -299,15 +308,36 @@ class HallucinationGenerationConfig:
             MappingProxyType(frozen_nodes),
         )
 
-    def requested_edit_count(self, random_source: object) -> int:
-        """Return a configured edit count from a ``random.Random``-like object."""
+    def requested_edit_count(
+        self,
+        random_source: object,
+        *,
+        maximum_available: int | None = None,
+    ) -> int:
+        """Return an edit count capped by the current DAG's real capacity."""
 
         if self.edit_count_mode == "fixed":
             return self.fixed_edit_count
+        if maximum_available is not None and (
+            type(maximum_available) is not int or maximum_available < 1
+        ):
+            raise ValueError("maximum_available must be a positive integer or None")
+        if self.max_edit_count is None:
+            if maximum_available is None:
+                raise ValueError(
+                    "maximum_available is required when max_edit_count is automatic"
+                )
+            upper = maximum_available
+        elif maximum_available is None:
+            upper = self.max_edit_count
+        else:
+            upper = min(self.max_edit_count, maximum_available)
+        if self.min_edit_count > upper:
+            raise ValueError("current DAG cannot satisfy the configured minimum edit count")
         randint = getattr(random_source, "randint", None)
         if not callable(randint):
             raise TypeError("random_source must provide randint")
-        return randint(self.min_edit_count, self.max_edit_count)
+        return randint(self.min_edit_count, upper)
 
 
 DEFAULT_HALLUCINATION_CONFIG = HallucinationGenerationConfig(

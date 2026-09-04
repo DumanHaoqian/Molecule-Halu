@@ -2,12 +2,16 @@ from __future__ import annotations
 
 import json
 
+import pytest
+
+from molhallulens.config import DEFAULT_HALLUCINATION_CONFIG
 from molhallulens.demo import (
     _inline_diff_html,
     _local_outputs,
     _text_outputs,
     build_demo,
     complete_text_run,
+    maximum_root_edit_count,
     prepare_local_run,
 )
 from molhallulens.modules.text_realization import PoeStepTextAgent
@@ -16,6 +20,12 @@ from molhallulens.modules.text_realization import FORMAL_MARKER
 
 def _marked_head(step: dict) -> str:
     prefix = f"Step {step['step_index']} [{step['step_name']}]: "
+    if step["rewrite_mode"] == "derivation_rewrite":
+        claims = "; ".join(
+            f"{item['node_id']}={item['after_text']}"
+            for item in step["affected_node_claims"]
+        )
+        return f"[[HALLU:rewrite.01]]Updated claims: {claims}.[[/HALLU]]"
     head = step["original_step_text"].split(FORMAL_MARKER, 1)[0]
     body = head[len(prefix) :]
     for occurrence in sorted(
@@ -29,7 +39,7 @@ def _marked_head(step: dict) -> str:
             f"{occurrence['after_text']}[[/HALLU]]"
         )
         body = body[:start] + marker + body[end:]
-    return prefix + body
+    return body
 
 
 def test_gradio_demo_runs_real_a_to_f_modules_without_live_poe(tmp_path):
@@ -46,14 +56,15 @@ def test_gradio_demo_runs_real_a_to_f_modules_without_live_poe(tmp_path):
                 "steps": [
                     {
                         "step_index": step["step_index"],
-                        "rewritten_step_text": (
-                            (
-                                step["original_step_text"].split(FORMAL_MARKER, 1)[0]
-                                if not step["required_hallucination_occurrences"]
-                                else _marked_head(step)
-                            )
-                            + FORMAL_MARKER
-                            + step["modified_formal_ab"]
+                        "rewritten_natural_language": (
+                            step["original_step_text"].split(FORMAL_MARKER, 1)[0][
+                                len(
+                                    f"Step {step['step_index']} "
+                                    f"[{step['step_name']}]: "
+                                ) :
+                            ]
+                            if step["rewrite_mode"] == "copy"
+                            else _marked_head(step)
                         ),
                     }
                     for step in payload["steps"]
@@ -76,7 +87,36 @@ def test_gradio_demo_runs_real_a_to_f_modules_without_live_poe(tmp_path):
 
     app = build_demo()
     config = app.get_config_file()
-    assert len(config["dependencies"]) == 2
+    assert len(config["dependencies"]) == 3
+    edit_count_components = [
+        item
+        for item in config["components"]
+        if item["type"] == "slider"
+        and item["props"].get("label") == "修改 root node 数量"
+    ]
+    assert len(edit_count_components) == 1
+    assert edit_count_components[0]["props"]["minimum"] == 1
+    assert edit_count_components[0]["props"]["maximum"] == 4
+
+
+def test_demo_user_can_choose_every_supported_root_edit_count():
+    minimum = DEFAULT_HALLUCINATION_CONFIG.min_edit_count
+    maximum = maximum_root_edit_count("mol_edit.add_v2.0003")
+    assert maximum == 4
+
+    for edit_count in range(minimum, maximum + 1):
+        local = prepare_local_run("mol_edit.add_v2.0003", 0, edit_count)
+        assert local.plan.requested_edit_count == edit_count
+        assert len(local.plan.mutations) == edit_count
+        assert _local_outputs(local)[0]["edit_count"] == edit_count
+
+    with pytest.raises(ValueError, match="between 1 and 4"):
+        prepare_local_run("mol_edit.add_v2.0003", 0, minimum - 1)
+    with pytest.raises(ValueError, match="between 1 and 4"):
+        prepare_local_run("mol_edit.add_v2.0003", 0, maximum + 1)
+
+    assert maximum_root_edit_count("mol_edit.delete_v2.0016") == 3
+    assert maximum_root_edit_count("mol_edit.substitute_v2.0000") == 3
 
 
 def test_inline_diff_highlights_both_original_and_modified_values():
