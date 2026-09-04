@@ -4,31 +4,23 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "molhallulens"
-version = "0.1.0"
-description = "Auditable counterfactual hallucination dataset builder for molecular editing."
+version = "0.2.0"
+description = "Configurable multi-point hallucination dataset builder for molecular editing."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
 license = "LicenseRef-Proprietary"
 authors = [{ name = "MolHalluLens contributors" }]
 dependencies = [
   "fastapi-poe==0.0.83",
-  "httpx==0.28.1",
-  "jsonschema==4.26.0",
-  "openai==3.3.1",
-  "pydantic==2.11.7",
-  "PyYAML==6.0.3",
   "rdkit==2025.9.6",
 ]
 
 [project.scripts]
 molhallulens-build-subset = "molhallulens.modules.ingestion.build_subset:main"
-molhallulens-audit-origins = "molhallulens.cli.audit_origins:main"
-molhallulens-chemdfm = "molhallulens.modules.release.chemdfm:main"
+molhallulens-generate = "molhallulens.generate_dataset:main"
 
 [project.optional-dependencies]
 dev = [
-  "hypothesis==6.165.10",
-  "pip-tools==7.6.1",
   "pytest==9.1.1",
 ]
 
@@ -37,7 +29,7 @@ where = ["."]
 include = ["molhallulens*"]
 
 [tool.setuptools.package-data]
-molhallulens = ["py.typed", "config/*.yaml"]
+molhallulens = ["py.typed"]
 
 [tool.pytest.ini_options]
 addopts = "-ra --strict-config --strict-markers"

@@ -15,3 +15,6 @@ __pycache__/
 /Pilot/build/
 /Pilot/dist/
 /Pilot/*.egg-info/
+
+# Sample Txt Files
+*.txt

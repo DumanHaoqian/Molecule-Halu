@@ -1,70 +1,54 @@
-# MolHalluLens module architecture
+# Current architecture
 
-The package has one supported data-flow direction:
+## Modules and contracts
 
-```text
-A ingestion
-  -> B reference
-  -> C error_planning
-  -> D error_injection
-  -> E trajectory
-  -> F text_realization
-  -> G annotation
-  -> H release
-```
+| Stage | Code | Input | Output | Responsibility |
+|---|---|---|---|---|
+| A | `modules/ingestion/` | `Dataset/` JSON + manifest | `JoinedInputRecord` | Join and validate raw, process, and template data |
+| B | `modules/reference/` | joined record | `ReferenceDAGArtifact` | Parse every `formal_ab` claim into a typed reference DAG |
+| B | `modules/error_planning/fragment_pool.py` | all reference DAGs | `FragmentPool` | Build a deduplicated corpus-level functional-group pool |
+| C | `modules/error_planning/unified.py` | DAG + config + pool | `UnifiedHallucinationPlan` | Select K points, operators, replacements, and magnitudes |
+| D | `modules/error_injection/unified.py` | DAG + plan | `InjectedHallucination` | Apply exactly the planned node changes |
+| E1 | `modules/text_realization/renderer.py` | candidate DAG | locked modified `formal_ab` + placeholder draft | Keep modified claims and FORMAL under local control |
+| E2 | `modules/text_realization/poe_agent.py` | original context + locked draft | validated natural-language templates | Use Poe to rewrite prose across the complete chain |
+| E3 | `modules/text_realization/renderer.py` | Poe templates + candidate DAG | `RenderedHallucination` | Insert values, append exact FORMAL, and calculate mentions |
+| F | `modules/annotation/spans.py` | rendered mentions + plan | `AnnotatedHallucination` | Label every textual occurrence of every edited node |
+| G/H | `modules/release/record.py` | graph, text, spans | JSONL record | Assemble, verify span offsets, and write the dataset |
 
-## Module contracts
+The two entry points are explicit:
 
-| Stage | Package | Owns | Produces |
-|---|---|---|---|
-| A | `modules.ingestion` | ChemCoTBench loading, joining, subtask normalization | normalized origin records |
-| B | `modules.reference` | FORMAL parsing, reference DAG, executable edit truth | validated reference state |
-| C | `modules.error_planning` | candidate sources, ranking, donor pools, recipe coverage | selected error plan/root patch |
-| D | `modules.error_injection` | add/delete/substitute operators and typed edit actions | root-mutated state |
-| E | `modules.trajectory` | dependency closure and downstream derivation | candidate state plus graph delta |
-| F | `modules.text_realization` | FORMAL, natural trace, detector prompt rendering | rendered detector text and mentions |
-| G | `modules.annotation` | character spans and tokenizer projection | aligned labels and masks |
-| H | `modules.release` | split assembly, artifacts, tokenization, activations, QA | publishable dataset release |
-
-`core` contains only shared immutable contracts. `config` owns configuration.
-`infrastructure` contains chemistry, validation, and external provider services;
-these are dependencies of the stages, not additional pipeline stages.
-`orchestration.py` contains the cross-stage runtime ports and sealed execution
-template. It coordinates stages but owns no chemistry or dataset policy.
-
-## Dependency rules
-
-1. A stage may depend on `core`, `config`, and `infrastructure`.
-2. A stage may consume public output from an earlier stage.
-3. A stage must not import a later stage.
-4. `release` is the only stage allowed to write final dataset artifacts.
-5. The top-level `pipeline.py` performs orchestration only; it contains no chemistry,
-   mutation, rendering, or labeling logic.
+- `pipeline.py` prints one sample's complete input/output at every stage and pauses between stages.
+- `generate_dataset.py` applies those same concrete modules to the complete corpus.
 
 ## Source tree
 
 ```text
 molhallulens/
-├── pipeline.py
-├── orchestration.py
-├── core/
 ├── config/
+│   ├── hallucination_generation.py   # the only generation-parameter file
+│   └── paths.py
+├── core/                             # typed DAG and unified mutation contracts
+├── infrastructure/chemistry/         # RDKit parsing and descriptors
 ├── modules/
 │   ├── ingestion/
 │   ├── reference/
 │   ├── error_planning/
 │   ├── error_injection/
-│   ├── trajectory/
 │   ├── text_realization/
 │   ├── annotation/
 │   └── release/
-├── infrastructure/
-│   ├── chemistry/
-│   ├── validation/
-│   └── providers/
-└── cli/
+├── pipeline.py                       # interactive single-record inspection
+└── generate_dataset.py               # complete dataset generation
 ```
 
-The current release behavior remains frozen. This refactor changes ownership and
-imports; it does not yet replace the legacy H/N bundle semantics or implement the
-new cumulative hallucination trajectory model.
+## Invariants
+
+1. Each record contains at least one actual semantic change.
+2. `edit_count` counts semantic points; a repeated claim may map to several DAG nodes/spans.
+3. Integer and float mutations use separate configuration and operators.
+4. Fragment replacements are valid, different, pool-backed, and similarity/size filtered.
+5. Product and final-answer changes are sanitized structural SMILES edits.
+6. Candidate/reference DAG differences exactly equal the planned node list.
+7. Every edited node appears in at least one verified hallucination span.
+8. Poe cannot author or alter `FORMAL`; its placeholder multiset must round-trip exactly.
+9. The Poe token is read only from `POE_API_KEY` and is absent from cache and records.

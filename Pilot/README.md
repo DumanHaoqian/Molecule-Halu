@@ -1,78 +1,68 @@
 # MolHalluLens Pilot
 
-MolHalluLens converts ChemCoTBench-V2 molecule-editing traces into a validated
-reference graph, injects controlled errors, propagates their consequences,
-renders detector-visible text, aligns labels, and builds release artifacts.
+This version turns ChemCoTBench-V2 molecule-editing traces into **always-positive,
+configurable hallucination records**. A record contains one or more independently
+selected edits in the reasoning steps and/or final-answer SMILES, plus exact text spans.
 
-The code follows one visible pipeline:
-
-```text
-ingestion → reference → error_planning → error_injection
-          → trajectory → text_realization → annotation → release
-```
-
-See [ARCHITECTURE.md](ARCHITECTURE.md) for the responsibility and input/output
-contract of every module.
-
-## Repository layout
+The single data flow is:
 
 ```text
-Pilot/
-├── molhallulens/          # Python source
-│   ├── core/              # shared immutable data contracts
-│   ├── config/            # configuration and repository-local paths
-│   ├── modules/           # the eight pipeline stages
-│   ├── infrastructure/    # RDKit, validators, external providers
-│   ├── cli/               # thin command-line entry points
-│   └── pipeline.py        # stage orchestration only
-├── Dataset/               # bounded ChemCoTBench pilot inputs and reports
-├── HallucinationDataset/  # generated/released artifacts
-└── tests/                 # unit, property, and integration tests
+A ingestion
+  -> B reference DAG + fragment pool
+  -> C edit planning
+  -> D direct graph mutation
+  -> E Poe natural-language rewrite + locally locked FORMAL
+  -> F span annotation
+  -> G record assembly
+  -> H JSONL release
 ```
 
-`Dataset/` and `HallucinationDataset/` intentionally remain top-level artifact
-roots. They are data products, not importable source modules.
+All generation controls live in
+[`molhallulens/config/hallucination_generation.py`](molhallulens/config/hallucination_generation.py):
+editable semantic points, number of edits, integer/float magnitude, fragment similarity,
+final-answer probability, SMILES operators, Poe bot, cache, and random seed.
 
-## Environment and tests
+## Poe API token
 
-Use Python 3.11–3.13:
+Create a key at <https://poe.com/api/keys>, then export it in the same terminal
+before running generation:
+
+```bash
+export POE_API_KEY='YOUR_POE_API_KEY'
+```
+
+The program reads `POE_API_KEY` at request time. It has no command-line token
+argument and never writes the token to configuration, prompts, logs, cache, or output.
+The bot name and environment-variable name are configured in
+`hallucination_generation.py`.
+
+Generation makes one Poe request per uncached record. Poe charges the key owner's
+compute points, so first inspect one record with `pipeline.py`; validated responses
+are cached under `GeneratedDataset/.poe_text_cache/` and can be replayed without a key.
+
+## Run
+
+Activate the existing environment and work from `Pilot/`:
 
 ```bash
 conda activate molhallulens
-python -m pip install -r requirements-dev.lock
+
+# Inspect one sample module by module; stage E calls Poe.
+python -m molhallulens.pipeline
+
+# Run the same one-sample demo without pauses.
+python -m molhallulens.pipeline --no-pause
+
+# Generate the complete 150-origin dataset.
+python -m molhallulens.generate_dataset \
+  --variants-per-origin 1 \
+  --output GeneratedDataset/hallucinations.jsonl
+
+# Verify the implementation.
 python -m pytest
 ```
 
-All commands should be run from this `Pilot` directory. Package imports should
-use `python -m ...` or the installed console commands; do not execute a package
-file by its filesystem path.
+Every output record has `hallucination_present: true` and one unified schema.
+The test suite uses an injected fake Poe transport and therefore spends no points.
 
-## Main entry points
-
-Build a deterministic pilot subset from a local ChemCoTBench-V2 checkout:
-
-```bash
-molhallulens-build-subset --source-root /path/to/ChemCoTBench-V2
-```
-
-Inspect the three reference-DAG examples directly:
-
-```bash
-python -m molhallulens.modules.reference.builder
-```
-
-Audit the frozen origins:
-
-```bash
-molhallulens-audit-origins
-```
-
-ChemDFM commands accept `--checkpoint-path`. You may also set the local default
-without editing source code:
-
-```bash
-export MOLHALLULENS_CHEMDFM_CHECKPOINT=/path/to/ChemDFM-R-14B
-```
-
-The refactor preserves the existing release semantics. It does not yet remove
-the legacy N controls or implement the proposed cumulative-error data model.
+See [ARCHITECTURE.md](ARCHITECTURE.md) for file-level module ownership and contracts.
