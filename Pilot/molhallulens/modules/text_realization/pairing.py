@@ -10,7 +10,11 @@ from typing import Any
 from molhallulens.core import InjectedHallucination, RenderedHallucination, RenderedMention
 from molhallulens.modules.reference import ReferenceDAGArtifact
 
-from .occurrence_audit import arithmetic_violations, loose_occurrence_spans
+from .occurrence_audit import (
+    arithmetic_violations,
+    enumeration_violations,
+    loose_occurrence_spans,
+)
 from .poe_agent import (
     AffectedNodeClaim,
     FORMAL_MARKER,
@@ -235,6 +239,8 @@ def _step_validation_errors(
             errors.append(f"stale_candidate_value:{node_id}")
     if arithmetic_violations(natural_body):
         errors.append("false_arithmetic")
+    if enumeration_violations(natural_body):
+        errors.append("false_enumeration")
     return tuple(errors)
 
 

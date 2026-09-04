@@ -12,7 +12,7 @@
 | E1 | `modules/text_realization/occurrence_audit.py` + `renderer.py` | original `step_text` + candidate DAG | coverage audit + `copy` / `occurrence_patch` / `derivation_rewrite` contract | Scan every changed DAG node in every step; route incomplete or derived prose to derivation rewrite |
 | E2 | `modules/text_realization/poe_agent.py` | E1 request | validated natural-language bodies with temporary per-occurrence markers | Patch simple claims or rewrite a complete derivation; every affected claim stays attributable to its DAG node |
 | E3 | `modules/text_realization/renderer.py` | marked Poe natural bodies + candidate DAG | `RenderedHallucination` | Locally append the exact Step header and modified FORMAL, strip markers, and calculate spans |
-| E4 | `modules/text_realization/pairing.py` | validated H rendering + reference DAG | `MatchedRenderedPair` | Swap marked claims back to truth; regenerate only a step that fails FORMAL, residual, or arithmetic checks |
+| E4 | `modules/text_realization/pairing.py` | validated H rendering + reference DAG | `MatchedRenderedPair` | Swap marked claims back to truth; regenerate only a step that fails FORMAL, residual, arithmetic, or enumeration checks |
 | F | `modules/annotation/spans.py` | H/N rendered mentions + injection trace | positive/negative `AnnotatedHallucination` | Label H root/propagated spans and one-to-one N control spans without weakening positive validation |
 | G/H | `modules/release/record.py` | graph, paired text, spans | paired JSONL records | Assemble H/N records, verify offsets and the byte-identical substitution invariant, then write the dataset |
 
@@ -55,7 +55,7 @@ molhallulens/
 9. Strict occurrence matches are compared with a separate high-recall scan for every changed node in every step, including claims outside that step's FORMAL template. Extra loose matches never fail silently: the step is routed to `derivation_rewrite`.
 10. Both occurrence patches and derivation rewrites mark changed claim values individually as `[[HALLU:node_id.NN]]after_text[[/HALLU]]`. A derivation rewrite may change surrounding prose for coherence, but only marked claim values become hallucination spans; whole-body spans are forbidden.
 11. Natural language is byte-identical only in explicit `copy` mode; an empty strict match list alone is not evidence that a step is unaffected.
-12. Old semantic claims and false displayed arithmetic are checked after rewriting. Any violation triggers a Poe retry and ultimately rejects the record.
+12. Old semantic claims, false displayed arithmetic, and explicit heavy-atom/ring enumerations whose components do not sum to their total are checked after rewriting. Any violation triggers a Poe retry and ultimately rejects the record. Ambiguous fused-system prose is never assigned an inferred count.
 13. Arithmetic, repeated-value, and product/final-answer DAG edges must pass after propagation; all known edge statuses are released for audit.
 14. The Poe token is read only from `POE_API_KEY` and is absent from cache and records.
 15. With `emit_matched_negative=True`, every plan releases exactly one H and one N record sharing `pair_id`; their `record_id` values end in `__H` and `__N`.

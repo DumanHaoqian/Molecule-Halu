@@ -40,3 +40,19 @@ steps now emit one or more node-attributed value spans rather than a whole-body 
 - `conda run -n molhallulens python -m compileall -q molhallulens` — passed.
 - `conda run -n molhallulens python -m molhallulens.generate_dataset --help` — passed;
   `--max-origins` is exposed.
+
+## Task 3 — enumeration consistency
+
+- `scripts/survey_enumerations.py` scanned all 150 origins and identified 126 explicit,
+  mechanically checkable component-total sentences: 24 item-first `totaling`/`giving a
+  total` forms, 85 total-first parenthetical forms, 12 equals forms, and 5 unit-first
+  parenthetical forms. The corpus uses both digits and English number words, nested group
+  subtotals, and explicit fused-system overrides such as `counts as 2 rings`.
+- The validator sums only totals stated in `heavy atom(s)` or `ring(s)`. Ambiguous fused
+  `core`/`system` descriptions without an explicit contribution are skipped rather than
+  guessed. The raw-corpus audit produced 0 false positives across all 800 natural-language
+  steps.
+- Enumeration-bearing changed count claims are routed to `derivation_rewrite`; the
+  variant-0 mode distribution changed from 442 copy / 166 occurrence patch / 192
+  derivation rewrite to 442 / 158 / 200.
+- All 150 variant-0 outputs from `DeterministicTextRenderer` passed the enumeration audit.

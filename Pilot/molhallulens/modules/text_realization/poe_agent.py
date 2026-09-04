@@ -24,9 +24,13 @@ from molhallulens.config.hallucination_generation import (
 )
 from molhallulens.config.paths import PROJECT_ROOT
 
-from .occurrence_audit import arithmetic_violations, loose_occurrence_spans
+from .occurrence_audit import (
+    arithmetic_violations,
+    enumeration_violations,
+    loose_occurrence_spans,
+)
 
-POE_RENDERER_VERSION = "poe_step_text_v9"
+POE_RENDERER_VERSION = "poe_step_text_v10"
 FORMAL_MARKER = "\n  FORMAL: "
 HALLU_MARKER_PATTERN = re.compile(
     r"\[\[HALLU:([a-z][a-z0-9_]*\.[0-9]{2})\]\](.*?)\[\[/HALLU\]\]",
@@ -516,6 +520,12 @@ def validate_rewritten_step_text(
                 "rewritten natural language contains false displayed arithmetic: "
                 f"{list(invalid_equations)}"
             )
+        invalid_enumerations = enumeration_violations(clean_natural)
+        if invalid_enumerations:
+            raise PoeTextRealizationError(
+                "rewritten natural language contains an enumeration whose component "
+                f"sum disagrees with its total: {list(invalid_enumerations)}"
+            )
     return rewritten_step_text
 
 
@@ -530,7 +540,12 @@ def _system_prompt() -> str:
         "other wording. In derivation_rewrite mode, rewrite the complete natural-language "
         "body so its explanations, enumerations, totals, and displayed arithmetic agree "
         "internally with AFFECTED_NODE_CLAIMS and MODIFIED_FORMAL_AB; remove every stale "
-        "before value. In derivation_rewrite mode, mark every occurrence of every affected "
+        "before value. Every displayed component enumeration must sum to its stated heavy-"
+        "atom or ring total. If a modified total cannot agree with the real fragment "
+        "composition, delete or generalize the component breakdown; never fabricate or "
+        "alter a component count merely to force the sum, because that would introduce an "
+        "additional unmarked false claim. In derivation_rewrite mode, mark every occurrence "
+        "of every affected "
         "claim as [[HALLU:node_id.NN]]after_text[[/HALLU]], use consecutive two-digit "
         "suffixes starting at 01 separately for each node, include every affected node at "
         "least once, obey required_occurrence_count when it is present, and do not wrap the "

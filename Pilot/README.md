@@ -79,15 +79,15 @@ and an N record with `hallucination_present: false`; both share `pair_id`.
 Poe receives each original complete `step_text` together with its modified `formal_ab`.
 Before the call, local code compares a precise occurrence finder with a separate high-recall
 semantic scan across every changed node and every step. Complete simple matches use
-occurrence-specific HALLU markers; incomplete, arithmetic, or compositional prose is rewritten
+occurrence-specific HALLU markers; incomplete, arithmetic, enumerative, or compositional prose is rewritten
 as a derivation, while every changed claim value is still marked separately by node and
 occurrence. Local validation rejects whole-body or unplanned markers, stale old claims, false
-displayed arithmetic, and missing/duplicate markers. Poe
+displayed arithmetic, inconsistent heavy-atom/ring component totals, and missing/duplicate markers. Poe
 returns natural-language bodies only; local code appends the exact Step header and modified
 FORMAL, making FORMAL drift impossible. Only explicit `copy` steps are locked byte-for-byte.
 For matched controls, COPY shares its prose directly, while patched and rewritten steps
 replace verified marker contents with truth. Local code checks the reference FORMAL,
-candidate-value residuals, and arithmetic after replacement. A step that cannot be restored
+candidate-value residuals, arithmetic, and explicit component sums after replacement. A step that cannot be restored
 safely is reverse-regenerated through Poe and disclosed as `pair_alignment: regenerated`;
 otherwise its alignment is `byte_identical`. Each N `control_span` maps to one H span by
 `pair_occurrence_id`, and both sides record `same_char_length`.
