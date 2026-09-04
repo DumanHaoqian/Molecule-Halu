@@ -199,7 +199,17 @@ POE_CACHE_DIRECTORY = "GeneratedDataset/.poe_text_cache"
 
 
 # ---------------------------------------------------------------------------
-# 10. 可复现性
+# 10. H/N matched-pair 输出
+# ---------------------------------------------------------------------------
+
+# True 时，每条幻觉正样本 H 都同时发布一条真值负样本 N。N 复用 H 的
+# Poe 文本骨架，只把经过 marker 验证的 claim 值换回 reference truth；若
+# 换回后不能通过 FORMAL / 残留 / 算术检查，则对该步反向调用 Poe。
+EMIT_MATCHED_NEGATIVE = True
+
+
+# ---------------------------------------------------------------------------
+# 11. 可复现性
 # ---------------------------------------------------------------------------
 
 # 每条记录的最终 seed = GLOBAL_SEED + origin_id + variant_index 的稳定哈希。
@@ -244,6 +254,7 @@ class HallucinationGenerationConfig:
     poe_temperature: float
     poe_max_attempts: int
     poe_cache_directory: str
+    emit_matched_negative: bool
     global_seed: int
 
     def __post_init__(self) -> None:
@@ -278,6 +289,7 @@ class HallucinationGenerationConfig:
         for value, name in (
             (self.enable_deterministic_propagation, "enable_deterministic_propagation"),
             (self.fail_on_trivial_edge_violation, "fail_on_trivial_edge_violation"),
+            (self.emit_matched_negative, "emit_matched_negative"),
         ):
             if type(value) is not bool:
                 raise TypeError(f"{name} must be bool")
@@ -375,6 +387,7 @@ DEFAULT_HALLUCINATION_CONFIG = HallucinationGenerationConfig(
     poe_temperature=POE_TEMPERATURE,
     poe_max_attempts=POE_MAX_ATTEMPTS,
     poe_cache_directory=POE_CACHE_DIRECTORY,
+    emit_matched_negative=EMIT_MATCHED_NEGATIVE,
     global_seed=GLOBAL_SEED,
 )
 

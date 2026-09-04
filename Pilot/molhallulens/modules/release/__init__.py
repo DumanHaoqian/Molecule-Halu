@@ -1,4 +1,4 @@
-"""Release records for the new always-hallucinated schema."""
+"""Release validated matched H/N records."""
 
 from .record import ReleasedHallucinationRecord, UnifiedRecordBuilder, write_jsonl
 

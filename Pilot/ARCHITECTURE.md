@@ -12,8 +12,9 @@
 | E1 | `modules/text_realization/occurrence_audit.py` + `renderer.py` | original `step_text` + candidate DAG | coverage audit + `copy` / `occurrence_patch` / `derivation_rewrite` contract | Scan every changed DAG node in every step; route incomplete or derived prose to derivation rewrite |
 | E2 | `modules/text_realization/poe_agent.py` | E1 request | validated natural-language bodies with temporary per-occurrence markers | Patch simple claims or rewrite a complete derivation; every affected claim stays attributable to its DAG node |
 | E3 | `modules/text_realization/renderer.py` | marked Poe natural bodies + candidate DAG | `RenderedHallucination` | Locally append the exact Step header and modified FORMAL, strip markers, and calculate spans |
-| F | `modules/annotation/spans.py` | rendered mentions + injection trace | `AnnotatedHallucination` | Label root and propagated spans with separate causal roles |
-| G/H | `modules/release/record.py` | graph, text, spans | JSONL record | Assemble, verify span offsets, and write the dataset |
+| E4 | `modules/text_realization/pairing.py` | validated H rendering + reference DAG | `MatchedRenderedPair` | Swap marked claims back to truth; regenerate only a step that fails FORMAL, residual, or arithmetic checks |
+| F | `modules/annotation/spans.py` | H/N rendered mentions + injection trace | positive/negative `AnnotatedHallucination` | Label H root/propagated spans and one-to-one N control spans without weakening positive validation |
+| G/H | `modules/release/record.py` | graph, paired text, spans | paired JSONL records | Assemble H/N records, verify offsets and the byte-identical substitution invariant, then write the dataset |
 
 The two entry points are explicit:
 
@@ -57,3 +58,6 @@ molhallulens/
 12. Old semantic claims and false displayed arithmetic are checked after rewriting. Any violation triggers a Poe retry and ultimately rejects the record.
 13. Arithmetic, repeated-value, and product/final-answer DAG edges must pass after propagation; all known edge statuses are released for audit.
 14. The Poe token is read only from `POE_API_KEY` and is absent from cache and records.
+15. With `emit_matched_negative=True`, every plan releases exactly one H and one N record sharing `pair_id`; their `record_id` values end in `__H` and `__N`.
+16. A `byte_identical` step is reconstructed exactly by replacing each H span value with its paired N control value. A failed truth swap is never accepted: that step is reverse-regenerated and disclosed as `regenerated`.
+17. N records have `hallucination_present=false`, no hallucination spans, and one truth-valued `control_span` for every H span. `same_char_length` is recorded occurrence by occurrence.

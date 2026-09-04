@@ -1,9 +1,10 @@
 # MolHalluLens Pilot
 
-This version turns ChemCoTBench-V2 molecule-editing traces into **always-positive,
-configurable hallucination records**. A record contains one or more independently
-selected edits in the reasoning steps and/or final-answer SMILES, plus exact text spans.
-Sampled root errors are separated from deterministic downstream consequences.
+This version turns ChemCoTBench-V2 molecule-editing traces into **matched positive/negative
+hallucination pairs**. Each H record contains one or more independently selected edits in
+the reasoning steps and/or final-answer SMILES, plus exact text spans. Its N partner uses
+the same text shell with those values restored to reference truth and exposes aligned
+`control_spans`. Sampled root errors remain separate from deterministic consequences.
 
 The single data flow is:
 
@@ -13,15 +14,17 @@ A ingestion
   -> C edit planning
   -> D root mutation + deterministic propagation + edge audit
   -> E audit prose coverage, then patch occurrences or rewrite a derivation with Poe
-  -> F span annotation
-  -> G record assembly
-  -> H JSONL release
+  -> E2 restore marked values to construct the matched N text
+  -> F hallucination/control span annotation
+  -> G paired record assembly and invariant checks
+  -> H paired JSONL release
 ```
 
 All generation controls live in
 [`molhallulens/config/hallucination_generation.py`](molhallulens/config/hallucination_generation.py):
 editable semantic points, number of edits, integer/float magnitude, fragment similarity,
-final-answer probability, SMILES operators, Poe bot, cache, and random seed.
+final-answer probability, SMILES operators, matched-negative emission, Poe bot, cache,
+and random seed.
 
 ## Poe API token
 
@@ -62,11 +65,17 @@ python -m molhallulens.generate_dataset \
   --variants-per-origin 1 \
   --output GeneratedDataset/example.jsonl
 
+# Small real-Poe smoke test: 3 origins -> 3 H/N pairs -> 6 records.
+python -m molhallulens.generate_dataset \
+  --max-origins 3 \
+  --output GeneratedDataset/example.jsonl
+
 # Verify the implementation.
 python -m pytest
 ```
 
-Every output record has `hallucination_present: true` and one unified schema.
+By default, each origin/variant produces an H record with `hallucination_present: true`
+and an N record with `hallucination_present: false`; both share `pair_id`.
 Poe receives each original complete `step_text` together with its modified `formal_ab`.
 Before the call, local code compares a precise occurrence finder with a separate high-recall
 semantic scan across every changed node and every step. Complete simple matches use
@@ -76,6 +85,12 @@ occurrence. Local validation rejects whole-body or unplanned markers, stale old 
 displayed arithmetic, and missing/duplicate markers. Poe
 returns natural-language bodies only; local code appends the exact Step header and modified
 FORMAL, making FORMAL drift impossible. Only explicit `copy` steps are locked byte-for-byte.
+For matched controls, COPY shares its prose directly, while patched and rewritten steps
+replace verified marker contents with truth. Local code checks the reference FORMAL,
+candidate-value residuals, and arithmetic after replacement. A step that cannot be restored
+safely is reverse-regenerated through Poe and disclosed as `pair_alignment: regenerated`;
+otherwise its alignment is `byte_identical`. Each N `control_span` maps to one H span by
+`pair_occurrence_id`, and both sides record `same_char_length`.
 The test suite uses an injected fake Poe transport and therefore spends no points.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for file-level module ownership and contracts.

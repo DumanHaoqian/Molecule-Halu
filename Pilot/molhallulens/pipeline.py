@@ -93,6 +93,7 @@ if __name__ == "__main__":
     from molhallulens.modules.reference import build_reference_dag
     from molhallulens.modules.release import UnifiedRecordBuilder, write_jsonl
     from molhallulens.modules.text_realization import (
+        MatchedNegativeTextBuilder,
         PoeStepTextAgent,
         PoeTextRealizationError,
         PoeTextRenderer,
@@ -105,7 +106,7 @@ if __name__ == "__main__":
     pause = not args.no_pause
 
     print("MolHalluLens unified multi-point hallucination pipeline")
-    print("Every output is one configurable, always-positive hallucination sample")
+    print("Every variant emits one matched hallucinated/control pair")
     print(f"origin_id: {args.origin_id}")
     print(f"variant_index: {args.variant_index}")
 
@@ -187,7 +188,8 @@ if __name__ == "__main__":
     )
     if pause:
         input("\nPress Enter to send this request to Poe...")
-    text_module = PoeTextRenderer(PoeStepTextAgent(DEFAULT_HALLUCINATION_CONFIG))
+    poe_agent = PoeStepTextAgent(DEFAULT_HALLUCINATION_CONFIG)
+    text_module = PoeTextRenderer(poe_agent)
     try:
         rendered = text_module.render(reference_artifact, injected)
     except PoeTextRealizationError as error:
@@ -211,46 +213,62 @@ if __name__ == "__main__":
     if pause:
         input("\nPress Enter to continue to G RECORD ASSEMBLY...")
 
-    # G. Graph + text + spans -> 单一格式的 positive hallucination record。
-    record_module = UnifiedRecordBuilder()
-    released_record = record_module.build(
+    # G. H 文本按 marker 位置换回真值，构造 N，并发布共享 pair_id 的两条记录。
+    rendered_pair = MatchedNegativeTextBuilder(poe_agent).build(
         reference_artifact,
         injected,
+        rendered,
+    )
+    negative_annotation = annotation_module.annotate_negative(
+        rendered_pair.negative,
         annotated,
     )
-    _print_stage(
-        "G RECORD ASSEMBLY — create the new always-hallucinated schema",
+    record_module = UnifiedRecordBuilder()
+    released_h, released_n = record_module.build_pair(
+        reference_artifact,
+        injected,
+        rendered_pair,
         annotated,
-        released_record,
+        negative_annotation,
+    )
+    _print_stage(
+        "G RECORD ASSEMBLY — create matched H/N records",
+        annotated,
+        {"H": released_h, "N": released_n},
     )
     if pause:
         input("\nPress Enter to continue to H RELEASE...")
 
     # H. 最终 record -> JSONL 文件。
-    write_jsonl((released_record,), output_path)
+    write_jsonl((released_h, released_n), output_path)
     _print_stage(
-        "H RELEASE — write one JSONL record",
-        released_record,
+        "H RELEASE — write one matched pair to JSONL",
+        {"H": released_h, "N": released_n},
         {
             "output_path": output_path,
-            "record_count": 1,
-            "record_id": released_record.data["record_id"],
+            "record_count": 2,
+            "pair_id": released_h.data["pair_id"],
+            "record_ids": [
+                released_h.data["record_id"],
+                released_n.data["record_id"],
+            ],
         },
     )
 
     print("\n" + "=" * 100)
     print("PIPELINE FINISHED")
     print(f"output: {output_path}")
-    print(f"record_id: {released_record.data['record_id']}")
-    print(f"edit_count: {released_record.data['edit_count']}")
+    print(f"pair_id: {released_h.data['pair_id']}")
+    print(f"record_ids: {released_h.data['record_id']}, {released_n.data['record_id']}")
+    print(f"edit_count: {released_h.data['edit_count']}")
     print(
         "edited semantic points: "
         + ", ".join(
             item["semantic_target_id"]
-            for item in released_record.data["mutation_events"]
+            for item in released_h.data["mutation_events"]
         )
     )
     print(
         "hallucination spans: "
-        f"{len(released_record.data['hallucination_spans'])}"
+        f"{len(released_h.data['hallucination_spans'])}"
     )

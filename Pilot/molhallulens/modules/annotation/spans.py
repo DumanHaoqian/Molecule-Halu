@@ -10,6 +10,7 @@ from molhallulens.core import CausalRole, InjectedHallucination, RenderedHalluci
 
 @dataclass(frozen=True, slots=True)
 class HallucinationSpan:
+    mention_id: str
     mutation_id: str
     semantic_target_id: str
     node_id: str
@@ -23,6 +24,8 @@ class HallucinationSpan:
     propagation_event_id: str | None = None
 
     def __post_init__(self) -> None:
+        if type(self.mention_id) is not str or not self.mention_id:
+            raise ValueError("mention_id must be non-empty text")
         if type(self.causal_role) is not CausalRole:
             raise TypeError("causal_role must be CausalRole")
         if self.causal_role is CausalRole.ROOT_HALLUCINATION:
@@ -33,6 +36,7 @@ class HallucinationSpan:
 
     def to_dict(self) -> dict[str, Any]:
         return {
+            "mention_id": self.mention_id,
             "mutation_id": self.mutation_id,
             "semantic_target_id": self.semantic_target_id,
             "node_id": self.node_id,
@@ -47,17 +51,80 @@ class HallucinationSpan:
 
 
 @dataclass(frozen=True, slots=True)
+class ControlSpan:
+    """One truth-valued N location paired to exactly one H span."""
+
+    pair_occurrence_id: str
+    node_id: str
+    component: str
+    step_index: int | None
+    start: int
+    end: int
+    text: str
+    same_char_length: bool
+
+    def __post_init__(self) -> None:
+        for value, name in (
+            (self.pair_occurrence_id, "pair_occurrence_id"),
+            (self.node_id, "node_id"),
+            (self.component, "component"),
+            (self.text, "text"),
+        ):
+            if type(value) is not str or not value:
+                raise ValueError(f"{name} must be non-empty text")
+        if self.component not in {"reasoning_chain", "final_answer"}:
+            raise ValueError("component must be reasoning_chain or final_answer")
+        if type(self.start) is not int or type(self.end) is not int:
+            raise TypeError("control offsets must be integers")
+        if self.start < 0 or self.end <= self.start:
+            raise ValueError("control offsets must describe a non-empty span")
+        if self.end - self.start != len(self.text):
+            raise ValueError("control offsets must exactly cover text")
+        if type(self.same_char_length) is not bool:
+            raise TypeError("same_char_length must be bool")
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "pair_occurrence_id": self.pair_occurrence_id,
+            "node_id": self.node_id,
+            "component": self.component,
+            "step_index": self.step_index,
+            "span": [self.start, self.end],
+            "text": self.text,
+            "same_char_length": self.same_char_length,
+        }
+
+
+@dataclass(frozen=True, slots=True)
 class AnnotatedHallucination:
     rendered: RenderedHallucination
     spans: tuple[HallucinationSpan, ...]
+    hallucination_present: bool = True
+    control_spans: tuple[ControlSpan, ...] = ()
 
     def __post_init__(self) -> None:
         if type(self.rendered) is not RenderedHallucination:
             raise TypeError("rendered must be RenderedHallucination")
         spans = tuple(self.spans)
-        if not spans or any(type(item) is not HallucinationSpan for item in spans):
-            raise ValueError("every generated record must have hallucination spans")
+        controls = tuple(self.control_spans)
+        if type(self.hallucination_present) is not bool:
+            raise TypeError("hallucination_present must be bool")
+        if any(type(item) is not HallucinationSpan for item in spans):
+            raise TypeError("spans must contain HallucinationSpan values")
+        if any(type(item) is not ControlSpan for item in controls):
+            raise TypeError("control_spans must contain ControlSpan values")
+        if self.hallucination_present:
+            if not spans:
+                raise ValueError("positive records must have hallucination spans")
+            if controls:
+                raise ValueError("positive records cannot have control spans")
+        else:
+            if spans:
+                raise ValueError("negative records cannot have hallucination spans")
+            if not controls:
+                raise ValueError("negative records must have paired control spans")
         object.__setattr__(self, "spans", spans)
+        object.__setattr__(self, "control_spans", controls)
 
 
 class UnifiedHallucinationAnnotator:
@@ -103,6 +170,7 @@ class UnifiedHallucinationAnnotator:
                 raise ValueError("rendered mention causal role disagrees with injection")
             spans.append(
                 HallucinationSpan(
+                    mention_id=mention.mention_id,
                     mutation_id=mutation.mutation_id,
                     semantic_target_id=mutation.semantic_target_id,
                     node_id=mention.node_id,
@@ -124,11 +192,65 @@ class UnifiedHallucinationAnnotator:
                 "changed nodes have no rendered hallucination span: "
                 f"{sorted(missing)}"
             )
-        return AnnotatedHallucination(rendered=rendered, spans=spans)
+        return AnnotatedHallucination(
+            rendered=rendered,
+            spans=spans,
+            hallucination_present=True,
+        )
+
+    def annotate_negative(
+        self,
+        rendered: RenderedHallucination,
+        positive: AnnotatedHallucination,
+    ) -> AnnotatedHallucination:
+        """Create an explicitly negative annotation with paired truth controls."""
+
+        if type(rendered) is not RenderedHallucination:
+            raise TypeError("rendered must be RenderedHallucination")
+        if type(positive) is not AnnotatedHallucination:
+            raise TypeError("positive must be AnnotatedHallucination")
+        if not positive.hallucination_present:
+            raise ValueError("positive annotation must be hallucinated")
+        controls_by_id = {item.mention_id: item for item in rendered.mentions}
+        if len(controls_by_id) != len(rendered.mentions):
+            raise ValueError("negative rendered control mention IDs must be unique")
+        expected_ids = {span.mention_id for span in positive.spans}
+        if set(controls_by_id) != expected_ids:
+            raise ValueError("negative controls must map one-to-one to positive spans")
+        controls = []
+        for span in positive.spans:
+            mention = controls_by_id[span.mention_id]
+            if mention.hallucinated or mention.causal_role is not None:
+                raise ValueError("negative controls cannot be hallucinated mentions")
+            if (
+                mention.node_id != span.node_id
+                or mention.component != span.component
+                or mention.step_index != span.step_index
+            ):
+                raise ValueError("negative control metadata disagrees with positive span")
+            controls.append(
+                ControlSpan(
+                    pair_occurrence_id=span.mention_id,
+                    node_id=span.node_id,
+                    component=span.component,
+                    step_index=span.step_index,
+                    start=mention.start,
+                    end=mention.end,
+                    text=mention.value,
+                    same_char_length=len(span.text) == len(mention.value),
+                )
+            )
+        return AnnotatedHallucination(
+            rendered=rendered,
+            spans=(),
+            hallucination_present=False,
+            control_spans=tuple(controls),
+        )
 
 
 __all__ = [
     "AnnotatedHallucination",
+    "ControlSpan",
     "HallucinationSpan",
     "UnifiedHallucinationAnnotator",
 ]

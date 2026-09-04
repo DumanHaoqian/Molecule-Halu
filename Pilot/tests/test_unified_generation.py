@@ -9,7 +9,9 @@ from rdkit import Chem
 
 import molhallulens.core as core
 from molhallulens.config import DEFAULT_HALLUCINATION_CONFIG
+from molhallulens.generate_dataset import generate_dataset
 from molhallulens.modules.annotation import UnifiedHallucinationAnnotator
+from molhallulens.modules.annotation import AnnotatedHallucination
 from molhallulens.modules.error_injection import UnifiedHallucinationInjector
 from molhallulens.modules.error_planning import UnifiedHallucinationPlanner
 from molhallulens.modules.release import UnifiedRecordBuilder
@@ -17,6 +19,7 @@ from molhallulens.modules.text_realization import (
     AffectedNodeClaim,
     DeterministicTextRenderer,
     FORMAL_MARKER,
+    MatchedNegativeTextBuilder,
     PoeStepRewriteInput,
     PoeStepTextAgent,
     PoeTextRealizationError,
@@ -137,6 +140,12 @@ def test_planner_is_deterministic_and_honors_fixed_edit_count(
     assert len(set(first.edited_node_ids)) == len(first.edited_node_ids)
 
 
+def test_matched_negative_config_switch_requires_a_real_boolean():
+    assert DEFAULT_HALLUCINATION_CONFIG.emit_matched_negative is True
+    with pytest.raises(TypeError, match="emit_matched_negative"):
+        replace(DEFAULT_HALLUCINATION_CONFIG, emit_matched_negative=1)
+
+
 def test_integer_root_propagates_to_the_derived_delta(references, fragment_pool):
     config = replace(
         DEFAULT_HALLUCINATION_CONFIG,
@@ -226,7 +235,7 @@ def test_final_answer_is_a_valid_structural_smiles_edit(references, fragment_poo
 
 def test_default_end_to_end_for_all_three_subtasks(references, fragment_pool):
     planner = UnifiedHallucinationPlanner(fragment_pool)
-    forbidden = {"policy", "variant_label", "pair_id", "bundle_id", "matched_record_id"}
+    forbidden = {"policy", "bundle_id"}
     for variant_index, reference in enumerate(references.values()):
         plan = planner.plan(reference, variant_index=variant_index)
         injected, rendered, annotated, record = _record(reference, plan)
@@ -237,11 +246,274 @@ def test_default_end_to_end_for_all_three_subtasks(references, fragment_pool):
         assert len(rendered.step_texts) == (6 if reference.normalized_subtask.value == "substitute" else 5)
         assert annotated.spans
         assert forbidden.isdisjoint(data)
+        assert data["variant_label"] == "H"
+        assert data["pair_id"] == plan.plan_id
+        assert data["matched_record_id"] is None
         serialized = data["serialized"]["text"]
         for span in data["hallucination_spans"]:
             start, end = span["serialized_span"]
             assert serialized[start:end] == span["text"]
         json.dumps(data, ensure_ascii=False)
+
+
+def test_all_origins_emit_truthful_span_aligned_matched_pairs(
+    all_references,
+    fragment_pool,
+):
+    planner = UnifiedHallucinationPlanner(fragment_pool)
+    injector = UnifiedHallucinationInjector()
+    annotator = UnifiedHallucinationAnnotator()
+    record_builder = UnifiedRecordBuilder()
+    for reference in all_references:
+        plan = planner.plan(reference, variant_index=0)
+        injected = injector.apply(reference.state_dag, plan)
+        rendered = DeterministicTextRenderer().render(reference, injected)
+        positive = annotator.annotate(rendered, injected)
+        pair = MatchedNegativeTextBuilder().build(reference, injected, rendered)
+        negative = annotator.annotate_negative(pair.negative, positive)
+        h_record, n_record = record_builder.build_pair(
+            reference,
+            injected,
+            pair,
+            positive,
+            negative,
+        )
+
+        h_data = h_record.data
+        n_data = n_record.data
+        assert h_data["variant_label"] == "H"
+        assert n_data["variant_label"] == "N"
+        assert h_data["pair_id"] == n_data["pair_id"] == plan.plan_id
+        assert h_data["matched_record_id"] == n_data["record_id"]
+        assert n_data["matched_record_id"] == h_data["record_id"]
+        assert h_data["labels"]["hallucination_present"] is True
+        assert n_data["labels"]["hallucination_present"] is False
+        assert n_data["hallucination_spans"] == []
+        assert len(n_data["control_spans"]) == len(h_data["hallucination_spans"])
+        assert all(
+            item["pair_alignment"] == "byte_identical"
+            for item in h_data["pair_alignment"]
+        )
+        assert pair.negative.final_answer == str(
+            reference.state_dag.values["final_answer"].normalized_value
+        )
+        for step_text, reference_step in zip(
+            pair.negative.step_texts,
+            reference.trace_steps,
+            strict=True,
+        ):
+            assert step_text.split(FORMAL_MARKER, 1)[1] == reference_step.formal_ab
+
+        controls = {
+            item["pair_occurrence_id"]: item
+            for item in n_data["control_spans"]
+        }
+        h_text = h_data["serialized"]["text"]
+        pieces = []
+        cursor = 0
+        for span in sorted(
+            h_data["hallucination_spans"],
+            key=lambda item: item["serialized_span"],
+        ):
+            start, end = span["serialized_span"]
+            pieces.extend(
+                (h_text[cursor:start], controls[span["pair_occurrence_id"]]["text"])
+            )
+            cursor = end
+            assert span["same_char_length"] == (
+                len(span["text"])
+                == len(controls[span["pair_occurrence_id"]]["text"])
+            )
+        pieces.append(h_text[cursor:])
+        assert "".join(pieces) == n_data["serialized"]["text"]
+
+
+def test_annotation_polarity_keeps_positive_and_negative_requirements_separate(
+    references,
+    fragment_pool,
+):
+    reference = references["add"]
+    plan = UnifiedHallucinationPlanner(fragment_pool).plan(reference, variant_index=0)
+    injected = UnifiedHallucinationInjector().apply(reference.state_dag, plan)
+    rendered = DeterministicTextRenderer().render(reference, injected)
+    with pytest.raises(ValueError, match="positive records must have"):
+        AnnotatedHallucination(
+            rendered=rendered,
+            spans=(),
+            hallucination_present=True,
+        )
+    with pytest.raises(ValueError, match="negative records must have"):
+        AnnotatedHallucination(
+            rendered=rendered,
+            spans=(),
+            hallucination_present=False,
+        )
+
+
+def test_generate_dataset_max_origins_writes_h_n_pairs_with_fake_transport(
+    project_root,
+    tmp_path,
+):
+    calls = []
+
+    def fake_poe(system_prompt, user_prompt, bot_name, temperature):
+        del system_prompt, bot_name, temperature
+        calls.append(user_prompt)
+        payload = json.loads(user_prompt.split("\nINPUT:\n", 1)[1])
+        return json.dumps(
+            {
+                "steps": [
+                    {
+                        "step_index": step["step_index"],
+                        "rewritten_natural_language": (
+                            step["original_step_text"].split(FORMAL_MARKER, 1)[0][
+                                len(
+                                    f"Step {step['step_index']} "
+                                    f"[{step['step_name']}]: "
+                                ) :
+                            ]
+                            if step["rewrite_mode"] == "copy"
+                            else _mark_required_occurrences(step)
+                        ),
+                    }
+                    for step in payload["steps"]
+                ]
+            }
+        )
+
+    config = replace(DEFAULT_HALLUCINATION_CONFIG, emit_matched_negative=True)
+    agent = PoeStepTextAgent(
+        config,
+        transport=fake_poe,
+        environment={},
+        cache_directory=tmp_path / "cache",
+    )
+    output = tmp_path / "pairs.jsonl"
+    summary = generate_dataset(
+        dataset_root=project_root / "Dataset",
+        output_path=output,
+        variants_per_origin=1,
+        max_origins=3,
+        config=config,
+        poe_agent=agent,
+    )
+    rows = [json.loads(line) for line in output.read_text().splitlines()]
+    assert len(calls) == 3
+    assert summary.origin_count == 3
+    assert summary.record_count == 6
+    assert summary.variant_label_counts == {"H": 3, "N": 3}
+    assert summary.pair_alignment_distribution["byte_identical"] == 15
+    assert {row["variant_label"] for row in rows} == {"H", "N"}
+    assert all(row["pair_id"] for row in rows)
+    assert all(
+        row["control_spans"] and not row["hallucination_spans"]
+        for row in rows
+        if row["variant_label"] == "N"
+    )
+
+
+def test_matched_negative_regenerates_when_direct_swap_breaks_arithmetic(
+    all_references,
+    fragment_pool,
+    tmp_path,
+):
+    reference = next(
+        item
+        for item in all_references
+        if item.anonymous_sample_id == "mol_edit.add_v2.0003"
+    )
+    config = replace(
+        DEFAULT_HALLUCINATION_CONFIG,
+        edit_count_mode="fixed",
+        fixed_edit_count=1,
+        include_final_answer=False,
+        integer_deltas=(1,),
+        editable_nodes_by_subtask=_only_target("add", "product_rings"),
+    )
+    plan = UnifiedHallucinationPlanner(fragment_pool, config).plan(reference)
+    injected = UnifiedHallucinationInjector(config).apply(reference.state_dag, plan)
+    calls = []
+
+    def marked_claim(node_id, value, count):
+        return [
+            f"[[HALLU:{node_id}.{index:02d}]]{value}[[/HALLU]]"
+            for index in range(1, count + 1)
+        ]
+
+    def fake_poe(system_prompt, user_prompt, bot_name, temperature):
+        del system_prompt, bot_name, temperature
+        calls.append(user_prompt)
+        payload = json.loads(user_prompt.split("\nINPUT:\n", 1)[1])
+        reverse = "__matched_negative_step" in payload["origin_id"]
+        rows = []
+        for step in payload["steps"]:
+            prefix = f"Step {step['step_index']} [{step['step_name']}]: "
+            if step["rewrite_mode"] == "copy":
+                body = step["original_step_text"].split(FORMAL_MARKER, 1)[0][
+                    len(prefix) :
+                ]
+            elif step["step_index"] == 5:
+                claims = {
+                    item["node_id"]: item
+                    for item in step["affected_node_claims"]
+                }
+                product = claims["product_rings"]
+                delta = claims["ring_delta"]
+                product_count = product["required_occurrence_count"] or 3
+                delta_count = delta["required_occurrence_count"] or 1
+                product_markers = marked_claim(
+                    "product_rings",
+                    product["after_text"],
+                    product_count,
+                )
+                delta_markers = marked_claim(
+                    "ring_delta",
+                    delta["after_text"],
+                    delta_count,
+                )
+                if reverse:
+                    body = (
+                        f"The product contains {product_markers[0]} rings. "
+                        f"Two checks use {product_markers[1]} and "
+                        f"{product_markers[2]}. The ring delta is {delta_markers[0]}."
+                    )
+                else:
+                    doubled = int(product["after_text"]) * 2
+                    body = (
+                        f"The product contains {product_markers[0]} rings. "
+                        f"Consistency: {product_markers[1]} + "
+                        f"{product_markers[2]} = {doubled}. "
+                        f"The ring delta is {delta_markers[0]}."
+                    )
+            else:
+                body = _mark_required_occurrences(step)
+            rows.append(
+                {
+                    "step_index": step["step_index"],
+                    "rewritten_natural_language": body,
+                }
+            )
+        return json.dumps({"steps": rows})
+
+    agent = PoeStepTextAgent(
+        config,
+        transport=fake_poe,
+        environment={},
+        cache_directory=tmp_path,
+    )
+    rendered = PoeTextRenderer(agent).render(reference, injected)
+    assert "5 + 5 = 10" in rendered.reasoning_chain
+    pair = MatchedNegativeTextBuilder(agent).build(reference, injected, rendered)
+    assert len(calls) == 2
+    assert pair.step_pair_alignment[4].pair_alignment.value == "regenerated"
+    assert "4 + 4 = 10" not in pair.negative.reasoning_chain
+    assert not arithmetic_violations(pair.negative.reasoning_chain)
+    positive = UnifiedHallucinationAnnotator().annotate(rendered, injected)
+    negative = UnifiedHallucinationAnnotator().annotate_negative(
+        pair.negative,
+        positive,
+    )
+    assert len(negative.control_spans) == len(positive.spans)
 
 
 def test_full_corpus_has_deterministic_closure_and_complete_occurrence_contract(
@@ -571,6 +843,11 @@ def test_poe_cannot_drop_invent_or_change_hallucination_markers():
     with pytest.raises(PoeTextRealizationError, match="modified_formal_ab exactly"):
         validate_rewritten_step_text(
             valid.replace("PRODUCT_SMILES[n_rings=5]", "PRODUCT_SMILES[n_rings=6]"),
+            expected,
+        )
+    with pytest.raises(PoeTextRealizationError, match="outside required claim values"):
+        validate_rewritten_step_text(
+            valid.replace("The product has", "The product molecule contains"),
             expected,
         )
 

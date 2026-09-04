@@ -26,7 +26,7 @@ from molhallulens.config.paths import PROJECT_ROOT
 
 from .occurrence_audit import arithmetic_violations, loose_occurrence_spans
 
-POE_RENDERER_VERSION = "poe_step_text_v7"
+POE_RENDERER_VERSION = "poe_step_text_v9"
 FORMAL_MARKER = "\n  FORMAL: "
 HALLU_MARKER_PATTERN = re.compile(
     r"\[\[HALLU:([a-z][a-z0-9_]*\.[0-9]{2})\]\](.*?)\[\[/HALLU\]\]",
@@ -120,6 +120,7 @@ class AffectedNodeClaim:
     node_id: str
     before_text: str
     after_text: str
+    required_occurrence_count: int | None = None
 
     def __post_init__(self) -> None:
         if type(self.node_id) is not str or _NODE_ID.fullmatch(self.node_id) is None:
@@ -134,12 +135,20 @@ class AffectedNodeClaim:
                 raise ValueError(f"{name} cannot contain marker tokens")
         if self.before_text == self.after_text:
             raise ValueError("an affected claim must change its rendered value")
+        if self.required_occurrence_count is not None and (
+            type(self.required_occurrence_count) is not int
+            or self.required_occurrence_count < 1
+        ):
+            raise ValueError(
+                "required_occurrence_count must be a positive integer or None"
+            )
 
-    def to_prompt_dict(self) -> dict[str, str]:
+    def to_prompt_dict(self) -> dict[str, Any]:
         return {
             "node_id": self.node_id,
             "before_text": self.before_text,
             "after_text": self.after_text,
+            "required_occurrence_count": self.required_occurrence_count,
         }
 
 
@@ -410,6 +419,12 @@ def validate_rewritten_step_text(
                     "DERIVATION_REWRITE occurrence suffixes must be consecutive for "
                     f"{node_id!r}"
                 )
+            required_count = claims_by_node[node_id].required_occurrence_count
+            if required_count is not None and len(suffixes) != required_count:
+                raise PoeTextRealizationError(
+                    "DERIVATION_REWRITE marker count does not match the paired "
+                    f"occurrence count for {node_id!r}"
+                )
     else:
         observed: set[str] = set()
         for occurrence_id, value, _, _ in markers:
@@ -444,6 +459,23 @@ def validate_rewritten_step_text(
             )
 
     clean_natural = strip_hallucination_markers(marked_natural)
+    if expected.rewrite_mode is StepRewriteMode.OCCURRENCE_PATCH:
+        original_head, _ = _split_complete_step(expected.original_step_text)
+        expected_natural = original_head[len(prefix) :]
+        for occurrence in sorted(
+            expected.required_hallucination_occurrences,
+            key=lambda item: item.original_start,
+            reverse=True,
+        ):
+            expected_natural = (
+                expected_natural[: occurrence.original_start]
+                + occurrence.after_text
+                + expected_natural[occurrence.original_end :]
+            )
+        if clean_natural != expected_natural:
+            raise PoeTextRealizationError(
+                "OCCURRENCE_PATCH changed text outside required claim values"
+            )
     if _LINE_INITIAL_STEP_HEADER.search(clean_natural) is not None:
         raise PoeTextRealizationError(
             "Poe natural-language body still contains a redundant Step header"
@@ -501,7 +533,8 @@ def _system_prompt() -> str:
         "before value. In derivation_rewrite mode, mark every occurrence of every affected "
         "claim as [[HALLU:node_id.NN]]after_text[[/HALLU]], use consecutive two-digit "
         "suffixes starting at 01 separately for each node, include every affected node at "
-        "least once, and do not wrap the whole body. Return only the rewritten natural-language "
+        "least once, obey required_occurrence_count when it is present, and do not wrap the "
+        "whole body. Return only the rewritten natural-language "
         "body for each step. Do not return the Step header, FORMAL line, Answer, or "
         "commentary; local code owns and appends those fields. In natural language, wrap "
         "each REQUIRED_HALLUCINATION_OCCURRENCE in occurrence_patch mode exactly once with "

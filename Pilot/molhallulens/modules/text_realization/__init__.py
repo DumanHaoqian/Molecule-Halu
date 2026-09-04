@@ -21,12 +21,20 @@ from .renderer import (
     PoeTextRenderer,
     build_poe_rewrite_request,
 )
+from .pairing import (
+    MatchedNegativeTextBuilder,
+    MatchedRenderedPair,
+    PairAlignment,
+    StepPairAlignment,
+)
 
 __all__ = [
     "AffectedNodeClaim",
     "DeterministicTextRenderer",
     "FORMAL_MARKER",
     "HALLU_MARKER_PATTERN",
+    "MatchedNegativeTextBuilder",
+    "MatchedRenderedPair",
     "POE_RENDERER_VERSION",
     "PoeRewriteRequest",
     "PoeRewriteResult",
@@ -36,6 +44,8 @@ __all__ = [
     "PoeStepTextAgent",
     "PoeTextRealizationError",
     "PoeTextRenderer",
+    "PairAlignment",
+    "StepPairAlignment",
     "build_poe_rewrite_request",
     "parse_hallucination_markers",
     "strip_hallucination_markers",
