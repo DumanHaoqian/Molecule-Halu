@@ -9,8 +9,8 @@
 | B | `modules/error_planning/fragment_pool.py` | all reference DAGs | `FragmentPool` | Build a deduplicated corpus-level functional-group pool |
 | C | `modules/error_planning/unified.py` | DAG + config + pool | `UnifiedHallucinationPlan` | Select K points, operators, replacements, and magnitudes |
 | D | `modules/error_injection/` | DAG + plan | `InjectedHallucination` | Apply root edits, propagate deterministic claims, and audit every edge |
-| E1 | `modules/text_realization/occurrence_audit.py` + `renderer.py` | original `step_text` + candidate DAG | coverage audit + `copy` / `occurrence_patch` / `derivation_rewrite` contract | Compare strict mention inventory with a high-recall semantic scan; route incomplete or derived prose to whole-step rewrite |
-| E2 | `modules/text_realization/poe_agent.py` | E1 request | validated natural-language bodies with temporary markers | Patch simple claims or rewrite a complete derivation; Poe never returns the Step header or FORMAL |
+| E1 | `modules/text_realization/occurrence_audit.py` + `renderer.py` | original `step_text` + candidate DAG | coverage audit + `copy` / `occurrence_patch` / `derivation_rewrite` contract | Scan every changed DAG node in every step; route incomplete or derived prose to derivation rewrite |
+| E2 | `modules/text_realization/poe_agent.py` | E1 request | validated natural-language bodies with temporary per-occurrence markers | Patch simple claims or rewrite a complete derivation; every affected claim stays attributable to its DAG node |
 | E3 | `modules/text_realization/renderer.py` | marked Poe natural bodies + candidate DAG | `RenderedHallucination` | Locally append the exact Step header and modified FORMAL, strip markers, and calculate spans |
 | F | `modules/annotation/spans.py` | rendered mentions + injection trace | `AnnotatedHallucination` | Label root and propagated spans with separate causal roles |
 | G/H | `modules/release/record.py` | graph, text, spans | JSONL record | Assemble, verify span offsets, and write the dataset |
@@ -51,8 +51,8 @@ molhallulens/
 6. Candidate/reference DAG differences exactly equal root nodes plus recorded propagation nodes.
 7. Every root or propagated node appears in at least one verified hallucination span.
 8. Poe receives the original `step_text` and modified `formal_ab` as context but returns only natural language. If it redundantly returns outer whitespace, a Step header, FORMAL, or Answer, the parser extracts prose and discards those model-owned copies. Local code exclusively owns and appends the canonical Step header and modified FORMAL.
-9. Strict occurrence matches are compared with a separate high-recall scan. Extra loose matches never fail silently: the step is routed to `derivation_rewrite`.
-10. Simple patches wrap every occurrence exactly once using `[[HALLU:node_id.NN]]...[[/HALLU]]`; derivation rewrites wrap the complete natural body with `[[HALLU:rewrite.01]]...[[/HALLU]]` and therefore receive a deliberately coarse hallucination span.
+9. Strict occurrence matches are compared with a separate high-recall scan for every changed node in every step, including claims outside that step's FORMAL template. Extra loose matches never fail silently: the step is routed to `derivation_rewrite`.
+10. Both occurrence patches and derivation rewrites mark changed claim values individually as `[[HALLU:node_id.NN]]after_text[[/HALLU]]`. A derivation rewrite may change surrounding prose for coherence, but only marked claim values become hallucination spans; whole-body spans are forbidden.
 11. Natural language is byte-identical only in explicit `copy` mode; an empty strict match list alone is not evidence that a step is unaffected.
 12. Old semantic claims and false displayed arithmetic are checked after rewriting. Any violation triggers a Poe retry and ultimately rejects the record.
 13. Arithmetic, repeated-value, and product/final-answer DAG edges must pass after propagation; all known edge statuses are released for audit.

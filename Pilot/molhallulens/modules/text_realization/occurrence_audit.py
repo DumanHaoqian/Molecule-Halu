@@ -21,14 +21,12 @@ NUMERIC_NODE_IDS = frozenset(
     }
 )
 
-_FRAGMENT_COUNT_STEPS = frozenset(
-    {
-        "FRAGMENT_IDENTIFICATION",
-        "ADD_FRAGMENT_SIZE",
-        "REMOVE_GROUP_SIZE",
-        "GROUP_SIZE_VERIFICATION",
-    }
-)
+_PRIMARY_FRAGMENT_COUNT_NODE_BY_STEP = {
+    "FRAGMENT_IDENTIFICATION": "fragment_heavy",
+    "ADD_FRAGMENT_SIZE": "add_heavy",
+    "REMOVE_GROUP_SIZE": "remove_heavy",
+    "GROUP_SIZE_VERIFICATION": "remove_heavy",
+}
 _COUNT_DERIVATION_WORDS = re.compile(
     r"\b(?:consists?|compris(?:es|ing)|total|sum(?:ming)?|giving|made\s+up|"
     r"one|two|three|four|five|six|seven|eight|nine)\b",
@@ -82,7 +80,11 @@ def loose_occurrence_spans(
             rf"(?P<value>{needle})",
             natural_body,
         )
-        spans |= _capture(rf"\b[A-Z][a-z]?(?P<value>{needle})\b", natural_body)
+        spans |= _capture(
+            rf"\b(?:is|atom|anchor)\s+[A-Z][a-z]?"
+            rf"(?P<value>{needle})\b",
+            natural_body,
+        )
         spans |= _capture(
             rf"\[[^\]]*:\s*(?P<value>{needle})\s*\]",
             natural_body,
@@ -155,7 +157,14 @@ def loose_occurrence_spans(
             natural_body,
         )
     elif node_id in {"fragment_heavy", "remove_heavy", "add_heavy"}:
-        if step_name in _FRAGMENT_COUNT_STEPS:
+        # Bare phrases such as "3 heavy atoms" are only attributable to the
+        # count node owned by this step.  Applying that pattern to every
+        # changed count node makes sibling values collide (for example, an
+        # edited remove_heavy claim being mistaken for the unchanged
+        # add_heavy value in ADD_FRAGMENT_SIZE).  Explicitly labelled
+        # cross-step mentions are still audited by the node-specific patterns
+        # below, including REMOVE_GROUP = O (1 heavy atom) in another step.
+        if _PRIMARY_FRAGMENT_COUNT_NODE_BY_STEP.get(step_name) == node_id:
             spans |= _capture(
                 rf"(?P<value>{needle}){heavy_unit}",
                 natural_body,

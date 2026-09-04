@@ -69,9 +69,11 @@ python -m pytest
 Every output record has `hallucination_present: true` and one unified schema.
 Poe receives each original complete `step_text` together with its modified `formal_ab`.
 Before the call, local code compares a precise occurrence finder with a separate high-recall
-semantic scan. Complete simple matches use occurrence-specific HALLU markers; incomplete,
-arithmetic, or compositional prose uses a whole-derivation rewrite marker. Local validation
-rejects stale old claims, false displayed arithmetic, and missing/duplicate markers. Poe
+semantic scan across every changed node and every step. Complete simple matches use
+occurrence-specific HALLU markers; incomplete, arithmetic, or compositional prose is rewritten
+as a derivation, while every changed claim value is still marked separately by node and
+occurrence. Local validation rejects whole-body or unplanned markers, stale old claims, false
+displayed arithmetic, and missing/duplicate markers. Poe
 returns natural-language bodies only; local code appends the exact Step header and modified
 FORMAL, making FORMAL drift impossible. Only explicit `copy` steps are locked byte-for-byte.
 The test suite uses an injected fake Poe transport and therefore spends no points.

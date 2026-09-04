@@ -22,10 +22,11 @@ def _marked_head(step: dict) -> str:
     prefix = f"Step {step['step_index']} [{step['step_name']}]: "
     if step["rewrite_mode"] == "derivation_rewrite":
         claims = "; ".join(
-            f"{item['node_id']}={item['after_text']}"
+            f"{item['node_id']}="
+            f"[[HALLU:{item['node_id']}.01]]{item['after_text']}[[/HALLU]]"
             for item in step["affected_node_claims"]
         )
-        return f"[[HALLU:rewrite.01]]Updated claims: {claims}.[[/HALLU]]"
+        return f"Updated claims: {claims}."
     head = step["original_step_text"].split(FORMAL_MARKER, 1)[0]
     body = head[len(prefix) :]
     for occurrence in sorted(

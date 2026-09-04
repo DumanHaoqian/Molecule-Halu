@@ -26,7 +26,10 @@ from molhallulens.modules.text_realization import (
     build_poe_rewrite_request,
     validate_rewritten_step_text,
 )
-from molhallulens.modules.text_realization.occurrence_audit import arithmetic_violations
+from molhallulens.modules.text_realization.occurrence_audit import (
+    arithmetic_violations,
+    loose_occurrence_spans,
+)
 from molhallulens.modules.text_realization.poe_agent import _extract_natural_body
 from molhallulens.modules.text_realization.renderer import (
     _original_occurrence_spans,
@@ -45,10 +48,11 @@ def _mark_required_occurrences(step: dict) -> str:
     prefix = f"Step {step['step_index']} [{step['step_name']}]: "
     if step["rewrite_mode"] == "derivation_rewrite":
         claims = "; ".join(
-            f"{item['node_id']}={item['after_text']}"
+            f"{item['node_id']}="
+            f"[[HALLU:{item['node_id']}.01]]{item['after_text']}[[/HALLU]]"
             for item in step["affected_node_claims"]
         )
-        return f"[[HALLU:rewrite.01]]Updated claims: {claims}.[[/HALLU]]"
+        return f"Updated claims: {claims}."
     head = step["original_step_text"].split(FORMAL_MARKER, 1)[0]
     body = head[len(prefix) :]
     for occurrence in sorted(
@@ -295,6 +299,79 @@ def test_variant_zero_full_corpus_routes_incomplete_mentions_fail_closed(
             injected.changed_node_ids
         )
     assert rewrite_count > 0
+
+
+def test_variant_zero_full_corpus_removes_every_changed_before_surface(
+    all_references,
+    fragment_pool,
+):
+    """Regression: no changed truth value survives silently in any prose step."""
+
+    planner = UnifiedHallucinationPlanner(fragment_pool)
+    injector = UnifiedHallucinationInjector()
+    derivation_steps = 0
+    for reference in all_references:
+        plan = planner.plan(reference, variant_index=0)
+        injected = injector.apply(reference.state_dag, plan)
+        request = build_poe_rewrite_request(reference, injected)
+        rendered = DeterministicTextRenderer().render(reference, injected)
+
+        reasoning_offset = 0
+        for expected, step_text in zip(request.steps, rendered.step_texts, strict=True):
+            prefix = f"Step {expected.step_index} [{expected.step_name}]: "
+            natural_head = step_text.split(FORMAL_MARKER, 1)[0]
+            assert natural_head.startswith(prefix)
+            natural_body = natural_head[len(prefix) :]
+
+            for node_id in injected.changed_node_ids:
+                before_value = reference.state_dag.values[node_id].normalized_value
+                before_text = str(before_value)
+                if (
+                    node_id in {"heavy_delta", "ring_delta"}
+                    and type(before_value) is int
+                    and before_value > 0
+                ):
+                    before_text = f"+{before_value}"
+                assert not loose_occurrence_spans(
+                    node_id,
+                    before_text,
+                    natural_body,
+                    step_name=expected.step_name,
+                ), (
+                    reference.anonymous_sample_id,
+                    expected.step_index,
+                    node_id,
+                    before_text,
+                    natural_body,
+                )
+
+            if expected.rewrite_mode is StepRewriteMode.DERIVATION_REWRITE:
+                derivation_steps += 1
+                natural_start = reasoning_offset + len(prefix)
+                natural_end = reasoning_offset + len(natural_head)
+                natural_mentions = [
+                    mention
+                    for mention in rendered.hallucination_spans
+                    if mention.step_index == expected.step_index
+                    and natural_start <= mention.start < natural_end
+                ]
+                assert len(natural_mentions) >= len(expected.affected_node_claims)
+                for claim in expected.affected_node_claims:
+                    matching = [
+                        mention
+                        for mention in natural_mentions
+                        if mention.node_id == claim.node_id
+                    ]
+                    assert matching
+                    assert all(mention.value == claim.after_text for mention in matching)
+                assert all(
+                    mention.end - mention.start < len(natural_body)
+                    for mention in natural_mentions
+                )
+
+            reasoning_offset += len(step_text) + 2
+
+    assert derivation_steps > 0
 
 
 @pytest.mark.parametrize(
@@ -598,30 +675,29 @@ def test_derivation_rewrite_rejects_stale_claims_and_false_arithmetic():
                 after_text="2",
             ),
         ),
-        rewrite_node_id="fragment_heavy",
     )
     valid = (
         "Step 2 [FRAGMENT_IDENTIFICATION]: "
-        "[[HALLU:rewrite.01]]The fragment contains 2 heavy atoms.[[/HALLU]]"
+        "The fragment contains [[HALLU:fragment_heavy.01]]2[[/HALLU]] heavy atoms."
         "\n  FORMAL: HEAVY_ATOMS(2)"
     )
     assert validate_rewritten_step_text(valid, expected) == valid
     with pytest.raises(PoeTextRealizationError, match="stale claim"):
         validate_rewritten_step_text(
-            valid.replace("2 heavy atoms", "3 heavy atoms"),
+            valid.replace(" heavy atoms.", " heavy atoms, not 3 heavy atoms."),
             expected,
         )
     with pytest.raises(PoeTextRealizationError, match="false displayed arithmetic"):
         validate_rewritten_step_text(
             valid.replace(
-                "The fragment contains 2 heavy atoms.",
-                "The fragment contains 2 heavy atoms because 1 + 1 = 3.",
+                " heavy atoms.",
+                " heavy atoms because 1 + 1 = 3.",
             ),
             expected,
         )
 
 
-def test_poe_redundant_step_header_inside_derivation_marker_is_removed():
+def test_derivation_rewrite_requires_per_claim_occurrence_markers():
     expected = PoeStepRewriteInput(
         step_index=5,
         step_name="RING_VERIFICATION",
@@ -634,23 +710,29 @@ def test_poe_redundant_step_header_inside_derivation_marker_is_removed():
         rewrite_mode=StepRewriteMode.DERIVATION_REWRITE,
         affected_node_claims=(
             AffectedNodeClaim(
+                node_id="product_rings",
+                before_text="4",
+                after_text="5",
+            ),
+            AffectedNodeClaim(
                 node_id="ring_delta",
                 before_text="0",
                 after_text="+1",
             ),
         ),
-        rewrite_node_id="ring_delta",
     )
     raw = (
-        "[[HALLU:rewrite.01]]Step 5 [RING_VERIFICATION]: "
-        "The product contains 5 rings, so 5 - 4 = +1."
-        "[[/HALLU]]"
+        "Step 5 [RING_VERIFICATION]: The product contains "
+        "[[HALLU:product_rings.01]]5[[/HALLU]] rings, so "
+        "[[HALLU:product_rings.02]]5[[/HALLU]] - 4 = "
+        "[[HALLU:ring_delta.01]]+1[[/HALLU]]."
     )
 
     normalized = _extract_natural_body(raw, expected)
     assert normalized == (
-        "[[HALLU:rewrite.01]]The product contains 5 rings, so 5 - 4 = +1."
-        "[[/HALLU]]"
+        "The product contains [[HALLU:product_rings.01]]5[[/HALLU]] rings, so "
+        "[[HALLU:product_rings.02]]5[[/HALLU]] - 4 = "
+        "[[HALLU:ring_delta.01]]+1[[/HALLU]]."
     )
     complete = (
         "Step 5 [RING_VERIFICATION]: "
@@ -661,9 +743,22 @@ def test_poe_redundant_step_header_inside_derivation_marker_is_removed():
     assert complete.count("Step 5 [RING_VERIFICATION]:") == 1
     assert validate_rewritten_step_text(complete, expected) == complete
 
-    with pytest.raises(PoeTextRealizationError, match="mismatched Step header"):
-        _extract_natural_body(
-            raw.replace("Step 5 [RING_VERIFICATION]", "Step 4 [RING_VERIFICATION]"),
+    with pytest.raises(PoeTextRealizationError, match="omitted affected"):
+        validate_rewritten_step_text(
+            complete.replace("[[HALLU:ring_delta.01]]+1[[/HALLU]]", "+1"),
+            expected,
+        )
+    with pytest.raises(PoeTextRealizationError, match="unplanned derivation"):
+        validate_rewritten_step_text(
+            complete.replace("product_rings.01", "rewrite.01"),
+            expected,
+        )
+    with pytest.raises(PoeTextRealizationError, match="unmarked after_text"):
+        validate_rewritten_step_text(
+            complete.replace(
+                " rings, so ",
+                " rings; the product still has 5 rings, so ",
+            ),
             expected,
         )
 

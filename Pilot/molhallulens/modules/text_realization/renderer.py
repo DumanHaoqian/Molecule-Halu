@@ -48,7 +48,6 @@ class _StepRewriteContract:
     mode: StepRewriteMode
     occurrences: tuple[RequiredHallucinationOccurrence, ...]
     affected_claims: tuple[AffectedNodeClaim, ...]
-    rewrite_node_id: str | None
 
 
 def _value_text(graph: StateDAG, literal: _Literal) -> str:
@@ -416,7 +415,8 @@ def _original_occurrence_spans(
             natural_body,
         )
         spans |= _captured_spans(
-            rf"\b[A-Z][a-z]?(?P<value>{needle})(?!\d)",
+            rf"\b(?:is|atom|anchor)\s+[A-Z][a-z]?"
+            rf"(?P<value>{needle})(?!\d)",
             natural_body,
         )
         spans |= _captured_spans(
@@ -568,23 +568,15 @@ def _step_rewrite_contract(
     reference_graph: StateDAG,
     candidate_graph: StateDAG,
     changed_nodes: frozenset[str],
-    root_node_ids: frozenset[str],
 ) -> _StepRewriteContract:
     """Audit strict recall and choose COPY, PATCH, or full derivation rewrite."""
 
     original_head, _ = original_step_text.split(_FORMAL_MARKER, 1)
     natural_body = original_head[len(prefix) :]
     literal_flags = _literal_flags(natural_parts)
-    nodes_to_scan = changed_nodes & frozenset(literal_flags)
-    if "heavy_delta" in literal_flags:
-        # ChemCoT's heavy-atom verification prose often repeats the fragment
-        # counts in a cross-check even though those nodes are absent from that
-        # step's FORMAL expression.
-        nodes_to_scan |= changed_nodes & {
-            "fragment_heavy",
-            "remove_heavy",
-            "add_heavy",
-        }
+    # Audit every changed node against every step. Templates define canonical
+    # rendering and signed surface forms; they must never limit recall.
+    nodes_to_scan = changed_nodes
     requirements = []
     affected_claims = []
     incomplete_coverage = False
@@ -631,36 +623,38 @@ def _step_rewrite_contract(
                 )
             )
     affected_node_ids = frozenset(item.node_id for item in affected_claims)
+    ordered_requirements = sorted(
+        requirements,
+        key=lambda item: (item.original_start, item.original_end, item.node_id),
+    )
+    for previous, current in zip(
+        ordered_requirements,
+        ordered_requirements[1:],
+    ):
+        if current.original_start < previous.original_end:
+            # One source substring cannot carry nested markers for two DAG nodes.
+            # Route it to derivation rewrite, whose canonical body can render one
+            # explicit occurrence per affected claim.
+            incomplete_coverage = True
     if affected_claims and (
         incomplete_coverage
         or requires_derivation_rewrite(natural_body, affected_node_ids)
     ):
-        rewrite_node_id = next(
-            (
-                node_id
-                for node_id in sorted(affected_node_ids)
-                if node_id in root_node_ids
-            ),
-            sorted(affected_node_ids)[0],
-        )
         return _StepRewriteContract(
             mode=StepRewriteMode.DERIVATION_REWRITE,
             occurrences=(),
             affected_claims=tuple(affected_claims),
-            rewrite_node_id=rewrite_node_id,
         )
     if requirements:
         return _StepRewriteContract(
             mode=StepRewriteMode.OCCURRENCE_PATCH,
             occurrences=tuple(requirements),
             affected_claims=tuple(affected_claims),
-            rewrite_node_id=None,
         )
     return _StepRewriteContract(
         mode=StepRewriteMode.COPY,
         occurrences=(),
         affected_claims=(),
-        rewrite_node_id=None,
     )
 
 
@@ -673,7 +667,6 @@ def build_poe_rewrite_request(
     _validate_render_input(artifact, injected)
     graph = injected.candidate_graph
     changed_nodes = frozenset(injected.changed_node_ids)
-    root_node_ids = frozenset(injected.plan.edited_node_ids)
     templates = _templates(artifact.normalized_subtask)
     if len(templates) != len(artifact.trace_steps):
         raise ValueError("renderer template count does not match the reference trace")
@@ -690,7 +683,6 @@ def build_poe_rewrite_request(
             reference_graph=artifact.state_dag,
             candidate_graph=graph,
             changed_nodes=changed_nodes,
-            root_node_ids=root_node_ids,
         )
         steps.append(
             PoeStepRewriteInput(
@@ -701,7 +693,6 @@ def build_poe_rewrite_request(
                 required_hallucination_occurrences=contract.occurrences,
                 rewrite_mode=contract.mode,
                 affected_node_claims=contract.affected_claims,
-                rewrite_node_id=contract.rewrite_node_id,
             )
         )
     return PoeRewriteRequest(
@@ -733,7 +724,6 @@ def _rewrite_contract_metadata(request: PoeRewriteRequest) -> list[dict[str, Any
             "step_index": step.step_index,
             "step_name": step.step_name,
             "mode": step.rewrite_mode.value,
-            "rewrite_node_id": step.rewrite_node_id,
             "affected_node_claims": [
                 item.to_prompt_dict() for item in step.affected_node_claims
             ],
@@ -770,20 +760,31 @@ def _render_marked_natural_body(
         stale_search_body[start:end] = " " * (end - start)
     stale_search_body_text = "".join(stale_search_body)
 
+    claims_to_check = list(expected.affected_node_claims)
+    if not claims_to_check:
+        claims_to_check = [
+            AffectedNodeClaim(
+                node_id=requirement.node_id,
+                before_text=requirement.before_text,
+                after_text=requirement.after_text,
+            )
+            for requirement in expected.required_hallucination_occurrences
+        ]
     checked: set[tuple[str, str]] = set()
-    for requirement in expected.required_hallucination_occurrences:
-        key = (requirement.node_id, requirement.before_text)
+    for claim in claims_to_check:
+        key = (claim.node_id, claim.before_text)
         if key in checked:
             continue
         checked.add(key)
-        if _original_occurrence_spans(
-            requirement.node_id,
-            requirement.before_text,
+        if loose_occurrence_spans(
+            claim.node_id,
+            claim.before_text,
             stale_search_body_text,
+            step_name=expected.step_name,
         ):
             raise PoeTextRealizationError(
                 "rewritten natural language retained a stale value for "
-                f"{requirement.node_id!r}"
+                f"{claim.node_id!r}"
             )
     mentions = []
     requirements = {
@@ -791,13 +792,12 @@ def _render_marked_natural_body(
         for item in expected.required_hallucination_occurrences
     }
     for occurrence_id, value, local_start, local_end in parsed_markers:
-        node_id = (
-            expected.rewrite_node_id
-            if expected.rewrite_mode is StepRewriteMode.DERIVATION_REWRITE
-            else requirements[occurrence_id].node_id
-        )
-        if node_id is None:
-            raise PoeTextRealizationError("rewritten marker has no causal DAG node")
+        node_id = occurrence_id.rsplit(".", 1)[0]
+        if (
+            expected.rewrite_mode is StepRewriteMode.OCCURRENCE_PATCH
+            and requirements[occurrence_id].node_id != node_id
+        ):
+            raise PoeTextRealizationError("marker namespace disagrees with its DAG node")
         start = reasoning_offset + local_start
         end = reasoning_offset + local_end
         occurrence_counts[node_id] = occurrence_counts.get(node_id, 0) + 1
@@ -818,6 +818,45 @@ def _render_marked_natural_body(
             )
         )
     return clean_body, tuple(mentions)
+
+
+def _render_deterministic_derivation_body(
+    expected: PoeStepRewriteInput,
+    natural_parts: tuple[str | _Literal, ...],
+    graph: StateDAG,
+) -> str:
+    """Render a coherent fixture body with one marker per claim occurrence."""
+
+    prefix = f"Step {expected.step_index} [{expected.step_name}]: "
+    claims = {claim.node_id: claim for claim in expected.affected_node_claims}
+    occurrence_counts: dict[str, int] = {}
+    marked_head = ""
+    for part in natural_parts:
+        if type(part) is str:
+            marked_head += part
+            continue
+        value = _value_text(graph, part)
+        claim = claims.get(part.node_id)
+        if claim is None:
+            marked_head += value
+            continue
+        if value != claim.after_text:
+            raise ValueError("canonical derivation value disagrees with affected claim")
+        occurrence_counts[part.node_id] = occurrence_counts.get(part.node_id, 0) + 1
+        occurrence_id = f"{part.node_id}.{occurrence_counts[part.node_id]:02d}"
+        marked_head += f"[[HALLU:{occurrence_id}]]{value}[[/HALLU]]"
+    if not marked_head.startswith(prefix):
+        raise ValueError("canonical natural template changed the Step header")
+    marked_body = marked_head[len(prefix) :]
+    for node_id, claim in sorted(claims.items()):
+        if occurrence_counts.get(node_id, 0):
+            continue
+        occurrence_counts[node_id] = 1
+        marked_body += (
+            f"\n  The value of {node_id} is "
+            f"[[HALLU:{node_id}.01]]{claim.after_text}[[/HALLU]]."
+        )
+    return marked_body
 
 
 def _assemble_rendered_text(
@@ -933,12 +972,10 @@ class DeterministicTextRenderer:
             natural_parts, _ = _split_step_parts(parts)
             prefix = f"Step {expected.step_index} [{expected.step_name}]: "
             if expected.rewrite_mode is StepRewriteMode.DERIVATION_REWRITE:
-                canonical_head = _render_value_text(natural_parts, graph)
-                if not canonical_head.startswith(prefix):
-                    raise ValueError("canonical natural template changed the Step header")
-                canonical_body = canonical_head[len(prefix) :]
-                marked_body = (
-                    "[[HALLU:rewrite.01]]" + canonical_body + "[[/HALLU]]"
+                marked_body = _render_deterministic_derivation_body(
+                    expected,
+                    natural_parts,
+                    graph,
                 )
             else:
                 marked_head = expected.original_step_text.split(_FORMAL_MARKER, 1)[0]
