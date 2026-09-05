@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections import defaultdict
 from dataclasses import dataclass
 from enum import StrEnum
+import re
 from typing import Any
 
 from molhallulens.core import InjectedHallucination, RenderedHallucination, RenderedMention
@@ -90,6 +91,20 @@ class _LocalControl:
 
 
 def _surface_truth(artifact: ReferenceDAGArtifact, mention: RenderedMention) -> str:
+    if mention.parent_node_id:
+        if not mention.reference_text:
+            raise PoeTextRealizationError("derived enumeration mention lacks reference truth")
+        return mention.reference_text
+    if mention.node_id == "anchor_element" and mention.reference_text:
+        from .claim_surfaces import claim_surface_pairs
+        truth = str(artifact.state_dag.values[mention.node_id].normalized_value)
+        # Restore carbon, not C, when H used sulfur. Reference metadata is
+        # verified against the graph; it is not an unchecked truth override.
+        if not any(before == mention.reference_text for before, _ in claim_surface_pairs(
+            mention.node_id, truth, truth,
+        )):
+            raise PoeTextRealizationError("invalid anchor reference surface")
+        return mention.reference_text
     value = artifact.state_dag.values[mention.node_id].normalized_value
     if (
         mention.node_id in {"heavy_delta", "ring_delta"}
@@ -348,14 +363,16 @@ def _reverse_request(
                 claim = claims_by_node[node_id]
                 for occurrence_index, mention in enumerate(mentions, start=1):
                     start = mention.start - step_start - len(prefix)
+                    before_surface = mention.value if node_id == "anchor_element" else claim.after_text
+                    after_surface = _surface_truth(artifact, mention) if node_id == "anchor_element" else claim.before_text
                     requirements.append(
                         RequiredHallucinationOccurrence(
                             occurrence_id=f"{node_id}.{occurrence_index:02d}",
                             node_id=node_id,
-                            before_text=claim.after_text,
-                            after_text=claim.before_text,
+                            before_text=before_surface,
+                            after_text=after_surface,
                             original_start=start,
-                            original_end=start + len(claim.after_text),
+                            original_end=start + len(before_surface),
                         )
                     )
             reverse_claims = tuple(
@@ -376,6 +393,7 @@ def _reverse_request(
                     required_occurrence_count=len(
                         natural_mentions_by_node[claim.node_id]
                     ),
+                    parent_node_id=claim.parent_node_id,
                 )
                 for claim in expected.affected_node_claims
             )
@@ -392,6 +410,18 @@ def _reverse_request(
                 required_hallucination_occurrences=tuple(requirements),
                 rewrite_mode=expected.rewrite_mode,
                 affected_node_claims=reverse_claims,
+                preserved_enumerations=tuple(
+                    re.sub(
+                        r"\[\[HALLU:([A-Za-z0-9_]+)\.(\d{2})\]\](.*?)\[\[/HALLU\]\]",
+                        lambda match: (
+                            f"[[HALLU:{match[1]}.{match[2]}]]"
+                            + next(claim.before_text for claim in expected.affected_node_claims if claim.node_id == match[1])
+                            + "[[/HALLU]]"
+                        ),
+                        clause,
+                    )
+                    for clause in expected.preserved_enumerations
+                ),
             )
         )
 
@@ -416,7 +446,7 @@ def _regenerated_step(
     direct_step: str,
     direct_controls: tuple[_LocalControl, ...],
     agent: PoeStepTextAgent,
-) -> tuple[str, tuple[_LocalControl, ...], int]:
+) -> tuple[str, tuple[_LocalControl, ...], int, dict[str, Any]]:
     reverse = _reverse_request(
         artifact=artifact,
         original_request=original_request,
@@ -515,7 +545,14 @@ def _regenerated_step(
                 diff_opcodes=control.diff_opcodes,
             )
         )
-    return clean_step, tuple(sorted(controls, key=lambda item: item.start)), result.network_request_count
+    return clean_step, tuple(sorted(controls, key=lambda item: item.start)), result.network_request_count, {
+        "target_step_index": expected.step_index,
+        "prompt_sha256": result.prompt_sha256,
+        "response_sha256": result.response_sha256,
+        "step_execution": list(result.step_execution),
+        "diagnostics": list(result.diagnostics),
+        "diagnostic_path": result.diagnostic_path,
+    }
 
 
 def _replace_by_pair_id(
@@ -569,6 +606,7 @@ class MatchedNegativeTextBuilder:
         alignments: list[StepPairAlignment] = []
         h_offset = 0
         regeneration_network_requests = 0
+        regeneration_traces = []
         for expected, h_step in zip(request.steps, hallucinated.step_texts, strict=True):
             prefix = f"Step {expected.step_index} [{expected.step_name}]: "
             h_step_mentions = tuple(
@@ -606,7 +644,7 @@ class MatchedNegativeTextBuilder:
                         "matched-negative step requires Poe regeneration but no agent "
                         f"was provided: step={expected.step_index}, errors={list(errors)}"
                     )
-                n_step, controls, network_requests = _regenerated_step(
+                n_step, controls, network_requests, trace = _regenerated_step(
                     artifact=artifact,
                     original_request=request,
                     hallucinated=hallucinated,
@@ -617,6 +655,7 @@ class MatchedNegativeTextBuilder:
                     agent=self.agent,
                 )
                 regeneration_network_requests += network_requests
+                regeneration_traces.append(trace)
                 alignment = PairAlignment.REGENERATED
                 regenerated_errors = _step_validation_errors(
                     artifact=artifact,
@@ -715,6 +754,7 @@ class MatchedNegativeTextBuilder:
                 "source_backend": hallucinated.realization.get("backend"),
                 "step_pair_alignment": [item.to_dict() for item in alignments],
                 "regeneration_network_request_count": regeneration_network_requests,
+                "regeneration_traces": regeneration_traces,
             },
         )
 

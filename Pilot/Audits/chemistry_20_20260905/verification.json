@@ -1,0 +1,11 @@
+{
+  "sample_records": 20,
+  "original_steps": 106,
+  "numeric_structure_checks_passed": 246,
+  "exact_graph_reconstructions": 20,
+  "verbatim_finding_quotes_verified": 4,
+  "source_files_hash_unchanged": 6,
+  "deliberate_error_detection_tests_passed": 3,
+  "scaffold_counterexample_verified": true,
+  "live_poe_requests": 0
+}

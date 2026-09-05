@@ -24,9 +24,13 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 import gradio as gr
+import tiktoken
+from rdkit import Chem
+from rdkit.Chem.Draw import rdMolDraw2D
 
 from molhallulens.config.hallucination_generation import (
     DEFAULT_HALLUCINATION_CONFIG,
+    DEMO_TOKEN_ENCODING,
 )
 from molhallulens.config.paths import DEFAULT_DATASET_ROOT
 from molhallulens.core import InjectedHallucination, UnifiedHallucinationPlan
@@ -47,7 +51,6 @@ from molhallulens.modules.release import (
 )
 from molhallulens.modules.text_realization import (
     PoeStepTextAgent,
-    PoeTextRealizationError,
     PoeTextRenderer,
 )
 
@@ -490,12 +493,38 @@ def _comparison_card(title: str, original: str, modified: str) -> str:
     )
 
 
+def _source_molecule_html(reference: ReferenceDAGArtifact) -> str:
+    """Draw the unedited input molecule, never the candidate or final answer."""
+    smiles = str(reference.state_dag.values["source"].normalized_value)
+    molecule = Chem.MolFromSmiles(smiles)
+    if molecule is None:
+        raise ValueError("原始分子的 SMILES 无法解析，无法绘制结构图")
+    # Atom maps belong to the indexed input; omit them for a readable structure.
+    # This molecule is a new local object, so the reference DAG is untouched.
+    for atom in molecule.GetAtoms():
+        atom.SetAtomMapNum(0)
+    drawer = rdMolDraw2D.MolDraw2DSVG(1000, 420)
+    rdMolDraw2D.PrepareAndDrawMolecule(drawer, molecule)
+    drawer.FinishDrawing()
+    svg = drawer.GetDrawingText()
+    svg = svg[svg.index("<svg"):]
+    return (
+        '<section class="source-molecule step-compare"><h3>原始分子（编辑前）</h3>'
+        '<p>来源：' + html.escape(reference.anonymous_sample_id)
+        + ' · 原始输入结构，不是修改后的产物。</p>'
+        + svg
+        + '<details><summary>查看原始 SMILES</summary><pre>'
+        + html.escape(smiles) + '</pre></details></section>'
+    )
+
+
 def _step_comparison_html(run: TextDemoRun) -> str:
     original_steps = tuple(
         step.render(include_answer=False) for step in run.local.reference.trace_steps
     )
     modified_steps = run.annotated.rendered.step_texts
     cards = [
+        _source_molecule_html(run.local.reference),
         '<div class="diff-legend">'
         '<span><i class="diff-before-swatch"></i>左侧：被删除或替换的原文</span>'
         '<span><i class="diff-after-swatch"></i>右侧：新增或替换后的文本</span>'
@@ -578,9 +607,55 @@ def _local_outputs(local: LocalDemoRun) -> tuple[Any, ...]:
     )
 
 
+@lru_cache(maxsize=1)
+def _demo_encoding():
+    return tiktoken.get_encoding(DEMO_TOKEN_ENCODING)
+
+
+def _token_coverage(text: str, spans, encoding) -> dict[str, Any]:
+    """Project character spans onto full-text tokens using exact UTF-8 offsets."""
+    offsets = [0]
+    for character in text:
+        offsets.append(offsets[-1] + len(character.encode("utf-8")))
+    covered = bytearray(offsets[-1])
+    for start, end in spans:
+        if not (0 <= start < end <= len(text)):
+            raise ValueError("token coverage received invalid character span")
+        a, b = offsets[start], offsets[end]
+        covered[a:b] = b"\x01" * (b - a)
+    token_ids = encoding.encode_ordinary(text)
+    raw = text.encode("utf-8")
+    cursor = 0
+    hallucinated = 0
+    for token_id in token_ids:
+        piece = encoding.decode_single_token_bytes(token_id)
+        end = cursor + len(piece)
+        if raw[cursor:end] != piece:
+            raise ValueError("tokenizer byte offsets do not round-trip")
+        hallucinated += int(any(covered[cursor:end]))
+        cursor = end
+    if cursor != len(raw):
+        raise ValueError("tokenizer did not cover the complete text")
+    total = len(token_ids)
+    return {
+        "encoding": encoding.name,
+        "scope": "serialized.text",
+        "overlap_rule": "any_overlap_deduplicated",
+        "hallucination_tokens": hallucinated,
+        "total_tokens": total,
+        "percentage": 100 * hallucinated / total if total else 0.0,
+    }
+
+
 def _text_outputs(run: TextDemoRun) -> tuple[Any, ...]:
     rendered = run.annotated.rendered
     realization = dict(rendered.realization)
+    record = run.released.to_dict()
+    coverage = _token_coverage(
+        record["serialized"]["text"],
+        [span["serialized_span"] for span in record["hallucination_spans"]],
+        _demo_encoding(),
+    )
     cache_text = "命中缓存" if realization.get("cache_hit") else "调用了 Poe"
     rewrite_modes = realization.get("step_rewrite_modes", ())
     mode_summary = ", ".join(
@@ -604,14 +679,21 @@ def _text_outputs(run: TextDemoRun) -> tuple[Any, ...]:
         f"### E · 文本对比 + Hallucination span\n✅ `{cache_text}`；network request count = "
         f"`{realization.get('network_request_count')}`；`{mode_summary}`。Poe 根据覆盖审计"
         "结果逐 occurrence 修改或整段重写；临时 HALLU markers 经旧值、算术和 FORMAL"
-        "校验后移除。局部 patch 产生细粒度 span，derivation rewrite 产生整段粗粒度 span；"
+        "及枚举校验后移除。局部 patch 和 derivation rewrite 都逐 claim 标注，"
+        "枚举传播产生的错误也单独标注，不再把整段正文标为幻觉；"
         f"下方共列出 **{len(run.annotated.spans)} 个训练标签 span**。"
+        f"\n\n**幻觉 token 占比：{coverage['hallucination_tokens']} / "
+        f"{coverage['total_tokens']} = {coverage['percentage']:.2f}%**\n\n"
+        f"参考 tokenizer：`{coverage['encoding']}`。统计完整 `serialized.text`"
+        "（原分子、指令、推理含 FORMAL、最终答案及分隔标记）；"
+        "token 与幻觉 span 有任何重叠即计入，重复命中只计一次。"
+        "不包含额外的模型 chat template/BOS/EOS；换用下游模型 tokenizer 后比例可能不同。"
     )
     return (
         e_status,
         _step_comparison_html(run),
         span_rows,
-        _plain(realization),
+        _plain({**realization, "demo_token_coverage": coverage}),
         _plain(run.released.to_dict()),
     )
 
@@ -656,37 +738,22 @@ def _edit_count_slider_update(origin_id: str, current_value: Any) -> gr.Slider:
         raise gr.Error(f"无法计算当前样本的最大修改数量：{error}") from None
 
 
-def _run_local_ui(
-    origin_id: str,
-    variant_index: Any,
-    edit_count: Any,
-) -> tuple[Any, ...]:
+def _run_all_ui(origin_id: str, variant_index: Any, edit_count: Any):
+    """One click, one local plan, then Poe; clear stale E results before work."""
+    cleared_e = ("正在运行，旧 E 结果已清空。", "", [], None, None)
+    yield ("正在运行 A–D…", "", None, "", "", [], [], "", [], None, "", "", [], None) + cleared_e
     try:
-        return _local_outputs(
-            prepare_local_run(
-                origin_id,
-                _coerce_variant(variant_index),
-                _coerce_edit_count(edit_count),
-            )
-        )
+        local = prepare_local_run(origin_id, _coerce_variant(variant_index), _coerce_edit_count(edit_count))
+        local_outputs = _local_outputs(local)[1:]
+        yield ("A–D 已完成，正在准备 tokenizer 并调用 Poe…",) + local_outputs[1:] + cleared_e
+        _demo_encoding()  # Fail before a paid Poe request if tokenization is unavailable.
+        text_run = complete_text_run(local)
+        text_outputs = _text_outputs(text_run)
+        yield (f"✅ A–E 已完成：`{origin_id}` / variant `{local.plan.variant_index}`。",) + local_outputs[1:] + text_outputs
     except Exception as error:
-        raise gr.Error(f"A–D 运行失败：{error}") from None
-
-
-def _run_poe_ui(run_token: Mapping[str, Any] | None) -> tuple[Any, ...]:
-    if not isinstance(run_token, Mapping):
-        raise gr.Error("请先点击“运行 A–D（本地）”生成同一条样本的修改计划。")
-    try:
-        local = prepare_local_run(
-            str(run_token["origin_id"]),
-            _coerce_variant(run_token["variant_index"]),
-            _coerce_edit_count(run_token["edit_count"]),
-        )
-        return _text_outputs(complete_text_run(local))
-    except PoeTextRealizationError as error:
-        raise gr.Error(f"Poe 阶段失败：{error}") from None
-    except Exception as error:
-        raise gr.Error(f"E 运行失败：{error}") from None
+        message = f"A–E 运行失败：{error}"
+        yield (message,) + (gr.skip(),) * 13 + (message, "", [], None, None)
+        raise gr.Error(message) from None
 
 
 _CSS = """
@@ -707,6 +774,10 @@ _CSS = """
 .step-compare { border: 1px solid #dbe3ee; border-radius: 14px; padding: 14px;
                 margin: 0 0 14px; background: #fff; }
 .step-compare h3 { margin: 0 0 10px; color: #0f172a; }
+.source-molecule svg { display: block; width: 100%; max-width: 1000px;
+                       height: auto; margin: 0 auto; }
+.source-molecule p { color: #475569; font-size: 13px; }
+.source-molecule pre { white-space: pre-wrap; overflow-wrap: anywhere; }
 .compare-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .compare-grid article { min-width: 0; }
 .compare-grid h4 { margin: 0 0 7px; color: #475569; font-size: 13px; }
@@ -747,14 +818,13 @@ def build_demo() -> gr.Blocks:
     )
 
     with gr.Blocks(title="MolHalluLens · A–E Pipeline Demo") as app:
-        run_state = gr.State(value=None)
         gr.Markdown(
             "# MolHalluLens · A–E 可视化流水线\n"
             "从 ChemCoTBench-V2 原始记录到 Reference DAG、修改计划，以及带精确 span 的文本对比。",
             elem_classes="hero",
         )
         gr.Markdown(
-            "先运行免费的本地 A–D；检查修改计划后，再明确点击 Poe 按钮。" + token_message,
+            "点击一次运行 A–E：先执行本地 A–D，再自动调用 Poe（可能消耗 API 点数）。" + token_message,
             elem_classes="control-note",
         )
         with gr.Row():
@@ -791,8 +861,7 @@ def build_demo() -> gr.Blocks:
                 scale=2,
             )
         with gr.Row():
-            local_button = gr.Button("① 运行 A–D（本地，不调用 Poe）", variant="primary")
-            poe_button = gr.Button("② 调用 Poe，完成 E（含 span 标签）", variant="secondary")
+            run_button = gr.Button("运行 A–E（含 Poe、Span 标签和 token 占比）", variant="primary")
         overall_status = gr.Markdown("尚未运行。")
 
         with gr.Tabs():
@@ -864,7 +933,7 @@ def build_demo() -> gr.Blocks:
                     d_json = gr.JSON()
 
             with gr.Tab("E · 文本对比 + Span"):
-                e_status = gr.Markdown("请先运行 A–D，再点击 Poe 按钮。")
+                e_status = gr.Markdown("点击上方“运行 A–E”按钮，自动完成所有步骤。")
                 e_compare = gr.HTML(label="原始 / 修改后 step_text")
                 gr.Markdown("#### 精确训练标签（已并入 E）")
                 e_spans = gr.Dataframe(
@@ -886,11 +955,10 @@ def build_demo() -> gr.Blocks:
                 with gr.Accordion("完整最终 record（未写入文件）", open=False):
                     e_record = gr.JSON()
 
-        local_button.click(
-            fn=_run_local_ui,
+        run_button.click(
+            fn=_run_all_ui,
             inputs=[origin_input, variant_input, edit_count_input],
             outputs=[
-                run_state,
                 overall_status,
                 a_summary,
                 a_json,
@@ -905,27 +973,21 @@ def build_demo() -> gr.Blocks:
                 d_graph,
                 d_table,
                 d_json,
-            ],
-            api_name="run_local_stages",
-        )
-        origin_input.change(
-            fn=_edit_count_slider_update,
-            inputs=[origin_input, edit_count_input],
-            outputs=edit_count_input,
-            api_name="update_edit_count_limit",
-        )
-        poe_button.click(
-            fn=_run_poe_ui,
-            inputs=run_state,
-            outputs=[
                 e_status,
                 e_compare,
                 e_spans,
                 e_provenance,
                 e_record,
             ],
-            api_name="run_poe_stages",
+            api_name="run_all_stages",
             concurrency_limit=1,
+            trigger_mode="once",
+        )
+        origin_input.change(
+            fn=_edit_count_slider_update,
+            inputs=[origin_input, edit_count_input],
+            outputs=edit_count_input,
+            api_name="update_edit_count_limit",
         )
 
     return app

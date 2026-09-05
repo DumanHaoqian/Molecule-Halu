@@ -285,6 +285,8 @@ class RenderedMention:
     value: str
     hallucinated: bool
     causal_role: CausalRole | None = None
+    parent_node_id: str | None = None
+    reference_text: str | None = None
     context_start: int | None = None
     context_end: int | None = None
     paired_start: int | None = None
@@ -292,6 +294,11 @@ class RenderedMention:
     diff_opcodes: tuple[tuple[str, int, int, int, int], ...] = ()
 
     def __post_init__(self) -> None:
+        if self.parent_node_id is not None and (
+            not self.reference_text or not self.node_id.startswith(self.parent_node_id + "__enumeration_")
+            or self.causal_role is not CausalRole.PROPAGATED_ERROR
+        ):
+            raise ValueError("derived enumeration mention requires truth, parent and propagated role")
         if self.component not in {"reasoning_chain", "final_answer"}:
             raise ValueError("component must be reasoning_chain or final_answer")
         for value, name in (
@@ -363,6 +370,8 @@ class RenderedMention:
                 for item in self.diff_opcodes
             ],
             "hallucinated": self.hallucinated,
+            "parent_node_id": self.parent_node_id,
+            "reference_text": self.reference_text,
             "causal_role": (
                 self.causal_role.value if self.causal_role is not None else None
             ),

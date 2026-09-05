@@ -16,3 +16,6 @@
 *.egg-info/
 __pycache__/
 *.py[cod]
+
+# Redacted rejection diagnostics are local operational data, not source code.
+/GeneratedDataset/.poe_text_diagnostics/

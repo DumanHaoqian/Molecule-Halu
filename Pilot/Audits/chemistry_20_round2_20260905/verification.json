@@ -1,0 +1,18 @@
+{
+  "origins": 20,
+  "steps": 106,
+  "overlap_with_round1": 0,
+  "numeric_structure_checks_passed": 246,
+  "exact_graph_reconstructions": 20,
+  "verbatim_finding_quotes_verified": 5,
+  "source_hashes_unchanged": 6,
+  "previous_audit_dependencies_unchanged": true,
+  "deliberate_error_detection_tests_passed": 3,
+  "review_categories": {
+    "no_material_issue_found": 15,
+    "factual_error": 4,
+    "underspecified_stereochemistry": 1
+  },
+  "metadata_scope_warnings": 8,
+  "live_poe_requests": 0
+}

@@ -24,6 +24,7 @@ class HallucinationSpan:
     context_end: int
     causal_role: CausalRole
     propagation_event_id: str | None = None
+    parent_node_id: str | None = None
     diff_opcodes: tuple[tuple[str, int, int, int, int], ...] = ()
 
     def __post_init__(self) -> None:
@@ -31,6 +32,12 @@ class HallucinationSpan:
             raise ValueError("mention_id must be non-empty text")
         if type(self.causal_role) is not CausalRole:
             raise TypeError("causal_role must be CausalRole")
+        if self.parent_node_id and (
+            self.causal_role is not CausalRole.PROPAGATED_ERROR
+            or not self.node_id.startswith(self.parent_node_id + "__enumeration_")
+            or not (self.propagation_event_id or "").startswith("text:")
+        ):
+            raise ValueError("text-derived spans require a namespaced parent and text propagation event")
         if not (
             0 <= self.context_start <= self.start
             and self.end <= self.context_end
@@ -64,6 +71,8 @@ class HallucinationSpan:
             ],
             "causal_role": self.causal_role.value,
             "propagation_event_id": self.propagation_event_id,
+            "parent_node_id": self.parent_node_id,
+            "claim_scope": "text_derived" if self.parent_node_id else "dag",
         }
 
 
@@ -81,6 +90,7 @@ class ControlSpan:
     context_start: int
     context_end: int
     same_char_length: bool
+    parent_node_id: str | None = None
     diff_opcodes: tuple[tuple[str, int, int, int, int], ...] = ()
 
     def __post_init__(self) -> None:
@@ -126,6 +136,8 @@ class ControlSpan:
                 for item in self.diff_opcodes
             ],
             "same_char_length": self.same_char_length,
+            "parent_node_id": self.parent_node_id,
+            "claim_scope": "text_derived" if self.parent_node_id else "dag",
         }
 
 
@@ -189,9 +201,10 @@ class UnifiedHallucinationAnnotator:
         for mention in rendered.mentions:
             if not mention.hallucinated:
                 continue
-            event = event_by_node.get(mention.node_id)
+            causal_node = mention.parent_node_id or mention.node_id
+            event = event_by_node.get(causal_node)
             if event is None:
-                mutation = mutation_by_node[mention.node_id]
+                mutation = mutation_by_node[causal_node]
                 operator = mutation.operator
                 propagation_event_id = None
                 causal_role = CausalRole.ROOT_HALLUCINATION
@@ -199,6 +212,10 @@ class UnifiedHallucinationAnnotator:
                 mutation = mutation_by_id[event.root_mutation_id]
                 operator = event.rule_id
                 propagation_event_id = event.event_id
+                causal_role = CausalRole.PROPAGATED_ERROR
+            if mention.parent_node_id:
+                operator = "text.enumeration_count_propagation"
+                propagation_event_id = f"text:{mention.mention_id}"
                 causal_role = CausalRole.PROPAGATED_ERROR
             if mention.causal_role is not causal_role:
                 raise ValueError("rendered mention causal role disagrees with injection")
@@ -218,6 +235,7 @@ class UnifiedHallucinationAnnotator:
                     context_end=mention.context_end,
                     causal_role=causal_role,
                     propagation_event_id=propagation_event_id,
+                    parent_node_id=mention.parent_node_id,
                     diff_opcodes=mention.diff_opcodes,
                 )
             )
@@ -278,6 +296,7 @@ class UnifiedHallucinationAnnotator:
                     context_start=mention.context_start,
                     context_end=mention.context_end,
                     same_char_length=len(span.text) == len(mention.value),
+                    parent_node_id=span.parent_node_id,
                     diff_opcodes=mention.diff_opcodes,
                 )
             )

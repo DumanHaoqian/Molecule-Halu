@@ -14,6 +14,7 @@ dependencies = [
   "fastapi-poe==0.0.83",
   "gradio==6.26.0",
   "rdkit==2025.9.6",
+  "tiktoken==0.12.0",
 ]
 
 [project.scripts]

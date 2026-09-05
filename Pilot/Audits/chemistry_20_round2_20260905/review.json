@@ -1,0 +1,127 @@
+{
+  "reviewer": "AI-assisted chemistry review, not independent human expert annotation",
+  "scope": "Second disjoint sample: 20 original origins / 106 steps; 7 add, 7 delete, 6 substitute",
+  "categories": {
+    "factual_error": "正文存在明确的骨架命名或官能团分类错误；不是GT图结构错误",
+    "underspecified_stereochemistry": "题面没有指定新片段构型，答案却选定立体异构体；不判该异构体本身错误",
+    "no_material_issue_found": "在本轮限定检查中未发现同等级明确问题；不是逐token真值认证"
+  },
+  "findings": [
+    {
+      "id": "R2-F1",
+      "origin_id": "mol_edit.add_v2.0111",
+      "steps": [5],
+      "category": "factual_error",
+      "severity": "medium; can contaminate negative labels",
+      "confidence": "high",
+      "quote": "The source contains 6 rings (phenyl, pyridine, thieno[3,2-c]pyridine (2 rings), thiazole, and piperidine).",
+      "explanation": "thieno[3,2-c]pyridine应为thieno[3,2-b]pyridine。该稠环包含map10–18，吡啶N13直接邻接稠合C14；PubChem的b型结构匹配这些原子，c型结构不匹配。两种骨架同分子式、同环数，故重原子数和环数校验无法区分。",
+      "recommendation": "修正Step5骨架名称；保留N30乙酰化产物与36→39重原子、6→6环的计数。",
+      "sources": [
+        {"url":"https://pubchem.ncbi.nlm.nih.gov/compound/Thienopyridine","label":"PubChem CID 12210218: thieno[3,2-b]pyridine","smiles":"C1=CC2=C(C=CS2)N=C1"},
+        {"url":"https://pubchem.ncbi.nlm.nih.gov/compound/Thieno_3_2-c_pyridine","label":"PubChem CID 67500: thieno[3,2-c]pyridine","smiles":"C1=CN=CC2=C1SC=C2"}
+      ]
+    },
+    {
+      "id": "R2-F2",
+      "origin_id": "mol_edit.delete_v2.0134",
+      "steps": [3],
+      "category": "factual_error",
+      "severity": "medium; functional-group classification rather than product error",
+      "confidence": "high under standard functional-group definitions",
+      "quote": "The ANCHOR nitrogen gains an implicit H to satisfy its valence, becoming a primary amine (-NH2).",
+      "explanation": "脱Cbz后N3确实变成NH2，但它剩下的重原子邻居是磺酰S4，不是碳：H2N–S(=O)2–NH–Ar。这是sulfamide的末端NH2，不是普通primary amine。不能只看氢数就把所有NH2归为一级胺。原题的sulfamide nitrogen反而正确。",
+      "recommendation": "改为the deprotected terminal sulfamide nitrogen bears two hydrogens；不要改动正确的GT和计数。",
+      "sources": [
+        {"url":"https://goldbook.iupac.org/terms/view/A00274","label":"IUPAC Gold Book: amines"}
+      ]
+    },
+    {
+      "id": "R2-F3",
+      "origin_id": "mol_edit.substitute_v2.0122",
+      "steps": [6],
+      "category": "factual_error",
+      "severity": "medium; constitutional skeleton misidentification",
+      "confidence": "high",
+      "quote": "one isoindolinone core which has 2 rings",
+      "explanation": "原结构是oxindole / indolin-2-one型内酰胺，不是isoindolinone。五元环map11–10–30–25–13中，N10直接连接芳环融合C30和羰基C11；独立子结构匹配命中oxindole、未命中isoindolin-1-one。两者各有2环且分子式相同，计数检查不能发现。",
+      "recommendation": "将isoindolinone改为oxindole (indolin-2-one)。同句的chroman-like只是类比；实际含氧五元环是map14–13–21–16–15，建议改用精确的五元环描述，但不另增加一个确定错误计数。",
+      "sources": [
+        {"url":"https://pubchem.ncbi.nlm.nih.gov/compound/Oxindole","label":"PubChem CID 321710: oxindole","smiles":"C1C2=CC=CC=C2NC1=O"},
+        {"url":"https://pubchem.ncbi.nlm.nih.gov/compound/Isoindolin-1-one","label":"PubChem CID 10199: isoindolin-1-one","smiles":"C1C2=CC=CC=C2C(=O)N1"}
+      ]
+    },
+    {
+      "id": "R2-F4",
+      "origin_id": "mol_edit.substitute_v2.0150",
+      "steps": [6],
+      "category": "factual_error",
+      "severity": "medium; heterocycle misidentification",
+      "confidence": "high",
+      "quote": "The source molecule has 4 rings (pyrimidinone, 2-fluorophenyl, pyrazole, phenyl).",
+      "explanation": "第一个含氮六元环中N5与N14直接相连，为1,2-diazine（pyridazinone型）骨架；pyrimidinone要求1,3排列，两个N之间应隔一个C。该差别不是互变异构或SMILES遍历顺序造成的。Br替换为2-oxopyrrolidin-1-yl的产物及4→5环仍然正确。",
+      "recommendation": "将pyrimidinone改为pyridazinone型骨架描述，或直接写明含相邻两个N的六元羰基杂环；本次不指定完整位次名称。",
+      "sources": [
+        {"url":"https://pubchem.ncbi.nlm.nih.gov/compound/Pyrimidine","label":"PubChem CID 9260: pyrimidine, N atoms separated by one carbon","smiles":"C1=CN=CN=C1"}
+      ]
+    },
+    {
+      "id": "R2-F5",
+      "origin_id": "mol_edit.substitute_v2.0064",
+      "steps": [1, 4],
+      "category": "underspecified_stereochemistry",
+      "severity": "high if used as an exact stereochemical ground truth",
+      "confidence": "high for underdetermination from the available input",
+      "quote": "The SMILES for this fragment is \"N1C[C@H](O)C[C@H]1CO\".",
+      "instruction_quote": "Please substitute the chloro group on the pyridine ring with a 4-hydroxy-2-(hydroxymethyl)pyrrolidin-1-yl group.",
+      "explanation": "instruction没有R/S、cis/trans或新片段的带立体SMILES。原分子中也没有这两个中心，但FORMAL和GT选定两个手性中心。固定连接关系后RDKit可枚举4个立体异构体，GT仅是其中之一。这不是证明GT分子不成立，而是其立体选择无法从本地输入唯一推出。",
+      "recommendation": "补充明确的立体指令/片段结构，或明确按非立体连接关系评分、允许相应异构体；在规则确定前不要把其他构型自动标成化学幻觉。",
+      "sources": []
+    }
+  ],
+  "secondary_notes": [
+    {
+      "origin_id":"mol_edit.delete_v2.0036",
+      "step":2,
+      "quote":"quaternary C + 3 methyls",
+      "explanation":"Boc叔丁基中心C2的邻居是3个C和1个O。若按连接碳原子数分类，不是季碳；某些NMR语境用quaternary泛指无氢碳。原文无语境，建议直接写central non-protonated carbon，避免歧义。本轮不把它并入四题明确错误。"
+    }
+  ],
+  "metadata_notes": {
+    "field":"rxn_cls",
+    "scope":"side audit only; not included in the four prose-error origins",
+    "interpretation":"8题的rxn_cls与本题净成键类型不一致；可能是继承自其他任务/原反应的字段，未找到本地字段口径文档，不能断言它原本就是本次编辑标签。不要未经确认把它用于任务分层或真值标签。",
+    "observations":[
+      {"origin_id":"mol_edit.add_v2.0035","stored":"C-N Bond Formation","observed_edit":"O–S成键"},
+      {"origin_id":"mol_edit.add_v2.0172","stored":"C-N Bond Formation","observed_edit":"O–C(=O)成键"},
+      {"origin_id":"mol_edit.add_v2.0229","stored":"C-N Bond Formation","observed_edit":"N–S成键"},
+      {"origin_id":"mol_edit.substitute_v2.0032","stored":"C-C Bond Formation","observed_edit":"C–Cl换为C–N"},
+      {"origin_id":"mol_edit.substitute_v2.0064","stored":"C-C Bond Formation","observed_edit":"C–Cl换为C–N"},
+      {"origin_id":"mol_edit.substitute_v2.0122","stored":"Heterocycle Synthesis","observed_edit":"羧酸OH换Cl，未成环"},
+      {"origin_id":"mol_edit.substitute_v2.0150","stored":"C-C Bond Formation","observed_edit":"C–Br换为C–N"},
+      {"origin_id":"mol_edit.substitute_v2.0281","stored":"Heterocycle Synthesis","observed_edit":"烯丙位OH换Cl，未成环"}
+    ]
+  },
+  "records": [
+    {"origin_id":"mol_edit.add_v2.0013","category":"no_material_issue_found","review":"N2是目标仲脂肪胺而非N16芳胺；乙酰基含2C+O，通过羰基C成键，+3重原子。喹唑啉2环、苯1环、吡啶1环正确；已有立体标记保留。"},
+    {"origin_id":"mol_edit.add_v2.0035","category":"no_material_issue_found","review":"O8为CH2OH的氧，接SO2NH2的S而非N，新增N1S1O2共4重原子；环戊烷、两苯与吡啶共4环。rxn_cls另有口径问题。"},
+    {"origin_id":"mol_edit.add_v2.0111","category":"factual_error","review":"N30哌啶乙酰化正确，+3重原子、6环不变；Step5将thieno[3,2-b]pyridine误写为c型，见R2-F1。"},
+    {"origin_id":"mol_edit.add_v2.0119","category":"no_material_issue_found","review":"N1接甲氧羰基生成甲基氨基甲酸酯；新增C2O2共4原子。两苯、独立吡啶和呋喃并吡啶共5环。"},
+    {"origin_id":"mol_edit.add_v2.0172","category":"no_material_issue_found","review":"仲醇O28与硬脂酰羰基C成键；18C+1O共19重原子，40→59。芴骨架3环加苄酯苯1环，保持4环；已有立体标记保留。"},
+    {"origin_id":"mol_edit.add_v2.0183","category":"no_material_issue_found","review":"目标是芳胺N29，而非酰胺NH2的N22；新增异丙基氨甲酰C4NO共6原子生成脲。苯、咪唑及咔唑三环共5环。"},
+    {"origin_id":"mol_edit.add_v2.0229","category":"no_material_issue_found","review":"N33为仲胺，N21/N54为酰胺氮；连接磺酰S。噻唑片段含两个S（一个芳香s）、C6N2O3，共13原子，新增1环。"},
+    {"origin_id":"mol_edit.delete_v2.0016","category":"no_material_issue_found","review":"O8断苄基C9形成酚；去7原子和1苯环，39→32重原子、5→4环。其余3苯与噁唑匹配。"},
+    {"origin_id":"mol_edit.delete_v2.0036","category":"no_material_issue_found","review":"N8去Boc的7原子后得到苄胺NH2，环数5不变；苯并噻吩计2环。quaternary C说法另列术语歧义，不计入明确错误。"},
+    {"origin_id":"mol_edit.delete_v2.0108","category":"no_material_issue_found","review":"N25去Cbz，去10原子和1苯环，形成苯胺；四氢喹啉型稠环与已有手性结构保持。"},
+    {"origin_id":"mol_edit.delete_v2.0134","category":"factual_error","review":"N3去Cbz正确，44→34原子、6→5环；产物末端是sulfamide NH2而不是一级胺，见R2-F2。"},
+    {"origin_id":"mol_edit.delete_v2.0273","category":"no_material_issue_found","review":"O49去苄基C50，-7原子、-1环。3个哌啶、1个七元二氮环、3个苯环的源枚举匹配；保留手性。"},
+    {"origin_id":"mol_edit.delete_v2.0275","category":"no_material_issue_found","review":"糖环C41上的N42脱Cbz变NH2；去10原子和1苯环，62→52、3→2环。糖环及已指定的多个立体中心保留。"},
+    {"origin_id":"mol_edit.delete_v2.0299","category":"no_material_issue_found","review":"O37去苄基C38，得到羧酸，-7原子、-1环；Boc与三苯甲基保留。题目没有明确要求水解，不把苄酯脱保护的O留存误判成上一轮的水解机制疑义；实际选择性未验证。"},
+    {"origin_id":"mol_edit.substitute_v2.0032","category":"no_material_issue_found","review":"C22的Cl23换成N-乙酰哌嗪游离N端，片段6C2NO共9原子，净+8、+1环；原苯/吡啶/嘧啶/吡唑枚举匹配。"},
+    {"origin_id":"mol_edit.substitute_v2.0057","category":"no_material_issue_found","review":"酰氯C21的Cl23由NCCN1CCCC1的末端一级胺N替换成酰胺；加C6N2共8、去1，净+7原子、+1吡咯烷环。"},
+    {"origin_id":"mol_edit.substitute_v2.0064","category":"underspecified_stereochemistry","review":"C25–Cl换C–N的连接关系及+7原子、+1环正确；题面却未指定新吡咯烷片段的两个中心构型，见R2-F5。"},
+    {"origin_id":"mol_edit.substitute_v2.0122","category":"factual_error","review":"C2的OH3换Cl生成酰氯正确，31原子、6环不变；原文把oxindole型骨架认成isoindolinone，见R2-F3。"},
+    {"origin_id":"mol_edit.substitute_v2.0150","category":"factual_error","review":"C10的Br11换为2-吡咯烷酮N，净+5原子、+1环正确；原六元杂环N5–N14相邻，不是pyrimidinone，见R2-F4。"},
+    {"origin_id":"mol_edit.substitute_v2.0281","category":"no_material_issue_found","review":"烯丙位CH2的C5去O6加Cl；重原子46、环数5保持，原E/Z与标注手性保留。环上6条键均单键、双键外环，不把central cyclohexane ring判错；未验证具体反应条件。"}
+  ]
+}

@@ -1,4 +1,0 @@
-# Runtime dependency. Transitive versions are selected for the active Python version.
-fastapi-poe==0.0.83
-gradio==6.26.0
-rdkit==2025.9.6

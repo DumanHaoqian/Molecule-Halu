@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+from conftest import structured_fixture_transport
+
 import hashlib
 import json
 from dataclasses import replace
 
 import pytest
+from conftest import preserve_enumerations
 
 from molhallulens.config import DEFAULT_HALLUCINATION_CONFIG
 from molhallulens.generate_dataset import generate_dataset
@@ -32,7 +35,7 @@ def _marked_body(step: dict) -> str:
             f"[[HALLU:{claim['node_id']}.01]]{claim['after_text']}[[/HALLU]]"
             for claim in step["affected_node_claims"]
         )
-        return f"Updated claims: {claims}."
+        return preserve_enumerations(f"Updated claims: {claims}.", step)
     body = step["original_step_text"].split(FORMAL_MARKER, 1)[0][len(prefix) :]
     for occurrence in sorted(
         step["required_hallucination_occurrences"],
@@ -66,6 +69,36 @@ def _valid_response(user_prompt: str) -> str:
     )
 
 
+def test_retry_manifest_selects_exact_cases_and_preserves_input(project_root, tmp_path, fragment_pool):
+    original = tmp_path / "original.failures.jsonl"
+    content = json.dumps({"origin_id": "mol_edit.add_v2.0013", "variant_index": 0}) + "\n"
+    original.write_text(content)
+    seen = []
+
+    def fake_transport(system_prompt, user_prompt, bot_name, temperature):
+        seen.append(json.loads(user_prompt.split("\nINPUT:\n", 1)[1])["origin_id"])
+        return _valid_response(user_prompt)
+
+    agent = PoeStepTextAgent(DEFAULT_HALLUCINATION_CONFIG,
+        transport=structured_fixture_transport(fake_transport), environment={},
+        cache_directory=tmp_path / "cache")
+    events = []
+    summary = generate_dataset(dataset_root=project_root / "Dataset",
+        output_path=tmp_path / "retry.jsonl", retry_failures_path=original,
+        poe_agent=agent, progress_callback=events.append)
+    assert summary.origin_count == summary.attempted_variant_count == 1
+    assert summary.successful_variant_count == 1
+    assert summary.record_count == 2
+    assert summary.fragment_pool_size == len(fragment_pool)
+    assert set(seen) == {"mol_edit.add_v2.0013"}
+    assert original.read_text() == content
+    assert [event["event"] for event in events] == ["start", "success"]
+    with pytest.raises(ValueError, match="must not be overwritten"):
+        generate_dataset(dataset_root=project_root / "Dataset", output_path=original,
+                         retry_failures_path=original, poe_agent=agent)
+    assert original.read_text() == content
+
+
 def test_batch_records_one_failure_and_keeps_later_incremental_pairs(
     project_root,
     tmp_path,
@@ -81,7 +114,7 @@ def test_batch_records_one_failure_and_keeps_later_incremental_pairs(
 
     agent = PoeStepTextAgent(
         DEFAULT_HALLUCINATION_CONFIG,
-        transport=fake_transport,
+        transport=structured_fixture_transport(fake_transport),
         environment={},
         cache_directory=tmp_path / "cache",
     )
@@ -112,7 +145,8 @@ def test_batch_records_one_failure_and_keeps_later_incremental_pairs(
     assert failures == list(summary.failures)
     assert failures[0]["origin_id"] == failed_origin
     assert failures[0]["stage"] == "E_TEXT_REALIZATION"
-    assert failures[0]["error_type"] == "RuntimeError"
+    assert failures[0]["error_type"] == "PoeTextRealizationError"
+    assert failures[0]["diagnostics"][0]["error_code"] == "transport_error"
 
 
 def test_interruption_preserves_already_flushed_pairs(project_root, tmp_path):
@@ -128,7 +162,7 @@ def test_interruption_preserves_already_flushed_pairs(project_root, tmp_path):
 
     agent = PoeStepTextAgent(
         DEFAULT_HALLUCINATION_CONFIG,
-        transport=interrupting_transport,
+        transport=structured_fixture_transport(interrupting_transport),
         environment={},
         cache_directory=tmp_path / "cache",
     )
@@ -157,7 +191,7 @@ def test_stale_cache_metadata_and_response_are_cache_misses(
     request = build_poe_rewrite_request(reference, injected)
     first = PoeStepTextAgent(
         DEFAULT_HALLUCINATION_CONFIG,
-        transport=lambda system, user, bot, temperature: _valid_response(user),
+        transport=structured_fixture_transport(lambda system, user, bot, temperature: _valid_response(user)),
         environment={},
         cache_directory=tmp_path,
     ).rewrite(request)
@@ -179,7 +213,7 @@ def test_stale_cache_metadata_and_response_are_cache_misses(
 
     second = PoeStepTextAgent(
         DEFAULT_HALLUCINATION_CONFIG,
-        transport=fresh_transport,
+        transport=structured_fixture_transport(fresh_transport),
         environment={},
         cache_directory=tmp_path,
     ).rewrite(request)
@@ -194,7 +228,7 @@ def test_stale_cache_metadata_and_response_are_cache_misses(
     cache_path.write_text(json.dumps(payload), encoding="utf-8")
     third = PoeStepTextAgent(
         DEFAULT_HALLUCINATION_CONFIG,
-        transport=fresh_transport,
+        transport=structured_fixture_transport(fresh_transport),
         environment={},
         cache_directory=tmp_path,
     ).rewrite(request)
@@ -277,7 +311,7 @@ def test_retry_telemetry_classifies_enumeration_and_arithmetic_rejections(
     config = replace(DEFAULT_HALLUCINATION_CONFIG, poe_max_attempts=2)
     agent = PoeStepTextAgent(
         config,
-        transport=retrying_transport,
+        transport=structured_fixture_transport(retrying_transport),
         environment={},
         cache_directory=tmp_path / expected_code,
     )

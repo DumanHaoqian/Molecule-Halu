@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import argparse
 import json
+from collections.abc import Callable
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
@@ -54,6 +55,8 @@ class GenerationSummary:
     poe_cache_hit_count: int
     poe_network_request_count: int
     poe_retry_count: int
+    poe_step_retry_count: int
+    local_copy_step_count: int
     poe_requests_with_retry: int
     poe_retry_rate: float
     poe_validation_rejection_counts: dict[str, int]
@@ -86,6 +89,8 @@ def _telemetry_delta(
         "network_request_count",
         "retry_count",
         "requests_with_retry",
+        "step_retry_count",
+        "local_copy_step_count",
     )
     delta = {key: after[key] - before[key] for key in scalar_keys}
     rejection_keys = set(before["validation_rejection_counts"]) | set(
@@ -112,6 +117,8 @@ def generate_dataset(
     failure_manifest_path: Path | None = None,
     variants_per_origin: int = 1,
     max_origins: int | None = None,
+    retry_failures_path: Path | None = None,
+    progress_callback: Callable[[dict[str, Any]], None] | None = None,
     config: HallucinationGenerationConfig = DEFAULT_HALLUCINATION_CONFIG,
     poe_agent: PoeStepTextAgent | None = None,
 ) -> GenerationSummary:
@@ -137,6 +144,25 @@ def generate_dataset(
     references = (
         all_references if max_origins is None else all_references[:max_origins]
     )
+    selected_variants: set[tuple[str, int]] | None = None
+    if retry_failures_path is not None:
+        if max_origins is not None:
+            raise ValueError("retry_failures_path and max_origins are mutually exclusive")
+        selected_variants = set()
+        known_ids = {reference.anonymous_sample_id for reference in all_references}
+        for line in Path(retry_failures_path).read_text(encoding="utf-8").splitlines():
+            row = json.loads(line)
+            origin_id, variant = row["origin_id"], row["variant_index"]
+            if origin_id not in known_ids or type(variant) is not int or not 0 <= variant < variants_per_origin:
+                raise ValueError("retry manifest contains an unknown origin or out-of-range variant")
+            key = (origin_id, variant)
+            if key in selected_variants:
+                raise ValueError("retry manifest contains duplicate origin/variant pairs")
+            selected_variants.add(key)
+        if not selected_variants:
+            raise ValueError("retry manifest is empty")
+        selected_ids = {origin_id for origin_id, _ in selected_variants}
+        references = tuple(r for r in all_references if r.anonymous_sample_id in selected_ids)
 
     output_path = Path(output_path)
     manifest_path = (
@@ -146,6 +172,10 @@ def generate_dataset(
     )
     if output_path.resolve() == manifest_path.resolve():
         raise ValueError("output_path and failure_manifest_path must be different")
+    if retry_failures_path is not None and Path(retry_failures_path).resolve() in {
+        output_path.resolve(), manifest_path.resolve()
+    }:
+        raise ValueError("retry input manifest must not be overwritten")
 
     # C-G: each variant independently selects, applies, renders and annotates edits.
     planner = UnifiedHallucinationPlanner(fragment_pool, config)
@@ -179,6 +209,10 @@ def generate_dataset(
         for reference in references:
             origin_failed = False
             for variant_index in range(variants_per_origin):
+                if selected_variants is not None and (reference.anonymous_sample_id, variant_index) not in selected_variants:
+                    continue
+                if progress_callback is not None:
+                    progress_callback({"event": "start", "origin_id": reference.anonymous_sample_id, "variant_index": variant_index})
                 stage = "C_ERROR_PLANNING"
                 try:
                     plan = planner.plan(reference, variant_index=variant_index)
@@ -223,10 +257,16 @@ def generate_dataset(
                         "stage": stage,
                         "error_type": type(error).__name__,
                         "error_message": str(error) or type(error).__name__,
+                        "diagnostics": list(getattr(error, "diagnostics", ())),
+                        "diagnostic_path": getattr(error, "diagnostic_path", None),
                     }
                     failures.append(failure)
                     _write_json_line(failure_handle, failure)
                     failure_handle.flush()
+                    if progress_callback is not None:
+                        progress_callback({"event": "failure", "origin_id": reference.anonymous_sample_id,
+                                           "variant_index": variant_index, "stage": stage,
+                                           "successful": successful_variant_count, "failed": failed_variant_count})
                     continue
 
                 # H: write a complete H/N pair together, then flush so an
@@ -238,6 +278,10 @@ def generate_dataset(
                     variant_counts[released.data["variant_label"]] += 1
                 output_handle.flush()
                 successful_variant_count += 1
+                if progress_callback is not None:
+                    progress_callback({"event": "success", "origin_id": reference.anonymous_sample_id,
+                                       "variant_index": variant_index,
+                                       "successful": successful_variant_count, "failed": failed_variant_count})
                 h_record = released_records[0]
                 alignment_counts.update(
                     item["pair_alignment"]
@@ -266,7 +310,7 @@ def generate_dataset(
         origin_count=len(references),
         successful_origin_count=successful_origin_count,
         failed_origin_count=failed_origin_count,
-        attempted_variant_count=len(references) * variants_per_origin,
+        attempted_variant_count=successful_variant_count + failed_variant_count,
         successful_variant_count=successful_variant_count,
         failed_variant_count=failed_variant_count,
         record_count=record_count,
@@ -287,6 +331,8 @@ def generate_dataset(
         poe_cache_hit_count=telemetry["cache_hit_count"],
         poe_network_request_count=telemetry["network_request_count"],
         poe_retry_count=telemetry["retry_count"],
+        poe_step_retry_count=telemetry["step_retry_count"],
+        local_copy_step_count=telemetry["local_copy_step_count"],
         poe_requests_with_retry=telemetry["requests_with_retry"],
         poe_retry_rate=(
             telemetry["requests_with_retry"] / telemetry["uncached_request_count"]
@@ -309,6 +355,13 @@ def main() -> None:
         default=DEFAULT_GENERATED_ROOT / "example.jsonl",
     )
     parser.add_argument("--variants-per-origin", type=int, default=1)
+    parser.add_argument("--retry-failures", type=Path, default=None,
+                        help="Retry only exact origin/variant pairs from a failure manifest, retaining the full fragment pool.")
+    parser.add_argument(
+        "--max-edits",
+        action="store_true",
+        help="Use each origin's maximum non-conflicting root edit count (no random K).",
+    )
     parser.add_argument(
         "--failure-manifest",
         type=Path,
@@ -329,6 +382,11 @@ def main() -> None:
             failure_manifest_path=args.failure_manifest,
             variants_per_origin=args.variants_per_origin,
             max_origins=args.max_origins,
+            retry_failures_path=args.retry_failures,
+            config=(
+                replace(DEFAULT_HALLUCINATION_CONFIG, edit_count_mode="maximum")
+                if args.max_edits else DEFAULT_HALLUCINATION_CONFIG
+            ),
         )
     except PoeTextRealizationError as error:
         raise SystemExit(str(error)) from None
@@ -352,6 +410,7 @@ def main() -> None:
         "Poe: "
         f"{summary.poe_network_request_count} network attempts, "
         f"{summary.poe_retry_count} retries, retry rate {summary.poe_retry_rate:.2%}, "
+        f"{summary.poe_step_retry_count} retried steps, {summary.local_copy_step_count} local COPY steps, "
         f"rejections {summary.poe_validation_rejection_counts}"
     )
     print(

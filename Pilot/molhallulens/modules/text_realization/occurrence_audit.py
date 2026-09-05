@@ -5,6 +5,8 @@ from __future__ import annotations
 import re
 from decimal import Decimal, InvalidOperation
 
+from .claim_surfaces import anchor_element_spans
+
 
 NUMERIC_NODE_IDS = frozenset(
     {
@@ -66,6 +68,13 @@ _ENUM_COUNT = (
     r"nineteen|twenty)"
 )
 _ENUM_UNIT = r"(?:heavy atoms?|rings?)"
+# A unit-leading atomic inventory, not a molecular SMILES or numeric equation.
+_ENUM_SYMBOLIC = re.compile(
+    r"\b(?P<unit>(?i:heavy atoms?))\s*:\s*"
+    r"(?P<items>(?:\d+\s+)?(?:Cl|Br|Si|[BCNOFPSI])"
+    r"(?:\s*\+\s*(?:\d+\s+)?(?:Cl|Br|Si|[BCNOFPSI]))+)"
+    r"\s*=\s*(?P<total>\d+)(?!\d|\.\d)"
+)
 _ENUM_TOTAL_MARKER = re.compile(
     rf"\b(?:totaling|giving\s+(?:a\s+)?total\s+of|for\s+a\s+total\s+of)"
     rf"\s+(?P<total>{_ENUM_COUNT})\s+(?P<unit>{_ENUM_UNIT})\b",
@@ -110,7 +119,7 @@ def _value_pattern(node_id: str, value: str) -> str:
         else re.escape(value)
     )
     if node_id in NUMERIC_NODE_IDS:
-        return rf"(?<![\d.]){escaped}(?![\d.])"
+        return rf"(?<![\d.]){escaped}(?!\d|\.\d)"
     return escaped
 
 
@@ -154,15 +163,7 @@ def loose_occurrence_spans(
             natural_body,
         )
     elif node_id == "anchor_element":
-        spans |= _capture(
-            rf"\belement\s*(?:symbol)?\s*(?:=|:)?\s*[\"']?"
-            rf"(?P<value>{needle})(?![a-z])",
-            natural_body,
-        )
-        spans |= _capture(
-            rf"\banchor\b[^.\n]{{0,100}}?\(\s*(?P<value>{needle})\s*\)",
-            natural_body,
-        )
+        spans.update(anchor_element_spans(value, natural_body))
     elif node_id in {"source_heavy", "product_heavy"}:
         subject = "source" if node_id == "source_heavy" else "product"
         blocker = "product" if node_id == "source_heavy" else "source"
@@ -213,10 +214,13 @@ def loose_occurrence_spans(
             )
     elif node_id in {"heavy_delta", "ring_delta"}:
         domain = "HEAVY_ATOM_DELTA" if node_id == "heavy_delta" else "RING_DELTA"
+        units = r"heavy\s+atoms" if node_id == "heavy_delta" else r"rings"
+        context = rf"{domain}|(?:net\s+change|change)\s+in\s+{units}"
+        owner_step = "HEAVY_ATOM_VERIFICATION" if node_id == "heavy_delta" else "RING_VERIFICATION"
+        if step_name == owner_step:
+            context += r"|claimed\s+delta|net\s+change|expected\s+(?:difference|change)|matches|cross-check"
         spans |= _capture(
-            rf"\b(?:{domain}|claimed\s+delta|net\s+change|change\s+in\s+"
-            rf"(?:heavy\s+atoms|rings)|expected\s+(?:difference|change)|matches|"
-            rf"cross-check)\b[^.\n]{{0,220}}?(?:=|is)\s*"
+            rf"\b(?:{context})\b[^.\n]{{0,220}}?(?:=|is)\s*"
             rf"(?P<value>{needle})",
             natural_body,
         )
@@ -229,6 +233,9 @@ def loose_occurrence_spans(
         # cross-step mentions are still audited by the node-specific patterns
         # below, including REMOVE_GROUP = O (1 heavy atom) in another step.
         if _PRIMARY_FRAGMENT_COUNT_NODE_BY_STEP.get(step_name) == node_id:
+            for match in _ENUM_SYMBOLIC.finditer(natural_body):
+                if match.group("total") == value:
+                    spans.add(match.span("total"))
             spans |= _capture(
                 rf"(?P<value>{needle}){heavy_unit}",
                 natural_body,
@@ -242,14 +249,23 @@ def loose_occurrence_spans(
         if node_id == "fragment_heavy":
             label = r"(?:fragment|ADD_FRAGMENT|k)"
         elif node_id == "remove_heavy":
-            label = r"(?:removed\s+group|leaving\s+group|REMOVE_HEAVY|k_remove)"
+            label = r"(?:removed\s+group|leaving\s+group|REMOVE_GROUP|REMOVE_HEAVY|k_remove)"
         else:
-            label = r"(?:added\s+fragment|ADD_HEAVY|k_add)"
-        blocker = "k_remove" if node_id == "add_heavy" else "k_add"
+            label = r"(?:added\s+fragment|ADD_FRAGMENT|ADD_HEAVY|k_add)"
+        blocker = r"(?:k_remove|REMOVE_GROUP|REMOVE_HEAVY)" if node_id == "add_heavy" else r"(?:k_add|ADD_FRAGMENT|ADD_HEAVY)"
         spans |= _capture(
             rf"\b{label}\b(?:(?!\b{blocker}\b)[^.\n]){{0,140}}?"
             rf"(?:=|is|\(|of)?\s*(?P<value>{needle})"
-            rf"(?=\s*(?:{heavy_unit}|[-=).,]))",
+            rf"(?={heavy_unit})",
+            natural_body,
+        )
+        assignment = {
+            "fragment_heavy": r"fragment_heavy|k",
+            "remove_heavy": r"remove_heavy|k_remove",
+            "add_heavy": r"add_heavy|k_add",
+        }[node_id]
+        spans |= _capture(
+            rf"\b(?:{assignment})\b\s*(?:=|is|:|\()\s*(?P<value>{needle})",
             natural_body,
         )
         if step_name == "HEAVY_ATOM_VERIFICATION":
@@ -491,6 +507,8 @@ def _clause_start(text: str, end: int) -> int:
 
 
 def _contains_explicit_enumeration(text: str) -> bool:
+    if _ENUM_SYMBOLIC.search(text):
+        return True
     for match in (*_ENUM_TOTAL_MARKER.finditer(text), *_ENUM_EQUALS_TOTAL.finditer(text)):
         if _enumeration_sum(
             text[_clause_start(text, match.start()) : match.start()],
@@ -542,6 +560,10 @@ def enumeration_violations(text: str) -> tuple[str, ...]:
         raise TypeError("text must be str")
     violations: list[str] = []
     seen: set[tuple[int, int]] = set()
+    for match in _ENUM_SYMBOLIC.finditer(text):
+        parsed = _enumeration_sum(match.group("items"), unit="heavy atoms", allow_implicit_one=True)
+        if parsed and parsed[0] != int(match.group("total")):
+            violations.append(match.group())
 
     def audit(prefix_start: int, body_end: int, match: re.Match[str]) -> None:
         unit = match.group("unit").lower()

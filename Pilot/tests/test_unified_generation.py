@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+from conftest import structured_fixture_transport
+
 import json
 from dataclasses import replace
 from random import Random
 
 import pytest
+from conftest import preserve_enumerations
 from rdkit import Chem
 
 import molhallulens.core as core
@@ -55,7 +58,7 @@ def _mark_required_occurrences(step: dict) -> str:
             f"[[HALLU:{item['node_id']}.01]]{item['after_text']}[[/HALLU]]"
             for item in step["affected_node_claims"]
         )
-        return f"Updated claims: {claims}."
+        return preserve_enumerations(f"Updated claims: {claims}.", step)
     head = step["original_step_text"].split(FORMAL_MARKER, 1)[0]
     body = head[len(prefix) :]
     for occurrence in sorted(
@@ -384,7 +387,7 @@ def test_generate_dataset_max_origins_writes_h_n_pairs_with_fake_transport(
     config = replace(DEFAULT_HALLUCINATION_CONFIG, emit_matched_negative=True)
     agent = PoeStepTextAgent(
         config,
-        transport=fake_poe,
+        transport=structured_fixture_transport(fake_poe),
         environment={},
         cache_directory=tmp_path / "cache",
     )
@@ -485,6 +488,7 @@ def test_matched_negative_regenerates_when_direct_swap_breaks_arithmetic(
                         f"{product_markers[2]} = {doubled}. "
                         f"The ring delta is {delta_markers[0]}."
                     )
+                body = preserve_enumerations(body, step)
             else:
                 body = _mark_required_occurrences(step)
             rows.append(
@@ -497,7 +501,7 @@ def test_matched_negative_regenerates_when_direct_swap_breaks_arithmetic(
 
     agent = PoeStepTextAgent(
         config,
-        transport=fake_poe,
+        transport=structured_fixture_transport(fake_poe),
         environment={},
         cache_directory=tmp_path,
     )
@@ -544,7 +548,7 @@ def test_full_corpus_has_deterministic_closure_and_complete_occurrence_contract(
             assert len(occurrence_ids) == len(set(occurrence_ids))
         rendered = DeterministicTextRenderer().render(reference, injected)
         annotated = UnifiedHallucinationAnnotator().annotate(rendered, injected)
-        assert {span.node_id for span in annotated.spans} == set(
+        assert {span.parent_node_id or span.node_id for span in annotated.spans} == set(
             injected.changed_node_ids
         )
 
@@ -567,7 +571,7 @@ def test_variant_zero_full_corpus_routes_incomplete_mentions_fail_closed(
         rendered = DeterministicTextRenderer().render(reference, injected)
         assert not arithmetic_violations(rendered.reasoning_chain)
         annotated = UnifiedHallucinationAnnotator().annotate(rendered, injected)
-        assert {span.node_id for span in annotated.spans} == set(
+        assert {span.parent_node_id or span.node_id for span in annotated.spans} == set(
             injected.changed_node_ids
         )
     assert rewrite_count > 0
@@ -756,7 +760,7 @@ def test_poe_agent_rewrites_natural_text_but_local_code_locks_formal_and_spans(
     renderer = PoeTextRenderer(
         PoeStepTextAgent(
             config,
-            transport=fake_poe,
+            transport=structured_fixture_transport(fake_poe),
             environment={"POE_API_KEY": "do-not-store-this-test-secret"},
             cache_directory=tmp_path,
         )
@@ -854,11 +858,12 @@ def test_poe_cannot_drop_invent_or_change_hallucination_markers():
             valid.replace("PRODUCT_SMILES[n_rings=5]", "PRODUCT_SMILES[n_rings=6]"),
             expected,
         )
+    # Count-subject wording is not a new fact; both H and N inherit it.
+    validate_rewritten_step_text(
+        valid.replace("The product has", "The product molecule contains"), expected,
+    )
     with pytest.raises(PoeTextRealizationError, match="outside required claim values"):
-        validate_rewritten_step_text(
-            valid.replace("The product has", "The product molecule contains"),
-            expected,
-        )
+        validate_rewritten_step_text(valid.replace(" rings.", " rings and is aromatic."), expected)
 
 
 def test_poe_must_copy_an_unaffected_step_byte_for_byte():

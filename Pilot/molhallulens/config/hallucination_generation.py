@@ -37,9 +37,11 @@ MUTATION_CATEGORIES = (
 # ---------------------------------------------------------------------------
 
 # "fixed" 固定修改 FIXED_EDIT_COUNT 处；"range" 在 MIN/MAX 之间采样。
+# "maximum" 每题都取互不冲突的 root 编辑点最大数，不使用 FIXED/MIN/MAX。
+# 传播产生的下游节点和文本枚举错误不计入 root 数量；不足时直接报错，不降量。
 # MAX_EDIT_COUNT=None 表示不设置人为上限，由每条 Reference DAG 的可编辑
 # 节点和传播冲突共同计算该样本真正能够支持的最大值。
-EDIT_COUNT_MODE: Literal["fixed", "range"] = "range"
+EDIT_COUNT_MODE: Literal["fixed", "range", "maximum"] = "range"
 FIXED_EDIT_COUNT = 2
 MIN_EDIT_COUNT = 1
 MAX_EDIT_COUNT: int | None = None
@@ -188,14 +190,21 @@ FAIL_ON_TRIVIAL_EDGE_VIOLATION = True
 POE_API_KEY_ENV = "POE_API_KEY"
 
 # Poe bot 名称可以直接在这里替换。最终 record 会保存 bot 名称和 prompt hash。
-POE_BOT_NAME = "GPT-5.4"
+POE_BOT_NAME = "gpt-5.4-mini"
 POE_TEMPERATURE = 0.20
 
-# 一次输出不符合 JSON/HALLU-marker 合约时允许重新请求；这里表示总尝试次数。
+# 每个待生成步骤的总尝试上限。重试只发送失败步骤，已通过步骤不重新生成。
 POE_MAX_ATTEMPTS = 2
 
 # 已验证的 response 会缓存。相对路径以 Pilot/ 为根目录；cache 不包含 token。
 POE_CACHE_DIRECTORY = "GeneratedDataset/.poe_text_cache"
+
+# 失败诊断与成功缓存分开保存；仅包含白名单字段、脱敏后的相关正文。
+# False 只关闭落盘，不关闭校验、异常内诊断或失败统计。
+POE_SAVE_DIAGNOSTICS = True
+POE_DIAGNOSTIC_DIRECTORY = "GeneratedDataset/.poe_text_diagnostics"
+# 每个诊断文本字段（包括反馈给 Poe 的上一版输出）的最大字符数。
+POE_DIAGNOSTIC_MAX_CHARACTERS = 12000
 
 
 # ---------------------------------------------------------------------------
@@ -220,7 +229,7 @@ GLOBAL_SEED = 20260903
 class HallucinationGenerationConfig:
     """经过校验的扁平配置；字段与上面的显式参数一一对应。"""
 
-    edit_count_mode: Literal["fixed", "range"]
+    edit_count_mode: Literal["fixed", "range", "maximum"]
     fixed_edit_count: int
     min_edit_count: int
     max_edit_count: int | None
@@ -256,10 +265,19 @@ class HallucinationGenerationConfig:
     poe_cache_directory: str
     emit_matched_negative: bool
     global_seed: int
+    poe_save_diagnostics: bool = POE_SAVE_DIAGNOSTICS
+    poe_diagnostic_directory: str = POE_DIAGNOSTIC_DIRECTORY
+    poe_diagnostic_max_characters: int = POE_DIAGNOSTIC_MAX_CHARACTERS
 
     def __post_init__(self) -> None:
-        if self.edit_count_mode not in {"fixed", "range"}:
-            raise ValueError("edit_count_mode must be 'fixed' or 'range'")
+        if type(self.poe_save_diagnostics) is not bool:
+            raise ValueError("poe_save_diagnostics must be bool")
+        if type(self.poe_diagnostic_directory) is not str or not self.poe_diagnostic_directory.strip():
+            raise ValueError("poe_diagnostic_directory must be non-empty text")
+        if type(self.poe_diagnostic_max_characters) is not int or self.poe_diagnostic_max_characters < 1:
+            raise ValueError("poe_diagnostic_max_characters must be a positive integer")
+        if self.edit_count_mode not in {"fixed", "range", "maximum"}:
+            raise ValueError("edit_count_mode must be 'fixed', 'range', or 'maximum'")
         if min(self.fixed_edit_count, self.min_edit_count) < 1:
             raise ValueError("edit counts must be positive")
         if self.max_edit_count is not None and (
@@ -334,6 +352,10 @@ class HallucinationGenerationConfig:
             type(maximum_available) is not int or maximum_available < 1
         ):
             raise ValueError("maximum_available must be a positive integer or None")
+        if self.edit_count_mode == "maximum":
+            if maximum_available is None:
+                raise ValueError("maximum mode requires maximum_available")
+            return maximum_available
         if self.max_edit_count is None:
             if maximum_available is None:
                 raise ValueError(
@@ -351,6 +373,10 @@ class HallucinationGenerationConfig:
             raise TypeError("random_source must provide randint")
         return randint(self.min_edit_count, upper)
 
+
+# Demo 的参考 tokenizer，不等于 Poe 或下游化学模型的实际 tokenizer。
+# 统计完整 serialized.text；不包含模型自行添加的 BOS/EOS 或 chat template。
+DEMO_TOKEN_ENCODING = "cl100k_base"
 
 DEFAULT_HALLUCINATION_CONFIG = HallucinationGenerationConfig(
     edit_count_mode=EDIT_COUNT_MODE,

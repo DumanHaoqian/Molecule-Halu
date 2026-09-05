@@ -1,5 +1,34 @@
 # MolHalluLens Pilot
 
+## Install
+
+Use Python 3.11-3.13 and the single dependency file `requirements.txt`, containing
+both runtime and test dependencies. From `Pilot/`:
+
+```sh
+python -m pip install -r requirements.txt
+python -m pip install --no-deps -e .
+```
+
+Maintain `requirements.txt` rather than separate `.in`, `.lock`, or development
+requirements files. `pyproject.toml` remains the package/build metadata.
+
+## Final saved dataset
+
+`GeneratedDataset/` contains only `maximum_edits_complete.jsonl`: 150 origins,
+150 H/N pairs (300 records). Historical intermediate outputs, logs, caches and
+dataset-folder reports were moved to the macOS Trash during cleanup.
+Recovery details and limitations remain summarized in `completion_notes.md`.
+
+From `Pilot/`, replay all 150 saved pairs without calling Poe:
+
+```sh
+python scripts/gendemo.py
+```
+
+Reusable `gendemo.py`, `merge_recovered_pairs.py` and `retry_failed_cases.py` live
+under `scripts/`; retrying requires an explicit `--failures` manifest.
+
 This version turns ChemCoTBench-V2 molecule-editing traces into **matched positive/negative
 hallucination pairs**. Each H record contains one or more independently selected edits in
 the reasoning steps and/or final-answer SMILES, plus exact text spans. Its N partner uses
@@ -40,7 +69,9 @@ argument and never writes the token to configuration, prompts, logs, cache, or o
 The bot name and environment-variable name are configured in
 `hallucination_generation.py`.
 
-Generation makes one Poe request per uncached record. Poe charges the key owner's
+Generation batches the non-COPY steps of an uncached record into its first Poe
+request; subsequent attempts request only failed steps. All-COPY records need no
+Poe request. Poe charges the key owner's
 compute points, so first inspect one record with `pipeline.py`; validated responses
 are cached under `GeneratedDataset/.poe_text_cache/` and can be replayed without a key.
 
@@ -70,20 +101,43 @@ python -m molhallulens.generate_dataset \
   --max-origins 3 \
   --output GeneratedDataset/smoke.jsonl
 
+# Maximum root edits for EVERY origin (not a random count up to the maximum).
+python -m molhallulens.generate_dataset \
+  --max-edits \
+  --output GeneratedDataset/maximum_edits.jsonl
+
 # Verify the implementation.
 python -m pytest
 ```
 
+`--max-edits` selects `edit_count_mode="maximum"` from the central generation
+configuration for this run. K is the exact maximum number of mutually
+non-conflicting root edits for each DAG; propagated graph/text errors are counted
+separately. This mode ignores fixed/range count settings, does not reduce K on
+failure, and leaves the default random-range configuration unchanged. Existing
+output/manifest paths are overwritten on rerun; use a new output path to retain
+an earlier dataset.
+
+The demo now has one **Run A–E** button: local stages run first, followed
+automatically by Poe (which may consume API points). E displays hallucination
+tokens / all tokens and their percentage over the complete `serialized.text`.
+The reference tokenizer is `tiktoken`'s `cl100k_base`, configured by
+`DEMO_TOKEN_ENCODING` in `config/hallucination_generation.py`; it is not claimed
+to be the Poe bot's or downstream chemistry model's tokenizer. Token/character
+alignment uses UTF-8 bytes; any overlap with an annotated hallucination span
+counts the token once. Model-added chat templates and BOS/EOS are excluded.
+The first tokenizer load may download its public vocabulary; record text stays local.
+
 By default, each origin/variant produces an H record with `hallucination_present: true`
 and an N record with `hallucination_present: false`; both share `pair_id`.
-Poe receives each original complete `step_text` together with its modified `formal_ab`.
+Poe receives original `step_text`, modified `formal_ab`, and read-only full-chain context.
 Before the call, local code compares a precise occurrence finder with a separate high-recall
 semantic scan across every changed node and every step. Complete simple matches use
 occurrence-specific HALLU markers; incomplete, arithmetic, enumerative, or compositional prose is rewritten
 as a derivation, while every changed claim value is still marked separately by node and
 occurrence. Local validation rejects whole-body or unplanned markers, stale old claims, false
 displayed arithmetic, inconsistent heavy-atom/ring component totals, and missing/duplicate markers. Poe
-returns natural-language bodies only; local code appends the exact Step header and modified
+returns structured text/claim/enumeration segments; local code appends the exact Step header and modified
 FORMAL, making FORMAL drift impossible. Only explicit `copy` steps are locked byte-for-byte.
 For matched controls, COPY shares its prose directly, while patched and rewritten steps
 replace verified marker contents with truth. Local code checks the reference FORMAL,
@@ -106,4 +160,92 @@ metadata or a response rejected by the current validator is treated as a cache m
 refreshed; malformed unreadable cache JSON still fails closed.
 The test suite uses an injected fake Poe transport and therefore spends no points.
 
+Enumerations must be retained. If a total changes from 9 to 10, a component may
+change from `3 fluorines` to `4 fluorines`, but both changes are marked. The text
+layer supplies a deterministic component-count propagation plan before Poe runs;
+Poe cannot invent an unlisted change or remove the breakdown. Derived component
+claims have their own IDs, a `parent_node_id`, and `propagated_error` spans. The N
+partner restores both values. Mechanically unsupported enumerations fail closed;
+source component truths are inherited from the reference trace, not inferred by Poe.
+Enumeration preservation checks count/component bindings, not verbatim sentences.
+Poe can reorder the list, move the total, change punctuation, and use supported noun
+plurals; it must keep the complete list and total in one claim clause. Explicit
+source/product/delta clauses may share a sentence and are checked separately. Missing/extra
+components, wrong values/markers, and unsupported paraphrases still reject. H/N
+byte-identical substitution checks are unchanged. Renderer v15 invalidates older caches.
+
+Claim surface binding lives in `modules/text_realization/claim_surfaces.py`.
+An anchor's `C` and `carbon` are reversible surfaces of the same node; changing
+them to `S` and `sulfur` produces separate spans with unchanged causal attribution.
+Quoted fragment SMILES and branches such as `N(C)` are not anchor mentions.
+PATCH permits only explicitly checked prose equivalences: whitespace layout,
+source/product `has` / `contains` (with optional `molecule`), and numeric
+atom(s)/ring(s) unit inflection. Other wording changes still reject. This is not
+an H-versus-original byte-identity requirement: accepted wording is shared by H
+and its restored N, whose span-substitution invariant remains mandatory.
+Symbolic inventories such as `Heavy atoms: N + C + O = 3` are audited too; a total
+edit requires explicit, marked component coefficients, never deletion of items.
+Enumeration connectors `comprising` / `consisting` and repeated identical totals
+are accepted only with the correct count/component and marker bindings.
+
 See [ARCHITECTURE.md](ARCHITECTURE.md) for file-level module ownership and contracts.
+
+## Structured Poe protocol (v20)
+
+Poe can explicitly select a fully rendered local candidate using
+`{"draft_ref":"complete_derivation"}` (DERIVATION), or the exact original-body
+patch using `{"patch_ref":"original_occurrences"}` (PATCH). Each is an exclusive
+one-segment operation. Alternatively, expanded authored segments remain supported.
+There is no automatic draft fallback after rejection. All paths use the same
+strict validators. Per-step `response_mode` records which path was selected;
+Poe-selected local drafts are more templated, not freely authored reasoning.
+
+Poe does not copy claim values or write markers. For a DERIVATION step, for example:
+
+```json
+{"steps":[{"step_index":1,"segments":[
+  {"text":"The ANCHOR is the "},
+  {"claim_ref":"anchor_element","surface":"name"},
+  {"text":" atom."}
+]}]}
+```
+
+`segments.py` fills exact values, assigns marker suffixes, expands planned
+`enumeration_ref` blocks and runs the unchanged text validators. PATCH uses the
+provided `occurrence_ref` IDs at their original positions; DERIVATION uses
+`claim_ref` and an allowed surface. Every enumeration must be referenced exactly
+once, with all original components and planned component changes locally rendered.
+Editable wire input is now `original_natural_body`, without a Step header or
+FORMAL block. Full-chain context and modified FORMAL remain separately read-only.
+Each PATCH request includes an exact occurrence-reference example constructed
+from the original offsets; DERIVATION examples use actual claim and inventory IDs.
+The body-only, mode-specific contract is repeated in the user message. Validators
+remain strict; a reference of the wrong type now gets an actionable diagnostic.
+Arbitrary literal markers, values supplied with a claim reference, unknown references,
+missing claims and unsafe prose changes reject. The old string response format is
+not a fallback. The deterministic renderer remains an offline fixture, not Poe.
+
+Passed steps are retained within the current rewrite; retries send only failed
+steps with redacted diagnostics and their preceding rejected response. The full
+assembled chain is revalidated before a complete success cache is saved. Partial
+successes from an ultimately failed record are not a resumable success cache.
+N reverse-regeneration uses the same protocol and records its own execution trace.
+
+Diagnostic controls are `POE_SAVE_DIAGNOSTICS`, `POE_DIAGNOSTIC_DIRECTORY` and
+`POE_DIAGNOSTIC_MAX_CHARACTERS` in the central config. By default rejections are
+written to `GeneratedDataset/.poe_text_diagnostics/`, separate from successful
+caches. Logs include run/origin/step/attempt/code, expected/observed data, response
+excerpts and hashes; prose-drift errors include an explicit text diff. Text fields
+are redacted and length-limited. Transport exceptions expose only their type, not
+HTTP headers. Failure manifests carry the structured diagnostics and their path;
+successful retry records carry diagnostics and per-step attempts too. Summary
+distinguishes network retry rounds from retried-step counts and local COPY counts.
+
+Live validation on 2026-09-05: the v15 retry was paused at 64 completed failures
+and zero recovered pairs; one case was interrupted. After the v16 interface
+correction, three representative failed origins (add/delete/substitute) were
+tested, with six network attempts. All three still failed complete release,
+although header/FORMAL and mixed-mode claim-reference errors disappeared in
+those cases. Remaining failures concern inventory placement, duplicate occurrence
+IDs, and stale prose/arithmetic values. No further full batch was started. See
+`completion_notes.md` and `GeneratedDataset/retry_v16_20260905_195335.summary.json`.

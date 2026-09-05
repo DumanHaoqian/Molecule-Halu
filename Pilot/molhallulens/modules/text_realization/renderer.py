@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from molhallulens.core import (
+    CausalRole,
     EditingSubtask,
     InjectedHallucination,
     RenderedHallucination,
@@ -17,6 +18,7 @@ from molhallulens.core import (
 from molhallulens.modules.reference import ReferenceDAGArtifact
 
 from .poe_agent import (
+    POE_RENDERER_VERSION,
     AffectedNodeClaim,
     FORMAL_MARKER,
     PoeRewriteRequest,
@@ -34,6 +36,8 @@ from .occurrence_audit import (
     requires_derivation_rewrite,
 )
 from .smiles_diff import align_candidate_molecular_text, molecular_text_diff
+from .enumeration_plan import enumeration_plan
+from .claim_surfaces import anchor_element_spans, claim_surface_pairs
 
 
 _FORMAL_MARKER = FORMAL_MARKER
@@ -449,9 +453,13 @@ def _original_occurrence_spans(
     node_id: str,
     before_text: str,
     natural_body: str,
+    *,
+    step_name: str = "",
 ) -> tuple[tuple[int, int], ...]:
     """Locate node-specific natural-language mentions in ChemCoT's fixed steps."""
 
+    if node_id in {"heavy_delta", "ring_delta"}:
+        return loose_occurrence_spans(node_id, before_text, natural_body, step_name=step_name)
     escaped = re.escape(before_text)
     numeric_nodes = {
         "anchor_idx",
@@ -482,14 +490,7 @@ def _original_occurrence_spans(
             natural_body,
         )
     elif node_id == "anchor_element":
-        spans |= _captured_spans(
-            rf"\belement\s*(?:=|:)?\s*[\"']?(?P<value>{needle})(?![a-z])",
-            natural_body,
-        )
-        spans |= _captured_spans(
-            rf"\(\s*(?P<value>{needle})\s*\)",
-            natural_body,
-        )
+        spans.update(anchor_element_spans(before_text, natural_body))
     elif node_id in {"source_heavy", "product_heavy"}:
         subject = "source" if node_id == "source_heavy" else "product"
         spans |= _captured_spans(
@@ -539,28 +540,6 @@ def _original_occurrence_spans(
                 rf"\d+\s*-\s*(?P<value>{needle})\s*=",
                 natural_body,
             )
-    elif node_id in {"heavy_delta", "ring_delta"}:
-        label = "HEAVY_ATOM_DELTA" if node_id == "heavy_delta" else "RING_DELTA"
-        spans |= _captured_spans(
-            rf"\b{label}\b[^.\n]*?=\s*(?P<value>{needle})(?!\d)",
-            natural_body,
-        )
-        spans |= _captured_spans(
-            rf"\b(?:claimed\s+delta|net\s+change|change\s+in\s+"
-            rf"(?:heavy\s+atoms|rings))\b[^.\n]*?=\s*"
-            rf"(?P<value>{needle})(?!\d)",
-            natural_body,
-        )
-        spans |= _captured_spans(
-            rf"\b(?:expected\s+(?:difference|change)|matches|cross-check)\b"
-            rf"[^.\n]*?=\s*(?P<value>{needle})(?!\d)",
-            natural_body,
-        )
-        spans |= _captured_spans(
-            rf"\b(?:claimed\s+delta|net\s+change(?:\s+in\s+rings)?)\b"
-            rf"[^.\n]{{0,80}}?\bis\s*(?P<value>{needle})(?!\d)",
-            natural_body,
-        )
     elif node_id == "fragment_heavy":
         spans |= _captured_spans(
             rf"\b(?:ADD_FRAGMENT|fragment)\b[^.\n]{{0,180}}?"
@@ -651,7 +630,7 @@ def _step_rewrite_contract(
         )
         if before == after:
             continue
-        strict_spans = set(_original_occurrence_spans(node_id, before, natural_body))
+        strict_spans = set(_original_occurrence_spans(node_id, before, natural_body, step_name=step_name))
         loose_spans = strict_spans | set(
             loose_occurrence_spans(
                 node_id,
@@ -680,7 +659,7 @@ def _step_rewrite_contract(
                     occurrence_id=f"{node_id}.{occurrence_index:02d}",
                     node_id=node_id,
                     before_text=natural_body[start:end],
-                    after_text=after,
+                    after_text=dict(claim_surface_pairs(node_id, before, after)).get(natural_body[start:end], after),
                     original_start=start,
                     original_end=end,
                 )
@@ -753,6 +732,15 @@ def build_poe_rewrite_request(
             candidate_value_overrides=value_overrides,
             changed_nodes=changed_nodes,
         )
+        preserved_enumerations = ()
+        claims = contract.affected_claims
+        if contract.mode is StepRewriteMode.DERIVATION_REWRITE:
+            body = original_step_text.split(_FORMAL_MARKER, 1)[0][len(prefix):]
+            try:
+                preserved_enumerations, derived = enumeration_plan(body, claims, step_name=trace_step.step_name)
+            except ValueError as error:
+                raise PoeTextRealizationError(str(error)) from error
+            claims = claims + tuple(AffectedNodeClaim(**item) for item in derived)
         steps.append(
             PoeStepRewriteInput(
                 step_index=trace_step.step_index,
@@ -765,7 +753,8 @@ def build_poe_rewrite_request(
                 ),
                 required_hallucination_occurrences=contract.occurrences,
                 rewrite_mode=contract.mode,
-                affected_node_claims=contract.affected_claims,
+                affected_node_claims=claims,
+                preserved_enumerations=preserved_enumerations,
             )
         )
     return PoeRewriteRequest(
@@ -797,6 +786,7 @@ def _rewrite_contract_metadata(request: PoeRewriteRequest) -> list[dict[str, Any
             "step_index": step.step_index,
             "step_name": step.step_name,
             "mode": step.rewrite_mode.value,
+            "preserved_enumerations": list(step.preserved_enumerations),
             "affected_node_claims": [
                 item.to_prompt_dict() for item in step.affected_node_claims
             ],
@@ -846,6 +836,8 @@ def _render_marked_natural_body(
         ]
     checked: set[tuple[str, str]] = set()
     for claim in claims_to_check:
+        if claim.parent_node_id:
+            continue
         key = (claim.node_id, claim.before_text)
         if key in checked:
             continue
@@ -867,6 +859,8 @@ def _render_marked_natural_body(
     }
     for occurrence_id, value, local_start, local_end in parsed_markers:
         node_id = occurrence_id.rsplit(".", 1)[0]
+        claim = next((item for item in expected.affected_node_claims if item.node_id == node_id), None)
+        parent_node_id = claim.parent_node_id if claim else None
         if (
             expected.rewrite_mode is StepRewriteMode.OCCURRENCE_PATCH
             and requirements[occurrence_id].node_id != node_id
@@ -880,7 +874,7 @@ def _render_marked_natural_body(
         paired_start = None
         paired_end = None
         diff_opcodes = ()
-        if reference_graph is not None and reference_graph.values[node_id].value_type in {
+        if reference_graph is not None and not parent_node_id and reference_graph.values[node_id].value_type in {
             ValueType.SMILES,
             ValueType.MOLECULE,
         }:
@@ -910,7 +904,15 @@ def _render_marked_natural_body(
                 end=end,
                 value=mention_value,
                 hallucinated=True,
-                causal_role=causal_roles_by_node[node_id],
+                causal_role=(CausalRole.PROPAGATED_ERROR if parent_node_id else causal_roles_by_node[node_id]),
+                parent_node_id=parent_node_id,
+                reference_text=(
+                    claim.before_text if parent_node_id else
+                    next((before for before, after in claim_surface_pairs(
+                        node_id, claim.before_text, claim.after_text,
+                    ) if after == value), None)
+                    if claim and node_id == "anchor_element" else None
+                ),
                 context_start=full_start,
                 context_end=full_end,
                 paired_start=paired_start,
@@ -951,6 +953,8 @@ def _render_deterministic_derivation_body(
         raise ValueError("canonical natural template changed the Step header")
     marked_body = marked_head[len(prefix) :]
     for node_id, claim in sorted(claims.items()):
+        if claim.parent_node_id:
+            continue
         if occurrence_counts.get(node_id, 0):
             continue
         occurrence_counts[node_id] = 1
@@ -958,7 +962,13 @@ def _render_deterministic_derivation_body(
             f"\n  The value of {node_id} is "
             f"[[HALLU:{node_id}.01]]{claim.after_text}[[/HALLU]]."
         )
-    return marked_body
+    marked_body += "".join("\n  " + clause for clause in expected.preserved_enumerations)
+    counts = {}
+    def renumber(match):
+        node = match.group(1)
+        counts[node] = counts.get(node, 0) + 1
+        return f"[[HALLU:{node}.{counts[node]:02d}]]"
+    return re.sub(r"\[\[HALLU:([A-Za-z0-9_]+)\.\d{2}\]\]", renumber, marked_body)
 
 
 def _assemble_rendered_text(
@@ -1198,6 +1208,10 @@ class PoeTextRenderer:
                 "response_sha256": result.response_sha256,
                 "network_request_count": result.network_request_count,
                 "cache_hit": result.cache_hit,
+                "protocol_version": POE_RENDERER_VERSION,
+                "step_execution": list(result.step_execution),
+                "diagnostics": list(result.diagnostics),
+                "diagnostic_path": result.diagnostic_path,
                 "validation_rejection_codes": list(
                     result.validation_rejection_codes
                 ),

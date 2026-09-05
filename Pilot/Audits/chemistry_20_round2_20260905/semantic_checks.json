@@ -1,0 +1,68 @@
+{
+  "mol_edit.add_v2.0111": {
+    "matching_reference_smiles": "C1=CC2=C(C=CS2)N=C1",
+    "nonmatching_named_reference_smiles": "C1=CN=CC2=C1SC=C2",
+    "matching_maps": [
+      [
+        11,
+        10,
+        18,
+        14,
+        15,
+        16,
+        17,
+        13,
+        12
+      ]
+    ]
+  },
+  "mol_edit.substitute_v2.0122": {
+    "matching_reference_smiles": "C1C2=CC=CC=C2NC1=O",
+    "nonmatching_named_reference_smiles": "C1C2=CC=CC=C2C(=O)N1",
+    "matching_maps": [
+      [
+        13,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        10,
+        11,
+        12
+      ]
+    ]
+  },
+  "mol_edit.delete_v2.0134": {
+    "retained_heavy_neighbor_after_deprotection": "S4",
+    "group": "H2N-S(=O)2-NH-Ar"
+  },
+  "mol_edit.substitute_v2.0150": {
+    "source_ring_N_maps": [
+      5,
+      14
+    ],
+    "source_N_N_bond_distance": 1,
+    "pyrimidine_N_N_bond_distance": 2
+  },
+  "mol_edit.substitute_v2.0064": {
+    "assigned_product_centers_0_based": [
+      [
+        27,
+        "R"
+      ],
+      [
+        30,
+        "S"
+      ]
+    ],
+    "same_connectivity_stereoisomers": [
+      "CN(C(=O)C(C)(C)c1cc(C(F)(F)F)cc(C(F)(F)F)c1)c1cnc(N2C[C@@H](O)C[C@@H]2CO)cc1-c1ccccc1Br",
+      "CN(C(=O)C(C)(C)c1cc(C(F)(F)F)cc(C(F)(F)F)c1)c1cnc(N2C[C@@H](O)C[C@H]2CO)cc1-c1ccccc1Br",
+      "CN(C(=O)C(C)(C)c1cc(C(F)(F)F)cc(C(F)(F)F)c1)c1cnc(N2C[C@H](O)C[C@@H]2CO)cc1-c1ccccc1Br",
+      "CN(C(=O)C(C)(C)c1cc(C(F)(F)F)cc(C(F)(F)F)c1)c1cnc(N2C[C@H](O)C[C@H]2CO)cc1-c1ccccc1Br"
+    ],
+    "instruction_does_not_specify_stereo": "AI semantic review; not inferred solely from regex"
+  }
+}

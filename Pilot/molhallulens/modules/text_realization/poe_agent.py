@@ -1,9 +1,8 @@
-"""Poe boundary for audited, marker-tracked edits of original ``step_text``.
+"""Poe boundary for audited, locally compiled edits of original ``step_text``.
 
 Poe receives each original complete step and its locally rendered modified FORMAL.
-Simple claims are patched occurrence by occurrence; incomplete or derived prose is
-rewritten with one marker per changed claim occurrence. Local code validates and
-removes all markers.
+The model returns prose and typed references; local code fills values and marker
+IDs. COPY is local, passed steps survive retries, and diagnostics are redacted.
 """
 
 from __future__ import annotations
@@ -12,6 +11,7 @@ import hashlib
 import json
 import os
 import re
+from uuid import uuid4
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from enum import StrEnum
@@ -29,8 +29,12 @@ from .occurrence_audit import (
     enumeration_violations,
     loose_occurrence_spans,
 )
+from .enumeration_plan import enumeration_inventory, validate_enumeration_inventory
+from .claim_surfaces import claim_surface_pairs, patch_prose_signature
+from .segments import SegmentContractError, compile_segments, local_copy, step_payload, response_segments_example
+from .diagnostics import append_diagnostic, make_diagnostic, redact, rejection_code
 
-POE_RENDERER_VERSION = "poe_step_text_v10"
+POE_RENDERER_VERSION = "poe_segments_v20"
 FORMAL_MARKER = "\n  FORMAL: "
 HALLU_MARKER_PATTERN = re.compile(
     r"\[\[HALLU:([a-z][a-z0-9_]*\.[0-9]{2})\]\](.*?)\[\[/HALLU\]\]",
@@ -50,6 +54,14 @@ _LINE_INITIAL_STEP_HEADER = re.compile(
 
 class PoeTextRealizationError(RuntimeError):
     """Fail-closed Poe configuration, transport, or response error."""
+
+    def __init__(self, message, *, diagnostics=(), diagnostic_path=None, code=None, expected=None, observed=None):
+        super().__init__(message)
+        self.diagnostics = tuple(diagnostics)
+        self.diagnostic_path = diagnostic_path
+        self.code = code
+        self.expected = expected
+        self.observed = observed
 
 
 class StepRewriteMode(StrEnum):
@@ -125,8 +137,15 @@ class AffectedNodeClaim:
     before_text: str
     after_text: str
     required_occurrence_count: int | None = None
+    parent_node_id: str | None = None
 
     def __post_init__(self) -> None:
+        if self.parent_node_id is not None and (
+            type(self.parent_node_id) is not str
+            or _NODE_ID.fullmatch(self.parent_node_id) is None
+            or not self.node_id.startswith(self.parent_node_id + "__enumeration_")
+        ):
+            raise ValueError("derived enumeration claim requires its parent namespace")
         if type(self.node_id) is not str or _NODE_ID.fullmatch(self.node_id) is None:
             raise ValueError("node_id is invalid")
         for value, name in (
@@ -153,6 +172,11 @@ class AffectedNodeClaim:
             "before_text": self.before_text,
             "after_text": self.after_text,
             "required_occurrence_count": self.required_occurrence_count,
+            "parent_node_id": self.parent_node_id,
+            "allowed_surface_pairs": [
+                {"before_text": before, "after_text": after}
+                for before, after in claim_surface_pairs(self.node_id, self.before_text, self.after_text)
+            ],
         }
 
 
@@ -167,6 +191,7 @@ class PoeStepRewriteInput:
     required_hallucination_occurrences: tuple[RequiredHallucinationOccurrence, ...]
     rewrite_mode: StepRewriteMode | None = None
     affected_node_claims: tuple[AffectedNodeClaim, ...] = ()
+    preserved_enumerations: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
         if type(self.step_index) is not int or self.step_index < 1:
@@ -220,6 +245,13 @@ class PoeStepRewriteInput:
         claim_ids = tuple(item.node_id for item in claims)
         if len(claim_ids) != len(set(claim_ids)):
             raise ValueError("affected_node_claims cannot repeat a node")
+        for claim in claims:
+            if claim.parent_node_id and claim.parent_node_id not in claim_ids:
+                raise ValueError("derived enumeration parent must be an affected claim")
+            if claim.parent_node_id and not any(
+                f"[[HALLU:{claim.node_id}." in clause for clause in self.preserved_enumerations
+            ):
+                raise ValueError("derived enumeration claim requires a preserved breakdown")
         mode = self.rewrite_mode
         if mode is None:
             mode = (
@@ -229,6 +261,8 @@ class PoeStepRewriteInput:
             )
         if type(mode) is not StepRewriteMode:
             raise TypeError("rewrite_mode must be a StepRewriteMode or None")
+        if self.preserved_enumerations and mode is not StepRewriteMode.DERIVATION_REWRITE:
+            raise ValueError("preserved enumeration plans require derivation rewrite mode")
         if mode is StepRewriteMode.COPY:
             if required or claims:
                 raise ValueError("COPY steps cannot have occurrences or affected claims")
@@ -258,6 +292,8 @@ class PoeStepRewriteInput:
             "original_step_text": self.original_step_text,
             "modified_formal_ab": self.modified_formal_ab,
             "rewrite_mode": self.rewrite_mode.value,
+            "preserved_enumerations": list(self.preserved_enumerations),
+            "enumeration_inventory": enumeration_inventory(self.preserved_enumerations),
             "affected_node_claims": [
                 item.to_prompt_dict() for item in self.affected_node_claims
             ],
@@ -312,18 +348,14 @@ class PoeRewriteResult:
     network_request_count: int
     cache_hit: bool
     validation_rejection_codes: tuple[str, ...]
+    step_execution: tuple[dict[str, Any], ...] = ()
+    diagnostics: tuple[dict[str, Any], ...] = ()
+    diagnostic_path: str | None = None
 
 
 PoeTransport = Callable[[str, str, str, float], str]
 
 
-def _validation_rejection_code(error: PoeTextRealizationError) -> str:
-    message = str(error).lower()
-    if "enumeration" in message or "component sum" in message:
-        return "false_enumeration"
-    if "arithmetic" in message:
-        return "false_arithmetic"
-    return "step_text_contract"
 
 
 def parse_hallucination_markers(
@@ -413,7 +445,7 @@ def validate_rewritten_step_text(
                     f"Poe duplicated HALLU marker occurrence: {occurrence_id}"
                 )
             claim = claims_by_node[node_id]
-            if value != claim.after_text:
+            if value not in {after for _, after in claim_surface_pairs(node_id, claim.before_text, claim.after_text)}:
                 raise PoeTextRealizationError(
                     f"Poe marker for {occurrence_id} does not contain the exact "
                     f"after_text for {node_id!r}"
@@ -473,6 +505,10 @@ def validate_rewritten_step_text(
             )
 
     clean_natural = strip_hallucination_markers(marked_natural)
+    try:
+        validate_enumeration_inventory(marked_natural, expected.preserved_enumerations)
+    except ValueError as error:
+        raise PoeTextRealizationError(str(error)) from error
     if expected.rewrite_mode is StepRewriteMode.OCCURRENCE_PATCH:
         original_head, _ = _split_complete_step(expected.original_step_text)
         expected_natural = original_head[len(prefix) :]
@@ -486,9 +522,10 @@ def validate_rewritten_step_text(
                 + occurrence.after_text
                 + expected_natural[occurrence.original_end :]
             )
-        if clean_natural != expected_natural:
+        if patch_prose_signature(clean_natural) != patch_prose_signature(expected_natural):
             raise PoeTextRealizationError(
-                "OCCURRENCE_PATCH changed text outside required claim values"
+                "OCCURRENCE_PATCH changed text outside required claim values",
+                code="unapproved_prose_change", expected=expected_natural, observed=clean_natural,
             )
     if _LINE_INITIAL_STEP_HEADER.search(clean_natural) is not None:
         raise PoeTextRealizationError(
@@ -498,8 +535,40 @@ def validate_rewritten_step_text(
     for _, _, start, end in markers:
         stale_search[start:end] = " " * (end - start)
     stale_search_text = "".join(stale_search)
+    for claim in expected.affected_node_claims:
+        if not claim.parent_node_id:
+            continue
+        # Scope component counts by their preserved noun phrase, not the digit
+        # alone (3 carbons and 3 fluorines are different claims).
+        for clause in expected.preserved_enumerations:
+            component = re.search(
+                rf"\[\[HALLU:{re.escape(claim.node_id)}\.\d{{2}}\]\].*?\[\[/HALLU\]\]"
+                r"\s+([A-Za-z][A-Za-z -]*?)(?=\s+(?:and|which|in)\b|[,=+().]|$)",
+                clause,
+            )
+            if component:
+                label = component[1].strip()
+                if label.lower() in {"ring", "rings", "atom", "atoms", "heavy atom", "heavy atoms"}:
+                    # A unit alone is not a component identity; total claims
+                    # have their own node-aware audit below. The actual
+                    # breakdown inventory remains validated above.
+                    continue
+                for value in (claim.before_text, claim.after_text):
+                    pattern = rf"(?<!\w){re.escape(value)}\s+{re.escape(label)}\b"
+                    # Another preserved enumeration may legitimately contain
+                    # the same count/noun (source vs product, for example).
+                    preserved_unmarked = re.sub(
+                        r"\[\[HALLU:[^\]]+\]\].*?\[\[/HALLU\]\]", " ",
+                        "\n".join(expected.preserved_enumerations),
+                    )
+                    if len(re.findall(pattern, stale_search_text, re.I)) > len(re.findall(pattern, preserved_unmarked, re.I)):
+                        raise PoeTextRealizationError(
+                            f"enumeration_unmarked_component: {claim.node_id} ({value!r} {label!r})"
+                        )
     if expected.rewrite_mode is StepRewriteMode.DERIVATION_REWRITE:
         for claim in expected.affected_node_claims:
+            if claim.parent_node_id:
+                continue  # Component occurrences are locked by preserved_enumerations.
             unmarked_after = loose_occurrence_spans(
                 claim.node_id,
                 claim.after_text,
@@ -512,6 +581,8 @@ def validate_rewritten_step_text(
                     f"{claim.node_id!r}"
                 )
     for claim in expected.affected_node_claims:
+        if claim.parent_node_id:
+            continue
         stale = loose_occurrence_spans(
             claim.node_id,
             claim.before_text,
@@ -539,55 +610,98 @@ def validate_rewritten_step_text(
     return rewritten_step_text
 
 
+
+
 def _system_prompt() -> str:
     return (
-        "You rewrite existing molecule-editing step_text records under a strict local "
-        "contract. For each step, "
-        "ORIGINAL_STEP_TEXT is the text to preserve and MODIFIED_FORMAL_AB is the new "
-        "authoritative candidate-world claim, even when chemically false relative to the "
-        "source molecule. Obey REWRITE_MODE. In copy mode, copy natural language byte-for-"
-        "byte. In occurrence_patch mode, replace every listed occurrence and preserve all "
-        "other wording. In derivation_rewrite mode, rewrite the complete natural-language "
-        "body so its explanations, enumerations, totals, and displayed arithmetic agree "
-        "internally with AFFECTED_NODE_CLAIMS and MODIFIED_FORMAL_AB; remove every stale "
-        "before value. Every displayed component enumeration must sum to its stated heavy-"
-        "atom or ring total. If a modified total cannot agree with the real fragment "
-        "composition, delete or generalize the component breakdown; never fabricate or "
-        "alter a component count merely to force the sum, because that would introduce an "
-        "additional unmarked false claim. In derivation_rewrite mode, mark every occurrence "
-        "of every affected "
-        "claim as [[HALLU:node_id.NN]]after_text[[/HALLU]], use consecutive two-digit "
-        "suffixes starting at 01 separately for each node, include every affected node at "
-        "least once, obey required_occurrence_count when it is present, and do not wrap the "
-        "whole body. Return only the rewritten natural-language "
-        "body for each step. Do not return the Step header, FORMAL line, Answer, or "
-        "commentary; local code owns and appends those fields. In natural language, wrap "
-        "each REQUIRED_HALLUCINATION_OCCURRENCE in occurrence_patch mode exactly once with "
-        "its occurrence-specific "
-        "temporary marker: [[HALLU:occurrence_id]]after_text[[/HALLU]]. Never mark an "
-        "unplanned occurrence, never omit or duplicate an occurrence, never alter a "
-        "marker value, never expose that the claim was modified, and never put markers in "
-        "FORMAL. Return JSON only."
+        "Rewrite molecule-editing reasoning using STRUCTURED SEGMENTS, never literal markers. "
+        "Return exactly {steps:[{step_index:integer,segments:[...]}]} for the requested steps only. "
+        "Allowed segments: {text:string}; {claim_ref:node_id,surface:canonical|symbol|name|title_name}; "
+        "{occurrence_ref:provided_occurrence_id}; {enumeration_ref:provided_enumeration_id}; "
+        "or exclusively [{patch_ref:original_occurrences}] for occurrence_patch; "
+        "or exclusively [{draft_ref:complete_derivation}] for derivation_rewrite. "
+        "Each segment contains only the indicated keys. Local code inserts all claim values, "
+        "numbers, marker IDs, Step headers and FORMAL. Never return a value field or HALLU markup. "
+        "The editable input is original_natural_body, NOT a complete step_text. "
+        "The RESPONSE_SHAPE example is mode-specific and uses actual valid IDs. "
+        "In occurrence_patch, return the supplied patch_ref operation. It locally preserves "
+        "the original body and inserts EVERY exact replacement at its original location. "
+        "Do not copy occurrence IDs manually unless a listed grammatical adjustment is needed. "
+        "claim_ref is FORBIDDEN in this mode. "
+        "ONLY IF choosing expanded segments instead of patch_ref, reference EACH required occurrence exactly once at its original "
+        "position using occurrence_ref. Preserve other prose except whitespace, scoped "
+        "source/product [molecule] has/contains, and numeric atom(s)/ring(s) inflection. "
+        "In derivation_rewrite, first review and explicitly select the complete_draft via draft_ref. "
+        "ONLY IF rejecting that draft and submitting expanded segments instead, write coherent prose using claim_ref for EVERY occurrence of "
+        "each affected non-component claim. Available surfaces are listed per claim. Do not "
+        "write old or new claim values literally in text. Source facts not edited remain fixed. "
+        "Every affected claim must appear; obey required_occurrence_count when supplied. "
+        "In expanded segments ONLY, use EVERY enumeration_ref exactly once, as a separate complete sentence, with suitable "
+        "sentence/line separators. Local code renders its entire component list and total. "
+        "Never delete, paraphrase, duplicate, or manually render that inventory or change its "
+        "components. Derived component claims are emitted only through enumeration_ref. "
+        "Explanations and arithmetic must agree internally with MODIFIED_FORMAL_AB and the "
+        "planned claims, even when those claims are chemically false relative to the source. "
+        "The DERIVATION example is a complete candidate rewrite, not merely a schema. "
+        "INPUT.complete_draft shows its fully rendered natural body. Prefer selecting that "
+        "draft with draft_ref when it expresses the requested claims; optional prose "
+        "improvements must obey all constraints. Never retain original chemical descriptors "
+        "such as carbonyl carbon when the anchor element/position has changed. "
+        "Do not invent an unlisted fact or error. Do not mention editing or hallucinations. "
+        "Context steps are read-only; do not return them. A repair request contains only failed "
+        "steps and their prior rejected response/diagnostics; passed steps are already retained. "
+        "No Step header, FORMAL, Answer, CR/NUL or markdown in text segments. JSON only."
     )
 
 
-def _user_prompt(request: PoeRewriteRequest) -> str:
+def _user_prompt(request: PoeRewriteRequest, steps=None, repair=()) -> str:
+    steps = tuple(s for s in request.steps if s.rewrite_mode is not StepRewriteMode.COPY) if steps is None else tuple(steps)
     response_shape = {
         "steps": [
             {
                 "step_index": step.step_index,
-                "rewritten_natural_language": "string",
+                "segments": ([{"patch_ref": "original_occurrences"}]
+                             if step.rewrite_mode is StepRewriteMode.OCCURRENCE_PATCH
+                             else [{"draft_ref": "complete_derivation"}]),
             }
-            for step in request.steps
+            for step in steps
         ]
     }
+    # Repeat the wire contract in the user message: named Poe bots may apply
+    # their own system instructions. Never rely on the system channel alone.
+    prompt_repair = []
+    for diagnostic in repair:
+        item = dict(diagnostic)
+        item.pop("original_step_text", None)
+        if item.get("rewrite_mode") == "occurrence_patch":
+            item["repair_instruction"] = (
+                'Return exactly segments:[{"patch_ref":"original_occurrences"}] for this step. '
+                'It includes ALL original prose and ALL required occurrences. A list of only '
+                'occurrence_ref objects deletes the prose and is invalid. Do not repeat that list.'
+            )
+        prompt_repair.append(item)
     return (
-        "Update these original step_text records under each explicit REWRITE_MODE.\n"
+        _system_prompt() + "\n\n"
+        "TASK: Return body-only segments for INPUT.steps. PATCH examples are exact; "
+        "DERIVATION examples are complete prose candidates; prefer them unchanged if suitable. "
+        "The two shorthand operations ALREADY include every required occurrence and inventory. "
+        "Do NOT expand them just to satisfy the expanded-segment rules. "
+        "Only for expanded derivation segments, use enumeration_ref exactly once per inventory; never recreate its "
+        "component list in text. INPUT.context_steps and modified_formal_ab are read-only. "
+        "Repair entries describe REJECTED responses: fix them, do not copy their forbidden syntax.\n"
         "RESPONSE_SHAPE:\n"
         + json.dumps(response_shape, ensure_ascii=False, separators=(",", ":"))
         + "\nINPUT:\n"
         + json.dumps(
-            request.to_prompt_dict(),
+            {
+                "origin_id": request.origin_id, "subtask": request.subtask,
+                "indexed_smiles": request.indexed_smiles, "instruction": request.instruction,
+                "steps": [step_payload(s) for s in steps],
+                "context_steps": [{"step_index": s.step_index, "step_name": s.step_name,
+                                   "original_natural_body": step_payload(s)["original_natural_body"],
+                                   "modified_formal_ab": s.modified_formal_ab} for s in request.steps],
+                "repair": prompt_repair,
+            },
             ensure_ascii=False,
             sort_keys=True,
             separators=(",", ":"),
@@ -671,35 +785,31 @@ def _extract_natural_body(value: Any, expected: PoeStepRewriteInput) -> str:
     return body
 
 
-def _parse_and_validate_response(
-    response_text: str,
-    request: PoeRewriteRequest,
-) -> tuple[str, ...]:
+def _response_rows(response_text: str, steps) -> dict[int, dict]:
     value = _extract_json_object(response_text)
     if set(value) != {"steps"} or not isinstance(value["steps"], list):
         raise PoeTextRealizationError("Poe response must contain exactly one steps array")
-    rows = value["steps"]
-    if len(rows) != len(request.steps):
-        raise PoeTextRealizationError("Poe response step count does not match the request")
-    rewritten = []
-    for expected, row in zip(request.steps, rows, strict=True):
+    allowed = {s.step_index for s in steps}
+    rows = {}
+    for row in value["steps"]:
         if not isinstance(row, Mapping) or set(row) != {
             "step_index",
-            "rewritten_natural_language",
+            "segments",
         }:
-            raise PoeTextRealizationError("each Poe step has an invalid JSON shape")
-        if row["step_index"] != expected.step_index:
-            raise PoeTextRealizationError("Poe response changed the step order")
-        natural_body = _extract_natural_body(
-            row["rewritten_natural_language"],
-            expected,
-        )
-        prefix = f"Step {expected.step_index} [{expected.step_name}]: "
-        complete_step = (
-            prefix + natural_body + FORMAL_MARKER + expected.modified_formal_ab
-        )
-        rewritten.append(validate_rewritten_step_text(complete_step, expected))
-    return tuple(rewritten)
+            raise SegmentContractError("response_shape", "each Poe step requires exactly step_index and segments")
+        index = row["step_index"]
+        if type(index) is not int or index not in allowed or index in rows:
+            raise SegmentContractError("step_identity", "response contains an unknown, duplicate or non-integer step index", expected=sorted(allowed), observed=index)
+        rows[index] = dict(row)
+    return rows
+
+
+def _parse_and_validate_response(response_text: str, request: PoeRewriteRequest) -> tuple[str, ...]:
+    pending = tuple(s for s in request.steps if s.rewrite_mode is not StepRewriteMode.COPY)
+    rows = _response_rows(response_text, pending)
+    if set(rows) != {s.step_index for s in pending}:
+        raise SegmentContractError("missing_step", "cached response is missing a requested step")
+    return tuple(local_copy(s) if s.rewrite_mode is StepRewriteMode.COPY else compile_segments(rows[s.step_index]["segments"], s) for s in request.steps)
 
 
 def _default_poe_transport(
@@ -714,7 +824,7 @@ def _default_poe_transport(
         import fastapi_poe as fp
     except ImportError as error:
         raise PoeTextRealizationError(
-            "fastapi-poe is not installed; run: python -m pip install -r requirements.lock"
+            "fastapi-poe is not installed; run: python -m pip install -r requirements.txt"
         ) from error
     messages = [
         fp.ProtocolMessage(role="system", content=system_prompt),
@@ -742,7 +852,7 @@ def _default_poe_transport(
 
 
 class PoeStepTextAgent:
-    """Call Poe, validate its marked step_text JSON, and cache secret-free output."""
+    """Compile Poe segments, retry failed steps and cache fully validated output."""
 
     __slots__ = (
         "config",
@@ -756,6 +866,9 @@ class PoeStepTextAgent:
         "_retry_count",
         "_requests_with_retry",
         "_validation_rejection_counts",
+        "diagnostic_directory",
+        "_step_retry_count",
+        "_local_copy_step_count",
     )
 
     def __init__(
@@ -765,6 +878,7 @@ class PoeStepTextAgent:
         transport: PoeTransport | None = None,
         environment: Mapping[str, str] | None = None,
         cache_directory: Path | None = None,
+        diagnostic_directory: Path | None = None,
     ) -> None:
         if type(config) is not HallucinationGenerationConfig:
             raise TypeError("config must be HallucinationGenerationConfig")
@@ -786,12 +900,20 @@ class PoeStepTextAgent:
             )
         )
         self._rewrite_call_count = 0
+        configured_diagnostics = Path(config.poe_diagnostic_directory)
+        self.diagnostic_directory = (
+            Path(diagnostic_directory) if diagnostic_directory is not None else
+            Path(cache_directory) / "diagnostics" if cache_directory is not None else
+            configured_diagnostics if configured_diagnostics.is_absolute() else PROJECT_ROOT / configured_diagnostics
+        )
         self._uncached_request_count = 0
         self._cache_hit_count = 0
         self._network_request_count = 0
         self._retry_count = 0
         self._requests_with_retry = 0
         self._validation_rejection_counts: dict[str, int] = {}
+        self._step_retry_count = 0
+        self._local_copy_step_count = 0
 
     def telemetry(self) -> dict[str, Any]:
         """Return secret-free cumulative counters for batch summaries."""
@@ -803,6 +925,8 @@ class PoeStepTextAgent:
             "network_request_count": self._network_request_count,
             "retry_count": self._retry_count,
             "requests_with_retry": self._requests_with_retry,
+            "step_retry_count": self._step_retry_count,
+            "local_copy_step_count": self._local_copy_step_count,
             "validation_rejection_counts": dict(
                 sorted(self._validation_rejection_counts.items())
             ),
@@ -845,9 +969,12 @@ class PoeStepTextAgent:
         ):
             return None
         response_text = payload["response_text"]
+        secret = self._environment.get(self.config.poe_api_key_env)
+        if redact(response_text, secret.strip() if type(secret) is str else None) != response_text:
+            return None
         try:
             rewritten = _parse_and_validate_response(response_text, request)
-        except PoeTextRealizationError:
+        except (PoeTextRealizationError, SegmentContractError):
             # A stricter validator may invalidate an otherwise well-formed old
             # cache entry even when prompt text did not change. Treat it as a
             # stale artifact and obtain a fresh response.
@@ -875,82 +1002,131 @@ class PoeStepTextAgent:
         if type(request) is not PoeRewriteRequest:
             raise TypeError("request must be PoeRewriteRequest")
         self._rewrite_call_count += 1
+        self._local_copy_step_count += sum(s.rewrite_mode is StepRewriteMode.COPY for s in request.steps)
         system_prompt = _system_prompt()
         base_user_prompt = _user_prompt(request)
         prompt_identity = system_prompt + "\n\n" + base_user_prompt
         prompt_sha256 = hashlib.sha256(prompt_identity.encode("utf-8")).hexdigest()
 
+        run_id = uuid4().hex
+        diagnostic_path = self.diagnostic_directory / f"{prompt_sha256}.{run_id}.jsonl"
+        diagnostics = []
+        secret = self._environment.get(self.config.poe_api_key_env)
+        secret = secret.strip() if type(secret) is str else None
+        attempts = {s.step_index: 0 for s in request.steps}
+
+        def record_error(error, step, attempt, response):
+            diagnostic = make_diagnostic(
+                run_id=run_id, origin_id=request.origin_id, model=self.config.poe_bot_name,
+                version=POE_RENDERER_VERSION, prompt_hash=prompt_sha256,
+                step=step, attempt=attempt, error=error, response=response,
+                secret=secret, limit=self.config.poe_diagnostic_max_characters,
+            )
+            diagnostics.append(diagnostic)
+            code = diagnostic["error_code"]
+            self._validation_rejection_counts[code] = self._validation_rejection_counts.get(code, 0) + 1
+            if self.config.poe_save_diagnostics:
+                append_diagnostic(diagnostic_path, diagnostic)
+            return diagnostic
+
+        def result(rewritten, response_text, network_count, cache_hit):
+            rows = {row["step_index"]: row["segments"] for row in json.loads(response_text)["steps"]}
+            def response_mode(step):
+                segments = rows.get(step.step_index, [])
+                if step.rewrite_mode is StepRewriteMode.COPY:
+                    return "local_copy"
+                if segments == [{"draft_ref": "complete_derivation"}]:
+                    return "poe_selected_local_draft"
+                if segments == [{"patch_ref": "original_occurrences"}]:
+                    return "poe_selected_exact_patch"
+                return "poe_authored_segments"
+            return PoeRewriteResult(
+                rewritten_step_texts=rewritten, bot_name=self.config.poe_bot_name,
+                api_key_environment_variable=self.config.poe_api_key_env,
+                prompt_sha256=prompt_sha256,
+                response_sha256=hashlib.sha256(response_text.encode("utf-8")).hexdigest(),
+                network_request_count=network_count, cache_hit=cache_hit,
+                validation_rejection_codes=tuple(d["error_code"] for d in diagnostics),
+                step_execution=tuple({
+                    "step_index": s.step_index, "attempts": attempts[s.step_index],
+                    "backend": "local_copy" if s.rewrite_mode is StepRewriteMode.COPY else "validated_cache" if cache_hit else "poe_segments",
+                    "protocol": POE_RENDERER_VERSION,
+                    "response_mode": response_mode(s),
+                } for s in request.steps),
+                diagnostics=tuple(diagnostics),
+                diagnostic_path=str(diagnostic_path) if diagnostics and self.config.poe_save_diagnostics else None,
+            )
+
         cached = self._load_cache(prompt_sha256, request)
         if cached is not None:
             self._cache_hit_count += 1
             response_text, rewritten = cached
-            return PoeRewriteResult(
-                rewritten_step_texts=rewritten,
-                bot_name=self.config.poe_bot_name,
-                api_key_environment_variable=self.config.poe_api_key_env,
-                prompt_sha256=prompt_sha256,
-                response_sha256=hashlib.sha256(response_text.encode("utf-8")).hexdigest(),
-                network_request_count=0,
-                cache_hit=True,
-                validation_rejection_codes=(),
-            )
+            return result(rewritten, response_text, 0, True)
 
+        accepted = {s.step_index: local_copy(s) for s in request.steps if s.rewrite_mode is StepRewriteMode.COPY}
+        pending = tuple(s for s in request.steps if s.step_index not in accepted)
+        if not pending:
+            return result(tuple(accepted[s.step_index] for s in request.steps), '{"steps":[]}', 0, False)
         self._uncached_request_count += 1
-        validation_error = ""
-        validation_rejection_codes: list[str] = []
-        response_text = ""
+        accepted_rows, repair = {}, []
+        network_count = 0
         for attempt in range(1, self.config.poe_max_attempts + 1):
             if attempt > 1:
                 self._retry_count += 1
+                self._step_retry_count += len(pending)
                 if attempt == 2:
                     self._requests_with_retry += 1
-            user_prompt = base_user_prompt
-            if validation_error:
-                user_prompt += (
-                    "\nPREVIOUS_RESPONSE_REJECTED:\n"
-                    + validation_error
-                    + "\nReturn a corrected JSON object."
-                )
+            user_prompt = _user_prompt(request, pending, repair)
+            api_key = self._api_key() if self.transport is None else None
             self._network_request_count += 1
-            if self.transport is None:
-                response_text = _default_poe_transport(
-                    system_prompt,
-                    user_prompt,
-                    self.config.poe_bot_name,
-                    self.config.poe_temperature,
-                    api_key=self._api_key(),
-                )
-            else:
-                response_text = self.transport(
-                    system_prompt,
-                    user_prompt,
-                    self.config.poe_bot_name,
-                    self.config.poe_temperature,
-                )
+            network_count += 1
+            for step in pending:
+                attempts[step.step_index] += 1
             try:
-                rewritten = _parse_and_validate_response(response_text, request)
-            except PoeTextRealizationError as error:
-                validation_error = str(error)
-                rejection_code = _validation_rejection_code(error)
-                validation_rejection_codes.append(rejection_code)
-                self._validation_rejection_counts[rejection_code] = (
-                    self._validation_rejection_counts.get(rejection_code, 0) + 1
+                response_text = (
+                    _default_poe_transport(system_prompt, user_prompt, self.config.poe_bot_name, self.config.poe_temperature, api_key=api_key)
+                    if self.transport is None else
+                    self.transport(system_prompt, user_prompt, self.config.poe_bot_name, self.config.poe_temperature)
                 )
+            except Exception as error:
+                # Never log/rethrow SDK exception text: it may contain headers.
+                safe_error = SegmentContractError("transport_error", f"Poe transport failed ({type(error).__name__})")
+                record_error(safe_error, None, attempt, "[transport response unavailable]")
+                raise PoeTextRealizationError(str(safe_error), diagnostics=diagnostics,
+                    diagnostic_path=str(diagnostic_path) if self.config.poe_save_diagnostics else None) from None
+            try:
+                if type(response_text) is str and redact(response_text, secret) != response_text:
+                    raise SegmentContractError("sensitive_output", "response contained credential-like content; discarded")
+                rows = _response_rows(response_text, pending)
+            except (PoeTextRealizationError, SegmentContractError) as error:
+                repair = [record_error(error, None, attempt, response_text)]
                 continue
-            self._store_cache(prompt_sha256, response_text)
-            return PoeRewriteResult(
-                rewritten_step_texts=rewritten,
-                bot_name=self.config.poe_bot_name,
-                api_key_environment_variable=self.config.poe_api_key_env,
-                prompt_sha256=prompt_sha256,
-                response_sha256=hashlib.sha256(response_text.encode("utf-8")).hexdigest(),
-                network_request_count=attempt,
-                cache_hit=False,
-                validation_rejection_codes=tuple(validation_rejection_codes),
-            )
+            repair, failed = [], []
+            for step in pending:
+                row = rows.get(step.step_index)
+                try:
+                    if row is None:
+                        raise SegmentContractError("missing_step", "response omitted this requested step", expected=step.step_index)
+                    accepted[step.step_index] = compile_segments(row["segments"], step)
+                    accepted_rows[step.step_index] = row
+                except (PoeTextRealizationError, SegmentContractError) as error:
+                    failed.append(step)
+                    repair.append(record_error(error, step, attempt, row))
+            pending = tuple(failed)
+            if not pending:
+                response_text = json.dumps({"steps": [accepted_rows[i] for i in sorted(accepted_rows)]}, ensure_ascii=False)
+                # Revalidate the complete assembled response before cache/release.
+                rewritten = _parse_and_validate_response(response_text, request)
+                if rewritten != tuple(accepted[s.step_index] for s in request.steps):
+                    raise PoeTextRealizationError("assembled step validation changed accepted text")
+                self._store_cache(prompt_sha256, response_text)
+                return result(rewritten, response_text, network_count, False)
         raise PoeTextRealizationError(
             "Poe response failed the local step_text contract after "
-            f"{self.config.poe_max_attempts} attempts: {validation_error}"
+            f"{self.config.poe_max_attempts} attempts; failed steps={[s.step_index for s in pending]}: "
+            + (diagnostics[-1]["message"] if diagnostics else "unknown contract failure"),
+            diagnostics=diagnostics,
+            diagnostic_path=str(diagnostic_path) if self.config.poe_save_diagnostics else None,
         )
 
 

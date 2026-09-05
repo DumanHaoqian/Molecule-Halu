@@ -1,0 +1,82 @@
+{
+  "reviewer": "AI-assisted chemistry review; not independent human expert annotation",
+  "scope": "20 original origins, 106 steps; no generated H/N used; no Poe calls",
+  "categories": {
+    "factual_error": "明确的正文化学事实错误，不代表产物错误",
+    "incomplete_reasoning": "正文未实例化，不属于已断言的错误事实",
+    "mechanism_caveat": "净图编辑可成立，但不能据此确定实验机制或原子来源",
+    "no_material_issue_found": "限定检查中未发现明确问题，不等于逐 token 真值认证"
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "origin_id": "mol_edit.add_v2.0150",
+      "steps": [5],
+      "category": "factual_error",
+      "confidence": "high",
+      "severity": "medium; important for negative-label contamination",
+      "quote": "Source has 6 rings (pyrazolo[1,5-a]pyrimidine core, pyrrolidine, indazole core, and phenyl). Product has 6 rings. RING_DELTA = 0.",
+      "explanation": "总环数6与产物均正确，但第一处稠合杂环名称不符。原结构六元环 maps=[2,31,6,5,4,3] 含3个N；与之稠合的五元环 maps=[13,7,6,31,14] 含1个N。pyrazolo[1,5-a]pyrimidine 则是六元环2N、五元环2N；两者总N都可为3，所以只检查总元素数或总环数会漏掉这个错误。",
+      "recommended_action": "保留已核对的产物与计数；修订该正文中的骨架描述并重新审查负标签。可先用无歧义描述：a fused six-membered C3N3 ring and five-membered C4N ring；本次不猜测完整稠环位次名称。",
+      "reference_url": "https://pubchem.ncbi.nlm.nih.gov/compound/Pyrazolo_1_5-a_pyrimidine",
+      "reference_smiles": "C1=CN2C(=CC=N2)N=C1"
+    },
+    {
+      "id": "F2",
+      "origin_id": "mol_edit.delete_v2.0056",
+      "steps": [1, 2, 3, 4, 5],
+      "category": "incomplete_reasoning",
+      "confidence": "high",
+      "severity": "high for natural-language reasoning suitability",
+      "quote": "State which atom in the Indexed SMILES (give the \":n\" map number) is the ANCHOR, and its element.",
+      "explanation": "五步自然语言仍在要求读者找anchor、数原子、构建产物，而没有给出本题实际推导。FORMAL已经填入具体值，故不是字段缺失，也不是产物错误。将整段当作已经完成的自然推理会混淆任务说明与推理输出。",
+      "recommended_action": "在自然推理评测集中暂时排除，或另行补全并审核正文；题目与产物仍可用于分子编辑。不要把它标成化学幻觉。"
+    },
+    {
+      "id": "F3",
+      "origin_id": "mol_edit.add_v2.0185",
+      "steps": [1],
+      "category": "mechanism_caveat",
+      "confidence": "high that mechanism is underdetermined; not a definite answer error",
+      "severity": "conditional on interpreting the text mechanistically",
+      "quote": "This is an O-alkylation of the carboxylic acid, where the new ethyl group bonds to the hydroxyl oxygen.",
+      "explanation": "题目只要求羧酸变乙酯，未指定试剂。把乙基连到原OH氧上是可行的净图编辑表示，但酯化也可经其他途径，不能由未映射的产物唯一推断为O-alkylation。",
+      "recommended_action": "限定为 in this graph-edit representation；不作为确定的机理标签，也不据此判产物错误。",
+      "reference_url": "https://openstax.org/books/organic-chemistry/pages/21-6-chemistry-of-esters"
+    },
+    {
+      "id": "F4",
+      "origin_id": "mol_edit.delete_v2.0255",
+      "steps": [1, 3],
+      "category": "mechanism_caveat",
+      "confidence": "high for the distinction; actual conditions unspecified",
+      "severity": "conditional on atom-provenance interpretation",
+      "quote": "After hydrolysis, this O becomes part of the free carboxylic acid -C(=O)OH.",
+      "explanation": "把甲酯O2连接的甲基删去，可以得到正确的未映射羧酸结构。但普通皂化的酰氧键断裂中，原烷氧基氧通常随醇离去；不能把为净图编辑保留O2直接解释为真实反应中该氧留在酸中。题目无条件、产物无原子映射，不能据此判GT结构错误。",
+      "recommended_action": "明确区分编辑anchor与机制原子去向；若评价机理，需要条件与原子映射支持。",
+      "reference_url": "https://openstax.org/books/organic-chemistry/pages/21-6-chemistry-of-esters"
+    }
+  ],
+  "records": [
+    {"origin_id":"mol_edit.add_v2.0022","category":"no_material_issue_found","review":"N36为目标一级胺，丙基磺酰基通过S连接，新增6个重原子，环数不变。不能把canonical片段的第一个C误当作连接点。"},
+    {"origin_id":"mol_edit.add_v2.0079","category":"no_material_issue_found","review":"O3羟基甲磺酰化，通过S形成O–S键；增加4个重原子、环数不变。未验证试剂条件、选择性或产物稳定性。"},
+    {"origin_id":"mol_edit.add_v2.0101","category":"no_material_issue_found","review":"O31接入2-氟乙基，形成O–CH2–CH2–F；新增3个重原子，原有标注立体结构在重建产物中保留。"},
+    {"origin_id":"mol_edit.add_v2.0150","category":"factual_error","review":"吡咯烷N11乙酰化与+3重原子正确；Step5稠合杂环名称错误，详见F1。"},
+    {"origin_id":"mol_edit.add_v2.0185","category":"mechanism_caveat","review":"羧酸O30乙基化的净结构及+2重原子正确；不能由目标乙酯唯一推出O-alkylation机制，详见F3。"},
+    {"origin_id":"mol_edit.add_v2.0274","category":"no_material_issue_found","review":"酚氧O39接入CH2CH2N(CH3)2，新增5个重原子；喹唑啉2环、苯1环、吲唑2环，共5环。"},
+    {"origin_id":"mol_edit.add_v2.0295","category":"no_material_issue_found","review":"哌啶N33苄基化，接CH2Ph，增加7个重原子与1个苯环。片段SMILES按氢封端片段理解，不是游离苄基自由基。"},
+    {"origin_id":"mol_edit.delete_v2.0028","category":"no_material_issue_found","review":"N22的Cbz脱保护形成一级胺；去除10个重原子及1个苯环，保留其余标注立体结构。"},
+    {"origin_id":"mol_edit.delete_v2.0056","category":"incomplete_reasoning","review":"N15末端胺Cbz脱保护，41→31重原子、4→3环，结构正确；五步自然语言尚是操作模板，详见F2。"},
+    {"origin_id":"mol_edit.delete_v2.0107","category":"no_material_issue_found","review":"N29脱苄基，叔胺变仲胺；移除CH2Ph的7个重原子，少1个苯环。"},
+    {"origin_id":"mol_edit.delete_v2.0126","category":"no_material_issue_found","review":"N27脱苄基，移除7个重原子；原6环变5环，剩余稠环、联苯和哌啶与结构相符。"},
+    {"origin_id":"mol_edit.delete_v2.0186","category":"no_material_issue_found","review":"O20脱苄基形成酚；去除7个重原子与1环，保留其余苯环、稠杂环及环丙烷。"},
+    {"origin_id":"mol_edit.delete_v2.0255","category":"mechanism_caveat","review":"甲酯水解的目标羧酸正确，47→46重原子；O2留存是图编辑约定，不等于实际水解中的氧来源，详见F4。"},
+    {"origin_id":"mol_edit.delete_v2.0287","category":"no_material_issue_found","review":"哌嗪N10的Cbz脱保护形成NH；减少10个重原子和1个苯环，其余环系统与计数一致。"},
+    {"origin_id":"mol_edit.substitute_v2.0005","category":"no_material_issue_found","review":"CH2OH的C25所接O26换成Cl；重原子总数不变、环数不变，邻近已标注手性中心保留。"},
+    {"origin_id":"mol_edit.substitute_v2.0009","category":"no_material_issue_found","review":"磺酰S18上的Cl21换成NHCH3；去1加2净+1重原子，得到对应N-甲基磺酰胺。"},
+    {"origin_id":"mol_edit.substitute_v2.0043","category":"no_material_issue_found","review":"醛C12=O13与目标哌啶胺的还原胺化：去O1、接含17重原子的胺片段，净+16；醛碳由CH=O成为CH2–N，新增3环。"},
+    {"origin_id":"mol_edit.substitute_v2.0065","category":"no_material_issue_found","review":"羧酸C12上的OH14换成3-乙氧羰基哌啶的N；去1加11净+10重原子，新增1个哌啶环。"},
+    {"origin_id":"mol_edit.substitute_v2.0078","category":"no_material_issue_found","review":"芳基C16的F17被环丙基哌嗪N替换；去1加9净+8重原子，新增哌嗪与环丙烷2环；未据此保证具体SNAr实验条件。"},
+    {"origin_id":"mol_edit.substitute_v2.0239","category":"no_material_issue_found","review":"三嗪C13的Cl14被N(CH2CH2OH)2替换；去1加7净+6重原子，没有新环，其余取代基保持。"}
+  ]
+}
