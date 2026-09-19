@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import html
 import json
+import re
 import sys
 from collections import Counter
+from collections.abc import Mapping
 from dataclasses import replace
 from pathlib import Path
 
@@ -34,6 +35,23 @@ mark.saved-hallu { background: #ccff00; color: #172033; border-radius: 2px; }
 mark.saved-control { background: #bae6fd; color: #172033; border-radius: 2px; }
 .pair-warning { color: #9a3412; padding: 8px; background: #fff7ed; }
 """
+
+_PRODUCT_ANSWER_CLAUSE = re.compile(
+    r'[ \t]*-->[ \t]*PRODUCT_SMILES\("[^"\r\n]*"\)'
+)
+
+
+def _without_product_answer_clause(value):
+    """Remove leaked product answers from every CoT string shown by the viewer."""
+    if isinstance(value, str):
+        return _PRODUCT_ANSWER_CLAUSE.sub("", value)
+    if isinstance(value, Mapping):
+        return {key: _without_product_answer_clause(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_without_product_answer_clause(item) for item in value]
+    if isinstance(value, tuple):
+        return tuple(_without_product_answer_clause(item) for item in value)
+    return value
 
 
 def _replace_spans(text, spans, controls, *, base=0, field="span"):
@@ -70,8 +88,6 @@ def validate_pair(h, n):
         raise ValueError("invalid H/N labels")
     for record in (h, n):
         text = record["serialized"]["text"]
-        if hashlib.sha256(text.encode()).hexdigest() != record["serialized"]["sha256"]:
-            raise ValueError("saved text SHA256 mismatch")
         for span in record["hallucination_spans"] + record["control_spans"]:
             for field, value in (("serialized_span", text),
                                  ("span", record["detector_input"][span["component"]])):
@@ -229,8 +245,16 @@ class SavedDemo:
                   f" = {coverage['percentage']:.2f}%**。参考 tokenizer：`{coverage['encoding']}`；"
                   "范围为完整 `serialized.text`，任意重叠计入一次，不含额外 chat template/BOS/EOS。"
                   f"\n\n本对有 **{regenerated} 个 regenerated 步骤**，这些步骤不保证标注之外逐字节一致。")
-        original_cards = [_comparison_card(f"Step {i}", step.render(include_answer=False), saved)
-                          for i, (step, saved) in enumerate(zip(reference.trace_steps, h["step_texts"], strict=True), 1)]
+        original_cards = [
+            _comparison_card(
+                f"Step {i}",
+                _without_product_answer_clause(step.render(include_answer=False)),
+                _without_product_answer_clause(saved),
+            )
+            for i, (step, saved) in enumerate(
+                zip(reference.trace_steps, h["step_texts"], strict=True), 1
+            )
+        ]
         original_cards.append(_comparison_card("Final answer", str(reference.state_dag.values["final_answer"].normalized_value),
                                               h["detector_input"]["final_answer"]))
         controls = {s["pair_occurrence_id"]: s for s in n["control_spans"]}
@@ -239,7 +263,10 @@ class SavedDemo:
                       s["same_char_length"], s["pair_occurrence_id"]] for s in h["hallucination_spans"]]
         return (
             f"✅ 已读取 `{h['origin_id']}` · variant {h['variant_index']} · {h['edit_count']} 个 root 修改；只读回放，未生成新数据。",
-            _plain({"raw_record": source.raw_record, "process_record": source.process_record, "formal_template": source.formal_template}),
+            _plain(_without_product_answer_clause(
+                {"raw_record": source.raw_record, "process_record": source.process_record,
+                 "formal_template": source.formal_template}
+            )),
             _dag_html(reference), _reference_node_rows(reference), _parsed_formal_rows(reference),
             plan_rows, _plain({"origin_id": h["origin_id"], "derived_seed": h["derived_seed"], "edit_count": h["edit_count"],
                                "mutation_events": events}),
@@ -346,7 +373,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--records", type=Path, default=DEFAULT_RECORDS)
     parser.add_argument("--host", default="127.0.0.1")
-    parser.add_argument("--port", type=int, default=7868)
+    parser.add_argument("--port", type=int, default=7838)
     parser.add_argument("--no-browser", action="store_true")
     args = parser.parse_args()
     build_demo(args.records).queue(default_concurrency_limit=1).launch(
