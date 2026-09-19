@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Resumable A/B/C/D ChemDFM-R MolEdit evaluation using saved H/N reasoning."""
+"""Resumable A/B/C/D MolEdit evaluation for Chem-R-8B and ChemDFM-R-14B."""
 from __future__ import annotations
 
 import argparse
@@ -16,9 +16,15 @@ import time
 
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_OUT = ROOT / "Pilot/Experiments/chemdfm_r14b_outcome_unified"
 PROTOCOL_VERSION = "outcome_abcd_saved_reasoning"
-MODEL = Path("/mnt_nas1/shared/ChemDFM-R-14B")
+MODELS = {
+    "Chem-R-8B": ROOT / "chemical_models/Chem-R-8B",
+    "ChemDFM-R-14B": Path("/mnt_nas1/shared/ChemDFM-R-14B"),
+}
+OUTPUT_DIRS = {
+    "Chem-R-8B": ROOT / "Pilot/Experiments/chem_r8b_outcome_unified",
+    "ChemDFM-R-14B": ROOT / "Pilot/Experiments/chemdfm_r14b_outcome_unified",
+}
 BASE = (
     "You are an expert chemist. Apply the requested edit to the source molecule. "
     "The plain and atom-indexed SMILES describe the same source molecule. "
@@ -201,7 +207,7 @@ def prepare(args) -> None:
     manifest = {
         "protocol_version": PROTOCOL_VERSION,
         "dataset": str(args.dataset.resolve()),
-        "model": {"path": str(args.model.resolve())},
+        "model": {"name": args.model_name, "path": str(args.model.resolve())},
         "n_pairs": len(truths),
         "n_requests": len(requests),
         "groups": {
@@ -249,8 +255,32 @@ def validate_predictions(predictions: list[dict], requests: list[dict]) -> dict:
     return done
 
 
+def stop_token_ids(tokenizer, model_path: Path) -> list[int]:
+    """Read EOS configuration and only recognize stop markers present in this tokenizer."""
+    ids = {tokenizer.eos_token_id}
+    for filename in ("config.json", "generation_config.json"):
+        path = Path(model_path) / filename
+        if path.exists():
+            eos = json.loads(path.read_text()).get("eos_token_id")
+            ids.update(eos if isinstance(eos, list) else [eos])
+    vocab = tokenizer.get_vocab()
+    for token in ("<|eot_id|>", "<|end_of_text|>", "<|im_end|>", "<|endoftext|>"):
+        token_id = vocab.get(token)
+        if token_id in tokenizer.all_special_ids:
+            ids.add(token_id)
+    return sorted(i for i in ids if isinstance(i, int) and i >= 0)
+
+
+def check_model_selection(args, manifest: dict) -> None:
+    saved = manifest["model"]
+    if (saved.get("name", args.model_name) != args.model_name
+            or Path(saved["path"]).resolve() != args.model.resolve()):
+        raise ValueError("Selected model differs from manifest; use the matching --model/--model-path and --output")
+
+
 def run(args) -> None:
     manifest, requests = load_experiment(args.output)
+    check_model_selection(args, manifest)
     results_path = args.output / "predictions.jsonl"
     existing = read_jsonl(results_path)
     done = validate_predictions(existing, requests)
@@ -267,7 +297,9 @@ def run(args) -> None:
     model = manifest["model"]["path"]
     tokenizer = AutoTokenizer.from_pretrained(model, local_files_only=True)
     prompts = [tokenizer.apply_chat_template(r["messages"], tokenize=False, add_generation_prompt=True) + r["assistant_prefix"] for r in pending]
-    lengths = [len(tokenizer.encode(p, add_special_tokens=False)) for p in prompts]
+    # Chat templates already include their own BOS/control tokens (notably Llama).
+    prompt_ids = [tokenizer.encode(p, add_special_tokens=False) for p in prompts]
+    lengths = [len(ids) for ids in prompt_ids]
     assert max(lengths) + manifest["sampling"]["max_tokens"] <= manifest["engine"]["max_model_len"]
     runtime = {
         "visible_gpus": os.environ.get("CUDA_VISIBLE_DEVICES", "all"),
@@ -283,23 +315,20 @@ def run(args) -> None:
     print("INITIALIZING " + json.dumps(runtime), flush=True)
 
     llm = LLM(model=model, seed=manifest["sampling"]["seed"], **manifest["engine"])
-    stop_ids = {
-        tokenizer.eos_token_id,
-        tokenizer.convert_tokens_to_ids("<|im_end|>"),
-        tokenizer.convert_tokens_to_ids("<|endoftext|>"),
-    }
-    stop_ids.discard(None)
-    params = SamplingParams(**manifest["sampling"], stop=["</answer>"], stop_token_ids=sorted(stop_ids), include_stop_str_in_output=True)
+    params = SamplingParams(**manifest["sampling"], stop=["</answer>"],
+                            stop_token_ids=stop_token_ids(tokenizer, Path(model)),
+                            include_stop_str_in_output=True)
     started = time.monotonic()
     written = 0
     with results_path.open("a") as handle:
         for offset in range(0, len(pending), manifest["batch_size"]):
             request_batch = pending[offset : offset + manifest["batch_size"]]
-            prompt_batch = prompts[offset : offset + manifest["batch_size"]]
+            prompt_batch = [{"prompt_token_ids": ids}
+                            for ids in prompt_ids[offset : offset + manifest["batch_size"]]]
             outputs = llm.generate(prompt_batch, params, use_tqdm=False)
             assert len(outputs) == len(request_batch)
             interrupted = []
-            for request, prompt, output in zip(request_batch, prompt_batch, outputs, strict=True):
+            for request, output in zip(request_batch, outputs, strict=True):
                 pred = output.outputs[0]
                 if pred.finish_reason not in {"stop", "length"}:
                     interrupted.append((request["request_id"], pred.finish_reason))
@@ -330,6 +359,7 @@ def run(args) -> None:
 
 def summarize(args) -> None:
     manifest, requests = load_experiment(args.output)
+    check_model_selection(args, manifest)
     chem = metrics_module()
     truths = {r["pair_id"]: r for r in read_jsonl(args.output / "ground_truth.jsonl")}
     expected = {r["request_id"]: r for r in requests}
@@ -384,7 +414,7 @@ def summarize(args) -> None:
             "mean_output_tokens": statistics.mean(r["output_tokens"] for r in items),
         }
 
-    summary = {"complete": len(records) == len(expected), "n_expected": len(expected),
+    summary = {"model": manifest["model"], "complete": len(records) == len(expected), "n_expected": len(expected),
                "n_completed": len(records), "groups": {}, "paired_primary_comparisons": {},
                "dataset_checks": manifest["dataset_checks"]}
     table = []
@@ -433,22 +463,30 @@ def self_check() -> None:
     print("PASS: extraction and atom-map normalization")
 
 
-def main() -> None:
+def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=("prepare", "run", "summarize", "self-check"))
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUT)
+    parser.add_argument("--output", type=Path, help="Defaults to a separate directory for each model")
     parser.add_argument("--dataset", type=Path, default=ROOT / "Pilot/GeneratedDataset/maximum_edits_complete.jsonl")
-    parser.add_argument("--model", type=Path, default=MODEL)
+    parser.add_argument("--model", dest="model_name", choices=MODELS, default="ChemDFM-R-14B")
+    parser.add_argument("--model-path", type=Path, help="Override the selected model's local weights directory")
     parser.add_argument("--pairs-per-subtask", type=int)
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--allow-partial", action="store_true")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
+    args.model = args.model_path or MODELS[args.model_name]
+    args.output = args.output or OUTPUT_DIRS[args.model_name]
     assert args.batch_size > 0
     if args.limit is not None:
         assert args.limit > 0
     if args.pairs_per_subtask is not None:
         assert args.pairs_per_subtask > 0
+    return args
+
+
+def main() -> None:
+    args = parse_args()
     if args.command == "self-check":
         self_check()
     else:

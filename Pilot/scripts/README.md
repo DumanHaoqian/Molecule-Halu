@@ -1,6 +1,6 @@
-# ChemDFM outcome experiment
+# Chemical LLM outcome experiment
 
-`run_chemdfm_outcome.py` is the single entry point replacing outcome v1–v4.
+`run_chemLLM_outcome.py` is the single entry point replacing outcome v1–v4.
 It evaluates existing H/N pairs; it does not train a model or generate dataset samples.
 
 | Group | Input | Output |
@@ -17,17 +17,35 @@ included in prompts. Both plain and atom-indexed source SMILES are provided.
 Run from `Pilot/scripts` in an environment with RDKit, Transformers and vLLM:
 
 ```bash
-python run_chemdfm_outcome.py self-check
-python run_chemdfm_outcome.py prepare
-CUDA_VISIBLE_DEVICES=0,1 python run_chemdfm_outcome.py run
-python run_chemdfm_outcome.py summarize
+source /home/haoqian/.venvs/chemllm-outcome/bin/activate
+python run_chemLLM_outcome.py self-check
+python run_chemLLM_outcome.py prepare --model Chem-R-8B
+CUDA_VISIBLE_DEVICES=0,1 python run_chemLLM_outcome.py run --model Chem-R-8B
+python run_chemLLM_outcome.py summarize --model Chem-R-8B
 ```
 
-The default model is `/mnt_nas1/shared/ChemDFM-R-14B`; choose a different local
-path with `--model` during `prepare`. The default output directory is
-`Pilot/Experiments/chemdfm_r14b_outcome_unified`. Use the same `--output` for all
-three commands when selecting another directory. Historical versioned experiment
-directories use a different format; prepare a new directory for this runner.
+The local `chemllm-outcome` environment inherits the existing skillopt packages
+and pins `huggingface-hub==0.36.2` for Transformers 4.57.6 / vLLM 0.19.0.
+The original skillopt environment retains Hub 1.32.0 for Gradio 6.28.0.
+Use this inference environment for the runner and the original environment for
+the Gradio demo.
+
+Choose `--model Chem-R-8B` or `--model ChemDFM-R-14B` for each command.
+The default remains ChemDFM-R-14B. Each uses its own tokenizer and chat template;
+EOS IDs are loaded from the model configuration and tokenizer, including Llama
+and Qwen end markers. The A/B/C/D instructions and decoding budget are the same
+for both models.
+
+| Model | Default local path | Output under `Pilot/Experiments/` |
+| --- | --- | --- |
+| Chem-R-8B | `chemical_models/Chem-R-8B` under the repository root | `chem_r8b_outcome_unified` |
+| ChemDFM-R-14B | `/mnt_nas1/shared/ChemDFM-R-14B` | `chemdfm_r14b_outcome_unified` |
+
+Use `--model-path /path/to/weights` to override a preset. Use the same model,
+path override and `--output` (if supplied) for prepare/run/summarize. The runner
+rejects a selection that differs from the saved experiment, preventing mixed-model
+results. Existing unified ChemDFM manifests remain readable; older versioned
+experiment directories require a fresh prepare.
 
 - `prepare --pairs-per-subtask 2` prepares a deterministic small sample.
 - `prepare --batch-size 8` sets the inference batch size.
