@@ -135,8 +135,11 @@ def test_saved_loader_rejects_incomplete_and_corrupt_pairs(saved_viewer, tmp_pat
     target.write_text((json.dumps(pair["H"]) + "\n") * 2)
     with pytest.raises(ValueError, match="duplicate"):
         gendemo.load_pairs(target)
-    pair["H"]["serialized"]["text"] += "corruption"
-    with pytest.raises(ValueError, match="SHA256"):
+    span = pair["H"]["hallucination_spans"][0]
+    start, end = span["serialized_span"]
+    text = pair["H"]["serialized"]["text"]
+    pair["H"]["serialized"]["text"] = text[:start] + "?" * (end - start) + text[end:]
+    with pytest.raises(ValueError, match="offset/text"):
         gendemo.validate_pair(pair["H"], pair["N"])
     pair = deepcopy(next(iter(saved_viewer.pairs.values())))
     pair["H"]["hallucination_spans"][0]["span"] = [0, 1]

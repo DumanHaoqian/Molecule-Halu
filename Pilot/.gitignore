@@ -19,3 +19,10 @@ __pycache__/
 
 # Redacted rejection diagnostics are local operational data, not source code.
 /GeneratedDataset/.poe_text_diagnostics/
+
+# Local, isolated inference dependency environment.
+/.venv-chemdfm-outcome/
+
+# Local experiment logs and generated results.
+/scripts/run_exp.log
+/scripts/run_exp_result.md

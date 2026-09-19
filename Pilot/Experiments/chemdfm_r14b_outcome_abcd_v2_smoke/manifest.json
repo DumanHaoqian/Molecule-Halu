@@ -1,0 +1,77 @@
+{
+  "protocol_version": "outcome_abcd_v2_no_product_leakage",
+  "script_sha256": "a464b4822b12488442781cbc172ccf0bd7c415b7e1b8d16460a475df40bf80cc",
+  "dataset": "/mnt_nas1/haoqian/Data/Molecule/Pilot/GeneratedDataset/maximum_edits_complete.jsonl",
+  "dataset_sha256": "cd05b8997dcff92516c20ba5061afffe784d274dae7edbd91a77fac83cfd9868",
+  "raw_reference_sha256": {
+    "/mnt_nas1/haoqian/Data/Molecule/Pilot/Dataset/raw_benchmark_data/mol_edit/add_pilot_origin.json": "682c9976d22a710e2b02d3ee905c0e9e779f7a2b15a81128f54037223cae5db3",
+    "/mnt_nas1/haoqian/Data/Molecule/Pilot/Dataset/raw_benchmark_data/mol_edit/delete_pilot_origin.json": "4b6bef74d2cb888ca19a97d62dea366377e94999e6ed768fdc908a4be2cc907a",
+    "/mnt_nas1/haoqian/Data/Molecule/Pilot/Dataset/raw_benchmark_data/mol_edit/substitute_pilot_origin.json": "2fa1e4f71392a118a29d90d969cf928846b4aa647cc802ac538753e57a22503e"
+  },
+  "model": {
+    "path": "/mnt_nas1/shared/ChemDFM-R-14B",
+    "config.json_sha256": "5bf45a2a896c86b9171ae87c39e257d51f5e52f2377460105053df87a89eb9ec",
+    "generation_config.json_sha256": "1885f704d679e62a94a070952b8f6740aa025baf125b96a228457c6851fb96ad",
+    "tokenizer_config.json_sha256": "0a04a9d7d4a62b28482bdfe726c122756de85714fb64166ace92ae75b8f57614",
+    "model.safetensors.index.json_sha256": "425811015c8708208c9efc04c4cfae250c7927a1b04c99dda5a9121caf4bf77a"
+  },
+  "n_pairs": 6,
+  "n_requests": 24,
+  "groups": {
+    "A": "Plain+indexed question; direct answer",
+    "B": "Plain+indexed question + product-redacted H reasoning; direct answer",
+    "C": "Plain+indexed question + product-redacted N reasoning; direct answer",
+    "D": "Plain+indexed question; model-generated reasoning and answer"
+  },
+  "subtasks": {
+    "add": 2,
+    "delete": 2,
+    "substitute": 2
+  },
+  "sampling": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "repetition_penalty": 1.05,
+    "max_tokens": 2048,
+    "seed": 42,
+    "n": 1
+  },
+  "engine": {
+    "dtype": "bfloat16",
+    "tensor_parallel_size": 2,
+    "max_model_len": 16384,
+    "gpu_memory_utilization": 0.88,
+    "max_num_seqs": 16,
+    "max_num_batched_tokens": 8192,
+    "enforce_eager": true,
+    "disable_custom_all_reduce": true,
+    "enable_prefix_caching": false,
+    "generation_config": "vllm"
+  },
+  "allowed_visible_gpus": [
+    "6",
+    "7"
+  ],
+  "batch_size": 8,
+  "assistant_prefixes": {
+    "A": "<think>\n</think>\n<answer>\n",
+    "B": "<think>\n</think>\n<answer>\n",
+    "C": "<think>\n</think>\n<answer>\n",
+    "D": "<think>\n"
+  },
+  "dataset_checks": {
+    "H_product_mentions_removed": 6,
+    "N_product_mentions_removed": 6,
+    "redacted_H_N_reasoning_differ": 6
+  },
+  "gt_source": "Original benchmark gt_smiles joined by origin_id == anonymous_sample_id",
+  "primary_metric": "Atom-map-normalized main-fragment molecular equality",
+  "secondary_metrics": [
+    "atom-map-normalized exact equality",
+    "raw strict equality",
+    "FTS"
+  ],
+  "requests_sha256": "5d9690a816c85bd5694dd4a759dad31584e3ed5ca0d71e4842f0e70a5d2c5537",
+  "ground_truth_sha256": "d60becb3ab6d93d15272dc5550966bda7eee3966d8cdd07738aab52a26214fbe"
+}

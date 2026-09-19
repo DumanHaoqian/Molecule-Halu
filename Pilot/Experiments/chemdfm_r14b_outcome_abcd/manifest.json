@@ -1,0 +1,68 @@
+{
+  "dataset": "/mnt_nas1/haoqian/Data/Molecule/Pilot/GeneratedDataset/maximum_edits_complete.jsonl",
+  "dataset_sha256": "cd05b8997dcff92516c20ba5061afffe784d274dae7edbd91a77fac83cfd9868",
+  "raw_reference_sha256": {
+    "/mnt_nas1/haoqian/Data/Molecule/Pilot/Dataset/raw_benchmark_data/mol_edit/add_pilot_origin.json": "682c9976d22a710e2b02d3ee905c0e9e779f7a2b15a81128f54037223cae5db3",
+    "/mnt_nas1/haoqian/Data/Molecule/Pilot/Dataset/raw_benchmark_data/mol_edit/delete_pilot_origin.json": "4b6bef74d2cb888ca19a97d62dea366377e94999e6ed768fdc908a4be2cc907a",
+    "/mnt_nas1/haoqian/Data/Molecule/Pilot/Dataset/raw_benchmark_data/mol_edit/substitute_pilot_origin.json": "2fa1e4f71392a118a29d90d969cf928846b4aa647cc802ac538753e57a22503e"
+  },
+  "model": "/mnt_nas1/shared/ChemDFM-R-14B",
+  "n_pairs": 150,
+  "n_requests": 600,
+  "groups": {
+    "A": "Question, direct answer",
+    "B": "Question + H reasoning, direct answer",
+    "C": "Question + N reasoning, direct answer",
+    "D": "Question, model-generated CoT and answer"
+  },
+  "subtasks": {
+    "add": 50,
+    "delete": 50,
+    "substitute": 50
+  },
+  "sampling": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "repetition_penalty": 1.0,
+    "max_tokens": 8192,
+    "seed": 42,
+    "n": 1
+  },
+  "engine": {
+    "dtype": "bfloat16",
+    "tensor_parallel_size": 2,
+    "max_model_len": 16384,
+    "gpu_memory_utilization": 0.88,
+    "max_num_seqs": 16,
+    "max_num_batched_tokens": 8192,
+    "enforce_eager": true,
+    "disable_custom_all_reduce": true,
+    "enable_prefix_caching": false,
+    "generation_config": "vllm"
+  },
+  "assistant_prefixes": {
+    "A": "<think>\n</think>\n<answer>\n",
+    "B": "<think>\n</think>\n<answer>\n",
+    "C": "<think>\n</think>\n<answer>\n",
+    "D": "<think>\n"
+  },
+  "dataset_checks": {
+    "H_reasoning_contains_product": 150,
+    "H_reasoning_product_matches_gt": 150,
+    "N_reasoning_contains_product": 150,
+    "N_reasoning_product_matches_gt": 150
+  },
+  "gt_source": "Original benchmark gt_smiles, joined by origin_id = anonymous_sample_id",
+  "primary_metric": "ChemCoTBench-V2 smiles_match_exact on generated final answer",
+  "secondary_metrics": [
+    "smiles_match_main_frag",
+    "fts"
+  ],
+  "failure_policy": "Every question remains in denominator. Missing/invalid final answers score zero.",
+  "reasoning_policy": "Retain full H/N reasoning including existing PRODUCT_SMILES. No H/N labels, spans, GT fields or final_answer field are in requests.",
+  "direct_answer_policy": "Prefill an empty think block and an open answer tag for A/B/C. D starts with an open think tag.",
+  "requests_sha256": "9732718e997c7d5bf7c6ca296f94ae08c420b760c63489ab1600096fbfb9c121",
+  "ground_truth_sha256": "3bb47ac5df67aa333cc21b25dd293e9187ad671c5348121cff0c3ab4ee297a09",
+  "benchmark_utils_sha256": "7e3959f0fd8bbcf57659a8b29a5cffd8769c7c3bfeb497ec2ae1876cf42a5894"
+}

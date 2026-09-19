@@ -1,0 +1,1 @@
+{"visible_gpus": "6,7", "python": "/home/haoqian/Data/miniconda3/envs/skillopt/bin/python", "versions": {"torch": "2.10.0", "vllm": "0.19.0", "transformers": "4.57.6", "huggingface-hub": "0.36.2"}, "pending": 540, "prompt_tokens_min_max": [324, 989], "script_sha256": "30df0eb10d4e1cef0e3362222f41345e96246bdc771e4bdde67ddbd8fcc679f9", "started_at": "2026-09-06T03:46:53+0800"}

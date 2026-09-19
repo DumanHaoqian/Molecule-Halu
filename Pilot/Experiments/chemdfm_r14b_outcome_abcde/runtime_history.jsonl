@@ -1,0 +1,1 @@
+{"visible_gpus": "4,5,6,7", "python": "/home/haoqian/.venvs/chemllm-outcome/bin/python", "versions": {"torch": "2.10.0", "vllm": "0.19.0", "transformers": "4.57.6", "huggingface-hub": "0.36.2"}, "pending": 750, "prompt_tokens_min_max": [324, 1361], "started_at": "2026-09-19T22:48:18+0800"}

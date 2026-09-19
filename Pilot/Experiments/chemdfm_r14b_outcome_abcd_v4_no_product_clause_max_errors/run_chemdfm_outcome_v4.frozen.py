@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Resumable A/B/C/D/E MolEdit evaluation for Chem-R-8B and ChemDFM-R-14B."""
+"""No-product-clause, maximum-error ChemDFM-R MolEdit outcome experiment."""
 from __future__ import annotations
 
 import argparse
 import collections
 import csv
+import hashlib
 import importlib.metadata
 import json
 import os
@@ -16,16 +17,8 @@ import time
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PROTOCOL_VERSION = "outcome_abcde_saved_reasoning"
-GROUPS = "ABCDE"
-MODELS = {
-    "Chem-R-8B": ROOT / "chemical_models/Chem-R-8B",
-    "ChemDFM-R-14B": Path("/mnt_nas1/shared/ChemDFM-R-14B"),
-}
-OUTPUT_DIRS = {
-    "Chem-R-8B": ROOT / "Pilot/Experiments/chem_r8b_outcome_abcde",
-    "ChemDFM-R-14B": ROOT / "Pilot/Experiments/chemdfm_r14b_outcome_abcde",
-}
+DEFAULT_OUT = ROOT / "Pilot/Experiments/chemdfm_r14b_outcome_abcd_v4_no_product_clause_max_errors"
+MODEL = Path("/mnt_nas1/shared/ChemDFM-R-14B")
 BASE = (
     "You are an expert chemist. Apply the requested edit to the source molecule. "
     "The plain and atom-indexed SMILES describe the same source molecule. "
@@ -37,8 +30,16 @@ COT = BASE + (
     " Reason step by step inside <think>...</think>, then return "
     "<answer>PRODUCT_SMILES</answer>."
 )
-PREFIXES = {g: "<think>\n</think>\n<answer>\n" for g in "ABCE"}
+PREFIXES = {g: "<think>\n</think>\n<answer>\n" for g in "ABC"}
 PREFIXES["D"] = "<think>\n"
+
+
+def sha(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def script_sha() -> str:
+    return sha(Path(__file__).read_bytes())
 
 
 def read_jsonl(path: Path) -> list[dict]:
@@ -82,6 +83,18 @@ def has_atom_maps(smiles: str) -> bool:
     return bool(mol is not None and any(atom.GetAtomMapNum() for atom in mol.GetAtoms()))
 
 
+def remove_product_clause(reasoning: str, product_strings: set[str]) -> str:
+    """Delete every literal product and the entire arrow-to-PRODUCT_SMILES clause."""
+    result = reasoning
+    result = re.sub(r'\s*-->\s*PRODUCT_SMILES\("[^"\n]*"\)', "", result)
+    result = re.sub(r'^\s*PRODUCT_SMILES\("[^"\n]*"\)\s*$', "", result, flags=re.M)
+    for value in sorted({x for x in product_strings if x}, key=len, reverse=True):
+        result = result.replace(value, "")
+    result = re.sub(r'[ \t]+\n', "\n", result)
+    result = re.sub(r'\n{3,}', "\n\n", result)
+    return result.strip()
+
+
 def extract_answer(response: str) -> tuple[str, str]:
     blocks = re.findall(r"<answer>\s*(.*?)\s*</answer>", response, re.S | re.I)
     if blocks:
@@ -115,21 +128,13 @@ def select_pairs(pairs: dict[str, dict], per_subtask: int | None) -> list[tuple[
     return selected
 
 
-def select_reasoning_donors(pairs: dict[str, dict]) -> dict[str, str]:
-    """Deterministic circular assignment from the full dataset, preferring the same subtask."""
-    ordered = sorted(pairs)
-    donors = {}
-    for index, pair_id in enumerate(ordered):
-        target = pairs[pair_id]["N"]
-        circular = ordered[index + 1:] + ordered[:index]
-        candidates = [key for key in circular
-                      if pairs[key]["N"]["origin_id"] != target["origin_id"]]
-        if not candidates:
-            raise ValueError("Group E requires an N record from a different origin")
-        matching = [key for key in candidates
-                    if pairs[key]["N"]["subtask"] == target["subtask"]]
-        donors[pair_id] = (matching or candidates)[0]
-    return donors
+def model_metadata(model: Path) -> dict:
+    result = {"path": str(model)}
+    for name in ("config.json", "generation_config.json", "tokenizer_config.json", "model.safetensors.index.json"):
+        path = model / name
+        if path.exists():
+            result[f"{name}_sha256"] = sha(path.read_bytes())
+    return result
 
 
 def prepare(args) -> None:
@@ -144,9 +149,10 @@ def prepare(args) -> None:
         assert row["variant_label"] not in pairs[row["pair_id"]]
         pairs[row["pair_id"]][row["variant_label"]] = row
 
-    raw = {}
+    raw, raw_hashes = {}, {}
     for subtask in ("add", "delete", "substitute"):
         path = ROOT / f"Pilot/Dataset/raw_benchmark_data/mol_edit/{subtask}_pilot_origin.json"
+        raw_hashes[str(path)] = sha(path.read_bytes())
         for row in json.loads(path.read_text()):
             assert row["anonymous_sample_id"] not in raw
             raw[row["anonymous_sample_id"]] = row
@@ -154,7 +160,6 @@ def prepare(args) -> None:
     requests, truths = [], []
     checks = collections.Counter()
     selected = select_pairs(pairs, args.pairs_per_subtask)
-    donors = select_reasoning_donors(pairs)
     for pair_index, (pair_id, pair) in enumerate(selected):
         assert set(pair) == {"H", "N"}
         h, n = pair["H"], pair["N"]
@@ -169,15 +174,23 @@ def prepare(args) -> None:
         assert chem.smiles_match_exact(gt["gt_smiles"], h["detector_input"]["final_answer"])
         assert chem.smiles_match_exact(gt["gt_smiles"], n["detector_input"]["final_answer"])
 
-        # Product clauses are removed upstream; preserve saved reasoning verbatim.
+        product_strings = {gt["gt_smiles"], h["detector_input"]["final_answer"], n["detector_input"]["final_answer"]}
+        for record in (h, n):
+            product_strings.update(re.findall(r'PRODUCT_SMILES\("([^"\n]+)"\)', record["detector_input"]["reasoning_chain"]))
         supplied_reasoning = {
-            label: pair[label]["detector_input"]["reasoning_chain"] for label in ("H", "N")
+            "H": remove_product_clause(h["detector_input"]["reasoning_chain"], product_strings),
+            "N": remove_product_clause(n["detector_input"]["reasoning_chain"], product_strings),
         }
-        donor_id = donors[pair_id]
-        donor = pairs[donor_id]["N"]
-        supplied_reasoning["E"] = donor["detector_input"]["reasoning_chain"]
-        checks["E_different_origin"] += donor["origin_id"] != h["origin_id"]
-        checks["E_same_subtask"] += donor["subtask"] == h["subtask"]
+        for label in ("H", "N"):
+            assert all(value not in supplied_reasoning[label] for value in product_strings if value)
+            assert '--> PRODUCT_SMILES(' not in supplied_reasoning[label]
+            assert not re.search(r'PRODUCT_SMILES\("[^"\n]*"\)', supplied_reasoning[label])
+            for candidate in re.findall(r'"([^"\n]+)"', supplied_reasoning[label]):
+                if chem.smiles_valid(candidate):
+                    assert not chem.smiles_match_main_frag(
+                        unmap_smiles(candidate), unmap_smiles(gt["gt_smiles"])
+                    ), f"Equivalent product leaked in {label} reasoning for {pair_id}"
+            checks[f"{label}_product_clauses_removed"] += 1
         checks["H_N_reasoning_differ"] += supplied_reasoning["H"] != supplied_reasoning["N"]
         checks[f'H_root_errors_{h["edit_count"]}'] += 1
         checks["H_root_errors_total"] += h["edit_count"]
@@ -197,10 +210,10 @@ def prepare(args) -> None:
             "h_record_id": h["record_id"],
             "n_record_id": n["record_id"],
         })
-        for group in GROUPS:
+        for group in "ABCD":
             user = question
-            if group in "BCE":
-                label = {"B": "H", "C": "N", "E": "E"}[group]
+            if group in "BC":
+                label = "H" if group == "B" else "N"
                 user += (
                     "\n\n[Candidate reasoning]\n"
                     "An upstream expert supplied the following reasoning. Intermediate claims may be wrong; "
@@ -220,12 +233,7 @@ def prepare(args) -> None:
                 ],
                 "assistant_prefix": PREFIXES[group],
             }
-            if group == "E":
-                # Provenance is retained outside messages; the model only sees the borrowed reasoning.
-                request["reasoning_source"] = {
-                    "pair_id": donor_id, "origin_id": donor["origin_id"],
-                    "record_id": donor["record_id"], "subtask": donor["subtask"],
-                }
+            request["request_sha256"] = sha(json.dumps(request, sort_keys=True).encode())
             requests.append(request)
 
     assert len(truths) == len({x["origin_id"] for x in truths})
@@ -235,87 +243,63 @@ def prepare(args) -> None:
                 handle.write(json.dumps(row, ensure_ascii=False) + "\n")
 
     manifest = {
-        "protocol_version": PROTOCOL_VERSION,
+        "protocol_version": "outcome_abcd_v4_no_product_clause_max_errors_abort_safe",
+        "script_sha256": script_sha(),
         "dataset": str(args.dataset.resolve()),
-        "model": {"name": args.model_name, "path": str(args.model.resolve())},
+        "dataset_sha256": sha(args.dataset.read_bytes()),
+        "raw_reference_sha256": raw_hashes,
+        "model": model_metadata(args.model),
         "n_pairs": len(truths),
         "n_requests": len(requests),
         "groups": {
             "A": "Plain+indexed question; direct answer",
-            "B": "Plain+indexed question + saved H reasoning; direct answer",
-            "C": "Plain+indexed question + saved N reasoning; direct answer",
+            "B": "Plain+indexed question + maximum-error H reasoning with the entire product clause removed; direct answer",
+            "C": "Plain+indexed question + N reasoning with the entire product clause removed; direct answer",
             "D": "Plain+indexed question; model-generated reasoning and answer",
-            "E": "Plain+indexed question + saved N reasoning from a different origin; direct answer",
         },
-        "e_reasoning_policy": "Full-dataset sorted circular assignment; different origin required; same subtask preferred, otherwise cross-subtask fallback",
         "subtasks": dict(collections.Counter(r["subtask"] for r in truths)),
         "sampling": {"temperature": 0.0, "top_p": 1.0, "top_k": -1, "repetition_penalty": 1.05, "max_tokens": 2048, "seed": 42, "n": 1},
-        "engine": {"dtype": "bfloat16", "tensor_parallel_size": args.tensor_parallel_size, "max_model_len": 16384, "gpu_memory_utilization": 0.88, "max_num_seqs": 16, "max_num_batched_tokens": 8192, "enforce_eager": True, "disable_custom_all_reduce": True, "enable_prefix_caching": False, "generation_config": "vllm"},
+        "engine": {"dtype": "bfloat16", "tensor_parallel_size": 2, "max_model_len": 16384, "gpu_memory_utilization": 0.88, "max_num_seqs": 16, "max_num_batched_tokens": 8192, "enforce_eager": True, "disable_custom_all_reduce": True, "enable_prefix_caching": False, "generation_config": "vllm"},
+        "allowed_visible_gpus": ["0", "1"],
         "batch_size": args.batch_size,
         "assistant_prefixes": PREFIXES,
         "dataset_checks": dict(checks),
         "gt_source": "Original benchmark gt_smiles joined by origin_id == anonymous_sample_id",
         "primary_metric": "Atom-map-normalized main-fragment molecular equality",
         "secondary_metrics": ["atom-map-normalized exact equality", "raw strict equality", "FTS"],
+        "requests_sha256": sha((out / "requests.jsonl").read_bytes()),
+        "ground_truth_sha256": sha((out / "ground_truth.jsonl").read_bytes()),
     }
     save_json(out / "manifest.json", manifest)
     print(json.dumps(manifest, indent=2), flush=True)
 
 
-def load_experiment(out: Path) -> tuple[dict, list[dict]]:
+def validate_frozen(out: Path) -> tuple[dict, list[dict]]:
     manifest = json.loads((out / "manifest.json").read_text())
-    if manifest.get("protocol_version") != PROTOCOL_VERSION:
-        raise ValueError("Use a fresh output directory and prepare the five-group A/B/C/D/E experiment")
-    requests = read_jsonl(out / "requests.jsonl")
-    if len(requests) != manifest["n_requests"] or len({r["request_id"] for r in requests}) != len(requests):
-        raise ValueError("Incomplete or duplicate experiment requests")
-    return manifest, requests
+    assert script_sha() == manifest["script_sha256"], "Experiment script changed after prepare"
+    assert sha((out / "requests.jsonl").read_bytes()) == manifest["requests_sha256"]
+    assert sha((out / "ground_truth.jsonl").read_bytes()) == manifest["ground_truth_sha256"]
+    return manifest, read_jsonl(out / "requests.jsonl")
 
 
-def validate_predictions(predictions: list[dict], requests: list[dict]) -> dict:
-    expected = {r["request_id"]: r for r in requests}
-    done = {}
-    for prediction in predictions:
-        key = prediction["request_id"]
-        if key not in expected or key in done:
-            raise ValueError(f"Unknown or duplicate prediction request: {key}")
-        if prediction.get("request") != expected[key]:
-            raise ValueError(f"Saved request content differs: {key}")
-        if prediction["finish_reason"] not in {"stop", "length"}:
-            raise ValueError(f"Non-terminal prediction must be regenerated: {key}")
-        done[key] = prediction
-    return done
-
-
-def stop_token_ids(tokenizer, model_path: Path) -> list[int]:
-    """Read EOS configuration and only recognize stop markers present in this tokenizer."""
-    ids = {tokenizer.eos_token_id}
-    for filename in ("config.json", "generation_config.json"):
-        path = Path(model_path) / filename
-        if path.exists():
-            eos = json.loads(path.read_text()).get("eos_token_id")
-            ids.update(eos if isinstance(eos, list) else [eos])
-    vocab = tokenizer.get_vocab()
-    for token in ("<|eot_id|>", "<|end_of_text|>", "<|im_end|>", "<|endoftext|>"):
-        token_id = vocab.get(token)
-        if token_id in tokenizer.all_special_ids:
-            ids.add(token_id)
-    return sorted(i for i in ids if isinstance(i, int) and i >= 0)
-
-
-def check_model_selection(args, manifest: dict) -> None:
-    saved = manifest["model"]
-    if (saved.get("name", args.model_name) != args.model_name
-            or Path(saved["path"]).resolve() != args.model.resolve()):
-        raise ValueError("Selected model differs from manifest; use the matching --model/--model-path and --output")
+def require_gpu_0_1() -> None:
+    visible = [x.strip() for x in os.environ.get("CUDA_VISIBLE_DEVICES", "").split(",") if x.strip()]
+    assert visible == ["0", "1"], f"Refusing to run: CUDA_VISIBLE_DEVICES must be exactly 0,1, got {visible}"
 
 
 def run(args) -> None:
-    manifest, requests = load_experiment(args.output)
-    check_model_selection(args, manifest)
+    require_gpu_0_1()
+    from transformers import AutoTokenizer
+    from vllm import LLM, SamplingParams
+
+    manifest, requests = validate_frozen(args.output)
     results_path = args.output / "predictions.jsonl"
     existing = read_jsonl(results_path)
-    done = validate_predictions(existing, requests)
+    done = {r["request_id"]: r for r in existing}
+    assert len(done) == len(existing)
+    for request in requests:
+        if request["request_id"] in done:
+            assert done[request["request_id"]]["request_sha256"] == request["request_sha256"]
     pending = [r for r in requests if r["request_id"] not in done]
     if args.limit:
         pending = pending[: args.limit]
@@ -323,22 +307,18 @@ def run(args) -> None:
         print("All requested rows already complete", flush=True)
         return
 
-    from transformers import AutoTokenizer
-    from vllm import LLM, SamplingParams
-
     model = manifest["model"]["path"]
     tokenizer = AutoTokenizer.from_pretrained(model, local_files_only=True)
     prompts = [tokenizer.apply_chat_template(r["messages"], tokenize=False, add_generation_prompt=True) + r["assistant_prefix"] for r in pending]
-    # Chat templates already include their own BOS/control tokens (notably Llama).
-    prompt_ids = [tokenizer.encode(p, add_special_tokens=False) for p in prompts]
-    lengths = [len(ids) for ids in prompt_ids]
+    lengths = [len(tokenizer.encode(p, add_special_tokens=False)) for p in prompts]
     assert max(lengths) + manifest["sampling"]["max_tokens"] <= manifest["engine"]["max_model_len"]
     runtime = {
-        "visible_gpus": os.environ.get("CUDA_VISIBLE_DEVICES", "all"),
+        "visible_gpus": os.environ["CUDA_VISIBLE_DEVICES"],
         "python": sys.executable,
         "versions": {p: importlib.metadata.version(p) for p in ("torch", "vllm", "transformers", "huggingface-hub")},
         "pending": len(pending),
         "prompt_tokens_min_max": [min(lengths), max(lengths)],
+        "script_sha256": script_sha(),
         "started_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
     }
     with (args.output / "runtime_history.jsonl").open("a") as handle:
@@ -347,27 +327,31 @@ def run(args) -> None:
     print("INITIALIZING " + json.dumps(runtime), flush=True)
 
     llm = LLM(model=model, seed=manifest["sampling"]["seed"], **manifest["engine"])
-    params = SamplingParams(**manifest["sampling"], stop=["</answer>"],
-                            stop_token_ids=stop_token_ids(tokenizer, Path(model)),
-                            include_stop_str_in_output=True)
+    stop_ids = {
+        tokenizer.eos_token_id,
+        tokenizer.convert_tokens_to_ids("<|im_end|>"),
+        tokenizer.convert_tokens_to_ids("<|endoftext|>"),
+    }
+    stop_ids.discard(None)
+    params = SamplingParams(**manifest["sampling"], stop=["</answer>"], stop_token_ids=sorted(stop_ids), include_stop_str_in_output=True)
     started = time.monotonic()
     written = 0
     with results_path.open("a") as handle:
         for offset in range(0, len(pending), manifest["batch_size"]):
             request_batch = pending[offset : offset + manifest["batch_size"]]
-            prompt_batch = [{"prompt_token_ids": ids}
-                            for ids in prompt_ids[offset : offset + manifest["batch_size"]]]
+            prompt_batch = prompts[offset : offset + manifest["batch_size"]]
             outputs = llm.generate(prompt_batch, params, use_tqdm=False)
             assert len(outputs) == len(request_batch)
             interrupted = []
-            for request, output in zip(request_batch, outputs, strict=True):
+            for request, prompt, output in zip(request_batch, prompt_batch, outputs, strict=True):
                 pred = output.outputs[0]
                 if pred.finish_reason not in {"stop", "length"}:
                     interrupted.append((request["request_id"], pred.finish_reason))
                     continue
-                result = {k: request[k] for k in ("request_id", "group", "pair_id", "origin_id", "subtask")}
+                result = {k: request[k] for k in ("request_id", "group", "pair_id", "origin_id", "subtask", "request_sha256")}
                 result.update({
-                    "request": request,
+                    "rendered_prompt_sha256": sha(prompt.encode()),
+                    "script_sha256": script_sha(),
                     "assistant_prefix": request["assistant_prefix"],
                     "generated_text": pred.text,
                     "assistant_response": request["assistant_prefix"] + pred.text,
@@ -390,18 +374,24 @@ def run(args) -> None:
 
 
 def summarize(args) -> None:
-    manifest, requests = load_experiment(args.output)
-    check_model_selection(args, manifest)
+    manifest, requests = validate_frozen(args.output)
     chem = metrics_module()
     truths = {r["pair_id"]: r for r in read_jsonl(args.output / "ground_truth.jsonl")}
     expected = {r["request_id"]: r for r in requests}
     predictions = read_jsonl(args.output / "predictions.jsonl")
-    validate_predictions(predictions, requests)
+    assert len({r["request_id"] for r in predictions}) == len(predictions)
+    assert {r["request_id"] for r in predictions} <= set(expected)
+    interrupted = [r["request_id"] for r in predictions if r["finish_reason"] not in {"stop", "length"}]
+    if interrupted:
+        raise RuntimeError(f"Non-terminal predictions must be regenerated: {interrupted}")
     if len(predictions) != len(expected) and not args.allow_partial:
         raise RuntimeError(f"Incomplete: {len(predictions)}/{len(expected)}")
 
     records = []
     for pred in predictions:
+        request = expected[pred["request_id"]]
+        assert pred["request_sha256"] == request["request_sha256"]
+        assert pred["script_sha256"] == manifest["script_sha256"]
         answer, extraction = extract_answer(pred["assistant_response"])
         gt = truths[pred["pair_id"]]
         normalized_pred = unmap_smiles(answer)
@@ -446,11 +436,9 @@ def summarize(args) -> None:
             "mean_output_tokens": statistics.mean(r["output_tokens"] for r in items),
         }
 
-    summary = {"model": manifest["model"], "complete": len(records) == len(expected), "n_expected": len(expected),
-               "n_completed": len(records), "groups": {}, "paired_primary_comparisons": {},
-               "dataset_checks": manifest["dataset_checks"]}
+    summary = {"complete": len(records) == len(expected), "n_expected": len(expected), "n_completed": len(records), "groups": {}, "paired_primary_comparisons": {}, "dataset_checks": manifest["dataset_checks"], "script_sha256": script_sha()}
     table = []
-    for group in GROUPS:
+    for group in "ABCD":
         items = [r for r in records if r["group"] == group]
         if not items:
             continue
@@ -468,8 +456,7 @@ def summarize(args) -> None:
     by_pair = collections.defaultdict(dict)
     for row in records:
         by_pair[row["pair_id"]][row["group"]] = row
-    for lhs, rhs in (("B", "A"), ("C", "A"), ("D", "A"), ("C", "B"),
-                     ("E", "A"), ("C", "E"), ("B", "E")):
+    for lhs, rhs in (("B", "A"), ("C", "A"), ("D", "A"), ("C", "B")):
         pairs = [p for p in by_pair.values() if lhs in p and rhs in p]
         if pairs:
             summary["paired_primary_comparisons"][f"{lhs}_vs_{rhs}"] = {
@@ -481,7 +468,7 @@ def summarize(args) -> None:
             }
     save_json(args.output / "summary.json", summary)
     with (args.output / "summary.csv").open("w") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(table[0]) if table else ["group", "subtask", "n"])
+        writer = csv.DictWriter(handle, fieldnames=list(table[0]))
         writer.writeheader()
         writer.writerows(table)
     print(json.dumps(summary, indent=2), flush=True)
@@ -491,37 +478,28 @@ def self_check() -> None:
     assert extract_answer("<think>\n</think>\n<answer>\nCCO</answer>") == ("CCO", "answer_tag")
     assert extract_answer("<think>CCN</think><answer>CCO</answer>")[0] == "CCO"
     assert extract_answer("<think>Answer: CCN")[0] == ""
+    text = 'FORMAL: X --> PRODUCT_SMILES("CCO")\nRepeated literal CCO'
+    stripped = remove_product_clause(text, {"CCO"})
+    assert stripped == "FORMAL: X\nRepeated literal"
     assert unmap_smiles("[CH3:1][CH2:2][OH:3]") == "CCO"
     assert has_atom_maps("[CH3:1][CH2:2][OH:3]") and not has_atom_maps("OCC")
-    print("PASS: extraction and atom-map normalization")
-
-
-def parse_args(argv=None):
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("prepare", "run", "summarize", "self-check"))
-    parser.add_argument("--output", type=Path, help="Defaults to a separate directory for each model")
-    parser.add_argument("--dataset", type=Path, default=ROOT / "Pilot/GeneratedDataset/maximum_edits_complete.jsonl")
-    parser.add_argument("--model", dest="model_name", choices=MODELS, default="ChemDFM-R-14B")
-    parser.add_argument("--model-path", type=Path, help="Override the selected model's local weights directory")
-    parser.add_argument("--pairs-per-subtask", type=int)
-    parser.add_argument("--batch-size", type=int, default=8)
-    parser.add_argument("--tensor-parallel-size", type=int, default=2)
-    parser.add_argument("--limit", type=int)
-    parser.add_argument("--allow-partial", action="store_true")
-    args = parser.parse_args(argv)
-    args.model = args.model_path or MODELS[args.model_name]
-    args.output = args.output or OUTPUT_DIRS[args.model_name]
-    assert args.batch_size > 0
-    assert args.tensor_parallel_size > 0
-    if args.limit is not None:
-        assert args.limit > 0
-    if args.pairs_per_subtask is not None:
-        assert args.pairs_per_subtask > 0
-    return args
+    print("PASS: extraction, product-clause removal, and atom-map normalization")
 
 
 def main() -> None:
-    args = parse_args()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("command", choices=("prepare", "run", "summarize", "self-check"))
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUT)
+    parser.add_argument("--dataset", type=Path, default=ROOT / "Pilot/GeneratedDataset/maximum_edits_complete.jsonl")
+    parser.add_argument("--model", type=Path, default=MODEL)
+    parser.add_argument("--pairs-per-subtask", type=int)
+    parser.add_argument("--batch-size", type=int, default=8)
+    parser.add_argument("--limit", type=int)
+    parser.add_argument("--allow-partial", action="store_true")
+    args = parser.parse_args()
+    assert args.batch_size > 0
+    if args.pairs_per_subtask is not None:
+        assert args.pairs_per_subtask > 0
     if args.command == "self-check":
         self_check()
     else:

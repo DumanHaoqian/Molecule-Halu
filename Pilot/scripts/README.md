@@ -9,10 +9,26 @@ It evaluates existing H/N pairs; it does not train a model or generate dataset s
 | B | Question + saved H reasoning | Answer only |
 | C | Question + saved N reasoning | Answer only |
 | D | Question | Model-generated reasoning + answer |
+| E | Question + saved N reasoning from another question | Answer only |
 
 The dataset must already have product-answer clauses removed. H/N reasoning is
 passed through unchanged. Dataset labels, spans and final-answer fields are not
 included in prompts. Both plain and atom-indexed source SMILES are provided.
+
+E borrows the unmodified N reasoning from a different origin in the full input
+JSONL, even when `--pairs-per-subtask` selects fewer target questions. Assignment
+is deterministic: visit sorted pair IDs circularly, prefer another origin with
+the same edit subtask, and fall back to a different subtask only if necessary.
+At least two distinct origins are required. No same-origin variant can serve as
+a donor. B/C/E share the same candidate-reasoning introduction and direct-answer
+prefix; only the supplied reasoning changes. The borrowed question and final
+answer are not added. `reasoning_source` in each E request records the donor pair,
+origin, record and subtask outside the model messages. Predictions retain this
+metadata in their saved `request`.
+
+A full 150-question dataset now produces 750 requests per model. Summaries include
+E scores and paired comparisons E vs A, C vs E, and B vs E, alongside the original
+comparisons. Donor text lengths are not matched to target reasoning lengths.
 
 Run from `Pilot/scripts` in an environment with RDKit, Transformers and vLLM:
 
@@ -33,19 +49,19 @@ the Gradio demo.
 Choose `--model Chem-R-8B` or `--model ChemDFM-R-14B` for each command.
 The default remains ChemDFM-R-14B. Each uses its own tokenizer and chat template;
 EOS IDs are loaded from the model configuration and tokenizer, including Llama
-and Qwen end markers. The A/B/C/D instructions and decoding budget are the same
+and Qwen end markers. The A/B/C/D/E instructions and decoding budget are the same
 for both models.
 
 | Model | Default local path | Output under `Pilot/Experiments/` |
 | --- | --- | --- |
-| Chem-R-8B | `chemical_models/Chem-R-8B` under the repository root | `chem_r8b_outcome_unified` |
-| ChemDFM-R-14B | `/mnt_nas1/shared/ChemDFM-R-14B` | `chemdfm_r14b_outcome_unified` |
+| Chem-R-8B | `chemical_models/Chem-R-8B` under the repository root | `chem_r8b_outcome_abcde` |
+| ChemDFM-R-14B | `/mnt_nas1/shared/ChemDFM-R-14B` | `chemdfm_r14b_outcome_abcde` |
 
 Use `--model-path /path/to/weights` to override a preset. Use the same model,
 path override and `--output` (if supplied) for prepare/run/summarize. The runner
 rejects a selection that differs from the saved experiment, preventing mixed-model
-results. Existing unified ChemDFM manifests remain readable; older versioned
-experiment directories require a fresh prepare.
+results. Four-group experiment manifests cannot be resumed as five-group experiments;
+run prepare in a fresh directory. The new default directories end in `_abcde`.
 
 - `prepare --pairs-per-subtask 2` prepares a deterministic small sample.
 - `prepare --batch-size 8` sets the inference batch size.
@@ -55,13 +71,21 @@ experiment directories require a fresh prepare.
   without hashes. Do not edit the manifest, requests or ground truth mid-run.
 - `summarize --allow-partial` summarizes completed rows before all requests finish.
 
-Inference uses two GPUs (tensor parallelism 2), selected through
+Inference defaults to two GPUs (`prepare --tensor-parallel-size 2`), selected through
 `CUDA_VISIBLE_DEVICES`, greedy decoding and a 2048-token output budget.
 Missing/invalid answers count as incorrect; length-limited outputs are retained
 and counted as truncated. Scoring reports atom-map-normalized main-fragment and
 exact matches, raw exact matches, fingerprint similarity, and paired comparisons.
 Outputs include `predictions.jsonl`, `outcome_records.jsonl`, `summary.json`,
 `summary.csv` and runtime metadata.
+
+`bash scripts/run_exp.sh` launches both models with nohup, sequentially running
+ChemDFM-R-14B then Chem-R-8B on GPUs 4,5,6,7 with tensor parallelism 4. Settings
+are hardcoded in the script. `scripts/run_exp.log` contains all output and starts
+with the supervisor PID and process-group stop command. The launcher prevents
+duplicate runs and resumes existing checkpoints. After each model finishes,
+`scripts/run_exp_result.md` is updated with one A–E table per model, reporting
+primary (main-fragment) accuracy and mean fingerprint similarity.
 
 The wrong-anchor/wrong-fragment causal experiment runners and their analysis
 script have been removed from this directory.

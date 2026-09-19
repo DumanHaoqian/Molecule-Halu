@@ -1,0 +1,67 @@
+{
+  "protocol_version": "outcome_abcde_saved_reasoning",
+  "dataset": "/mnt_nas1/haoqian/Data/Molecule/Pilot/GeneratedDataset/maximum_edits_complete.jsonl",
+  "model": {
+    "name": "ChemDFM-R-14B",
+    "path": "/mnt_nas1/haoqian/Data/Molecule/chemical_models/ChemDFM-R-14B"
+  },
+  "n_pairs": 150,
+  "n_requests": 750,
+  "groups": {
+    "A": "Plain+indexed question; direct answer",
+    "B": "Plain+indexed question + saved H reasoning; direct answer",
+    "C": "Plain+indexed question + saved N reasoning; direct answer",
+    "D": "Plain+indexed question; model-generated reasoning and answer",
+    "E": "Plain+indexed question + saved N reasoning from a different origin; direct answer"
+  },
+  "e_reasoning_policy": "Full-dataset sorted circular assignment; different origin required; same subtask preferred, otherwise cross-subtask fallback",
+  "subtasks": {
+    "add": 50,
+    "delete": 50,
+    "substitute": 50
+  },
+  "sampling": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "repetition_penalty": 1.05,
+    "max_tokens": 2048,
+    "seed": 42,
+    "n": 1
+  },
+  "engine": {
+    "dtype": "bfloat16",
+    "tensor_parallel_size": 4,
+    "max_model_len": 16384,
+    "gpu_memory_utilization": 0.88,
+    "max_num_seqs": 16,
+    "max_num_batched_tokens": 8192,
+    "enforce_eager": true,
+    "disable_custom_all_reduce": true,
+    "enable_prefix_caching": false,
+    "generation_config": "vllm"
+  },
+  "batch_size": 8,
+  "assistant_prefixes": {
+    "A": "<think>\n</think>\n<answer>\n",
+    "B": "<think>\n</think>\n<answer>\n",
+    "C": "<think>\n</think>\n<answer>\n",
+    "E": "<think>\n</think>\n<answer>\n",
+    "D": "<think>\n"
+  },
+  "dataset_checks": {
+    "E_different_origin": 150,
+    "E_same_subtask": 150,
+    "H_N_reasoning_differ": 150,
+    "H_root_errors_4": 50,
+    "H_root_errors_total": 500,
+    "H_root_errors_3": 100
+  },
+  "gt_source": "Original benchmark gt_smiles joined by origin_id == anonymous_sample_id",
+  "primary_metric": "Atom-map-normalized main-fragment molecular equality",
+  "secondary_metrics": [
+    "atom-map-normalized exact equality",
+    "raw strict equality",
+    "FTS"
+  ]
+}
