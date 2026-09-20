@@ -65,7 +65,15 @@ def test_prepare_preserves_dataset_reasoning_without_hashes(experiment):
             c_request = next(q for q in requests if q["pair_id"] == request["pair_id"] and q["group"] == "C")
             own = by_record[request["pair_id"], "N"]["detector_input"]["reasoning_chain"]
             assert prompt == c_request["messages"][1]["content"].removesuffix(own) + donor["detector_input"]["reasoning_chain"]
+            assert request["messages"][0]["content"] == runner.FOLLOW_REASONING
+        if group in "BCE":
+            assert request["messages"][0]["content"] == runner.FOLLOW_REASONING
+            assert "Intermediate claims may be wrong" not in request["messages"][1]["content"]
+            assert "independently determine the answer" not in request["messages"][1]["content"]
+        elif group == "A":
             assert request["messages"][0]["content"] == runner.DIRECT
+        else:
+            assert request["messages"][0]["content"] == runner.COT
         assert request["assistant_prefix"] == ("<think>\n" if group == "D" else "<think>\n</think>\n<answer>\n")
     for filename in ("requests.jsonl", "ground_truth.jsonl", "manifest.json"):
         assert "sha256" not in (args.output / filename).read_text()
@@ -161,8 +169,8 @@ def test_empty_partial_summary(experiment):
 
 
 @pytest.mark.parametrize("name,folder", [
-    ("Chem-R-8B", "chem_r8b_outcome_abcde"),
-    ("ChemDFM-R-14B", "chemdfm_r14b_outcome_abcde"),
+    ("Chem-R-8B", "chem_r8b_outcome_abcde_follow_reasoning"),
+    ("ChemDFM-R-14B", "chemdfm_r14b_outcome_abcde_follow_reasoning"),
 ])
 def test_model_selection_and_output_directory(name, folder):
     for command in ("prepare", "run", "summarize"):
@@ -194,6 +202,17 @@ def test_stop_tokens_do_not_include_unknown_token(tmp_path):
     assert runner.stop_token_ids(tokenizer, tmp_path) == [128001, 128009]
 
 
+def test_old_correction_protocol_cannot_resume(experiment):
+    args, _ = experiment
+    runner.prepare(args)
+    path = args.output / "manifest.json"
+    manifest = json.loads(path.read_text())
+    manifest["protocol_version"] = "outcome_abcde_saved_reasoning"
+    path.write_text(json.dumps(manifest))
+    with pytest.raises(ValueError, match="fresh output directory"):
+        runner.load_experiment(args.output)
+
+
 def test_wrong_model_cannot_resume_or_summarize(experiment):
     args, _ = experiment
     runner.prepare(args)
@@ -212,7 +231,7 @@ def test_local_model_chat_template_and_stops(name):
     tokenizer = AutoTokenizer.from_pretrained(path, local_files_only=True)
     for group in "ABCDE":
         prompt = tokenizer.apply_chat_template(
-            [{"role": "system", "content": runner.COT if group == "D" else runner.DIRECT},
+            [{"role": "system", "content": runner.COT if group == "D" else runner.FOLLOW_REASONING if group in "BCE" else runner.DIRECT},
              {"role": "user", "content": "Return ethanol SMILES."}],
             tokenize=False, add_generation_prompt=True,
         ) + runner.PREFIXES[group]

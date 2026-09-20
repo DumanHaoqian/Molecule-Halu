@@ -16,15 +16,15 @@ import time
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PROTOCOL_VERSION = "outcome_abcde_saved_reasoning"
+PROTOCOL_VERSION = "outcome_abcde_follow_reasoning_v2"
 GROUPS = "ABCDE"
 MODELS = {
     "Chem-R-8B": ROOT / "chemical_models/Chem-R-8B",
     "ChemDFM-R-14B": Path("/mnt_nas1/shared/ChemDFM-R-14B"),
 }
 OUTPUT_DIRS = {
-    "Chem-R-8B": ROOT / "Pilot/Experiments/chem_r8b_outcome_abcde",
-    "ChemDFM-R-14B": ROOT / "Pilot/Experiments/chemdfm_r14b_outcome_abcde",
+    "Chem-R-8B": ROOT / "Pilot/Experiments/chem_r8b_outcome_abcde_follow_reasoning",
+    "ChemDFM-R-14B": ROOT / "Pilot/Experiments/chemdfm_r14b_outcome_abcde_follow_reasoning",
 }
 BASE = (
     "You are an expert chemist. Apply the requested edit to the source molecule. "
@@ -33,6 +33,11 @@ BASE = (
     "Preserve stereochemistry and every molecular component not affected by the edit."
 )
 DIRECT = BASE + " Respond only with <answer>PRODUCT_SMILES</answer>. Do not explain."
+FOLLOW_REASONING = DIRECT + (
+    " Derive the final product by following the supplied reasoning."
+    " Treat its stated anchors, fragments, and edit operations as fixed premises."
+    " Do not independently re-solve the task or verify, correct, replace, or disregard the supplied reasoning."
+)
 COT = BASE + (
     " Reason step by step inside <think>...</think>, then return "
     "<answer>PRODUCT_SMILES</answer>."
@@ -202,9 +207,8 @@ def prepare(args) -> None:
             if group in "BCE":
                 label = {"B": "H", "C": "N", "E": "E"}[group]
                 user += (
-                    "\n\n[Candidate reasoning]\n"
-                    "An upstream expert supplied the following reasoning. Intermediate claims may be wrong; "
-                    "independently determine the answer.\n"
+                    "\n\n[Supplied reasoning]\n"
+                    "Follow the reasoning below to produce the final answer without revising it.\n"
                     + supplied_reasoning[label]
                 )
             request = {
@@ -215,7 +219,7 @@ def prepare(args) -> None:
                 "origin_id": h["origin_id"],
                 "subtask": h["subtask"],
                 "messages": [
-                    {"role": "system", "content": COT if group == "D" else DIRECT},
+                    {"role": "system", "content": COT if group == "D" else FOLLOW_REASONING if group in "BCE" else DIRECT},
                     {"role": "user", "content": user},
                 ],
                 "assistant_prefix": PREFIXES[group],
@@ -248,6 +252,7 @@ def prepare(args) -> None:
             "E": "Plain+indexed question + saved N reasoning from a different origin; direct answer",
         },
         "e_reasoning_policy": "Full-dataset sorted circular assignment; different origin required; same subtask preferred, otherwise cross-subtask fallback",
+        "supplied_reasoning_policy": "B/C/E must follow supplied reasoning without independent verification or correction",
         "subtasks": dict(collections.Counter(r["subtask"] for r in truths)),
         "sampling": {"temperature": 0.0, "top_p": 1.0, "top_k": -1, "repetition_penalty": 1.05, "max_tokens": 2048, "seed": 42, "n": 1},
         "engine": {"dtype": "bfloat16", "tensor_parallel_size": args.tensor_parallel_size, "max_model_len": 16384, "gpu_memory_utilization": 0.88, "max_num_seqs": 16, "max_num_batched_tokens": 8192, "enforce_eager": True, "disable_custom_all_reduce": True, "enable_prefix_caching": False, "generation_config": "vllm"},

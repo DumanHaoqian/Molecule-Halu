@@ -1,0 +1,4918 @@
+{
+  "protocol": "named_fragment_binding_inventory_v1",
+  "scope": "Exactly four fixed development acylation origins; declarative, manually reviewed semantic dependency inventory, not a general Agent rewrite.",
+  "offsets": "half-open Python Unicode character offsets in exact answer-redacted original N",
+  "origins": {
+    "mol_edit.add_v2.0098": {
+      "reference_text": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The instruction specifies acylating the secondary amine of the piperidine ring. In the indexed SMILES, this is atom 18 (map :18, element N).\n  Identify LEAVING: This is an N-acylation (TYPE A addition) where only the hydrogen atom on the amine departs. Therefore, the leaving group is \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=18, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a cyanoacetyl group. Its SMILES is \"C(=O)CC#N\".\n  Counting the heavy atoms: 1 carbonyl carbon, 1 carbonyl oxygen, 1 methylene carbon, 1 cyano carbon, and 1 cyano nitrogen. Total = 5 heavy atoms.\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)CC#N\", heavy_atoms=5)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: Bond the piperidine nitrogen (idx=18) to the carbonyl carbon of the cyanoacetyl group. No heavy atoms are removed.\n  FORMAL: SMILES + ANCHOR(idx=18) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)CC#N\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 36 heavy atoms (as indicated by the highest atom map number :36).\n  The product molecule has 36 + 5 = 41 heavy atoms.\n  HEAVY_ATOM_DELTA = 41 - 36 = +5.\n  FORMAL: SMILES[n_heavy=36] + PRODUCT_SMILES[n_heavy=41] --> HEAVY_ATOM_DELTA(+5)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule contains 5 rings (two phenyl rings, one piperidine ring, and a fused pyrrolo-pyrimidine bicyclic system).\n  The product molecule also contains 5 rings.\n  RING_DELTA = 5 - 5 = 0.\n  FORMAL: SMILES[n_rings=5] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(0)",
+      "expected_compiled_text": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The instruction specifies acylating the secondary amine of the piperidine ring. In the indexed SMILES, this is atom 18 (map :18, element N).\n  Identify LEAVING: This is an N-acylation (TYPE A addition) where only the hydrogen atom on the amine departs. Therefore, the leaving group is \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=18, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a cyanoacetyl group. Its SMILES is \"C(=O)c1ccc(C(F)(F)F)cc1\".\n  Counting the heavy atoms: 1 carbonyl carbon, 1 carbonyl oxygen, 6 phenyl carbons, 1 trifluoromethyl carbon, and 3 fluorine atoms. Total = 12 heavy atoms.\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\", heavy_atoms=12)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: Bond the piperidine nitrogen (idx=18) to the carbonyl carbon of the cyanoacetyl group. No heavy atoms are removed.\n  FORMAL: SMILES + ANCHOR(idx=18) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 36 heavy atoms (as indicated by the highest atom map number :36).\n  The product molecule has 36 + 12 = 48 heavy atoms.\n  HEAVY_ATOM_DELTA = 48 - 36 = +12.\n  FORMAL: SMILES[n_heavy=36] + PRODUCT_SMILES[n_heavy=48] --> HEAVY_ATOM_DELTA(+12)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule contains 5 rings (two phenyl rings, one piperidine ring, and a fused pyrrolo-pyrimidine bicyclic system).\n  The product molecule contains 6 rings.\n  RING_DELTA = 6 - 5 = 1.\n  FORMAL: SMILES[n_rings=5] + PRODUCT_SMILES[n_rings=6] --> RING_DELTA(1)",
+      "instruction": "Please acylate the secondary amine of the piperidine ring with a cyanoacetyl group.",
+      "indexed_smiles": "[CH3:1][c:2]1[cH:3][cH:4][c:5]([S:6](=[O:7])(=[O:8])[n:9]2[cH:10][cH:11][c:12]3[c:13]([NH:14][CH:15]4[CH2:16][CH2:17][NH:18][CH2:19][CH2:20]4)[n:21][c:22]([NH:23][c:24]4[cH:25][cH:26][c:27]([C:28]([NH2:29])=[O:30])[cH:31][cH:32]4)[n:33][c:34]23)[cH:35][cH:36]1",
+      "group_name": "cyanoacetyl",
+      "patches": [
+        {
+          "start": 674,
+          "end": 683,
+          "original": "C(=O)CC#N",
+          "replacement": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+              "node_id": "fragment",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "SMILES value locates the false original-name→attachment-qualified graph binding. Same root across all aliases."
+        },
+        {
+          "start": 752,
+          "end": 808,
+          "original": "1 methylene carbon, 1 cyano carbon, and 1 cyano nitrogen",
+          "replacement": "6 phenyl carbons, 1 trifluoromethyl carbon, and 3 fluorine atoms",
+          "node_id": "fragment_composition",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 16,
+              "text": "6 phenyl carbons",
+              "node_id": "fragment_composition",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            },
+            {
+              "start": 18,
+              "end": 42,
+              "text": "1 trifluoromethyl carbon",
+              "node_id": "fragment_composition",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            },
+            {
+              "start": 48,
+              "end": 64,
+              "text": "3 fluorine atoms",
+              "node_id": "fragment_composition",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 818,
+          "end": 819,
+          "original": "5",
+          "replacement": "12",
+          "node_id": "fragment_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "fragment_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 880,
+          "end": 889,
+          "original": "C(=O)CC#N",
+          "replacement": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+              "node_id": "fragment",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "SMILES value locates the false original-name→attachment-qualified graph binding. Same root across all aliases."
+        },
+        {
+          "start": 904,
+          "end": 905,
+          "original": "5",
+          "replacement": "12",
+          "node_id": "fragment_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "fragment_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1196,
+          "end": 1205,
+          "original": "C(=O)CC#N",
+          "replacement": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+              "node_id": "fragment",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "SMILES value locates the false original-name→attachment-qualified graph binding. Same root across all aliases."
+        },
+        {
+          "start": 1399,
+          "end": 1400,
+          "original": "5",
+          "replacement": "12",
+          "node_id": "fragment_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "fragment_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1403,
+          "end": 1405,
+          "original": "41",
+          "replacement": "48",
+          "node_id": "product_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "48",
+              "node_id": "product_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1440,
+          "end": 1442,
+          "original": "41",
+          "replacement": "48",
+          "node_id": "product_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "48",
+              "node_id": "product_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1451,
+          "end": 1452,
+          "original": "5",
+          "replacement": "12",
+          "node_id": "heavy_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "heavy_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1508,
+          "end": 1510,
+          "original": "41",
+          "replacement": "48",
+          "node_id": "product_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "48",
+              "node_id": "product_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1534,
+          "end": 1535,
+          "original": "5",
+          "replacement": "12",
+          "node_id": "heavy_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "heavy_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1743,
+          "end": 1748,
+          "original": "also ",
+          "replacement": "",
+          "node_id": "product_ring_equality",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [],
+          "semantic_note": "Remove the inherited same-count relation; deletion contributes no H token label."
+        },
+        {
+          "start": 1757,
+          "end": 1758,
+          "original": "5",
+          "replacement": "6",
+          "node_id": "product_rings",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "6",
+              "node_id": "product_rings",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1781,
+          "end": 1782,
+          "original": "5",
+          "replacement": "6",
+          "node_id": "product_rings",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "6",
+              "node_id": "product_rings",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1789,
+          "end": 1790,
+          "original": "0",
+          "replacement": "1",
+          "node_id": "ring_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "1",
+              "node_id": "ring_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1845,
+          "end": 1846,
+          "original": "5",
+          "replacement": "6",
+          "node_id": "product_rings",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "6",
+              "node_id": "product_rings",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1863,
+          "end": 1864,
+          "original": "0",
+          "replacement": "1",
+          "node_id": "ring_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "1",
+              "node_id": "ring_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        }
+      ],
+      "bindings_N": [
+        {
+          "start": 158,
+          "end": 196,
+          "text": "secondary amine of the piperidine ring",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 234,
+          "end": 236,
+          "text": "18",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 243,
+          "end": 245,
+          "text": "18",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 255,
+          "end": 256,
+          "text": "N",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 465,
+          "end": 467,
+          "text": "18",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 478,
+          "end": 479,
+          "text": "N",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 640,
+          "end": 651,
+          "text": "cyanoacetyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 674,
+          "end": 683,
+          "text": "C(=O)CC#N",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 714,
+          "end": 731,
+          "text": "1 carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 716,
+          "end": 731,
+          "text": "carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 733,
+          "end": 750,
+          "text": "1 carbonyl oxygen",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 752,
+          "end": 808,
+          "text": "1 methylene carbon, 1 cyano carbon, and 1 cyano nitrogen",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 818,
+          "end": 819,
+          "text": "5",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 880,
+          "end": 889,
+          "text": "C(=O)CC#N",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 904,
+          "end": 905,
+          "text": "5",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1015,
+          "end": 1034,
+          "text": "piperidine nitrogen",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1040,
+          "end": 1042,
+          "text": "18",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1051,
+          "end": 1066,
+          "text": "carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1074,
+          "end": 1085,
+          "text": "cyanoacetyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1151,
+          "end": 1153,
+          "text": "18",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1196,
+          "end": 1205,
+          "text": "C(=O)CC#N",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1301,
+          "end": 1303,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1362,
+          "end": 1364,
+          "text": "36",
+          "node_id": "source_map_max",
+          "origin": "approved_node",
+          "error_annotated": false,
+          "semantic_note": "Maximum original source atom map, not the attachment atom ordinal."
+        },
+        {
+          "start": 1394,
+          "end": 1396,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1399,
+          "end": 1400,
+          "text": "5",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1403,
+          "end": 1405,
+          "text": "41",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1440,
+          "end": 1442,
+          "text": "41",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1445,
+          "end": 1447,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1451,
+          "end": 1452,
+          "text": "5",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1479,
+          "end": 1481,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1508,
+          "end": 1510,
+          "text": "41",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1534,
+          "end": 1535,
+          "text": "5",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1623,
+          "end": 1624,
+          "text": "5",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1757,
+          "end": 1758,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1781,
+          "end": 1782,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1785,
+          "end": 1786,
+          "text": "5",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1789,
+          "end": 1790,
+          "text": "0",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1817,
+          "end": 1818,
+          "text": "5",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1845,
+          "end": 1846,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1863,
+          "end": 1864,
+          "text": "0",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        }
+      ],
+      "bindings_H": [
+        {
+          "start": 158,
+          "end": 196,
+          "text": "secondary amine of the piperidine ring",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 234,
+          "end": 236,
+          "text": "18",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 243,
+          "end": 245,
+          "text": "18",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 255,
+          "end": 256,
+          "text": "N",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 465,
+          "end": 467,
+          "text": "18",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 478,
+          "end": 479,
+          "text": "N",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 640,
+          "end": 651,
+          "text": "cyanoacetyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 674,
+          "end": 697,
+          "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 728,
+          "end": 745,
+          "text": "1 carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 730,
+          "end": 745,
+          "text": "carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 747,
+          "end": 764,
+          "text": "1 carbonyl oxygen",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 766,
+          "end": 782,
+          "text": "6 phenyl carbons",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 784,
+          "end": 808,
+          "text": "1 trifluoromethyl carbon",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 814,
+          "end": 830,
+          "text": "3 fluorine atoms",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 840,
+          "end": 842,
+          "text": "12",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 903,
+          "end": 926,
+          "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 941,
+          "end": 943,
+          "text": "12",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1053,
+          "end": 1072,
+          "text": "piperidine nitrogen",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1078,
+          "end": 1080,
+          "text": "18",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1089,
+          "end": 1104,
+          "text": "carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1112,
+          "end": 1123,
+          "text": "cyanoacetyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1189,
+          "end": 1191,
+          "text": "18",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1234,
+          "end": 1257,
+          "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1353,
+          "end": 1355,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1414,
+          "end": 1416,
+          "text": "36",
+          "node_id": "source_map_max",
+          "origin": "approved_node",
+          "error_annotated": false,
+          "semantic_note": "Maximum original source atom map, not the attachment atom ordinal."
+        },
+        {
+          "start": 1446,
+          "end": 1448,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1451,
+          "end": 1453,
+          "text": "12",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1456,
+          "end": 1458,
+          "text": "48",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1493,
+          "end": 1495,
+          "text": "48",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1498,
+          "end": 1500,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1504,
+          "end": 1506,
+          "text": "12",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1533,
+          "end": 1535,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1562,
+          "end": 1564,
+          "text": "48",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1588,
+          "end": 1590,
+          "text": "12",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1678,
+          "end": 1679,
+          "text": "5",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1807,
+          "end": 1808,
+          "text": "6",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1831,
+          "end": 1832,
+          "text": "6",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1835,
+          "end": 1836,
+          "text": "5",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1839,
+          "end": 1840,
+          "text": "1",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1867,
+          "end": 1868,
+          "text": "5",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1895,
+          "end": 1896,
+          "text": "6",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1913,
+          "end": 1914,
+          "text": "1",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        }
+      ],
+      "node_specs": {
+        "fragment": {
+          "path": [
+            "fragment",
+            "smiles"
+          ]
+        },
+        "fragment_composition": {
+          "paths": {
+            "elements": [
+              "fragment",
+              "element_counts"
+            ],
+            "roles": [
+              "fragment",
+              "role_counts"
+            ]
+          }
+        },
+        "fragment_heavy": {
+          "path": [
+            "fragment",
+            "heavy_atoms"
+          ]
+        },
+        "product_heavy": {
+          "path": [
+            "product",
+            "heavy_atoms"
+          ]
+        },
+        "product_rings": {
+          "path": [
+            "product",
+            "rings"
+          ]
+        },
+        "heavy_delta": {
+          "path": [
+            "heavy_delta"
+          ]
+        },
+        "ring_delta": {
+          "path": [
+            "ring_delta"
+          ]
+        },
+        "source_heavy": {
+          "path": [
+            "source",
+            "heavy_atoms"
+          ]
+        },
+        "source_rings": {
+          "path": [
+            "source",
+            "rings"
+          ]
+        },
+        "anchor": {
+          "path": [
+            "attachment",
+            "anchor_map"
+          ]
+        },
+        "anchor_element": {
+          "path": [
+            "attachment",
+            "source_element"
+          ]
+        },
+        "source_role": {
+          "path": [
+            "attachment",
+            "source_role"
+          ]
+        },
+        "group_name": {
+          "path": [
+            "group_name"
+          ]
+        },
+        "fragment_carbonyl_counts": {
+          "paths": {
+            "carbon": [
+              "fragment",
+              "role_counts",
+              "carbonyl_carbon"
+            ],
+            "oxygen": [
+              "fragment",
+              "role_counts",
+              "carbonyl_oxygen"
+            ]
+          }
+        },
+        "source_map_max": {
+          "path": [
+            "source",
+            "max_atom_map"
+          ]
+        }
+      },
+      "expected_counts": {
+        "source_heavy": 36,
+        "source_rings": 5,
+        "clean_fragment_heavy": 5,
+        "wrong_fragment_heavy": 12,
+        "clean_product_heavy": 41,
+        "wrong_product_heavy": 48,
+        "clean_product_rings": 5,
+        "wrong_product_rings": 6,
+        "clean_heavy_delta": 5,
+        "wrong_heavy_delta": 12,
+        "clean_ring_delta": 0,
+        "wrong_ring_delta": 1
+      },
+      "coverage": {
+        "wrong_smiles_occurrences": 3,
+        "unchanged_name_occurrences": 2,
+        "changed_nodes": [
+          "fragment",
+          "fragment_composition",
+          "fragment_heavy",
+          "heavy_delta",
+          "product_heavy",
+          "product_rings",
+          "ring_delta"
+        ],
+        "error_spans": 19
+      },
+      "source_reference_notes": [
+        "Original instruction, all original requested-name aliases, source SMILES, anchor element/map/1-based ordinal, source-heavy and source-ring facts remain unchanged.",
+        "All original source atoms and source–source bonds are retained; only the original source anchor loses its same specified H. No-heavy-atoms-removed and leaving=none remain valid under both plans.",
+        "Bonding the same source N/O to incoming carbonyl C, and the amide/ester linkage class, remain correct conditional operations.",
+        "No prose incoming-fragment atom ordinal occurs in these four N_raw texts. The source anchor ordinal is not the fragment attachment ordinal.",
+        "Existing full product-answer removal exactly reproduces frozen N_visible. No new source or product-complete SMILES are inserted by these slot proposals."
+      ]
+    },
+    "mol_edit.add_v2.0172": {
+      "reference_text": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  The instruction is to acylate the secondary hydroxyl group. In the indexed SMILES, the secondary hydroxyl oxygen is atom 28 (map :28, element O). In O-acylation, only the hydrogen atom departs from the hydroxyl group, so no heavy atoms are removed. LEAVING = \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=28, element=\"O\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a stearoyl group, which is an 18-carbon acyl chain. Its SMILES is \"CCCCCCCCCCCCCCCCCC(=O)\". It consists of 18 carbon atoms and 1 oxygen atom, giving a total of 19 heavy atoms.\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"CCCCCCCCCCCCCCCCCC(=O)\", heavy_atoms=19)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  This is a TYPE A reaction. We bond the hydroxyl oxygen (atom 28) to the carbonyl carbon of the stearoyl group. The resulting product SMILES incorporates the long aliphatic chain attached via an ester linkage.\n  FORMAL: SMILES + ANCHOR(idx=28) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"CCCCCCCCCCCCCCCCCC(=O)\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 40 heavy atoms (as indicated by the maximum atom map number :40). The product molecule has 59 heavy atoms. The difference is exactly the 19 heavy atoms added from the stearoyl group. HEAVY_ATOM_DELTA = 59 - 40 = +19.\n  FORMAL: SMILES[n_heavy=40] + PRODUCT_SMILES[n_heavy=59] --> HEAVY_ATOM_DELTA(+19)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule contains 4 rings (three in the fluorenyl-like system and one in the benzyl ester). The product molecule also contains 4 rings, as the stearoyl group is acyclic. RING_DELTA = 4 - 4 = 0.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=4] --> RING_DELTA(0)",
+      "expected_compiled_text": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  The instruction is to acylate the secondary hydroxyl group. In the indexed SMILES, the secondary hydroxyl oxygen is atom 28 (map :28, element O). In O-acylation, only the hydrogen atom departs from the hydroxyl group, so no heavy atoms are removed. LEAVING = \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=28, element=\"O\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a stearoyl group, which is an 8-carbon aromatic acyl group. Its SMILES is \"C(=O)c1ccc(C(F)(F)F)cc1\". It consists of 8 carbon atoms, 3 fluorine atoms, and 1 oxygen atom, giving a total of 12 heavy atoms.\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\", heavy_atoms=12)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  This is a TYPE A reaction. We bond the hydroxyl oxygen (atom 28) to the carbonyl carbon of the stearoyl group. The resulting product SMILES incorporates the aromatic acyl group attached via an ester linkage.\n  FORMAL: SMILES + ANCHOR(idx=28) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 40 heavy atoms (as indicated by the maximum atom map number :40). The product molecule has 52 heavy atoms. The difference is exactly the 12 heavy atoms added from the stearoyl group. HEAVY_ATOM_DELTA = 52 - 40 = +12.\n  FORMAL: SMILES[n_heavy=40] + PRODUCT_SMILES[n_heavy=52] --> HEAVY_ATOM_DELTA(+12)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule contains 4 rings (three in the fluorenyl-like system and one in the benzyl ester). The product molecule contains 5 rings, as the stearoyl group contains one phenyl ring. RING_DELTA = 5 - 4 = 1.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(1)",
+      "instruction": "Please acylate the secondary hydroxyl group with a stearoyl group.",
+      "indexed_smiles": "[CH3:1][CH:2]([CH3:3])[C@H:4]([NH:5][C:6](=[O:7])[O:8][CH2:9][CH:10]1[c:11]2[cH:12][cH:13][cH:14][cH:15][c:16]2-[c:17]2[cH:18][cH:19][cH:20][cH:21][c:22]21)[C:23](=[O:24])[O:25][CH2:26][CH:27]([OH:28])[CH:29]=[CH:30][C:31](=[O:32])[O:33][CH2:34][c:35]1[cH:36][cH:37][cH:38][cH:39][cH:40]1",
+      "group_name": "stearoyl",
+      "patches": [
+        {
+          "start": 629,
+          "end": 649,
+          "original": "18-carbon acyl chain",
+          "replacement": "8-carbon aromatic acyl group",
+          "node_id": "fragment_composition",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 8,
+              "text": "8-carbon",
+              "node_id": "fragment_composition",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            },
+            {
+              "start": 9,
+              "end": 17,
+              "text": "aromatic",
+              "node_id": "fragment_aromaticity",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "The conventional name remains stearoyl; this false description is a consequence of the deliberate name→graph binding."
+        },
+        {
+          "start": 666,
+          "end": 688,
+          "original": "CCCCCCCCCCCCCCCCCC(=O)",
+          "replacement": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+              "node_id": "fragment",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "SMILES value locates the false original-name→attachment-qualified graph binding. Same root across all aliases."
+        },
+        {
+          "start": 706,
+          "end": 739,
+          "original": "18 carbon atoms and 1 oxygen atom",
+          "replacement": "8 carbon atoms, 3 fluorine atoms, and 1 oxygen atom",
+          "node_id": "fragment_composition",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 14,
+              "text": "8 carbon atoms",
+              "node_id": "fragment_composition",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            },
+            {
+              "start": 16,
+              "end": 32,
+              "text": "3 fluorine atoms",
+              "node_id": "fragment_composition",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 759,
+          "end": 761,
+          "original": "19",
+          "replacement": "12",
+          "node_id": "fragment_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "fragment_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 822,
+          "end": 844,
+          "original": "CCCCCCCCCCCCCCCCCC(=O)",
+          "replacement": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+              "node_id": "fragment",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "SMILES value locates the false original-name→attachment-qualified graph binding. Same root across all aliases."
+        },
+        {
+          "start": 859,
+          "end": 861,
+          "original": "19",
+          "replacement": "12",
+          "node_id": "fragment_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "fragment_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1111,
+          "end": 1131,
+          "original": "long aliphatic chain",
+          "replacement": "aromatic acyl group",
+          "node_id": "fragment_aromaticity",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 8,
+              "text": "aromatic",
+              "node_id": "fragment_aromaticity",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "The ester linkage and source hydroxyl atom remain correct."
+        },
+        {
+          "start": 1238,
+          "end": 1260,
+          "original": "CCCCCCCCCCCCCCCCCC(=O)",
+          "replacement": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+              "node_id": "fragment",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "SMILES value locates the false original-name→attachment-qualified graph binding. Same root across all aliases."
+        },
+        {
+          "start": 1447,
+          "end": 1449,
+          "original": "59",
+          "replacement": "52",
+          "node_id": "product_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "52",
+              "node_id": "product_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1493,
+          "end": 1495,
+          "original": "19",
+          "replacement": "12",
+          "node_id": "fragment_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "fragment_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1558,
+          "end": 1560,
+          "original": "59",
+          "replacement": "52",
+          "node_id": "product_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "52",
+              "node_id": "product_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1569,
+          "end": 1571,
+          "original": "19",
+          "replacement": "12",
+          "node_id": "heavy_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "heavy_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1627,
+          "end": 1629,
+          "original": "59",
+          "replacement": "52",
+          "node_id": "product_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "52",
+              "node_id": "product_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1653,
+          "end": 1655,
+          "original": "19",
+          "replacement": "12",
+          "node_id": "heavy_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "heavy_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1838,
+          "end": 1843,
+          "original": "also ",
+          "replacement": "",
+          "node_id": "product_ring_equality",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [],
+          "semantic_note": "Remove inherited same-count relation; not an inserted error span."
+        },
+        {
+          "start": 1852,
+          "end": 1853,
+          "original": "4",
+          "replacement": "5",
+          "node_id": "product_rings",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "5",
+              "node_id": "product_rings",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1883,
+          "end": 1893,
+          "original": "is acyclic",
+          "replacement": "contains one phenyl ring",
+          "node_id": "fragment_rings",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 9,
+              "end": 24,
+              "text": "one phenyl ring",
+              "node_id": "fragment_rings",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1908,
+          "end": 1909,
+          "original": "4",
+          "replacement": "5",
+          "node_id": "product_rings",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "5",
+              "node_id": "product_rings",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1916,
+          "end": 1917,
+          "original": "0",
+          "replacement": "1",
+          "node_id": "ring_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "1",
+              "node_id": "ring_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1972,
+          "end": 1973,
+          "original": "4",
+          "replacement": "5",
+          "node_id": "product_rings",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "5",
+              "node_id": "product_rings",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1990,
+          "end": 1991,
+          "original": "0",
+          "replacement": "1",
+          "node_id": "ring_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "1",
+              "node_id": "ring_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        }
+      ],
+      "bindings_N": [
+        {
+          "start": 139,
+          "end": 163,
+          "text": "secondary hydroxyl group",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 192,
+          "end": 217,
+          "text": "secondary hydroxyl oxygen",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 226,
+          "end": 228,
+          "text": "28",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 235,
+          "end": 237,
+          "text": "28",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 247,
+          "end": 248,
+          "text": "O",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 426,
+          "end": 428,
+          "text": "28",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 439,
+          "end": 440,
+          "text": "O",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 601,
+          "end": 609,
+          "text": "stearoyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 629,
+          "end": 649,
+          "text": "18-carbon acyl chain",
+          "node_id": "fragment_aromaticity",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 629,
+          "end": 649,
+          "text": "18-carbon acyl chain",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 666,
+          "end": 688,
+          "text": "CCCCCCCCCCCCCCCCCC(=O)",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 706,
+          "end": 739,
+          "text": "18 carbon atoms and 1 oxygen atom",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 759,
+          "end": 761,
+          "text": "19",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 822,
+          "end": 844,
+          "text": "CCCCCCCCCCCCCCCCCC(=O)",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 859,
+          "end": 861,
+          "text": "19",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 993,
+          "end": 1008,
+          "text": "hydroxyl oxygen",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1015,
+          "end": 1017,
+          "text": "28",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1026,
+          "end": 1041,
+          "text": "carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1049,
+          "end": 1057,
+          "text": "stearoyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1111,
+          "end": 1131,
+          "text": "long aliphatic chain",
+          "node_id": "fragment_aromaticity",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1193,
+          "end": 1195,
+          "text": "28",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1238,
+          "end": 1260,
+          "text": "CCCCCCCCCCCCCCCCCC(=O)",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1356,
+          "end": 1358,
+          "text": "40",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1417,
+          "end": 1419,
+          "text": "40",
+          "node_id": "source_map_max",
+          "origin": "approved_node",
+          "error_annotated": false,
+          "semantic_note": "Maximum original source atom map, not the attachment atom ordinal."
+        },
+        {
+          "start": 1447,
+          "end": 1449,
+          "text": "59",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1493,
+          "end": 1495,
+          "text": "19",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1523,
+          "end": 1531,
+          "text": "stearoyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1558,
+          "end": 1560,
+          "text": "59",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1563,
+          "end": 1565,
+          "text": "40",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1569,
+          "end": 1571,
+          "text": "19",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1598,
+          "end": 1600,
+          "text": "40",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1627,
+          "end": 1629,
+          "text": "59",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1653,
+          "end": 1655,
+          "text": "19",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1743,
+          "end": 1744,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1852,
+          "end": 1853,
+          "text": "4",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1868,
+          "end": 1876,
+          "text": "stearoyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1883,
+          "end": 1893,
+          "text": "is acyclic",
+          "node_id": "fragment_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1908,
+          "end": 1909,
+          "text": "4",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1912,
+          "end": 1913,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1916,
+          "end": 1917,
+          "text": "0",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1944,
+          "end": 1945,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1972,
+          "end": 1973,
+          "text": "4",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1990,
+          "end": 1991,
+          "text": "0",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        }
+      ],
+      "bindings_H": [
+        {
+          "start": 139,
+          "end": 163,
+          "text": "secondary hydroxyl group",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 192,
+          "end": 217,
+          "text": "secondary hydroxyl oxygen",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 226,
+          "end": 228,
+          "text": "28",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 235,
+          "end": 237,
+          "text": "28",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 247,
+          "end": 248,
+          "text": "O",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 426,
+          "end": 428,
+          "text": "28",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 439,
+          "end": 440,
+          "text": "O",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 601,
+          "end": 609,
+          "text": "stearoyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 629,
+          "end": 637,
+          "text": "8-carbon",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 638,
+          "end": 646,
+          "text": "aromatic",
+          "node_id": "fragment_aromaticity",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 674,
+          "end": 697,
+          "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 715,
+          "end": 729,
+          "text": "8 carbon atoms",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 731,
+          "end": 747,
+          "text": "3 fluorine atoms",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 786,
+          "end": 788,
+          "text": "12",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 849,
+          "end": 872,
+          "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 887,
+          "end": 889,
+          "text": "12",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1021,
+          "end": 1036,
+          "text": "hydroxyl oxygen",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1043,
+          "end": 1045,
+          "text": "28",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1054,
+          "end": 1069,
+          "text": "carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1077,
+          "end": 1085,
+          "text": "stearoyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1139,
+          "end": 1147,
+          "text": "aromatic",
+          "node_id": "fragment_aromaticity",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1220,
+          "end": 1222,
+          "text": "28",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1265,
+          "end": 1288,
+          "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1384,
+          "end": 1386,
+          "text": "40",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1445,
+          "end": 1447,
+          "text": "40",
+          "node_id": "source_map_max",
+          "origin": "approved_node",
+          "error_annotated": false,
+          "semantic_note": "Maximum original source atom map, not the attachment atom ordinal."
+        },
+        {
+          "start": 1475,
+          "end": 1477,
+          "text": "52",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1521,
+          "end": 1523,
+          "text": "12",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1551,
+          "end": 1559,
+          "text": "stearoyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1586,
+          "end": 1588,
+          "text": "52",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1591,
+          "end": 1593,
+          "text": "40",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1597,
+          "end": 1599,
+          "text": "12",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1626,
+          "end": 1628,
+          "text": "40",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1655,
+          "end": 1657,
+          "text": "52",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1681,
+          "end": 1683,
+          "text": "12",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1771,
+          "end": 1772,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1875,
+          "end": 1876,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1891,
+          "end": 1899,
+          "text": "stearoyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1915,
+          "end": 1930,
+          "text": "one phenyl ring",
+          "node_id": "fragment_rings",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1945,
+          "end": 1946,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1949,
+          "end": 1950,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1953,
+          "end": 1954,
+          "text": "1",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1981,
+          "end": 1982,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 2009,
+          "end": 2010,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 2027,
+          "end": 2028,
+          "text": "1",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        }
+      ],
+      "node_specs": {
+        "fragment": {
+          "path": [
+            "fragment",
+            "smiles"
+          ]
+        },
+        "fragment_composition": {
+          "paths": {
+            "elements": [
+              "fragment",
+              "element_counts"
+            ],
+            "roles": [
+              "fragment",
+              "role_counts"
+            ]
+          }
+        },
+        "fragment_heavy": {
+          "path": [
+            "fragment",
+            "heavy_atoms"
+          ]
+        },
+        "product_heavy": {
+          "path": [
+            "product",
+            "heavy_atoms"
+          ]
+        },
+        "product_rings": {
+          "path": [
+            "product",
+            "rings"
+          ]
+        },
+        "heavy_delta": {
+          "path": [
+            "heavy_delta"
+          ]
+        },
+        "ring_delta": {
+          "path": [
+            "ring_delta"
+          ]
+        },
+        "source_heavy": {
+          "path": [
+            "source",
+            "heavy_atoms"
+          ]
+        },
+        "source_rings": {
+          "path": [
+            "source",
+            "rings"
+          ]
+        },
+        "anchor": {
+          "path": [
+            "attachment",
+            "anchor_map"
+          ]
+        },
+        "anchor_element": {
+          "path": [
+            "attachment",
+            "source_element"
+          ]
+        },
+        "source_role": {
+          "path": [
+            "attachment",
+            "source_role"
+          ]
+        },
+        "group_name": {
+          "path": [
+            "group_name"
+          ]
+        },
+        "fragment_carbonyl_counts": {
+          "paths": {
+            "carbon": [
+              "fragment",
+              "role_counts",
+              "carbonyl_carbon"
+            ],
+            "oxygen": [
+              "fragment",
+              "role_counts",
+              "carbonyl_oxygen"
+            ]
+          }
+        },
+        "fragment_aromaticity": {
+          "path": [
+            "fragment",
+            "aromatic_ring_count"
+          ]
+        },
+        "fragment_rings": {
+          "path": [
+            "fragment",
+            "rings"
+          ]
+        },
+        "source_map_max": {
+          "path": [
+            "source",
+            "max_atom_map"
+          ]
+        }
+      },
+      "expected_counts": {
+        "source_heavy": 40,
+        "source_rings": 4,
+        "clean_fragment_heavy": 19,
+        "wrong_fragment_heavy": 12,
+        "clean_product_heavy": 59,
+        "wrong_product_heavy": 52,
+        "clean_product_rings": 4,
+        "wrong_product_rings": 5,
+        "clean_heavy_delta": 19,
+        "wrong_heavy_delta": 12,
+        "clean_ring_delta": 0,
+        "wrong_ring_delta": 1
+      },
+      "coverage": {
+        "wrong_smiles_occurrences": 3,
+        "unchanged_name_occurrences": 4,
+        "changed_nodes": [
+          "fragment",
+          "fragment_aromaticity",
+          "fragment_composition",
+          "fragment_heavy",
+          "fragment_rings",
+          "heavy_delta",
+          "product_heavy",
+          "product_rings",
+          "ring_delta"
+        ],
+        "error_spans": 22
+      },
+      "source_reference_notes": [
+        "Original instruction, all original requested-name aliases, source SMILES, anchor element/map/1-based ordinal, source-heavy and source-ring facts remain unchanged.",
+        "All original source atoms and source–source bonds are retained; only the original source anchor loses its same specified H. No-heavy-atoms-removed and leaving=none remain valid under both plans.",
+        "Bonding the same source N/O to incoming carbonyl C, and the amide/ester linkage class, remain correct conditional operations.",
+        "No prose incoming-fragment atom ordinal occurs in these four N_raw texts. The source anchor ordinal is not the fragment attachment ordinal.",
+        "Existing full product-answer removal exactly reproduces frozen N_visible. No new source or product-complete SMILES are inserted by these slot proposals."
+      ]
+    },
+    "mol_edit.add_v2.0193": {
+      "reference_text": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The primary amine of the benzothiazole ring is atom 24 (map :24, element N). The N-H bond breaks to form the new amide bond, but since only hydrogen departs, this is a TYPE A addition.\n  Identify LEAVING: \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=24, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a cyclopropanecarbonyl group. Its SMILES is \"C(=O)C1CC1\".\n  Heavy atoms: 5 (1 carbonyl carbon, 1 carbonyl oxygen, and 3 cyclopropane carbons).\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)C1CC1\", heavy_atoms=5)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: Bond the amine nitrogen (idx=24) to the carbonyl carbon of the cyclopropanecarbonyl group.\n  FORMAL: SMILES + ANCHOR(idx=24) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)C1CC1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 36 heavy atoms (as indicated by the maximum atom map number :36).\n  The product molecule has 41 heavy atoms.\n  HEAVY_ATOM_DELTA = 41 - 36 = +5.\n  FORMAL: SMILES[n_heavy=36] + PRODUCT_SMILES[n_heavy=41] --> HEAVY_ATOM_DELTA(+5)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule has 4 rings (two benzene rings and one fused benzothiazole system which counts as 2 rings).\n  The product molecule has 5 rings (the 4 original rings plus the newly added cyclopropane ring).\n  RING_DELTA = 5 - 4 = +1.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(+1)",
+      "expected_compiled_text": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The primary amine of the benzothiazole ring is atom 24 (map :24, element N). The N-H bond breaks to form the new amide bond, but since only hydrogen departs, this is a TYPE A addition.\n  Identify LEAVING: \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=24, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a cyclopropanecarbonyl group. Its SMILES is \"C(=O)c1ccc(C(F)(F)F)cc1\".\n  Heavy atoms: 12 (1 carbonyl carbon, 1 carbonyl oxygen, 6 phenyl carbons, 1 trifluoromethyl carbon, and 3 fluorine atoms).\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\", heavy_atoms=12)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: Bond the amine nitrogen (idx=24) to the carbonyl carbon of the cyclopropanecarbonyl group.\n  FORMAL: SMILES + ANCHOR(idx=24) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 36 heavy atoms (as indicated by the maximum atom map number :36).\n  The product molecule has 48 heavy atoms.\n  HEAVY_ATOM_DELTA = 48 - 36 = +12.\n  FORMAL: SMILES[n_heavy=36] + PRODUCT_SMILES[n_heavy=48] --> HEAVY_ATOM_DELTA(+12)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule has 4 rings (two benzene rings and one fused benzothiazole system which counts as 2 rings).\n  The product molecule has 5 rings (the 4 original rings plus the newly added phenyl ring).\n  RING_DELTA = 5 - 4 = +1.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(+1)",
+      "instruction": "Please acylate the primary amine of the benzothiazole ring with a cyclopropanecarbonyl group.",
+      "indexed_smiles": "[CH3:1][C:2]([CH3:3])([C:4]#[N:5])[c:6]1[cH:7][cH:8][cH:9][c:10]([C:11](=[O:12])[NH:13][c:14]2[cH:15][c:16]([O:17][c:18]3[cH:19][cH:20][c:21]4[n:22][c:23]([NH2:24])[s:25][c:26]4[c:27]3[N+:28](=[O:29])[O-:30])[cH:31][cH:32][c:33]2[F:34])[c:35]1[Cl:36]",
+      "group_name": "cyclopropanecarbonyl",
+      "patches": [
+        {
+          "start": 603,
+          "end": 613,
+          "original": "C(=O)C1CC1",
+          "replacement": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+              "node_id": "fragment",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "SMILES value locates the false original-name→attachment-qualified graph binding. Same root across all aliases."
+        },
+        {
+          "start": 631,
+          "end": 632,
+          "original": "5",
+          "replacement": "12",
+          "node_id": "fragment_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "fragment_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 672,
+          "end": 698,
+          "original": "and 3 cyclopropane carbons",
+          "replacement": "6 phenyl carbons, 1 trifluoromethyl carbon, and 3 fluorine atoms",
+          "node_id": "fragment_composition",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 16,
+              "text": "6 phenyl carbons",
+              "node_id": "fragment_composition",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            },
+            {
+              "start": 18,
+              "end": 42,
+              "text": "1 trifluoromethyl carbon",
+              "node_id": "fragment_composition",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            },
+            {
+              "start": 48,
+              "end": 64,
+              "text": "3 fluorine atoms",
+              "node_id": "fragment_composition",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 748,
+          "end": 758,
+          "original": "C(=O)C1CC1",
+          "replacement": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+              "node_id": "fragment",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "SMILES value locates the false original-name→attachment-qualified graph binding. Same root across all aliases."
+        },
+        {
+          "start": 773,
+          "end": 774,
+          "original": "5",
+          "replacement": "12",
+          "node_id": "fragment_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "fragment_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1041,
+          "end": 1051,
+          "original": "C(=O)C1CC1",
+          "replacement": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+              "node_id": "fragment",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "SMILES value locates the false original-name→attachment-qualified graph binding. Same root across all aliases."
+        },
+        {
+          "start": 1240,
+          "end": 1242,
+          "original": "41",
+          "replacement": "48",
+          "node_id": "product_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "48",
+              "node_id": "product_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1277,
+          "end": 1279,
+          "original": "41",
+          "replacement": "48",
+          "node_id": "product_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "48",
+              "node_id": "product_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1288,
+          "end": 1289,
+          "original": "5",
+          "replacement": "12",
+          "node_id": "heavy_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "heavy_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1345,
+          "end": 1347,
+          "original": "41",
+          "replacement": "48",
+          "node_id": "product_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "48",
+              "node_id": "product_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1371,
+          "end": 1372,
+          "original": "5",
+          "replacement": "12",
+          "node_id": "heavy_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "heavy_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1609,
+          "end": 1638,
+          "original": "newly added cyclopropane ring",
+          "replacement": "newly added phenyl ring",
+          "node_id": "fragment_ring_identity",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 12,
+              "end": 18,
+              "text": "phenyl",
+              "node_id": "fragment_ring_identity",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "The whole named new ring is anchored to the incoming fragment; product=5 and ring_delta=+1 remain true and unchanged."
+        }
+      ],
+      "bindings_N": [
+        {
+          "start": 122,
+          "end": 161,
+          "text": "primary amine of the benzothiazole ring",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 170,
+          "end": 172,
+          "text": "24",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 179,
+          "end": 181,
+          "text": "24",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 191,
+          "end": 192,
+          "text": "N",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 385,
+          "end": 387,
+          "text": "24",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 398,
+          "end": 399,
+          "text": "N",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 560,
+          "end": 580,
+          "text": "cyclopropanecarbonyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 603,
+          "end": 613,
+          "text": "C(=O)C1CC1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 631,
+          "end": 632,
+          "text": "5",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 634,
+          "end": 651,
+          "text": "1 carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 636,
+          "end": 651,
+          "text": "carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 653,
+          "end": 670,
+          "text": "1 carbonyl oxygen",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 672,
+          "end": 698,
+          "text": "and 3 cyclopropane carbons",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 748,
+          "end": 758,
+          "text": "C(=O)C1CC1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 773,
+          "end": 774,
+          "text": "5",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 884,
+          "end": 898,
+          "text": "amine nitrogen",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 904,
+          "end": 906,
+          "text": "24",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 915,
+          "end": 930,
+          "text": "carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 938,
+          "end": 958,
+          "text": "cyclopropanecarbonyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 996,
+          "end": 998,
+          "text": "24",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1041,
+          "end": 1051,
+          "text": "C(=O)C1CC1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1147,
+          "end": 1149,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1208,
+          "end": 1210,
+          "text": "36",
+          "node_id": "source_map_max",
+          "origin": "approved_node",
+          "error_annotated": false,
+          "semantic_note": "Maximum original source atom map, not the attachment atom ordinal."
+        },
+        {
+          "start": 1240,
+          "end": 1242,
+          "text": "41",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1277,
+          "end": 1279,
+          "text": "41",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1282,
+          "end": 1284,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1288,
+          "end": 1289,
+          "text": "5",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1316,
+          "end": 1318,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1345,
+          "end": 1347,
+          "text": "41",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1371,
+          "end": 1372,
+          "text": "5",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1455,
+          "end": 1456,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1570,
+          "end": 1571,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1609,
+          "end": 1638,
+          "text": "newly added cyclopropane ring",
+          "node_id": "fragment_ring_identity",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1656,
+          "end": 1657,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1660,
+          "end": 1661,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1665,
+          "end": 1666,
+          "text": "1",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1693,
+          "end": 1694,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1721,
+          "end": 1722,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1740,
+          "end": 1741,
+          "text": "1",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        }
+      ],
+      "bindings_H": [
+        {
+          "start": 122,
+          "end": 161,
+          "text": "primary amine of the benzothiazole ring",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 170,
+          "end": 172,
+          "text": "24",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 179,
+          "end": 181,
+          "text": "24",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 191,
+          "end": 192,
+          "text": "N",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 385,
+          "end": 387,
+          "text": "24",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 398,
+          "end": 399,
+          "text": "N",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 560,
+          "end": 580,
+          "text": "cyclopropanecarbonyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 603,
+          "end": 626,
+          "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 644,
+          "end": 646,
+          "text": "12",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 648,
+          "end": 665,
+          "text": "1 carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 650,
+          "end": 665,
+          "text": "carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 667,
+          "end": 684,
+          "text": "1 carbonyl oxygen",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 686,
+          "end": 702,
+          "text": "6 phenyl carbons",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 704,
+          "end": 728,
+          "text": "1 trifluoromethyl carbon",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 734,
+          "end": 750,
+          "text": "3 fluorine atoms",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 800,
+          "end": 823,
+          "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 838,
+          "end": 840,
+          "text": "12",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 950,
+          "end": 964,
+          "text": "amine nitrogen",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 970,
+          "end": 972,
+          "text": "24",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 981,
+          "end": 996,
+          "text": "carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1004,
+          "end": 1024,
+          "text": "cyclopropanecarbonyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1062,
+          "end": 1064,
+          "text": "24",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1107,
+          "end": 1130,
+          "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1226,
+          "end": 1228,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1287,
+          "end": 1289,
+          "text": "36",
+          "node_id": "source_map_max",
+          "origin": "approved_node",
+          "error_annotated": false,
+          "semantic_note": "Maximum original source atom map, not the attachment atom ordinal."
+        },
+        {
+          "start": 1319,
+          "end": 1321,
+          "text": "48",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1356,
+          "end": 1358,
+          "text": "48",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1361,
+          "end": 1363,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1367,
+          "end": 1369,
+          "text": "12",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1396,
+          "end": 1398,
+          "text": "36",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1425,
+          "end": 1427,
+          "text": "48",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1451,
+          "end": 1453,
+          "text": "12",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1536,
+          "end": 1537,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1651,
+          "end": 1652,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1702,
+          "end": 1708,
+          "text": "phenyl",
+          "node_id": "fragment_ring_identity",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1731,
+          "end": 1732,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1735,
+          "end": 1736,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1740,
+          "end": 1741,
+          "text": "1",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1768,
+          "end": 1769,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1796,
+          "end": 1797,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1815,
+          "end": 1816,
+          "text": "1",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        }
+      ],
+      "node_specs": {
+        "fragment": {
+          "path": [
+            "fragment",
+            "smiles"
+          ]
+        },
+        "fragment_composition": {
+          "paths": {
+            "elements": [
+              "fragment",
+              "element_counts"
+            ],
+            "roles": [
+              "fragment",
+              "role_counts"
+            ]
+          }
+        },
+        "fragment_heavy": {
+          "path": [
+            "fragment",
+            "heavy_atoms"
+          ]
+        },
+        "product_heavy": {
+          "path": [
+            "product",
+            "heavy_atoms"
+          ]
+        },
+        "product_rings": {
+          "path": [
+            "product",
+            "rings"
+          ]
+        },
+        "heavy_delta": {
+          "path": [
+            "heavy_delta"
+          ]
+        },
+        "ring_delta": {
+          "path": [
+            "ring_delta"
+          ]
+        },
+        "source_heavy": {
+          "path": [
+            "source",
+            "heavy_atoms"
+          ]
+        },
+        "source_rings": {
+          "path": [
+            "source",
+            "rings"
+          ]
+        },
+        "anchor": {
+          "path": [
+            "attachment",
+            "anchor_map"
+          ]
+        },
+        "anchor_element": {
+          "path": [
+            "attachment",
+            "source_element"
+          ]
+        },
+        "source_role": {
+          "path": [
+            "attachment",
+            "source_role"
+          ]
+        },
+        "group_name": {
+          "path": [
+            "group_name"
+          ]
+        },
+        "fragment_carbonyl_counts": {
+          "paths": {
+            "carbon": [
+              "fragment",
+              "role_counts",
+              "carbonyl_carbon"
+            ],
+            "oxygen": [
+              "fragment",
+              "role_counts",
+              "carbonyl_oxygen"
+            ]
+          }
+        },
+        "fragment_ring_identity": {
+          "paths": {
+            "sizes": [
+              "fragment",
+              "ring_sizes"
+            ],
+            "aromatic_sizes": [
+              "fragment",
+              "aromatic_ring_sizes"
+            ]
+          }
+        },
+        "source_map_max": {
+          "path": [
+            "source",
+            "max_atom_map"
+          ]
+        }
+      },
+      "expected_counts": {
+        "source_heavy": 36,
+        "source_rings": 4,
+        "clean_fragment_heavy": 5,
+        "wrong_fragment_heavy": 12,
+        "clean_product_heavy": 41,
+        "wrong_product_heavy": 48,
+        "clean_product_rings": 5,
+        "wrong_product_rings": 5,
+        "clean_heavy_delta": 5,
+        "wrong_heavy_delta": 12,
+        "clean_ring_delta": 1,
+        "wrong_ring_delta": 1
+      },
+      "coverage": {
+        "wrong_smiles_occurrences": 3,
+        "unchanged_name_occurrences": 2,
+        "changed_nodes": [
+          "fragment",
+          "fragment_composition",
+          "fragment_heavy",
+          "fragment_ring_identity",
+          "heavy_delta",
+          "product_heavy"
+        ],
+        "error_spans": 14
+      },
+      "source_reference_notes": [
+        "Original instruction, all original requested-name aliases, source SMILES, anchor element/map/1-based ordinal, source-heavy and source-ring facts remain unchanged.",
+        "All original source atoms and source–source bonds are retained; only the original source anchor loses its same specified H. No-heavy-atoms-removed and leaving=none remain valid under both plans.",
+        "Bonding the same source N/O to incoming carbonyl C, and the amide/ester linkage class, remain correct conditional operations.",
+        "No prose incoming-fragment atom ordinal occurs in these four N_raw texts. The source anchor ordinal is not the fragment attachment ordinal.",
+        "Existing full product-answer removal exactly reproduces frozen N_visible. No new source or product-complete SMILES are inserted by these slot proposals.",
+        "Product-ring count 5, source-ring count 4 and ring delta +1 remain unchanged and unlabeled; only added-ring identity changes."
+      ]
+    },
+    "mol_edit.add_v2.0194": {
+      "reference_text": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The instruction specifies acetylating the primary amino group on the phenyl ring. In the indexed SMILES, the primary amino group on the phenyl ring is atom 20 (map :20, element N). The N-H bond breaks, but since only a hydrogen atom departs, LEAVING is \"none\".\n  Report its 1-based index (from INDEXED SMILES) and uppercase element symbol.\n  Identify LEAVING: \"none\" for TYPE A (only H departs).\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=20, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  Write the standalone SMILES of the new group bonding to ANCHOR, and count its heavy (non-hydrogen) atoms precisely. The incoming group is an acetyl group. SMILES: \"C(C)=O\". Heavy atoms: 3 (carbonyl C, methyl C, carbonyl O).\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(C)=O\", heavy_atoms=3)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: bond ANCHOR to ADD_FRAGMENT (no heavy atoms removed). Bond the nitrogen (idx=20) to the carbonyl carbon of the acetyl group.\n  FORMAL: SMILES + ANCHOR(idx=20) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(C)=O\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  Count heavy atoms in source (a) and product (b). The source has 31 heavy atoms (max map :31). The product has 34 heavy atoms. HEAVY_ATOM_DELTA = 34 - 31 = +3.\n  FORMAL: SMILES[n_heavy=31] + PRODUCT_SMILES[n_heavy=34] --> HEAVY_ATOM_DELTA(+3)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  Count SSSR rings in source (c) and product (d). The source has 4 rings (two phenyls, two thiazoles). The product has 4 rings. RING_DELTA = 4 - 4 = 0.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=4] --> RING_DELTA(0)",
+      "expected_compiled_text": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The instruction specifies acetylating the primary amino group on the phenyl ring. In the indexed SMILES, the primary amino group on the phenyl ring is atom 20 (map :20, element N). The N-H bond breaks, but since only a hydrogen atom departs, LEAVING is \"none\".\n  Report its 1-based index (from INDEXED SMILES) and uppercase element symbol.\n  Identify LEAVING: \"none\" for TYPE A (only H departs).\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=20, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  Write the standalone SMILES of the new group bonding to ANCHOR, and count its heavy (non-hydrogen) atoms precisely. The incoming group is an acetyl group. SMILES: \"C(=O)c1ccc(C(F)(F)F)cc1\". Heavy atoms: 12 (1 carbonyl C, 1 carbonyl O, 6 phenyl C, 1 trifluoromethyl C, and 3 F).\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\", heavy_atoms=12)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: bond ANCHOR to ADD_FRAGMENT (no heavy atoms removed). Bond the nitrogen (idx=20) to the carbonyl carbon of the acetyl group.\n  FORMAL: SMILES + ANCHOR(idx=20) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  Count heavy atoms in source (a) and product (b). The source has 31 heavy atoms (max map :31). The product has 43 heavy atoms. HEAVY_ATOM_DELTA = 43 - 31 = +12.\n  FORMAL: SMILES[n_heavy=31] + PRODUCT_SMILES[n_heavy=43] --> HEAVY_ATOM_DELTA(+12)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  Count SSSR rings in source (c) and product (d). The source has 4 rings (two phenyls, two thiazoles). The product has 5 rings. RING_DELTA = 5 - 4 = 1.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(1)",
+      "instruction": "Please acetylate the primary amino group on the phenyl ring.",
+      "indexed_smiles": "[CH3:1][O:2][c:3]1[cH:4][c:5]([NH:6][c:7]2[n:8][c:9]([NH2:10])[c:11](-[c:12]3[n:13][c:14](-[c:15]4[cH:16][cH:17][cH:18][c:19]([NH2:20])[cH:21]4)[cH:22][s:23]3)[s:24]2)[cH:25][c:26]([O:27][CH3:28])[c:29]1[O:30][CH3:31]",
+      "group_name": "acetyl",
+      "patches": [
+        {
+          "start": 883,
+          "end": 889,
+          "original": "C(C)=O",
+          "replacement": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+              "node_id": "fragment",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "SMILES value locates the false original-name→attachment-qualified graph binding. Same root across all aliases."
+        },
+        {
+          "start": 905,
+          "end": 906,
+          "original": "3",
+          "replacement": "12",
+          "node_id": "fragment_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "fragment_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 908,
+          "end": 940,
+          "original": "carbonyl C, methyl C, carbonyl O",
+          "replacement": "1 carbonyl C, 1 carbonyl O, 6 phenyl C, 1 trifluoromethyl C, and 3 F",
+          "node_id": "fragment_composition",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 28,
+              "end": 38,
+              "text": "6 phenyl C",
+              "node_id": "fragment_composition",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            },
+            {
+              "start": 40,
+              "end": 59,
+              "text": "1 trifluoromethyl C",
+              "node_id": "fragment_composition",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            },
+            {
+              "start": 65,
+              "end": 68,
+              "text": "3 F",
+              "node_id": "fragment_composition",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 990,
+          "end": 996,
+          "original": "C(C)=O",
+          "replacement": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+              "node_id": "fragment",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "SMILES value locates the false original-name→attachment-qualified graph binding. Same root across all aliases."
+        },
+        {
+          "start": 1011,
+          "end": 1012,
+          "original": "3",
+          "replacement": "12",
+          "node_id": "fragment_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "fragment_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1313,
+          "end": 1319,
+          "original": "C(C)=O",
+          "replacement": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 23,
+              "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+              "node_id": "fragment",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": "SMILES value locates the false original-name→attachment-qualified graph binding. Same root across all aliases."
+        },
+        {
+          "start": 1501,
+          "end": 1503,
+          "original": "34",
+          "replacement": "43",
+          "node_id": "product_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "43",
+              "node_id": "product_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1536,
+          "end": 1538,
+          "original": "34",
+          "replacement": "43",
+          "node_id": "product_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "43",
+              "node_id": "product_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1547,
+          "end": 1548,
+          "original": "3",
+          "replacement": "12",
+          "node_id": "heavy_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "heavy_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1604,
+          "end": 1606,
+          "original": "34",
+          "replacement": "43",
+          "node_id": "product_heavy",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "43",
+              "node_id": "product_heavy",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1630,
+          "end": 1631,
+          "original": "3",
+          "replacement": "12",
+          "node_id": "heavy_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 2,
+              "text": "12",
+              "node_id": "heavy_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1807,
+          "end": 1808,
+          "original": "4",
+          "replacement": "5",
+          "node_id": "product_rings",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "5",
+              "node_id": "product_rings",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1829,
+          "end": 1830,
+          "original": "4",
+          "replacement": "5",
+          "node_id": "product_rings",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "5",
+              "node_id": "product_rings",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1837,
+          "end": 1838,
+          "original": "0",
+          "replacement": "1",
+          "node_id": "ring_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "1",
+              "node_id": "ring_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1893,
+          "end": 1894,
+          "original": "4",
+          "replacement": "5",
+          "node_id": "product_rings",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "5",
+              "node_id": "product_rings",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        },
+        {
+          "start": 1911,
+          "end": 1912,
+          "original": "0",
+          "replacement": "1",
+          "node_id": "ring_delta",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 1,
+              "text": "1",
+              "node_id": "ring_delta",
+              "kind": "propagated_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ],
+          "semantic_note": null
+        }
+      ],
+      "bindings_N": [
+        {
+          "start": 160,
+          "end": 198,
+          "text": "primary amino group on the phenyl ring",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 227,
+          "end": 265,
+          "text": "primary amino group on the phenyl ring",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 274,
+          "end": 276,
+          "text": "20",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 283,
+          "end": 285,
+          "text": "20",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 295,
+          "end": 296,
+          "text": "N",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 568,
+          "end": 570,
+          "text": "20",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 581,
+          "end": 582,
+          "text": "N",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 860,
+          "end": 866,
+          "text": "acetyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 883,
+          "end": 889,
+          "text": "C(C)=O",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 905,
+          "end": 906,
+          "text": "3",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 908,
+          "end": 918,
+          "text": "carbonyl C",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 908,
+          "end": 940,
+          "text": "carbonyl C, methyl C, carbonyl O",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 930,
+          "end": 940,
+          "text": "carbonyl O",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 990,
+          "end": 996,
+          "text": "C(C)=O",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1011,
+          "end": 1012,
+          "text": "3",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1190,
+          "end": 1192,
+          "text": "20",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1201,
+          "end": 1216,
+          "text": "carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1224,
+          "end": 1230,
+          "text": "acetyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1268,
+          "end": 1270,
+          "text": "20",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1313,
+          "end": 1319,
+          "text": "C(C)=O",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1455,
+          "end": 1457,
+          "text": "31",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1480,
+          "end": 1482,
+          "text": "31",
+          "node_id": "source_map_max",
+          "origin": "approved_node",
+          "error_annotated": false,
+          "semantic_note": "Maximum original source atom map, not the attachment atom ordinal."
+        },
+        {
+          "start": 1501,
+          "end": 1503,
+          "text": "34",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1536,
+          "end": 1538,
+          "text": "34",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1541,
+          "end": 1543,
+          "text": "31",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1547,
+          "end": 1548,
+          "text": "3",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1575,
+          "end": 1577,
+          "text": "31",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1604,
+          "end": 1606,
+          "text": "34",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1630,
+          "end": 1631,
+          "text": "3",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1753,
+          "end": 1754,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1807,
+          "end": 1808,
+          "text": "4",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1829,
+          "end": 1830,
+          "text": "4",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1833,
+          "end": 1834,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1837,
+          "end": 1838,
+          "text": "0",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1865,
+          "end": 1866,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1893,
+          "end": 1894,
+          "text": "4",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1911,
+          "end": 1912,
+          "text": "0",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": false
+        }
+      ],
+      "bindings_H": [
+        {
+          "start": 160,
+          "end": 198,
+          "text": "primary amino group on the phenyl ring",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 227,
+          "end": 265,
+          "text": "primary amino group on the phenyl ring",
+          "node_id": "source_role",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 274,
+          "end": 276,
+          "text": "20",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 283,
+          "end": 285,
+          "text": "20",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 295,
+          "end": 296,
+          "text": "N",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 568,
+          "end": 570,
+          "text": "20",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 581,
+          "end": 582,
+          "text": "N",
+          "node_id": "anchor_element",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 860,
+          "end": 866,
+          "text": "acetyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 883,
+          "end": 906,
+          "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 922,
+          "end": 924,
+          "text": "12",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 926,
+          "end": 938,
+          "text": "1 carbonyl C",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 940,
+          "end": 952,
+          "text": "1 carbonyl O",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 954,
+          "end": 964,
+          "text": "6 phenyl C",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 966,
+          "end": 985,
+          "text": "1 trifluoromethyl C",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 991,
+          "end": 994,
+          "text": "3 F",
+          "node_id": "fragment_composition",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1044,
+          "end": 1067,
+          "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1082,
+          "end": 1084,
+          "text": "12",
+          "node_id": "fragment_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1262,
+          "end": 1264,
+          "text": "20",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1273,
+          "end": 1288,
+          "text": "carbonyl carbon",
+          "node_id": "fragment_carbonyl_counts",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1296,
+          "end": 1302,
+          "text": "acetyl",
+          "node_id": "group_name",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1340,
+          "end": 1342,
+          "text": "20",
+          "node_id": "anchor",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1385,
+          "end": 1408,
+          "text": "C(=O)c1ccc(C(F)(F)F)cc1",
+          "node_id": "fragment",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1544,
+          "end": 1546,
+          "text": "31",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1569,
+          "end": 1571,
+          "text": "31",
+          "node_id": "source_map_max",
+          "origin": "approved_node",
+          "error_annotated": false,
+          "semantic_note": "Maximum original source atom map, not the attachment atom ordinal."
+        },
+        {
+          "start": 1590,
+          "end": 1592,
+          "text": "43",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1625,
+          "end": 1627,
+          "text": "43",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1630,
+          "end": 1632,
+          "text": "31",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1636,
+          "end": 1638,
+          "text": "12",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1665,
+          "end": 1667,
+          "text": "31",
+          "node_id": "source_heavy",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1694,
+          "end": 1696,
+          "text": "43",
+          "node_id": "product_heavy",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1720,
+          "end": 1722,
+          "text": "12",
+          "node_id": "heavy_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1844,
+          "end": 1845,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1898,
+          "end": 1899,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1920,
+          "end": 1921,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1924,
+          "end": 1925,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1928,
+          "end": 1929,
+          "text": "1",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 1956,
+          "end": 1957,
+          "text": "4",
+          "node_id": "source_rings",
+          "origin": "approved_node",
+          "error_annotated": false
+        },
+        {
+          "start": 1984,
+          "end": 1985,
+          "text": "5",
+          "node_id": "product_rings",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        },
+        {
+          "start": 2002,
+          "end": 2003,
+          "text": "1",
+          "node_id": "ring_delta",
+          "origin": "approved_node",
+          "error_annotated": true,
+          "semantic_note": "Value/relationship error relative to the original requested binding; not a truth label for every surrounding word."
+        }
+      ],
+      "node_specs": {
+        "fragment": {
+          "path": [
+            "fragment",
+            "smiles"
+          ]
+        },
+        "fragment_composition": {
+          "paths": {
+            "elements": [
+              "fragment",
+              "element_counts"
+            ],
+            "roles": [
+              "fragment",
+              "role_counts"
+            ]
+          }
+        },
+        "fragment_heavy": {
+          "path": [
+            "fragment",
+            "heavy_atoms"
+          ]
+        },
+        "product_heavy": {
+          "path": [
+            "product",
+            "heavy_atoms"
+          ]
+        },
+        "product_rings": {
+          "path": [
+            "product",
+            "rings"
+          ]
+        },
+        "heavy_delta": {
+          "path": [
+            "heavy_delta"
+          ]
+        },
+        "ring_delta": {
+          "path": [
+            "ring_delta"
+          ]
+        },
+        "source_heavy": {
+          "path": [
+            "source",
+            "heavy_atoms"
+          ]
+        },
+        "source_rings": {
+          "path": [
+            "source",
+            "rings"
+          ]
+        },
+        "anchor": {
+          "path": [
+            "attachment",
+            "anchor_map"
+          ]
+        },
+        "anchor_element": {
+          "path": [
+            "attachment",
+            "source_element"
+          ]
+        },
+        "source_role": {
+          "path": [
+            "attachment",
+            "source_role"
+          ]
+        },
+        "group_name": {
+          "path": [
+            "group_name"
+          ]
+        },
+        "fragment_carbonyl_counts": {
+          "paths": {
+            "carbon": [
+              "fragment",
+              "role_counts",
+              "carbonyl_carbon"
+            ],
+            "oxygen": [
+              "fragment",
+              "role_counts",
+              "carbonyl_oxygen"
+            ]
+          }
+        },
+        "source_map_max": {
+          "path": [
+            "source",
+            "max_atom_map"
+          ]
+        }
+      },
+      "expected_counts": {
+        "source_heavy": 31,
+        "source_rings": 4,
+        "clean_fragment_heavy": 3,
+        "wrong_fragment_heavy": 12,
+        "clean_product_heavy": 34,
+        "wrong_product_heavy": 43,
+        "clean_product_rings": 4,
+        "wrong_product_rings": 5,
+        "clean_heavy_delta": 3,
+        "wrong_heavy_delta": 12,
+        "clean_ring_delta": 0,
+        "wrong_ring_delta": 1
+      },
+      "coverage": {
+        "wrong_smiles_occurrences": 3,
+        "unchanged_name_occurrences": 2,
+        "changed_nodes": [
+          "fragment",
+          "fragment_composition",
+          "fragment_heavy",
+          "heavy_delta",
+          "product_heavy",
+          "product_rings",
+          "ring_delta"
+        ],
+        "error_spans": 18
+      },
+      "source_reference_notes": [
+        "Original instruction, all original requested-name aliases, source SMILES, anchor element/map/1-based ordinal, source-heavy and source-ring facts remain unchanged.",
+        "All original source atoms and source–source bonds are retained; only the original source anchor loses its same specified H. No-heavy-atoms-removed and leaving=none remain valid under both plans.",
+        "Bonding the same source N/O to incoming carbonyl C, and the amide/ester linkage class, remain correct conditional operations.",
+        "No prose incoming-fragment atom ordinal occurs in these four N_raw texts. The source anchor ordinal is not the fragment attachment ordinal.",
+        "Existing full product-answer removal exactly reproduces frozen N_visible. No new source or product-complete SMILES are inserted by these slot proposals.",
+        "The exact Step 1 quote “The instruction specifies acetylating …” stays unchanged and truthful. The fixed-name design also retains “an acetyl group”, so no article repair is needed."
+      ]
+    }
+  }
+}

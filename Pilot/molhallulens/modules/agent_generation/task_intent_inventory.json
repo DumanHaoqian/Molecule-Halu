@@ -1,0 +1,308 @@
+{
+  "protocol": "task_intent_inventory_v1",
+  "scope": "Exactly four fixed development origins, full v16 native_with_connections parents; H-only name and declared grammar edits, not general free-text rewriting.",
+  "offsets": "Half-open Python Unicode character offsets in frozen parent H. Renderer maps unchanged parent-H source intervals to complete N coordinates before compilation.",
+  "origins": {
+    "mol_edit.add_v2.0098": {
+      "original_instruction": "Please acylate the secondary amine of the piperidine ring with a cyanoacetyl group.",
+      "parent_N": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The instruction specifies acylating the secondary amine of the piperidine ring. In the indexed SMILES, this is atom 18 (map :18, element N).\n  Identify LEAVING: This is an N-acylation (TYPE A addition) where only the hydrogen atom on the amine departs. Therefore, the leaving group is \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=18, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a cyanoacetyl group. Its SMILES is \"C(=O)CC#N\".\n  Counting the heavy atoms: 1 carbonyl carbon, 1 carbonyl oxygen, 1 methylene carbon, 1 cyano carbon, and 1 cyano nitrogen. Total = 5 heavy atoms.\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)CC#N\", heavy_atoms=5)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: Bond the piperidine nitrogen (idx=18) to the carbonyl carbon of the cyanoacetyl group. No heavy atoms are removed.\n  FORMAL: SMILES + ANCHOR(idx=18) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)CC#N\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 36 heavy atoms (as indicated by the highest atom map number :36).\n  The product molecule has 36 + 5 = 41 heavy atoms.\n  HEAVY_ATOM_DELTA = 41 - 36 = +5.\n  FORMAL: SMILES[n_heavy=36] + PRODUCT_SMILES[n_heavy=41] --> HEAVY_ATOM_DELTA(+5)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule contains 5 rings (two phenyl rings, one piperidine ring, and a fused pyrrolo-pyrimidine bicyclic system).\n  The product molecule also contains 5 rings.\n  RING_DELTA = 5 - 5 = 0.\n  FORMAL: SMILES[n_rings=5] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(0)\n\nStep 6 [PRODUCT_CONNECTIONS]: Describe the product connections.\nThe incoming group and source atom 18 (N) have the open-boundary connection representation \"N#CCC(=O)[N:18]([*:17])[*:19]\".\nIn this representation, [*:k] marks a boundary port to omitted original source atom k. The map k identifies the omitted atom; the wildcard itself is a port. These ports retain connections to the surrounding source structure. This is a partial connection representation, not a standalone molecule or the complete ring environment.",
+      "parent_H": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The instruction specifies acylating the secondary amine of the piperidine ring. In the indexed SMILES, this is atom 18 (map :18, element N).\n  Identify LEAVING: This is an N-acylation (TYPE A addition) where only the hydrogen atom on the amine departs. Therefore, the leaving group is \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=18, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a cyanoacetyl group. Its SMILES is \"C(=O)c1ccc(C(F)(F)F)cc1\".\n  Counting the heavy atoms: 1 carbonyl carbon, 1 carbonyl oxygen, 6 phenyl carbons, 1 trifluoromethyl carbon, and 3 fluorine atoms. Total = 12 heavy atoms.\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\", heavy_atoms=12)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: Bond the piperidine nitrogen (idx=18) to the carbonyl carbon of the cyanoacetyl group. No heavy atoms are removed.\n  FORMAL: SMILES + ANCHOR(idx=18) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 36 heavy atoms (as indicated by the highest atom map number :36).\n  The product molecule has 36 + 12 = 48 heavy atoms.\n  HEAVY_ATOM_DELTA = 48 - 36 = +12.\n  FORMAL: SMILES[n_heavy=36] + PRODUCT_SMILES[n_heavy=48] --> HEAVY_ATOM_DELTA(+12)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule contains 5 rings (two phenyl rings, one piperidine ring, and a fused pyrrolo-pyrimidine bicyclic system).\n  The product molecule contains 6 rings.\n  RING_DELTA = 6 - 5 = 1.\n  FORMAL: SMILES[n_rings=5] + PRODUCT_SMILES[n_rings=6] --> RING_DELTA(1)\n\nStep 6 [PRODUCT_CONNECTIONS]: Describe the product connections.\nThe incoming group and source atom 18 (N) have the open-boundary connection representation \"O=C(c1ccc(C(F)(F)F)cc1)[N:18]([*:17])[*:19]\".\nIn this representation, [*:k] marks a boundary port to omitted original source atom k. The map k identifies the omitted atom; the wildcard itself is a port. These ports retain connections to the surrounding source structure. This is a partial connection representation, not a standalone molecule or the complete ring environment.",
+      "requested_group": "cyanoacetyl",
+      "perceived_group": "4-(trifluoromethyl)benzoyl",
+      "patches_from_parent_H": [
+        {
+          "start": 640,
+          "end": 651,
+          "original": "cyanoacetyl",
+          "replacement": "4-(trifluoromethyl)benzoyl",
+          "node_id": "task_group",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 26,
+              "text": "4-(trifluoromethyl)benzoyl",
+              "node_id": "task_group",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ]
+        },
+        {
+          "start": 1112,
+          "end": 1123,
+          "original": "cyanoacetyl",
+          "replacement": "4-(trifluoromethyl)benzoyl",
+          "node_id": "task_group",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 26,
+              "text": "4-(trifluoromethyl)benzoyl",
+              "node_id": "task_group",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ]
+        }
+      ],
+      "expected_intent_H": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The instruction specifies acylating the secondary amine of the piperidine ring. In the indexed SMILES, this is atom 18 (map :18, element N).\n  Identify LEAVING: This is an N-acylation (TYPE A addition) where only the hydrogen atom on the amine departs. Therefore, the leaving group is \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=18, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a 4-(trifluoromethyl)benzoyl group. Its SMILES is \"C(=O)c1ccc(C(F)(F)F)cc1\".\n  Counting the heavy atoms: 1 carbonyl carbon, 1 carbonyl oxygen, 6 phenyl carbons, 1 trifluoromethyl carbon, and 3 fluorine atoms. Total = 12 heavy atoms.\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\", heavy_atoms=12)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: Bond the piperidine nitrogen (idx=18) to the carbonyl carbon of the 4-(trifluoromethyl)benzoyl group. No heavy atoms are removed.\n  FORMAL: SMILES + ANCHOR(idx=18) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 36 heavy atoms (as indicated by the highest atom map number :36).\n  The product molecule has 36 + 12 = 48 heavy atoms.\n  HEAVY_ATOM_DELTA = 48 - 36 = +12.\n  FORMAL: SMILES[n_heavy=36] + PRODUCT_SMILES[n_heavy=48] --> HEAVY_ATOM_DELTA(+12)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule contains 5 rings (two phenyl rings, one piperidine ring, and a fused pyrrolo-pyrimidine bicyclic system).\n  The product molecule contains 6 rings.\n  RING_DELTA = 6 - 5 = 1.\n  FORMAL: SMILES[n_rings=5] + PRODUCT_SMILES[n_rings=6] --> RING_DELTA(1)\n\nStep 6 [PRODUCT_CONNECTIONS]: Describe the product connections.\nThe incoming group and source atom 18 (N) have the open-boundary connection representation \"O=C(c1ccc(C(F)(F)F)cc1)[N:18]([*:17])[*:19]\".\nIn this representation, [*:k] marks a boundary port to omitted original source atom k. The map k identifies the omitted atom; the wildcard itself is a port. These ports retain connections to the surrounding source structure. This is a partial connection representation, not a standalone molecule or the complete ring environment.",
+      "expected_task_group_spans": 2,
+      "grammar_scope": "Generic acylating verb, source-role wording and article corrections are not error values; only mistaken task-group names are root spans."
+    },
+    "mol_edit.add_v2.0172": {
+      "original_instruction": "Please acylate the secondary hydroxyl group with a stearoyl group.",
+      "parent_N": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  The instruction is to acylate the secondary hydroxyl group. In the indexed SMILES, the secondary hydroxyl oxygen is atom 28 (map :28, element O). In O-acylation, only the hydrogen atom departs from the hydroxyl group, so no heavy atoms are removed. LEAVING = \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=28, element=\"O\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a stearoyl group, which is an 18-carbon acyl chain. Its SMILES is \"CCCCCCCCCCCCCCCCCC(=O)\". It consists of 18 carbon atoms and 1 oxygen atom, giving a total of 19 heavy atoms.\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"CCCCCCCCCCCCCCCCCC(=O)\", heavy_atoms=19)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  This is a TYPE A reaction. We bond the hydroxyl oxygen (atom 28) to the carbonyl carbon of the stearoyl group. The resulting product SMILES incorporates the long aliphatic chain attached via an ester linkage.\n  FORMAL: SMILES + ANCHOR(idx=28) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"CCCCCCCCCCCCCCCCCC(=O)\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 40 heavy atoms (as indicated by the maximum atom map number :40). The product molecule has 59 heavy atoms. The difference is exactly the 19 heavy atoms added from the stearoyl group. HEAVY_ATOM_DELTA = 59 - 40 = +19.\n  FORMAL: SMILES[n_heavy=40] + PRODUCT_SMILES[n_heavy=59] --> HEAVY_ATOM_DELTA(+19)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule contains 4 rings (three in the fluorenyl-like system and one in the benzyl ester). The product molecule also contains 4 rings, as the stearoyl group is acyclic. RING_DELTA = 4 - 4 = 0.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=4] --> RING_DELTA(0)\n\nStep 6 [PRODUCT_CONNECTIONS]: Describe the product connections.\nThe incoming group and source atom 28 (O) have the open-boundary connection representation \"CCCCCCCCCCCCCCCCCC(=O)[O:28][*:27]\".\nIn this representation, [*:k] marks a boundary port to omitted original source atom k. The map k identifies the omitted atom; the wildcard itself is a port. These ports retain connections to the surrounding source structure. This is a partial connection representation, not a standalone molecule or the complete ring environment.",
+      "parent_H": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  The instruction is to acylate the secondary hydroxyl group. In the indexed SMILES, the secondary hydroxyl oxygen is atom 28 (map :28, element O). In O-acylation, only the hydrogen atom departs from the hydroxyl group, so no heavy atoms are removed. LEAVING = \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=28, element=\"O\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a stearoyl group, which is an 8-carbon aromatic acyl group. Its SMILES is \"C(=O)c1ccc(C(F)(F)F)cc1\". It consists of 8 carbon atoms, 3 fluorine atoms, and 1 oxygen atom, giving a total of 12 heavy atoms.\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\", heavy_atoms=12)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  This is a TYPE A reaction. We bond the hydroxyl oxygen (atom 28) to the carbonyl carbon of the stearoyl group. The resulting product SMILES incorporates the aromatic acyl group attached via an ester linkage.\n  FORMAL: SMILES + ANCHOR(idx=28) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 40 heavy atoms (as indicated by the maximum atom map number :40). The product molecule has 52 heavy atoms. The difference is exactly the 12 heavy atoms added from the stearoyl group. HEAVY_ATOM_DELTA = 52 - 40 = +12.\n  FORMAL: SMILES[n_heavy=40] + PRODUCT_SMILES[n_heavy=52] --> HEAVY_ATOM_DELTA(+12)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule contains 4 rings (three in the fluorenyl-like system and one in the benzyl ester). The product molecule contains 5 rings, as the stearoyl group contains one phenyl ring. RING_DELTA = 5 - 4 = 1.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(1)\n\nStep 6 [PRODUCT_CONNECTIONS]: Describe the product connections.\nThe incoming group and source atom 28 (O) have the open-boundary connection representation \"O=C(c1ccc(C(F)(F)F)cc1)[O:28][*:27]\".\nIn this representation, [*:k] marks a boundary port to omitted original source atom k. The map k identifies the omitted atom; the wildcard itself is a port. These ports retain connections to the surrounding source structure. This is a partial connection representation, not a standalone molecule or the complete ring environment.",
+      "requested_group": "stearoyl",
+      "perceived_group": "4-(trifluoromethyl)benzoyl",
+      "patches_from_parent_H": [
+        {
+          "start": 601,
+          "end": 609,
+          "original": "stearoyl",
+          "replacement": "4-(trifluoromethyl)benzoyl",
+          "node_id": "task_group",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 26,
+              "text": "4-(trifluoromethyl)benzoyl",
+              "node_id": "task_group",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ]
+        },
+        {
+          "start": 1077,
+          "end": 1085,
+          "original": "stearoyl",
+          "replacement": "4-(trifluoromethyl)benzoyl",
+          "node_id": "task_group",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 26,
+              "text": "4-(trifluoromethyl)benzoyl",
+              "node_id": "task_group",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ]
+        },
+        {
+          "start": 1551,
+          "end": 1559,
+          "original": "stearoyl",
+          "replacement": "4-(trifluoromethyl)benzoyl",
+          "node_id": "task_group",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 26,
+              "text": "4-(trifluoromethyl)benzoyl",
+              "node_id": "task_group",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ]
+        },
+        {
+          "start": 1891,
+          "end": 1899,
+          "original": "stearoyl",
+          "replacement": "4-(trifluoromethyl)benzoyl",
+          "node_id": "task_group",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 26,
+              "text": "4-(trifluoromethyl)benzoyl",
+              "node_id": "task_group",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ]
+        }
+      ],
+      "expected_intent_H": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  The instruction is to acylate the secondary hydroxyl group. In the indexed SMILES, the secondary hydroxyl oxygen is atom 28 (map :28, element O). In O-acylation, only the hydrogen atom departs from the hydroxyl group, so no heavy atoms are removed. LEAVING = \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=28, element=\"O\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a 4-(trifluoromethyl)benzoyl group, which is an 8-carbon aromatic acyl group. Its SMILES is \"C(=O)c1ccc(C(F)(F)F)cc1\". It consists of 8 carbon atoms, 3 fluorine atoms, and 1 oxygen atom, giving a total of 12 heavy atoms.\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\", heavy_atoms=12)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  This is a TYPE A reaction. We bond the hydroxyl oxygen (atom 28) to the carbonyl carbon of the 4-(trifluoromethyl)benzoyl group. The resulting product SMILES incorporates the aromatic acyl group attached via an ester linkage.\n  FORMAL: SMILES + ANCHOR(idx=28) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 40 heavy atoms (as indicated by the maximum atom map number :40). The product molecule has 52 heavy atoms. The difference is exactly the 12 heavy atoms added from the 4-(trifluoromethyl)benzoyl group. HEAVY_ATOM_DELTA = 52 - 40 = +12.\n  FORMAL: SMILES[n_heavy=40] + PRODUCT_SMILES[n_heavy=52] --> HEAVY_ATOM_DELTA(+12)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule contains 4 rings (three in the fluorenyl-like system and one in the benzyl ester). The product molecule contains 5 rings, as the 4-(trifluoromethyl)benzoyl group contains one phenyl ring. RING_DELTA = 5 - 4 = 1.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(1)\n\nStep 6 [PRODUCT_CONNECTIONS]: Describe the product connections.\nThe incoming group and source atom 28 (O) have the open-boundary connection representation \"O=C(c1ccc(C(F)(F)F)cc1)[O:28][*:27]\".\nIn this representation, [*:k] marks a boundary port to omitted original source atom k. The map k identifies the omitted atom; the wildcard itself is a port. These ports retain connections to the surrounding source structure. This is a partial connection representation, not a standalone molecule or the complete ring environment.",
+      "expected_task_group_spans": 4,
+      "grammar_scope": "Generic acylating verb, source-role wording and article corrections are not error values; only mistaken task-group names are root spans."
+    },
+    "mol_edit.add_v2.0193": {
+      "original_instruction": "Please acylate the primary amine of the benzothiazole ring with a cyclopropanecarbonyl group.",
+      "parent_N": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The primary amine of the benzothiazole ring is atom 24 (map :24, element N). The N-H bond breaks to form the new amide bond, but since only hydrogen departs, this is a TYPE A addition.\n  Identify LEAVING: \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=24, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a cyclopropanecarbonyl group. Its SMILES is \"C(=O)C1CC1\".\n  Heavy atoms: 5 (1 carbonyl carbon, 1 carbonyl oxygen, and 3 cyclopropane carbons).\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)C1CC1\", heavy_atoms=5)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: Bond the amine nitrogen (idx=24) to the carbonyl carbon of the cyclopropanecarbonyl group.\n  FORMAL: SMILES + ANCHOR(idx=24) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)C1CC1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 36 heavy atoms (as indicated by the maximum atom map number :36).\n  The product molecule has 41 heavy atoms.\n  HEAVY_ATOM_DELTA = 41 - 36 = +5.\n  FORMAL: SMILES[n_heavy=36] + PRODUCT_SMILES[n_heavy=41] --> HEAVY_ATOM_DELTA(+5)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule has 4 rings (two benzene rings and one fused benzothiazole system which counts as 2 rings).\n  The product molecule has 5 rings (the 4 original rings plus the newly added cyclopropane ring).\n  RING_DELTA = 5 - 4 = +1.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(+1)\n\nStep 6 [PRODUCT_CONNECTIONS]: Describe the product connections.\nThe incoming group and source atom 24 (N) have the open-boundary connection representation \"O=C(C1CC1)[NH:24][*:23]\".\nIn this representation, [*:k] marks a boundary port to omitted original source atom k. The map k identifies the omitted atom; the wildcard itself is a port. These ports retain connections to the surrounding source structure. This is a partial connection representation, not a standalone molecule or the complete ring environment.",
+      "parent_H": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The primary amine of the benzothiazole ring is atom 24 (map :24, element N). The N-H bond breaks to form the new amide bond, but since only hydrogen departs, this is a TYPE A addition.\n  Identify LEAVING: \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=24, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a cyclopropanecarbonyl group. Its SMILES is \"C(=O)c1ccc(C(F)(F)F)cc1\".\n  Heavy atoms: 12 (1 carbonyl carbon, 1 carbonyl oxygen, 6 phenyl carbons, 1 trifluoromethyl carbon, and 3 fluorine atoms).\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\", heavy_atoms=12)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: Bond the amine nitrogen (idx=24) to the carbonyl carbon of the cyclopropanecarbonyl group.\n  FORMAL: SMILES + ANCHOR(idx=24) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 36 heavy atoms (as indicated by the maximum atom map number :36).\n  The product molecule has 48 heavy atoms.\n  HEAVY_ATOM_DELTA = 48 - 36 = +12.\n  FORMAL: SMILES[n_heavy=36] + PRODUCT_SMILES[n_heavy=48] --> HEAVY_ATOM_DELTA(+12)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule has 4 rings (two benzene rings and one fused benzothiazole system which counts as 2 rings).\n  The product molecule has 5 rings (the 4 original rings plus the newly added phenyl ring).\n  RING_DELTA = 5 - 4 = +1.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(+1)\n\nStep 6 [PRODUCT_CONNECTIONS]: Describe the product connections.\nThe incoming group and source atom 24 (N) have the open-boundary connection representation \"O=C(c1ccc(C(F)(F)F)cc1)[NH:24][*:23]\".\nIn this representation, [*:k] marks a boundary port to omitted original source atom k. The map k identifies the omitted atom; the wildcard itself is a port. These ports retain connections to the surrounding source structure. This is a partial connection representation, not a standalone molecule or the complete ring environment.",
+      "requested_group": "cyclopropanecarbonyl",
+      "perceived_group": "4-(trifluoromethyl)benzoyl",
+      "patches_from_parent_H": [
+        {
+          "start": 560,
+          "end": 580,
+          "original": "cyclopropanecarbonyl",
+          "replacement": "4-(trifluoromethyl)benzoyl",
+          "node_id": "task_group",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 26,
+              "text": "4-(trifluoromethyl)benzoyl",
+              "node_id": "task_group",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ]
+        },
+        {
+          "start": 1004,
+          "end": 1024,
+          "original": "cyclopropanecarbonyl",
+          "replacement": "4-(trifluoromethyl)benzoyl",
+          "node_id": "task_group",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 26,
+              "text": "4-(trifluoromethyl)benzoyl",
+              "node_id": "task_group",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ]
+        }
+      ],
+      "expected_intent_H": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The primary amine of the benzothiazole ring is atom 24 (map :24, element N). The N-H bond breaks to form the new amide bond, but since only hydrogen departs, this is a TYPE A addition.\n  Identify LEAVING: \"none\".\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=24, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  The incoming group is a 4-(trifluoromethyl)benzoyl group. Its SMILES is \"C(=O)c1ccc(C(F)(F)F)cc1\".\n  Heavy atoms: 12 (1 carbonyl carbon, 1 carbonyl oxygen, 6 phenyl carbons, 1 trifluoromethyl carbon, and 3 fluorine atoms).\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\", heavy_atoms=12)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: Bond the amine nitrogen (idx=24) to the carbonyl carbon of the 4-(trifluoromethyl)benzoyl group.\n  FORMAL: SMILES + ANCHOR(idx=24) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  The source molecule has 36 heavy atoms (as indicated by the maximum atom map number :36).\n  The product molecule has 48 heavy atoms.\n  HEAVY_ATOM_DELTA = 48 - 36 = +12.\n  FORMAL: SMILES[n_heavy=36] + PRODUCT_SMILES[n_heavy=48] --> HEAVY_ATOM_DELTA(+12)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  The source molecule has 4 rings (two benzene rings and one fused benzothiazole system which counts as 2 rings).\n  The product molecule has 5 rings (the 4 original rings plus the newly added phenyl ring).\n  RING_DELTA = 5 - 4 = +1.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(+1)\n\nStep 6 [PRODUCT_CONNECTIONS]: Describe the product connections.\nThe incoming group and source atom 24 (N) have the open-boundary connection representation \"O=C(c1ccc(C(F)(F)F)cc1)[NH:24][*:23]\".\nIn this representation, [*:k] marks a boundary port to omitted original source atom k. The map k identifies the omitted atom; the wildcard itself is a port. These ports retain connections to the surrounding source structure. This is a partial connection representation, not a standalone molecule or the complete ring environment.",
+      "expected_task_group_spans": 2,
+      "grammar_scope": "Generic acylating verb, source-role wording and article corrections are not error values; only mistaken task-group names are root spans."
+    },
+    "mol_edit.add_v2.0194": {
+      "original_instruction": "Please acetylate the primary amino group on the phenyl ring.",
+      "parent_N": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The instruction specifies acetylating the primary amino group on the phenyl ring. In the indexed SMILES, the primary amino group on the phenyl ring is atom 20 (map :20, element N). The N-H bond breaks, but since only a hydrogen atom departs, LEAVING is \"none\".\n  Report its 1-based index (from INDEXED SMILES) and uppercase element symbol.\n  Identify LEAVING: \"none\" for TYPE A (only H departs).\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=20, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  Write the standalone SMILES of the new group bonding to ANCHOR, and count its heavy (non-hydrogen) atoms precisely. The incoming group is an acetyl group. SMILES: \"C(C)=O\". Heavy atoms: 3 (carbonyl C, methyl C, carbonyl O).\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(C)=O\", heavy_atoms=3)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: bond ANCHOR to ADD_FRAGMENT (no heavy atoms removed). Bond the nitrogen (idx=20) to the carbonyl carbon of the acetyl group.\n  FORMAL: SMILES + ANCHOR(idx=20) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(C)=O\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  Count heavy atoms in source (a) and product (b). The source has 31 heavy atoms (max map :31). The product has 34 heavy atoms. HEAVY_ATOM_DELTA = 34 - 31 = +3.\n  FORMAL: SMILES[n_heavy=31] + PRODUCT_SMILES[n_heavy=34] --> HEAVY_ATOM_DELTA(+3)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  Count SSSR rings in source (c) and product (d). The source has 4 rings (two phenyls, two thiazoles). The product has 4 rings. RING_DELTA = 4 - 4 = 0.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=4] --> RING_DELTA(0)\n\nStep 6 [PRODUCT_CONNECTIONS]: Describe the product connections.\nThe incoming group and source atom 20 (N) have the open-boundary connection representation \"CC(=O)[NH:20][*:19]\".\nIn this representation, [*:k] marks a boundary port to omitted original source atom k. The map k identifies the omitted atom; the wildcard itself is a port. These ports retain connections to the surrounding source structure. This is a partial connection representation, not a standalone molecule or the complete ring environment.",
+      "parent_H": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The instruction specifies acetylating the primary amino group on the phenyl ring. In the indexed SMILES, the primary amino group on the phenyl ring is atom 20 (map :20, element N). The N-H bond breaks, but since only a hydrogen atom departs, LEAVING is \"none\".\n  Report its 1-based index (from INDEXED SMILES) and uppercase element symbol.\n  Identify LEAVING: \"none\" for TYPE A (only H departs).\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=20, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  Write the standalone SMILES of the new group bonding to ANCHOR, and count its heavy (non-hydrogen) atoms precisely. The incoming group is an acetyl group. SMILES: \"C(=O)c1ccc(C(F)(F)F)cc1\". Heavy atoms: 12 (1 carbonyl C, 1 carbonyl O, 6 phenyl C, 1 trifluoromethyl C, and 3 F).\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\", heavy_atoms=12)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: bond ANCHOR to ADD_FRAGMENT (no heavy atoms removed). Bond the nitrogen (idx=20) to the carbonyl carbon of the acetyl group.\n  FORMAL: SMILES + ANCHOR(idx=20) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  Count heavy atoms in source (a) and product (b). The source has 31 heavy atoms (max map :31). The product has 43 heavy atoms. HEAVY_ATOM_DELTA = 43 - 31 = +12.\n  FORMAL: SMILES[n_heavy=31] + PRODUCT_SMILES[n_heavy=43] --> HEAVY_ATOM_DELTA(+12)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  Count SSSR rings in source (c) and product (d). The source has 4 rings (two phenyls, two thiazoles). The product has 5 rings. RING_DELTA = 5 - 4 = 1.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(1)\n\nStep 6 [PRODUCT_CONNECTIONS]: Describe the product connections.\nThe incoming group and source atom 20 (N) have the open-boundary connection representation \"O=C(c1ccc(C(F)(F)F)cc1)[NH:20][*:19]\".\nIn this representation, [*:k] marks a boundary port to omitted original source atom k. The map k identifies the omitted atom; the wildcard itself is a port. These ports retain connections to the surrounding source structure. This is a partial connection representation, not a standalone molecule or the complete ring environment.",
+      "requested_group": "acetyl",
+      "perceived_group": "4-(trifluoromethyl)benzoyl",
+      "patches_from_parent_H": [
+        {
+          "start": 118,
+          "end": 199,
+          "original": "The instruction specifies acetylating the primary amino group on the phenyl ring.",
+          "replacement": "The instruction specifies acylating the primary amino group on the phenyl ring with a 4-(trifluoromethyl)benzoyl group.",
+          "node_id": "task_group",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 86,
+              "end": 112,
+              "text": "4-(trifluoromethyl)benzoyl",
+              "node_id": "task_group",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ]
+        },
+        {
+          "start": 857,
+          "end": 859,
+          "original": "an",
+          "replacement": "a",
+          "node_id": "task_group_grammar",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": []
+        },
+        {
+          "start": 860,
+          "end": 866,
+          "original": "acetyl",
+          "replacement": "4-(trifluoromethyl)benzoyl",
+          "node_id": "task_group",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 26,
+              "text": "4-(trifluoromethyl)benzoyl",
+              "node_id": "task_group",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ]
+        },
+        {
+          "start": 1296,
+          "end": 1302,
+          "original": "acetyl",
+          "replacement": "4-(trifluoromethyl)benzoyl",
+          "node_id": "task_group",
+          "root_ids": [
+            "r1"
+          ],
+          "error_spans": [
+            {
+              "start": 0,
+              "end": 26,
+              "text": "4-(trifluoromethyl)benzoyl",
+              "node_id": "task_group",
+              "kind": "root_error",
+              "root_ids": [
+                "r1"
+              ]
+            }
+          ]
+        }
+      ],
+      "expected_intent_H": "Step 1 [ANCHOR_IDENTIFICATION]: Identify the attachment atom (ANCHOR) and the leaving group (LEAVING).\n  Find ANCHOR: The instruction specifies acylating the primary amino group on the phenyl ring with a 4-(trifluoromethyl)benzoyl group. In the indexed SMILES, the primary amino group on the phenyl ring is atom 20 (map :20, element N). The N-H bond breaks, but since only a hydrogen atom departs, LEAVING is \"none\".\n  Report its 1-based index (from INDEXED SMILES) and uppercase element symbol.\n  Identify LEAVING: \"none\" for TYPE A (only H departs).\n  FORMAL: INDEXED_SMILES + INSTRUCTION --> ANCHOR(idx=20, element=\"N\") + LEAVING(smiles=\"none\")\n\nStep 2 [FRAGMENT_IDENTIFICATION]: Extract the incoming fragment (ADD_FRAGMENT) and count its heavy atoms.\n  Write the standalone SMILES of the new group bonding to ANCHOR, and count its heavy (non-hydrogen) atoms precisely. The incoming group is a 4-(trifluoromethyl)benzoyl group. SMILES: \"C(=O)c1ccc(C(F)(F)F)cc1\". Heavy atoms: 12 (1 carbonyl C, 1 carbonyl O, 6 phenyl C, 1 trifluoromethyl C, and 3 F).\n  FORMAL: INSTRUCTION --> ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\", heavy_atoms=12)\n\nStep 3 [PRODUCT_CONSTRUCTION]: Construct the product by bonding ADD_FRAGMENT to ANCHOR.\n  TYPE A: bond ANCHOR to ADD_FRAGMENT (no heavy atoms removed). Bond the nitrogen (idx=20) to the carbonyl carbon of the 4-(trifluoromethyl)benzoyl group.\n  FORMAL: SMILES + ANCHOR(idx=20) + LEAVING(\"none\") + ADD_FRAGMENT(smiles=\"C(=O)c1ccc(C(F)(F)F)cc1\")\n\nStep 4 [HEAVY_ATOM_VERIFICATION]: Verify heavy atom count change.\n  Count heavy atoms in source (a) and product (b). The source has 31 heavy atoms (max map :31). The product has 43 heavy atoms. HEAVY_ATOM_DELTA = 43 - 31 = +12.\n  FORMAL: SMILES[n_heavy=31] + PRODUCT_SMILES[n_heavy=43] --> HEAVY_ATOM_DELTA(+12)\n\nStep 5 [RING_VERIFICATION]: Verify ring count change.\n  Count SSSR rings in source (c) and product (d). The source has 4 rings (two phenyls, two thiazoles). The product has 5 rings. RING_DELTA = 5 - 4 = 1.\n  FORMAL: SMILES[n_rings=4] + PRODUCT_SMILES[n_rings=5] --> RING_DELTA(1)\n\nStep 6 [PRODUCT_CONNECTIONS]: Describe the product connections.\nThe incoming group and source atom 20 (N) have the open-boundary connection representation \"O=C(c1ccc(C(F)(F)F)cc1)[NH:20][*:19]\".\nIn this representation, [*:k] marks a boundary port to omitted original source atom k. The map k identifies the omitted atom; the wildcard itself is a port. These ports retain connections to the surrounding source structure. This is a partial connection representation, not a standalone molecule or the complete ring environment.",
+      "expected_task_group_spans": 3,
+      "grammar_scope": "Generic acylating verb, source-role wording and article corrections are not error values; only mistaken task-group names are root spans."
+    }
+  }
+}

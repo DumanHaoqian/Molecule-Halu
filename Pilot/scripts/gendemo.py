@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
 import re
 import sys
 from collections import Counter
@@ -19,6 +20,8 @@ if str(PROJECT_ROOT) not in sys.path:
 
 import gradio as gr
 
+from scripts.agent_saved_demo import CSS as AGENT_CSS, build_agent_demo, is_agent_dataset
+
 from molhallulens.core import StateDAG, ValueProvenance
 from molhallulens.config.paths import DEFAULT_DATASET_ROOT
 from molhallulens.demo import (
@@ -30,7 +33,7 @@ from molhallulens.modules.ingestion import ChemCoTMolEditAdapter
 from molhallulens.modules.reference import build_reference_dag
 
 DEFAULT_RECORDS = PROJECT_ROOT / "GeneratedDataset" / "maximum_edits_complete.jsonl"
-CSS = _CSS + """
+CSS = _CSS + AGENT_CSS + """
 mark.saved-hallu { background: #ccff00; color: #172033; border-radius: 2px; }
 mark.saved-control { background: #bae6fd; color: #172033; border-radius: 2px; }
 .pair-warning { color: #9a3412; padding: 8px; background: #fff7ed; }
@@ -288,6 +291,8 @@ def _navigate_pair(pair_ids, pair_id, offset=0):
 
 
 def build_demo(path=DEFAULT_RECORDS, dataset_root=DEFAULT_DATASET_ROOT):
+    if is_agent_dataset(path):
+        return build_agent_demo(path)
     viewer = SavedDemo(path, dataset_root)
     pair_ids = tuple(viewer.pairs)
     first = pair_ids[0]
@@ -369,6 +374,14 @@ def build_demo(path=DEFAULT_RECORDS, dataset_root=DEFAULT_DATASET_ROOT):
     return app
 
 
+def _bypass_local_proxy(host):
+    """Gradio calls its own startup-events endpoint before starting its queue."""
+    entries = [part.strip() for key in ('NO_PROXY', 'no_proxy')
+               for part in os.environ.get(key, '').split(',') if part.strip()]
+    value = ','.join(dict.fromkeys([*entries, 'localhost', '127.0.0.1', host]))
+    os.environ['NO_PROXY'] = os.environ['no_proxy'] = value
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--records", type=Path, default=DEFAULT_RECORDS)
@@ -376,6 +389,7 @@ def main():
     parser.add_argument("--port", type=int, default=7838)
     parser.add_argument("--no-browser", action="store_true")
     args = parser.parse_args()
+    _bypass_local_proxy(args.host)
     build_demo(args.records).queue(default_concurrency_limit=1).launch(
         server_name=args.host, server_port=args.port, inbrowser=not args.no_browser,
         show_error=True, css=CSS, share=False,

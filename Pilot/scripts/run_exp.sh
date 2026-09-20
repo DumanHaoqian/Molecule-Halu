@@ -10,8 +10,8 @@ RUNNER=/home/haoqian/Data/Molecule/Pilot/scripts/run_chemLLM_outcome.py
 DATASET=/home/haoqian/Data/Molecule/Pilot/GeneratedDataset/maximum_edits_complete.jsonl
 MODEL_DFM=/home/haoqian/Data/Molecule/chemical_models/ChemDFM-R-14B
 MODEL_R=/home/haoqian/Data/Molecule/chemical_models/Chem-R-8B
-OUT_DFM=/home/haoqian/Data/Molecule/Pilot/Experiments/chemdfm_r14b_outcome_abcde
-OUT_R=/home/haoqian/Data/Molecule/Pilot/Experiments/chem_r8b_outcome_abcde
+OUT_DFM=/home/haoqian/Data/Molecule/Pilot/Experiments/chemdfm_r14b_outcome_abcde_follow_reasoning
+OUT_R=/home/haoqian/Data/Molecule/Pilot/Experiments/chem_r8b_outcome_abcde_follow_reasoning
 GPUS=4,5,6,7
 TENSOR_PARALLEL=4
 BATCH_SIZE=8
@@ -73,6 +73,7 @@ from pathlib import Path
 report = Path(sys.argv[1])
 lines = ["# 五组分子编辑实验结果", "", f"更新时间：{datetime.now().astimezone().isoformat(timespec='seconds')}", "",
          "A：直接回答；B：加入 H 幻觉推理；C：加入本题 N 正确推理；D：自行推理后回答；E：加入其他题目的 N 正确推理。", "",
+         "提示词版本：follow_reasoning_v2。B/C/E 必须按所给推理作答，不独立复核、修正或忽略推理；A/D 保持原设置。", "",
          "Accuracy 沿用评估脚本的 primary_accuracy：去除原子映射后，比较预测与标准答案的主片段。",
          "分子相似度为去除原子映射后的完整分子 Morgan 指纹 Tanimoto 相似度均值（0–1）。无效或缺失答案记为 0，计入分母。", ""]
 for name, directory in zip(("ChemDFM-R-14B", "Chem-R-8B"), sys.argv[2:]):

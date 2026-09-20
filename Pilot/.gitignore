@@ -26,3 +26,19 @@ __pycache__/
 # Local experiment logs and generated results.
 /scripts/run_exp.log
 /scripts/run_exp_result.md
+/scripts/run_agent_exp.log
+/scripts/run_agent_exp.pid
+/scripts/agent_corruption_result.md
+/scripts/run_edit_order_exp.log
+/scripts/run_edit_order_exp.pid
+/scripts/run_named_binding_exp.log
+/scripts/run_named_binding_exp.pid
+/scripts/run_anchored_connection_exp.log
+/scripts/run_anchored_connection_exp.pid
+/scripts/run_task_intent_exp.log
+/scripts/run_task_intent_exp.pid
+/scripts/run_full150_exp.log
+/scripts/run_full150_exp.pid
+/scripts/run_full150_exp_result.md
+/scripts/run_full150_generation.log
+/scripts/run_full150_generation.pid

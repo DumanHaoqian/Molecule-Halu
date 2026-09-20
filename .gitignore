@@ -18,3 +18,8 @@ __pycache__/
 
 # Sample Txt Files
 *.txt
+
+/MolReHallu
+/Pilot/Experiments
+/Pilot/tests
+
