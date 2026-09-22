@@ -1,0 +1,1682 @@
+{
+  "method": "Exact rows and text-pair hashes; seeded reservoir token estimates. No system/chat-template tokens. PubChem first=original, second=enriched (alternative text views); MolLLaMA first=full dialog, second=assistant-only; other first=prompt, second=answer. Processed diagnostic only: excludes history/molecule input and is not a ready extraction recipe.",
+  "results": [
+    {
+      "path": "Downloads/Train/Chemcot/mol_edit/add.json",
+      "kind": "chemcot",
+      "bytes": 17207201,
+      "rows": 1499,
+      "unique_text_pairs": 1499,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        128357,
+        14727608
+      ],
+      "tasks": {
+        "add": 1499
+      },
+      "answer_cue_rows": 171,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 39.29296875,
+          "estimated_total": 58900,
+          "approx_95pct_margin": 662,
+          "sample_p50": 36,
+          "sample_p95": 63
+        },
+        "second": {
+          "mean": 2668.4267578125,
+          "estimated_total": 3999972,
+          "approx_95pct_margin": 77729,
+          "sample_p50": 2438,
+          "sample_p95": 5487
+        },
+        "combined": {
+          "mean": 2707.7197265625,
+          "estimated_total": 4058872,
+          "approx_95pct_margin": 77609,
+          "sample_p50": 2477,
+          "sample_p95": 5530
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_edit/delete.json",
+      "kind": "chemcot",
+      "bytes": 18017025,
+      "rows": 1499,
+      "unique_text_pairs": 1499,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        133465,
+        15428301
+      ],
+      "tasks": {
+        "delete": 1499
+      },
+      "answer_cue_rows": 156,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 39.3154296875,
+          "estimated_total": 58934,
+          "approx_95pct_margin": 717,
+          "sample_p50": 36,
+          "sample_p95": 61
+        },
+        "second": {
+          "mean": 2849.345703125,
+          "estimated_total": 4271169,
+          "approx_95pct_margin": 101556,
+          "sample_p50": 2379,
+          "sample_p95": 6521
+        },
+        "combined": {
+          "mean": 2888.6611328125,
+          "estimated_total": 4330103,
+          "approx_95pct_margin": 101557,
+          "sample_p50": 2419,
+          "sample_p95": 6559
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_edit/sub.json",
+      "kind": "chemcot",
+      "bytes": 18631432,
+      "rows": 1499,
+      "unique_text_pairs": 1499,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        156849,
+        15708620
+      ],
+      "tasks": {
+        "sub": 1499
+      },
+      "answer_cue_rows": 172,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 44.162109375,
+          "estimated_total": 66199,
+          "approx_95pct_margin": 969,
+          "sample_p50": 40,
+          "sample_p95": 72
+        },
+        "second": {
+          "mean": 2891.2724609375,
+          "estimated_total": 4334017,
+          "approx_95pct_margin": 102271,
+          "sample_p50": 2325,
+          "sample_p95": 6632
+        },
+        "combined": {
+          "mean": 2935.4345703125,
+          "estimated_total": 4400216,
+          "approx_95pct_margin": 102223,
+          "sample_p50": 2376,
+          "sample_p95": 6675
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/drd.json",
+      "kind": "chemcot",
+      "bytes": 9501874,
+      "rows": 1500,
+      "unique_text_pairs": 1500,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        515122,
+        6415116
+      ],
+      "tasks": {
+        "drd": 1500
+      },
+      "answer_cue_rows": 3,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 95.57421875,
+          "estimated_total": 143361,
+          "approx_95pct_margin": 332,
+          "sample_p50": 96,
+          "sample_p95": 106
+        },
+        "second": {
+          "mean": 1073.3935546875,
+          "estimated_total": 1610090,
+          "approx_95pct_margin": 39139,
+          "sample_p50": 823,
+          "sample_p95": 2562
+        },
+        "combined": {
+          "mean": 1168.9677734375,
+          "estimated_total": 1753452,
+          "approx_95pct_margin": 39156,
+          "sample_p50": 920,
+          "sample_p95": 2670
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/gsk.json",
+      "kind": "chemcot",
+      "bytes": 5279364,
+      "rows": 724,
+      "unique_text_pairs": 724,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        260830,
+        3772351
+      ],
+      "tasks": {
+        "gsk": 724
+      },
+      "answer_cue_rows": 16,
+      "mol_placeholder_rows": 0,
+      "sample_n": 724,
+      "tokens": {
+        "first": {
+          "mean": 102.53729281767956,
+          "estimated_total": 74237,
+          "approx_95pct_margin": 0,
+          "sample_p50": 103,
+          "sample_p95": 112
+        },
+        "second": {
+          "mean": 1323.763812154696,
+          "estimated_total": 958405,
+          "approx_95pct_margin": 0,
+          "sample_p50": 877,
+          "sample_p95": 4039
+        },
+        "combined": {
+          "mean": 1426.3011049723757,
+          "estimated_total": 1032642,
+          "approx_95pct_margin": 0,
+          "sample_p50": 984,
+          "sample_p95": 4150
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/jnk.json",
+      "kind": "chemcot",
+      "bytes": 1418544,
+      "rows": 180,
+      "unique_text_pairs": 180,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        62688,
+        1046887
+      ],
+      "tasks": {
+        "jnk": 180
+      },
+      "answer_cue_rows": 3,
+      "mol_placeholder_rows": 0,
+      "sample_n": 180,
+      "tokens": {
+        "first": {
+          "mean": 94.65,
+          "estimated_total": 17037,
+          "approx_95pct_margin": 0,
+          "sample_p50": 94,
+          "sample_p95": 104
+        },
+        "second": {
+          "mean": 1492.1777777777777,
+          "estimated_total": 268592,
+          "approx_95pct_margin": 0,
+          "sample_p50": 942,
+          "sample_p95": 4065
+        },
+        "combined": {
+          "mean": 1586.8277777777778,
+          "estimated_total": 285629,
+          "approx_95pct_margin": 0,
+          "sample_p50": 1037,
+          "sample_p95": 4153
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/logp.json",
+      "kind": "chemcot",
+      "bytes": 2928622,
+      "rows": 1394,
+      "unique_text_pairs": 1377,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        1394
+      ],
+      "text_characters": [
+        609538,
+        0
+      ],
+      "tasks": {
+        "logp": 1394
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 115.3515625,
+          "estimated_total": 160800,
+          "approx_95pct_margin": 306,
+          "sample_p50": 115,
+          "sample_p95": 127
+        },
+        "second": {
+          "mean": 0,
+          "estimated_total": 0,
+          "approx_95pct_margin": 0,
+          "sample_p50": 0,
+          "sample_p95": 0
+        },
+        "combined": {
+          "mean": 115.3515625,
+          "estimated_total": 160800,
+          "approx_95pct_margin": 306,
+          "sample_p50": 115,
+          "sample_p95": 127
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/qed.json",
+      "kind": "chemcot",
+      "bytes": 2336793,
+      "rows": 377,
+      "unique_text_pairs": 377,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        120463,
+        1629851
+      ],
+      "tasks": {
+        "qed": 377
+      },
+      "answer_cue_rows": 6,
+      "mol_placeholder_rows": 0,
+      "sample_n": 377,
+      "tokens": {
+        "first": {
+          "mean": 86.86472148541114,
+          "estimated_total": 32748,
+          "approx_95pct_margin": 0,
+          "sample_p50": 87,
+          "sample_p95": 96
+        },
+        "second": {
+          "mean": 1134.5835543766577,
+          "estimated_total": 427738,
+          "approx_95pct_margin": 0,
+          "sample_p50": 807,
+          "sample_p95": 2890
+        },
+        "combined": {
+          "mean": 1221.448275862069,
+          "estimated_total": 460486,
+          "approx_95pct_margin": 0,
+          "sample_p50": 896,
+          "sample_p95": 2975
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/solubility.json",
+      "kind": "chemcot",
+      "bytes": 2838293,
+      "rows": 1412,
+      "unique_text_pairs": 1404,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        1412
+      ],
+      "text_characters": [
+        490408,
+        0
+      ],
+      "tasks": {
+        "solubility": 1412
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 93.201171875,
+          "estimated_total": 131600,
+          "approx_95pct_margin": 307,
+          "sample_p50": 93,
+          "sample_p95": 105
+        },
+        "second": {
+          "mean": 0,
+          "estimated_total": 0,
+          "approx_95pct_margin": 0,
+          "sample_p50": 0,
+          "sample_p95": 0
+        },
+        "combined": {
+          "mean": 93.201171875,
+          "estimated_total": 131600,
+          "approx_95pct_margin": 307,
+          "sample_p50": 93,
+          "sample_p95": 105
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/Murcko_scaffold.json",
+      "kind": "chemcot",
+      "bytes": 12695966,
+      "rows": 1600,
+      "unique_text_pairs": 1600,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        749785,
+        10331057
+      ],
+      "tasks": {
+        "Murcko_scaffold": 1600
+      },
+      "answer_cue_rows": 462,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 117.4140625,
+          "estimated_total": 187862,
+          "approx_95pct_margin": 422,
+          "sample_p50": 117,
+          "sample_p95": 130
+        },
+        "second": {
+          "mean": 1711.8603515625,
+          "estimated_total": 2738977,
+          "approx_95pct_margin": 105457,
+          "sample_p50": 871,
+          "sample_p95": 5852
+        },
+        "combined": {
+          "mean": 1829.2744140625,
+          "estimated_total": 2926839,
+          "approx_95pct_margin": 105535,
+          "sample_p50": 988,
+          "sample_p95": 5979
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/fg_count.json",
+      "kind": "chemcot",
+      "bytes": 9426002,
+      "rows": 1519,
+      "unique_text_pairs": 1519,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        483660,
+        7979971
+      ],
+      "tasks": {
+        "fg_count": 1519
+      },
+      "answer_cue_rows": 544,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 97.1572265625,
+          "estimated_total": 147582,
+          "approx_95pct_margin": 1511,
+          "sample_p50": 91,
+          "sample_p95": 126
+        },
+        "second": {
+          "mean": 1490.2978515625,
+          "estimated_total": 2263762,
+          "approx_95pct_margin": 94811,
+          "sample_p50": 632,
+          "sample_p95": 5401
+        },
+        "combined": {
+          "mean": 1587.455078125,
+          "estimated_total": 2411344,
+          "approx_95pct_margin": 94787,
+          "sample_p50": 736,
+          "sample_p95": 5492
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/ring_count.json",
+      "kind": "chemcot",
+      "bytes": 20514106,
+      "rows": 1600,
+      "unique_text_pairs": 1600,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        440684,
+        18597827
+      ],
+      "tasks": {
+        "ring_count": 1600
+      },
+      "answer_cue_rows": 1058,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 88.7099609375,
+          "estimated_total": 141936,
+          "approx_95pct_margin": 525,
+          "sample_p50": 88,
+          "sample_p95": 104
+        },
+        "second": {
+          "mean": 3411.7353515625,
+          "estimated_total": 5458777,
+          "approx_95pct_margin": 171213,
+          "sample_p50": 2477,
+          "sample_p95": 9010
+        },
+        "combined": {
+          "mean": 3500.4453125,
+          "estimated_total": 5600712,
+          "approx_95pct_margin": 171284,
+          "sample_p50": 2562,
+          "sample_p95": 9098
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/ring_system_scaffold.json",
+      "kind": "chemcot",
+      "bytes": 15450905,
+      "rows": 1600,
+      "unique_text_pairs": 1600,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        740734,
+        13080533
+      ],
+      "tasks": {
+        "ring_system_scaffold": 1600
+      },
+      "answer_cue_rows": 663,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 129.6591796875,
+          "estimated_total": 207455,
+          "approx_95pct_margin": 567,
+          "sample_p50": 129,
+          "sample_p95": 146
+        },
+        "second": {
+          "mean": 2304.2578125,
+          "estimated_total": 3686812,
+          "approx_95pct_margin": 124706,
+          "sample_p50": 1416,
+          "sample_p95": 6606
+        },
+        "combined": {
+          "mean": 2434.9140625,
+          "estimated_total": 3895862,
+          "approx_95pct_margin": 124858,
+          "sample_p50": 1557,
+          "sample_p95": 6753
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/rxn/fs_by_product.json",
+      "kind": "chemcot",
+      "bytes": 2992305,
+      "rows": 890,
+      "unique_text_pairs": 883,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        890
+      ],
+      "text_characters": [
+        560329,
+        0
+      ],
+      "tasks": {
+        "fs": 890
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 890,
+      "tokens": {
+        "first": {
+          "mean": 163.19213483146066,
+          "estimated_total": 145241,
+          "approx_95pct_margin": 0,
+          "sample_p50": 157,
+          "sample_p95": 211
+        },
+        "second": {
+          "mean": 0,
+          "estimated_total": 0,
+          "approx_95pct_margin": 0,
+          "sample_p50": 0,
+          "sample_p95": 0
+        },
+        "combined": {
+          "mean": 163.19213483146066,
+          "estimated_total": 145241,
+          "approx_95pct_margin": 0,
+          "sample_p50": 157,
+          "sample_p95": 211
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/rxn/fs_major_product.json",
+      "kind": "chemcot",
+      "bytes": 7694318,
+      "rows": 2788,
+      "unique_text_pairs": 1152,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        2788
+      ],
+      "text_characters": [
+        1755219,
+        0
+      ],
+      "tasks": {
+        "fs": 2788
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 161.47265625,
+          "estimated_total": 450186,
+          "approx_95pct_margin": 3159,
+          "sample_p50": 155,
+          "sample_p95": 213
+        },
+        "second": {
+          "mean": 0,
+          "estimated_total": 0,
+          "approx_95pct_margin": 0,
+          "sample_p50": 0,
+          "sample_p95": 0
+        },
+        "combined": {
+          "mean": 161.47265625,
+          "estimated_total": 450186,
+          "approx_95pct_margin": 3159,
+          "sample_p50": 155,
+          "sample_p95": 213
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/rxn/rcr.json",
+      "kind": "chemcot",
+      "bytes": 11449360,
+      "rows": 3142,
+      "unique_text_pairs": 3141,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        3142
+      ],
+      "text_characters": [
+        4751531,
+        0
+      ],
+      "tasks": {
+        "rcr": 3142
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 338.2373046875,
+          "estimated_total": 1062742,
+          "approx_95pct_margin": 6055,
+          "sample_p50": 332,
+          "sample_p95": 416
+        },
+        "second": {
+          "mean": 0,
+          "estimated_total": 0,
+          "approx_95pct_margin": 0,
+          "sample_p50": 0,
+          "sample_p95": 0
+        },
+        "combined": {
+          "mean": 338.2373046875,
+          "estimated_total": 1062742,
+          "approx_95pct_margin": 6055,
+          "sample_p50": 332,
+          "sample_p95": 416
+        }
+      }
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/detailed_structural_descriptions.json",
+      "kind": "mollama",
+      "bytes": 232595863,
+      "rows": 77239,
+      "unique_text_pairs": 77239,
+      "unique_cids": 77239,
+      "turns": 77239,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        182413897,
+        167309856
+      ],
+      "tasks": {
+        "mollama": 77239
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 77239,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 543.2333984375,
+          "estimated_total": 41958804,
+          "approx_95pct_margin": 500948,
+          "sample_p50": 545,
+          "sample_p95": 723
+        },
+        "second": {
+          "mean": 456.9814453125,
+          "estimated_total": 35296790,
+          "approx_95pct_margin": 367845,
+          "sample_p50": 463,
+          "sample_p95": 572
+        },
+        "combined": {
+          "mean": 543.2333984375,
+          "estimated_total": 41958804,
+          "approx_95pct_margin": 500948,
+          "sample_p50": 545,
+          "sample_p95": 723
+        }
+      }
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/structure2chemical_features_relationships.json",
+      "kind": "mollama",
+      "bytes": 254754789,
+      "rows": 73712,
+      "unique_text_pairs": 73712,
+      "unique_cids": 73712,
+      "turns": 73712,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        206675771,
+        192596750
+      ],
+      "tasks": {
+        "mollama": 73712
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 73712,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 584.822265625,
+          "estimated_total": 43108419,
+          "approx_95pct_margin": 457735,
+          "sample_p50": 580,
+          "sample_p95": 749
+        },
+        "second": {
+          "mean": 500.5517578125,
+          "estimated_total": 36896671,
+          "approx_95pct_margin": 355853,
+          "sample_p50": 500,
+          "sample_p95": 633
+        },
+        "combined": {
+          "mean": 584.822265625,
+          "estimated_total": 43108419,
+          "approx_95pct_margin": 457735,
+          "sample_p50": 580,
+          "sample_p95": 749
+        }
+      }
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/structure2biological_features_relationships.json",
+      "kind": "mollama",
+      "bytes": 257904531,
+      "rows": 73645,
+      "unique_text_pairs": 73645,
+      "unique_cids": 73645,
+      "turns": 73645,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        209924292,
+        189755939
+      ],
+      "tasks": {
+        "mollama": 73645
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 73645,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 580.4404296875,
+          "estimated_total": 42746535,
+          "approx_95pct_margin": 453415,
+          "sample_p50": 572,
+          "sample_p95": 757
+        },
+        "second": {
+          "mean": 481.1044921875,
+          "estimated_total": 35430940,
+          "approx_95pct_margin": 342607,
+          "sample_p50": 477,
+          "sample_p95": 607
+        },
+        "combined": {
+          "mean": 580.4404296875,
+          "estimated_total": 42746535,
+          "approx_95pct_margin": 453415,
+          "sample_p50": 572,
+          "sample_p95": 757
+        }
+      }
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/comprehensive_conversations.json",
+      "kind": "mollama",
+      "bytes": 237020508,
+      "rows": 60147,
+      "unique_text_pairs": 60147,
+      "unique_cids": 60147,
+      "turns": 447693,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        167164386,
+        129009475
+      ],
+      "tasks": {
+        "mollama": 60147
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 60147,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 593.58203125,
+          "estimated_total": 35702178,
+          "approx_95pct_margin": 320848,
+          "sample_p50": 588,
+          "sample_p95": 751
+        },
+        "second": {
+          "mean": 428.939453125,
+          "estimated_total": 25799421,
+          "approx_95pct_margin": 245707,
+          "sample_p50": 425,
+          "sample_p95": 549
+        },
+        "combined": {
+          "mean": 593.58203125,
+          "estimated_total": 35702178,
+          "approx_95pct_margin": 320848,
+          "sample_p50": 588,
+          "sample_p95": 751
+        }
+      }
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/pubchem-molecules.json",
+      "kind": "pubchem",
+      "bytes": 4423985651,
+      "rows": 315396,
+      "unique_text_pairs": 315396,
+      "unique_cids": 315396,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        63381436,
+        447535842
+      ],
+      "tasks": {
+        "pubchem": 315396
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 79.0166015625,
+          "estimated_total": 24921520,
+          "approx_95pct_margin": 1378738,
+          "sample_p50": 60,
+          "sample_p95": 226
+        },
+        "second": {
+          "mean": 344.58203125,
+          "estimated_total": 108679794,
+          "approx_95pct_margin": 1105840,
+          "sample_p50": 337,
+          "sample_p95": 450
+        },
+        "combined": {
+          "mean": 423.5986328125,
+          "estimated_total": 133601314,
+          "approx_95pct_margin": 2040873,
+          "sample_p50": 401,
+          "sample_p95": 608
+        }
+      },
+      "cids_shared_with_mollama": 194915
+    },
+    {
+      "path": "Downloads/Train/OpenMolIns/xlarge/train.csv",
+      "kind": "openmol",
+      "bytes": 178280636,
+      "rows": 1200000,
+      "unique_text_pairs": 1200000,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        110125212,
+        53940252
+      ],
+      "tasks": {
+        "AtomNum": 133334,
+        "BondNum": 133334,
+        "FunctionalGroup": 133334,
+        "AddComponent": 133333,
+        "SubComponent": 133333,
+        "DelComponent": 133333,
+        "LogP": 133333,
+        "MR": 133333,
+        "QED": 133333
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 34.8681640625,
+          "estimated_total": 41841797,
+          "approx_95pct_margin": 972453,
+          "sample_p50": 33,
+          "sample_p95": 58
+        },
+        "second": {
+          "mean": 28.9462890625,
+          "estimated_total": 34735547,
+          "approx_95pct_margin": 895442,
+          "sample_p50": 27,
+          "sample_p95": 51
+        },
+        "combined": {
+          "mean": 63.814453125,
+          "estimated_total": 76577344,
+          "approx_95pct_margin": 1706198,
+          "sample_p50": 59,
+          "sample_p95": 104
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/OpenMolIns/large/train.csv",
+      "kind": "openmol",
+      "bytes": 13360913,
+      "rows": 90000,
+      "unique_text_pairs": 90000,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        8251179,
+        4043533
+      ],
+      "tasks": {
+        "AtomNum": 10000,
+        "BondNum": 10000,
+        "FunctionalGroup": 10000,
+        "AddComponent": 10000,
+        "SubComponent": 10000,
+        "DelComponent": 10000,
+        "LogP": 10000,
+        "MR": 10000,
+        "QED": 10000
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 34.6611328125,
+          "estimated_total": 3119502,
+          "approx_95pct_margin": 68436,
+          "sample_p50": 32,
+          "sample_p95": 57
+        },
+        "second": {
+          "mean": 29.3447265625,
+          "estimated_total": 2641025,
+          "approx_95pct_margin": 69928,
+          "sample_p50": 27,
+          "sample_p95": 54
+        },
+        "combined": {
+          "mean": 64.005859375,
+          "estimated_total": 5760527,
+          "approx_95pct_margin": 123941,
+          "sample_p50": 59,
+          "sample_p95": 103
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/OpenMolIns/medium/train.csv",
+      "kind": "openmol",
+      "bytes": 6673659,
+      "rows": 45000,
+      "unique_text_pairs": 45000,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        4122285,
+        2018239
+      ],
+      "tasks": {
+        "AtomNum": 5000,
+        "BondNum": 5000,
+        "FunctionalGroup": 5000,
+        "AddComponent": 5000,
+        "SubComponent": 5000,
+        "DelComponent": 5000,
+        "LogP": 5000,
+        "MR": 5000,
+        "QED": 5000
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 34.80078125,
+          "estimated_total": 1566035,
+          "approx_95pct_margin": 34421,
+          "sample_p50": 33,
+          "sample_p95": 58
+        },
+        "second": {
+          "mean": 29.3310546875,
+          "estimated_total": 1319897,
+          "approx_95pct_margin": 34250,
+          "sample_p50": 27,
+          "sample_p95": 54
+        },
+        "combined": {
+          "mean": 64.1318359375,
+          "estimated_total": 2885933,
+          "approx_95pct_margin": 62189,
+          "sample_p50": 59,
+          "sample_p95": 106
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/OpenMolIns/small/train.csv",
+      "kind": "openmol",
+      "bytes": 2672961,
+      "rows": 18000,
+      "unique_text_pairs": 18000,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        1650624,
+        809064
+      ],
+      "tasks": {
+        "AtomNum": 2000,
+        "BondNum": 2000,
+        "FunctionalGroup": 2000,
+        "AddComponent": 2000,
+        "SubComponent": 2000,
+        "DelComponent": 2000,
+        "LogP": 2000,
+        "MR": 2000,
+        "QED": 2000
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 35.4892578125,
+          "estimated_total": 638807,
+          "approx_95pct_margin": 13928,
+          "sample_p50": 33,
+          "sample_p95": 62
+        },
+        "second": {
+          "mean": 29.7275390625,
+          "estimated_total": 535096,
+          "approx_95pct_margin": 13274,
+          "sample_p50": 27,
+          "sample_p95": 55
+        },
+        "combined": {
+          "mean": 65.216796875,
+          "estimated_total": 1173902,
+          "approx_95pct_margin": 24652,
+          "sample_p50": 60,
+          "sample_p95": 113
+        }
+      }
+    },
+    {
+      "path": "Downloads/Train/OpenMolIns/light/train.csv",
+      "kind": "openmol",
+      "bytes": 666133,
+      "rows": 4500,
+      "unique_text_pairs": 4500,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        411987,
+        200817
+      ],
+      "tasks": {
+        "AtomNum": 500,
+        "BondNum": 500,
+        "FunctionalGroup": 500,
+        "AddComponent": 500,
+        "SubComponent": 500,
+        "DelComponent": 500,
+        "LogP": 500,
+        "MR": 500,
+        "QED": 500
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 34.9580078125,
+          "estimated_total": 157311,
+          "approx_95pct_margin": 3272,
+          "sample_p50": 32,
+          "sample_p95": 57
+        },
+        "second": {
+          "mean": 29.8017578125,
+          "estimated_total": 134108,
+          "approx_95pct_margin": 3259,
+          "sample_p50": 27,
+          "sample_p95": 51
+        },
+        "combined": {
+          "mean": 64.759765625,
+          "estimated_total": 291419,
+          "approx_95pct_margin": 5858,
+          "sample_p50": 59,
+          "sample_p95": 104
+        }
+      }
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/moleculeqa/train.json",
+      "kind": "moleculeqa",
+      "bytes": 69984341,
+      "rows": 49993,
+      "unique_text_pairs": 49968,
+      "unique_cids": 22349,
+      "turns": 49993,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        22424711,
+        449937
+      ],
+      "tasks": {
+        "property": 4838,
+        "source": 11062,
+        "structure": 32176,
+        "usage": 1917
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 49993,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 159.8125,
+          "estimated_total": 7989506,
+          "approx_95pct_margin": 212437,
+          "sample_p50": 141,
+          "sample_p95": 294
+        },
+        "second": {
+          "mean": 3,
+          "estimated_total": 149979,
+          "approx_95pct_margin": 0,
+          "sample_p50": 3,
+          "sample_p95": 3
+        },
+        "combined": {
+          "mean": 159.8125,
+          "estimated_total": 7989506,
+          "approx_95pct_margin": 212437,
+          "sample_p50": 141,
+          "sample_p95": 294
+        }
+      }
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/ChEBI-20/train.txt",
+      "kind": "chebi",
+      "bytes": 10189623,
+      "rows": 26407,
+      "unique_text_pairs": 26407,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        2161765,
+        7759234
+      ],
+      "tasks": {
+        "chebi": 26407
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 60.376953125,
+          "estimated_total": 1594374,
+          "approx_95pct_margin": 92976,
+          "sample_p50": 42,
+          "sample_p95": 158
+        },
+        "second": {
+          "mean": 89.66796875,
+          "estimated_total": 2367862,
+          "approx_95pct_margin": 61439,
+          "sample_p50": 82,
+          "sample_p95": 158
+        },
+        "combined": {
+          "mean": 150.947265625,
+          "estimated_total": 3986064,
+          "approx_95pct_margin": 125061,
+          "sample_p50": 137,
+          "sample_p95": 278
+        }
+      }
+    },
+    {
+      "path": "Datasets/Train/01Conversation/conversation_sft_with_worldmodel.jsonl",
+      "kind": "processed",
+      "bytes": 96753207,
+      "rows": 10292,
+      "unique_text_pairs": 10292,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        770902,
+        3168793
+      ],
+      "tasks": {
+        "conversation": 10292
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 13.7392578125,
+          "estimated_total": 141404,
+          "approx_95pct_margin": 1756,
+          "sample_p50": 13,
+          "sample_p95": 18
+        },
+        "second": {
+          "mean": 63.275390625,
+          "estimated_total": 651230,
+          "approx_95pct_margin": 10716,
+          "sample_p50": 62,
+          "sample_p95": 92
+        },
+        "combined": {
+          "mean": 77.0146484375,
+          "estimated_total": 792635,
+          "approx_95pct_margin": 11100,
+          "sample_p50": 76,
+          "sample_p95": 106
+        }
+      }
+    },
+    {
+      "path": "Datasets/Train/02PubChem/latent_world_modeling.jsonl",
+      "kind": "processed",
+      "bytes": 53503482,
+      "rows": 17243,
+      "unique_text_pairs": 17243,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        1758786,
+        23798301
+      ],
+      "tasks": {
+        "latent_world_modeling": 17243
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 19,
+          "estimated_total": 327617,
+          "approx_95pct_margin": 0,
+          "sample_p50": 19,
+          "sample_p95": 19
+        },
+        "second": {
+          "mean": 323.5068359375,
+          "estimated_total": 5578228,
+          "approx_95pct_margin": 43000,
+          "sample_p50": 319,
+          "sample_p95": 400
+        },
+        "combined": {
+          "mean": 342.5068359375,
+          "estimated_total": 5905845,
+          "approx_95pct_margin": 43000,
+          "sample_p50": 338,
+          "sample_p95": 419
+        }
+      }
+    },
+    {
+      "path": "Datasets/Train/03MolEdit/mol_edit_with_worldmodel.jsonl",
+      "kind": "processed",
+      "bytes": 38391656,
+      "rows": 4497,
+      "unique_text_pairs": 4491,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        418671,
+        764230
+      ],
+      "tasks": {
+        "latent_world_modeling": 4497
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 40.64453125,
+          "estimated_total": 182778,
+          "approx_95pct_margin": 3230,
+          "sample_p50": 38,
+          "sample_p95": 66
+        },
+        "second": {
+          "mean": 77.9404296875,
+          "estimated_total": 350498,
+          "approx_95pct_margin": 6432,
+          "sample_p50": 72,
+          "sample_p95": 130
+        },
+        "combined": {
+          "mean": 118.5849609375,
+          "estimated_total": 533277,
+          "approx_95pct_margin": 9638,
+          "sample_p50": 110,
+          "sample_p95": 193
+        }
+      }
+    },
+    {
+      "path": "Datasets/Train/04TomgBench/train_small.jsonl",
+      "kind": "processed",
+      "bytes": 162167703,
+      "rows": 17999,
+      "unique_text_pairs": 17999,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        1650502,
+        2889880
+      ],
+      "tasks": {
+        "latent_world_modeling": 17999
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 35.4091796875,
+          "estimated_total": 637330,
+          "approx_95pct_margin": 13876,
+          "sample_p50": 33,
+          "sample_p95": 61
+        },
+        "second": {
+          "mean": 72.7001953125,
+          "estimated_total": 1308531,
+          "approx_95pct_margin": 24520,
+          "sample_p50": 67,
+          "sample_p95": 119
+        },
+        "combined": {
+          "mean": 108.109375,
+          "estimated_total": 1945861,
+          "approx_95pct_margin": 37583,
+          "sample_p50": 100,
+          "sample_p95": 178
+        }
+      }
+    },
+    {
+      "path": "Datasets/Train/05MolOpt/mol_opt_with_worldmodel.jsonl",
+      "kind": "processed",
+      "bytes": 58022606,
+      "rows": 5587,
+      "unique_text_pairs": 5572,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        2059049,
+        2488265
+      ],
+      "tasks": {
+        "latent_world_modeling": 5587
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 100.1357421875,
+          "estimated_total": 559458,
+          "approx_95pct_margin": 3566,
+          "sample_p50": 98,
+          "sample_p95": 121
+        },
+        "second": {
+          "mean": 136.6083984375,
+          "estimated_total": 763231,
+          "approx_95pct_margin": 5135,
+          "sample_p50": 135,
+          "sample_p95": 166
+        },
+        "combined": {
+          "mean": 236.744140625,
+          "estimated_total": 1322690,
+          "approx_95pct_margin": 8593,
+          "sample_p50": 234,
+          "sample_p95": 287
+        }
+      }
+    },
+    {
+      "path": "Datasets/Train/06MolUnd/mol_und_with_worldmodel.jsonl",
+      "kind": "processed",
+      "bytes": 55198627,
+      "rows": 6310,
+      "unique_text_pairs": 6226,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        2410671,
+        147829
+      ],
+      "tasks": {
+        "latent_world_modeling": 6310
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 108.732421875,
+          "estimated_total": 686102,
+          "approx_95pct_margin": 7597,
+          "sample_p50": 111,
+          "sample_p95": 139
+        },
+        "second": {
+          "mean": 10.890625,
+          "estimated_total": 68720,
+          "approx_95pct_margin": 3251,
+          "sample_p50": 6,
+          "sample_p95": 32
+        },
+        "combined": {
+          "mean": 119.876953125,
+          "estimated_total": 756424,
+          "approx_95pct_margin": 9091,
+          "sample_p50": 123,
+          "sample_p95": 158
+        }
+      }
+    },
+    {
+      "path": "Datasets/Train/07Rxn/rxn_with_worldmodel.jsonl",
+      "kind": "processed",
+      "bytes": 59455276,
+      "rows": 6820,
+      "unique_text_pairs": 5176,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        7022555,
+        384722
+      ],
+      "tasks": {
+        "latent_world_modeling": 6820
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 1024,
+      "tokens": {
+        "first": {
+          "mean": 244.0478515625,
+          "estimated_total": 1664406,
+          "approx_95pct_margin": 35507,
+          "sample_p50": 207,
+          "sample_p95": 385
+        },
+        "second": {
+          "mean": 26.77734375,
+          "estimated_total": 182621,
+          "approx_95pct_margin": 7663,
+          "sample_p50": 20,
+          "sample_p95": 67
+        },
+        "combined": {
+          "mean": 270.8251953125,
+          "estimated_total": 1847028,
+          "approx_95pct_margin": 35929,
+          "sample_p50": 253,
+          "sample_p95": 418
+        }
+      }
+    }
+  ],
+  "mollama_unique_cids": 194915,
+  "openmol_overlap": [
+    {
+      "size": "large",
+      "unique_pairs": 90000,
+      "shared_with_xlarge": 90000
+    },
+    {
+      "size": "medium",
+      "unique_pairs": 45000,
+      "shared_with_xlarge": 45000
+    },
+    {
+      "size": "small",
+      "unique_pairs": 18000,
+      "shared_with_xlarge": 18000
+    },
+    {
+      "size": "light",
+      "unique_pairs": 4500,
+      "shared_with_xlarge": 4500
+    }
+  ]
+}

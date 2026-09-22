@@ -1,0 +1,20 @@
+{
+  "source_root": "/mnt_nas1/haoqian/Data/past/Molecule",
+  "model": "/mnt_nas1/haoqian/Data/Molecule/chemical_models/ChemDFM-R-14B",
+  "pilot": "/mnt_nas1/haoqian/Data/Molecule/Pilot_v2",
+  "out": "/mnt_nas1/haoqian/Data/Molecule/Pilot_v2/sae/data/v1",
+  "workers": 8,
+  "seed": 20260921,
+  "max_length": 16384,
+  "limit_per_file": 0,
+  "schema_version": "sae-corpus-v1",
+  "created_utc": "2026-09-21T15:12:43.779835+00:00",
+  "layer_number": 26,
+  "block_index": 25,
+  "timing": "post",
+  "hidden_size": 5120,
+  "min_assistant_tokens": 16,
+  "split_policy": "98/2 by connected molecular/CID/prompt/long-answer groups; seeded hash",
+  "pool_policy": "candidate only; no activations; rerun grouping before admitting generated answers",
+  "review_refinement": "ChemCoT re-normalized for trailing source punctuation and explicit secret-target cues; all other accepted messages re-screened; all corpus groups/splits/selections regenerated."
+}

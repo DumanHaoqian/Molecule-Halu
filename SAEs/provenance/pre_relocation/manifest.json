@@ -1,0 +1,1045 @@
+{
+  "config": {
+    "source_root": "/mnt_nas1/haoqian/Data/past/Molecule",
+    "model": "/mnt_nas1/haoqian/Data/Molecule/chemical_models/ChemDFM-R-14B",
+    "pilot": "/mnt_nas1/haoqian/Data/Molecule/Pilot_v2",
+    "out": "/mnt_nas1/haoqian/Data/Molecule/Pilot_v2/sae/data/v1",
+    "workers": 8,
+    "seed": 20260921,
+    "max_length": 16384,
+    "limit_per_file": 0,
+    "schema_version": "sae-corpus-v1",
+    "created_utc": "2026-09-21T15:12:43.779835+00:00",
+    "layer_number": 26,
+    "block_index": 25,
+    "timing": "post",
+    "hidden_size": 5120,
+    "min_assistant_tokens": 16,
+    "split_policy": "98/2 by connected molecular/CID/prompt/long-answer groups; seeded hash",
+    "pool_policy": "candidate only; no activations; rerun grouping before admitting generated answers",
+    "review_refinement": "ChemCoT re-normalized for trailing source punctuation and explicit secret-target cues; all other accepted messages re-screened; all corpus groups/splits/selections regenerated."
+  },
+  "sources": [
+    {
+      "path": "Downloads/Train/Chemcot/mol_edit/add.json",
+      "bytes": 17207201,
+      "mtime_ns": 1776224907041908732,
+      "sha256": "76369c0bbb3a247001f5bf1244c9474f53cef9ce39c197e29b76767e4b6a09b5"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_edit/delete.json",
+      "bytes": 18017025,
+      "mtime_ns": 1776224907247904622,
+      "sha256": "f4473b789578adc767bca5d03e91e2d93e318e9f8165dbbb18db817673818ec1"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_edit/sub.json",
+      "bytes": 18631432,
+      "mtime_ns": 1776224907471900154,
+      "sha256": "63d79ffba86c3c709d8d6033199032aca3fea67f4ed96e61dfd0f4f65c9aa217"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/drd.json",
+      "bytes": 9501874,
+      "mtime_ns": 1776224907601897561,
+      "sha256": "d81c42dd52d85d9d4d3c1fac083c70dc11874fa19ba6d0d4641b4f3a73df7182"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/gsk.json",
+      "bytes": 5279364,
+      "mtime_ns": 1776224907674896105,
+      "sha256": "f162b7a9ae340aa366c7838dc9c43c9c8260f6c537be0bd2915cf40568fc36a8"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/jnk.json",
+      "bytes": 1418544,
+      "mtime_ns": 1776224907690895786,
+      "sha256": "ffb2eb0b6409393bba5b5db6fc2476f7e0cf7670fe7e5feac765bf8dd55ef8b3"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/logp.json",
+      "bytes": 2928622,
+      "mtime_ns": 1776224907720895187,
+      "sha256": "65ce1d30983a35c0996fdbb7e87f5745ddf1b527e25e1d941feac0800d6c0986"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/qed.json",
+      "bytes": 2336793,
+      "mtime_ns": 1776224907755894489,
+      "sha256": "7cda97d3f1f27f718834908f8b9bb07576be5be084efefe793b30434dc5ce956"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/solubility.json",
+      "bytes": 2838293,
+      "mtime_ns": 1776224907804893512,
+      "sha256": "fe4835b8d13b59a82ba6abb42bd81c1a8754265ba4f63b115369e66b54ca4f3c"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/Murcko_scaffold.json",
+      "bytes": 12695966,
+      "mtime_ns": 1776224907983889941,
+      "sha256": "680a7fda896c30479538ead63726983b4b4f43d29092c666df29c1a6faa72df1"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/fg_count.json",
+      "bytes": 9426002,
+      "mtime_ns": 1776224908106887487,
+      "sha256": "f535c8001d8d33328ae9f9e0d0095e6488bde0ee92b415763786b9382e2aabc2"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/ring_count.json",
+      "bytes": 20514106,
+      "mtime_ns": 1776224908331882999,
+      "sha256": "139663a25ea273aed697d736bf0a5d1ae32fe5d7f424b6688e238f9cde9454cf"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/ring_system_scaffold.json",
+      "bytes": 15450905,
+      "mtime_ns": 1776224908529879050,
+      "sha256": "1571c9da603a228c524050ba2a79ce590ae2528f62e26b81e478a82177b7211f"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/rxn/fs_by_product.json",
+      "bytes": 2992305,
+      "mtime_ns": 1776224908576878112,
+      "sha256": "928521f83ce8e564b26e4151c65962b230270a921b42314f98d4e0e2f740c10a"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/rxn/fs_major_product.json",
+      "bytes": 7694318,
+      "mtime_ns": 1776224908681876017,
+      "sha256": "8db93d9d7c5483f2a688942be8fc3b23f1d30201bfde8af3e498e9f219adc9ab"
+    },
+    {
+      "path": "Downloads/Train/Chemcot/rxn/rcr.json",
+      "bytes": 11449360,
+      "mtime_ns": 1776224908823873185,
+      "sha256": "dd3e55d7f155552204c5d17513ce8a447a61771efc275a13c60daea62919616d"
+    },
+    {
+      "path": "Downloads/Train/OpenMolIns/xlarge/train.csv",
+      "bytes": 178280636,
+      "mtime_ns": 1776224684584346342,
+      "sha256": "4313493312b122aa4be9b314217251e718009bba3569668164dc0b6698eeee98"
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/ChEBI-20/train.txt",
+      "bytes": 10189623,
+      "mtime_ns": 1772798299450807530,
+      "sha256": "f8ad6001a1302fa5e1c7f3dbbe62d6c57deef475d51f417178382f7cda655a32"
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/comprehensive_conversations.json",
+      "bytes": 237020508,
+      "mtime_ns": 1772788461893974143,
+      "sha256": "28d0356f729543aca90132b133a7a33ceb0f1c30f573b127af43b00988230d15"
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/detailed_structural_descriptions.json",
+      "bytes": 232595863,
+      "mtime_ns": 1772788457579058163,
+      "sha256": "375195de7b050005183ea303a5c743c47cefbed9433cc4d33284927471e957cf"
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/pubchem-molecules.json",
+      "bytes": 4423985651,
+      "mtime_ns": 1772788552786204289,
+      "sha256": "0820cfa5a8ec20ad1631287b60ba530a4501f90de3dc00ce1cd696443c280860"
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/structure2biological_features_relationships.json",
+      "bytes": 257904531,
+      "mtime_ns": 1772788465569902565,
+      "sha256": "2202ea399fbb78d63e4eb0857dea3b7b5724a7f51230682a5d11e26329cd95cb"
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/structure2chemical_features_relationships.json",
+      "bytes": 254754789,
+      "mtime_ns": 1772788470895798859,
+      "sha256": "54e804e3a6c31a1e003323cadac3a910b393fa77781f6bf77f939903798c3fb3"
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/moleculeqa/train.json",
+      "bytes": 69984341,
+      "mtime_ns": 1772786206673865775,
+      "sha256": "dc82d77cbe7f57e900c7283bfa3e2336345b0b1afc2ebf164dfb2a7955db487b"
+    }
+  ],
+  "model_files": {
+    "tokenizer.json": "6ae8594f633daa21dc0e04606279856d0ccb8abb64bb7a5a93e72531fb12b9d9",
+    "tokenizer_config.json": "0a04a9d7d4a62b28482bdfe726c122756de85714fb64166ace92ae75b8f57614",
+    "chat_template.jinja": "44d5f08f3f72b837eaad09f13a54c1f9f4eb58d75240334548b7fd52a5437fa5",
+    "config.json": "5bf45a2a896c86b9171ae87c39e257d51f5e52f2377460105053df87a89eb9ec"
+  },
+  "code_files": {
+    "corpus.py": "c9c2b1fd96f6b9a5a1ad271195e03a795b742a6cd605c01f1306ff44effd0179",
+    "prepare.py": "23bb63116a12cc2406e16788c35109bee57ee84d4e8560b8ca32e9dd0895758e",
+    "verify.py": "e84826548f2025a4e5be0bf7fd88922dc51fbeba8a299b01fcca7cc490a54374"
+  },
+  "versions": {
+    "rdkit": "2025.9.6",
+    "tokenizers": "0.22.2",
+    "jinja2": "3.1.6"
+  },
+  "outputs": [
+    {
+      "path": "main/train/chemcot-00000.jsonl",
+      "bytes": 35765781,
+      "sha256": "587f394a3ecceb63080097dc947dff41a57afbd34f4f6c1b49c39bcdfee0069e"
+    },
+    {
+      "path": "main/train/mollama-00000.jsonl",
+      "bytes": 34756834,
+      "sha256": "a0a27a9c82c4cfc0ceb9158517843b372ac486eff47f39073d306a3cdcb893df"
+    },
+    {
+      "path": "main/train/mollama-00001.jsonl",
+      "bytes": 34731871,
+      "sha256": "1496e28cc6932fcc5d9259a3960b86bfc63de614c8c105a1aca4f36b4270eb4b"
+    },
+    {
+      "path": "main/train/mollama-00002.jsonl",
+      "bytes": 34629017,
+      "sha256": "bafe3027b43bc9aa58bf6cb66676b606b58b80d9db27d634eadb10f93d65048c"
+    },
+    {
+      "path": "main/train/mollama-00003.jsonl",
+      "bytes": 34787254,
+      "sha256": "0f750c73e0cb10cd55477462b8c632d93551d5151a21c669955cd5f9db02c6b3"
+    },
+    {
+      "path": "main/train/mollama-00004.jsonl",
+      "bytes": 34749432,
+      "sha256": "6cb669cc6e48bc2e0d110e2da25d12c6d60aee3e5d817a837f9e70594014c90a"
+    },
+    {
+      "path": "main/train/mollama-00005.jsonl",
+      "bytes": 34707310,
+      "sha256": "b69b492e76db62238f779439a1edfab60acb1ddc765424d68963f8b2cc2e4257"
+    },
+    {
+      "path": "main/train/mollama-00006.jsonl",
+      "bytes": 34673278,
+      "sha256": "15b24251b499a1f8660f32fb72fd23528c9e7f1daeeef5f0d3eec75d3302ac09"
+    },
+    {
+      "path": "main/train/mollama-00007.jsonl",
+      "bytes": 36711634,
+      "sha256": "c77c12ad2fc035a5af451ff00e00cccf5316630949b12ba2613648b76d476d5c"
+    },
+    {
+      "path": "main/train/mollama-00008.jsonl",
+      "bytes": 39332921,
+      "sha256": "e9595ce547d02ba7288fb6eff35d438d25ed0b45bfe8a6a38454991ff04e577a"
+    },
+    {
+      "path": "main/train/mollama-00009.jsonl",
+      "bytes": 39251140,
+      "sha256": "7963efd7e258fb24acce4a64bc9f60e64b455b51352bd40285409e6d94f6483c"
+    },
+    {
+      "path": "main/train/mollama-00010.jsonl",
+      "bytes": 39236555,
+      "sha256": "b57da34d9e6194d485752c18ef26d9c6d2e0bbcf747c4d7850287db1ec93a1d3"
+    },
+    {
+      "path": "main/train/mollama-00011.jsonl",
+      "bytes": 39211512,
+      "sha256": "ed7363ca06678e7a3a50bf80b69c74ea6a68539287cd1771b9d7c5689f3fceaf"
+    },
+    {
+      "path": "main/train/mollama-00012.jsonl",
+      "bytes": 39230727,
+      "sha256": "db5952aa5aa246a8c47dcf755e01e1974aff9b28500e731a0f2758ecd11d620e"
+    },
+    {
+      "path": "main/train/mollama-00013.jsonl",
+      "bytes": 39311293,
+      "sha256": "8eb3f1a65507538a3801654bf8e7ea130248565031691461c6fb35b2717ba742"
+    },
+    {
+      "path": "main/train/mollama-00014.jsonl",
+      "bytes": 39462452,
+      "sha256": "dcde5f155d28d415323caf064a83ff4e20c9879371f30650ec1b0a23012bb985"
+    },
+    {
+      "path": "main/train/mollama-00015.jsonl",
+      "bytes": 39743752,
+      "sha256": "db1ad533f13287e6981a902d693c4ac0e807143ef583e523e7f1f65f89d9ddbc"
+    },
+    {
+      "path": "main/train/mollama-00016.jsonl",
+      "bytes": 39874441,
+      "sha256": "12ef5e98fdf1e2de7def8d343c1ddb9df840b81c1140ce0cf660a3a483cce2b7"
+    },
+    {
+      "path": "main/train/mollama-00017.jsonl",
+      "bytes": 39691393,
+      "sha256": "2ea4abdb5c5fe0f6541f66b7d402211b23f264ef7c188b0825371f0d127fa701"
+    },
+    {
+      "path": "main/train/mollama-00018.jsonl",
+      "bytes": 39826728,
+      "sha256": "86eb0ad189223f56aa64c5bba1f9f81f40099d9b20fb4f43b55e633414332258"
+    },
+    {
+      "path": "main/train/mollama-00019.jsonl",
+      "bytes": 39781037,
+      "sha256": "2cdc7de26d0d602f7d20c0b33233e6e54913a42fe43a2c0163e45a5e7c0bdcbf"
+    },
+    {
+      "path": "main/train/mollama-00020.jsonl",
+      "bytes": 39728503,
+      "sha256": "ea7d36301c11a03628b14f41c394e2050138b7612247e8720ffd2ceb0a84b63d"
+    },
+    {
+      "path": "main/train/mollama-00021.jsonl",
+      "bytes": 39685392,
+      "sha256": "d151f274a9fee6473c0dccc3a1ea580f786a450ece4805cd1d58fbc48a7b3b2c"
+    },
+    {
+      "path": "main/train/mollama-00022.jsonl",
+      "bytes": 43206255,
+      "sha256": "5bd4ea63322f7cd8ab06c8059e332626f2e4e2c8c4ffdad46d9b64850849b515"
+    },
+    {
+      "path": "main/train/mollama-00023.jsonl",
+      "bytes": 43229184,
+      "sha256": "1aaf20571358ce7512a9c73de7c738084fc9fe3c7c8d2d1dcbc67e8afd3acab8"
+    },
+    {
+      "path": "main/train/mollama-00024.jsonl",
+      "bytes": 43384656,
+      "sha256": "7401ec5e49cb50f9ad8099f4a61ddf7124fae3ac55b714954867d09602a61312"
+    },
+    {
+      "path": "main/train/mollama-00025.jsonl",
+      "bytes": 43233525,
+      "sha256": "e5625b6d74fb56cb33b6baa5622117783a19c66ce27ff7368aabefbc4a846530"
+    },
+    {
+      "path": "main/train/mollama-00026.jsonl",
+      "bytes": 43135719,
+      "sha256": "289c7124dbebc8ba6c6a1c5fd4c12d75aee5aefc4ecd927ef2ae6ad18e6da48a"
+    },
+    {
+      "path": "main/train/mollama-00027.jsonl",
+      "bytes": 39908098,
+      "sha256": "76e112d7965becb824e69f31e8550b06fa7ac6ea2c9c9708435bee3284e5510f"
+    },
+    {
+      "path": "main/validation/chemcot-00000.jsonl",
+      "bytes": 539849,
+      "sha256": "eb6db964b1a19d00f4de325f4903cda57fcb3a6b7e1286bb6a73f89e40a9e4ca"
+    },
+    {
+      "path": "main/validation/mollama-00000.jsonl",
+      "bytes": 20845049,
+      "sha256": "8bd0f67a4191572c34a216b97a3cbabe958412bb94cf6c9361f8a32252ae1d0b"
+    },
+    {
+      "path": "supplement/train/chebi-00000.jsonl",
+      "bytes": 15048681,
+      "sha256": "06c12ba50ecbf9f6393a8814614b83762c6318c886d2d810e8102c2acd07c2de"
+    },
+    {
+      "path": "supplement/train/chebi-00001.jsonl",
+      "bytes": 15028951,
+      "sha256": "8cbdb451a65570a396bbceda1b893590b52d16836f86026e887814fe1f53a780"
+    },
+    {
+      "path": "supplement/train/chebi-00002.jsonl",
+      "bytes": 8843298,
+      "sha256": "1a55406ecb11a9f13e1f9a2397c47fc7049009a6bb62d3cee78e502d37cc8924"
+    },
+    {
+      "path": "supplement/train/pubchem-00000.jsonl",
+      "bytes": 14091331,
+      "sha256": "e1d318500568b94bfe255386806ffe1caded7a7c074b2cc30d272879a92e487a"
+    },
+    {
+      "path": "supplement/train/pubchem-00001.jsonl",
+      "bytes": 14049785,
+      "sha256": "1ff3a734c2cbd2b91767d0e1214bf6565c481e7422b825711211656e8187e7b6"
+    },
+    {
+      "path": "supplement/train/pubchem-00002.jsonl",
+      "bytes": 13861096,
+      "sha256": "a9777fe06e0f9caed5c77e981f676ce595918d52c5ee5b5a6848002bb555f314"
+    },
+    {
+      "path": "supplement/train/pubchem-00003.jsonl",
+      "bytes": 14120180,
+      "sha256": "93a936d92d5a2e2bd6bf7a101021cad2aa9f2257a3e184ea6e103993682e2fe1"
+    },
+    {
+      "path": "supplement/train/pubchem-00004.jsonl",
+      "bytes": 13528753,
+      "sha256": "4fc346a47aef60aa4cbce558d866f470cc29a0bbea79f6a32cb0b63832a87db0"
+    },
+    {
+      "path": "supplement/train/pubchem-00005.jsonl",
+      "bytes": 14012776,
+      "sha256": "c2d06f78729de5042aac1c840204182435219f5863dab5a30828e1d7cc568029"
+    },
+    {
+      "path": "supplement/train/pubchem-00006.jsonl",
+      "bytes": 13786270,
+      "sha256": "26d3c28b3d4baeff4655f6ad6ebc4f786382398a1277a51092ba03fb77bd3a86"
+    },
+    {
+      "path": "supplement/train/pubchem-00007.jsonl",
+      "bytes": 14215296,
+      "sha256": "1b88dd43844ae429c9aaf154435c52e886e15a4dcb9fa70950289849652188af"
+    },
+    {
+      "path": "supplement/train/pubchem-00008.jsonl",
+      "bytes": 14221909,
+      "sha256": "3f560d0559220d7937693e001e33bf4da3b205c400ea5d5fec1e42c46d3c3fd4"
+    },
+    {
+      "path": "supplement/train/pubchem-00009.jsonl",
+      "bytes": 14908802,
+      "sha256": "2baec0ea79cffee72bb01aac1262b1d4fa4a0356900b8c7cb6cd716506267eb0"
+    },
+    {
+      "path": "supplement/train/pubchem-00010.jsonl",
+      "bytes": 15071978,
+      "sha256": "bc3a4d7c6bb340db154a26895f2d4d0ba928cd9df476d91b6e18432ba9bd895b"
+    },
+    {
+      "path": "supplement/train/pubchem-00011.jsonl",
+      "bytes": 14984470,
+      "sha256": "1d935bb0f536ed1f387b2a8d09671c89277e77096c7f8955fe118a68f8304617"
+    },
+    {
+      "path": "supplement/train/pubchem-00012.jsonl",
+      "bytes": 14947821,
+      "sha256": "b726addba5d83343ad4b3a75334fb4cbebbf0759d756df5cd5f026128ba0fab7"
+    },
+    {
+      "path": "supplement/train/pubchem-00013.jsonl",
+      "bytes": 15185341,
+      "sha256": "254dec7a3cad0fb10f821b9ebd96f693d0fcadadd85add06a245191a56ddd305"
+    },
+    {
+      "path": "supplement/train/pubchem-00014.jsonl",
+      "bytes": 14092777,
+      "sha256": "3f5c689c268ed7e96503a7e70f1998eb5fdb0bdeefd4107f30a1d7d9b61266ae"
+    },
+    {
+      "path": "supplement/train/pubchem-00015.jsonl",
+      "bytes": 14128635,
+      "sha256": "0d5828532364784f6b1216137360917f1751f025b127a3dc22e0d3115f2bd63f"
+    },
+    {
+      "path": "supplement/train/pubchem-00016.jsonl",
+      "bytes": 13998465,
+      "sha256": "4d30aaf262cea7a62a67ef16b1dfbf344fa7afec10f6733608d9049a4a60bef9"
+    },
+    {
+      "path": "supplement/train/pubchem-00017.jsonl",
+      "bytes": 14123891,
+      "sha256": "ddf12115b30bc0a4eba01cc6e2132c79fac13f6284abaa5afe82ba03a01ed612"
+    },
+    {
+      "path": "supplement/train/pubchem-00018.jsonl",
+      "bytes": 14559666,
+      "sha256": "49bc5ae4446fb674b24f91da8f0e73ff5a18acb52ccdfde66cf414c37fe3c8cf"
+    },
+    {
+      "path": "supplement/train/pubchem-00019.jsonl",
+      "bytes": 14295224,
+      "sha256": "67667813ca918586fed10f2ec4ffc0f52c270c4a780258c7ed1e640beb3b6ed7"
+    },
+    {
+      "path": "supplement/train/pubchem-00020.jsonl",
+      "bytes": 13452958,
+      "sha256": "c3ff53f75ef730f67e1099a5528b6eee270f1cbfd5a8e40097a880aa857516ad"
+    },
+    {
+      "path": "supplement/train/pubchem-00021.jsonl",
+      "bytes": 13898277,
+      "sha256": "8c7598e8af4635268e8a487699b20313480f8029ee505e638da43680e8857239"
+    },
+    {
+      "path": "supplement/train/pubchem-00022.jsonl",
+      "bytes": 13833193,
+      "sha256": "331866b63da5063fdc72b50b0d1a99fd7c37fd50cda5589232199c8ebdccf1e5"
+    },
+    {
+      "path": "supplement/train/pubchem-00023.jsonl",
+      "bytes": 14036914,
+      "sha256": "0d878098f41f48dda9e4437fd4f529611db99861f770ac19f6f9e4046ef6e68d"
+    },
+    {
+      "path": "supplement/train/pubchem-00024.jsonl",
+      "bytes": 14439506,
+      "sha256": "fe7fb1c8987616f7c2948e755800c8d4ecf556be798572cf8b73fcb6a7d14746"
+    },
+    {
+      "path": "supplement/train/pubchem-00025.jsonl",
+      "bytes": 14300223,
+      "sha256": "eed04de31291bf8d38e58b20f19362fbd517abe17cf0d6abdf1468455ff424d2"
+    },
+    {
+      "path": "supplement/train/pubchem-00026.jsonl",
+      "bytes": 14400721,
+      "sha256": "4a1d5b90d595e264a489d94407c684044af6c414d058d791a4dfff041f1cb62f"
+    },
+    {
+      "path": "supplement/train/pubchem-00027.jsonl",
+      "bytes": 15829125,
+      "sha256": "512af2e97030c4da7d820764c971214ebad18f79fc9027199045f6688f51c603"
+    },
+    {
+      "path": "supplement/train/pubchem-00028.jsonl",
+      "bytes": 16572890,
+      "sha256": "74f5495ad113a3881fa33c83f8ab1ab6bb5168781e97da53d4db76f4a2248132"
+    },
+    {
+      "path": "supplement/train/pubchem-00029.jsonl",
+      "bytes": 1806897,
+      "sha256": "1997540dd808960c9d1e1e703ca1cff424c363693bebb3c350e2d8230f250932"
+    },
+    {
+      "path": "supplement/validation/chebi-00000.jsonl",
+      "bytes": 723781,
+      "sha256": "dd455dd8c98b4487f48148a92856e12d4314ad6784366959832cf11c23359301"
+    },
+    {
+      "path": "supplement/validation/pubchem-00000.jsonl",
+      "bytes": 7984006,
+      "sha256": "d7ddfea3587d8cea03f03cbe49e897e24d26aa9d231619156afa5a5e388041f8"
+    },
+    {
+      "path": "prompt_pool/moleculeqa-00000.jsonl",
+      "bytes": 11141322,
+      "sha256": "522352b1667b1438af0997b91ca7fe930fa141111b833acc1ad266b192619496"
+    },
+    {
+      "path": "prompt_pool/moleculeqa-00001.jsonl",
+      "bytes": 11583530,
+      "sha256": "0d2d000868b1bef0e0046bd2a730e1903092c65a7f6c6f79e9c25885c980c8f0"
+    },
+    {
+      "path": "prompt_pool/moleculeqa-00002.jsonl",
+      "bytes": 12173525,
+      "sha256": "9d34873e87275830e23741bbf4ebe8145f699e4cf421c2853a8f0fff7909cd98"
+    },
+    {
+      "path": "prompt_pool/moleculeqa-00003.jsonl",
+      "bytes": 11634578,
+      "sha256": "44115095e113012062e602c1fbfcedf0b08fcd4529f4eae36b848fbf3ab0f0bc"
+    },
+    {
+      "path": "prompt_pool/moleculeqa-00004.jsonl",
+      "bytes": 11495867,
+      "sha256": "1c2cf348839480e6ac6b72c2d1da7cc1c45aec425ac7eea528796d359a1ba093"
+    },
+    {
+      "path": "prompt_pool/openmolins-00000.jsonl",
+      "bytes": 8838761,
+      "sha256": "8de0e29247f336e64573178608282758307ab36b4500d04a5a6fabfde902fa8f"
+    },
+    {
+      "path": "prompt_pool/openmolins-00001.jsonl",
+      "bytes": 8916520,
+      "sha256": "2b9c2a133eea3d3c0d2ce762024add2b9f46021afde2445d14af62fc350ff2c1"
+    },
+    {
+      "path": "prompt_pool/openmolins-00002.jsonl",
+      "bytes": 8907954,
+      "sha256": "fa044237327296082d319d59292e4df997bfdc250209dc90a010209fbd0b9f12"
+    },
+    {
+      "path": "prompt_pool/openmolins-00003.jsonl",
+      "bytes": 8943579,
+      "sha256": "cf9adb55f270cbb5728e9504d70f469146d985ff3c7ba6b5443e12d24099d389"
+    },
+    {
+      "path": "prompt_pool/openmolins-00004.jsonl",
+      "bytes": 8956362,
+      "sha256": "76f0c65e16b31b696dada67c3cf46ffd3d20dc6ce65f07e6580576491e314154"
+    },
+    {
+      "path": "prompt_pool/openmolins-00005.jsonl",
+      "bytes": 8956440,
+      "sha256": "80c1c45b1bcc9ebbe854057703e6a5e2771c68fe0c5b0f0ad75cced2a807535b"
+    },
+    {
+      "path": "prompt_pool/openmolins-00006.jsonl",
+      "bytes": 8972838,
+      "sha256": "e4eb074340ae1561eb903160a3b0d57dd2e54bfe919cdfb7f75733c85b218509"
+    },
+    {
+      "path": "prompt_pool/openmolins-00007.jsonl",
+      "bytes": 8985619,
+      "sha256": "3b85e4f8583932e6941372182946650febc4571830421f3fb6e4eb4ad8b86f43"
+    },
+    {
+      "path": "prompt_pool/openmolins-00008.jsonl",
+      "bytes": 8980969,
+      "sha256": "bbfe55915dd2c611ca3a46e2c3e30603998b2a472988fc3a8777849d7caf4a71"
+    },
+    {
+      "path": "prompt_pool/openmolins-00009.jsonl",
+      "bytes": 8967976,
+      "sha256": "414b00c378f82cfe44305d9dd418221ffa524fb0425ae9414cd60e455689f5e0"
+    },
+    {
+      "path": "prompt_pool/openmolins-00010.jsonl",
+      "bytes": 9001642,
+      "sha256": "65590bcc92b3e6ef16f6be27481d445228bcf09a1ed3c22442d0f24a0b2206e2"
+    },
+    {
+      "path": "prompt_pool/openmolins-00011.jsonl",
+      "bytes": 9027869,
+      "sha256": "7f5a6d81f9f780e4cfe3fcc51d048b26083414e513d6a1113e85079c6443efbb"
+    },
+    {
+      "path": "prompt_pool/openmolins-00012.jsonl",
+      "bytes": 9023005,
+      "sha256": "8b547594462144eddea8f8bdef90470968609c1cb4c40dcf28c91baa0b9f430a"
+    },
+    {
+      "path": "prompt_pool/openmolins-00013.jsonl",
+      "bytes": 9009227,
+      "sha256": "e9811bb214a920a49eec28a624df3a8092c9b59a02547080a73d59fdbb0b8a4b"
+    },
+    {
+      "path": "prompt_pool/openmolins-00014.jsonl",
+      "bytes": 9006909,
+      "sha256": "640c50146fcf6d8dc7fdfc187be9b38851c27e8d195320eebb4b6ac6a99eeca5"
+    },
+    {
+      "path": "prompt_pool/openmolins-00015.jsonl",
+      "bytes": 9025439,
+      "sha256": "572b41249ef7e561a5a7e67a3a238b801c43077f329289305adf1c9aa67d9fa3"
+    },
+    {
+      "path": "prompt_pool/openmolins-00016.jsonl",
+      "bytes": 9012053,
+      "sha256": "f74fa3cd063dcaefb31bc8d5676d51e2996361f1afa4a7cc0e13c58a6e5a4296"
+    },
+    {
+      "path": "prompt_pool/openmolins-00017.jsonl",
+      "bytes": 9020477,
+      "sha256": "23b7d7300fe72ee1be08707035dea6f4f871b396a9bec7570ad96d6dc4b00523"
+    },
+    {
+      "path": "prompt_pool/openmolins-00018.jsonl",
+      "bytes": 9048066,
+      "sha256": "e83582b664db20f11d5a6183b155612819f727ba5f6d1d01c1c1d462f40cfa60"
+    },
+    {
+      "path": "prompt_pool/openmolins-00019.jsonl",
+      "bytes": 9039244,
+      "sha256": "9457992e1a4904ad90437fe94b2218da995b5e763d0a75e298d0cabf18ddfb3b"
+    },
+    {
+      "path": "prompt_pool/openmolins-00020.jsonl",
+      "bytes": 9018513,
+      "sha256": "3dd20e652cb3f5b4e6ca3a27f05128309a8d110e0b31f74359eb4a9d78923840"
+    },
+    {
+      "path": "prompt_pool/openmolins-00021.jsonl",
+      "bytes": 9021875,
+      "sha256": "60afa98be5cfcf7e2c7170fc22ecbf7d28383f44ada872dd2054e0055b13e7f6"
+    },
+    {
+      "path": "prompt_pool/openmolins-00022.jsonl",
+      "bytes": 9057978,
+      "sha256": "67dd21281cba9a58248aa21fd6b9f5d9f0d6804c150171181da2a4b35bd40803"
+    },
+    {
+      "path": "prompt_pool/openmolins-00023.jsonl",
+      "bytes": 9105574,
+      "sha256": "42a1ead0ba65c58455580e52474b4f4e1df4503c5e50c06b6380efae2d2d0331"
+    },
+    {
+      "path": "prompt_pool/openmolins-00024.jsonl",
+      "bytes": 9085262,
+      "sha256": "4a13fcec5ea5894141f159d46895d078d78b45feb5a014ca9506e9bd4e0393ad"
+    },
+    {
+      "path": "prompt_pool/openmolins-00025.jsonl",
+      "bytes": 9082975,
+      "sha256": "490c30f9bfcb5055d9171be46a3e1c15ce5ad61adc6204c7e28b66609bcfb514"
+    },
+    {
+      "path": "prompt_pool/openmolins-00026.jsonl",
+      "bytes": 9035826,
+      "sha256": "495844161209669259f7cd00d40f52d834cfe8913639fa468fad8b2bf4e43d62"
+    },
+    {
+      "path": "prompt_pool/openmolins-00027.jsonl",
+      "bytes": 9054976,
+      "sha256": "4ece6aab20dc28bf8e9d510cfb946083064d2943bbad8a25d5a486cf8ce4b914"
+    },
+    {
+      "path": "prompt_pool/openmolins-00028.jsonl",
+      "bytes": 9045229,
+      "sha256": "0fc9cec5b8466b80cd08574f1750060b0cba03da1e7d2edde5b4a6843430eaf4"
+    },
+    {
+      "path": "prompt_pool/openmolins-00029.jsonl",
+      "bytes": 9055943,
+      "sha256": "fe56bce47d546ff7ea02f3d749997e9a7d92cdac9a018920200769bdaa3e5668"
+    },
+    {
+      "path": "prompt_pool/openmolins-00030.jsonl",
+      "bytes": 9062156,
+      "sha256": "af55417144cdda4eace80182e77f89f86046b1c059ed45fa95f6489e1c4a4ca0"
+    },
+    {
+      "path": "prompt_pool/openmolins-00031.jsonl",
+      "bytes": 9068170,
+      "sha256": "c98310ec01fe72d4ede0c4c72696380c055df20bc57a36063f8f8a4b57cc04d3"
+    },
+    {
+      "path": "prompt_pool/openmolins-00032.jsonl",
+      "bytes": 9082613,
+      "sha256": "a2b17927a900a70a6adc6dbdccdd181fdeb1750be74c3bc917b3d68e582e03a3"
+    },
+    {
+      "path": "prompt_pool/openmolins-00033.jsonl",
+      "bytes": 9068818,
+      "sha256": "75dca3d67f9cb2444a2c3d40381204a0b4ee3c3c489898f1b5184da12358f245"
+    },
+    {
+      "path": "prompt_pool/openmolins-00034.jsonl",
+      "bytes": 9067286,
+      "sha256": "af2f8746da72344fd617bb4dd1f5fab02b6f536b2ce087e0ae5d4d7e1c97a667"
+    },
+    {
+      "path": "prompt_pool/openmolins-00035.jsonl",
+      "bytes": 9098994,
+      "sha256": "db00bd9fe85c93e3fb809d9dc2c981ffb6b3efe1c3e2bcda2c4ec63914ea082b"
+    },
+    {
+      "path": "prompt_pool/openmolins-00036.jsonl",
+      "bytes": 9074433,
+      "sha256": "04fcbfd49e684ee598c430898dffbb134971d5f375ac7808a03e1674403fb25a"
+    },
+    {
+      "path": "prompt_pool/openmolins-00037.jsonl",
+      "bytes": 9072026,
+      "sha256": "93ffd044e0ce33206d5e02ff0e0c7599033365af6113400bb397579c67b67de4"
+    },
+    {
+      "path": "prompt_pool/openmolins-00038.jsonl",
+      "bytes": 9079028,
+      "sha256": "617fd6e19505c2ecaf9d6a492537f59e7aa56d273e4b307cf8d767ad0da3b0d8"
+    },
+    {
+      "path": "prompt_pool/openmolins-00039.jsonl",
+      "bytes": 9099707,
+      "sha256": "da57fb4b4a82447391da888b4f301456cd71d286c731251c76a07f2ccda309e6"
+    },
+    {
+      "path": "prompt_pool/openmolins-00040.jsonl",
+      "bytes": 9083619,
+      "sha256": "c6492c6c68008c264eb9907ace1c506fb1681ba4b0c4e4759ad2a881ab8bf940"
+    },
+    {
+      "path": "prompt_pool/openmolins-00041.jsonl",
+      "bytes": 9077811,
+      "sha256": "f52e4232da4786471b114216df6bf77bb26024b79c714b42551191d6fd5b1153"
+    },
+    {
+      "path": "prompt_pool/openmolins-00042.jsonl",
+      "bytes": 9097460,
+      "sha256": "db6b01e5c6ba62f57b536ebe46fb2549b09eafa75fd4d088ce92ba654408bff7"
+    },
+    {
+      "path": "prompt_pool/openmolins-00043.jsonl",
+      "bytes": 9069875,
+      "sha256": "1260be431e955dea2da6883b74409d4a23aa288f7ccffbe0e11f4ab44329cdab"
+    },
+    {
+      "path": "prompt_pool/openmolins-00044.jsonl",
+      "bytes": 9090160,
+      "sha256": "39d458f10435347d15d78631e3ea41de784eedfd2ad9445ad6c55c32227e4f67"
+    },
+    {
+      "path": "prompt_pool/openmolins-00045.jsonl",
+      "bytes": 9096900,
+      "sha256": "5b0cccf40bee2a520af5926ad001422e6b362b400d455dd26ab8f43fd82c047d"
+    },
+    {
+      "path": "prompt_pool/openmolins-00046.jsonl",
+      "bytes": 9106859,
+      "sha256": "0b5161818fa77515ae29badcd24984d77039d00b16f3fbcd5e67d03f57e606b1"
+    },
+    {
+      "path": "prompt_pool/openmolins-00047.jsonl",
+      "bytes": 9100734,
+      "sha256": "e54d494a3ffac97e9adf63a7fe41a11e6f0cf94bfe920bfbd87079b2d0c6ad68"
+    },
+    {
+      "path": "prompt_pool/openmolins-00048.jsonl",
+      "bytes": 9136453,
+      "sha256": "d88c71535607650a65370cda4f554b5ca0395a28d845d416c6f9931e762bb327"
+    },
+    {
+      "path": "prompt_pool/openmolins-00049.jsonl",
+      "bytes": 9118471,
+      "sha256": "633fdb2da416605f83cea07206e76bb6819efcafe79e8c39abbcab306b94ba9d"
+    },
+    {
+      "path": "prompt_pool/openmolins-00050.jsonl",
+      "bytes": 9082045,
+      "sha256": "c792585a6cfd35eac13c1d46d85d88c185ee14f662aa224f030d9f2ae30915a2"
+    },
+    {
+      "path": "prompt_pool/openmolins-00051.jsonl",
+      "bytes": 9068028,
+      "sha256": "425ee174a19ed199de310f637e0c6b07a90b8c899adf05079ad36cdc764b7767"
+    },
+    {
+      "path": "prompt_pool/openmolins-00052.jsonl",
+      "bytes": 9102537,
+      "sha256": "8beae3144468eb6c0e76f7201694e83e6b1c49b48aa643e8147c2541e6745877"
+    },
+    {
+      "path": "prompt_pool/openmolins-00053.jsonl",
+      "bytes": 9082134,
+      "sha256": "c478dfdcfd370e18cec120d8fac8608aa950df2e262f39c5312a97d95875093f"
+    },
+    {
+      "path": "prompt_pool/openmolins-00054.jsonl",
+      "bytes": 9122023,
+      "sha256": "5950ec61bd4e20b0a57b43142d2ebfc539939d6610d40b0ebe0dcc87df1bd942"
+    },
+    {
+      "path": "prompt_pool/openmolins-00055.jsonl",
+      "bytes": 9092874,
+      "sha256": "0cb2e86c623d0d715bfa89d2df0a1b41bccfb3560eb91091bb3f2e4cd26a6bb6"
+    },
+    {
+      "path": "prompt_pool/openmolins-00056.jsonl",
+      "bytes": 9102659,
+      "sha256": "ddb0b768ee02fc24e68cba8b20d155d01ac9ca65ecfb9c2cfd2b689f7a7402da"
+    },
+    {
+      "path": "prompt_pool/openmolins-00057.jsonl",
+      "bytes": 9086627,
+      "sha256": "d63d5b90c46b1669976a6a8e7933f5c0986a46cd348865bc655f75e9e76ed7f4"
+    },
+    {
+      "path": "prompt_pool/openmolins-00058.jsonl",
+      "bytes": 9110354,
+      "sha256": "e77b295cbe7a0fa44a8861731872bfb3a2f0cb03cf8305b57d3d321778740cd3"
+    },
+    {
+      "path": "prompt_pool/openmolins-00059.jsonl",
+      "bytes": 9116501,
+      "sha256": "67670a46cdc26de7d13db5b8ebe66a880c9892bb9f43265393f14b829740cbfa"
+    },
+    {
+      "path": "prompt_pool/openmolins-00060.jsonl",
+      "bytes": 9098884,
+      "sha256": "75b1e20a3fb5dc9c40b69d0d453607b4a3ccdc14bbd9b2c01dbe96eced27cc40"
+    },
+    {
+      "path": "prompt_pool/openmolins-00061.jsonl",
+      "bytes": 9094260,
+      "sha256": "9e06f1098b416c71675d1f257c05d11625878d5ab2da09b84aec5ba149b786f9"
+    },
+    {
+      "path": "prompt_pool/openmolins-00062.jsonl",
+      "bytes": 9108542,
+      "sha256": "2509d0311c96f775a11b83a2eaa910bcb16f51f1537e947a987c1629c5b62636"
+    },
+    {
+      "path": "prompt_pool/openmolins-00063.jsonl",
+      "bytes": 9091342,
+      "sha256": "e7b4a23cdcf13670644a77da1dc7c0d75e16c95a9288a7419c85d4075f95269e"
+    },
+    {
+      "path": "prompt_pool/openmolins-00064.jsonl",
+      "bytes": 9121145,
+      "sha256": "3281c40afc1ff5bef8d726c6cff7424675318a6b23d349768d68034e65c919e3"
+    },
+    {
+      "path": "prompt_pool/openmolins-00065.jsonl",
+      "bytes": 9122518,
+      "sha256": "ffe9fff16b20340e20bddaf7e80ecd07787ff82e977ee598de62fe096c9200de"
+    },
+    {
+      "path": "prompt_pool/openmolins-00066.jsonl",
+      "bytes": 9116010,
+      "sha256": "1568c113d4ca083de927edad69a26b060098c226948fa26d38617d9d645b48c5"
+    },
+    {
+      "path": "prompt_pool/openmolins-00067.jsonl",
+      "bytes": 9097929,
+      "sha256": "68d26201a47a819d7829affd1b2351c44ae79ab17cb382157ca0604ac452a249"
+    },
+    {
+      "path": "prompt_pool/openmolins-00068.jsonl",
+      "bytes": 9093827,
+      "sha256": "8fdd321dd91477788b0b81499447213927db6b0f14e8b8935b47dce7aa8c40fa"
+    },
+    {
+      "path": "prompt_pool/openmolins-00069.jsonl",
+      "bytes": 9093862,
+      "sha256": "7c82afb870b59241907b14f1537291cded5cfd4374989718dfa3a8f96dc41b06"
+    },
+    {
+      "path": "prompt_pool/openmolins-00070.jsonl",
+      "bytes": 9127329,
+      "sha256": "26dd65eee607817a7e55d2c50843936edd80622cc5623d45715fe7e73226f24c"
+    },
+    {
+      "path": "prompt_pool/openmolins-00071.jsonl",
+      "bytes": 9141104,
+      "sha256": "09d443a117ca74298396610d3007e33a359a8723ab52ee68594eb84c1646f792"
+    },
+    {
+      "path": "prompt_pool/openmolins-00072.jsonl",
+      "bytes": 9134300,
+      "sha256": "2edf7aa37ea4d0fd21ca1877ff1e7014658c0b19e23695abb8d8ce12118f934c"
+    },
+    {
+      "path": "prompt_pool/openmolins-00073.jsonl",
+      "bytes": 9115276,
+      "sha256": "9e5a5bd0afdf39d8e71d5edaefc39b2f4b0c7352d8aec758bcef28dfee417f53"
+    },
+    {
+      "path": "prompt_pool/openmolins-00074.jsonl",
+      "bytes": 9069464,
+      "sha256": "6cf4ef36db41c79681401bed77037d41473d8aa8b70b26650b7fc0f2bdc0121a"
+    },
+    {
+      "path": "prompt_pool/openmolins-00075.jsonl",
+      "bytes": 9124783,
+      "sha256": "53199169ffff9a9f1b5f3681dea0b02e20810db76e4a6e0061dc6f18bc7e9b49"
+    },
+    {
+      "path": "prompt_pool/openmolins-00076.jsonl",
+      "bytes": 9135380,
+      "sha256": "14908724f2c57b59db729f5634fe50f83912bf05a8eb2731e7d6a2b2bc9b18f0"
+    },
+    {
+      "path": "prompt_pool/openmolins-00077.jsonl",
+      "bytes": 9123319,
+      "sha256": "9166ac5b264870c04dd73090b965ae81298e35cf8f93c147b6822d18595a98d8"
+    },
+    {
+      "path": "prompt_pool/openmolins-00078.jsonl",
+      "bytes": 9112837,
+      "sha256": "083766834ea92484b878a09da45d989f14b40cfa7cad470a6de6a53ce85658d7"
+    },
+    {
+      "path": "prompt_pool/openmolins-00079.jsonl",
+      "bytes": 9108293,
+      "sha256": "7c26ab56012dd539a1082129625c7003a190d19f5b4cc853970dff593e23c80d"
+    },
+    {
+      "path": "prompt_pool/openmolins-00080.jsonl",
+      "bytes": 9139868,
+      "sha256": "529452d3b44516bb26ec81d2281927527318224826866ea2801a1ce8c95cacde"
+    },
+    {
+      "path": "prompt_pool/openmolins-00081.jsonl",
+      "bytes": 9135630,
+      "sha256": "ee90ea883d5f10362ee6c2c5a097daca5d12617478b5f0f45beb882331078bcc"
+    },
+    {
+      "path": "prompt_pool/openmolins-00082.jsonl",
+      "bytes": 9132171,
+      "sha256": "e7014c99e50854353f7728a50ecc20d381ffcca653bbb8068faa0a0993532a82"
+    },
+    {
+      "path": "prompt_pool/openmolins-00083.jsonl",
+      "bytes": 9129547,
+      "sha256": "ab7cd97e481fe1205c381397b578fbcbf1967fe492eda12a21d0f4707882a0db"
+    },
+    {
+      "path": "prompt_pool/openmolins-00084.jsonl",
+      "bytes": 9124849,
+      "sha256": "a5c5d8ced110a90508da1743448e680bcc2003fd985315e83219901be0d9d116"
+    },
+    {
+      "path": "prompt_pool/openmolins-00085.jsonl",
+      "bytes": 9128432,
+      "sha256": "bd1f90edf58f1bcb87a3492257eaab34524159787f5ccb3545a93c5787cd8eb7"
+    },
+    {
+      "path": "prompt_pool/openmolins-00086.jsonl",
+      "bytes": 9142676,
+      "sha256": "476df3e279e20933650b001fc18aad6504a8d444a4160715e5b3592c92b778db"
+    },
+    {
+      "path": "prompt_pool/openmolins-00087.jsonl",
+      "bytes": 9121833,
+      "sha256": "db87bc2672ec3b824a7e3f921af686326283053a6c0799f08da72d5671b2b2c2"
+    },
+    {
+      "path": "prompt_pool/openmolins-00088.jsonl",
+      "bytes": 9131717,
+      "sha256": "e8c3f836edd9e7827788d4815cd4bad22bc20c6b950e55a6a2c3b45bcd8c0313"
+    },
+    {
+      "path": "prompt_pool/openmolins-00089.jsonl",
+      "bytes": 9097069,
+      "sha256": "84bf4a4f0a72e1b3656bc8d23e3b4acfbc388dff23f990bf6aaad4872cddc9d8"
+    },
+    {
+      "path": "prompt_pool/openmolins-00090.jsonl",
+      "bytes": 9140328,
+      "sha256": "5f2250df3b5a8ec61002bf6461146b22ba253b19fad736141b52ef00f94fe628"
+    },
+    {
+      "path": "prompt_pool/openmolins-00091.jsonl",
+      "bytes": 9131662,
+      "sha256": "7a62929816b2fa260314d3eb8f01a06b339a952829b168686a06759f2c555ee4"
+    },
+    {
+      "path": "prompt_pool/openmolins-00092.jsonl",
+      "bytes": 9142902,
+      "sha256": "8ad95fc8028e023c8eacae8722c02f0364f9a455fe3e86a81786f330bb8a09ff"
+    },
+    {
+      "path": "prompt_pool/openmolins-00093.jsonl",
+      "bytes": 9193017,
+      "sha256": "ecccb876f787cccc932149b21b2cc5336f1f206b710d3fd6cb38ac0e7ce55df4"
+    },
+    {
+      "path": "prompt_pool/openmolins-00094.jsonl",
+      "bytes": 9155137,
+      "sha256": "84c9fd4872bde4715fd7c853fc9715161acacdd651486454a3f81e5b5798cf6b"
+    },
+    {
+      "path": "prompt_pool/openmolins-00095.jsonl",
+      "bytes": 9132257,
+      "sha256": "7bb1f6b589cdc1036f0dcc41228b4771d504bee3c7a536bebfc90a4bb68fc651"
+    },
+    {
+      "path": "prompt_pool/openmolins-00096.jsonl",
+      "bytes": 2260670,
+      "sha256": "37f769bf70e3d590eb7c8bdd167b64eb73e2aad7015fffeb89344653f17c6a1e"
+    },
+    {
+      "path": "selections/pilot_10m/train.jsonl",
+      "bytes": 4907006,
+      "sha256": "c5a25cd02fb7feb5f3ce597b63a2f64ce4a2982fdd7a979246eb442c092bc21d"
+    },
+    {
+      "path": "selections/pilot_10m/validation.jsonl",
+      "bytes": 232076,
+      "sha256": "9f1e9e75a80e51361ed40786b83d538412ba9860b92c782d39337a10e097bb45"
+    }
+  ],
+  "pilot_question_count": 600,
+  "status": "verified",
+  "build_code_files": {
+    "corpus.py": "c9c2b1fd96f6b9a5a1ad271195e03a795b742a6cd605c01f1306ff44effd0179",
+    "prepare.py": "23bb63116a12cc2406e16788c35109bee57ee84d4e8560b8ca32e9dd0895758e",
+    "verify.py": "9167ed7ffe2885e2e04f8d8fa370c4d15dee68f8174e4336535417fa244f6e5e"
+  },
+  "verification_code_sha256": "e84826548f2025a4e5be0bf7fd88922dc51fbeba8a299b01fcca7cc490a54374",
+  "code_receipt_note": "Preserved build-time hashes separately. verify.py gained the validation-budget shortfall explanation in generated README before the successful full verification run; code_files records the final pipeline files."
+}

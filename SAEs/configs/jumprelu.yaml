@@ -1,0 +1,33 @@
+# JumpReLU support is learned; k=64 records the comparison target, not a hard limit.
+# Native per-row summed MSE and L0 penalty use different scales from sparsemax.
+cache_dir: ../activations/layer26/pilot_10m
+output_dir: ../runs/jumprelu_layer26
+seed: 20260921
+device: cuda:4
+verify_cache_hashes: true
+sae:
+  architecture: jumprelu
+  d_in: 5120
+  d_sae: 16384
+  k: 64
+  decoder_init_norm: 0.1
+  jumprelu_init_threshold: 0.01
+  jumprelu_bandwidth: 0.001
+  jumprelu_sparsity_loss_mode: step
+  l0_coefficient: 0.1
+  l0_warm_up_steps: 1000
+training:
+  batch_size: 1024
+  max_tokens: 10000474
+  lr: 0.0003
+normalization:
+  sample_tokens: 262144
+  center: true
+evaluation:
+  batch_size: 1024
+  max_tokens: 100000
+wandb:
+  mode: online
+  project: chemdfm-layer26-sae
+  name: jumprelu_layer26_16k
+  tags: [layer26, jumprelu, pilot_10m]

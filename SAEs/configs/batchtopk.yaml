@@ -1,0 +1,51 @@
+# Paths resolve relative to this YAML file. Preparation does not launch training.
+cache_dir: ../activations/layer26/pilot_10m
+output_dir: ../runs/batchtopk_layer26
+seed: 20260921
+# Explicit torch index. With CUDA_VISIBLE_DEVICES=4 use --device cuda:0.
+device: cuda:4
+verify_cache_hashes: true
+
+sae:
+  architecture: batchtopk
+  d_in: 5120
+  d_sae: 16384
+  k: 64
+  decoder_init_norm: 0.1
+  rescale_acts_by_decoder_norm: true
+  aux_loss_coefficient: 0.03125
+  topk_threshold_lr: 0.01
+
+training:
+  batch_size: 1024
+  # One pass over all selected v1 training tokens; never draws from validation.
+  max_tokens: 10000474
+  lr: 0.0003
+  warmup_steps: 100
+  lr_schedule: cosine
+  min_lr_ratio: 0.1
+  betas: [0.9, 0.999]
+  eps: 0.00000001
+  weight_decay: 0.0
+  grad_clip: 1.0
+  chunk_rows: 8192
+  dead_feature_tokens: 262144
+  log_every: 10
+  checkpoint_every: 500
+  validate_every: 500
+
+normalization:
+  # Deterministic sample from train only, scalar per-coordinate RMS after centering.
+  sample_tokens: 262144
+  center: true
+
+evaluation:
+  batch_size: 1024
+  max_tokens: 100000
+
+wandb:
+  mode: online  # Use --wandb-mode offline or disabled without an online account.
+  project: chemdfm-layer26-sae
+  entity: null
+  name: batchtopk_layer26_16k_k64
+  tags: [layer26, batchtopk, pilot_10m, train-only-normalization]

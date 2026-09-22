@@ -1,0 +1,789 @@
+{
+  "method": "raw_cot preferred, otherwise flattened struct_cot, otherwise cot_result stripped of code fences and flattened if JSON parses; no reference/meta/gt injected. Exact counts; 512-record seeded reservoir per file for token estimates.",
+  "results": [
+    {
+      "path": "Downloads/Train/Chemcot/mol_edit/add.json",
+      "kind": "chemcot",
+      "bytes": 17207201,
+      "rows": 1499,
+      "unique_text_pairs": 1499,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        128357,
+        14727608
+      ],
+      "tasks": {
+        "add": 1499
+      },
+      "answer_cue_rows": 171,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 39.37890625,
+          "estimated_total": 59029,
+          "approx_95pct_margin": 1204,
+          "sample_p50": 38,
+          "sample_p95": 61
+        },
+        "second": {
+          "mean": 2778.015625,
+          "estimated_total": 4164245,
+          "approx_95pct_margin": 165633,
+          "sample_p50": 2558,
+          "sample_p95": 5730
+        },
+        "combined": {
+          "mean": 2817.39453125,
+          "estimated_total": 4223274,
+          "approx_95pct_margin": 165479,
+          "sample_p50": 2599,
+          "sample_p95": 5758
+        }
+      },
+      "selected_fields": {
+        "raw_cot": 1499
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_edit/delete.json",
+      "kind": "chemcot",
+      "bytes": 18017025,
+      "rows": 1499,
+      "unique_text_pairs": 1499,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        133465,
+        15428301
+      ],
+      "tasks": {
+        "delete": 1499
+      },
+      "answer_cue_rows": 156,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 40.580078125,
+          "estimated_total": 60830,
+          "approx_95pct_margin": 2333,
+          "sample_p50": 37,
+          "sample_p95": 61
+        },
+        "second": {
+          "mean": 2750.419921875,
+          "estimated_total": 4122879,
+          "approx_95pct_margin": 203567,
+          "sample_p50": 2287,
+          "sample_p95": 6713
+        },
+        "combined": {
+          "mean": 2791,
+          "estimated_total": 4183709,
+          "approx_95pct_margin": 203493,
+          "sample_p50": 2326,
+          "sample_p95": 6747
+        }
+      },
+      "selected_fields": {
+        "raw_cot": 1499
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_edit/sub.json",
+      "kind": "chemcot",
+      "bytes": 18631432,
+      "rows": 1499,
+      "unique_text_pairs": 1499,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        156849,
+        15708620
+      ],
+      "tasks": {
+        "sub": 1499
+      },
+      "answer_cue_rows": 172,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 44.1484375,
+          "estimated_total": 66179,
+          "approx_95pct_margin": 1482,
+          "sample_p50": 41,
+          "sample_p95": 72
+        },
+        "second": {
+          "mean": 2869.95703125,
+          "estimated_total": 4302066,
+          "approx_95pct_margin": 203918,
+          "sample_p50": 2363,
+          "sample_p95": 6517
+        },
+        "combined": {
+          "mean": 2914.10546875,
+          "estimated_total": 4368244,
+          "approx_95pct_margin": 203787,
+          "sample_p50": 2393,
+          "sample_p95": 6568
+        }
+      },
+      "selected_fields": {
+        "raw_cot": 1499
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/drd.json",
+      "kind": "chemcot",
+      "bytes": 9501874,
+      "rows": 1500,
+      "unique_text_pairs": 1500,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        515122,
+        6415116
+      ],
+      "tasks": {
+        "drd": 1500
+      },
+      "answer_cue_rows": 3,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 95.966796875,
+          "estimated_total": 143950,
+          "approx_95pct_margin": 670,
+          "sample_p50": 96,
+          "sample_p95": 107
+        },
+        "second": {
+          "mean": 1125.25390625,
+          "estimated_total": 1687881,
+          "approx_95pct_margin": 89023,
+          "sample_p50": 847,
+          "sample_p95": 2721
+        },
+        "combined": {
+          "mean": 1221.220703125,
+          "estimated_total": 1831831,
+          "approx_95pct_margin": 89016,
+          "sample_p50": 941,
+          "sample_p95": 2834
+        }
+      },
+      "selected_fields": {
+        "raw_cot": 1500
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/gsk.json",
+      "kind": "chemcot",
+      "bytes": 5279364,
+      "rows": 724,
+      "unique_text_pairs": 724,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        260830,
+        3772351
+      ],
+      "tasks": {
+        "gsk": 724
+      },
+      "answer_cue_rows": 16,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 102.435546875,
+          "estimated_total": 74163,
+          "approx_95pct_margin": 218,
+          "sample_p50": 103,
+          "sample_p95": 112
+        },
+        "second": {
+          "mean": 1342.92578125,
+          "estimated_total": 972278,
+          "approx_95pct_margin": 38615,
+          "sample_p50": 901,
+          "sample_p95": 4166
+        },
+        "combined": {
+          "mean": 1445.361328125,
+          "estimated_total": 1046442,
+          "approx_95pct_margin": 38622,
+          "sample_p50": 1003,
+          "sample_p95": 4270
+        }
+      },
+      "selected_fields": {
+        "raw_cot": 724
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/jnk.json",
+      "kind": "chemcot",
+      "bytes": 1418544,
+      "rows": 180,
+      "unique_text_pairs": 180,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        62688,
+        1046887
+      ],
+      "tasks": {
+        "jnk": 180
+      },
+      "answer_cue_rows": 3,
+      "mol_placeholder_rows": 0,
+      "sample_n": 180,
+      "tokens": {
+        "first": {
+          "mean": 94.65,
+          "estimated_total": 17037,
+          "approx_95pct_margin": 0,
+          "sample_p50": 94,
+          "sample_p95": 104
+        },
+        "second": {
+          "mean": 1492.1777777777777,
+          "estimated_total": 268592,
+          "approx_95pct_margin": 0,
+          "sample_p50": 942,
+          "sample_p95": 4065
+        },
+        "combined": {
+          "mean": 1586.8277777777778,
+          "estimated_total": 285629,
+          "approx_95pct_margin": 0,
+          "sample_p50": 1037,
+          "sample_p95": 4153
+        }
+      },
+      "selected_fields": {
+        "raw_cot": 180
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/logp.json",
+      "kind": "chemcot",
+      "bytes": 2928622,
+      "rows": 1394,
+      "unique_text_pairs": 1394,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        609538,
+        1730455
+      ],
+      "tasks": {
+        "logp": 1394
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 115.375,
+          "estimated_total": 160833,
+          "approx_95pct_margin": 649,
+          "sample_p50": 116,
+          "sample_p95": 126
+        },
+        "second": {
+          "mean": 327.16796875,
+          "estimated_total": 456072,
+          "approx_95pct_margin": 3925,
+          "sample_p50": 324,
+          "sample_p95": 400
+        },
+        "combined": {
+          "mean": 442.54296875,
+          "estimated_total": 616905,
+          "approx_95pct_margin": 4184,
+          "sample_p50": 439,
+          "sample_p95": 520
+        }
+      },
+      "selected_fields": {
+        "struct_cot": 1394
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/qed.json",
+      "kind": "chemcot",
+      "bytes": 2336793,
+      "rows": 377,
+      "unique_text_pairs": 377,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        120463,
+        1629851
+      ],
+      "tasks": {
+        "qed": 377
+      },
+      "answer_cue_rows": 6,
+      "mol_placeholder_rows": 0,
+      "sample_n": 377,
+      "tokens": {
+        "first": {
+          "mean": 86.86472148541114,
+          "estimated_total": 32748,
+          "approx_95pct_margin": 0,
+          "sample_p50": 87,
+          "sample_p95": 96
+        },
+        "second": {
+          "mean": 1134.5835543766577,
+          "estimated_total": 427738,
+          "approx_95pct_margin": 0,
+          "sample_p50": 807,
+          "sample_p95": 2890
+        },
+        "combined": {
+          "mean": 1221.448275862069,
+          "estimated_total": 460486,
+          "approx_95pct_margin": 0,
+          "sample_p50": 896,
+          "sample_p95": 2975
+        }
+      },
+      "selected_fields": {
+        "raw_cot": 377
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/solubility.json",
+      "kind": "chemcot",
+      "bytes": 2838293,
+      "rows": 1412,
+      "unique_text_pairs": 1412,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        490408,
+        1748034
+      ],
+      "tasks": {
+        "solubility": 1412
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 93.44140625,
+          "estimated_total": 131939,
+          "approx_95pct_margin": 663,
+          "sample_p50": 93,
+          "sample_p95": 105
+        },
+        "second": {
+          "mean": 321.96875,
+          "estimated_total": 454620,
+          "approx_95pct_margin": 4364,
+          "sample_p50": 320,
+          "sample_p95": 400
+        },
+        "combined": {
+          "mean": 415.41015625,
+          "estimated_total": 586559,
+          "approx_95pct_margin": 4679,
+          "sample_p50": 412,
+          "sample_p95": 498
+        }
+      },
+      "selected_fields": {
+        "struct_cot": 1412
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/Murcko_scaffold.json",
+      "kind": "chemcot",
+      "bytes": 12695966,
+      "rows": 1600,
+      "unique_text_pairs": 1600,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        749785,
+        10331057
+      ],
+      "tasks": {
+        "Murcko_scaffold": 1600
+      },
+      "answer_cue_rows": 462,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 117.970703125,
+          "estimated_total": 188753,
+          "approx_95pct_margin": 826,
+          "sample_p50": 118,
+          "sample_p95": 131
+        },
+        "second": {
+          "mean": 1780.982421875,
+          "estimated_total": 2849572,
+          "approx_95pct_margin": 213861,
+          "sample_p50": 870,
+          "sample_p95": 6095
+        },
+        "combined": {
+          "mean": 1898.953125,
+          "estimated_total": 3038325,
+          "approx_95pct_margin": 213976,
+          "sample_p50": 989,
+          "sample_p95": 6226
+        }
+      },
+      "selected_fields": {
+        "raw_cot": 1600
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/fg_count.json",
+      "kind": "chemcot",
+      "bytes": 9426002,
+      "rows": 1519,
+      "unique_text_pairs": 1519,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        483660,
+        7979971
+      ],
+      "tasks": {
+        "fg_count": 1519
+      },
+      "answer_cue_rows": 544,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 95.73046875,
+          "estimated_total": 145415,
+          "approx_95pct_margin": 2246,
+          "sample_p50": 92,
+          "sample_p95": 124
+        },
+        "second": {
+          "mean": 1567.544921875,
+          "estimated_total": 2381101,
+          "approx_95pct_margin": 200442,
+          "sample_p50": 664,
+          "sample_p95": 5135
+        },
+        "combined": {
+          "mean": 1663.275390625,
+          "estimated_total": 2526515,
+          "approx_95pct_margin": 200331,
+          "sample_p50": 770,
+          "sample_p95": 5222
+        }
+      },
+      "selected_fields": {
+        "raw_cot": 1519
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/ring_count.json",
+      "kind": "chemcot",
+      "bytes": 20514106,
+      "rows": 1600,
+      "unique_text_pairs": 1600,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        440684,
+        18597827
+      ],
+      "tasks": {
+        "ring_count": 1600
+      },
+      "answer_cue_rows": 1058,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 88.783203125,
+          "estimated_total": 142053,
+          "approx_95pct_margin": 1041,
+          "sample_p50": 88,
+          "sample_p95": 104
+        },
+        "second": {
+          "mean": 3194.3359375,
+          "estimated_total": 5110938,
+          "approx_95pct_margin": 319680,
+          "sample_p50": 2334,
+          "sample_p95": 8735
+        },
+        "combined": {
+          "mean": 3283.119140625,
+          "estimated_total": 5252991,
+          "approx_95pct_margin": 319813,
+          "sample_p50": 2412,
+          "sample_p95": 8826
+        }
+      },
+      "selected_fields": {
+        "raw_cot": 1600
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/ring_system_scaffold.json",
+      "kind": "chemcot",
+      "bytes": 15450905,
+      "rows": 1600,
+      "unique_text_pairs": 1600,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        740734,
+        13080533
+      ],
+      "tasks": {
+        "ring_system_scaffold": 1600
+      },
+      "answer_cue_rows": 663,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 130.009765625,
+          "estimated_total": 208016,
+          "approx_95pct_margin": 1097,
+          "sample_p50": 130,
+          "sample_p95": 147
+        },
+        "second": {
+          "mean": 2299.154296875,
+          "estimated_total": 3678647,
+          "approx_95pct_margin": 237087,
+          "sample_p50": 1446,
+          "sample_p95": 6383
+        },
+        "combined": {
+          "mean": 2430.16015625,
+          "estimated_total": 3888256,
+          "approx_95pct_margin": 237384,
+          "sample_p50": 1576,
+          "sample_p95": 6522
+        }
+      },
+      "selected_fields": {
+        "raw_cot": 1600
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/rxn/fs_by_product.json",
+      "kind": "chemcot",
+      "bytes": 2992305,
+      "rows": 890,
+      "unique_text_pairs": 890,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        560329,
+        1877413
+      ],
+      "tasks": {
+        "fs": 890
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 164.138671875,
+          "estimated_total": 146083,
+          "approx_95pct_margin": 1164,
+          "sample_p50": 159,
+          "sample_p95": 208
+        },
+        "second": {
+          "mean": 633.25,
+          "estimated_total": 563592,
+          "approx_95pct_margin": 10183,
+          "sample_p50": 599,
+          "sample_p95": 1048
+        },
+        "combined": {
+          "mean": 797.388671875,
+          "estimated_total": 709676,
+          "approx_95pct_margin": 10884,
+          "sample_p50": 762,
+          "sample_p95": 1235
+        }
+      },
+      "selected_fields": {
+        "struct_cot": 890
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/rxn/fs_major_product.json",
+      "kind": "chemcot",
+      "bytes": 7694318,
+      "rows": 2788,
+      "unique_text_pairs": 1164,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        1755219,
+        4192973
+      ],
+      "tasks": {
+        "fs": 2788
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 161.359375,
+          "estimated_total": 449870,
+          "approx_95pct_margin": 4909,
+          "sample_p50": 156,
+          "sample_p95": 209
+        },
+        "second": {
+          "mean": 484.04296875,
+          "estimated_total": 1349512,
+          "approx_95pct_margin": 27545,
+          "sample_p50": 467,
+          "sample_p95": 716
+        },
+        "combined": {
+          "mean": 645.400390625,
+          "estimated_total": 1799376,
+          "approx_95pct_margin": 30140,
+          "sample_p50": 618,
+          "sample_p95": 892
+        }
+      },
+      "selected_fields": {
+        "struct_cot": 2788
+      }
+    },
+    {
+      "path": "Downloads/Train/Chemcot/rxn/rcr.json",
+      "kind": "chemcot",
+      "bytes": 11449360,
+      "rows": 3142,
+      "unique_text_pairs": 3142,
+      "unique_cids": 0,
+      "turns": 0,
+      "empty_fields": [
+        0,
+        0
+      ],
+      "text_characters": [
+        4751531,
+        4763377
+      ],
+      "tasks": {
+        "rcr": 3142
+      },
+      "answer_cue_rows": 0,
+      "mol_placeholder_rows": 0,
+      "sample_n": 512,
+      "tokens": {
+        "first": {
+          "mean": 336.859375,
+          "estimated_total": 1058412,
+          "approx_95pct_margin": 8938,
+          "sample_p50": 329,
+          "sample_p95": 411
+        },
+        "second": {
+          "mean": 360.544921875,
+          "estimated_total": 1132832,
+          "approx_95pct_margin": 15741,
+          "sample_p50": 356,
+          "sample_p95": 472
+        },
+        "combined": {
+          "mean": 697.404296875,
+          "estimated_total": 2191244,
+          "approx_95pct_margin": 21166,
+          "sample_p50": 688,
+          "sample_p95": 857
+        }
+      },
+      "selected_fields": {
+        "cot_result": 3142
+      }
+    }
+  ]
+}

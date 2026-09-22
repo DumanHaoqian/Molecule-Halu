@@ -1,0 +1,32 @@
+# Native Matryoshka BatchTopK: nested prefix reconstruction losses.
+cache_dir: ../activations/layer26/pilot_10m
+output_dir: ../runs/matryoshka_layer26
+seed: 20260921
+device: cuda:4
+verify_cache_hashes: true
+sae:
+  architecture: matryoshka
+  d_in: 5120
+  d_sae: 16384
+  k: 64
+  matryoshka_widths: [1024, 2048, 8192, 16384]
+  use_matryoshka_aux_loss: true
+  decoder_init_norm: 0.1
+  rescale_acts_by_decoder_norm: true
+  aux_loss_coefficient: 0.03125
+  topk_threshold_lr: 0.01
+training:
+  batch_size: 1024
+  max_tokens: 10000474
+  lr: 0.0003
+normalization:
+  sample_tokens: 262144
+  center: true
+evaluation:
+  batch_size: 1024
+  max_tokens: 100000
+wandb:
+  mode: online
+  project: chemdfm-layer26-sae
+  name: matryoshka_layer26_16k_k64
+  tags: [layer26, matryoshka, pilot_10m]

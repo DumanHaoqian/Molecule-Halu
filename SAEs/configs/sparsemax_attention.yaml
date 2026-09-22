@@ -1,0 +1,41 @@
+# Adapted reference objective. Participation-ratio target is not exact support L0.
+# These are initial experimental settings; compare observed L0 and validation NMSE.
+cache_dir: ../activations/layer26/pilot_10m
+output_dir: ../runs/sparsemax_attention_layer26
+seed: 20260921
+device: cuda:4
+verify_cache_hashes: true
+sae:
+  architecture: sparsemax_attention
+  d_in: 5120
+  d_sae: 16384
+  k: 64
+  key_dim: 1024
+  preselect_k: 2048
+  activation_mode: probs
+  decoder_init_norm: 1.0
+  use_input_norm: true
+  use_idf_mask: false
+  score_scale: 4.0
+  mse_loss_scale: 1.0
+  l0_target: 64.0
+  l0_coefficient: 200.0
+  cosine_loss_coefficient: 20.0
+  norm_loss_coefficient: 5.0
+  value_scale_init: 1.0
+  global_output_scale_init: 1.0
+training:
+  batch_size: 1024
+  max_tokens: 10000474
+  lr: 0.00005
+normalization:
+  sample_tokens: 262144
+  center: true
+evaluation:
+  batch_size: 1024
+  max_tokens: 100000
+wandb:
+  mode: online
+  project: chemdfm-layer26-sae
+  name: sparsemax_attention_layer26_16k
+  tags: [layer26, sparsemax_attention, pilot_10m]

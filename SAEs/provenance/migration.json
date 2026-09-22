@@ -1,0 +1,28 @@
+{
+  "status": "verified",
+  "timestamp_utc": "2026-09-21T16:32:00.468395+00:00",
+  "moves": [
+    {
+      "from": "/mnt_nas1/haoqian/Data/Molecule/Pilot_v2/sae",
+      "to": "/mnt_nas1/haoqian/Data/Molecule/SAEs"
+    },
+    {
+      "from": "/mnt_nas1/haoqian/Data/Molecule/Pilot_v2/experiments/sae_layer26_corpus_audit",
+      "to": "/mnt_nas1/haoqian/Data/Molecule/SAEs/audits/corpus_inventory"
+    }
+  ],
+  "pre_migration_manifest_sha256": "17ae24ea40c46b3cde9d58a375e2b7ed60eb2c63a38e4ce0012e9377a19efde8",
+  "post_migration_manifest_sha256": "ad29bad155c9718692907434e2e14d59b828c97563b13af9fac97d72ecaff30b",
+  "unchanged_output_shards": 170,
+  "full_verification": "passed",
+  "retained_records": 1628920,
+  "original_metadata_archive": "provenance/pre_relocation",
+  "reference_repository": "https://github.com/DumanHaoqian/ChemDFM_SAE_Training",
+  "reference_commit": "c9b6d55013a321571784943a0c7135d38d6df2ab",
+  "notes": [
+    "All output JSONL contents/checksums unchanged; active paths and pipeline provenance updated.",
+    "Earlier logs and original provenance retain historical paths intentionally.",
+    "Pilot annotations/probe and source corpora remain outside SAEs, unchanged.",
+    "No real activation extraction or SAE GPU training launched."
+  ]
+}

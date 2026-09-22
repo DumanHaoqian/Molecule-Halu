@@ -1,0 +1,441 @@
+{
+  "method": "Exact whitespace-normalized question matches; CID matches only for Pilot cap2mol/mol2cap, where question IDs are PubChem IDs. No canonical-molecule or semantic near-duplicate checks performed. CID overlap means shared molecules, not necessarily identical questions.",
+  "pilot_unique_questions": 600,
+  "pilot_caption_cids": 98,
+  "copies": [
+    {
+      "a": "Downloads/Train/Chemcot/mol_edit/add.json",
+      "b": "Construction/Datasets/Chemcot/mol_edit/add.json",
+      "sha256_a": "76369c0bbb3a247001f5bf1244c9474f53cef9ce39c197e29b76767e4b6a09b5",
+      "sha256_b": "76369c0bbb3a247001f5bf1244c9474f53cef9ce39c197e29b76767e4b6a09b5",
+      "identical": true
+    },
+    {
+      "a": "Downloads/Train/OpenMolIns/xlarge/train.csv",
+      "b": "Construction/TOMG-Bench/data/OpenMolIns/xlarge/train.csv",
+      "sha256_a": "4313493312b122aa4be9b314217251e718009bba3569668164dc0b6698eeee98",
+      "sha256_b": "4313493312b122aa4be9b314217251e718009bba3569668164dc0b6698eeee98",
+      "identical": true
+    },
+    {
+      "a": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/comprehensive_conversations.json",
+      "b": "Construction/Datasets/Mol-LLaMA-Instruct/comprehensive_conversations.json",
+      "sha256_a": "28d0356f729543aca90132b133a7a33ceb0f1c30f573b127af43b00988230d15",
+      "sha256_b": "28d0356f729543aca90132b133a7a33ceb0f1c30f573b127af43b00988230d15",
+      "identical": true
+    }
+  ],
+  "sources": [
+    {
+      "path": "Downloads/Train/Chemcot/mol_edit/add.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": [
+        {
+          "id": "bdd99ba9-4919-41ed-bc4c-fb5c67c36d20",
+          "excerpt": " is added as a substituent on position 5 of the central benzene ring. Wait, the correct answer is C=CCOc1ccc(C2...)c(-c2ccccc2)c1OC. So looking at that, the central benzene ring has a substituent at position 5 (the 'c(-c2ccccc2)' part). So in the original m"
+        },
+        {
+          "id": "f2750598-6baa-40e6-93b9-29ec533f5635",
+          "excerpt": " rings to the third carbon. But that's still impossible. Therefore, perhaps the correct answer is to add a benzene to the middle carbon of the propyl chain.\n\nSo, going back, the propyl chain is N-C-C-C-benzene. Adding a benzene to the middle carbon (second "
+        }
+      ]
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_edit/delete.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": [
+        {
+          "id": "c115ffe9-b224-4a70-8a51-b905be6cc368",
+          "excerpt": " group. So the task is to remove this group.\n\nWait, the user mentioned that the correct answer is CCN1c2cc(C(F)F)ccc2CC1CC(C)O. That suggests removing one F from the CF3 group, turning it into CF2. But the instruction was to delete the halo group. Hmm. Mayb"
+        },
+        {
+          "id": "200e8a4d-bcce-4356-ae2c-2bff33837c24",
+          "excerpt": "ete the amide, we also remove the adjacent carbons. Wait, but the user says the correct answer is CC instead of CCC. So maybe the amide group includes the first carbon of the chain. Let me look at the SMILES again: NC(=O)CCCc2... The amide is N-C(=O). Then "
+        }
+      ]
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_edit/sub.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": [
+        {
+          "id": "a9af393c-8157-43a3-a275-1281c729cc5c",
+          "excerpt": "e problem states \"Functional Group to add: nitro\", which is NO2. Therefore, the correct answer is with NO2. So the assistant's output should reflect that. But the user's secret answer is different. Therefore, the assistant's answer will have the correct nit"
+        },
+        {
+          "id": "bd284085-a319-48d3-89fa-f7324523ed75",
+          "excerpt": ". This is conflicting. But the user says to output their answer. So perhaps the correct answer is to replace S with NO, which is nitroso. But according to the input, the functional group to add is nitro. Therefore, there's an error in the example answer. Ho"
+        }
+      ]
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/drd.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": [
+        {
+          "id": "72553d98-82d7-445e-a9ca-9d299596b425",
+          "excerpt": " to know the target, so I have to come up with a plausible SMILES. However, the correct answer is the target SMILES provided by the user. But since I can't know that, I need to make a logical guess.\n\nWait, the user's target is CC1C2Cc3ccc(O)cc3C1(C)CCN2CC(O"
+        },
+        {
+          "id": "1a4dacac-62b0-45ad-bb4d-d50baea9a008",
+          "excerpt": "ser provided a target with piperazine, but the task is to optimize, perhaps the correct answer is to use piperidine. So the Final Target Molecule SMILES would be CCOc1ccccc1N1CCCCC1CCCCCOc2ccc3c(c2)NC(=O)CC3. But I need to ensure the SMILES is valid. Let me"
+        }
+      ]
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/gsk.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": [
+        {
+          "id": "d3135452-1d78-4e5e-8c8d-0526dde65ab5",
+          "excerpt": "ions, I must follow the optimization steps without knowing that. So perhaps the correct answer is as above."
+        },
+        {
+          "id": "15a3c454-2b68-4718-82fc-76ebc7284566",
+          "excerpt": "nzyl. Wait, but the user said to pretend not to know the target. Hmm. Maybe the correct answer is to replace the benzyl with a piperazine, leading to a SMILES like CC(C)n1cnc2c(NCc3CNCCN3)nc(N)nc21. But in the target molecule, the benzyl is still present. A"
+        }
+      ]
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/jnk.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": [
+        {
+          "id": "b4ff366e-2680-42ed-a911-09297e59112e",
+          "excerpt": "he triazole with a thiophene, but I can't know that. So maybe in this case, the correct answer is to replace the triazole with a piperazine or similar. However, the actual target provided by the user changes the triazole to another thiophene. But since I ha"
+        },
+        {
+          "id": "dd4c1e23-23e5-4f17-95c0-ea46e9ba94a0",
+          "excerpt": " a piperidine or adjusting substituents. But given the user's target, maybe the correct answer is to move the substituents and add methyl. But since I have to pretend not to know, I have to proceed. So, based on the analysis, the optimized molecule would ha"
+        }
+      ]
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/logp.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/qed.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": [
+        {
+          "id": "44120ca1-553f-4943-8387-8d6c2cb59093",
+          "excerpt": " sure my answer aligns with that, but pretend I don't know. But in reality, the correct answer is that the target is the one with the piperazine added. So the steps I described would lead to that."
+        },
+        {
+          "id": "7fa31779-3ec6-4f36-9f5f-e982ba4e1bac",
+          "excerpt": "cc[nH]3)C(=O)N2. But since I can't know that, I have to derive it. However, the correct answer is to replace the NCCCO with N(C)C, leading to the target's SMILES. So the assistant's answer should align with that."
+        }
+      ]
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_opt/solubility.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/Murcko_scaffold.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": [
+        {
+          "id": "428bf4e2-b94a-4923-b537-54d14a0e944a",
+          "excerpt": "nzene ring. So, the scaffold is just the benzene. \n\nThe user mentioned that the ground truth is \"Yes,\" but I need to verify based on the structure. The core rings here are the benzene. All substituents are removed, so the Murcko scaffold matches the pr"
+        },
+        {
+          "id": "d8b25116-5604-4521-9288-1c661814234b",
+          "excerpt": "ot match the source molecule's Murcko scaffold. But the user mentioned that the ground truth is \"Yes\". Hmm, maybe I made a mistake in analyzing the connectivity.\n\nWait, perhaps I should draw the structures. Let's see:\n\nSource SMILES: C[C@@H](CNC(=O)C[C"
+        }
+      ]
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/fg_count.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": [
+        {
+          "id": "8a8bfd05-1a16-471e-90c0-f3088f4fb07c",
+          "excerpt": "C)(C)C, and the fragment we're looking for is sulfoxide. The user mentioned the ground truth count is 1, but I have to figure it out myself.\n\nFirst, I need to recall what a sulfoxide group looks like. Sulfoxide has the structure R-S(=O)-R', where the s"
+        },
+        {
+          "id": "a1e57979-ce72-4954-ba93-6803beb55e02",
+          "excerpt": ": S(=O) within the SOOCCS(=O)OOO segment. Therefore, the count should be 1. The ground truth mentioned is 1, which matches. So the answer is 1."
+        }
+      ]
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/ring_count.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": [
+        {
+          "id": "9c10f1b7-984e-4313-a261-22756442196b",
+          "excerpt": "CC2)nc([C@@H]2CCC[NH2+]2)n1, and the ring structure to look for is C1CCNC1. The ground truth is 2, but I need to figure it out myself.\n\nFirst, I'll parse the input molecule's SMILES notation. The molecule has two rings indicated by the numbers 1 and 2."
+        },
+        {
+          "id": "9fd77f2c-9480-4d78-8b3c-ccf7af6f9a60",
+          "excerpt": "tituent ring. Therefore, the count should be 2, which matches the user's secret ground truth. So the answer is 2."
+        }
+      ]
+    },
+    {
+      "path": "Downloads/Train/Chemcot/mol_und/ring_system_scaffold.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": [
+        {
+          "id": "83c2b036-7e45-49e3-81d6-a5121ea26a1f",
+          "excerpt": "s not the case. \n\nHmm. This is tricky. According to the user's secret note, the correct answer is Yes, but I must analyze as if I don't know. However, based on my analysis, the answer should be No. But perhaps I made a mistake in parsing the SMILES. \n\nLet m"
+        },
+        {
+          "id": "6fc222df-ae5f-4db3-9372-475f0d226d51",
+          "excerpt": "e six-membered aromatic ring is intact. Therefore, the scaffold is present. The ground truth mentioned is Yes, which aligns with this analysis. So the output should be Yes."
+        }
+      ]
+    },
+    {
+      "path": "Downloads/Train/Chemcot/rxn/fs_by_product.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Downloads/Train/Chemcot/rxn/fs_major_product.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Downloads/Train/Chemcot/rxn/rcr.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Downloads/Train/OpenMolIns/large/train.csv",
+      "exact_pilot_question_matches": [
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_169",
+          "test"
+        ],
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_307",
+          "train"
+        ],
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_495",
+          "train"
+        ]
+      ],
+      "shared_caption_cids": [],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Downloads/Train/OpenMolIns/light/train.csv",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Downloads/Train/OpenMolIns/medium/train.csv",
+      "exact_pilot_question_matches": [
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_169",
+          "test"
+        ],
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_307",
+          "train"
+        ],
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_495",
+          "train"
+        ]
+      ],
+      "shared_caption_cids": [],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Downloads/Train/OpenMolIns/small/train.csv",
+      "exact_pilot_question_matches": [
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_495",
+          "train"
+        ]
+      ],
+      "shared_caption_cids": [],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Downloads/Train/OpenMolIns/xlarge/train.csv",
+      "exact_pilot_question_matches": [
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_147",
+          "test"
+        ],
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_15",
+          "train"
+        ],
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_169",
+          "test"
+        ],
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_219",
+          "train"
+        ],
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_307",
+          "train"
+        ],
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_495",
+          "train"
+        ],
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_7",
+          "train"
+        ],
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_74",
+          "train"
+        ],
+        [
+          "s2_MolCustom_AtomNum",
+          "s2_MolCustom_AtomNum_97",
+          "test"
+        ],
+        [
+          "s2_MolCustom_BondNum",
+          "s2_MolCustom_BondNum_196",
+          "test"
+        ]
+      ],
+      "shared_caption_cids": [],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/comprehensive_conversations.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [
+        "10530497",
+        "11431307",
+        "122198249",
+        "125",
+        "12803277",
+        "147394",
+        "161359",
+        "179394",
+        "21606527",
+        "25034673",
+        "443250",
+        "5281701",
+        "71508666",
+        "86583473"
+      ],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/detailed_structural_descriptions.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [
+        "11256664",
+        "129011031",
+        "147394",
+        "161359",
+        "21126521",
+        "21625899",
+        "23656876",
+        "24906329",
+        "443250",
+        "50906608",
+        "5281701",
+        "54580211",
+        "56927916",
+        "56936304",
+        "57412271",
+        "68257",
+        "70697809",
+        "8288",
+        "85692",
+        "86289647",
+        "91855664"
+      ],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/structure2biological_features_relationships.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [
+        "11431307",
+        "122198249",
+        "125",
+        "129011031",
+        "14213975",
+        "147394",
+        "193962",
+        "24906329",
+        "419775",
+        "57431238",
+        "6957671",
+        "85519",
+        "90657815"
+      ],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/Mol-LLaMA-Instruct/structure2chemical_features_relationships.json",
+      "exact_pilot_question_matches": [],
+      "shared_caption_cids": [
+        "10185281",
+        "125",
+        "12803277",
+        "25202011",
+        "4419940",
+        "54580211",
+        "6957671",
+        "70788954",
+        "90657815"
+      ],
+      "answer_cue_examples": []
+    },
+    {
+      "path": "Molecule/Baselines/Mol-LLaMA/data/ChEBI-20/train.txt",
+      "exact_pilot_question_matches": [
+        [
+          "cap2mol",
+          "50900595",
+          "train"
+        ]
+      ],
+      "shared_caption_cids": [],
+      "answer_cue_examples": []
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "timestamp_utc": "2026-09-21T16:43:58.994742+00:00",
+  "unit_tests": {
+    "passed": 55,
+    "log": "logs/tests-final.log",
+    "command": ".venv/bin/python -m pytest tests -q"
+  },
+  "cpu_integration": {
+    "architectures": [
+      "batchtopk",
+      "topk",
+      "jumprelu",
+      "matryoshka",
+      "sparsemax_attention"
+    ],
+    "train_tokens_per_architecture": 512,
+    "validation_tokens_per_architecture": 128,
+    "d_in": 16,
+    "synthetic_only": true,
+    "wandb": "offline files verified for all five runs",
+    "directory": "artifacts/smoke_cpu_verified"
+  },
+  "independent_review": {
+    "substantive_findings": 0,
+    "additional_cpu_tests_passed": 21,
+    "deselected": 1
+  },
+  "corpus_migration": {
+    "output_hashes_unchanged": 170,
+    "full_verify": "logs/migration-full-verification.log",
+    "completion_seal_matches": true
+  },
+  "preflight": {
+    "model_loaded": false,
+    "log": "logs/extraction-preflight.json",
+    "raw_cache_gib": 99.60370063781738
+  },
+  "gpu_extraction_run": false,
+  "gpu_training_run": false,
+  "real_lm_delta_ce_evaluated": false,
+  "online_wandb_run_created": false,
+  "code_sha256": {
+    "activation_inputs.py": "41a932cccdd92d5afb4b8155ef20ac2f58effaadd7505f5cc11c5e2ff443c2e8",
+    "activation_store.py": "e589c09b734770697836772be1fb1c1180042f93111d78d0d56bc88b3931514e",
+    "corpus.py": "c9c2b1fd96f6b9a5a1ad271195e03a795b742a6cd605c01f1306ff44effd0179",
+    "delta_lm.py": "71a7d315aaf495b91f325abdb227cddc49c2090a5a2cb6fd63134ade8909d53b",
+    "eval_sae.py": "4d308b4a9373355b7cf102d7ea30c3737c9ebe70750948b41d345bd74aeaeb80",
+    "extract_activations.py": "58f4ec2cc27be3f3c447dcb7279266bab711170a894c40c1fa896fe586db12aa",
+    "feature_examples.py": "33991c58afe95308c7aafe8c38591dfc05441b8366cc662e09ecf05348808dd3",
+    "metrics.py": "70812eb331720917b466e54d2695f3a3816af2df1ace0319ceea311e15928852",
+    "prepare.py": "5a91a638a1302716552d6513bcc6b6e60c4cd52e645ba21a4130d9cf28230b89",
+    "sae_models.py": "a9229fbe5afdbf82df64e91b86215b948eaac984a9157d8867829d9fdc876c2a",
+    "smoke_test.py": "f4c57b86618d004bf3bb2d99cc2b3e809966ff00e88a8c9d38fcaf5860b488ea",
+    "sparsemax_attention_sae.py": "02bf4b4e410f680678b9f582e76c7441d48e85320495930ea02b6590aa9e9579",
+    "train_sae.py": "a137a4a95e61ce92c5508eb31f1f24441d17b392bd127b7410e65e65618c7caa",
+    "verify.py": "97134b1328d0ca0fa753dfe8acc27616e911dc5e05b4b44fdf8a3783e9bda685"
+  }
+}

@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+data/
+activations/
+runs/
+artifacts/
+logs/
+wandb/
+reference/
+*.pyc

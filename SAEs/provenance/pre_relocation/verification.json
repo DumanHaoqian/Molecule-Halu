@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "records": 1628920,
+  "main_records": 293732,
+  "prompt_candidates": 1012188,
+  "excluded_records": 270842,
+  "source_inputs": {
+    "chemcot": 23223,
+    "mollama": 284743,
+    "pubchem": 315396,
+    "chebi": 26407,
+    "moleculeqa": 49993,
+    "openmolins": 1200000
+  },
+  "source_kept": {
+    "chemcot": 9153,
+    "mollama": 284579,
+    "chebi": 26356,
+    "pubchem": 296644,
+    "moleculeqa": 49711,
+    "openmolins": 962477
+  },
+  "source_excluded": {
+    "chemcot": 14070,
+    "mollama": 164,
+    "pubchem": 18752,
+    "chebi": 51,
+    "moleculeqa": 282,
+    "openmolins": 237523
+  },
+  "exclusion_reasons": {
+    "answer_cue": 12450,
+    "pilot_molecule": 722,
+    "pilot_cid": 311,
+    "fewer_than_16_assistant_tokens": 15497,
+    "source_split_not_train": 2982,
+    "pilot_question": 21,
+    "duplicate_dialog": 1664,
+    "duplicate_prompt": 237519
+  },
+  "output_sha256_verified": 170,
+  "tokenization_recomputed_records": 132,
+  "checks": [
+    "source accounting",
+    "all unique IDs",
+    "all normalized-content hashes",
+    "no duplicate dialogs/prompts",
+    "no Pilot normalized-question/CID/connectivity matches",
+    "no train/validation group/identity-key overlap",
+    "role and reference separation",
+    "sampled contextual token counts",
+    "all selection references/counts/splits",
+    "all output shard SHA-256"
+  ],
+  "selection": {
+    "train": {
+      "records": 19482,
+      "assistant_tokens": 10000474
+    },
+    "validation": {
+      "records": 883,
+      "assistant_tokens": 443731
+    }
+  },
+  "limits": [
+    "No scaffold or semantic-near-duplicate isolation.",
+    "Molecule identity compares supplied source metadata using RDKit whole/largest-component connectivity; does not extract every molecule mentioned in natural-language answers.",
+    "Answer-cue matching is heuristic; external descriptions/reasoning are not verified factual ground truth.",
+    "Prompt candidates have no SAE split; generated answers must be regrouped before use."
+  ],
+  "manifest_sha256": "17ae24ea40c46b3cde9d58a375e2b7ed60eb2c63a38e4ce0012e9377a19efde8",
+  "verification_code_sha256": "e84826548f2025a4e5be0bf7fd88922dc51fbeba8a299b01fcca7cc490a54374"
+}

@@ -1,0 +1,16 @@
+{"path": "Downloads/Train/Chemcot/mol_edit/add.json", "rows": 1499, "unique_text_pairs": 1499, "answer_cue_rows": 171} tokens=4223274
+{"path": "Downloads/Train/Chemcot/mol_edit/delete.json", "rows": 1499, "unique_text_pairs": 1499, "answer_cue_rows": 156} tokens=4183709
+{"path": "Downloads/Train/Chemcot/mol_edit/sub.json", "rows": 1499, "unique_text_pairs": 1499, "answer_cue_rows": 172} tokens=4368244
+{"path": "Downloads/Train/Chemcot/mol_opt/drd.json", "rows": 1500, "unique_text_pairs": 1500, "answer_cue_rows": 3} tokens=1831831
+{"path": "Downloads/Train/Chemcot/mol_opt/gsk.json", "rows": 724, "unique_text_pairs": 724, "answer_cue_rows": 16} tokens=1046442
+{"path": "Downloads/Train/Chemcot/mol_opt/jnk.json", "rows": 180, "unique_text_pairs": 180, "answer_cue_rows": 3} tokens=285629
+{"path": "Downloads/Train/Chemcot/mol_opt/logp.json", "rows": 1394, "unique_text_pairs": 1394, "answer_cue_rows": 0} tokens=616905
+{"path": "Downloads/Train/Chemcot/mol_opt/qed.json", "rows": 377, "unique_text_pairs": 377, "answer_cue_rows": 6} tokens=460486
+{"path": "Downloads/Train/Chemcot/mol_opt/solubility.json", "rows": 1412, "unique_text_pairs": 1412, "answer_cue_rows": 0} tokens=586559
+{"path": "Downloads/Train/Chemcot/mol_und/Murcko_scaffold.json", "rows": 1600, "unique_text_pairs": 1600, "answer_cue_rows": 462} tokens=3038325
+{"path": "Downloads/Train/Chemcot/mol_und/fg_count.json", "rows": 1519, "unique_text_pairs": 1519, "answer_cue_rows": 544} tokens=2526515
+{"path": "Downloads/Train/Chemcot/mol_und/ring_count.json", "rows": 1600, "unique_text_pairs": 1600, "answer_cue_rows": 1058} tokens=5252991
+{"path": "Downloads/Train/Chemcot/mol_und/ring_system_scaffold.json", "rows": 1600, "unique_text_pairs": 1600, "answer_cue_rows": 663} tokens=3888256
+{"path": "Downloads/Train/Chemcot/rxn/fs_by_product.json", "rows": 890, "unique_text_pairs": 890, "answer_cue_rows": 0} tokens=709676
+{"path": "Downloads/Train/Chemcot/rxn/fs_major_product.json", "rows": 2788, "unique_text_pairs": 1164, "answer_cue_rows": 0} tokens=1799376
+{"path": "Downloads/Train/Chemcot/rxn/rcr.json", "rows": 3142, "unique_text_pairs": 3142, "answer_cue_rows": 0} tokens=2191244
